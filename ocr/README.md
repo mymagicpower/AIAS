@@ -146,3 +146,7 @@ http://127.0.0.1:8089/swagger-ui.html
 1. 图片的自动转正对齐
 2. 表格识别
 ```
+
+
+## QQ群：
+![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/OCR_QQ.png)
