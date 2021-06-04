@@ -113,7 +113,7 @@ java -javaagent:aais-ocr-demo.jar -jar aais-ocr-demo.jar
 输入地址： http://localhost:8080
 
 #### 1. 标注模板:
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/ocr_anchor.png){:height="50%" width="50%"}
+![Screenshot-w150](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/ocr_anchor.png)
 
 ```bash
 # 参照锚点设置规则：
@@ -123,7 +123,7 @@ java -javaagent:aais-ocr-demo.jar -jar aais-ocr-demo.jar
 4. 参照锚点文字内容需唯一，即不会重复出现的文字
 ```
 
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/ocr_content.png){:height="50%" width="50%"}
+![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/ocr_content.png)
 
 ```bash
 # 内容识别区设置规则：
@@ -133,10 +133,10 @@ java -javaagent:aais-ocr-demo.jar -jar aais-ocr-demo.jar
 ```
 
 #### 2. 基于模板文字识别:
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/ocr_recognize.png){:height="50%" width="50%"}
+![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/ocr_recognize.png)
 
 #### 3. 自由文本识别:  
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/ocr_freetxt.png){:height="50%" width="50%"}
+![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/ocr_freetxt.png)
   
 #### 4. 接口文档:  
 http://127.0.0.1:8089/swagger-ui.html
