@@ -113,7 +113,7 @@ java -javaagent:aais-ocr-demo.jar -jar aais-ocr-demo.jar
 输入地址： http://localhost:8080
 
 #### 1. 标注模板:
-![Screenshot-w70](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/ocr_anchor.png)
+![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/ocr_anchor.png)
 
 ```bash
 # 参照锚点设置规则：
