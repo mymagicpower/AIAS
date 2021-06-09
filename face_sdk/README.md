@@ -78,3 +78,5 @@ cd face_sdk
 ```text
 [INFO ] - 0.9022607
 ```
+## QQ群：
+![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/OCR_QQ.png)
