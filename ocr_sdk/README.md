@@ -35,5 +35,9 @@ cd ocr_sdk
 ![ocr_result](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/ocr_result.png)
 
 
-### 添加依赖lib - aais-ocr-lib-0.1.0.jar：
+### 帮助 
+添加依赖lib - aais-ocr-lib-0.1.0.jar：
 ![lib](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/lib.png)
+
+## QQ群：
+![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/OCR_QQ.png)
