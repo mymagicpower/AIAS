@@ -24,16 +24,16 @@
 本文的例子给出了人脸检测，人脸关键点，人脸特征提取，人脸比对的参考实现。
 ###人脸检测(含5个人脸关键点)提供了两个模型的实现：
 1. 大模型: 
-模型推理例子代码: [RetinaFaceDetectionExample.java](https://github.com/mymagicpower/AIAS/blob/main/face_sdk/src/main/java/me/calvin/example/RetinaFaceDetectionExample.java).  
+模型推理例子代码: [RetinaFaceDetectionExample.java](https://github.com/mymagicpower/AIAS/blob/main/face_sdk_cpu/src/main/java/me/calvin/example/RetinaFaceDetectionExample.java).  
 
 2. 小模型: 
-模型推理例子代码: [LightFaceDetectionExample.java](https://github.com/mymagicpower/AIAS/blob/main/face_sdk/src/main/java/me/calvin/example/LightFaceDetectionExample.java).  
+模型推理例子代码: [LightFaceDetectionExample.java](https://github.com/mymagicpower/AIAS/blob/main/face_sdk_cpu/src/main/java/me/calvin/example/LightFaceDetectionExample.java).  
 
 ###人脸特征提取：
-模型推理例子代码: [FeatureExtractionExample.java](https://github.com/mymagicpower/AIAS/blob/main/face_sdk/src/main/java/me/calvin/example/FeatureExtractionExample.java).  
+模型推理例子代码: [FeatureExtractionExample.java](https://github.com/mymagicpower/AIAS/blob/main/face_sdk_cpu/src/main/java/me/calvin/example/FeatureExtractionExample.java).  
 
 ###人脸特征比对：
-特征比对例子代码: [FeatureComparisonExample.java](https://github.com/mymagicpower/AIAS/blob/main/face_sdk/src/main/java/me/calvin/example/FeatureComparisonExample.java).  
+特征比对例子代码: [FeatureComparisonExample.java](https://github.com/mymagicpower/AIAS/blob/main/face_sdk_cpu/src/main/java/me/calvin/example/FeatureComparisonExample.java).  
 
 
 ## 运行人脸检测的例子

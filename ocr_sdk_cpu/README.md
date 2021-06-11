@@ -8,7 +8,7 @@ OCR（文字识别）是目前常用的一种AI能力。
 
 ### 模型的实现：
 1. 小模型: 
-模型推理例子代码: [LightOcrRecognitionExample.java](https://github.com/mymagicpower/AIAS/blob/main/ocr_sdk/src/main/java/me/calvin/example/LightOcrRecognitionExample.java).  
+模型推理例子代码: [LightOcrRecognitionExample.java](https://github.com/mymagicpower/AIAS/blob/main/ocr_sdk_cpu/src/main/java/me/calvin/example/LightOcrRecognitionExample.java).  
 
 ## 运行OCR识别例子
 1. 首先下载例子代码
