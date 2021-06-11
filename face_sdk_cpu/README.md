@@ -78,5 +78,13 @@ cd face_sdk
 ```text
 [INFO ] - 0.9022607
 ```
+
+### 帮助 
+[点击下载SDK](https://djl-model.oss-cn-hongkong.aliyuncs.com/jars/aais-face-lib-0.1.0.jar). 
+
+添加依赖lib - aais-face-lib-0.1.0.jar：
+![lib](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/lib.png)
+
+
 ## QQ群：
 ![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/OCR_QQ.png)
