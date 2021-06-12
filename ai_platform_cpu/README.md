@@ -93,10 +93,6 @@ http://127.0.0.1:8089/swagger-ui.html
 6. ...
 ```
 
-### Git地址：
-https://github.com/mymagicpower/AIAS/ai_platform_cpu/README.md
-https://gitee.com/mymagicpower/AIAS/ai_platform_cpu
-
 ### QQ群:  
 ![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/OCR_QQ.png)
   
