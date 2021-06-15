@@ -9,7 +9,7 @@
 #### 项目地址
 
 |     |   地址  | 
-|---  |--- | --- |
+|---  |--- |
 |  github   |  https://github.com/mymagicpower/AIAS/image_search_cpu   | 
 |  码云   |  https://gitee.com/mymagicpower/AIAS/image_search_cpu   | 
 
@@ -84,7 +84,7 @@ sudo nginx
 [jar包](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/image_search/dist.zip)   
  
 #### 2.3 下载并导入SQL文件到MySQL数据库：
-使用命令行导入，或者mysql workbench, navicat 图形界面导入。
+使用命令行导入，或者mysql workbench, navicat 图形界面导入。     
 [SQL文件](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/image_search/data.sql)
 
 #### 2.4 编辑环境配置信息
@@ -191,10 +191,10 @@ search:
 ![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/image_search/images/face_search.png)
 
 - 图片上传
-1). 点击上传按钮上传zip压缩包
-2). 如果是人像图片：点击提取人脸特征按钮
-3). 如果不是人像图片：点击提取特征按钮
-4). 刷新页面：可以看到"状态"列，如：45/100 的特征提取进度
+1). 点击上传按钮上传zip压缩包.  
+2). 如果是人像图片：点击提取人脸特征按钮.  
+3). 如果不是人像图片：点击提取特征按钮.  
+4). 刷新页面：可以看到"状态"列，如：45/100 的特征提取进度.  
 
 ![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/image_search/images/storage.png)
 
