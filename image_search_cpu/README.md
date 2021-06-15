@@ -10,8 +10,8 @@
 
 |     |   地址  | 
 |---  |--- |
-|  github   |  https://github.com/mymagicpower/AIAS/image_search_cpu   | 
-|  码云   |  https://gitee.com/mymagicpower/AIAS/image_search_cpu   | 
+|  github   |  https://github.com/mymagicpower/AIAS/blob/main/image_search_cpu   | 
+|  码云   |  https://gitee.com/mymagicpower/AIAS/tree/main/image_search_cpu   | 
 
 #### 主要特性
 - 底层使用特征向量相似度搜索
