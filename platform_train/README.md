@@ -72,8 +72,8 @@ java -jar aais-platform-train-0.1.0.jar
 输入地址： http://localhost:8080
 
 #### 1. 训练数据准备-ZIP格式压缩包:
-压缩包内需包含2个目录（名字需严格一致）：
--TRAIN ：包含训练数据，每个文件夹对应一个分类（每个分类图片数量尽量保持平衡）
+压缩包内需包含2个目录（名字需严格一致）：    
+-TRAIN ：包含训练数据，每个文件夹对应一个分类（每个分类图片数量尽量保持平衡）    
 -VALIDATION ：包含验证数据，每个文件夹对应一个分类
 
 ![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/train_platform/images/folder.png)
@@ -125,8 +125,8 @@ file:
 ```
 
 ### Git地址：
-https://github.com/mymagicpower/AIAS/blob/main/platform_train
-https://gitee.com/mymagicpower/AIAS/tree/main/platform_train
+https://github.com/mymagicpower/AIAS/blob/main/platform_train     
+https://gitee.com/mymagicpower/AIAS/tree/main/platform_train     
 
 ### QQ群:  
 ![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/OCR_QQ.png)
