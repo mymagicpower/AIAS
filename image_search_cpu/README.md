@@ -90,14 +90,32 @@ sudo nginx
 #### 2.4 编辑环境配置信息
 windows环境里可以使用7-zip直接对jar包中的配置文件进行编辑。
 
-- application-dev.yml，根据需要编辑数据库名称image-search，用户名，密码 
+- application-dev.yml    
+1). 根据需要编辑数据库名称image-search，用户名，密码 
 ```bash
       url: jdbc:log4jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:image-search}?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
       username: ${DB_USER:root}
       password: ${DB_PWD:??????}
 
 ```
-- application.yml
+2). 根据需要编辑图片上传根路径imageRootPath(需配置到nginx)     
+```bash
+# 文件存储路径
+file:
+  mac:
+    ...
+    imageRootPath: ~/file/image_root/ #图片文件根目录
+  linux:
+    ....
+    imageRootPath: /home/aias/file/image_root/ #图片文件根目录
+  windows:
+    ...
+    imageRootPath: C:\aias\file\image_root\ ##图片文件根目录
+    ...
+```
+
+
+- application.yml     
 1). 根据需要编辑redis连接信息
 ```bash
   redis:
@@ -110,13 +128,11 @@ windows环境里可以使用7-zip直接对jar包中的配置文件进行编辑�
     timeout: 5000
 
 ```
-2). 根据需要编辑图片上传路径(需配置到nginx)
+2). 根据需要编辑图片baseurl 
 ```bash
 image:
-  path: /Users/calvin/Documents/image_root/ #图片存放文件夹
   #baseurl是图片的地址前缀，根据需要将127.0.0.1换成nginx所在服务器的ip地址
   baseurl: http://127.0.0.1:8080/aias/
-
 ```
 
 #### 2.5 配置hosts文件：
