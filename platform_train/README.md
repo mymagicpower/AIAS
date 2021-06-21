@@ -96,6 +96,9 @@ java -jar aais-platform-train-0.1.0.jar
 #### 7. API文档： 
 http://127.0.0.1:8089/swagger-ui.html
 ![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/train_platform/images/swagger.png)
+
+#### 8. 超参数设置： 
+![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/train_platform/images/superparams.png)
   
 #### 编辑jar包中的application.yml
 根据需要编辑application.yml中的图片上传路径,模型保存路径
