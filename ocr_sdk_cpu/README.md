@@ -49,10 +49,10 @@ OCR（文字识别）是目前常用的一种AI能力。
 ### 3. 图片旋转：
 每调用一次rotateImg方法，会使图片逆时针旋转90度。
 - 例子代码: RotationExample.java 
-- 旋转前图片:
-![ticket_0](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/ticket_0.png)
-- 旋转后图片效果如下：
-![rotate_result](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/rotate_result.png)
+
+旋转前图片                    |  旋转后图片                     
+:-------------------------:|:-------------------------:
+![](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/ticket_0.png)        |  ![](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/rotate_result.png)         
 
 ### 2. 文字识别：
 再使用本方法前，请调用上述方法使图片文字呈水平0度方向。  
