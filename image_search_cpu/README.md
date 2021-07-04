@@ -81,7 +81,7 @@ sudo nginx
 - 需要安装MySQL数据库
 
 #### 2.2 下载jar包：
-[jar包](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/image_search/dist.zip)   
+[jar包](https://djl-model.oss-cn-hongkong.aliyuncs.com/jars/aias-aiplatform-search-1.0.jar)   
  
 #### 2.3 下载并导入SQL文件到MySQL数据库：
 使用命令行导入，或者mysql workbench, navicat 图形界面导入。     
