@@ -3,6 +3,9 @@
 
 ### SDK功能
 - 支持8416种菜品的分类识别，并给出置信度。
+- 提供两个可用模型例子
+1). 大模型(resnet50)例子：DishesClassificationExample
+2). 小模型(mobilenet_v2)例子：LightDishesClassExample
 
 [菜品分类](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/dish_sdk/dishes.txt)
 

@@ -3,6 +3,9 @@
 
 ### SDK功能
 - 支持7978种动物的分类识别，并给出置信度。
+- 提供两个可用模型例子
+1). 大模型(resnet50)例子：AnimalsClassificationExample
+2). 小模型(mobilenet_v2)例子：LightAnimalsClassExample
 
 [动物分类](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/animal_sdk/animals.txt)
 
