@@ -2,13 +2,13 @@
 人车非（人、机动车，非机动车）识别sdk，支持6种目标检测识别。
 
 ### SDK功能
-支持的6种目标检测识别如下：
-1-person 行人 
-2-bicycle 自行车 
-3-car 小汽车 
-4-motorcycle 摩托车 
-5-bus 公共汽车
-6-truck 货车
+支持的6种目标检测识别如下：    
+- 1-person 行人 
+- 2-bicycle 自行车 
+- 3-car 小汽车 
+- 4-motorcycle 摩托车 
+- 5-bus 公共汽车
+- 6-truck 货车
 
 ## 运行例子 - TrafficDetectionExample
 - 测试图片
