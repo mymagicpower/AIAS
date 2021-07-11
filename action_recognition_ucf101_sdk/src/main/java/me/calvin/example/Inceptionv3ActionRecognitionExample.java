@@ -20,7 +20,7 @@ public final class Inceptionv3ActionRecognitionExample {
   private Inceptionv3ActionRecognitionExample() {}
 
   public static void main(String[] args) throws IOException, ModelException, TranslateException {
-    Path imageFile = Paths.get("src/test/resources/swiming.jpeg");
+    Path imageFile = Paths.get("src/test/resources/action.jpeg");
     Image image = ImageFactory.getInstance().fromFile(imageFile);
     Inceptionv3ActionRecognition recognition = new Inceptionv3ActionRecognition();
     Classifications classifications = recognition.predict(image);

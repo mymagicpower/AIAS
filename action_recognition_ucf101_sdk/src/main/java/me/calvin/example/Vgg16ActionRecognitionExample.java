@@ -20,7 +20,7 @@ public final class Vgg16ActionRecognitionExample {
   private Vgg16ActionRecognitionExample() {}
 
   public static void main(String[] args) throws IOException, ModelException, TranslateException {
-    Path imageFile = Paths.get("src/test/resources/swiming.jpeg");
+    Path imageFile = Paths.get("src/test/resources/action.jpeg");
     Image image = ImageFactory.getInstance().fromFile(imageFile);
     Vgg16ActionRecognition recognition = new Vgg16ActionRecognition();
     Classifications classifications = recognition.predict(image);
