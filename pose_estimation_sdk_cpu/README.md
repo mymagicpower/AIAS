@@ -5,7 +5,13 @@
 - 行人检测
 - 肢体关键点检测
 
-## 运行例子 - PoseEstimationExample
+### SDK包含两个检测器：
+-  PoseResnet18Estimation
+simple pose, backbone: resnet18, dataset:imagenet
+-  PoseResnet50Estimation
+simple pose, backbone: resnet50, dataset:imagenet
+
+## 运行例子 - PoseResnet18EstimationExample
 - 测试图片
 ![pose-estimation](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/pose_estimation_sdk/pose-estimation.png)
 
