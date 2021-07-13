@@ -47,3 +47,6 @@ FrontCrawl : 0.999593198299408
 
 ### 帮助 
 添加依赖库：lib/action-recognition-ucf101-lib-0.1.0.jar
+
+## QQ群：
+![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/OCR_QQ.png)
