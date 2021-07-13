@@ -42,3 +42,6 @@ simple pose, backbone: resnet50, dataset:imagenet
 
 ### 帮助 
 添加依赖库：lib/aias-pose-estimation-lib-0.1.0.jar
+
+## QQ群：
+![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/OCR_QQ.png)
