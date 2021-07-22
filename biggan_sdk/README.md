@@ -45,3 +45,5 @@ imageClass 支持imagenet类别0~999
 [INFO ] - Number of intra-op threads is 4
 [INFO ] - Generated image has been saved in: build/output/
 ```
+Pytorch模型代码：
+https://github.com/mymagicpower/BigGAN-Generator-Pretrained-Pytorch
