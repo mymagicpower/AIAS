@@ -25,7 +25,7 @@
 ### SDK包含两个分类器：
 size 支持 128, 256, 512三种图片尺寸
 如：size = 512;
-imageClass 支持imagenet类别1~1000
+imageClass 支持imagenet类别0~999
 如：imageClass = 156;
 
 ## 运行例子 - BigGAN
