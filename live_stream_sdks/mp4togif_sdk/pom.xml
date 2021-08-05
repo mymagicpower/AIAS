@@ -24,14 +24,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>calvin</groupId>
-    <artifactId>vehicle-sdk</artifactId>
+    <artifactId>mp4togif-sdk</artifactId>
     <version>0.1</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <djl.version>0.13.0-SNAPSHOT</djl.version>
+        <djl.version>0.11.0</djl.version>
     </properties>
 
     <build>
@@ -47,33 +47,7 @@
             </plugin>
         </plugins>
     </build>
-
-    <!--  For development use  -->
-    <!--  Include this if you want to try the latest SNAPSHOT version  -->
-    <repositories>
-        <repository>
-            <id>oss.sonatype.org-snapshot</id>
-            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-    
     <dependencies>
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.8.6</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.30</version>
-        </dependency>
         <dependency>
             <groupId>commons-cli</groupId>
             <artifactId>commons-cli</artifactId>
@@ -84,7 +58,12 @@
             <artifactId>log4j-slf4j-impl</artifactId>
             <version>2.12.1</version>
         </dependency>
-        <!-- 服务器端推理引擎 -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.5</version>
+        </dependency>
+
         <dependency>
             <groupId>ai.djl</groupId>
             <artifactId>api</artifactId>
@@ -100,7 +79,13 @@
             <artifactId>model-zoo</artifactId>
             <version>${djl.version}</version>
         </dependency>
+
         <!-- MXNet -->
+        <dependency>
+            <groupId>ai.djl.mxnet</groupId>
+            <artifactId>mxnet-model-zoo</artifactId>
+            <version>${djl.version}</version>
+        </dependency>
         <dependency>
             <groupId>ai.djl.mxnet</groupId>
             <artifactId>mxnet-engine</artifactId>
@@ -109,8 +94,9 @@
         <dependency>
             <groupId>ai.djl.mxnet</groupId>
             <artifactId>mxnet-native-auto</artifactId>
-            <version>1.8.0</version>
+            <version>1.7.0-backport</version>
         </dependency>
+        
         <!-- PaddlePaddle -->
         <dependency>
             <groupId>ai.djl.paddlepaddle</groupId>
@@ -131,11 +117,11 @@
         </dependency>
 
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.18</version>
-            <scope>provided</scope>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>javacv-platform</artifactId>
+            <version>1.5.4</version>
         </dependency>
+        
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>

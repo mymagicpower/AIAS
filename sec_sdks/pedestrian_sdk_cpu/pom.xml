@@ -47,6 +47,23 @@
             </plugin>
         </plugins>
     </build>
+
+    <!--  For development use  -->
+    <!--  Include this if you want to try the latest SNAPSHOT version  -->
+    <repositories>
+        <repository>
+            <id>oss.sonatype.org-snapshot</id>
+            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    
     <dependencies>
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -85,11 +102,6 @@
             <version>${djl.version}</version>
         </dependency>
         <!-- MXNet -->
-        <dependency>
-            <groupId>ai.djl.mxnet</groupId>
-            <artifactId>mxnet-model-zoo</artifactId>
-            <version>${djl.version}</version>
-        </dependency>
         <dependency>
             <groupId>ai.djl.mxnet</groupId>
             <artifactId>mxnet-engine</artifactId>
