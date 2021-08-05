@@ -24,3 +24,6 @@ build/output/result.gif
 ```
 
 ![gif](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/gan_sdks/result.gif)
+
+帮助
+添加依赖库：lib/aias-first-order-lib-0.1.0.jar
