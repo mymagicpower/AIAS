@@ -1,10 +1,16 @@
 # 句向量SDK【英文】
 句向量是指将语句映射至固定维度的实数向量。
 将不定长的句子用定长的向量表示，为NLP下游任务提供服务。
+
+- 句向量
+![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/nlp_sdks/Universal-Sentence-Encoder.png)
+
+
 句向量应用：
 - 语义搜索，通过句向量相似性，检索语料库中与query最匹配的文本
 - 文本聚类，文本转为定长向量，通过聚类模型可无监督聚集相似文本
 - 文本分类，表示成句向量，直接用简单分类器即训练文本分类器
+
 
 ### SDK包含两个模型：（模型较大，首次运行耐心等待下载）
 -  SentenceEncoder 500M
