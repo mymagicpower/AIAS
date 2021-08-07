@@ -5,7 +5,7 @@
 
 
 - 词向量
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/nlp_sdks/Universal-Sentence-Encoder.png)
+![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/nlp_sdks/word_vector.jpeg)
 
 
 句向量应用：
