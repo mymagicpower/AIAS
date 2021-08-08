@@ -12,15 +12,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-public final class WordEncoderExample1 {
+public final class WordEncoderExample7 {
 
-  private static final Logger logger = LoggerFactory.getLogger(WordEncoderExample1.class);
+  private static final Logger logger = LoggerFactory.getLogger(WordEncoderExample7.class);
 
-  private WordEncoderExample1() {}
+  private WordEncoderExample7() {}
 
   public static void main(String[] args) throws IOException, ModelException, TranslateException {
-    Path vocabPath = Paths.get("src/test/resources/w2v_wiki_vocab.txt");
-    Path embeddingPath = Paths.get("src/test/resources/w2v_wiki_dim300.npy");
+    Path vocabPath = Paths.get("src/test/resources/w2v_sogou_dim300_vocab.txt");
+    Path embeddingPath = Paths.get("src/test/resources/w2v_sogou_dim300.npy");
 
     WordEncoder encoder = new WordEncoder(vocabPath, embeddingPath);
 

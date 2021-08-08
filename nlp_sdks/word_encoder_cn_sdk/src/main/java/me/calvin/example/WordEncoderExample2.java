@@ -12,13 +12,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-/**
- * 词向量提取：
- * 词向量的纬度为300，词表大小为195204，训练采用的语料是——Weibo 微博。
- *
- * @author Calvin
- * 179209347@qq.com
- */
 public final class WordEncoderExample2 {
 
   private static final Logger logger = LoggerFactory.getLogger(WordEncoderExample2.class);

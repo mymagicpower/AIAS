@@ -7,23 +7,18 @@
 - 词向量
 ![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/nlp_sdks/word_vector.jpeg)
 
-
-### SDK包含两个模型：
--  w2v_wiki_dim300 (WordEncoderExample1)
-   基于W2V训练得到的中文Embedding模型，词向量的纬度为300，词表大小为352219，
-   训练采用的语料是——Wikipedia_zh 中文维基百科。
-  
--  w2v_weibo_dim300 (WordEncoderExample2)
-   基于W2V训练得到的中文Embedding模型，词向量的纬度为300，词表大小为195204，
-   训练采用的语料是——Weibo微博。
-
 ### SDK功能：
 - 词向量提取
 - 相似度计算:
 -   余弦相似度
 -   内积
- 
-## 运行例子 - WordEncoderExample1
+
+### SDK包含9个模型数据：
+#### WordEncoderExample1 （w2v_wiki_dim300 403M)
+   基于W2V训练得到的中文Embedding模型，词向量的纬度为300，词表大小为352219，
+   训练采用的语料是——Wikipedia_zh 中文维基百科。
+
+-  运行例子 - WordEncoderExample1
 运行成功后，命令行应该看到下面的信息:
 ```text
 ...
@@ -32,8 +27,13 @@
 
 [INFO ] - 余弦相似度: 0.41243544
 [INFO ] - 内积: 11.631776
-```
-## 运行例子 - WordEncoderExample2
+ ```
+  
+#### WordEncoderExample2 (w2v_weibo_dim300 - 大小约 223M)
+   基于W2V训练得到的中文Embedding模型，词向量的纬度为300，词表大小为195204，
+   训练采用的语料是——Weibo微博。
+   
+-  运行例子 - WordEncoderExample2
 运行成功后，命令行应该看到下面的信息:
 ```text
 ...
@@ -44,10 +44,142 @@
 [INFO ] - 内积: 6.5972724
 ```
 
-### 帮助 
--  添加依赖库：lib/aias-word-encoder-cn-lib-0.1.0.jar
--  下载wiki模型特征数据，添加到 src/test/resources/ 路径下：
-[wiki](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/w2v_wiki_dim300.npy) 
+#### WordEncoderExample3 （w2v_financial_dim300 - 大小约 535M)
+   基于W2V训练得到的中文Embedding模型，词向量的纬度为300，词表大小为467324，
+   训练采用的语料是——Financial News 金融新闻。
+   
+-  运行例子 - WordEncoderExample3
+运行成功后，命令行应该看到下面的信息:
+```text
+...
+[INFO ] - 投资-特征值: [-0.146902, 0.203111, ..., -0.371138, 0.073174]
+[INFO ] - 投机-特征值: [-0.146902, 0.203111, ..., -0.371138, 0.073174]
+[INFO ] - 余弦相似度: 0.26770666
+[INFO ] - 内积: 5.2186356
+```
+  
+#### WordEncoderExample4 (w2v_sikuquanshu_dim300 - 大小约 22M)
+   基于W2V训练得到的中文Embedding模型，词向量的纬度为300，词表大小为19529，
+   训练采用的语料是——Complete Library in Four Sections 四库全书。
+   
+-  运行例子 - WordEncoderExample4
+运行成功后，命令行应该看到下面的信息:
+```text
+...
+[INFO ] - 曰-特征值: [0.063528, 0.068379, ..., -0.022315, -0.103614]
+[INFO ] - 云-特征值: [0.063528, 0.068379, ..., -0.022315, -0.103614]
+[INFO ] - 余弦相似度: 0.3282848
+[INFO ] - 内积: 1.2609351
+```
+   
+#### WordEncoderExample5 （w2v_literature_dim300 - 大小约 215M)
+   基于W2V训练得到的中文Embedding模型，词向量的纬度为300，词表大小为187962，
+   训练采用的语料是——Literature 文学作品。
 
--  下载weibo模型特征数据，添加到 src/test/resources/ 路径下：
-[weibo](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/w2v_weibo_dim300.npy) 
+-  运行例子 - WordEncoderExample5
+运行成功后，命令行应该看到下面的信息:
+```text
+...
+[INFO ] - 玄幻-特征值: [-1.036695, -0.648525, ..., -0.323885, 0.069166]
+[INFO ] - 科幻-特征值: [-1.036695, -0.648525, ..., -0.323885, 0.069166]
+[INFO ] - 余弦相似度: 0.50576097
+[INFO ] - 内积: 26.441778
+```
+  
+#### WordEncoderExample6 (w2v_people_daily_dim300 - 大小约 407M)
+   基于W2V训练得到的中文Embedding模型，词向量的纬度为300，词表大小为356055，
+   训练采用的语料是——People's Daily News 人民日报。
+
+-  运行例子 - WordEncoderExample6
+运行成功后，命令行应该看到下面的信息:
+```text
+...
+[INFO ] - 发展-特征值: [0.618088, -0.389146, ..., 0.040372, 0.327205]
+[INFO ] - 提升-特征值: [0.618088, -0.389146, ..., 0.040372, 0.327205]
+[INFO ] - 余弦相似度: 0.36809018
+[INFO ] - 内积: 21.746298
+```
+   
+#### WordEncoderExample7 （w2v_sogou_dim300 - 大小约 418M)
+   基于W2V训练得到的中文Embedding模型，词向量的纬度为300，词表大小为365112，
+   训练采用的语料是——Sogou News 搜狗新闻。
+
+-  运行例子 - WordEncoderExample7
+运行成功后，命令行应该看到下面的信息:
+```text
+...
+[INFO ] - 中国-特征值: [-0.358933, 0.34152, ..., 0.367553, 0.098403]
+[INFO ] - 美国-特征值: [-0.358933, 0.34152, ..., 0.367553, 0.098403]
+[INFO ] - 余弦相似度: 0.47674376
+[INFO ] - 内积: 29.667158
+```
+  
+#### WordEncoderExample8 (w2v_baidu_encyclopedia_dim300 - 大小约 728M)
+   基于W2V训练得到的中文Embedding模型，词向量的纬度为300，词表大小为635976，
+   训练采用的语料是——Baidu Encyclopedia 百度百科。
+
+-  运行例子 - WordEncoderExample8
+运行成功后，命令行应该看到下面的信息:
+```text
+...
+[INFO ] - 中国-特征值: [0.46702, -0.137223, ..., -0.059722, -0.271998]
+[INFO ] - 美国-特征值: [0.46702, -0.137223, ..., -0.059722, -0.271998]
+[INFO ] - 余弦相似度: 0.51087683
+[INFO ] - 内积: 24.71891
+```
+   
+#### WordEncoderExample9 （w2v_zhihu_dim300 - 大小约 297M)
+   基于W2V训练得到的中文Embedding模型，词向量的纬度为300，词表大小为259871，
+   训练采用的语料是——Zhihu_QA 知乎问答。
+  
+-  运行例子 - WordEncoderExample9
+运行成功后，命令行应该看到下面的信息:
+```text
+...
+[INFO ] - 中国-特征值: [-0.050675, 0.389359, ..., -0.203935, -0.371196]
+[INFO ] - 美国-特征值: [-0.050675, 0.389359, ..., -0.203935, -0.371196]
+[INFO ] - 余弦相似度: 0.5643151
+[INFO ] - 内积: 9.433272
+```
+
+### 帮助
+-  添加依赖库：lib/aias-word-encoder-cn-lib-0.1.0.jar
+
+### 下载相应的模型特征数据
+添加到 src/test/resources/ 路径下。     
+
+-  WordEncoderExample1      
+[w2v_wiki_vocab](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_wiki_vocab.txt) 
+[w2v_wiki_dim300](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_wiki_dim300.npy) 
+
+-  WordEncoderExample2      
+[w2v_weibo_vocab](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_weibo_vocab.txt) 
+[w2v_weibo_dim300](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_weibo_dim300.npy) 
+
+-  WordEncoderExample3    
+[w2v_financial_dim300_vocab](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_financial_dim300_vocab.txt) 
+[w2v_financial_dim300](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_financial_dim300.npy) 
+
+-  WordEncoderExample4     
+[w2v_sikuquanshu_dim300_vocab](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_sikuquanshu_dim300_vocab.txt) 
+[w2v_sikuquanshu_dim300](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_sikuquanshu_dim300.npy) 
+
+-  WordEncoderExample5    
+[w2v_literature_dim300_vocab](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_literature_dim300_vocab.txt) 
+[w2v_literature_dim300](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_literature_dim300.npy) 
+
+-  WordEncoderExample6    
+[w2v_people_daily_dim300_vocab](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_people_daily_dim300_vocab.txt) 
+[w2v_people_daily_dim300](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_people_daily_dim300.npy) 
+
+-  WordEncoderExample7    
+[w2v_sogou_dim300_vocab](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_sogou_dim300_vocab.txt) 
+[w2v_sogou_dim300](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_sogou_dim300.npy) 
+
+-  WordEncoderExample8     
+[w2v_baidu_encyclopedia_dim300_vocab](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_baidu_encyclopedia_dim300_vocab.txt) 
+[w2v_baidu_encyclopedia_dim300](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_baidu_encyclopedia_dim300.npy) 
+
+-  WordEncoderExample9     
+[w2v_zhihu_dim300_vocab](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_zhihu_dim300_vocab.txt) 
+[w2v_zhihu_dim300](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_zhihu_dim300.npy) 
