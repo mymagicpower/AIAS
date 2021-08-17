@@ -51,3 +51,6 @@ imageClass 支持imagenet类别0~999
 ```
 Pytorch模型代码：
 https://github.com/mymagicpower/BigGAN-Generator-Pretrained-Pytorch
+
+#### QQ群：
+111257454
