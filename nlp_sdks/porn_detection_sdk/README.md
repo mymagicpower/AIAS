@@ -28,3 +28,6 @@
 
 ### 帮助 
 添加依赖库：lib/aias-porn-detection-lib-0.1.0.jar
+
+#### QQ群：
+111257454
