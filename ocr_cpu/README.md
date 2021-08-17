@@ -151,5 +151,5 @@ http://127.0.0.1:8089/swagger-ui.html
 ```
 
 
-## QQ群：
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/OCR_QQ.png)
+#### QQ群：
+111257454
