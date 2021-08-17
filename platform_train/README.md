@@ -149,6 +149,5 @@ newModel:
 https://github.com/mymagicpower/AIAS/blob/main/platform_train     
 https://gitee.com/mymagicpower/AIAS/tree/main/platform_train     
 
-### QQ群:  
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/OCR_QQ.png)
-  
+#### QQ群：
+111257454
