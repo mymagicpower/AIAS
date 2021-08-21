@@ -3,7 +3,6 @@
 在python环境使用十分方便，但是如何在java中读取呢？
 本sdk的作用就是说明如何读取python numpy保存的npz、npy文件。
 
-- npy/npz
 ![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/nlp_sdks/numpy.png)
 
 ### 功能：
