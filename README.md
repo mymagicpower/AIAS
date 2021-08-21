@@ -19,6 +19,5 @@ http://aias.top/
 ![AIAS](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS.png)
 
 
-## QQ群：
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/OCR_QQ.png)
+#### QQ群：111257454
 

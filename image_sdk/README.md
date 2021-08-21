@@ -45,5 +45,5 @@ height = 753
 添加依赖lib - aais-image-lib-0.1.0.jar：
 ![lib](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/image_sdk/images/lib.png)
 
-## QQ群：
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/OCR_QQ.png)
+#### QQ群：
+111257454

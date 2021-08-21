@@ -96,6 +96,6 @@ http://127.0.0.1:8089/swagger-ui.html
 6. ...
 ```
 
-### QQ群:  
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/OCR_QQ.png)
+#### QQ群：111257454
+
   

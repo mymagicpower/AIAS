@@ -230,5 +230,5 @@ http://127.0.0.1:9000/api/search/initSearchEngine
 
 ![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/image_search/images/init.png)
 
-## QQ群：
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/OCR_QQ.png)
+#### QQ群：
+111257454

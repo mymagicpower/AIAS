@@ -79,5 +79,5 @@ OCR（文字识别）是目前常用的一种AI能力。
 添加依赖lib - aais-ocr-lib-0.1.0.jar：
 ![lib](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/lib.png)
 
-## QQ群：
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/OCR_QQ.png)
+#### QQ群：
+111257454
