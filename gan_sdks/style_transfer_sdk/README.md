@@ -6,7 +6,7 @@
 - 梵高 (Vincent Willem van Gogh, 1853~1890)
 
 
-- 原图
+- 原图.       
 ![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/gan_sdks/scenery.jpeg)
 
 
