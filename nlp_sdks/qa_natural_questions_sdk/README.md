@@ -1,9 +1,9 @@
 # 自然问题问答 SDK【英文】
-模型基于Google的Natural Questions dataset（100k Google search查询数据，及源自Wikipedia的相关passages）训练。
-a dataset with 100k real queries from Google search together with the relevant passages from Wikipedia.
-谷歌发布的大规模训练和评估开放领域问答系统的语料库Natural Questions(NQ),旨在推动人们开发出更有效,更强大的问答系统.
-而在此前,一直没有大量公开的可用于训练和评估问答模型的自然生成问题(如人们寻求信息时提出的问题)及答案.
-NQ是一个新的大规模训练和评估开放领域问题回答系统的语料库,它第一个复制了人们找到问题答案的端到端流程.
+模型基于Google的Natural Questions dataset（100k Google search查询数据，
+及源自Wikipedia的相关passages）训练。
+谷歌发布的大规模训练和评估开放领域问答系统的语料库Natural Questions(NQ),旨在推动人们开发出更有效,更强大的问答系统。
+而在此前,一直没有大量公开的可用于训练和评估问答模型的自然生成问题(如人们寻求信息时提出的问题)及答案。
+NQ是一个大规模训练和评估开放领域问题回答系统的语料库,它第一个复制了人们找到问题答案的端到端流程。
 
 ![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/nlp_sdks/qa_natural_questions.jpeg)
 
@@ -18,6 +18,7 @@ NQ是一个新的大规模训练和评估开放领域问题回答系统的语料
 ...
 # 测试语句：
 [INFO ] - query: How many people live in London?
+# passage 是<title，text>构成的一对数据。
 [INFO ] - passage [title, text]: [London, London has 9,787,426 inhabitants at the 2011 census.]
 
 # 向量维度：
