@@ -1,18 +1,17 @@
 # 图像&文本的跨模态相似性比对检索 SDK【中文】
-####注：
-由于网络原因，尝试多次都无法下载CLIP模型的多语言版本。
-https://github.com/FreddeFrallan/Multilingual-CLIP
-所以，退而求其次，使用之前做的中文翻译成英文的SDK先将中文翻译成英文，然后再提交给CLIP模型做后续处理。
-https://zhuanlan.zhihu.com/p/398787028
-不同的是，用另一个中文分词器(jieba)替换了其中的分词器(lac)，有更好的中文分词效果。
-https://zhuanlan.zhihu.com/p/400536545
+#### 注：
+由于网络原因，尝试多次都无法下载CLIP模型的多语言版本。      
+https://github.com/FreddeFrallan/Multilingual-CLIP        
+所以，退而求其次，使用之前做的中文翻译成英文的SDK先将中文翻译成英文，然后再提交给CLIP模型做后续处理。      
+https://zhuanlan.zhihu.com/p/398787028      
+不同的是，用另一个中文分词器(jieba)替换了其中的分词器(lac)，有更好的中文分词效果。      
+https://zhuanlan.zhihu.com/p/400536545      
 
-###背景介绍
-OpenAI 发布了两个新的神经网络：CLIP 和 DALL·E。它们将 NLP（自然语言识别）与 图像识别结合在一起，
-对日常生活中的图像和语言有了更好的理解。
-之前都是用文字搜文字，图片搜图片，现在通过CLIP这个模型，可是实现文字搜图片，图片搜文字。
-
-其实现思路就是将图片跟文本映射到同一个向量空间。如此，就可以实现图片跟文本的跨模态相似性比对检索。
+### 背景介绍
+OpenAI 发布了两个新的神经网络：CLIP 和 DALL·E。它们将 NLP（自然语言识别）与 图像识别结合在一起，      
+对日常生活中的图像和语言有了更好的理解。      
+之前都是用文字搜文字，图片搜图片，现在通过CLIP这个模型，可是实现文字搜图片，图片搜文字。      
+其实现思路就是将图片跟文本映射到同一个向量空间。如此，就可以实现图片跟文本的跨模态相似性比对检索。      
 - 特征向量空间（由图片 & 文本组成）  
 ![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/nlp_sdks/clip_Imagesearch.png)
 
