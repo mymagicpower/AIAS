@@ -1,0 +1,72 @@
+package me.calvin.example;
+
+import ai.djl.ModelException;
+import ai.djl.inference.Predictor;
+import ai.djl.repository.zoo.Criteria;
+import ai.djl.repository.zoo.ZooModel;
+import me.calvin.aias.SentenceEncoder;
+import org.apache.flink.api.common.functions.FlatMapFunction;
+import org.apache.flink.streaming.api.datastream.DataStream;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.util.Collector;
+
+import java.io.IOException;
+import java.util.Arrays;
+
+/**
+ * Implements a streaming version of the sentence encoder program. Using TensorFlow model from
+ * TFHub: https://tfhub.dev/google/universal-sentence-encoder/4 Accepts a String input and returns a
+ * float array as its embedding.
+ *
+ * <p>This program connects to a server socket and reads strings from the socket. The easiest way to
+ * try this out is to open a text server (at port 12345) using the <i>netcat</i> tool via
+ *
+ * <pre>
+ * nc -l 12345 on Linux or nc -l -p 12345 on Windows
+ * </pre>
+ *
+ * <p>and run this example with the hostname and the port as arguments.
+ */
+public class SentenceEncoderExample {
+
+    public static void main(String[] args) throws Exception {
+
+        // the host and the port to connect to
+        final String hostname ="127.0.0.1";
+        final int port = 9000;
+
+        // get the execution environment
+        final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+
+        // get input data by connecting to the socket
+        DataStream<String> text = env.socketTextStream(hostname, port, "\n");
+
+        // Run inference with Flink streaming
+        DataStream<String> embedding = text.flatMap(new SEFlatMap());
+
+        // print the results with a single thread, rather than in parallel
+        embedding.print().setParallelism(1);
+        env.execute("SentenceEncoder");
+    }
+
+    public static class SEFlatMap implements FlatMapFunction<String, String> {
+
+        private static Predictor<String, float[]> predictor;
+
+        private Predictor<String, float[]> getOrCreatePredictor()
+                throws ModelException, IOException {
+            if (predictor == null) {
+                Criteria<String, float[]> criteria =new SentenceEncoder().criteria();
+                ZooModel<String, float[]> model = criteria.loadModel();
+                predictor = model.newPredictor();
+            }
+            return predictor;
+        }
+
+        @Override
+        public void flatMap(String value, Collector<String> out) throws Exception {
+            Predictor<String, float[]> predictor = getOrCreatePredictor();
+            out.collect(Arrays.toString(predictor.predict(value)));
+        }
+    }
+}
