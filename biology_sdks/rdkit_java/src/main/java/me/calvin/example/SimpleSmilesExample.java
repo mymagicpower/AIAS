@@ -1,5 +1,6 @@
 package me.calvin.example;
 
+import me.calvin.example.utils.SvgUtils;
 import org.RDKit.ExplicitBitVect;
 import org.RDKit.RDKFuncs;
 import org.RDKit.RWMol;
@@ -15,7 +16,7 @@ public class SimpleSmilesExample {
     static {
         try {
             //For mac
-            System.load("/path/to/native/macosx.x86_64/libGraphMolWrap.jnilib");
+            System.load("/path/to/macosx.x86_64/libGraphMolWrap.jnilib");
         } catch (UnsatisfiedLinkError e) {
             System.err.println("Native code library failed to load.\n" + e);
             System.exit(1);
@@ -35,6 +36,11 @@ public class SimpleSmilesExample {
         RWMol m2 = RWMol.MolFromSmiles(smi2);
         ExplicitBitVect fp1 = RDKFuncs.RDKFingerprintMol(m1);
         ExplicitBitVect fp2 = RDKFuncs.RDKFingerprintMol(m2);
+
+        //生成图片
+        SvgUtils.convertToPng(m1.ToSVG(),"build/output/m1.png");
+        SvgUtils.convertToPng(m2.ToSVG(),"build/output/m2.png");
+        
         //计算分子相似性
         double dis = RDKFuncs.AllBitSimilarity(fp1, fp2);
         logger.info("AllBitSimilarity: {}", dis);

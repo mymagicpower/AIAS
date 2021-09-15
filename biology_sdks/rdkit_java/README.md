@@ -8,6 +8,7 @@ fingerprint生成，化合物结构相似性计算，2D和3D分子展示等。
 
 ### 例子包括
 - 读写分子
+- 图片生成 & 保存
 - 特征提取 & 分子相似性计算
 相似度计算给出了三种计算方式的例子。
 ![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/biology_sdks/mol.png)
@@ -22,19 +23,32 @@ fingerprint生成，化合物结构相似性计算，2D和3D分子展示等。
 [INFO ] - DiceSimilarity: 0.5454545454545454
 
 ```
+保存分子图片：
+![svg](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/biology_sdks/svg.png)
 
-### 依赖库
-[下载本地依赖库](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/biology_sdks/native.zip)     
+
+### 依赖库下载&配置环境变量
+[点击下载本地依赖库](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/biology_sdks/native.zip)     
+
+#### 什么是java.library.path
+通俗的说它是JVM启动可以指定的一个参数。类似classpath，指定的是class文件或者jar文件的路径。java.library.path指定的是JNI链接的其他程序文件的路径，比如dll或者so文件。
+
+#### 如何设置java.library.path
+
+##### 命令行设置
+java -Djava.library.path=<path_to_dll_or_so> <main_class>
+##### 代码设置
+System.setProperty(“java.library.path”, “/path/to/library”);
+##### 环境变量设置
+java.library.path
+
 Java的System.load 和 System.loadLibrary都可以用来加载库文件。
-如果使用System.loadLibrary：参数为库文件名
-例如你可以这样载入一个windows平台下JNI库文件 System.loadLibrary ("GraphMolWrap")，
-这里GraphMolWrap必须在 java.library.path这一jvm变量所指向的路径中。
-- 默认情况下，Windows平台下包含下面的路径：     
-  1）和jre相关的目录    
-  2）程序当前目录   
-  3）Windows目录       
-  4）系统目录(system32)      
-  5）系统环境变量path指定的目录     
- 
-- 在linux下添加一个java.library.path的方法如下：    
-  在/etc/profile 后面加上一行 export LB_LIBRARY_PATH=路径
+如果使用System.loadLibrary：参数为库文件名，例如你可以这样载入一个windows平台下JNI库文件 System.loadLibrary ("GraphMolWrap")， 这里GraphMolWrap必须在 java.library.path这一jvm变量所指向的路径中。针对Java 8的版本：
+- Windows：PATH
+- Linux：LD_LIBRARY_PATH
+    在linux下添加一个java.library.path的方法如下：
+    在/etc/profile 后面加上一行 export LB_LIBRARY_PATH=<path_to_so>
+- Mac：JAVA_LIBRARY_PATH
+    在Mac下添加一个java.library.path的方法如下：
+    在/etc/profile 后面加上一行 export JAVA_LIBRARY_PATH=<path_to_so>
+  
