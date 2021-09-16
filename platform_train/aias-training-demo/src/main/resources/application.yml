@@ -1,0 +1,12 @@
+server:
+  port: 8088
+
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 30MB
+      max-request-size: 30MB
+
+model:
+  mnist: ./model/mnist
