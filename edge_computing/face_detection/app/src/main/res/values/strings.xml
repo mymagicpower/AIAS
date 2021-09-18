@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FaceDetector</string>
+    <string name="clear">clear</string>
+    <string name="preview">Image preview</string>
+    <string name="title">Face Detection - Powered by DJL</string>
+    <string name="share">Share</string>
+</resources>
