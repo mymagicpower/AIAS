@@ -8,84 +8,34 @@
 
 
 ## 运行例子 - FFTExample
-
-核心算法：
 ```text
-	/**
-	 * Performs Fast Fourier Transformation in place.
-	 */
-	public void process(double[] signal) {
-		final int numPoints = signal.length;
-		// initialize real & imag array
-		real = signal;
-    	imag = new double[numPoints];
+...
+	    String audioFilePath = "src/test/resources/audio.wav";
+        //-1 value implies the method to use default sample rate
+        int defaultSampleRate = -1;
+        //-1 value implies the method to process complete audio duration
+        int defaultAudioDuration = -1;
 
-		// perform FFT using the real & imag array
-		final double pi = Math.PI;
-		final int numStages = (int) (Math.log(numPoints) / Math.log(2));
-		final int halfNumPoints = numPoints >> 1;
-		int j = halfNumPoints;
-		// FFT time domain decomposition carried out by "bit reversal sorting"
-		// algorithm
-		int k;
-		for (int i = 1; i < numPoints - 2; i++) {
-			if (i < j) {
-				// swap
-				double tempReal = real[j];
-				double tempImag = imag[j];
-				real[j] = real[i];
-				imag[j] = imag[i];
-				real[i] = tempReal;
-				imag[i] = tempImag;
-			}
-			k = halfNumPoints;
-			while (k <= j) {
-				j -= k;
-				k >>= 1;
-			}
-			j += k;
-		}
+        JLibrosa jLibrosa = new JLibrosa();
 
-		// loop for each stage
-		for (int stage = 1; stage <= numStages; stage++) {
-			int LE = 1;
-			for (int i = 0; i < stage; i++) {
-				LE <<= 1;
-			}
-            final int LE2 = LE >> 1;
-			double UR = 1;
-			double UI = 0;
-			// calculate sine & cosine values
-			final double SR =  Math.cos(pi / LE2);
-            final double SI = -Math.sin(pi / LE2);
-			// loop for each sub DFT
-			for (int subDFT = 1; subDFT <= LE2; subDFT++) {
-				// loop for each butterfly
-				for (int butterfly = subDFT - 1; butterfly <= numPoints - 1; butterfly += LE) {
-					int ip = butterfly + LE2;
-					// butterfly calculation
-					double tempReal = (double) (real[ip] * UR - imag[ip] * UI);
-					double tempImag = (double) (real[ip] * UI + imag[ip] * UR);
-					real[ip] = real[butterfly] - tempReal;
-					imag[ip] = imag[butterfly] - tempImag;
-					real[butterfly] += tempReal;
-					imag[butterfly] += tempImag;
-				}
+        // To read the magnitude values of audio files - equivalent to librosa.load('../audio.wav', sr=None)
+        float audioFeatureValues[] = jLibrosa.loadAndRead(audioFilePath, defaultSampleRate, defaultAudioDuration);
 
-				double tempUR = UR;
-				UR = tempUR * SR - UI * SI;
-				UI = tempUR * SI + UI * SR;
-			}
-		}
-	}
+        double[] arr = IntStream.range(0, audioFeatureValues.length).mapToDouble(i -> audioFeatureValues[i]).toArray();
 
+        double[] fft = FFT.fft(arr);
+        float[][] complex = FFT.rfft(fft);
+
+        System.out.println("Real parts: " + Arrays.toString(complex[0]));
+        System.out.println("Imaginary parts: " + Arrays.toString(complex[1]));
+...
 ````
 
 运行成功后，命令行应该看到下面的信息:
 ```text
 # 复数的实部
-Real parts: [0.002560000019002473, 8.446425149266073E-5, ..., 8.446425149266079E-5]
+Real parts: [-1.8461201, -1.1128254, 0.58502156, 2.6774616, -1.7226994, ..., 0.15794027]
 # 复数的虚部
-Imaginary parts: [0.0, 8.056758864562464E-4, 4.0390382669844993E-4, ..., -8.056758864562461E-4]
+Imaginary parts: [0.0, 1.2845019, 2.8104274, -1.3958083, 1.2868061, ..., -0.3447435, 0.0]
 
 ```

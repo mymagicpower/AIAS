@@ -24,19 +24,20 @@ public class FFTExample {
         // To read the magnitude values of audio files - equivalent to librosa.load('../audio.wav', sr=None)
         float audioFeatureValues[] = jLibrosa.loadAndRead(audioFilePath, defaultSampleRate, defaultAudioDuration);
 
-        FFT fft = new FFT();
         double[] arr = IntStream.range(0, audioFeatureValues.length).mapToDouble(i -> audioFeatureValues[i]).toArray();
 //        double[] arrTest = {0, 1, 0, 0};
         //Arrays.copy for testing purpose
-        fft.process(Arrays.copyOf(arr, 32));
+
+        double[] fft = FFT.fft(arr);
+        float[][] complex = FFT.rfft(fft);
 
 //        int stride_size = 160;
 //        int window_size = 320;
 //        int truncate_size = (audioFeatureValues.length - window_size) % stride_size;
 //        int length = audioFeatureValues.length - truncate_size;
 
-        System.out.println("Real parts: " + Arrays.toString(fft.getReal()));
-        System.out.println("Imaginary parts: " + Arrays.toString(fft.getImag()));
+        System.out.println("Real parts: " + Arrays.toString(complex[0]));
+        System.out.println("Imaginary parts: " + Arrays.toString(complex[1]));
 
     }
 
