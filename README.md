@@ -22,7 +22,7 @@ http://www.aias.top/
 
 ```bash
 1. SDK Hub
-	 包含了对各Model Hub的支持，以及对GitHub优选模型的支持。
+	 包含了对各Model Hub，以及GitHub优选模型的支持。
 2. Engine Hub
    包含了API平台引擎，非结构化搜索引擎，训练引擎，边缘计算引擎等。
 3. Suite Hub
@@ -35,10 +35,10 @@ http://www.aias.top/
 
 #### 功能清单( [x] 标记 - 代表已实现):
 
-- **图像识别 SDK：**
+- **1. 图像识别 SDK：**
 
 ```text
-  1).工具箱系列：javacv(opencv，ffmpeg)图像处理工具箱（静态图像，实时视频流处理）。[X]
+  1).工具箱系列：javacv(opencv，ffmpeg)图像处理工具箱（静态图像）。[X]
   2).目标检测：目标检测[X]、目标跟踪、人脸检测&识别[X]
   3).图像分割：图像分割[X]、遥感图像、医疗影像
   4).行为分析：行为识别[X]、姿态估计[X]
@@ -47,7 +47,7 @@ http://www.aias.top/
     ...
 ```
 
-- **NLP SDK：**
+- **2. NLP SDK：**
 
 ```text
   1).工具箱系列：Tokenizer，sentencepiece，fastText，npy/npz文件处理等。[X]
@@ -62,36 +62,40 @@ http://www.aias.top/
     ...
 ```
 
-- **语音处理 SDK：**
+- **3. 语音处理 SDK：**
 
 ```text
   1).工具箱系列：音素工具箱，librosa，java sound，javacv ffmpeg, fft, vad工具箱等。[X]
-  1).声音克隆[X]
-  2).语音合成[X]
-  3).声纹识别[X]
-  4).语音识别[X]
+  2).声音克隆[X]
+  3).语音合成[X]
+  4).声纹识别[X]
+  5).语音识别[X]
     ...
 ```
 
-- **生物医药 SDK：**
+- **4. 视频 SDK：**
+
+```text
+  1).摄像头实时视频流处理。[X]
+  2).离线视频处理。[X]
+  3).rtsp,rtmp视频流处理[X]
+```
+
+- **5. 大数据 SDK：**
+
+```text
+  1).flink流式数据处理。[X]
+  2).kafka数据处理。[X]
+```
+
+- **6. 生物医药 SDK：**
 
 ```text
   1).工具箱系列：RDKit工具箱，DNA工具箱。[X]
   ...
 ```
 
-- **model Hub SDK封装:**
-
-```text
-  1).Paddle Hub SDK[X](充分支持)
-  2).Pytorch Hub SDK (部分支持)
-  3).Tensorflow Hub SDK (部分支持)
-  4).MxNet Hub SDK (部分支持)
-  5).Huggingface Hub SDK (部分支持) 
-  6).GitHub Model SDK (部分支持 - 优选) 
-```
-
-- **平台引擎：**
+- **7. 平台引擎：**
 
 ```text
   1).训练引擎[X]
@@ -103,7 +107,7 @@ http://www.aias.top/
 
 
 
-- **场景套件 - ToB：**
+- **8. 场景套件 - ToB：**
 
 ```text
   1).OCR自定义模版识别[X]
