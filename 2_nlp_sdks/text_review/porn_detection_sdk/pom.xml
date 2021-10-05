@@ -113,18 +113,24 @@
             <groupId>ai.djl.paddlepaddle</groupId>
             <artifactId>paddlepaddle-engine</artifactId>
             <version>${djl.version}</version>
-            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>ai.djl.paddlepaddle</groupId>
             <artifactId>paddlepaddle-native-auto</artifactId>
             <version>2.0.2</version>
-            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>ai.djl.paddlepaddle</groupId>
             <artifactId>paddlepaddle-model-zoo</artifactId>
             <version>${djl.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>calvin</groupId>
+            <artifactId>porn-detection-lib</artifactId>
+            <version>0.1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/aias-porn-detection-lib-0.1.0.jar</systemPath>
         </dependency>
         
         <dependency>

@@ -126,7 +126,13 @@
             <artifactId>paddlepaddle-model-zoo</artifactId>
             <version>${djl.version}</version>
         </dependency>
-        
+        <dependency>
+            <groupId>calvin</groupId>
+            <artifactId>translation-en-de-lib</artifactId>
+            <version>0.1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/aias-translation-en-de-lib-0.1.0.jar</systemPath>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
