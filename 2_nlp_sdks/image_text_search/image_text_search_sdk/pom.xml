@@ -119,6 +119,14 @@
         </dependency>
 
         <dependency>
+            <groupId>calvin</groupId>
+            <artifactId>image-text-search-lib</artifactId>
+            <version>0.1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/aias-image-text-search-lib-0.1.0.jar</systemPath>
+        </dependency>
+        
+        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.4</version>

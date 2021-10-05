@@ -126,6 +126,14 @@
             <artifactId>paddlepaddle-model-zoo</artifactId>
             <version>${djl.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>calvin</groupId>
+            <artifactId>semantic-simnet-bow-lib</artifactId>
+            <version>0.1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/aias-semantic-simnet-bow-lib-0.1.0.jar</systemPath>
+        </dependency>
         
         <dependency>
             <groupId>org.projectlombok</groupId>

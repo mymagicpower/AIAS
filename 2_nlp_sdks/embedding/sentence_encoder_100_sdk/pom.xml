@@ -123,6 +123,14 @@
             <artifactId>sentencepiece</artifactId>
             <version>0.12.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>calvin</groupId>
+            <artifactId>sentence-encoder-100-lib</artifactId>
+            <version>0.1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/aias-sentence-encoder-100-lib-0.1.0.jar</systemPath>
+        </dependency>
         
         <dependency>
             <groupId>org.projectlombok</groupId>
