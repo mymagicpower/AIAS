@@ -2,6 +2,7 @@ package me.calvin.example;
 
 import ai.djl.ModelException;
 import ai.djl.inference.Predictor;
+import ai.djl.modality.Classifications;
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.ImageFactory;
 import ai.djl.modality.cv.output.DetectedObjects;
@@ -9,7 +10,7 @@ import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
 import me.calvin.example.utils.ImageUtils;
-import me.calvin.ocr.LightOcrRecognition;
+import me.calvin.ocr.MobileOcrDetection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,38 +18,38 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-                                            
+
 /**
- * 轻量级OCR文字识别.
- *
+ * OCR文字检测(mobile模型).
+ *                                               
  * @author Calvin
- * @date 2021-10-07
+ * @date 2021-10-04
  * @email 179209347@qq.com
  */
-public final class LightOcrRecognitionExample {
+public final class MobileOcrDetectionExample {
 
-  private static final Logger logger = LoggerFactory.getLogger(LightOcrRecognitionExample.class);
+  private static final Logger logger = LoggerFactory.getLogger(MobileOcrDetectionExample.class);
 
-  private LightOcrRecognitionExample() {}
+  private MobileOcrDetectionExample() {}
 
   public static void main(String[] args) throws IOException, ModelException, TranslateException {
-    Path imageFile = Paths.get("src/test/resources/ticket_0.png");
+    Path imageFile = Paths.get("src/test/resources/ticket_270.png");
     Image image = ImageFactory.getInstance().fromFile(imageFile);
 
-    LightOcrRecognition recognition = new LightOcrRecognition();
-    try (ZooModel detectionModel = ModelZoo.loadModel(recognition.detectCriteria());
-        Predictor<Image, DetectedObjects> detector = detectionModel.newPredictor();
-        ZooModel recognitionModel = ModelZoo.loadModel(recognition.recognizeCriteria());
-        Predictor<Image, String> recognizer = recognitionModel.newPredictor()) {
+    MobileOcrDetection detection = new MobileOcrDetection();
+    try (ZooModel detectionModel = ModelZoo.loadModel(detection.detectCriteria());
+         Predictor<Image, DetectedObjects> detector = detectionModel.newPredictor();
+         ZooModel rotateModel = ModelZoo.loadModel(detection.clsCriteria());
+         Predictor<Image, Classifications> rotateClassifier = rotateModel.newPredictor()) {
 
-      DetectedObjects detections = recognition.predict(image, detector, recognizer);
+      DetectedObjects detections = detection.predict(image,detector,rotateClassifier);
 
       List<DetectedObjects.DetectedObject> boxes = detections.items();
       for (DetectedObjects.DetectedObject result : boxes) {
         System.out.println(result.getClassName() + " : " + result.getProbability());
       }
 
-      ImageUtils.saveBoundingBoxImage(image, detections, "light_ocr_result.png", "build/output");
+      ImageUtils.saveBoundingBoxImage(image, detections, "mobile_detect_result.png", "build/output");
       logger.info("{}", detections);
     }
   }

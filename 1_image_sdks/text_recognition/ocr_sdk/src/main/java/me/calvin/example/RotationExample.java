@@ -3,12 +3,10 @@ package me.calvin.example;
 import ai.djl.ModelException;
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.ImageFactory;
-import ai.djl.modality.cv.output.DetectedObjects;
 import ai.djl.modality.cv.util.NDImageUtils;
 import ai.djl.ndarray.NDArray;
 import ai.djl.ndarray.NDManager;
 import ai.djl.translate.TranslateException;
-import me.calvin.ocr.OcrDetection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,7 +14,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 
 /**
  * OCR文字检测.
@@ -49,7 +46,7 @@ public final class RotationExample {
     }
     
     public static void saveImage(Image img, String name, String path) {
-        ai.djl.modality.cv.Image newImage = img.duplicate(Image.Type.TYPE_INT_ARGB);
+        Image newImage = img.duplicate(Image.Type.TYPE_INT_ARGB);
         Path outputDir = Paths.get(path);
         Path imagePath = outputDir.resolve(name);
         // OpenJDK 不能保存 jpg 图片的 alpha channel

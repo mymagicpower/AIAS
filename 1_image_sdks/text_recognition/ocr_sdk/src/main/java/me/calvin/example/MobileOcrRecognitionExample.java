@@ -9,7 +9,7 @@ import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
 import me.calvin.example.utils.ImageUtils;
-import me.calvin.ocr.LightOcrRecognition;
+import me.calvin.ocr.MobileOcrRecognition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,25 +17,25 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-                                            
+
 /**
- * 轻量级OCR文字识别.
+ * Mobile OCR文字识别.
  *
  * @author Calvin
  * @date 2021-10-07
  * @email 179209347@qq.com
  */
-public final class LightOcrRecognitionExample {
+public final class MobileOcrRecognitionExample {
 
-  private static final Logger logger = LoggerFactory.getLogger(LightOcrRecognitionExample.class);
+  private static final Logger logger = LoggerFactory.getLogger(MobileOcrRecognitionExample.class);
 
-  private LightOcrRecognitionExample() {}
+  private MobileOcrRecognitionExample() {}
 
   public static void main(String[] args) throws IOException, ModelException, TranslateException {
     Path imageFile = Paths.get("src/test/resources/ticket_0.png");
     Image image = ImageFactory.getInstance().fromFile(imageFile);
 
-    LightOcrRecognition recognition = new LightOcrRecognition();
+    MobileOcrRecognition recognition = new MobileOcrRecognition();
     try (ZooModel detectionModel = ModelZoo.loadModel(recognition.detectCriteria());
         Predictor<Image, DetectedObjects> detector = detectionModel.newPredictor();
         ZooModel recognitionModel = ModelZoo.loadModel(recognition.recognizeCriteria());
@@ -48,7 +48,7 @@ public final class LightOcrRecognitionExample {
         System.out.println(result.getClassName() + " : " + result.getProbability());
       }
 
-      ImageUtils.saveBoundingBoxImage(image, detections, "light_ocr_result.png", "build/output");
+      ImageUtils.saveBoundingBoxImage(image, detections, "mobile_ocr_result.png", "build/output");
       logger.info("{}", detections);
     }
   }
