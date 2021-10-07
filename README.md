@@ -16,7 +16,7 @@ http://www.aias.top/
 3. 为企业内部项目赋能
 ```
 
-![AIAS](https://djl-model.oss-cn-hongkong.aliyuncs.com/images/arch.jpeg)
+![aias_scope](https://djl-model.oss-cn-hongkong.aliyuncs.com/images/aias_scope.png)
 
 - 在Data Hub, Model Hub 的基础上扩展出三个新的Hub概念:
 
