@@ -16,8 +16,6 @@ http://www.aias.top/
 3. 为企业内部项目赋能
 ```
 
-![aias_scope](https://djl-model.oss-cn-hongkong.aliyuncs.com/images/aias_scope.png)
-
 - 在Data Hub, Model Hub 的基础上扩展出三个新的Hub概念:
 
 ```bash
@@ -29,9 +27,8 @@ http://www.aias.top/
    包含了面向ToB，ToC，ToG各场景的套件。比如：泛安防套件，ToB套件（IOCR, 非结构化解析，推荐系统等）...
 ```
 
+![aias_scope](https://djl-model.oss-cn-hongkong.aliyuncs.com/images/aias_scope.png)
 
-
-![AIAS](https://djl-model.oss-cn-hongkong.aliyuncs.com/images/hub.jpeg)
 
 #### 功能清单( [x] 标记 - 代表已实现):
 
