@@ -31,7 +31,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <djl.version>0.13.0-SNAPSHOT</djl.version>
+        <djl.version>0.13.0</djl.version>
     </properties>
 
     <build>
@@ -47,21 +47,6 @@
             </plugin>
         </plugins>
     </build>
-
-    <!--  For development use  -->
-    <!--  Include this if you want to try the latest SNAPSHOT version  -->
-    <repositories>
-        <repository>
-            <id>oss.sonatype.org-snapshot</id>
-            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
 
     <dependencies>
         <dependency>
