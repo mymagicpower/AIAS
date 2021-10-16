@@ -50,5 +50,3 @@ Arabic, Chinese, Dutch, English, French, German, Italian, Korean, Polish, Portug
 
 ```
 
-### 帮助 
-添加依赖库：lib/aias-sentence-encoder-15-lib-0.1.0.jar

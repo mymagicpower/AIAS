@@ -25,9 +25,3 @@
 [INFO ] - not_porn : 0.9998598
 [INFO ] - porn : 1.4011623E-4
 ```
-
-### 帮助 
-添加依赖库：lib/aias-porn-detection-lib-0.1.0.jar
-
-#### QQ群：
-111257454

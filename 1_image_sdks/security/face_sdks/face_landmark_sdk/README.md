@@ -29,10 +29,5 @@ http://aias.top/
 ]
 ```
 
-### 帮助 
-添加依赖库：lib/aias-face-landmark-lib-0.1.0.jar
-
-#### QQ群：111257454
-
 
 

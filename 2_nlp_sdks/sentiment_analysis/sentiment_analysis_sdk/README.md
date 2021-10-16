@@ -23,6 +23,3 @@
 	class: "Negative", probability: 0.00072
 ]
 ```
-
-### 帮助 
-添加依赖库：lib/aias-sentiment-analysis-lib-0.1.0.jar

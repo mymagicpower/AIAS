@@ -37,6 +37,3 @@ https://github.com/allenai/specter/blob/master/README.md
 [INFO ] - Similarity: 0.82421297
 
 ```
-
-### 帮助 
-添加依赖库：lib/aias-semantic-search-publications-lib-0.1.0.jar

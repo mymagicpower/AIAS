@@ -20,6 +20,3 @@
 	class: "smoke 0.36228814721107483", probability: 0.36228, bounds: [x=0.576, y=0.110, width=0.113, height=0.121]
 ]
 ```
-
-### 帮助 
-添加依赖库：lib/aias-fire-smoke-lib-0.1.0.jar

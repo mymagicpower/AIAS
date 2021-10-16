@@ -20,7 +20,6 @@ public class CaptureImage {
   public static void main(String[] args) throws Exception, FrameGrabber.Exception {
 
     String input = "rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov";
-    input = "rtmp://58.200.131.2:1935/livetv/cctv1";
 
     captureBufferdImage(input, "build/output/capture.png", "png");
   }

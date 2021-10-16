@@ -43,11 +43,5 @@ http://aias.top/
 ![detected-faces](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/face_sdk/images/faces_detected.png)
 
 
-### 帮助 
-添加依赖库：lib/aias-face-lib-0.1.0.jar
-
-
-#### QQ群：111257454
-
 
 

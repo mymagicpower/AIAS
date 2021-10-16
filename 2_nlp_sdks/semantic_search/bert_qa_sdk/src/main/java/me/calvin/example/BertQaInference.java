@@ -1,4 +1,4 @@
-package me.calvin.example.utils;
+package me.calvin.example;
 
 import ai.djl.modality.nlp.qa.QAInput;
 import ai.djl.repository.zoo.Criteria;
@@ -8,8 +8,6 @@ import org.slf4j.LoggerFactory;
 
 public final class BertQaInference {
 
-  private static final Logger logger = LoggerFactory.getLogger(BertQaInference.class);
-
   public BertQaInference() {}
 
   public Criteria<QAInput, String> criteria() {
@@ -17,9 +15,11 @@ public final class BertQaInference {
 
     Criteria<QAInput, String> criteria =
         Criteria.builder()
+            // .optApplication(Application.NLP.QUESTION_ANSWER)
             .setTypes(QAInput.class, String.class)
             .optModelUrls(
                 "https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/static_bert_qa.zip")
+            //            .optFilter("backbone", "bert")
             .optTranslator(translator)
             .optProgress(new ProgressBar())
             .build();

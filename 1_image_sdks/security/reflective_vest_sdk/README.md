@@ -19,6 +19,3 @@
 	class: "unsafe 0.781899094581604", probability: 0.78189, bounds: [x=0.177, y=0.432, width=0.190, height=0.416]
 ]
 ```
-
-### 帮助 
-添加依赖库：lib/aias-reflective-vest-lib-0.1.0.jar

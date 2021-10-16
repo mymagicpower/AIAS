@@ -17,9 +17,3 @@ http://aias.top/
 ...
 [INFO ] - Images generated: 1
 ```
-
-### 帮助 
-添加依赖库：lib/aias-super-resolution-lib-0.1.0.jar
-
-#### QQ群：
-111257454

@@ -53,5 +53,3 @@
 
 ```
 
-### 帮助 
-添加依赖库：lib/aias-sentence-encoder-100-lib-0.1.0.jar

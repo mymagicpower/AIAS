@@ -31,7 +31,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <djl.version>0.12.0</djl.version>
+        <djl.version>0.13.0</djl.version>
     </properties>
 
     <build>
@@ -93,7 +93,6 @@
             <groupId>ai.djl.tensorflow</groupId>
             <artifactId>tensorflow-engine</artifactId>
             <version>${djl.version}</version>
-            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>ai.djl.tensorflow</groupId>
@@ -104,7 +103,6 @@
             <groupId>ai.djl.tensorflow</groupId>
             <artifactId>tensorflow-native-auto</artifactId>
             <version>2.4.1</version>
-            <scope>runtime</scope>
         </dependency>
 
         <dependency>

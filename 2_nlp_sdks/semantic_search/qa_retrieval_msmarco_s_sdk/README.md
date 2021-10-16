@@ -34,5 +34,3 @@ MS MARCO是目前同类型中最有用的数据集，因为它建立在经过匿
 [INFO ] - Similarity: 0.5283209
 ```
 
-### 帮助 
-添加依赖库：lib/aias-qa-retrieval-msmarco-s-lib-0.1.0.jar

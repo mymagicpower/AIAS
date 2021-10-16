@@ -29,6 +29,3 @@ Tranformer网络完全使用注意力（Attention）机制来实现序列到序�
 [INFO ] - T4:  Was unternehmen Sie jetzt ?
 
 ```
-
-### 帮助 
-添加依赖库：lib/aias-translation-en-de-lib-0.1.0.jar

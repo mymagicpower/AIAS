@@ -25,10 +25,4 @@ http://aias.top/
 ![result](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/mask_sdk/face-masks.png)
 
 
-添加依赖库 lib/aias-mask-lib-0.1.0.jar
-
-
-#### QQ群：111257454
-
-
 

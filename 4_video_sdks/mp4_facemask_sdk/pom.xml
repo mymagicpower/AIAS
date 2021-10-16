@@ -31,7 +31,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <djl.version>0.12.0</djl.version>
+        <djl.version>0.13.0</djl.version>
     </properties>
 
     <build>
@@ -64,6 +64,7 @@
             <version>2.8.5</version>
         </dependency>
 
+        <!-- 服务器端推理引擎 -->
         <dependency>
             <groupId>ai.djl</groupId>
             <artifactId>api</artifactId>
@@ -79,24 +80,22 @@
             <artifactId>model-zoo</artifactId>
             <version>${djl.version}</version>
         </dependency>
-
-        <!-- MXNet -->
+        <!-- Pytorch -->
         <dependency>
-            <groupId>ai.djl.mxnet</groupId>
-            <artifactId>mxnet-model-zoo</artifactId>
+            <groupId>ai.djl.pytorch</groupId>
+            <artifactId>pytorch-engine</artifactId>
             <version>${djl.version}</version>
         </dependency>
         <dependency>
-            <groupId>ai.djl.mxnet</groupId>
-            <artifactId>mxnet-engine</artifactId>
+            <groupId>ai.djl.pytorch</groupId>
+            <artifactId>pytorch-model-zoo</artifactId>
             <version>${djl.version}</version>
         </dependency>
         <dependency>
-            <groupId>ai.djl.mxnet</groupId>
-            <artifactId>mxnet-native-auto</artifactId>
-            <version>1.8.0</version>
+            <groupId>ai.djl.pytorch</groupId>
+            <artifactId>pytorch-native-auto</artifactId>
+            <version>1.9.0</version>
         </dependency>
-        
         <!-- PaddlePaddle -->
         <dependency>
             <groupId>ai.djl.paddlepaddle</groupId>
@@ -108,7 +107,6 @@
             <groupId>ai.djl.paddlepaddle</groupId>
             <artifactId>paddlepaddle-native-auto</artifactId>
             <version>2.0.2</version>
-            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>ai.djl.paddlepaddle</groupId>

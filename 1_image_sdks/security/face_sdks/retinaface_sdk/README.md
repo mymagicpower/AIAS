@@ -49,9 +49,5 @@ http://aias.top/
 2. 输出图片效果如下：
 ![detected-faces](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/face_sdk/images/retinaface_detected.png)
 
-### 帮助 
-添加依赖库：lib/aais-retinaface-lib-0.1.0.jar
-
-#### QQ群：111257454
 
 

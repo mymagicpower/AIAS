@@ -31,7 +31,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <djl.version>0.12.0</djl.version>
+        <djl.version>0.13.0</djl.version>
     </properties>
 
     <build>
@@ -115,14 +115,14 @@
         <dependency>
             <groupId>ai.djl.pytorch</groupId>
             <artifactId>pytorch-native-auto</artifactId>
-            <version>1.8.1</version>
+            <version>1.9.0</version>
         </dependency>
         <dependency>
-            <groupId>jlibrosa</groupId>
-            <artifactId>jlibrosa</artifactId>
-            <version>1.1.8-SNAPSHOT</version>
+            <groupId>calvin</groupId>
+            <artifactId>qa-retrieval-msmarco-s-lib</artifactId>
+            <version>0.1.0</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/jlibrosa-1.1.8-SNAPSHOT.jar</systemPath>
+            <systemPath>${project.basedir}/lib/aias-qa-retrieval-msmarco-s-lib-0.1.0.jar</systemPath>
         </dependency>
         
         <dependency>

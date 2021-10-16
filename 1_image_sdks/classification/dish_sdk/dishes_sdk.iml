@@ -24,18 +24,27 @@
     <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-slf4j-impl:2.12.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-api:2.12.1" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.logging.log4j:log4j-core:2.12.1" level="project" />
-    <orderEntry type="library" name="Maven: ai.djl:api:0.11.0" level="project" />
-    <orderEntry type="library" name="Maven: net.java.dev.jna:jna:5.3.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.commons:commons-compress:1.20" level="project" />
-    <orderEntry type="library" name="Maven: ai.djl:basicdataset:0.11.0" level="project" />
+    <orderEntry type="library" name="Maven: ai.djl:api:0.13.0" level="project" />
+    <orderEntry type="library" name="Maven: net.java.dev.jna:jna:5.9.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-compress:1.21" level="project" />
+    <orderEntry type="library" name="Maven: ai.djl:basicdataset:0.13.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-csv:1.8" level="project" />
-    <orderEntry type="library" name="Maven: ai.djl:model-zoo:0.11.0" level="project" />
-    <orderEntry type="library" name="Maven: ai.djl.mxnet:mxnet-model-zoo:0.11.0" level="project" />
-    <orderEntry type="library" name="Maven: ai.djl.mxnet:mxnet-engine:0.11.0" level="project" />
-    <orderEntry type="library" name="Maven: ai.djl.mxnet:mxnet-native-auto:1.7.0-backport" level="project" />
-    <orderEntry type="library" name="Maven: ai.djl.paddlepaddle:paddlepaddle-model-zoo:0.11.0" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: ai.djl.paddlepaddle:paddlepaddle-engine:0.11.0" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: ai.djl.paddlepaddle:paddlepaddle-native-auto:2.0.2" level="project" />
+    <orderEntry type="library" name="Maven: ai.djl:model-zoo:0.13.0" level="project" />
+    <orderEntry type="library" name="Maven: ai.djl.pytorch:pytorch-engine:0.13.0" level="project" />
+    <orderEntry type="library" name="Maven: ai.djl.pytorch:pytorch-model-zoo:0.13.0" level="project" />
+    <orderEntry type="library" name="Maven: ai.djl.pytorch:pytorch-native-auto:1.9.0" level="project" />
+    <orderEntry type="library" name="Maven: ai.djl.paddlepaddle:paddlepaddle-model-zoo:0.13.0" level="project" />
+    <orderEntry type="library" name="Maven: ai.djl.paddlepaddle:paddlepaddle-engine:0.13.0" level="project" />
+    <orderEntry type="library" name="Maven: ai.djl.paddlepaddle:paddlepaddle-native-auto:2.0.2" level="project" />
+    <orderEntry type="module-library">
+      <library name="Maven: calvin:dish-lib:0.1.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/aias-dish-lib-0.1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.projectlombok:lombok:1.18.18" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.testng:testng:6.8.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.10" level="project" />

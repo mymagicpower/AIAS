@@ -32,6 +32,3 @@
 [INFO ] - positive : 0.9267028
 
 ```
-
-### 帮助 
-添加依赖库：lib/aias-senta-textcnn-lib-0.1.0.jar

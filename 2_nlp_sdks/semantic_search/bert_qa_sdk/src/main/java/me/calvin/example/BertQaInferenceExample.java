@@ -6,11 +6,10 @@ import ai.djl.modality.nlp.qa.QAInput;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
-import me.calvin.example.utils.BertQaInference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
+import java.io.IOException;                 
 
 public final class BertQaInferenceExample {
 

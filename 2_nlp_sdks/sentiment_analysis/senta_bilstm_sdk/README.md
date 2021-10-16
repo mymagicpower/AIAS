@@ -52,9 +52,3 @@ SDK包含两个模型：
 [INFO ] - positive : 0.9406876
 
 ```
-
-### 帮助 
-添加依赖库：lib/aias-senta-bilstm-lib-0.1.0.jar
-
-#### QQ群：
-111257454

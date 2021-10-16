@@ -42,9 +42,3 @@ yolo, backbone: mobilenet1.0
 	class: "person", probability: 0.62601, bounds: [x=0.260, y=0.154, width=0.201, height=0.433]
 ]
 ```
-
-### 帮助 
-添加依赖库：lib/aias-object-detection-voc-lib-0.1.0.jar
-
-#### QQ群：
-111257454

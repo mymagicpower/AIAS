@@ -38,6 +38,3 @@
 [INFO ] - 0.80258906
 [INFO ] - 0.90100515
 ```
-
-### 帮助 
-添加依赖库：lib/aias-sentence-encoder-lib-0.1.0.jar

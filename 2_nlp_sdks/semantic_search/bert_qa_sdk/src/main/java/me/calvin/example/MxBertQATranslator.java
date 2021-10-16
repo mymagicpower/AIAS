@@ -10,10 +10,10 @@
  * OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
  * and limitations under the License.
  */
-package me.calvin.example.utils;
+package me.calvin.example;
 
 import ai.djl.Model;
-import ai.djl.modality.nlp.SimpleVocabulary;
+import ai.djl.modality.nlp.DefaultVocabulary;
 import ai.djl.modality.nlp.Vocabulary;
 import ai.djl.modality.nlp.bert.BertToken;
 import ai.djl.modality.nlp.bert.BertTokenizer;
@@ -51,11 +51,12 @@ public class MxBertQATranslator extends QATranslator {
         seqLength = builder.seqLength;
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritDoc} */        
     @Override
-    public void prepare(NDManager manager, Model model) throws IOException {
+    public void prepare(TranslatorContext ctx) throws IOException {
+        Model model = ctx.getModel();
         vocabulary =
-                SimpleVocabulary.builder()
+                DefaultVocabulary.builder()
                         .optMinFrequency(1)
                         .addFromCustomizedFile(
                                 model.getArtifact("vocab.json"), VocabParser::parseToken)

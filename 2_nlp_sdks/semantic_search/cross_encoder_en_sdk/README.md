@@ -45,5 +45,3 @@ https://github.com/mymagicpower/AIAS/tree/main/nlp_sdks/qa_retrieval_msmarco_s_s
 [INFO ] - Score2: -6.2870417
 ```
 
-### 帮助 
-添加依赖库：lib/aias-cross-encoder-en-lib-0.1.0.jar

@@ -53,11 +53,5 @@ http://aias.top/
 [INFO ] - 相似度： 0.9022608
 ```
 
-### 帮助 
-添加依赖库：lib/aais-face-feature-lib-0.1.0.jar
-
-#### QQ群：111257454
-
-
 
 

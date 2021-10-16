@@ -29,8 +29,4 @@ http://aias.top/
 ]
 ```
 
-### 帮助 
-添加依赖库：lib/aias-dish-lib-0.1.0.jar
-
-#### QQ群：111257454
 
