@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-                                            
+
 /**
  * 轻量级OCR文字识别.
  *

@@ -21,7 +21,7 @@ import java.util.List;
 
 /**
  * OCR文字检测(mobile模型).
- *                                               
+ *
  * @author Calvin
  * @date 2021-10-04
  * @email 179209347@qq.com

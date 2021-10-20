@@ -11,8 +11,8 @@ import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
 import me.calvin.example.utils.ImageUtils;
-import me.calvin.ocr.ResultBean;
 import me.calvin.ocr.TableDetection;
+import me.calvin.ocr.TableResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,9 +41,9 @@ public final class TableDetectionExample {
 
     TableDetection detection = new TableDetection();
     try (ZooModel detectionModel = ModelZoo.loadModel(detection.criteria());
-        Predictor<Image, ResultBean> detector = detectionModel.newPredictor()) {
+        Predictor<Image, TableResult> detector = detectionModel.newPredictor()) {
 
-      ResultBean result = detector.predict(image);
+      TableResult result = detector.predict(image);
 
       List<BoundingBox> boxes = result.getBoxes();
       List<String> names = new ArrayList<>();
@@ -55,6 +55,7 @@ public final class TableDetectionExample {
       }
 
       DetectedObjects detections = new DetectedObjects(names, probs, boxes);
+
       ImageUtils.saveBoundingBoxImage(image, detections, "table_detect_result.png", "build/output");
       logger.info("{}", detections);
     }
