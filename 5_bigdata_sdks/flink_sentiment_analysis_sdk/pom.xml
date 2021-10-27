@@ -109,6 +109,13 @@
 <!--            <artifactId>flink-java</artifactId>-->
 <!--            <version>1.13.2</version>-->
 <!--        </dependency>-->
+        <dependency>
+            <groupId>aias</groupId>
+            <artifactId>sentiment-analysis-lib</artifactId>
+            <version>0.1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/aias-sentiment-analysis-lib-0.1.0.jar</systemPath>
+        </dependency>
         
         <dependency>
             <groupId>org.apache.flink</groupId>

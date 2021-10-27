@@ -100,6 +100,14 @@
             <version>1.8.0</version>
         </dependency>
         <dependency>
+            <groupId>aias</groupId>
+            <artifactId>object-detection-voc-lib</artifactId>
+            <version>0.1.0</version>
+
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/aias-object-detection-voc-lib-0.1.0.jar</systemPath>
+        </dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.18</version>

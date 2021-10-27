@@ -5,7 +5,7 @@ import ai.djl.modality.Classifications;
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.ImageFactory;
 import ai.djl.translate.TranslateException;
-import me.calvin.dish.LightDishesClassification;
+import me.aias.dish.LightDishesClassification;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

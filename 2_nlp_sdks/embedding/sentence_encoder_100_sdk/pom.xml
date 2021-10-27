@@ -48,21 +48,6 @@
         </plugins>
     </build>
 
-    <!--  For development use  -->
-    <!--  Include this if you want to try the latest SNAPSHOT version  -->
-    <repositories>
-        <repository>
-            <id>oss.sonatype.org-snapshot</id>
-            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -125,7 +110,7 @@
         </dependency>
 
         <dependency>
-            <groupId>calvin</groupId>
+            <groupId>aias</groupId>
             <artifactId>sentence-encoder-100-lib</artifactId>
             <version>0.1.0</version>
             <scope>system</scope>

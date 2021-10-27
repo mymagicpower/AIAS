@@ -6,8 +6,8 @@ import ai.djl.modality.cv.ImageFactory;
 import ai.djl.modality.cv.output.DetectedObjects;
 import ai.djl.modality.cv.output.Joints;
 import ai.djl.translate.TranslateException;
-import me.calvin.aias.PersonDetection;
-import me.calvin.aias.PoseResnet50Estimation;
+import me.aias.PersonDetection;
+import me.aias.PoseResnet50Estimation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

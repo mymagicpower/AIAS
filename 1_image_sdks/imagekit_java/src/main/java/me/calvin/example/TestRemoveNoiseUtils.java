@@ -1,9 +1,9 @@
 package me.calvin.example;
 
-import me.calvin.opencv.utils.BinaryUtils;
-import me.calvin.opencv.utils.GeneralUtils;
-import me.calvin.opencv.utils.GrayUtils;
-import me.calvin.opencv.utils.NoiseUtils;
+import me.aias.opencv.utils.BinaryUtils;
+import me.aias.opencv.utils.GeneralUtils;
+import me.aias.opencv.utils.GrayUtils;
+import me.aias.opencv.utils.NoiseUtils;
 import org.bytedeco.opencv.opencv_core.Mat;
 import org.junit.Test;
 

@@ -1,6 +1,6 @@
 package me.calvin.example;
 
-import me.calvin.opencv.utils.*;
+import me.aias.opencv.utils.*;
 import org.bytedeco.opencv.opencv_core.*;
 
 import java.io.IOException;

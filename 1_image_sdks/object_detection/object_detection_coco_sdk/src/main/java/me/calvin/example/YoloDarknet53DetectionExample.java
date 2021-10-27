@@ -5,8 +5,7 @@ import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.ImageFactory;
 import ai.djl.modality.cv.output.DetectedObjects;
 import ai.djl.translate.TranslateException;
-import me.calvin.aias.YoloDarknet53Detection;
-import me.calvin.aias.util.ImageUtils;
+import me.aias.YoloDarknet53Detection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

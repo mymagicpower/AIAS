@@ -101,7 +101,7 @@
         </dependency>
 
         <dependency>
-            <groupId>calvin</groupId>
+            <groupId>aias</groupId>
             <artifactId>instance-segmentation-lib</artifactId>
             <version>0.1.0</version>
             <scope>system</scope>

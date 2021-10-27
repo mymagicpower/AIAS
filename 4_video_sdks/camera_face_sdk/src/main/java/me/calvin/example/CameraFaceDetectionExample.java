@@ -11,7 +11,7 @@ import ai.djl.repository.zoo.Criteria;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
-import me.calvin.aias.FaceDetect;
+import me.aias.FaceDetection;
 import me.calvin.example.utils.OpenCVImageUtil;
 import org.bytedeco.javacv.CanvasFrame;
 import org.bytedeco.javacv.Frame;
@@ -46,7 +46,8 @@ public class CameraFaceDetectionExample {
       throws IOException, ModelException, TranslateException {
     float shrink = 0.5f;
     float threshold = 0.7f;
-    Criteria<Image, DetectedObjects> criteria = new FaceDetect().criteria(shrink, threshold);
+
+    Criteria<Image, DetectedObjects> criteria = new FaceDetection().criteria(shrink, threshold);
 
     // 开启摄像头，获取图像（得到的图像为frame类型，需要转换为mat类型进行检测和识别）
     OpenCVFrameGrabber grabber = new OpenCVFrameGrabber(0);

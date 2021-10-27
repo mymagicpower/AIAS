@@ -23,7 +23,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>calvin</groupId>
+    <groupId>aias</groupId>
     <artifactId>qa-natural-questions-sdk</artifactId>
     <version>0.1</version>
 
@@ -47,21 +47,6 @@
             </plugin>
         </plugins>
     </build>
-
-    <!--  For development use  -->
-    <!--  Include this if you want to try the latest SNAPSHOT version  -->
-    <repositories>
-        <repository>
-            <id>oss.sonatype.org-snapshot</id>
-            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
 
     <dependencies>
         <dependency>
@@ -119,7 +104,7 @@
         </dependency>
 
         <dependency>
-            <groupId>calvin</groupId>
+            <groupId>aias</groupId>
             <artifactId>qa-natural-questions-lib</artifactId>
             <version>0.1.0</version>
             <scope>system</scope>

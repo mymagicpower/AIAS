@@ -23,7 +23,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>calvin</groupId>
+    <groupId>aias</groupId>
     <artifactId>retinaface-sdk</artifactId>
     <version>0.1</version>
 
@@ -97,11 +97,11 @@
         </dependency>
 
         <dependency>
-            <groupId>calvin</groupId>
+            <groupId>aias</groupId>
             <artifactId>retinaface-lib</artifactId>
             <version>0.1.0</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/aais-retinaface-lib-0.1.0.jar</systemPath>
+            <systemPath>${project.basedir}/lib/aias-retinaface-lib-0.1.0.jar</systemPath>
         </dependency>
         
         <dependency>

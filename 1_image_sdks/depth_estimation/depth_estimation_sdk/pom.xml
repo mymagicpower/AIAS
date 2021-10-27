@@ -23,7 +23,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>calvin</groupId>
+    <groupId>aias</groupId>
     <artifactId>depth-estimation-sdk</artifactId>
     <version>0.1</version>
 
@@ -115,7 +115,13 @@
             <artifactId>paddlepaddle-model-zoo</artifactId>
             <version>${djl.version}</version>
         </dependency>
-        
+        <dependency>
+            <groupId>aias</groupId>
+            <artifactId>depth-estimation-lib</artifactId>
+            <version>0.1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/aias-depth-estimation-lib-0.1.0.jar</systemPath>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

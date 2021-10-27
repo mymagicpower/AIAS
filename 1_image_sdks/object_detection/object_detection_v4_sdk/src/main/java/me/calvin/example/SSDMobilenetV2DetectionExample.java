@@ -5,7 +5,7 @@ import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.ImageFactory;
 import ai.djl.modality.cv.output.DetectedObjects;
 import ai.djl.translate.TranslateException;
-import me.calvin.aias.SSDMobilenetV2Detection;
+import me.aias.SSDMobilenetV2Detection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

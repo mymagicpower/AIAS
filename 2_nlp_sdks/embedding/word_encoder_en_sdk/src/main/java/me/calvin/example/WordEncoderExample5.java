@@ -2,13 +2,13 @@ package me.calvin.example;
 
 import ai.djl.ModelException;
 import ai.djl.translate.TranslateException;
-import me.calvin.aias.WordEncoder;
-import me.calvin.aias.util.FeatureComparison;
+import me.aias.WordEncoder;
+import me.aias.util.FeatureComparison;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.nio.file.Path;
+import java.nio.file.Path;         
 import java.nio.file.Paths;
 import java.util.Arrays;
 

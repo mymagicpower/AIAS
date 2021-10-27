@@ -6,8 +6,7 @@ import ai.djl.modality.cv.ImageFactory;
 import ai.djl.modality.cv.output.BoundingBox;
 import ai.djl.modality.cv.output.DetectedObjects;
 import ai.djl.translate.TranslateException;
-import me.calvin.aias.InstanceSegmentation;
-import me.calvin.aias.util.ImageUtils;
+import me.aias.InstanceSegmentation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

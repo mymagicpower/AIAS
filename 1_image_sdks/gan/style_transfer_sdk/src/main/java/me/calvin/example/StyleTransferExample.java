@@ -7,7 +7,7 @@ import ai.djl.modality.cv.ImageFactory;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
-import me.calvin.aias.StyleTransfer;
+import me.aias.StyleTransfer;
 import me.calvin.example.utils.ImageUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

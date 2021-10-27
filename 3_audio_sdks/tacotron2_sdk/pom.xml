@@ -23,7 +23,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>calvin</groupId>
+    <groupId>aias</groupId>
     <artifactId>tacotron2-sdk</artifactId>
     <version>0.1</version>
 
@@ -120,21 +120,21 @@
             <version>3.4</version>
         </dependency>
         <dependency>
-            <groupId>calvin</groupId>
+            <groupId>aias</groupId>
             <artifactId>sv2tts-speakencoder-lib</artifactId>
             <version>0.1.0</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/aias-sv2tts-speakencoder-lib-0.1.0.jar</systemPath>
         </dependency>
         <dependency>
-            <groupId>calvin</groupId>
+            <groupId>aias</groupId>
             <artifactId>tacotron-lib</artifactId>
             <version>0.1.0</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/aias-tacotron-lib-0.1.0.jar</systemPath>
         </dependency>
         <dependency>
-            <groupId>calvin</groupId>
+            <groupId>aias</groupId>
             <artifactId>ph-lib</artifactId>
             <version>0.1.0</version>
             <scope>system</scope>

@@ -23,8 +23,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>calvin</groupId>
-    <artifactId>face-sdk</artifactId>
+    <groupId>aias</groupId>
+    <artifactId>mp4-facemask-sdk</artifactId>
     <version>0.1</version>
 
     <properties>
@@ -113,13 +113,18 @@
             <artifactId>paddlepaddle-model-zoo</artifactId>
             <version>${djl.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.bytedeco</groupId>
             <artifactId>javacv-platform</artifactId>
             <version>1.5.4</version>
         </dependency>
-        
+        <dependency>
+            <groupId>aias</groupId>
+            <artifactId>mask-lib</artifactId>
+            <version>0.1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/aias-mask-lib-0.1.0.jar</systemPath>
+        </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
