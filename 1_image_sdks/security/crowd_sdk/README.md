@@ -58,3 +58,7 @@ CrowdNet模型主要有深层卷积神经网络和浅层卷积神经组成，通
 #### 密度图
 ![density](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/sec_sdks/images/density.png)
 
+
+### 帮助 
+引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
+[引擎定制化配置](http://aias.top/engine_cpu.html)

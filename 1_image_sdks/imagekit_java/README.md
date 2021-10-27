@@ -14,17 +14,7 @@ http://aias.top/
 -完善文字方向检测算法，判断转正后的图片角度，以便进一步旋转图片使得文字水平。
 
 ## 运行例子
-1. 首先下载例子代码
-```bash
-git clone https://github.com/mymagicpower/AIAS.git
-```
-
-2. 导入examples项目到IDE中：
-```
-cd image_sdk
-```
-
-3. 运行成功后，命令行应该看到下面的信息:
+运行成功后，命令行应该看到下面的信息:
 ```text
 319.0 , 865.0
 319.0 , 113.0
@@ -40,10 +30,5 @@ height = 753
 
 
 ### 帮助 
-[点击下载SDK](https://djl-model.oss-cn-hongkong.aliyuncs.com/jars/aais-image-lib-0.1.0.jar). 
-
-添加依赖lib - aais-image-lib-0.1.0.jar：
-![lib](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/image_sdk/images/lib.png)
-
-#### QQ群：
-111257454
+引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
+[引擎定制化配置](http://aias.top/engine_cpu.html)

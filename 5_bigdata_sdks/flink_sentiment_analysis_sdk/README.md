@@ -49,10 +49,11 @@ I feel bad for doing it
 ]
 ```
 
-#### 帮助 
-添加依赖库：lib/aias-sentiment-analysis-lib-0.1.0.jar
-
 #### Mac环境安装netcat 
 ```bash
 brew install nc
 ```
+
+### 帮助 
+引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
+[引擎定制化配置](http://aias.top/engine_cpu.html)

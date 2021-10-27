@@ -33,5 +33,8 @@ http://aias.top/
 1. 运行成功后，输出图片效果如下：
 ![face_align](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/face_sdk/images/face_align.png)
 
+### 帮助 
+引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
+[引擎定制化配置](http://aias.top/engine_cpu.html)
 
 

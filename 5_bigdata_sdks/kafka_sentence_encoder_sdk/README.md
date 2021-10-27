@@ -53,10 +53,11 @@ Sentence1 embeddings: [-0.0035688172, -0.017706484, ..., 0.0061081746, -0.023076
 ...
 ```
 
-#### 帮助 
-添加依赖库：lib/aias-sentence-encoder-15-lib-0.1.0.jar
-
 #### Mac环境安装kafka 
 ```bash
 brew install kafka
 ```
+
+### 帮助 
+引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
+[引擎定制化配置](http://aias.top/engine_cpu.html)

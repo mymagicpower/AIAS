@@ -51,7 +51,5 @@ yolo, backbone: mobilenet1.0
 ```
 
 ### 帮助 
-添加依赖库：lib/aias-object-detection-voc-lib-0.1.0.jar
-
-#### QQ群：
-111257454
+引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
+[引擎定制化配置](http://aias.top/engine_cpu.html)

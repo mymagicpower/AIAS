@@ -48,3 +48,7 @@ https://arxiv.org/abs/1807.01882
 [INFO ] - Tags : [TIME, v, q, n]
 ```
 
+
+### 帮助 
+引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
+[引擎定制化配置](http://aias.top/engine_cpu.html)

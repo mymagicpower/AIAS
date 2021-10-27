@@ -29,5 +29,7 @@ cd mp4_face_sdk
 ## 效果如下：
 ![result](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/face_sdk/images/faces.jpg)
 
-## 帮助
-添加依赖库：lib/aais-face-lib-0.1.0.jar
+
+### 帮助 
+引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
+[引擎定制化配置](http://aias.top/engine_cpu.html)

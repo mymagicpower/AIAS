@@ -142,3 +142,7 @@ OCR（文字识别）是目前常用的一种AI能力。
 
 - 生成excel效果如下：
 ![excel](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/excel.jpeg)
+
+### 帮助 
+引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
+[引擎定制化配置](http://aias.top/engine_cpu.html)

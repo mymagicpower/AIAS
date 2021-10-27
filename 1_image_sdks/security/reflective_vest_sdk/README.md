@@ -19,3 +19,7 @@
 	class: "unsafe 0.781899094581604", probability: 0.78189, bounds: [x=0.177, y=0.432, width=0.190, height=0.416]
 ]
 ```
+
+### 帮助 
+引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
+[引擎定制化配置](http://aias.top/engine_cpu.html)

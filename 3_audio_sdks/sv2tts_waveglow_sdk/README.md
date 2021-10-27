@@ -69,3 +69,7 @@ WaveGlow:一种依靠流的从梅尔频谱图合成高质量语音的网络。�
 ```
 文本 - "基于给定音色将文本转为语音" - 生成的语音效果：
 [audio.wav](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/voice_sdks/audio.wav)
+
+### 帮助 
+引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
+[引擎定制化配置](http://aias.top/engine_cpu.html)
