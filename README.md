@@ -32,7 +32,7 @@ http://www.aias.top/
 
 #### 功能清单( [x] 标记 - 代表已实现):
 
-- **1_image_sdks - 图像识别 SDK **
+- 1.image_sdks - 图像识别 SDK
 
 ```text
   1).工具箱系列：javacv(opencv，ffmpeg)图像处理工具箱（静态图像）。[X]
@@ -44,7 +44,7 @@ http://www.aias.top/
     ...
 ```
 
-- **2_nlp_sdks - 自然语言 SDK **
+- 2.nlp_sdks - 自然语言 SDK
 
 ```text
   1).工具箱系列：Tokenizer，sentencepiece，fastText，npy/npz文件处理等。[X]
@@ -59,7 +59,7 @@ http://www.aias.top/
     ...
 ```
 
-- **3_audio_sdks - 语音处理 SDK **
+- 3.audio_sdks - 语音处理 SDK
 
 ```text
   1).工具箱系列：音素工具箱，librosa，java sound，javacv ffmpeg, fft, vad工具箱等。[X]
@@ -70,7 +70,7 @@ http://www.aias.top/
     ...
 ```
 
-- **4_video_sdks - 视频处理 SDK **
+- 4.video_sdks - 视频处理 SDK
 
 ```text
   1).摄像头实时视频流处理。[X]
@@ -78,21 +78,21 @@ http://www.aias.top/
   3).rtsp,rtmp视频流处理[X]
 ```
 
-- **5_bigdata_sdks - 大数据 SDK **
+- 5.bigdata_sdks - 大数据 SDK
 
 ```text
   1).flink流式数据处理。[X]
   2).kafka数据处理。[X]
 ```
 
-- **6_biomedicine_sdks - 生物医药 SDK **
+- 6.biomedicine_sdks - 生物医药 SDK
 
 ```text
   1).工具箱系列：RDKit工具箱，DNA工具箱。[X]
   ...
 ```
 
-- **7_engine_hub - 平台引擎 **
+- 7.engine_hub - 平台引擎
 
 ```text
   1).训练引擎[X]
@@ -104,7 +104,7 @@ http://www.aias.top/
 
 
 
-- **8_suite_hub - 场景套件(ToB) **
+- 8.suite_hub - 场景套件(ToB)
 
 ```text
   1).OCR自定义模版识别[X]
