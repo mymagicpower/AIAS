@@ -23,7 +23,7 @@ http://aias.top/
 
 ### 人脸识别关键技术
 人脸识别涉及的关键技术包含：人脸检测，人脸关键点，人脸特征提取，人脸比对，人脸对齐。
-![face_sdk](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/face_sdk/images/face_sdk.png)
+![face_sdk](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/face_sdk/images/face_sdk.png)
 
 本文的例子给出了人脸检测(含5个人脸关键点)的参考实现。
 ### 人脸检测(含5个人脸关键点)提供了两个模型的实现：
@@ -47,7 +47,7 @@ http://aias.top/
 ]
 ```
 2. 输出图片效果如下：
-![detected-faces](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/face_sdk/images/retinaface_detected.png)
+![detected-faces](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/face_sdk/images/retinaface_detected.png)
 
 
 ### 帮助 

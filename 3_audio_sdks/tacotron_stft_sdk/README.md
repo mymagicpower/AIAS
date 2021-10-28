@@ -5,7 +5,7 @@
 所以一般会先预测频谱，然后经由vocoder重建波形，把mel(梅尔)频谱特征表达逆变换为时域波形样本。
 
 - mel频谱
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/voice_sdks/mel_spec.jpeg)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/voice_sdks/mel_spec.jpeg)
 
 ### 傅立叶变换
 音频信号由几个单频声波组成。 在一段时间内对信号进行采样时，我们仅捕获得到的幅度。 
@@ -20,7 +20,7 @@
 我们通过对信号的多个窗口部分执行FFT来计算多个频谱来解决这个问题，称为短时傅立叶变换。 
 FFT是在信号的重叠窗口部分上计算的，我们得到了所谓的频谱图。 
 - 短时傅立叶变换(STFT)
-![stft](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/voice_sdks/fft.jpeg)
+![stft](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/voice_sdks/fft.jpeg)
 
 ## 运行例子 - TacotronSTFTExample
 运行成功后，命令行应该看到下面的信息:

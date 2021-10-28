@@ -38,7 +38,7 @@ cd live_stream_sdks/images2gif_sdk
 build/output/images2Gif.gif
 ```
 静态图序列：
-![images](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/video_sdk/images.png)
+![images](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/video_sdk/images.png)
 
 生成gif效果图：
-![gif](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/video_sdk/images2Gif.gif)
+![gif](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/video_sdk/images2Gif.gif)

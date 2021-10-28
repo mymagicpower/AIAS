@@ -15,7 +15,7 @@ http://aias.top/
 
 ## 运行例子 - TrafficDetectionExample
 - 测试图片
-![tiger](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/traffic_sdk/result.png)
+![tiger](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/traffic_sdk/result.png)
 
 运行成功后，命令行应该看到下面的信息:
 ```text

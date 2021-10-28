@@ -5,7 +5,7 @@
 Arabic, Chinese, Dutch, English, French, German, Italian, Korean, Polish, Portuguese, Russian, Spanish, Turkish.
  
 - 句向量    
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/nlp_sdks/Universal-Sentence-Encoder.png)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/Universal-Sentence-Encoder.png)
 
 
 句向量应用：

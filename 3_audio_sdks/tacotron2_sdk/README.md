@@ -15,7 +15,7 @@ SV2TTS工作首先将这两个过程分开，通过第一个语音特征编码�
 [Transfer Learning from Speaker Verification to  Multispeaker Text-To-Speech Synthesis](https://arxiv.org/pdf/1806.04558.pdf)
 
 - 网络结构
-![SV2TTS](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/voice_sdks/SV2TTS.png)
+![SV2TTS](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/voice_sdks/SV2TTS.png)
 
 主要由三部分构成：
 - 声音特征编码器（speaker encoder）
@@ -33,7 +33,7 @@ SV2TTS工作首先将这两个过程分开，通过第一个语音特征编码�
 为了降低噪声数据的影响，还对该部分的损失函数额外添加了L1正则化。
 
 输入梅尔频谱图与合成频谱图的对比示例如下：
-![embedding](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/voice_sdks/tacotron2.jpeg)
+![embedding](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/voice_sdks/tacotron2.jpeg)
 右图红线表示文本和频谱的对应关系。可以看到，用于参考监督的语音信号不需要与目标语音信号在文本上一致，这也是SV2TTS论文工作的一大特色。
 
 ## 运行例子 - Tacotron2EncoderExample

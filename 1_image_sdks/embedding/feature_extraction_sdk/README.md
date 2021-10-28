@@ -11,7 +11,7 @@ http://aias.top/
 
 - 运行例子 - FeatureExtractionExample
 测试图片
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/feature_extraction_sdk/car1.png)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/feature_extraction_sdk/car1.png)
 
 - 运行成功后，命令行应该看到下面的信息:
 ```text
@@ -26,7 +26,7 @@ http://aias.top/
 
 - 运行例子 - FeatureComparisonExample
 测试图片: 左右特征对比
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/feature_extraction_sdk/comparision.png)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/feature_extraction_sdk/comparision.png)
 
 - 运行成功后，命令行应该看到下面的信息:
 ```text

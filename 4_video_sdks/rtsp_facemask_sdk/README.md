@@ -28,7 +28,7 @@ cd rtsp_facemask_sdk
 3. 运行例子代码：RtspFaceMaskDetectionExample
 
 ## 效果如下：
-![result](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/mask_sdk/face-masks.png)
+![result](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/mask_sdk/face-masks.png)
 
 ### 帮助 
 引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         

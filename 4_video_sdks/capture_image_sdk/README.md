@@ -22,4 +22,4 @@ build/output/capture.png
 ```
 
 ## 效果：
-![result](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/video_sdk/rtsp.png)
+![result](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/video_sdk/rtsp.png)

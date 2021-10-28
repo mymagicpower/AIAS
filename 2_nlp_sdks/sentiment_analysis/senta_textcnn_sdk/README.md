@@ -3,7 +3,7 @@
 针对智能对话场景中的用户文本，自动判断该文本的情绪类别并给出相应的置信度。
 
 
-![image](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/nlp_sdks/sentiment_analysis.jpeg)
+![image](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/sentiment_analysis.jpeg)
 
 ### SDK算法：
 该模型基于TextCNN（多卷积核CNN模型），能够更好地捕捉句子局部相关性。

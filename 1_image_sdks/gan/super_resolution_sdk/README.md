@@ -10,7 +10,7 @@ http://aias.top/
 
 ## 运行例子 - SuperResolutionExample
 - 测试图片（左侧原图，右侧提升后效果）
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/super_resolution_sdk/stitch0.png)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/super_resolution_sdk/stitch0.png)
 
 运行成功后，命令行应该看到下面的信息:
 ```text

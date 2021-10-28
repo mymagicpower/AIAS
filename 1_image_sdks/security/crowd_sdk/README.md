@@ -5,7 +5,7 @@ CrowdNet模型主要有深层卷积神经网络和浅层卷积神经组成，通
 
 以下是CrowdNet模型的结构图，从结构图中可以看出，CrowdNet模型是深层卷积网络（Deep Network）和浅层卷积网络（Shallow Network）组成，
 两组网络通过拼接成一个网络，接着输入到一个卷积核数量和大小都是1的卷积层，最后通过插值方式得到一个密度图数据，通过统计这个密度就可以得到估计人数。
-![model](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/sec_sdks/images/network.png)
+![model](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/network.png)
 
 #### sdk功能：
 - 计算人数
@@ -13,7 +13,7 @@ CrowdNet模型主要有深层卷积神经网络和浅层卷积神经组成，通
 
 ## 运行例子 - CrowdDetectExample
 - 测试图片
-![crowd](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/sec_sdks/images/crowd1.jpg)
+![crowd](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/crowd1.jpg)
 
 例子代码：
 ```text
@@ -56,7 +56,7 @@ CrowdNet模型主要有深层卷积神经网络和浅层卷积神经组成，通
 
 ```
 #### 密度图
-![density](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/sec_sdks/images/density.png)
+![density](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/density.png)
 
 
 ### 帮助 

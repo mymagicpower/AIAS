@@ -12,7 +12,7 @@ MiDaS_Small是一个单目深度估计模型，模型可通过输入图像估计
 
 ## 运行例子 - DepthEstimationExample
 - 测试图片（左侧原图，右侧深度估计）
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/depth_estimation_sdk/depth.png)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/depth_estimation_sdk/depth.png)
 
 ### 帮助 
 引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         

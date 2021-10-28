@@ -16,7 +16,7 @@ simple pose, backbone: resnet50, dataset:imagenet
 
 ## 运行例子 - PoseResnet18EstimationExample
 - 测试图片
-![pose-estimation](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/pose_estimation_sdk/pose-estimation.png)
+![pose-estimation](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/pose_estimation_sdk/pose-estimation.png)
 
 运行成功后，命令行应该看到下面的信息:
 ```text

@@ -26,7 +26,7 @@ http://aias.top/
 - train
 - tvmonitor
 
-[点击下载](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/object_detection_sdk/voc_classes.txt)
+[点击下载](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/object_detection_sdk/voc_classes.txt)
 
 ### SDK包含两个检测器：
 -  SSDResnet50Detection
@@ -36,7 +36,7 @@ yolo, backbone: mobilenet1.0
 
 ## 运行例子 - SSDResnet50DetectionExample
 - 测试图片
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/object_detection_sdk/SSDResnet50Detection.png)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/object_detection_sdk/SSDResnet50Detection.png)
 
 运行成功后，命令行应该看到下面的信息:
 ```text

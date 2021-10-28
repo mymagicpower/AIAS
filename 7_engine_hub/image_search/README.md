@@ -8,7 +8,7 @@ http://aias.top/
 - 通用图像搜索：使用ImageNet数据集上预训练的模型：resnet50提取512维特征
 - 人像高精度搜索：人脸特征提取(使用人脸特征模型提取512维特征)前先做 - 人脸检测，人脸关键点提取，人脸对齐
 
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/image_search/images/search_engine.png)
+![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/image_search/images/search_engine.png)
 
 #### 项目地址
 
@@ -42,7 +42,7 @@ http://aias.top/
 ## 1. 前端部署
 
 #### 下载安装：
-[image-search-ui](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/image_search/dist.zip)
+[image-search-ui](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/image_search/dist.zip)
 
 #### nginx部署运行：
 ```bash
@@ -85,11 +85,11 @@ sudo nginx
 - 需要安装MySQL数据库
 
 #### 2.2 下载jar包：
-[jar包](https://djl-model.oss-cn-hongkong.aliyuncs.com/jars/aias-aiplatform-search-1.0.jar)   
+[jar包](https://aias-home.oss-cn-beijing.aliyuncs.com/jars/aias-aiplatform-search-1.0.jar)   
  
 #### 2.3 下载并导入SQL文件到MySQL数据库：
 使用命令行导入，或者mysql workbench, navicat 图形界面导入。     
-[SQL文件](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/image_search/data.sql)
+[SQL文件](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/image_search/data.sql)
 
 #### 2.4 编辑环境配置信息
 windows环境里可以使用7-zip直接对jar包中的配置文件进行编辑。
@@ -165,7 +165,7 @@ sudo docker pull milvusdb/milvus:0.10.0-cpu-d061620-5f3c00
 ```
 
 #### 3.3 下载配置文件
-[vector_engine.zip](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/image_search/vector_engine.zip)  
+[vector_engine.zip](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/image_search/vector_engine.zip)  
 
 #### 3.4 启动 Docker 容器
 /Users/calvin/vector_engine为主机路径，根据需要修改。conf下为引擎所需的配置文件。
@@ -202,13 +202,13 @@ search:
 ## 4. 打开浏览器
 - 输入地址： http://localhost:8080
 
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/image_search/images/login.png)
+![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/image_search/images/login.png)
 
 - 通用搜索
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/image_search/images/common_search.png)
+![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/image_search/images/common_search.png)
 
 - 人像搜索
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/image_search/images/face_search.png)
+![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/image_search/images/face_search.png)
 
 - 图片上传
 1). 点击上传按钮上传zip压缩包.  
@@ -216,19 +216,19 @@ search:
 3). 如果不是人像图片：点击提取特征按钮.  
 4). 刷新页面：可以看到"状态"列，如：45/100 的特征提取进度.  
 
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/image_search/images/storage.png)
+![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/image_search/images/storage.png)
 
 
 ## 5. 帮助信息
 - 接口文档:  
 点击菜单：系统工具-接口文档
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/image_search/images/swagger.png)
+![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/image_search/images/swagger.png)
 
 - 初始化向量引擎(清空数据):  
 127.0.0.1替换成jar运行的主机ip。
 http://127.0.0.1:9000/api/search/initSearchEngine
 
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/image_search/images/init.png)
+![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/image_search/images/init.png)
 
 #### QQ群：
 111257454

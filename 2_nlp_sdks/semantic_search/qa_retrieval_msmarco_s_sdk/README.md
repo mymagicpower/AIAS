@@ -8,7 +8,7 @@ MS MARCO是目前同类型中最有用的数据集，因为它建立在经过匿
 
 
 - 语义搜索   
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/nlp_sdks/semantic_search.jpeg)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/semantic_search.jpeg)
 
 
 ### SDK功能：

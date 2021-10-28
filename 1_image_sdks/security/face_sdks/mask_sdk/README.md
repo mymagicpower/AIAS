@@ -22,7 +22,7 @@ http://aias.top/
 ]
 ```
 2. 输出图片效果如下：
-![result](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/mask_sdk/face-masks.png)
+![result](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/mask_sdk/face-masks.png)
 
 
 ### 帮助 

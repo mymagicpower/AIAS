@@ -2,7 +2,7 @@
 Sentencepiece是google开源的文本Tokenzier工具，其主要原理是利用统计算法，
 在语料库中生成一个类似分词器的工具，外加可以将词token化的功能。
 
-![image](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/nlp_sdks/wordpiece.jpeg)
+![image](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/wordpiece.jpeg)
 
 ## 运行例子 - SpTokenizerExample
 运行成功后，命令行应该看到下面的信息:

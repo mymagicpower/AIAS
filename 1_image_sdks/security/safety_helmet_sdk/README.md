@@ -13,15 +13,15 @@
 
 ## 运行小模型例子 - SmallSafetyHelmetDetectExample
 - 测试图片
-![small](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/sec_sdks/images/safety_helmet_result_s.png)
+![small](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/safety_helmet_result_s.png)
 
 ## 运行中模型例子 - MediumSafetyHelmetDetectExample
 - 测试图片
-![medium](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/sec_sdks/images/safety_helmet_result_m.png)
+![medium](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/safety_helmet_result_m.png)
 
 ## 运行大模型例子 - LargeSafetyHelmetDetectExample
 - 测试图片
-![large](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/sec_sdks/images/safety_helmet_result_l.png)
+![large](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/safety_helmet_result_l.png)
 
 
 运行成功后，命令行应该看到下面的信息:

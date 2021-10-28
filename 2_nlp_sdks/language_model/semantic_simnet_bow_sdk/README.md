@@ -2,7 +2,7 @@
 计算两个句子的cosin相似度:
 可以根据用户输入的两个文本，计算出相似度得分。
 
-![image](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/nlp_sdks/Universal-Sentence-Encoder.png)
+![image](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/Universal-Sentence-Encoder.png)
 
 ### SDK算法：
 该模型基于SimNet，是一个计算句子相似度的模型。

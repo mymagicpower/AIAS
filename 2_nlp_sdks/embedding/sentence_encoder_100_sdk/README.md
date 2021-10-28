@@ -3,10 +3,10 @@
 将不定长的句子用定长的向量表示，为NLP下游任务提供服务。
 
 - 支持下面100种语言：          
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/nlp_sdks/languages_100.jpeg)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/languages_100.jpeg)
  
 - 句向量         
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/nlp_sdks/Universal-Sentence-Encoder.png)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/Universal-Sentence-Encoder.png)
 
 -  
 

@@ -4,7 +4,7 @@ DNA携带有合成RNA和蛋白质所必需的遗传信息，是生物体发育�
 DNA序列指使用一串字母（A、T、C、G）表示的真实的或者假设的携带基因信息的DNA分子的一级结构。
 DNA序列测定方法有光学测序和芯片测序两种。
 
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/biology_sdks/dna.jpeg)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/biology_sdks/dna.jpeg)
 
 ### SDK功能
 - 特征提取

@@ -6,7 +6,7 @@
 后续结合人脸特征提取，特征向量保存到向量搜索引擎，形成人像底库，然后就可以实现人像大数据搜索。
  
 - 人脸检测    
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/bigdata_sdks/face_detection.jpeg)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/bigdata_sdks/face_detection.jpeg)
 
 #### 1. 启动 zookeeper:
 

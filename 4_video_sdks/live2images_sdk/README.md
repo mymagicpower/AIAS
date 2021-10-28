@@ -30,4 +30,4 @@ cd live_stream_sdks/live2images_sdk
 build/images/
 ```
 
-![result](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/video_sdk/images.png)
+![result](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/video_sdk/images.png)

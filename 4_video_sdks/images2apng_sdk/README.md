@@ -38,7 +38,7 @@ cd live_stream_sdks/images2apng_sdk
 build/output/images2Apng.apng
 ```
 静态图序列：
-![images](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/video_sdk/images.png)
+![images](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/video_sdk/images.png)
 
 生成apng效果图：
-![gif](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/video_sdk/images2Apng.apng)
+![gif](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/video_sdk/images2Apng.apng)

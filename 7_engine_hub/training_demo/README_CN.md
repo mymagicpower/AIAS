@@ -67,10 +67,10 @@ java -jar aias-training-demo-0.0.1-SNAPSHOT.jar
 http://localhost:8090:
 
 - Training
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/train_platform/images/inference_demo.png)
+![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/train_platform/images/inference_demo.png)
 
 - Inference
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/train_platform/images/inference_demo.png)
+![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/train_platform/images/inference_demo.png)
 
 
 ## 帮助

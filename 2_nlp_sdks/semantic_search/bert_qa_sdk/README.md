@@ -2,7 +2,7 @@
 基于BERT QA模型，输入一个问题及包含答案的文本段落（最大长度384），
 模型可以从文本段落中找到最佳的答案。
 
-![image](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/nlp_sdks/bertQA.png)
+![image](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/bertQA.png)
 
 ## 运行例子 - BertQaInferenceExample
 - 问题: 

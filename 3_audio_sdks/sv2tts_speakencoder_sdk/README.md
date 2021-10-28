@@ -10,7 +10,7 @@ SV2TTS工作首先将这两个过程分开，通过第一个语音特征编码�
 [Transfer Learning from Speaker Verification to  Multispeaker Text-To-Speech Synthesis](https://arxiv.org/pdf/1806.04558.pdf)
 
 - 网络结构
-![SV2TTS](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/voice_sdks/SV2TTS.png)
+![SV2TTS](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/voice_sdks/SV2TTS.png)
 
 主要由三部分构成：
 - 声音特征编码器（speaker encoder）
@@ -31,7 +31,7 @@ SV2TTS工作首先将这两个过程分开，通过第一个语音特征编码�
 实际推理时，任意长度的输入语音信号都会被800ms的窗口分割为多段，每段得到一个输出，最后将所有输出平均叠加，得到最终的嵌入向量。
 这种方法和短时傅里叶变换（STFT）非常相似。
 生成的嵌入空间向量可视化如下图：
-![embedding](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/voice_sdks/embedding.jpeg)
+![embedding](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/voice_sdks/embedding.jpeg)
 
 可以看到不同的说话者在嵌入空间中对应不同的聚类范围，可以轻易区分，并且不同性别的说话者分别位于两侧。
 （然而合成语音和真实语音也比较容易区分开，合成语音离聚类中心的距离更远。这说明合成语音的真实度还不够。）

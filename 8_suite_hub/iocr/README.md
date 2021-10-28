@@ -25,7 +25,7 @@ OCR（文字识别）是目前常用的一种AI能力。
 ### 1. 前端部署
 
 #### 1.1 下载安装：
-[OCR_UI](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/dist.zip)
+[OCR_UI](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/dist.zip)
 
 #### 1.2 nginx部署运行：
 ```bash
@@ -66,7 +66,7 @@ sudo nginx
 ### 2. 后端部署
 
 #### 2.1 下载jar包
-[jar包](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/aias-iocr-demo-0.1.0.jar)   
+[jar包](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/aias-iocr-demo-0.1.0.jar)   
  
 #### 2.2 运行程序
 ```bash
@@ -74,7 +74,7 @@ java -jar aias-iocr-demo-0.1.0.jar
 ```
 
 #### 2.3 样例文件
-[样例模板图片](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/ticket.jpeg)   
+[样例模板图片](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/ticket.jpeg)   
 ```bash
 # 模板配置文件路径
 # <path>/templates
@@ -96,7 +96,7 @@ java -jar aias-iocr-demo-0.1.0.jar
 输入地址： http://localhost:8080
 
 #### 3.2 标注模板
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/ocr_anchor.png)
+![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/ocr_anchor.png)
 
 ```bash
 # 参照锚点设置规则：
@@ -112,7 +112,7 @@ java -jar aias-iocr-demo-0.1.0.jar
 锚点可以不设置，但是要求模板图片和候选待检测图片必须是无背景的图片。
 所以需要对图片预处理，检测抠图，转正。图片大小无需一致，且横向和纵向可以适度拉伸（因为根据相对坐标计算，所以横纵放缩不影响，只要能识别文字）。
 
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/ocr_content.png)
+![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/ocr_content.png)
 
 ```bash
 # 内容识别区设置规则：
@@ -122,13 +122,13 @@ java -jar aias-iocr-demo-0.1.0.jar
 ```
 
 #### 3.3 基于模板文字识别
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/ocr_recognize.png)
+![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/ocr_recognize.png)
 
 #### 3.4 通用文本识别  
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/ocr_freetxt.png)
+![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/ocr_freetxt.png)
  
 #### 3.5 表格文字识别 / 表格自动检测文字识别
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/single_table.png)
+![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/single_table.png)
 
   
 ### 4. 接口文档  

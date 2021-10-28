@@ -3,7 +3,7 @@
 针对带有主观描述的文本，可自动判断该文本的情感极性类别并给出相应的置信度，
 能够帮助企业理解用户消费习惯、分析热点话题和危机舆情监控，为企业提供有利的决策支持。
 
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/nlp_sdks/sentiment_analysis.jpeg)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/sentiment_analysis.jpeg)
 
 
 ### SDK算法：
@@ -24,7 +24,7 @@
 `kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic twitter-data`
 
 #### 4. 下载并导入测试数据（src/test/resources目录下, twitter data.txt文件）
-[点击下载测试数据](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/bigdata_sdks/data.txt)
+[点击下载测试数据](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/bigdata_sdks/data.txt)
 
 `kafka-console-producer --broker-list localhost:9092 --topic twitter-data < data.txt`
 

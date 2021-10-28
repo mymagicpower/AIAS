@@ -5,7 +5,7 @@
 
 
 - 词向量
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/nlp_sdks/word_vector.jpeg)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/word_vector.jpeg)
 
 ### SDK功能：
 - 词向量提取
@@ -149,40 +149,40 @@
 添加到 src/test/resources/ 路径下。     
 
 -  WordEncoderExample1      
-[w2v_wiki_vocab](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_wiki_vocab.txt) 
-[w2v_wiki_dim300](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_wiki_dim300.npy) 
+[w2v_wiki_vocab](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_wiki_vocab.txt) 
+[w2v_wiki_dim300](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_wiki_dim300.npy) 
 
 -  WordEncoderExample2      
-[w2v_weibo_vocab](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_weibo_vocab.txt) 
-[w2v_weibo_dim300](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_weibo_dim300.npy) 
+[w2v_weibo_vocab](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_weibo_vocab.txt) 
+[w2v_weibo_dim300](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_weibo_dim300.npy) 
 
 -  WordEncoderExample3    
-[w2v_financial_dim300_vocab](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_financial_dim300_vocab.txt) 
-[w2v_financial_dim300](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_financial_dim300.npy) 
+[w2v_financial_dim300_vocab](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_financial_dim300_vocab.txt) 
+[w2v_financial_dim300](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_financial_dim300.npy) 
 
 -  WordEncoderExample4     
-[w2v_sikuquanshu_dim300_vocab](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_sikuquanshu_dim300_vocab.txt) 
-[w2v_sikuquanshu_dim300](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_sikuquanshu_dim300.npy) 
+[w2v_sikuquanshu_dim300_vocab](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_sikuquanshu_dim300_vocab.txt) 
+[w2v_sikuquanshu_dim300](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_sikuquanshu_dim300.npy) 
 
 -  WordEncoderExample5    
-[w2v_literature_dim300_vocab](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_literature_dim300_vocab.txt) 
-[w2v_literature_dim300](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_literature_dim300.npy) 
+[w2v_literature_dim300_vocab](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_literature_dim300_vocab.txt) 
+[w2v_literature_dim300](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_literature_dim300.npy) 
 
 -  WordEncoderExample6    
-[w2v_people_daily_dim300_vocab](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_people_daily_dim300_vocab.txt) 
-[w2v_people_daily_dim300](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_people_daily_dim300.npy) 
+[w2v_people_daily_dim300_vocab](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_people_daily_dim300_vocab.txt) 
+[w2v_people_daily_dim300](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_people_daily_dim300.npy) 
 
 -  WordEncoderExample7    
-[w2v_sogou_dim300_vocab](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_sogou_dim300_vocab.txt) 
-[w2v_sogou_dim300](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_sogou_dim300.npy) 
+[w2v_sogou_dim300_vocab](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_sogou_dim300_vocab.txt) 
+[w2v_sogou_dim300](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_sogou_dim300.npy) 
 
 -  WordEncoderExample8     
-[w2v_baidu_encyclopedia_dim300_vocab](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_baidu_encyclopedia_dim300_vocab.txt) 
-[w2v_baidu_encyclopedia_dim300](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_baidu_encyclopedia_dim300.npy) 
+[w2v_baidu_encyclopedia_dim300_vocab](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_baidu_encyclopedia_dim300_vocab.txt) 
+[w2v_baidu_encyclopedia_dim300](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_baidu_encyclopedia_dim300.npy) 
 
 -  WordEncoderExample9     
-[w2v_zhihu_dim300_vocab](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_zhihu_dim300_vocab.txt) 
-[w2v_zhihu_dim300](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/embedding_cn/w2v_zhihu_dim300.npy) 
+[w2v_zhihu_dim300_vocab](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_zhihu_dim300_vocab.txt) 
+[w2v_zhihu_dim300](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_zhihu_dim300.npy) 
 
 ### 帮助 
 引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         

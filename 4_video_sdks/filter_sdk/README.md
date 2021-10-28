@@ -1,6 +1,6 @@
 ## SDK功能
 在视频画面中显示文字及日期时间（动态日期时间）
-![image](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/video_sdk/text_date.jpeg)
+![image](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/video_sdk/text_date.jpeg)
 
 ## SDK功能
 包含两个例子：

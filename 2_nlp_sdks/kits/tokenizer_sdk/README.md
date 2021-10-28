@@ -12,7 +12,7 @@ java实现的Tokenizer有助于在java环境部署NLP模型。
 - GPT2Tokenizer（Todo）
 
 #### Python transformer 常用tokenizer:
-![image](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/nlp_sdks/tokenizer_map.jpeg)
+![image](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/tokenizer_map.jpeg)
 
 ## 运行例子 - TokenizerExample
 -  训练的例子代码：

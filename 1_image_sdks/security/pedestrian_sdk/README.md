@@ -9,7 +9,7 @@
 
 ## 运行例子 - PedestrianDetectExample
 - 测试图片
-![pedestrian](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/sec_sdks/images/ped_result.png)
+![pedestrian](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/ped_result.png)
 
 运行成功后，命令行应该看到下面的信息:
 ```text

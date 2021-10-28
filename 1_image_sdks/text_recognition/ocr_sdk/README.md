@@ -9,7 +9,7 @@ OCR（文字识别）是目前常用的一种AI能力。
 - 90度   
 - 180度   
 - 270度   
-![detect_direction](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/detect_direction.png)
+![detect_direction](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/detect_direction.png)
 
 2. 图片旋转
 
@@ -45,7 +45,7 @@ OCR（文字识别）是目前常用的一种AI能力。
 ]
 ```
 - 输出图片效果如下：
-![detect_result](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/detect_result.png)
+![detect_result](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/detect_result.png)
 
 #### 1.2 文字方向检测帮助类（增加置信度信息显示，便于调试）：
 - 例子代码: OcrDetectionHelperExample.java 
@@ -61,15 +61,15 @@ OCR（文字识别）是目前常用的一种AI能力。
 ]
 ```
 - 输出图片效果如下：
-![detect_result_helper](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/detect_result_helper.png)
+![detect_result_helper](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/detect_result_helper.png)
 
 #### 2. 图片旋转：
 每调用一次rotateImg方法，会使图片逆时针旋转90度。
 - 例子代码: RotationExample.java 
 - 旋转前图片:
-![ticket_0](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/ticket_0.png)
+![ticket_0](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/ticket_0.png)
 - 旋转后图片效果如下：
-![rotate_result](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/rotate_result.png)
+![rotate_result](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/rotate_result.png)
 
 #### 3. 文字识别：
 再使用本方法前，请调用上述方法使图片文字呈水平(0度)方向。  
@@ -84,7 +84,7 @@ OCR（文字识别）是目前常用的一种AI能力。
 ]
 ```
 - 输出图片效果如下：
-![ocr_result](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/ocr_result.png)
+![ocr_result](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/ocr_result.png)
 
 #### 4. 版面分析：
 - 运行成功后，命令行应该看到下面的信息:
@@ -98,7 +98,7 @@ OCR（文字识别）是目前常用的一种AI能力。
 ]
 ```
 - 输出图片效果如下：
-![layout](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/layout_detect_result.jpeg)
+![layout](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/layout_detect_result.jpeg)
 
 #### 5. 表格识别：
 - 运行成功后，命令行应该看到下面的信息:
@@ -138,10 +138,10 @@ OCR（文字识别）是目前常用的一种AI能力。
 ```
 
 - 输出图片效果如下：
-![table](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/table.jpeg)
+![table](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/table.jpeg)
 
 - 生成excel效果如下：
-![excel](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/excel.jpeg)
+![excel](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/excel.jpeg)
 
 ### 帮助 
 引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         

@@ -3,7 +3,7 @@ http://aias.top/
 
 ## SDK功能
 按帧录制本机摄像头视频（边预览边录制）
-![result](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/video_sdk/mp4.png)
+![result](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/video_sdk/mp4.png)
 
 ## 运行例子
 1. 首先下载例子代码

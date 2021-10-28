@@ -26,7 +26,7 @@ width = 467
 height = 753
 ```
 输出图片效果如下：
-![ocr_result](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/image_sdk/images/rotation.png)
+![ocr_result](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/image_sdk/images/rotation.png)
 
 
 ### 帮助 

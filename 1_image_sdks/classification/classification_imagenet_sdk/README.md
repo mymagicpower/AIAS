@@ -24,7 +24,7 @@ http://aias.top/
 -  robin, American robin, Turdus migratorius
 - ...
 
-[点击下载](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/classification_imagenet_sdk/synset.txt)
+[点击下载](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/classification_imagenet_sdk/synset.txt)
 
 ### SDK包含两个分类器：
 -  Darknet53Classification   
@@ -34,7 +34,7 @@ backbone: Mobilenetv3_small, dataset:imagenet
 
 ## 运行例子 - Darknet53ClassificationExample
 - 测试图片
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/classification_imagenet_sdk/cup.jpeg)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/classification_imagenet_sdk/cup.jpeg)
 
 运行成功后，命令行应该看到下面的信息:
 ```text

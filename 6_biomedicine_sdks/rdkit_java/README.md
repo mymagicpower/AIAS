@@ -4,14 +4,14 @@ fingerprint生成，化合物结构相似性计算，2D和3D分子展示等。
 将化学与机器学习联系起来的、非常实用的库。可以在很多种化学文件如mol2，mol，Smiles，sdf等之间互相转化，并能将其展示成2D、3D等形式供开发人员使用。
 这里给出一个java实现。
 
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/biology_sdks/rdkit.jpeg)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/biology_sdks/rdkit.jpeg)
 
 ### 例子包括
 - 读写分子
 - 图片生成 & 保存
 - 特征提取 & 分子相似性计算
 相似度计算给出了三种计算方式的例子。
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/biology_sdks/mol.png)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/biology_sdks/mol.png)
 
 ## 运行例子 - SimpleSmilesExample
 运行成功后，命令行应该看到下面的信息:
@@ -24,11 +24,11 @@ fingerprint生成，化合物结构相似性计算，2D和3D分子展示等。
 
 ```
 保存分子图片：
-![svg](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/biology_sdks/svg.png)
+![svg](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/biology_sdks/svg.png)
 
 
 ### 依赖库下载&配置环境变量
-[点击下载本地依赖库](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/biology_sdks/native.zip)     
+[点击下载本地依赖库](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/biology_sdks/native.zip)     
 
 #### 什么是java.library.path
 通俗的说它是JVM启动可以指定的一个参数。类似classpath，指定的是class文件或者jar文件的路径。java.library.path指定的是JNI链接的其他程序文件的路径，比如dll或者so文件。

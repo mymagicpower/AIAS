@@ -13,15 +13,15 @@
 
 ## 运行小模型例子 - Yolov5sExample
 - 测试图片效果（只显示安全帽检测，过滤了其它类别的显示，具体看代码）
-![small](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/sec_sdks/images/helmet_head_person_s.jpeg)
+![small](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/helmet_head_person_s.jpeg)
 
 ## 运行中模型例子 - Yolov5mExample
 - 测试图片效果
-![medium](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/sec_sdks/images/helmet_head_person_m.jpeg)
+![medium](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/helmet_head_person_m.jpeg)
 
 ## 运行大模型例子 - Yolov5lExample
 - 测试图片效果
-![large](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/sec_sdks/images/helmet_head_person_l.jpeg)
+![large](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/helmet_head_person_l.jpeg)
 
 
 运行成功后，命令行应该看到下面的信息:

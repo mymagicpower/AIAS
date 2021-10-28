@@ -27,7 +27,7 @@ cd camera_face_sdk
 
 
 ## 效果如下：
-![result](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/face_sdk/images/faces.jpg)
+![result](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/face_sdk/images/faces.jpg)
 
 
 ### 帮助 

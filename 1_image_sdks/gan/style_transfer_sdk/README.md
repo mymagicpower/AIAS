@@ -7,7 +7,7 @@
 
 
 - 原图.       
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/gan_sdks/scenery.jpeg)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/gan_sdks/scenery.jpeg)
 
 
 ## 运行例子 - StyleTransferExample
@@ -19,16 +19,16 @@
 ```
 
 #### 生成图片效果 - 塞尚风格
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/gan_sdks/cezanne.png)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/gan_sdks/cezanne.png)
 
 #### 生成图片效果 - 莫奈风格
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/gan_sdks/monet.png)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/gan_sdks/monet.png)
 
 #### 生成图片效果 - 日本浮世绘风格
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/gan_sdks/ukiyoe.png)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/gan_sdks/ukiyoe.png)
 
 #### 生成图片效果 - 梵高风格
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/gan_sdks/vangogh.png)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/gan_sdks/vangogh.png)
 
 
 ### 帮助 

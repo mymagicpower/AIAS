@@ -34,7 +34,7 @@
 
 ### SDK算法：
 模型网络结构：   
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/nlp_sdks/lac_network.png)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/lac_network.png)
 
 - 论文：     
 https://arxiv.org/abs/1807.01882

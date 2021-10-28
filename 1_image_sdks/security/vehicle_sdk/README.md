@@ -15,7 +15,7 @@
 
 ## 运行例子 - VehicleDetectExample
 - 测试图片
-![vehicle](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/sec_sdks/images/vehicle_result.png)
+![vehicle](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/vehicle_result.png)
 
 运行成功后，命令行应该看到下面的信息:
 ```text

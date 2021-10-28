@@ -4,10 +4,10 @@ sdk以一段动作视频去驱动一张图片运动。可以驱动任意类型�
 且该方法基于运动模型推导而出，在形式上也具有良好的可解释性。
 
 ### 原图：
-![image](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/gan_sdks/beauty.jpg)
+![image](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/gan_sdks/beauty.jpg)
 
 ### 驱动视频：
-[driver](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/gan_sdks/driver.mp4)
+[driver](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/gan_sdks/driver.mp4)
 
 ### 生成视频：运行 FirstOrderExample
 生成mp4保存于
@@ -15,7 +15,7 @@ sdk以一段动作视频去驱动一张图片运动。可以驱动任意类型�
 build/output/result.mp4
 ```
 
-[mp4](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/gan_sdks/result.mp4)
+[mp4](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/gan_sdks/result.mp4)
 
 ### 生成Gif：运行 Mp4ToGif
 录制gif保存于
@@ -23,7 +23,7 @@ build/output/result.mp4
 build/output/result.gif
 ```
 
-![gif](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/gan_sdks/result.gif)
+![gif](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/gan_sdks/result.gif)
 
 ### 帮助 
 引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         

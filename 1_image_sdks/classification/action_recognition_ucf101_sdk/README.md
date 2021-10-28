@@ -23,7 +23,7 @@ http://aias.top/
 - Bowling
 - ...
 
-[点击下载](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/action_recognition_sdk/ucf101_classes.txt)
+[点击下载](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/action_recognition_sdk/ucf101_classes.txt)
 
 ### SDK包含两个检测器：
 -  Inceptionv3ActionRecognition
@@ -33,7 +33,7 @@ backbone: vgg16, dataset:ucf101
 
 ## 运行例子 - Inceptionv3ActionRecognitionExample
 - 测试图片
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/object_detection_sdk/SSDResnet50Detection.png)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/object_detection_sdk/SSDResnet50Detection.png)
 
 运行成功后，命令行应该看到下面的信息:
 ```text

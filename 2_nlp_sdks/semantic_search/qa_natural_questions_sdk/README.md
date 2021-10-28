@@ -5,7 +5,7 @@
 而在此前,一直没有大量公开的可用于训练和评估问答模型的自然生成问题(如人们寻求信息时提出的问题)及答案。
 NQ是一个大规模训练和评估开放领域问题回答系统的语料库,它第一个复制了人们找到问题答案的端到端流程。
 
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/nlp_sdks/qa_natural_questions.jpeg)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/qa_natural_questions.jpeg)
 
 
 ### SDK功能：

@@ -22,7 +22,7 @@ http://aias.top/
 
 ### 人脸识别关键技术
 人脸识别涉及的关键技术包含：人脸检测，人脸关键点，人脸特征提取，人脸比对，人脸对齐。
-![face_sdk](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/face_sdk/images/face_sdk.png)
+![face_sdk](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/face_sdk/images/face_sdk.png)
 
 本文的例子给出了人脸特征提取，人脸比对的参考实现。
 ###人脸特征提取：
@@ -40,9 +40,9 @@ http://aias.top/
 
 ### 运行人脸特征比对的例子 - FeatureComparisonExample
  `src/test/resources/kana1.jpg`  
-![kana1](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/face_sdk/images/kana1.jpg)     
+![kana1](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/face_sdk/images/kana1.jpg)     
  `src/test/resources/kana2.jpg`  
-![kana2](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/face_sdk/images/kana2.jpg)  
+![kana2](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/face_sdk/images/kana2.jpg)  
 
 运行成功后，命令行应该看到下面的信息:  
 比对使用的是欧式距离的计算方式。

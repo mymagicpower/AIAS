@@ -11,7 +11,7 @@ The model github can be found at [Ultra-Light-Fast-Generic-Face-Detector-1MB](ht
 
 Sample 1                     |  Sample 2                     
 :-------------------------:|:-------------------------:
-![face1](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/edge_computing/face_1.jpeg)        |  ![face2](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/edge_computing/face_2.jpeg)         
+![face1](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/edge_computing/face_1.jpeg)        |  ![face2](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/edge_computing/face_2.jpeg)         
 
 
 The minimum API level for this project is 26.

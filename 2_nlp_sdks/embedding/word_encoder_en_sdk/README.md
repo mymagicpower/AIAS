@@ -5,7 +5,7 @@
 
 
 - 词向量
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/nlp_sdks/word_vector_en.png)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/word_vector_en.png)
 
 ### SDK包含5个模型数据：
 -  glove_wiki2014_gigaword_dim50 (WordEncoderExample1)
@@ -85,20 +85,20 @@
 -  添加依赖库：lib/aias-word-encoder-en-lib-0.1.0.jar
 -  下载对应模型特征数据，添加到 src/test/resources/ 路径下：
 -  WordEncoderExample1~3:
--  [glove_wiki2014_gigaword_vocab](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/glove_wiki2014_gigaword_vocab.txt) 
+-  [glove_wiki2014_gigaword_vocab](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/glove_wiki2014_gigaword_vocab.txt) 
 -  WordEncoderExample1:
--  [glove_wiki2014_gigaword_dim50](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/glove_wiki2014_gigaword_dim50.npy)
+-  [glove_wiki2014_gigaword_dim50](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/glove_wiki2014_gigaword_dim50.npy)
 -  WordEncoderExample2:
--  [glove_wiki2014_gigaword_dim100](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/glove_wiki2014_gigaword_dim100.npy)  
+-  [glove_wiki2014_gigaword_dim100](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/glove_wiki2014_gigaword_dim100.npy)  
 -  WordEncoderExample3:
--  [glove_wiki2014_gigaword_dim300](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/glove_wiki2014_gigaword_dim300.npy)  
+-  [glove_wiki2014_gigaword_dim300](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/glove_wiki2014_gigaword_dim300.npy)  
 
 -  WordEncoderExample4~5:
--  [glove_twitter_vocab](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/glove_twitter_vocab.txt)  
+-  [glove_twitter_vocab](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/glove_twitter_vocab.txt)  
 -  WordEncoderExample4:
--  [glove_twitter_dim50](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/glove_twitter_dim50.npy)  
+-  [glove_twitter_dim50](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/glove_twitter_dim50.npy)  
 -  WordEncoderExample5:
--  [glove_twitter_dim100](https://djl-model.oss-cn-hongkong.aliyuncs.com/models/nlp_models/glove_twitter_dim100.npy)  
+-  [glove_twitter_dim100](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/glove_twitter_dim100.npy)  
 
 ### 帮助 
 引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         

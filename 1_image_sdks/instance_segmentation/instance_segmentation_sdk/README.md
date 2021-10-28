@@ -23,7 +23,7 @@ http://aias.top/
 - bird
 - ...
 
-[点击下载](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/Instance_segmentation_sdk/coco_classes.txt)
+[点击下载](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/Instance_segmentation_sdk/coco_classes.txt)
 
 ### SDK算法：
 -  InstanceSegmentation
@@ -31,7 +31,7 @@ mask_rcnn, backbone: resnet18，dataset: coco
 
 ## 运行例子 - InstanceSegmentationExample
 - 测试图片
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/Instance_segmentation_sdk/result.jpeg)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/Instance_segmentation_sdk/result.jpeg)
 
 运行成功后，命令行应该看到下面的信息:
 ```text

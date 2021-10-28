@@ -62,7 +62,7 @@ export default {
   data() {
     return {
       form: {
-        url: 'https://djl-model.oss-cn-hongkong.aliyuncs.com/0.png',
+        url: 'https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/train_platform/0.png',
         result1: '',
         result2: '',
         base64Img: ''

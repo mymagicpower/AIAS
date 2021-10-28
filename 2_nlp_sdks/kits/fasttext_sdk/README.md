@@ -7,7 +7,7 @@ fastText是一个快速文本分类算法，与基于神经网络的分类算法
 - fastText背景知识介绍：    
 https://blog.csdn.net/feilong_csdn/article/details/88655927
 
-![image](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/nlp_sdks/fastText.png)
+![image](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/fastText.png)
 
 ## 运行例子 - FastTextExample
 -  训练的例子代码：

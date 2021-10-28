@@ -3,7 +3,7 @@
 可自动判断该文本的情感极性类别并给出相应的置信度，能够帮助企业理解用户消费习惯、
 分析热点话题和危机舆情监控，为企业提供有利的决策支持。
 
-![image](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/nlp_sdks/sentiment_analysis.jpeg)
+![image](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/sentiment_analysis.jpeg)
 
 ### SDK算法：
 SDK包含两个模型：

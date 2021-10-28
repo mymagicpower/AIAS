@@ -9,7 +9,7 @@
 这时，我们可以在第2阶段，使用一个基于cross-encoder的重排序器(re-ranker)，对返回的结果进行重排序。
 然后将重排序的结果呈现给最终用户。
 
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/nlp_sdks/InformationRetrievalReRank.png)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/InformationRetrievalReRank.png)
 
 
 #### Retrieval: Bi-Encoder
@@ -18,7 +18,7 @@
 MS MARCO是微软发布了的一套问答组成的数据集，人工智能领域的研究人员可用它来构建能够与真人相媲美的问答系统。
 这套数据集全称：Microsoft MAchine Reading COmprehension，意为“微软机器阅读理解”。
 MS MARCO是目前同类型中最有用的数据集，因为它建立在经过匿名处理的真实世界数据(Bing搜索引擎的搜索查询数据)基础之上。
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/nlp_sdks/semantic_search.jpeg)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/semantic_search.jpeg)
 Bi-Encoder可以使用下面的模型：
 https://github.com/mymagicpower/AIAS/tree/main/nlp_sdks/qa_retrieval_msmarco_s_sdk
 
@@ -26,7 +26,7 @@ https://github.com/mymagicpower/AIAS/tree/main/nlp_sdks/qa_retrieval_msmarco_s_s
 搜索引擎对于大量文档的检索效率很高，但是，它可能会返回不相关的候选项。
 这时，基于Cross-Encoder的重排序器的引入，可以进一步优化返回的结果。
 它将查询语句与之前获得的候选项，同时传入一个网络，获取相关度的分数，然后通过这个分数进行重排序。
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/nlp_sdks/re_rank.png)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/re_rank.png)
 
 ### SDK功能：
 -  相似度计算 （max_seq_length 512）

@@ -7,7 +7,7 @@
 - 数据挖掘分析服务 - 图片搜索，基于深度学习的推荐，NLP问答，智能客服等。
 
 - 人工智能 & 大数据
-![bigdata](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/bigdata_sdks/bigdata.jpeg)
+![bigdata](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/bigdata_sdks/bigdata.jpeg)
 
 ### 场景2：泛安防
 近几年，人工智能在泛安防领域得到了广泛的应用。
@@ -19,10 +19,10 @@
 安防领域一个典型的架构，如下图所示。端边侧提取出含人像的大小图后，发送到云端，由云端的更高精度的大模型来继续处理。
 
 - 端边云架构
-![dec](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/bigdata_sdks/device_edge_cloud.jpeg)
+![dec](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/bigdata_sdks/device_edge_cloud.jpeg)
  
 - 人脸检测    
-![face](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/bigdata_sdks/face_detection.jpeg)
+![face](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/bigdata_sdks/face_detection.jpeg)
 
 ### 图像识别 - kafka,flink,人脸识别
 下面的例子给出了图像识别结合kafka,flink协同工作的流程：

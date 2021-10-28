@@ -17,7 +17,7 @@ http://aias.top/
 - Sink
 - ...
 
-[点击下载](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/object_detection_sdk/openimages_v4_classes.txt)
+[点击下载](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/object_detection_sdk/openimages_v4_classes.txt)
 
 ### SDK检测器：
 -  SSDMobilenetV2Detection
@@ -25,7 +25,7 @@ ssd, backbone: mobilenetV2
 
 ## 运行例子 - SSDMobilenetV2DetectionExample
 - 测试图片
-![img](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/object_detection_sdk/SSDMobilenetV2Detection.png)
+![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/object_detection_sdk/SSDMobilenetV2Detection.png)
 
 运行成功后，命令行应该看到下面的信息:
 ```text

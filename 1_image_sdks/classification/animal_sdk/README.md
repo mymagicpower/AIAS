@@ -10,11 +10,11 @@ http://aias.top/
 1). 大模型(resnet50)例子：AnimalsClassificationExample
 2). 小模型(mobilenet_v2)例子：LightAnimalsClassExample
 
-[动物分类](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/animal_sdk/animals.txt)
+[动物分类](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/animal_sdk/animals.txt)
 
 ## 运行例子
 - 测试图片
-![tiger](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/animal_sdk/tiger.jpeg)
+![tiger](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/animal_sdk/tiger.jpeg)
 
 运行成功后，命令行应该看到下面的信息:
 ```text

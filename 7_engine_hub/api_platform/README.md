@@ -12,7 +12,7 @@ AI赋能平台以REST API形式为上层应用提供接口。
 ## 前端部署
 
 #### 下载安装：
-[api-platform-ui](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/ai_platform/dist.zip)
+[api-platform-ui](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/ai_platform/dist.zip)
 
 #### nginx部署运行：
 ```bash
@@ -43,7 +43,7 @@ sudo nginx -s stop
 sudo nginx     
 ```
 #### nginx部署运行：
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/OCR/images/ocr_dist.png)
+![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/ocr_dist.png)
 
 ```bash
 # 后端服务器参数配置 - 域名:端口 或者 IP:端口（端口不要变）
@@ -55,7 +55,7 @@ sudo nginx
 ## 后端部署
 
 #### 下载jar包（因为使用了opencv，jar包有点大）：
-[jar包](https://djl-model.oss-cn-hongkong.aliyuncs.com/jars/aais-api-platform-0.1.0.jar)   
+[jar包](https://aias-home.oss-cn-beijing.aliyuncs.com/jars/aais-api-platform-0.1.0.jar)   
  
 
 ```bash
@@ -70,21 +70,21 @@ java -jar aais-api-platform-0.1.0.jar
 输入地址： http://localhost:8080
 
 #### 1. 自由文本识别:
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/ai_platform/images/ocr.png)
+![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/ai_platform/images/ocr.png)
 
 #### 2. 人脸检测:
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/ai_platform/images/face_detect.png)
+![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/ai_platform/images/face_detect.png)
 
 #### 3. 人脸特征提取（512维特征）:  
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/ai_platform/images/face_feature.png)
+![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/ai_platform/images/face_feature.png)
   
 #### 4. 人脸 1:1 比对:  
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/ai_platform/images/face_comare.png)
+![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/ai_platform/images/face_comare.png)
   
 #### 5. 接口文档:  
 http://127.0.0.1:8089/swagger-ui.html
   
-![Screenshot](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/ai_platform/images/swagger.png)
+![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/ai_platform/images/swagger.png)
   
 ## 计划开发的功能：
 ```bash

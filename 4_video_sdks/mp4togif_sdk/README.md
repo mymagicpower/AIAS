@@ -22,4 +22,4 @@ build/output/result.gif
 ```
 
 生成gif效果图：
-![gif](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/video_sdk/result.gif)
+![gif](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/video_sdk/result.gif)

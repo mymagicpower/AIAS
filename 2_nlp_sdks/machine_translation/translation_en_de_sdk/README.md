@@ -4,7 +4,7 @@
 同时，机器翻译又具有重要的实用价值。随着经济全球化及互联网的飞速发展，机器翻译技术在促进政治、经济、文化交流等方面起到越来越重要的作用。
 
 
-![image](https://djl-model.oss-cn-hongkong.aliyuncs.com/AIAS/nlp_sdks/translation.jpeg)
+![image](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/translation.jpeg)
 
 ### SDK算法：
 2017 年，Google机器翻译团队在其发表的论文Attention Is All You Need中，
