@@ -10,12 +10,6 @@ http://aias.top/
 
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/image_search/images/search_engine.png)
 
-#### 项目地址
-
-|     |   地址  | 
-|---  |--- |
-|  github   |  https://github.com/mymagicpower/AIAS/blob/main/image_search_cpu   | 
-|  码云   |  https://gitee.com/mymagicpower/AIAS/tree/main/image_search_cpu   | 
 
 #### 主要特性
 - 底层使用特征向量相似度搜索
@@ -230,5 +224,3 @@ http://127.0.0.1:9000/api/search/initSearchEngine
 
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/image_search/images/init.png)
 
-#### QQ群：
-111257454
