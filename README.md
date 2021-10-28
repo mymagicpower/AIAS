@@ -27,7 +27,7 @@ http://www.aias.top/
    包含了面向ToB，ToC，ToG各场景的套件。比如：泛安防套件，ToB套件（IOCR, 非结构化解析，推荐系统等）...
 ```
 
-![aias_scope](https://djl-model.oss-cn-hongkong.aliyuncs.com/images/aias_scope.png)
+![aias_scope](https://aias-home.oss-cn-beijing.aliyuncs.com/images/aias_scope.png)
 
 
 #### 功能清单( [x] 标记 - 代表已实现):
