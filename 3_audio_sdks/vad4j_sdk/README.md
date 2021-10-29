@@ -41,3 +41,10 @@ Error loading native library: java.lang.Exception: Unsupported OS: Mac OS X
 ##### 音频数据
 输入的数据需是16-bit PCM audio数据，详细信息请参考下面的链接：
 https://github.com/jitsi/jitsi-webrtc-vad-wrapper/blob/master/readme.md
+
+### 官网：
+[官网链接](http://www.aias.top/)
+
+### Git地址：   
+[Github链接](https://github.com/mymagicpower/AIAS)    
+[Gitee链接](https://gitee.com/mymagicpower/AIAS)   

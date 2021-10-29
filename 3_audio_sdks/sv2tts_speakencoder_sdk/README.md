@@ -52,3 +52,10 @@ SV2TTS工作首先将这两个过程分开，通过第一个语音特征编码�
 ### 帮助 
 引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
 [引擎定制化配置](http://aias.top/engine_cpu.html)
+
+### 官网：
+[官网链接](http://www.aias.top/)
+
+### Git地址：   
+[Github链接](https://github.com/mymagicpower/AIAS)    
+[Gitee链接](https://gitee.com/mymagicpower/AIAS)   

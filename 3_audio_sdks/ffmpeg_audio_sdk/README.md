@@ -65,3 +65,10 @@ ffmpeg -i input.raw -f s16le -ar 44100 -ac 2 -acodec pcm_s16le output.wav
 ...
 
 ```
+
+### 官网：
+[官网链接](http://www.aias.top/)
+
+### Git地址：   
+[Github链接](https://github.com/mymagicpower/AIAS)    
+[Gitee链接](https://gitee.com/mymagicpower/AIAS)   

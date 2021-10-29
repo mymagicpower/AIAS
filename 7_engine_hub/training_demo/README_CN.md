@@ -100,3 +100,10 @@ brew install pkg-config
 brew intall cairo
 brew install pango
 ```
+
+### 官网：
+[官网链接](http://www.aias.top/)
+
+### Git地址：   
+[Github链接](https://github.com/mymagicpower/AIAS)    
+[Gitee链接](https://gitee.com/mymagicpower/AIAS)   

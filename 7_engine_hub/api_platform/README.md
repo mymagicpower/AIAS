@@ -96,6 +96,11 @@ http://127.0.0.1:8089/swagger-ui.html
 6. ...
 ```
 
-#### QQ群：111257454
+### 官网：
+[官网链接](http://www.aias.top/)
+
+### Git地址：   
+[Github链接](https://github.com/mymagicpower/AIAS)    
+[Gitee链接](https://gitee.com/mymagicpower/AIAS)   
 
   

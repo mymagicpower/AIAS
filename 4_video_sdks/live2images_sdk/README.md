@@ -31,3 +31,10 @@ build/images/
 ```
 
 ![result](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/video_sdk/images.png)
+
+### 官网：
+[官网链接](http://www.aias.top/)
+
+### Git地址：   
+[Github链接](https://github.com/mymagicpower/AIAS)    
+[Gitee链接](https://gitee.com/mymagicpower/AIAS)   

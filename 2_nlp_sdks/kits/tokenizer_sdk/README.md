@@ -108,3 +108,10 @@ java实现的Tokenizer有助于在java环境部署NLP模型。
 [INFO ] - testClipBPETokenizer:
 [INFO ] - Tokens: [649, 751, 1628, 320, 22697]
 ```
+
+### 官网：
+[官网链接](http://www.aias.top/)
+
+### Git地址：   
+[Github链接](https://github.com/mymagicpower/AIAS)    
+[Gitee链接](https://gitee.com/mymagicpower/AIAS)   

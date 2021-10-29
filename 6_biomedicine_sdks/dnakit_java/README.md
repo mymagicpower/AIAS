@@ -52,3 +52,10 @@ Todo list：
 
 ### 参考资料： 
 http://spark.apache.org/docs/latest/ml-features.html#countvectorizer
+
+### 官网：
+[官网链接](http://www.aias.top/)
+
+### Git地址：   
+[Github链接](https://github.com/mymagicpower/AIAS)    
+[Gitee链接](https://gitee.com/mymagicpower/AIAS)   

@@ -68,3 +68,10 @@ Bytes Written: 847872
 [INFO ] - wavFile2: build/output/wav_converted.wav
 [INFO ] - wav File appended: build/output/wav_appended.wav
 ```
+
+### 官网：
+[官网链接](http://www.aias.top/)
+
+### Git地址：   
+[Github链接](https://github.com/mymagicpower/AIAS)    
+[Gitee链接](https://gitee.com/mymagicpower/AIAS)   

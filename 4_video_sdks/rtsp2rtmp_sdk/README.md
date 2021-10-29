@@ -22,3 +22,10 @@ cd live_stream_sdks/rtsp2rtmp_sdk
 ## 参考：
 如何使用阿里云直播推流
 https://zhuanlan.zhihu.com/p/133377760
+
+### 官网：
+[官网链接](http://www.aias.top/)
+
+### Git地址：   
+[Github链接](https://github.com/mymagicpower/AIAS)    
+[Gitee链接](https://gitee.com/mymagicpower/AIAS)   

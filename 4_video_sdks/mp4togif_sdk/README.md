@@ -23,3 +23,10 @@ build/output/result.gif
 
 生成gif效果图：
 ![gif](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/video_sdk/result.gif)
+
+### 官网：
+[官网链接](http://www.aias.top/)
+
+### Git地址：   
+[Github链接](https://github.com/mymagicpower/AIAS)    
+[Gitee链接](https://gitee.com/mymagicpower/AIAS)   

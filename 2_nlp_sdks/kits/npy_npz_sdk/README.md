@@ -77,3 +77,10 @@ print(array2)
  [0.51345037 0.64939636 0.73470548 0.23717967]
  [0.91695247 0.52425418 0.38289345 0.5917738 ]]
  ```
+ 
+ ### 官网：
+ [官网链接](http://www.aias.top/)
+ 
+ ### Git地址：   
+ [Github链接](https://github.com/mymagicpower/AIAS)    
+ [Gitee链接](https://gitee.com/mymagicpower/AIAS)   

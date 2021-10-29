@@ -51,4 +51,11 @@ Java的System.load 和 System.loadLibrary都可以用来加载库文件。
 - Mac：JAVA_LIBRARY_PATH
     在Mac下添加一个java.library.path的方法如下：
     在/etc/profile 后面加上一行 export JAVA_LIBRARY_PATH=<path_to_so>
+    
+### 官网：
+[官网链接](http://www.aias.top/)
+
+### Git地址：   
+[Github链接](https://github.com/mymagicpower/AIAS)    
+[Gitee链接](https://gitee.com/mymagicpower/AIAS)   
   
