@@ -18,7 +18,9 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -54,7 +56,8 @@ public final class SingleTableRecognitionExample {
          ZooModel detectionModel = ModelZoo.loadModel(recognition.detectCriteria());
          Predictor<Image, DetectedObjects> detector = detectionModel.newPredictor();
          ZooModel recognitionModel = ModelZoo.loadModel(recognition.recognizeCriteria());
-         Predictor<Image, String> recognizer = recognitionModel.newPredictor(); ) {
+         Predictor<Image, String> recognizer = recognitionModel.newPredictor();
+         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("build/output/table.html"))) {
 
       // 表格单元检测
       TableResult result = tableDetector.predict(image);
@@ -84,7 +87,8 @@ public final class SingleTableRecognitionExample {
 
       String html = tableDetection.get_pred_html(pred_structures, cell_contents);
       System.out.println(html);
-
+      bufferedWriter.write(html);
+      
       // 创建一个Excel文件
       html = html.replace("<html><body>", "");
       html = html.replace("</body></html>", "");
