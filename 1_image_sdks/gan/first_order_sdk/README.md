@@ -1,4 +1,5 @@
 #动作驱动 SDK
+#不得用于非法用途！
 sdk以一段动作视频去驱动一张图片运动。可以驱动任意类型的运动，如：人脸、全身运动，动画运动的驱动。
 不需要先验地知道目标的一些信息，比如骨架等。能够通过自监督的方式学习到图像中的关键点。
 且该方法基于运动模型推导而出，在形式上也具有良好的可解释性。
@@ -34,4 +35,7 @@ build/output/result.gif
 
 ### Git地址：   
 [Github链接](https://github.com/mymagicpower/AIAS)    
-[Gitee链接](https://gitee.com/mymagicpower/AIAS)   
+[Gitee链接](https://gitee.com/mymagicpower/AIAS)  
+
+Reference：
+https://gitee.com/endlesshh/first-order-model-java 

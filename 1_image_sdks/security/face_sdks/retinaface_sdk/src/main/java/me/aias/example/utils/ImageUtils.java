@@ -31,12 +31,11 @@ public class ImageUtils {
    */
   public static void saveImage(BufferedImage img, String name, String path) {
     Image djlImg = ImageFactory.getInstance().fromImage(img); // 支持多种图片格式，自动适配
-    Image newImage = djlImg.duplicate(Image.Type.TYPE_INT_ARGB);
     Path outputDir = Paths.get(path);
     Path imagePath = outputDir.resolve(name);
     // OpenJDK 不能保存 jpg 图片的 alpha channel
     try {
-      newImage.save(Files.newOutputStream(imagePath), "png");
+      djlImg.save(Files.newOutputStream(imagePath), "png");
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -48,12 +47,11 @@ public class ImageUtils {
    * @author Calvin
    */
   public static void saveImage(Image img, String name, String path) {
-    Image newImage = img.duplicate(Image.Type.TYPE_INT_ARGB);
     Path outputDir = Paths.get(path);
     Path imagePath = outputDir.resolve(name);
     // OpenJDK 不能保存 jpg 图片的 alpha channel
     try {
-      newImage.save(Files.newOutputStream(imagePath), "png");
+      img.save(Files.newOutputStream(imagePath), "png");
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -65,15 +63,28 @@ public class ImageUtils {
    * @author Calvin
    */
   public static void saveBoundingBoxImage(
-      Image img, DetectedObjects detection, String name, String path) throws IOException {
+          Image img, DetectedObjects detection, String name, String path) throws IOException {
     // Make image copy with alpha channel because original image was jpg
-    Image newImage = img.duplicate(Image.Type.TYPE_INT_ARGB);
-    newImage.drawBoundingBoxes(detection);
+    img.drawBoundingBoxes(detection);
     Path outputDir = Paths.get(path);
     Files.createDirectories(outputDir);
     Path imagePath = outputDir.resolve(name);
     // OpenJDK can't save jpg with alpha channel
-    newImage.save(Files.newOutputStream(imagePath), "png");
+    img.save(Files.newOutputStream(imagePath), "png");
+  }
+
+  /**
+   * 绘制人脸关键点
+   *
+   * @author Calvin
+   */
+  public static void drawLandmark(Image img, BoundingBox box, float[] array) {
+    for (int i = 0; i < array.length / 2; i++) {
+      int x = getX(img, box, array[2 * i]);
+      int y = getY(img, box, array[2 * i + 1]);
+      Color c = new Color(0, 255, 0);
+      drawImageRect((BufferedImage) img.getWrappedImage(), x, y, 1, 1, c);
+    }
   }
 
   /**
@@ -161,6 +172,26 @@ public class ImageUtils {
     int new_w = new_x2 - new_x1;
     int new_h = new_y2 - new_y1;
 
-    return img.getSubimage(new_x1, new_y1, new_w, new_h);
+    return img.getSubImage(new_x1, new_y1, new_w, new_h);
+  }
+
+  private static int getX(Image img, BoundingBox box, float x) {
+    Rectangle rect = box.getBounds();
+    // 左上角坐标
+    int x1 = (int) (rect.getX() * img.getWidth());
+    // 宽度
+    int w = (int) (rect.getWidth() * img.getWidth());
+
+    return (int) (x * w + x1);
+  }
+
+  private static int getY(Image img, BoundingBox box, float y) {
+    Rectangle rect = box.getBounds();
+    // 左上角坐标
+    int y1 = (int) (rect.getY() * img.getHeight());
+    // 高度
+    int h = (int) (rect.getHeight() * img.getHeight());
+
+    return (int) (y * h + y1);
   }
 }

@@ -10,8 +10,7 @@ import ai.djl.modality.cv.output.Rectangle;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
-import me.aias.example.utils.ImageUtils;
-import me.aias.ocr.*;
+import me.aias.example.utils.*;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +21,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-
+                                   
 /**
  * 表格识别.
  *
@@ -114,6 +113,6 @@ public final class MultiTableRecognitionExample {
       (int) (rect.getWidth() * width),
       (int) (rect.getHeight() * height)
     };
-    return img.getSubimage(recovered[0], recovered[1], recovered[2], recovered[3]);
+    return img.getSubImage(recovered[0], recovered[1], recovered[2], recovered[3]);
   }
 }

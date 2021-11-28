@@ -31,7 +31,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <djl.version>0.13.0</djl.version>
+        <djl.version>0.14.0</djl.version>
     </properties>
 
     <build>
@@ -103,13 +103,6 @@
             <groupId>ai.djl.tensorflow</groupId>
             <artifactId>tensorflow-native-auto</artifactId>
             <version>2.4.1</version>
-        </dependency>
-        <dependency>
-            <groupId>aias</groupId>
-            <artifactId>object-detection-v4-lib</artifactId>
-            <version>0.1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/aias-object-detection-v4-lib-0.1.0.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

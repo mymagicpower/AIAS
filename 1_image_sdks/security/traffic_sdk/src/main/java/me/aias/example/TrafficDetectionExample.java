@@ -6,7 +6,7 @@ import ai.djl.modality.cv.ImageFactory;
 import ai.djl.modality.cv.output.BoundingBox;
 import ai.djl.modality.cv.output.DetectedObjects;
 import ai.djl.translate.TranslateException;
-import me.aias.TrafficDetection;
+import me.aias.example.utils.TrafficDetection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,12 +47,11 @@ public final class TrafficDetectionExample {
   private static void saveBoundingBoxImage(
       Image img, DetectedObjects detection, String name, String path) throws IOException {
     // Make image copy with alpha channel because original image was jpg
-    Image newImage = img.duplicate(Image.Type.TYPE_INT_ARGB);
-    newImage.drawBoundingBoxes(detection);
+    img.drawBoundingBoxes(detection);
     Path outputDir = Paths.get(path);
     Files.createDirectories(outputDir);
     Path imagePath = outputDir.resolve(name);
     // OpenJDK can't save jpg with alpha channel
-    newImage.save(Files.newOutputStream(imagePath), "png");
+    img.save(Files.newOutputStream(imagePath), "png");
   }
 }

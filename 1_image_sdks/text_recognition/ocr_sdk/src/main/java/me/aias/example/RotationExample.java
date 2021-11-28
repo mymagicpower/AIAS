@@ -16,7 +16,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * OCR文字检测.
+ * OCR文字检测.                              
  *
  * @author Calvin
  * @date 2021-06-28
@@ -46,12 +46,11 @@ public final class RotationExample {
     }
     
     public static void saveImage(Image img, String name, String path) {
-        Image newImage = img.duplicate(Image.Type.TYPE_INT_ARGB);
         Path outputDir = Paths.get(path);
         Path imagePath = outputDir.resolve(name);
         // OpenJDK 不能保存 jpg 图片的 alpha channel
         try {
-            newImage.save(Files.newOutputStream(imagePath), "png");
+            img.save(Files.newOutputStream(imagePath), "png");
         } catch (IOException e) {
             e.printStackTrace();
         }

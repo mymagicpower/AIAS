@@ -73,13 +73,6 @@
             <version>1.5.2</version>
         </dependency>
         <dependency>
-            <groupId>aias</groupId>
-            <artifactId>image-lib</artifactId>
-            <version>0.1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/aais-image-lib-0.1.0.jar</systemPath>
-        </dependency>
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.18</version>

@@ -9,7 +9,7 @@ import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
 import me.aias.example.utils.ImageUtils;
-import me.aias.ocr.ServerOcrRecognition;
+import me.aias.example.utils.ServerOcrRecognition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

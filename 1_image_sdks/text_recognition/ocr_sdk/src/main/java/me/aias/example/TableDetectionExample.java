@@ -11,8 +11,8 @@ import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
 import me.aias.example.utils.ImageUtils;
-import me.aias.ocr.TableDetection;
-import me.aias.ocr.TableResult;
+import me.aias.example.utils.TableDetection;
+import me.aias.example.utils.TableResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

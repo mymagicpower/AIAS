@@ -24,14 +24,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>aias</groupId>
-    <artifactId>biggan-sdk</artifactId>
+    <artifactId>first-order-sdk</artifactId>
     <version>0.1</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <djl.version>0.13.0</djl.version>
+        <djl.version>0.14.0</djl.version>
     </properties>
 
     <build>
@@ -94,7 +94,7 @@
         <dependency>
             <groupId>ai.djl.pytorch</groupId>
             <artifactId>pytorch-native-auto</artifactId>
-            <version>1.9.0</version>
+            <version>1.9.1</version>
         </dependency>
 
         <!-- java cv -->
@@ -109,15 +109,6 @@
             <artifactId>progressbar</artifactId>
             <version>0.9.2</version>
         </dependency>
-
-        <dependency>
-            <groupId>aias</groupId>
-            <artifactId>first-order-lib</artifactId>
-            <version>0.1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/aias-first-order-lib-0.1.0.jar</systemPath>
-        </dependency>
-        
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

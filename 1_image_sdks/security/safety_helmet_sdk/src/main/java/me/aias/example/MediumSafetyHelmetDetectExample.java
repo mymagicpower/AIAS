@@ -10,8 +10,8 @@ import ai.djl.repository.zoo.Criteria;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
-import me.aias.MediumSafetyHelmetDetect;
-import me.aias.util.ImageUtils;
+import me.aias.example.utils.ImageUtils;
+import me.aias.example.utils.MediumSafetyHelmetDetect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
