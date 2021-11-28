@@ -1,0 +1,5 @@
+{
+  "epoch": 10,
+  "batchSize": 32,
+  "maxGpus": 2
+}

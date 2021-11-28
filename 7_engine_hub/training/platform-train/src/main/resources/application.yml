@@ -1,0 +1,30 @@
+server:
+  port: 8089
+
+#是否开启 swagger-ui
+swagger:
+  enabled: true
+  
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 3000MB
+      max-request-size: 3000MB
+      
+# 文件存储路径
+file:
+  mac:
+    path: ~/file/
+    imageRootPath: ~/file/image_root/ #压缩包解压缩文件夹
+    newModelPath: ~/file/model/ #模型训练好后存放的文件夹
+  linux:
+    path: /home/aias/file/
+    imageRootPath: /home/aias/file/image_root/ #压缩包解压缩文件夹
+    newModelPath: /home/aias/file//model/ #模型训练好后存放的文件夹
+  windows:
+    path: C:\aias\file\
+    imageRootPath: C:\aias\file\image_root\ #压缩包解压缩文件夹
+    newModelPath: C:\aias\file\modelv2\ #模型训练好后存放的文件夹
+  # 文件大小 /M
+  maxSize: 3000
