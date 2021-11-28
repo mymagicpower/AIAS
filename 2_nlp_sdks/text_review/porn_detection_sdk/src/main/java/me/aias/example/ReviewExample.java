@@ -5,7 +5,7 @@ import ai.djl.inference.Predictor;
 import ai.djl.repository.zoo.Criteria;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
-import me.aias.ReviewDetection;
+import me.aias.example.utils.ReviewDetection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

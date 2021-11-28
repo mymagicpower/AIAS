@@ -5,8 +5,8 @@ import ai.djl.inference.Predictor;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
-import me.aias.SentenceEncoderLarge5;
-import me.aias.util.FeatureComparison;
+import me.aias.example.utils.FeatureComparison;
+import me.aias.example.utils.SentenceEncoderLarge5;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

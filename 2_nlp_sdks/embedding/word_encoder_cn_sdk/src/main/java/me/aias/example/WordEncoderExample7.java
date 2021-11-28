@@ -2,8 +2,8 @@ package me.aias.example;
 
 import ai.djl.ModelException;
 import ai.djl.translate.TranslateException;
-import me.aias.WordEncoder;
-import me.aias.util.FeatureComparison;
+import me.aias.example.utils.FeatureComparison;
+import me.aias.example.utils.WordEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -5,10 +5,10 @@ import ai.djl.inference.Predictor;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
-import me.aias.SentenceEncoder;
-import me.aias.util.FeatureComparison;
-import me.aias.util.SpProcessor;
-import me.aias.util.SpTokenizer;
+import me.aias.example.utils.FeatureComparison;
+import me.aias.example.utils.SentenceEncoder;
+import me.aias.example.utils.SpProcessor;
+import me.aias.example.utils.SpTokenizer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

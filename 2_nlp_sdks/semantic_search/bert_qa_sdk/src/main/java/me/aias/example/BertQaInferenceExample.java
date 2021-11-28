@@ -6,6 +6,7 @@ import ai.djl.modality.nlp.qa.QAInput;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
+import me.aias.example.utils.BertQaInference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

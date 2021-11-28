@@ -7,9 +7,9 @@ import ai.djl.modality.cv.ImageFactory;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
-import me.aias.ImageEncoder;
-import me.aias.TextEncoder;
-import me.aias.util.FeatureComparison;
+import me.aias.example.utils.FeatureComparison;
+import me.aias.example.utils.ImageEncoder;
+import me.aias.example.utils.TextEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

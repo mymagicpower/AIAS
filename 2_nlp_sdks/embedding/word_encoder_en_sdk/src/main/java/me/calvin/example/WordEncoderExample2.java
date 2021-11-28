@@ -2,8 +2,8 @@ package me.calvin.example;
 
 import ai.djl.ModelException;
 import ai.djl.translate.TranslateException;
-import me.aias.WordEncoder;
-import me.aias.util.FeatureComparison;
+import me.calvin.example.utils.FeatureComparison;
+import me.calvin.example.utils.WordEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

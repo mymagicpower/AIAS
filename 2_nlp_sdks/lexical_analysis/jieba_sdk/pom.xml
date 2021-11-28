@@ -58,15 +58,6 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.12.0</version>
         </dependency>
-
-        <dependency>
-            <groupId>aias</groupId>
-            <artifactId>jieba-lib</artifactId>
-            <version>0.1</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/aias-jieba-lib-0.1.0.jar</systemPath>
-        </dependency>
-
     </dependencies>
 
 </project>

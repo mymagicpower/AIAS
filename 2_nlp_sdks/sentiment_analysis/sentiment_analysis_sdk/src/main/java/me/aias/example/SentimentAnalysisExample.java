@@ -6,7 +6,7 @@ import ai.djl.modality.Classifications;
 import ai.djl.repository.zoo.Criteria;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
-import me.aias.SentimentAnalysis;
+import me.aias.example.utils.SentimentAnalysis;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

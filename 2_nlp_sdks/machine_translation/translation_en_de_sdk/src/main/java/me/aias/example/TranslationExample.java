@@ -5,7 +5,7 @@ import ai.djl.inference.Predictor;
 import ai.djl.repository.zoo.Criteria;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
-import me.aias.Translation;
+import me.aias.example.utils.Translation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

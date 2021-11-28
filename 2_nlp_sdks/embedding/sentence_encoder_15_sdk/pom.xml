@@ -31,7 +31,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <djl.version>0.13.0</djl.version>
+        <djl.version>0.14.0</djl.version>
     </properties>
 
     <build>
@@ -47,21 +47,6 @@
             </plugin>
         </plugins>
     </build>
-
-    <!--  For development use  -->
-    <!--  Include this if you want to try the latest SNAPSHOT version  -->
-    <repositories>
-        <repository>
-            <id>oss.sonatype.org-snapshot</id>
-            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
 
     <dependencies>
         <dependency>
@@ -115,17 +100,8 @@
         <dependency>
             <groupId>ai.djl.pytorch</groupId>
             <artifactId>pytorch-native-auto</artifactId>
-            <version>1.9.0</version>
+            <version>1.9.1</version>
         </dependency>
-
-        <dependency>
-            <groupId>aias</groupId>
-            <artifactId>sentence-encoder-15-lib</artifactId>
-            <version>0.1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/aias-sentence-encoder-15-lib-0.1.0.jar</systemPath>
-        </dependency>
-        
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
