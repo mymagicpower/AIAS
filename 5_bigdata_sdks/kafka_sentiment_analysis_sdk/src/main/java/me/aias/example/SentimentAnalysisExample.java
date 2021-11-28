@@ -6,7 +6,6 @@ import ai.djl.modality.Classifications;
 import ai.djl.repository.zoo.Criteria;
 import ai.djl.repository.zoo.ModelNotFoundException;
 import ai.djl.repository.zoo.ZooModel;
-import me.aias.SentimentAnalysis;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -5,7 +5,7 @@ import ai.djl.inference.Predictor;
 import ai.djl.repository.zoo.ModelNotFoundException;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
-import me.aias.SentenceEncoder;
+import me.aias.example.utils.SentenceEncoder;
 
 import java.io.IOException;
 import java.util.ArrayList;
