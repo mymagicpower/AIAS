@@ -11,7 +11,7 @@ import ai.djl.repository.zoo.Criteria;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
-import me.aias.FaceDetection;
+import me.calvin.example.utils.FaceDetection;
 import me.calvin.example.utils.OpenCVImageUtil;
 import org.bytedeco.javacv.CanvasFrame;
 import org.bytedeco.javacv.Frame;

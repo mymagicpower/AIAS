@@ -12,8 +12,8 @@ import ai.djl.repository.zoo.Criteria;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
-import me.aias.FaceDetection;
-import me.aias.FaceMaskDetect;
+import me.aias.example.utils.FaceDetection;
+import me.aias.example.utils.FaceMaskDetect;
 import me.aias.example.utils.OpenCVImageUtil;
 import org.bytedeco.javacv.CanvasFrame;
 import org.bytedeco.javacv.Frame;
@@ -151,7 +151,7 @@ public class CameraFaceMaskDetectionExample {
     if (squareBox[1] > height) squareBox[1] = height;
     if ((squareBox[0] + squareBox[2]) > width) squareBox[2] = width - squareBox[0];
     if ((squareBox[1] + squareBox[2]) > height) squareBox[2] = height - squareBox[1];
-    return img.getSubimage(squareBox[0], squareBox[1], squareBox[2], squareBox[2]);
+    return img.getSubImage(squareBox[0], squareBox[1], squareBox[2], squareBox[2]);
     //    return img.getSubimage(squareBox[0], squareBox[1], squareBox[2], squareBox[3]);
   }
 }
