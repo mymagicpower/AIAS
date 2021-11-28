@@ -31,14 +31,5 @@
     <orderEntry type="library" name="Maven: org.apiguardian:apiguardian-api:1.0.0" level="project" />
     <orderEntry type="library" name="Maven: com.github.houbb:nlp-common:0.0.3" level="project" />
     <orderEntry type="library" name="Maven: com.rnkrsoft.bopomofo4j:bopomofo4j:1.0.0" level="project" />
-    <orderEntry type="module-library">
-      <library name="Maven: calvin:ph-lib:0.1.0">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/aias-ph-lib-0.1.0.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
   </component>
 </module>

@@ -31,7 +31,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <djl.version>0.13.0</djl.version>
+        <djl.version>0.14.0</djl.version>
     </properties>
 
     <build>
@@ -101,7 +101,7 @@
         <dependency>
             <groupId>ai.djl.pytorch</groupId>
             <artifactId>pytorch-native-auto</artifactId>
-            <version>1.9.0</version>
+            <version>1.9.1</version>
         </dependency>
 
         <dependency>
@@ -132,14 +132,6 @@
             <version>1.1.8-SNAPSHOT</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/jlibrosa-1.1.8-SNAPSHOT.jar</systemPath>
-        </dependency>
-        
-        <dependency>
-            <groupId>aias</groupId>
-            <artifactId>sv2tts-speakencoder-lib</artifactId>
-            <version>0.1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/aias-sv2tts-speakencoder-lib-0.1.0.jar</systemPath>
         </dependency>
         
     </dependencies>

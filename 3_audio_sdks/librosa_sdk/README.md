@@ -70,3 +70,7 @@ Real and Imag values of STFT are -0.27254267235230273,0.0
 ### Git地址：   
 [Github链接](https://github.com/mymagicpower/AIAS)    
 [Gitee链接](https://gitee.com/mymagicpower/AIAS)   
+
+### jlibrosa 地址：
+https://github.com/Subtitle-Synchronizer/jlibrosa
+https://github.com/Subtitle-Synchronizer/jlibrosa/blob/master/binaries/jlibrosa-1.1.8-SNAPSHOT-jar-with-dependencies.jar

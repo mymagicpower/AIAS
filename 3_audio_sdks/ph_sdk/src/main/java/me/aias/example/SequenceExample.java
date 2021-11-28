@@ -1,7 +1,7 @@
 package me.aias.example;
 
 
-import me.aias.SequenceUtils;
+import me.aias.example.utils.SequenceUtils;
 
 /**
  * 文本转为拼音

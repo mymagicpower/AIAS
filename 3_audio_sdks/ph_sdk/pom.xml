@@ -83,13 +83,6 @@
             <artifactId>bopomofo4j</artifactId>
             <version>1.0.0</version>
         </dependency>
-        <dependency>
-            <groupId>aias</groupId>
-            <artifactId>ph-lib</artifactId>
-            <version>0.1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/aias-ph-lib-0.1.0.jar</systemPath>
-        </dependency>
     </dependencies>
 
 </project>

@@ -5,9 +5,9 @@ import ai.djl.inference.Predictor;
 import ai.djl.ndarray.NDManager;
 import ai.djl.repository.zoo.Criteria;
 import ai.djl.repository.zoo.ZooModel;
-import me.aias.Voiceprint;
-import me.aias.util.FeatureUtils;
-import me.aias.util.JLibrasaEx;
+import me.aias.example.utils.FeatureUtils;
+import me.aias.example.utils.JLibrasaEx;
+import me.aias.example.utils.Voiceprint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

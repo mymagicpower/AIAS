@@ -1,7 +1,7 @@
 package me.aias.example;
 
 
-import me.aias.ConvertUtils;
+import me.aias.example.utils.ConvertUtils;
 
 /**
  * 文本转换。

@@ -5,8 +5,8 @@ import ai.djl.ndarray.NDArray;
 import ai.djl.ndarray.types.Shape;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
-import me.aias.Tacotron;
-import me.aias.util.FfmpegUtils;
+import me.aias.example.utils.FfmpegUtils;
+import me.aias.example.utils.Tacotron;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

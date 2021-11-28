@@ -1,7 +1,7 @@
 package me.aias.example;
 
 
-import me.aias.NumberUtils;
+import me.aias.example.utils.NumberUtils;
 
 /**
  * 数字读法。

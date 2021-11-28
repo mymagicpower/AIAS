@@ -37,3 +37,7 @@ frame_duration_ms：30
 ### Git地址：   
 [Github链接](https://github.com/mymagicpower/AIAS)    
 [Gitee链接](https://gitee.com/mymagicpower/AIAS)   
+
+### jlibrosa 地址：
+https://github.com/Subtitle-Synchronizer/jlibrosa
+https://github.com/Subtitle-Synchronizer/jlibrosa/blob/master/binaries/jlibrosa-1.1.8-SNAPSHOT-jar-with-dependencies.jar
