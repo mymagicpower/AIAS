@@ -24,12 +24,17 @@ OCR（文字识别）是目前常用的一种AI能力。
 
 ### 1. 前端部署
 
-#### 1.1 构建dist安装包：
+#### 1.1 直接运行：
+```bash
+npm run dev
+```
+
+#### 1.2 构建dist安装包：
 ```bash
 npm run build:prod
 ```
 
-#### 1.2 nginx部署运行(mac环境为例)：
+#### 1.3 nginx部署运行(mac环境为例)：
 ```bash
 cd /usr/local/etc/nginx/
 vi /usr/local/etc/nginx/nginx.conf
