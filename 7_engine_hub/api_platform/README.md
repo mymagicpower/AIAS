@@ -1,3 +1,5 @@
+## 升级中，代码本周上传
+
 ## 目录：
 http://aias.top/
 
@@ -9,12 +11,19 @@ AI赋能平台以REST API形式为上层应用提供接口。
 3. 人脸特征提取（512维特征）
 4. 人脸 1:1 比对
 
-## 前端部署
+### 1. 前端部署
 
-#### 下载安装：
-[api-platform-ui](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/ai_platform/dist.zip)
+#### 1.1 直接运行：
+```bash
+npm run dev
+```
 
-#### nginx部署运行：
+#### 1.2 构建dist安装包：
+```bash
+npm run build:prod
+```
+
+#### 1.3 nginx部署运行(mac环境为例)：
 ```bash
 cd /usr/local/etc/nginx/
 vi /usr/local/etc/nginx/nginx.conf
@@ -42,27 +51,16 @@ sudo nginx -s stop
 # 启动
 sudo nginx     
 ```
-#### nginx部署运行：
-![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/ocr_dist.png)
 
-```bash
-# 后端服务器参数配置 - 域名:端口 或者 IP:端口（端口不要变）
- window.g = {
-  Base_URL: 'http://127.0.0.1:8089',
-}
-```
+### 2. 后端部署
 
-## 后端部署
-
-#### 下载jar包（因为使用了opencv，jar包有点大）：
-[jar包](https://aias-home.oss-cn-beijing.aliyuncs.com/jars/aais-api-platform-0.1.0.jar)   
+#### 2.1 jar包
+构建jar包 
  
-
+#### 2.2 运行程序
 ```bash
 # 运行程序
-
-java -jar aais-api-platform-0.1.0.jar
-
+java -jar api-platform-0.1.0.jar
 ```
 
 ## 打开浏览器

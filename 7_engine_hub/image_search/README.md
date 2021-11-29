@@ -1,3 +1,5 @@
+## 升级中，代码本周上传
+
 ## 目录：
 http://aias.top/
 
@@ -33,12 +35,19 @@ http://aias.top/
 - 服务监控：监控服务器的负载情况
 
 
-## 1. 前端部署
+### 1. 前端部署
 
-#### 下载安装：
-[image-search-ui](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/image_search/dist.zip)
+#### 1.1 直接运行：
+```bash
+npm run dev
+```
 
-#### nginx部署运行：
+#### 1.2 构建dist安装包：
+```bash
+npm run build:prod
+```
+
+#### 1.3 nginx部署运行(mac环境为例)：
 ```bash
 cd /usr/local/etc/nginx/
 vi /usr/local/etc/nginx/nginx.conf
@@ -78,14 +87,11 @@ sudo nginx
 - 需要安装redis
 - 需要安装MySQL数据库
 
-#### 2.2 下载jar包：
-[jar包](https://aias-home.oss-cn-beijing.aliyuncs.com/jars/aias-aiplatform-search-1.0.jar)   
- 
-#### 2.3 下载并导入SQL文件到MySQL数据库：
+#### 2.2 下载并导入SQL文件到MySQL数据库：
 使用命令行导入，或者mysql workbench, navicat 图形界面导入。     
 [SQL文件](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/image_search/data.sql)
 
-#### 2.4 编辑环境配置信息
+#### 2.3 编辑环境配置信息
 windows环境里可以使用7-zip直接对jar包中的配置文件进行编辑。
 
 - application-dev.yml    
@@ -133,19 +139,11 @@ image:
   baseurl: http://127.0.0.1:8080/aias/
 ```
 
-#### 2.5 配置hosts文件：
+#### 2.4 运行程序：
 ```bash
-# 客户端(浏览器)机器的hosts文件添加映射< 127.0.0.1	search.aias.me>, 
-# 其中127.0.0.1替换成jar包运行的服务器ip地址
+# 运行程序
 
-127.0.0.1	search.aias.me
-```
-
-#### 2.6 运行程序：
-```bash
-# 运行程序（模板配置文件，模板图片存放于当前目录）
-
-java -javaagent:aias-aiplatform-search-1.0.jar -jar aias-aiplatform-search-1.0.jar
+java -jar aiplatform-search-1.0.jar
 
 ```
 
