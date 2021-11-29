@@ -24,10 +24,12 @@ OCR（文字识别）是目前常用的一种AI能力。
 
 ### 1. 前端部署
 
-#### 1.1 下载安装：
-[OCR_UI](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/dist.zip)
+#### 1.1 构建dist安装包：
+```bash
+npm run build:prod
+```
 
-#### 1.2 nginx部署运行：
+#### 1.2 nginx部署运行(mac环境为例)：
 ```bash
 cd /usr/local/etc/nginx/
 vi /usr/local/etc/nginx/nginx.conf
@@ -55,22 +57,15 @@ sudo nginx -s stop
 # 启动
 sudo nginx     
 ```
-#### 1.3 配置hosts文件：
-```bash
-# 客户端(浏览器)机器的hosts文件添加映射< 127.0.0.1	ocr.aias.me>, 
-# 其中127.0.0.1替换成jar包运行的服务器ip地址
-
-127.0.0.1	ocr.aias.me
-```
 
 ### 2. 后端部署
 
-#### 2.1 下载jar包
-[jar包](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/aias-iocr-demo-0.1.0.jar)   
+#### 2.1 jar包
+构建jar包 
  
 #### 2.2 运行程序
 ```bash
-java -jar aias-iocr-demo-0.1.0.jar
+java -jar iocr-demo-0.1.0.jar
 ```
 
 #### 2.3 样例文件
