@@ -15,7 +15,7 @@
 
 Sample 1                     |  Sample 2                     
 :-------------------------:|:-------------------------:
-![](img/1.jpeg)        |  ![](img/2.jpeg)         
+![face1](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/edge_computing/face_1.jpeg)        |  ![face2](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/edge_computing/face_2.jpeg)         
 
 
 The minimum API level: 26.
