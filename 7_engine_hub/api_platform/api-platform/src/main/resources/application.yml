@@ -1,0 +1,48 @@
+server:
+  port: 8089
+
+#是否开启 swagger-ui
+swagger:
+  enabled: true
+
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 30MB
+      max-request-size: 30MB
+
+# Model type: mobile, light, server
+model:
+  #Face
+  face:
+    topK: 200
+    confThresh: 0.85
+    nmsThresh: 0.45
+    # face detection model URI
+    det: https://aias-home.oss-cn-beijing.aliyuncs.com/models/face/ultranet.zip
+    # face feature model URI
+    feature: https://aias-home.oss-cn-beijing.aliyuncs.com/models/face/face_feature.zip
+  # OCR
+  type: mobile
+  table:
+    # Layout detection model URI
+    layout: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ppyolov2_r50vd_dcn_365e_publaynet_infer.zip
+    # Table detection model URI
+    table-en: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/en_table.zip
+  mobile:
+    # mobile detection model URI
+    det: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_mobile_v2.0_det_infer.zip
+    # mobile recognition model URI
+    rec: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_mobile_v2.0_rec_infer.zip
+  light:
+    # light detection model URI
+    det: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv2_det_infer.zip
+    # light recognition model URI
+    rec: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv2_rec_infer.zip
+  server:
+    # server detection model URI
+    det: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_server_v2.0_det_infer.zip
+    # server recognition model URI
+    rec: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_server_v2.0_rec_infer.zip
+
