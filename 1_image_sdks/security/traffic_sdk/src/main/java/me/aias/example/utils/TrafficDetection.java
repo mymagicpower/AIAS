@@ -72,7 +72,7 @@ public final class TrafficDetection {
             .optModelName("inference")
             .optTranslator(new TrafficTranslator())
             .optProgress(new ProgressBar())
-            .optDevice(Device.cpu())
+            // .optDevice(Device.cpu())
             .build();
 
     try (ZooModel model = ModelZoo.loadModel(criteria)) {

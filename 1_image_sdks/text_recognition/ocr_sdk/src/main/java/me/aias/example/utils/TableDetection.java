@@ -32,7 +32,7 @@ public final class TableDetection {
                 "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/en_table.zip")
             //            .optModelUrls(
             // "/Users/calvin/Documents/build/paddle_models/ppocr/en_ppocr_mobile_v2.0_table_structure_infer")
-            .optDevice(Device.cpu())
+            // .optDevice(Device.cpu())
             .optOption("removePass", "repeated_fc_relu_fuse_pass")
             .optTranslator(new TableStructTranslator(new ConcurrentHashMap<String, String>()))
             .optProgress(new ProgressBar())

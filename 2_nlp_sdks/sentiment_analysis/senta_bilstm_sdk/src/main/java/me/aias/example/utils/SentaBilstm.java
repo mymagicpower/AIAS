@@ -23,7 +23,7 @@ public final class SentaBilstm {
             //            .optModelUrls("/Users/calvin/model/senta_bilstm/")
             .optTranslator(new SentaTranslator())
             .optEngine("PaddlePaddle") // Use PyTorch engine
-            .optDevice(Device.cpu())
+            // .optDevice(Device.cpu())
             .optProgress(new ProgressBar())
             .build();
 

@@ -59,7 +59,7 @@ public final class ServerOcrRecognition {
             .setTypes(Image.class, DetectedObjects.class)
             .optModelUrls(
                 "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_server_v2.0_det_infer.zip")
-            .optDevice(Device.cpu())
+            // .optDevice(Device.cpu())
             .optProgress(new ProgressBar())
             .optTranslator(new PpWordDetectionTranslator(new ConcurrentHashMap<String, String>()))
             .build();
@@ -74,7 +74,7 @@ public final class ServerOcrRecognition {
             .setTypes(Image.class, String.class)
             .optModelUrls(
                 "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_server_v2.0_rec_infer.zip")
-            .optDevice(Device.cpu())
+            // .optDevice(Device.cpu())
             .optProgress(new ProgressBar())
             .optTranslator(new PpWordRecognitionTranslator())
             .build();

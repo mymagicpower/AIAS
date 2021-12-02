@@ -24,7 +24,7 @@ public final class ReviewDetection {
             //            .optModelUrls("/Users/calvin/model/review_detection_lstm/")
             .optTranslator(new ReviewTranslator())
             .optEngine("PaddlePaddle") // Use PyTorch engine
-            .optDevice(Device.cpu())
+            // .optDevice(Device.cpu())
             .optProgress(new ProgressBar())
             .build();
 

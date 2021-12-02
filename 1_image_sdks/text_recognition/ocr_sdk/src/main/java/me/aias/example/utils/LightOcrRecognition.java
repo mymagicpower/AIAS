@@ -62,7 +62,7 @@ public final class LightOcrRecognition {
             .setTypes(Image.class, DetectedObjects.class)
             .optModelUrls(
                 "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv2_det_infer.zip")
-            .optDevice(Device.cpu())
+            // .optDevice(Device.cpu())
             .optProgress(new ProgressBar())
             .optTranslator(new PpWordDetectionTranslator(new ConcurrentHashMap<String, String>()))
             .build();
@@ -77,7 +77,7 @@ public final class LightOcrRecognition {
             .setTypes(Image.class, String.class)
             .optModelUrls(
                 "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv2_rec_infer.zip")
-            .optDevice(Device.cpu())
+            // .optDevice(Device.cpu())
             .optProgress(new ProgressBar())
             .optTranslator(new PpWordRecognitionTranslator())
             .build();

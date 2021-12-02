@@ -24,7 +24,7 @@ public final class SentaLstm {
             //            .optModelUrls("/Users/calvin/model/senta_lstm/")
             .optTranslator(new SentaTranslator())
             .optEngine("PaddlePaddle") // Use PyTorch engine
-            .optDevice(Device.cpu())
+            // .optDevice(Device.cpu())
             .optProgress(new ProgressBar())
             .build();
 

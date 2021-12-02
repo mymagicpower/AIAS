@@ -42,7 +42,7 @@ public final class PedestrianDetect {
             .optModelName("inference")
             .optTranslator(new PedestrianTranslator())
             .optProgress(new ProgressBar())
-            .optDevice(Device.cpu())
+            // .optDevice(Device.cpu())
             .build();
 
     return criteria;

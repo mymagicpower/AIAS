@@ -43,7 +43,7 @@ public final class LargeSafetyHelmetDetect {
             .optTranslator(translator)
             .optProgress(new ProgressBar())
             .optEngine("MXNet")
-            .optDevice(Device.cpu())
+            // .optDevice(Device.cpu())
             .build();
 
     return criteria;

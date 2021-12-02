@@ -78,7 +78,7 @@ public final class MobileOcrDetection {
                 "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_mobile_v2.0_det_infer.zip")
             //            .optModelUrls(
             // "/Users/calvin/Documents/build/paddle_models/ppocr/ch_PP-OCRv2_det_infer")
-            .optDevice(Device.cpu())
+            // .optDevice(Device.cpu())
             .optTranslator(new PpWordDetectionTranslator(new ConcurrentHashMap<String, String>()))
             .optProgress(new ProgressBar())
             .build();

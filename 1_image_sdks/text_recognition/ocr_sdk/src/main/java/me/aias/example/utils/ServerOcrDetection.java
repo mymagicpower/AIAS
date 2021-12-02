@@ -77,7 +77,7 @@ public final class ServerOcrDetection {
                 "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_server_v2.0_det_infer.zip")
             //            .optModelUrls(
             // "/Users/calvin/Documents/build/paddle_models/ppocr/ch_ppocr_server_v2.0_det_infer")
-            .optDevice(Device.cpu())
+            // .optDevice(Device.cpu())
             .optTranslator(new PpWordDetectionTranslator(new ConcurrentHashMap<String, String>()))
             .optProgress(new ProgressBar())
             .build();
@@ -94,7 +94,7 @@ public final class ServerOcrDetection {
                 "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_mobile_v2.0_cls_infer.zip")
             //            .optModelUrls(
             // "/Users/calvin/Documents/build/paddle_models/ppocr/ch_ppocr_mobile_v2.0_cls_infer")
-            .optDevice(Device.cpu())
+            // .optDevice(Device.cpu())
             .optTranslator(new PpWordRotateTranslator())
             .optProgress(new ProgressBar())
             .build();

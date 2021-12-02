@@ -58,7 +58,7 @@ public final class Vgg16ActionRecognition {
             // .optModelUrls("/Users/calvin/Documents/build/mxnet_models/vgg16_ucf101/")
             .optTranslator(translator)
             .optProgress(new ProgressBar())
-            .optDevice(Device.cpu())
+            //.optDevice(Device.cpu())
             .build();
 
     try (ZooModel<Image, Classifications> inception = ModelZoo.loadModel(criteria)) {

@@ -30,7 +30,7 @@
     <orderEntry type="library" name="Maven: ai.djl:model-zoo:0.14.0" level="project" />
     <orderEntry type="library" name="Maven: ai.djl.pytorch:pytorch-engine:0.14.0" level="project" />
     <orderEntry type="library" name="Maven: ai.djl.pytorch:pytorch-model-zoo:0.14.0" level="project" />
-    <orderEntry type="library" name="Maven: ai.djl.pytorch:pytorch-native-auto:1.9.0" level="project" />
+    <orderEntry type="library" name="Maven: ai.djl.pytorch:pytorch-native-auto:1.9.1" level="project" />
     <orderEntry type="library" name="Maven: ai.djl.paddlepaddle:paddlepaddle-model-zoo:0.14.0" level="project" />
     <orderEntry type="library" name="Maven: ai.djl.paddlepaddle:paddlepaddle-engine:0.14.0" level="project" />
     <orderEntry type="library" name="Maven: ai.djl.paddlepaddle:paddlepaddle-native-auto:2.0.2" level="project" />

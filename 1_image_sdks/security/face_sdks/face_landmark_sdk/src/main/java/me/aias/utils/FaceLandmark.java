@@ -29,7 +29,7 @@ public final class FaceLandmark {
             //            .optModelUrls("/Users/calvin/model/face_landmark/face_landmark/")
             .optModelName("inference")
             .optProgress(new ProgressBar())
-            .optDevice(Device.cpu())
+            // .optDevice(Device.cpu())
             .optTranslator(new FaceLandmarkTranslator())
             .build();
 

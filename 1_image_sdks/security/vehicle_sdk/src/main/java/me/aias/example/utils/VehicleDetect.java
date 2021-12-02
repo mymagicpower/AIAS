@@ -46,7 +46,7 @@ public final class VehicleDetect {
             .optModelName("inference")
             .optTranslator(new VehicleTranslator())
             .optProgress(new ProgressBar())
-            .optDevice(Device.cpu())
+            // .optDevice(Device.cpu())
             .build();
 
     return criteria;
