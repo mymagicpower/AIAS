@@ -19,7 +19,7 @@ public class SpeechRecognition {
             // .optModelPath(Paths.get("src/main/resources/voice/tacotronSTFT.pt"))
             .optTranslator(new AudioTranslator())
             .optEngine("PaddlePaddle") // Use PaddlePaddle engine
-            .optDevice(Device.cpu())
+            // .optDevice(Device.cpu())
             .optProgress(new ProgressBar())
             .build();
 

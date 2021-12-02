@@ -16,7 +16,7 @@ public class Voiceprint {
             // .optModelUrls(Paths.get("src/main/resources/voice/"))
             .optTranslator(new VoiceprintTranslator())
             .optEngine("PaddlePaddle") // Use PaddlePaddle engine
-            .optDevice(Device.cpu())
+            // .optDevice(Device.cpu())
             .optProgress(new ProgressBar())
             .build();
 
