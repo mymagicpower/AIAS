@@ -1,0 +1,353 @@
+package me.calvin.modules.search.service.impl;
+
+import com.google.gson.JsonObject;
+import io.milvus.client.*;
+import lombok.extern.slf4j.Slf4j;
+import me.calvin.modules.search.common.utils.milvus.ConnectionPool;
+import me.calvin.modules.search.domain.SimpleFaceObject;
+import me.calvin.modules.search.service.SearchService;
+import me.calvin.modules.search.service.dto.ImageInfoDto;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Slf4j
+@Service
+public class SearchServiceImpl implements SearchService {
+    @Value("${search.host}")
+    String host;
+
+    @Value("${search.port}")
+    String port;
+
+    @Value("${search.faceDimension}")
+    String faceDimension;
+
+    @Value("${search.faceCollectionName}")
+    String faceCollectionName;
+
+    @Value("${search.commDimension}")
+    String commDimension;
+
+    @Value("${search.commCollectionName}")
+    String commCollectionName;
+
+    @Value("${search.indexFileSize}")
+    String indexFileSize;
+
+    @Value("${search.nprobe}")
+    String nprobe;
+
+    @Value("${search.nlist}")
+    String nlist;
+
+    public void initSearchEngine() throws ConnectFailedException {
+        try {
+            MilvusClient client = this.getConnectionPool(false).getConnection();
+            // 检查 collection 是否存在
+            HasCollectionResponse hasCollection = this.hasCollection(client, commCollectionName);
+            if (hasCollection.hasCollection()) {
+                this.dropCollection(client, commCollectionName);
+                this.dropIndex(client, commCollectionName);
+            }
+
+            hasCollection = this.hasCollection(client, faceCollectionName);
+            if (hasCollection.hasCollection()) {
+                this.dropCollection(client, faceCollectionName);
+                this.dropIndex(client, faceCollectionName);
+            }
+        } catch (ConnectFailedException e) {
+            e.printStackTrace();
+            log.error(e.getMessage());
+            throw e;
+        }
+    }
+
+    public ConnectionPool getConnectionPool(boolean refresh) {
+        ConnectionPool connPool = ConnectionPool.getInstance(host, port, refresh);
+        return connPool;
+    }
+
+    public MilvusClient getClient(ConnectionPool connPool) throws ConnectFailedException {
+        MilvusClient client = connPool.getConnection();
+        return client;
+    }
+
+    public void returnConnection(ConnectionPool connPool, MilvusClient client) {
+        // 释放 Milvus client 回连接池
+        connPool.returnConnection(client);
+        // 关闭 Milvus 连接池
+        //    connPool.closeConnectionPool();
+    }
+
+    // 检查是否存在 collection
+    public HasCollectionResponse hasCollection(MilvusClient client, String collectionName) {
+        HasCollectionResponse response = client.hasCollection(collectionName);
+        return response;
+    }
+
+    // 检查是否存在 collection
+    public HasCollectionResponse hasCollection(String collectionName) throws ConnectFailedException {
+        MilvusClient client = this.getConnectionPool(false).getConnection();
+        HasCollectionResponse response = client.hasCollection(collectionName);
+        return response;
+    }
+
+    // 创建 collection
+    public Response createCollection(
+            MilvusClient client, String collectionName, long dimension, long indexFileSize) {
+        // 选择内积 IP (Inner Product) 作为距离计算方式 MetricType.IP
+        final MetricType metricType = MetricType.L2;
+        CollectionMapping collectionMapping =
+                new CollectionMapping.Builder(collectionName, dimension)
+                        .withIndexFileSize(indexFileSize)
+                        .withMetricType(metricType)
+                        .build();
+        Response createCollectionResponse = client.createCollection(collectionMapping);
+        return createCollectionResponse;
+    }
+
+    public Response createCollection(String collectionName, long dimension) throws ConnectFailedException {
+        // 选择内积 IP (Inner Product) 作为距离计算方式 MetricType.IP
+        final MetricType metricType = MetricType.L2;
+        CollectionMapping collectionMapping =
+                new CollectionMapping.Builder(collectionName, dimension)
+                        .withIndexFileSize(Long.parseLong(indexFileSize))
+                        .withMetricType(metricType)
+                        .build();
+        MilvusClient client = this.getConnectionPool(false).getConnection();
+        Response createCollectionResponse = client.createCollection(collectionMapping);
+        return createCollectionResponse;
+    }
+
+    // 删除 collection
+    public Response dropCollection(MilvusClient client, String collectionName) {
+        // Drop collection
+        Response dropCollectionResponse = client.dropCollection(collectionName);
+        return dropCollectionResponse;
+    }
+
+    // 查看 collection 信息
+    public Response getCollectionStats(MilvusClient client, String collectionName) {
+        Response getCollectionStatsResponse = client.getCollectionStats(collectionName);
+        //    if (getCollectionStatsResponse.ok()) {
+        //      // JSON 格式 collection 信息
+        //      String jsonString = getCollectionStatsResponse.getMessage();
+        //      System.out.format("Collection 信息: %s\n", jsonString);
+        //    }
+        return getCollectionStatsResponse;
+    }
+
+    // 插入向量
+    public void insertVectors(String collectionName, List<ImageInfoDto> list) throws ConnectFailedException {
+        try {
+            MilvusClient client = this.getConnectionPool(false).getConnection();
+            List<Long> vectorIds = new ArrayList<>();
+            List<List<Float>> vectors = new ArrayList<>();
+            for (ImageInfoDto imageInfo : list) {
+                for (SimpleFaceObject faceObject : imageInfo.getFaceObjects()) {
+                    vectorIds.add(imageInfo.getImageId()); // 同一个大图的小图id使用同一个大图的id
+                    vectors.add(faceObject.getFeature());
+                }
+            }
+            this.insertVectors(client, collectionName, vectorIds, vectors);
+        } catch (ConnectFailedException e) {
+            e.printStackTrace();
+            log.error(e.getMessage());
+            throw e;
+        }
+    }
+
+    // 插入向量
+    public void insertVectors(String collectionName, Long id, List<Float> feature) throws ConnectFailedException {
+        try {
+            MilvusClient client = this.getConnectionPool(false).getConnection();
+            List<Long> vectorIds = new ArrayList<>();
+            List<List<Float>> vectors = new ArrayList<>();
+            vectorIds.add(id);
+            vectors.add(feature);
+            this.insertVectors(client, collectionName, vectorIds, vectors);
+        } catch (ConnectFailedException e) {
+            e.printStackTrace();
+            log.error(e.getMessage());
+            throw e;
+        }
+    }
+
+    // 插入向量
+    public void insertVectors(String collectionName, List<Long> vectorIds, List<List<Float>> vectors) throws ConnectFailedException {
+        try {
+            MilvusClient client = this.getConnectionPool(false).getConnection();
+            this.insertVectors(client, collectionName, vectorIds, vectors);
+        } catch (ConnectFailedException e) {
+            e.printStackTrace();
+            log.error(e.getMessage());
+            throw e;
+        }
+    }
+
+    // 插入向量
+    public void insertVectors(String collectionName, ImageInfoDto imageInfo) throws ConnectFailedException {
+        try {
+            MilvusClient client = this.getConnectionPool(false).getConnection();
+            List<Long> vectorIds = new ArrayList<>();
+            List<List<Float>> vectors = new ArrayList<>();
+            for (SimpleFaceObject faceObject : imageInfo.getFaceObjects()) {
+                vectorIds.add(imageInfo.getImageId());
+                vectors.add(faceObject.getFeature());
+            }
+            this.insertVectors(client, collectionName, vectorIds, vectors);
+        } catch (ConnectFailedException e) {
+            e.printStackTrace();
+            log.error(e.getMessage());
+            throw e;
+        }
+    }
+
+    public InsertResponse insertVectors(
+            MilvusClient client, String collectionName, List<Long> vectorIds, List<List<Float>> vectors) {
+        // 需要主动指定ID，如：图片的ID，用来关联图片资源，页面显示使用等
+        InsertParam insertParam =
+                new InsertParam.Builder(collectionName)
+                        .withVectorIds(vectorIds)
+                        .withFloatVectors(vectors)
+                        .build();
+
+        InsertResponse insertResponse = client.insert(insertParam);
+        // 返回向量ID列表，向量ID如果不主动赋值，系统自动生成并返回
+        //    List<Long> vectorIds = insertResponse.getVectorIds();
+        return insertResponse;
+    }
+
+    // 刷新数据
+    public Response flushData(MilvusClient client, String collectionName) {
+        // Flush data in collection
+        Response flushResponse = client.flush(collectionName);
+        return flushResponse;
+    }
+
+    // 查询向量数量
+    public long count(MilvusClient client, String collectionName) {
+        // 获取数据条数
+        CountEntitiesResponse ountEntitiesResponse = client.countEntities(collectionName);
+        long rows = ountEntitiesResponse.getCollectionEntityCount();
+        return rows;
+    }
+
+    // 根据ID获取向量
+    public GetEntityByIDResponse getEntityByID(
+            MilvusClient client, String collectionName, List<Long> vectorIds) {
+
+        GetEntityByIDResponse getEntityByIDResponse =
+                client.getEntityByID(collectionName, vectorIds.subList(0, 5));
+        return getEntityByIDResponse;
+    }
+
+    // 搜索向量
+    public SearchResponse search(String collectionName, long topK, List<List<Float>> vectorsToSearch) throws ConnectFailedException {
+
+        // 索引类型不同，参数也可能不同，查询文档选择最优参数
+        JsonObject searchParamsJson = new JsonObject();
+        searchParamsJson.addProperty("nprobe", Integer.parseInt(nprobe));
+        SearchParam searchParam =
+                new SearchParam.Builder(collectionName)
+                        .withFloatVectors(vectorsToSearch)
+                        .withTopK(topK)
+                        .withParamsInJson(searchParamsJson.toString())
+                        .build();
+
+        MilvusClient client = this.getConnectionPool(false).getConnection();
+        SearchResponse searchResponse = client.search(searchParam);
+        return searchResponse;
+    }
+
+    public SearchResponse search(
+            MilvusClient client,
+            String collectionName,
+            int nprobe,
+            long topK,
+            List<List<Float>> vectorsToSearch) {
+
+        // 索引类型不同，参数也可能不同，查询文档选择最优参数
+        JsonObject searchParamsJson = new JsonObject();
+        searchParamsJson.addProperty("nprobe", nprobe);
+        SearchParam searchParam =
+                new SearchParam.Builder(collectionName)
+                        .withFloatVectors(vectorsToSearch)
+                        .withTopK(topK)
+                        .withParamsInJson(searchParamsJson.toString())
+                        .build();
+        SearchResponse searchResponse = client.search(searchParam);
+        return searchResponse;
+    }
+
+    // 删除向量
+    public Response deleteVectorsByIds(
+            MilvusClient client, String collectionName, List<Long> vectorIds) {
+        Response deleteByIdsResponse = client.deleteEntityByID(collectionName, vectorIds);
+        // Flush, 使删除数据生效
+        Response flushResponse = client.flush(collectionName);
+        return deleteByIdsResponse;
+    }
+
+    // 创建 index
+    public Response createIndex(MilvusClient client, String collectionName) {
+        // 索引类型在配置页面设置 IndexType.IVF_SQ8
+        final IndexType indexType = IndexType.IVFLAT;
+        // 每种索引有自己的可选参数 - 在配置页面设置
+        JsonObject indexParamsJson = new JsonObject();
+        indexParamsJson.addProperty("nlist", Integer.parseInt(nlist));
+        Index index =
+                new Index.Builder(collectionName, indexType)
+                        .withParamsInJson(indexParamsJson.toString())
+                        .build();
+
+        Response createIndexResponse = client.createIndex(index);
+        return createIndexResponse;
+    }
+
+    public Response createIndex(String collectionName) throws ConnectFailedException {
+        // 索引类型在配置页面设置 IndexType.IVF_SQ8
+        final IndexType indexType = IndexType.IVFLAT;
+        // 每种索引有自己的可选参数 - 在配置页面设置
+        JsonObject indexParamsJson = new JsonObject();
+        indexParamsJson.addProperty("nlist", Integer.parseInt(nlist));
+        Index index =
+                new Index.Builder(collectionName, indexType)
+                        .withParamsInJson(indexParamsJson.toString())
+                        .build();
+        MilvusClient client = this.getConnectionPool(false).getConnection();
+        Response createIndexResponse = client.createIndex(index);
+        return createIndexResponse;
+    }
+
+    // 查看索引信息
+    public GetIndexInfoResponse getIndexInfo(MilvusClient client, String collectionName) {
+        GetIndexInfoResponse getIndexInfoResponse = client.getIndexInfo(collectionName);
+        // System.out.format("索引信息: %s\n",search.service.SearchServiceImpl.getIndexInfo(client,
+        // collectionName).getIndex().toString());
+        return getIndexInfoResponse;
+    }
+
+    // 删除 index
+    public Response dropIndex(MilvusClient client, String collectionName) {
+        Response dropIndexResponse = client.dropIndex(collectionName);
+        return dropIndexResponse;
+    }
+
+    // 压缩 collection
+    public Response compactCollection(MilvusClient client, String collectionName) {
+        // 压缩 collection, 从磁盘抹除删除的数据，并在后台重建索引（如果压缩后的数据比indexFileSize还要大）
+        // 在主动压缩前，数据只是软删除
+        Response compactResponse = client.compact(collectionName);
+        return compactResponse;
+    }
+
+    //  检查 collection 中是否有 partition "tag"
+    public HasPartitionResponse hasPartition(MilvusClient client, String collectionName, String tag) {
+        HasPartitionResponse hasPartitionResponse = client.hasPartition(collectionName, tag);
+        return hasPartitionResponse;
+    }
+}
