@@ -214,12 +214,15 @@ search:
 点击菜单：系统工具-接口文档
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/image_search/images/swagger.png)
 
-- 初始化向量引擎(清空数据):  
+- 初始化Milvus向量引擎(清空数据):  
 127.0.0.1替换成jar运行的主机ip。
 http://127.0.0.1:9000/api/search/initSearchEngine
 
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/image_search/images/init.png)
 
+- Milvus向量引擎参考链接     
+[Milvus向量引擎官网](https://milvus.io/cn/docs/overview.md)      
+[Milvus向量引擎Github](https://github.com/milvus-io)
 
 ### 官网：
 [官网链接](http://www.aias.top/)
