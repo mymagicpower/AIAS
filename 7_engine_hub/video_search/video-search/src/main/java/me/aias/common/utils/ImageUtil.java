@@ -3,7 +3,6 @@ package me.aias.common.utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
-import sun.misc.BASE64Decoder;
 
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
@@ -111,32 +110,6 @@ public class ImageUtil {
         }
         inStream.close();
         return outStream.toByteArray();
-    }
-
-    /**
-     * base64 编码转换为 BufferedImage
-     */
-    public static BufferedImage base64ToBufferedImage(String base64) {
-        BASE64Decoder decoder = new BASE64Decoder();
-        try {
-            byte[] bytes1 = decoder.decodeBuffer(base64);
-            ByteArrayInputStream bais = new ByteArrayInputStream(bytes1);
-            return ImageIO.read(bais);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    /**
-     * 把base64图片数据转为本地图片
-     */
-    public static void base64ToImageFile(String base64ImgData, String filePath) throws IOException {
-        BASE64Decoder d = new BASE64Decoder();
-        byte[] bs = d.decodeBuffer(base64ImgData);
-        FileOutputStream os = new FileOutputStream(filePath);
-        os.write(bs);
-        os.close();
     }
 
     /**
