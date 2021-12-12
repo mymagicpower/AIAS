@@ -140,6 +140,7 @@ search:
 
 - 视频上传
 1). 点击上传按钮上传视频文件.  
+[测试视频](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/video_search/test.mp4)
 2). 点击提取人脸特征提取按钮. 
 等待图片帧解析，人脸检测，特征提取，特征存入向量引擎。通过console可以看到进度信息。
 imageRootPath目录下，可以看到提取出的图片帧及检测目标图片。
@@ -149,7 +150,7 @@ imageRootPath目录下，可以看到提取出的图片帧及检测目标图片�
 - 视频搜索
   上传图片，点击查询，可以看到返回的图片清单，根据相似度排序。
 
-  ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/video_search/search.png)
+![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/video_search/search.png)
 
 ## 5. 帮助信息
 - swagger接口文档:  
