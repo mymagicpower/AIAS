@@ -1,0 +1,56 @@
+server:
+  port: 8089
+
+#是否开启 swagger-ui
+swagger:
+  enabled: true
+
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 3000MB
+      max-request-size: 3000MB
+
+# 文件存储路径
+file:
+  mac:
+    path: ~/file/
+    imageRootPath: ~/file/image_root/ #压缩包解压缩文件夹
+  linux:
+    path: /home/aias/file/
+    imageRootPath: /home/aias/file/image_root/ #压缩包解压缩文件夹
+  windows:
+    path: C:\aias\file\
+    imageRootPath: C:\aias\file\image_root\ #压缩包解压缩文件夹
+  # 文件大小 /M
+  maxSize: 3000
+
+image:
+  #  path: /Users/calvin/Documents/image_root/ #图片存放文件夹
+  baseurl: http://127.0.0.1:8089/images/
+
+#Face
+face:
+  # n 帧取一帧 (跳帧)
+  mod: 3
+  # 是否保存人脸抠图
+  saveDetectedFace: true
+  # 图像缩放比，越小速度越快，精度越低，需根据场景调优
+  shrink: 0.5
+  # 检测结果的置信度过滤阈值
+  threshold: 0.7
+  # 人脸检测模型
+  det: https://aias-home.oss-cn-beijing.aliyuncs.com/models/face_mask/face_detection.zip
+  # 人脸特征提取模型
+  feature: https://aias-home.oss-cn-beijing.aliyuncs.com/models/face/face_feature.zip
+
+##################### 向量引擎 ###############################
+search:
+  host: 127.0.0.1
+  port: 19530
+  indexFileSize: 1024 # maximum size (in MB) of each index file
+  nprobe: 256
+  nlist: 16384
+  faceDimension: 512 #dimension of each vector
+  faceCollectionName: faces #collection name
