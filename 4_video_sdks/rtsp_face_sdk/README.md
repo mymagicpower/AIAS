@@ -10,7 +10,7 @@ http://aias.top/
 只有前者属于生物特征识别技术）、体形识别、键盘敲击识别、签字识别等。
 
 ## SDK功能
-通过rtsp取流，实时检测人脸。
+通过rtsp取流，实时（需要有显卡的台式机，否则会比较卡顿）检测人脸。
 - 海康/大华等摄像机的rtsp地址：rtsp://user:password@192.168.16.100:554/Streaing/Channels/1
 - 海康/大华等视频平台的rtsp地址：rtsp://192.168.16.88:554/openUrl/6rcShva
 - 自己的rtsp地址

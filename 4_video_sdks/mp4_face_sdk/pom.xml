@@ -96,7 +96,7 @@
             <artifactId>pytorch-native-auto</artifactId>
             <version>1.9.1</version>
         </dependency>
-        <!-- PaddlePaddle -->
+        <!-- PaddlePaddle -->              
         <dependency>
             <groupId>ai.djl.paddlepaddle</groupId>
             <artifactId>paddlepaddle-engine</artifactId>

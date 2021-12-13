@@ -9,7 +9,7 @@ http://aias.top/
 而基于人工智能的口罩检测功能可以基于摄像头视频流进行实时检测。
 
 ## SDK功能
-通过rtsp取流，实时检测口罩。
+通过rtsp取流，实时（需要有显卡的台式机，否则会比较卡顿）检测口罩。
 - 海康/大华等摄像机的rtsp地址：rtsp://user:password@192.168.16.100:554/Streaing/Channels/1
 - 海康/大华等视频平台的rtsp地址：rtsp://192.168.16.88:554/openUrl/6rcShva
 - 自己的rtsp地址
