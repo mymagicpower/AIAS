@@ -21,8 +21,8 @@ file:
     path: /home/aias/file/
     imageRootPath: /home/aias/file/image_root/ #压缩包解压缩文件夹
   windows:
-    path: C:\aias\file\
-    imageRootPath: C:\aias\file\image_root\ #压缩包解压缩文件夹
+    path: file:///D:/aias/file/
+    imageRootPath: file:///D:/aias/file/image_root/ #压缩包解压缩文件夹
   # 文件大小 /M
   maxSize: 3000
 
