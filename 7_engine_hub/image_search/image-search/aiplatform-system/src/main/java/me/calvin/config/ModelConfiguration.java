@@ -21,7 +21,7 @@ import java.io.IOException;
 public class ModelConfiguration {
     @Autowired
     private FileProperties properties;
-    
+
     //Face Model
     @Value("${face.det}")
     private String faceDet;
@@ -37,7 +37,10 @@ public class ModelConfiguration {
     //Image Model
     @Value("${image.feature}")
     private String commonFeature;
-    
+
+    @Value("${newModel.enabled}")
+    private boolean newModel;
+
     @Bean
     public FaceDetectionModel faceDetectionModel() throws IOException, ModelNotFoundException, MalformedModelException {
         FaceDetectionModel faceDetectionModel = new FaceDetectionModel();
@@ -62,7 +65,9 @@ public class ModelConfiguration {
     @Bean
     public CustFeatureModel custFeatureModel() throws IOException, ModelNotFoundException, MalformedModelException {
         CustFeatureModel custFeatureModel = new CustFeatureModel();
-        custFeatureModel.init(properties.getPath().getNewModelPath(), commonFeature);
+        if (this.newModel) {
+            custFeatureModel.init(properties.getPath().getNewModelPath(), commonFeature);
+        }
         return custFeatureModel;
     }
 }
