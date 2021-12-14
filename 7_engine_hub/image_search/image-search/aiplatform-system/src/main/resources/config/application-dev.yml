@@ -119,10 +119,10 @@ file:
     imageRootPath: /home/aias/file/image_root/ #图片文件根目录
     newModelPath: /home/aias/file/model/ #模型训练好后存放的文件夹
   windows:
-    path: C:\calvin\file\
-    avatar: C:\calvin\avatar\
-    imageRootPath: C:\aias\file\image_root\ ##图片文件根目录
-    newModelPath: C:\aias\file\model\ #模型训练好后存放的文件夹
+    path: file:///D:/aias/file/
+    avatar: file:///D:/aias/avatar/
+    imageRootPath: file:///D:/aias/file/image_root/ ##图片文件根目录
+    newModelPath: file:///D:/aias/file/model/ #模型训练好后存放的文件夹
   # 文件大小 /M
   maxSize: 100
   avatarMaxSize: 5
