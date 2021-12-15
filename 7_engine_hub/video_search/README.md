@@ -95,7 +95,13 @@ java -jar video-search-0.1.0.jar
 #### 3.1 环境要求：
 - 需要安装docker运行环境，Mac环境可以使用Docker Desktop
 
-#### 3.2 拉取 向量引擎 镜像（用于计算特征值向量相似度）
+#### 3.2 拉取Milvus向量引擎镜像（用于计算特征值向量相似度）
+[安装文档](https://github.com/milvus-io/docs/blob/master/v0.10.0/site/zh-CN/quick_start/install_milvus/cpu_milvus_docker.md)
+##### 最新版本请参考官网
+- Milvus向量引擎参考链接     
+[Milvus向量引擎官网](https://milvus.io/cn/docs/overview.md)      
+[Milvus向量引擎Github](https://github.com/milvus-io)
+
 ```bash
 sudo docker pull milvusdb/milvus:0.10.0-cpu-d061620-5f3c00
 ```
@@ -182,10 +188,6 @@ me.aias.tools.MilvusInit.java
        ...
 
 ```
-
-- Milvus向量引擎参考链接     
-[Milvus向量引擎官网](https://milvus.io/cn/docs/overview.md)      
-[Milvus向量引擎Github](https://github.com/milvus-io)
 
 ### 官网：
 [官网链接](http://www.aias.top/)
