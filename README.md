@@ -116,7 +116,9 @@ http://www.aias.top/
 
 #### 微信群：
 
-![weixin](https://aias-home.oss-cn-beijing.aliyuncs.com/images/weixin.png)
+<div align="center">
+<img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/weixin.png"  width = "400"  />
+</div>
 
 
 ##### Contact Info:
