@@ -210,5 +210,5 @@ me.aias.tools.MilvusInit.java
 [官网链接](http://www.aias.top/)
 
 ### Git地址：   
-[Github链接](https://github.com/mymagicpower/AIAS)    
-[Gitee链接](https://gitee.com/mymagicpower/AIAS)   
+[Github链接](https://github.com/mymagicpower/AIAS/blob/main/8_suite_hub/question_answering_system/README.md)    
+[Gitee链接](https://gitee.com/mymagicpower/AIAS/tree/main/8_suite_hub/question_answering_system)   
