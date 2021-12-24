@@ -1,0 +1,29 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00000000">
+
+    <RelativeLayout
+        android:id="@+id/relativeContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#00000000"
+        android:orientation="vertical">
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        app:layout_anchor="@+id/relativeContainer"
+        app:layout_anchorGravity="center" />
+
+    <com.faceDemo.live2d.Live2dGLSurfaceView
+        android:id="@+id/live2d_preview"
+        android:layout_width="640px"
+        android:layout_height="480px" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
