@@ -114,14 +114,13 @@ http://www.aias.top/
 
 
 
-#### 微信群：
-
+#### 联系方式:
+QQ群号:111257454 
+或者扫码入群：
 <div align="center">
-<img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/weixin.png"  width = "400"  />
+<img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/qq.png"  width = "300"  />
 </div>
 
-
-##### Contact Info:
 QQ: 179209347       
 Mail: 179209347@qq.com
 
