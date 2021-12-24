@@ -115,7 +115,7 @@ http://www.aias.top/
 
 
 #### 联系方式:
-扫码入群：
+微信扫码入群：
 <div align="center">
 <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/weixin.png?v=1"  width = "300"  />
 </div>
