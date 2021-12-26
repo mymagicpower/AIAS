@@ -1,0 +1,34 @@
+server:
+  port: 8089
+
+#是否开启 swagger-ui
+swagger:
+  enabled: true
+
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 3000MB
+      max-request-size: 3000MB
+
+# 文件存储路径
+file:
+  mac:
+    path: ~/file/
+  linux:
+    path: /home/aias/file/
+  windows:
+    path: D:/aias/file/
+  # 文件大小 /M
+  maxSize: 3000
+
+##################### 向量引擎 ###############################
+search:
+  host: 127.0.0.1
+  port: 19530
+  indexFileSize: 1024 # maximum size (in MB) of each index file
+  nprobe: 16
+  nlist: 16384
+  dimension: 768 #dimension of each vector
+  collectionName: dna #collection name

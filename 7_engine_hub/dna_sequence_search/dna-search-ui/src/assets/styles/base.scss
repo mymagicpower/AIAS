@@ -1,0 +1,55 @@
+// flex row
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+}
+@mixin flex-row-between {
+  @include flex-row();
+  justify-content: space-between;
+}
+
+@mixin flex-row-between-center {
+  @include flex-row-between();
+  align-items: center
+}
+
+@mixin flex-row-center {
+  @include flex-row();
+  justify-content: center
+}
+
+@mixin flex-row-all-center {
+  @include flex-row-center;
+  align-items: center
+
+}
+
+@mixin all-height($height) {
+  height: $height;
+  line-height: $height
+}
+
+@mixin ellipsis($width) {
+  width: $width;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis
+}
+
+// flex column
+@mixin flex-column {
+  display: flex;
+  flex-direction: column
+}
+
+@mixin flex-column-center {
+  @include flex-column();
+  justify-content: center
+}
+
+@mixin flex-column-all-center {
+  @include flex-column-center;
+  align-items: center
+}
+
