@@ -223,12 +223,12 @@ me.aias.tools.MilvusInit.java
 
 ```
 - 根据环境修改lib加载路径
-  >mac:
-    libPath: lib/native/macosx.x86_64/libGraphMolWrap.jnilib
-  linux:
-    libPath: lib/native/linux.x86_64/libGraphMolWrap.so
-  windows:
-    libPath: lib/native/win32.x86_64/GraphMolWrap.dll
+  >mac:              
+    libPath: lib/native/macosx.x86_64/libGraphMolWrap.jnilib                    
+  linux:              
+    libPath: lib/native/linux.x86_64/libGraphMolWrap.so                    
+  windows:              
+    libPath: lib/native/win32.x86_64/GraphMolWrap.dll              
 
 ```bash
     me.aias.common.rdkit.RDKitInstance.java  
