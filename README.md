@@ -163,7 +163,7 @@ http://www.aias.top/
   <tr>
     <td>
       <div align="center">
-      <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/weixin.png?v=1"  width = "250"  />
+      <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/weixin.png?v=2"  width = "250"  />
       </div>
     </td>
     <td>
