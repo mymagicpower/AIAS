@@ -138,13 +138,6 @@
             <artifactId>dom4j</artifactId>
             <version>1.6.1</version>
         </dependency>
-        <dependency>
-            <groupId>aias</groupId>
-            <artifactId>ocr-lib</artifactId>
-            <version>0.1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/aias-ocr-lib-0.1.0.jar</systemPath>
-        </dependency>
     </dependencies>
 
 </project>

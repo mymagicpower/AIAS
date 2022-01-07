@@ -1,6 +1,5 @@
 package me.aias.example.utils;
 
-import ai.djl.Device;
 import ai.djl.inference.Predictor;
 import ai.djl.modality.Classifications;
 import ai.djl.modality.cv.Image;
