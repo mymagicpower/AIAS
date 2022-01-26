@@ -1,14 +1,11 @@
 package me.aias.example.utils;
 
 import ai.djl.ndarray.NDArray;
-import ai.djl.ndarray.NDArrays;
 import ai.djl.ndarray.NDManager;
 import org.apache.commons.lang3.tuple.Pair;
-import org.nd4j.linalg.api.ndarray.INDArray;
-import org.nd4j.linalg.factory.Nd4j;
 
-import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * CTC贪婪(最佳路径)解码器

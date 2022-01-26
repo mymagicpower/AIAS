@@ -1,14 +1,13 @@
 package me.aias.example.utils;
 
 import ai.djl.ndarray.NDArray;
+import ai.djl.ndarray.NDList;
 import ai.djl.ndarray.NDManager;
-import org.nd4j.linalg.api.ndarray.INDArray;
-import org.nd4j.linalg.factory.Nd4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import ai.djl.ndarray.types.DataType;
 
-import java.io.File;
-import java.util.Map;
+import java.io.ByteArrayOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  * 对音频预处理的工具
@@ -28,14 +27,18 @@ public class FeatureNormalizer {
    */
   public static NDArray apply(NDManager manager, String npzDataPath, NDArray features)
       throws Exception {
-    File file = new File(npzDataPath);
-    Map<String, INDArray> map = Nd4j.createFromNpzFile(file);
-    INDArray meanArray = map.get("mean");
-    float[][] mean = meanArray.toFloatMatrix();
-    NDArray meanNDArray = manager.create(mean);
-    INDArray stdArray = map.get("std");
-    float[][] std = stdArray.toFloatMatrix();
-    NDArray stdNDArray = manager.create(std);
+    //https://github.com/deepjavalibrary/djl/blob/master/api/src/test/java/ai/djl/ndarray/NDSerializerTest.java
+    //https://github.com/deepjavalibrary/djl/blob/master/api/src/test/java/ai/djl/ndarray/NDListTest.java
+    byte[] data = Files.readAllBytes(Paths.get(npzDataPath));
+    NDList decoded = NDList.decode(manager, data);
+    ByteArrayOutputStream bos = new ByteArrayOutputStream(data.length + 1);
+    decoded.encode(bos, true);
+    NDList list = NDList.decode(manager, bos.toByteArray());
+    NDArray meanNDArray = list.get(0);//mean
+    meanNDArray = meanNDArray.toType(DataType.FLOAT32, false);
+    NDArray stdNDArray = list.get(1);//std
+    stdNDArray = stdNDArray.toType(DataType.FLOAT32, false);
+
     // (features - self._mean) / (self._std + eps)
     stdNDArray = stdNDArray.add(eps);
     features = features.sub(meanNDArray).div(stdNDArray);
