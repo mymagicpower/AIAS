@@ -70,7 +70,7 @@ public final class TTSExample {
                      ModelZoo.loadModel(waveGlowEncoder.criteria());
              Predictor<NDArray, NDArray> waveGlowPredictor = waveGlowModel.newPredictor();
              ZooModel<NDArray, NDArray> denoiserModel =
-                     ModelZoo.loadModel(denoiserEncoder.criteria(audioFile));
+                     ModelZoo.loadModel(denoiserEncoder.criteria());
              Predictor<NDArray, NDArray> denoiserPredictor = denoiserModel.newPredictor()) {
 
             // 文本转为ID列表
