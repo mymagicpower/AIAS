@@ -9,7 +9,6 @@ import ai.djl.ndarray.NDManager;
 import ai.djl.ndarray.types.Shape;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
-import me.aias.*;
 import me.aias.example.ph.SequenceUtils;
 import me.aias.example.speaker.SpeakerEncoder;
 import me.aias.example.tacotron2.Tacotron2Encoder;
@@ -68,7 +67,7 @@ public final class TTSExample {
              ZooModel<NDList, NDArray> tacotron2Model = ModelZoo.loadModel(tacotron2Encoder.criteria());
              Predictor<NDList, NDArray> tacotron2Predictor = tacotron2Model.newPredictor();
              ZooModel<NDArray, NDArray> waveGlowModel =
-                     ModelZoo.loadModel(waveGlowEncoder.criteria(audioFile));
+                     ModelZoo.loadModel(waveGlowEncoder.criteria());
              Predictor<NDArray, NDArray> waveGlowPredictor = waveGlowModel.newPredictor();
              ZooModel<NDArray, NDArray> denoiserModel =
                      ModelZoo.loadModel(denoiserEncoder.criteria(audioFile));
