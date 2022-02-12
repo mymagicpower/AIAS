@@ -147,8 +147,9 @@ java -jar aiplatform-search-1.0.jar
 - 需要安装docker运行环境，Mac环境可以使用Docker Desktop
 
 #### 3.2 拉取Milvus向量引擎镜像（用于计算特征值向量相似度）
-下载 milvus-standalone-docker-compose.yml 配置文件并保存为 docker-compose.yml
-[单机版安装文档](https://milvus.io/docs/v2.0.0/install_standalone-docker.md)
+下载 milvus-standalone-docker-compose.yml 配置文件并保存为 docker-compose.yml        
+[单机版安装文档](https://milvus.io/docs/v2.0.0/install_standalone-docker.md)        
+
 ##### 最新版本请参考官网
 - Milvus向量引擎参考链接     
 [Milvus向量引擎官网](https://milvus.io/cn/docs/overview.md)      
@@ -158,12 +159,12 @@ java -jar aiplatform-search-1.0.jar
 wget https://github.com/milvus-io/milvus/releases/download/v2.0.0/milvus-standalone-docker-compose.yml -O docker-compose.yml
 ```
 
-#### 3.4 启动 Docker 容器
+#### 3.3 启动 Docker 容器
 ```bash
 sudo docker-compose up -d
 ```
 
-#### 3.5 编辑向量引擎连接配置信息
+#### 3.4 编辑向量引擎连接配置信息
 - application.yml
 - 根据需要编辑向量引擎连接ip地址127.0.0.1为容器所在的主机ip
 ```bash
@@ -187,7 +188,7 @@ search:
 - 人像搜索
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/image_search/images/face_search.png)
 
-- 图片上传
+- 图片上传        
 1). 点击上传按钮上传zip压缩包.  
 2). 如果是人像图片：点击提取人脸特征按钮.  
 3). 如果不是人像图片：点击提取特征按钮.  
