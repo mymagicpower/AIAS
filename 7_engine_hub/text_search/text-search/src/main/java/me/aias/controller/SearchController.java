@@ -1,8 +1,9 @@
 package me.aias.controller;
 
 import com.google.common.collect.Lists;
-import io.milvus.client.ConnectFailedException;
-import io.milvus.client.SearchResponse;
+import io.milvus.Response.SearchResultsWrapper;
+import io.milvus.grpc.SearchResults;
+import io.milvus.param.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -50,7 +51,7 @@ public class SearchController {
     @GetMapping("/text")
     @ApiOperation(value = "文本搜索", nickname = "search")
     public ResultBean search(@RequestParam("text") String text, @RequestParam(value = "topK") String topk) {
-        Long topK = Long.parseLong(topk);
+        Integer topK = Integer.parseInt(topk);
         List<Float> vectorToSearch = null;
         try {
             vectorToSearch = featureService.textFeature(text);
@@ -65,25 +66,18 @@ public class SearchController {
 
         try {
             // 根据向量搜索
-            SearchResponse searchResponse = searchService.search(this.collectionName, topK, vectorsToSearch);
-            List<List<Long>> resultIds = searchResponse.getResultIdsList();
-            if (resultIds == null || resultIds.size() == 0) {
-                return ResultBean.failure().add(ResEnum.INFO_NOT_FOUND.KEY, ResEnum.INFO_NOT_FOUND.VALUE);
-            }
-            List<String> idList = Lists.transform(resultIds.get(0), (entity) -> {
-                return entity.toString();
-            });
+            R<SearchResults> searchResponse = searchService.search(topK, vectorsToSearch);
+            SearchResultsWrapper wrapper = new SearchResultsWrapper(searchResponse.getData().getResults());
+            List<SearchResultsWrapper.IDScore> scores = wrapper.getIDScore(0);
 
             // 根据ID获取文本信息
             ConcurrentHashMap<Long, TextInfoDto> map = textService.getMap();
             List<TextInfoRes> textInfoResList = new ArrayList<>();
-            for (String uid : idList) {
-                Long id = Long.parseLong(uid);
-                TextInfoDto textInfoDto = map.get(id);
+            for (SearchResultsWrapper.IDScore score : scores) {
+                TextInfoDto textInfoDto = map.get(score.getLongID());
                 TextInfoRes textInfoRes = new TextInfoRes();
-                Float score = maxScoreForTextId(searchResponse, id);
-                textInfoRes.setId(id);
-                textInfoRes.setScore(score);
+                textInfoRes.setId(score.getLongID());
+                textInfoRes.setScore(score.getScore());
                 textInfoRes.setTitle(textInfoDto.getTitle());
                 textInfoRes.setText(textInfoDto.getText());
                 textInfoResList.add(textInfoRes);
@@ -91,24 +85,10 @@ public class SearchController {
 
             return ResultBean.success().add("result", textInfoResList);
 //            return new ResponseEntity<>(ResultRes.success(textInfoResList, textInfoResList.size()), HttpStatus.OK);
-        } catch (ConnectFailedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             log.error(e.getMessage());
             return ResultBean.failure().add(ResEnum.MILVUS_CONNECTION_ERROR.KEY, ResEnum.MILVUS_CONNECTION_ERROR.VALUE);
         }
-    }
-
-    private Float maxScoreForTextId(SearchResponse searchResponse, Long id) {
-        float maxScore = -1;
-        List<SearchResponse.QueryResult> list = searchResponse.getQueryResultsList().get(0);
-        for (SearchResponse.QueryResult result : list) {
-            if (result.getVectorId() == id.longValue()) {
-                if (result.getDistance() > maxScore) {
-                    maxScore = result.getDistance();
-                }
-            }
-        }
-
-        return maxScore;
     }
 }

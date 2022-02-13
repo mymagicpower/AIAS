@@ -22,22 +22,18 @@ import java.io.IOException;
  * @date 2021-12-19
  */
 public final class SentenceEncoderModel {
-
     private ZooModel<String, float[]> model;
-    private Predictor<String, float[]> predictor;
 
     public void init(String modelUri) throws MalformedModelException, ModelNotFoundException, IOException {
         this.model = ModelZoo.loadModel(detectCriteria(modelUri));
-        this.predictor = model.newPredictor();
+    }
+
+    public ZooModel<String, float[]> getModel() {
+        return model;
     }
 
     public void close() {
         this.model.close();
-        this.predictor.close();
-    }
-
-    public float[] predict(String text) throws TranslateException {
-        return predictor.predict(text);
     }
 
     private Criteria<String, float[]> detectCriteria(String modelUri) {

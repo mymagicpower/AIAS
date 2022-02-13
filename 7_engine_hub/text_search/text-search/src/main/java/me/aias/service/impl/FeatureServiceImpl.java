@@ -1,5 +1,7 @@
 package me.aias.service.impl;
 
+import ai.djl.inference.Predictor;
+import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
 import lombok.extern.slf4j.Slf4j;
 import me.aias.common.sentence.SentenceEncoderModel;
@@ -23,17 +25,18 @@ public class FeatureServiceImpl implements FeatureService {
     private SentenceEncoderModel sentenceEncoderModel;
 
     public List<Float> textFeature(String text) throws TranslateException {
-        float[] embeddings = null;
-        embeddings = sentenceEncoderModel.predict(text);
-        List<Float> feature = new ArrayList<>();
-
-        if (embeddings != null) {
-            for (int i = 0; i < embeddings.length; i++) {
-                feature.add(new Float(embeddings[i]));
+        ZooModel<String, float[]> model = sentenceEncoderModel.getModel();
+        try (Predictor<String, float[]> predictor = model.newPredictor()) {
+            float[] embeddings = predictor.predict(text);
+            List<Float> feature = new ArrayList<>();
+            if (embeddings != null) {
+                for (int i = 0; i < embeddings.length; i++) {
+                    feature.add(new Float(embeddings[i]));
+                }
+            } else {
+                return null;
             }
-        } else {
-            return null;
+            return feature;
         }
-        return feature;
     }
 }
