@@ -1,6 +1,8 @@
 package me.aias.service.impl;
 
+import ai.djl.inference.Predictor;
 import ai.djl.modality.cv.Image;
+import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
 import lombok.extern.slf4j.Slf4j;
 import me.aias.model.ImageEncoderModel;
@@ -27,32 +29,34 @@ public class FeatureServiceImpl implements FeatureService {
     private ImageEncoderModel imageEncoderModel;
 
     public List<Float> textFeature(String text) throws TranslateException {
-        float[] embeddings;
-        embeddings = textEncoderModel.predict(text);
-        List<Float> feature = new ArrayList<>();
-
-        if (embeddings != null) {
-            for (int i = 0; i < embeddings.length; i++) {
-                feature.add(embeddings[i]);
+        ZooModel<String, float[]> model = textEncoderModel.getModel();
+        try (Predictor<String, float[]> predictor = model.newPredictor()) {
+            float[] embeddings = predictor.predict(text);
+            List<Float> feature = new ArrayList<>();
+            if (embeddings != null) {
+                for (int i = 0; i < embeddings.length; i++) {
+                    feature.add(embeddings[i]);
+                }
+            } else {
+                return null;
             }
-        } else {
-            return null;
+            return feature;
         }
-        return feature;
     }
 
     public List<Float> imageFeature(Image image) throws TranslateException {
-        float[] embeddings;
-        embeddings = imageEncoderModel.predict(image);
-        List<Float> feature = new ArrayList<>();
-
-        if (embeddings != null) {
-            for (int i = 0; i < embeddings.length; i++) {
-                feature.add(embeddings[i]);
+        ZooModel<Image, float[]> model = imageEncoderModel.getModel();
+        try (Predictor<Image, float[]> predictor = model.newPredictor()) {
+            float[] embeddings = predictor.predict(image);
+            List<Float> feature = new ArrayList<>();
+            if (embeddings != null) {
+                for (int i = 0; i < embeddings.length; i++) {
+                    feature.add(embeddings[i]);
+                }
+            } else {
+                return null;
             }
-        } else {
-            return null;
+            return feature;
         }
-        return feature;
     }
 }

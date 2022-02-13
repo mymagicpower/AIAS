@@ -96,12 +96,12 @@
             <artifactId>pytorch-native-auto</artifactId>
             <version>${pytorch-native-auto.version}</version>
         </dependency>
-        
+
         <!-- 向量引擎 -->
         <dependency>
             <groupId>io.milvus</groupId>
             <artifactId>milvus-sdk-java</artifactId>
-            <version>0.8.2</version>
+            <version>2.0.0</version>
         </dependency>
 
         <dependency>

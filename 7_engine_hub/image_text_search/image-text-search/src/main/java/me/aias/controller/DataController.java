@@ -4,8 +4,7 @@ import ai.djl.ModelException;
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.ImageFactory;
 import ai.djl.translate.TranslateException;
-import io.milvus.client.ConnectFailedException;
-import io.milvus.client.HasCollectionResponse;
+import io.milvus.param.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +23,6 @@ import me.aias.service.FeatureService;
 import me.aias.service.LocalStorageService;
 import me.aias.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -66,12 +64,6 @@ public class DataController {
 
     @Autowired
     private LocalStorageService localStorageService;
-
-    @Value("${search.dimension}")
-    String dimension;
-
-    @Value("${search.collectionName}")
-    String collectionName;
 
     @ApiOperation(value = "提取特征")
     @GetMapping("/extractFeatures")
@@ -124,13 +116,12 @@ public class DataController {
 
             // 将向量插入Milvus向量引擎
             try {
-                HasCollectionResponse response = searchService.hasCollection(this.collectionName);
-                if (!response.hasCollection()) {
-                    searchService.createCollection(this.collectionName, Long.parseLong(this.dimension));
-                    searchService.createIndex(this.collectionName);
+                R<Boolean> response = searchService.hasCollection();
+                if (!response.getData()) {
+                    searchService.initSearchEngine();
                 }
-                searchService.insertVectors(this.collectionName, vectorIds, vectors);
-            } catch (ConnectFailedException e) {
+                searchService.insert(vectorIds, vectors);
+            } catch (Exception e) {
                 e.printStackTrace();
                 log.error(e.getMessage());
                 return new ResponseEntity<>(ResultRes.error(ResEnum.MILVUS_CONNECTION_ERROR.KEY, ResEnum.MILVUS_CONNECTION_ERROR.VALUE), HttpStatus.OK);

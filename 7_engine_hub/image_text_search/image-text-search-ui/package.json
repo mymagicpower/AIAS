@@ -1,7 +1,7 @@
 {
   "name": "voiceprint-search-ui",
   "version": "1.0.0",
-  "description": "Voiceprint Search UI Demo",
+  "description": "Image text Search UI Demo",
   "author": "Calvin <179209347@qq.com>",
   "scripts": {
     "dev": "vue-cli-service serve",
@@ -15,7 +15,7 @@
   "dependencies": {
     "crypto-js": "^3.1.9-1",
     "axios": "0.18.1",
-    "core-js": "3.6.5",
+    "core-js": "3.21.0",
     "easy-circular-progress": "1.0.4",
     "echarts": "^4.2.1",
     "element-ui": "2.13.2",
