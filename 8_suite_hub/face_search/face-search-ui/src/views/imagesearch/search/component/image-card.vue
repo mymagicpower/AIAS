@@ -2,7 +2,7 @@
   <div class="group-card">
     <div class="card-wrapper">
         <el-image
-          :src="data.imgUrl | img"
+          :src="data.imgUrl"
           :preview-src-list="[data.imgUrl]"
           fit="contain"
           lazy
@@ -15,7 +15,7 @@
 
       <div class="score">距离 {{ data.score }}</div>
       <div class="footer">
-        <div class="title">{{ data.id }}</div>
+        <div class="image-title">{{ data.id }}</div>
         <div class="date-time">{{ data.createTime }}</div>
       </div>
     </div>
@@ -68,7 +68,7 @@ export default {
             margin-top: 24px;
             @include flex-column;
             font-size: 12px;
-            .title {
+            .image-title {
                 @include ellipsis(120px);
                 @include all-height(18px);
             }

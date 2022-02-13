@@ -12,7 +12,7 @@
     <modules>
         <module>aiplatform-common</module>
         <module>aiplatform-logging</module>
-        <module>aiplatform-system</module>
+        <module>aiplatform-search</module>
         <module>aiplatform-tools</module>
         <module>aiplatform-generator</module>
     </modules>

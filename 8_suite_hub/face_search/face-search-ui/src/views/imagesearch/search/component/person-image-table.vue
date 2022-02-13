@@ -119,20 +119,12 @@ export default {
       return this.imgFile ? this.imgFile.url : ''
     }
   },
-  // watch: {
-  //   query: {
-  //     handler(oldValue, newValue) {
-  //       this.imgFile = ''
-  //     },
-  //     deep: true
-  //   }
-  // },
   async mounted() {
     this.setEmptyTable()
   },
   methods: {
     upload() {
-      return this.imageSearchApi + '?topK=' + this.topK + '&type=1'
+      return this.imageSearchApi + '?topK=' + this.topK
     },
     restQuery() {
       this.imgFile = {}
@@ -148,7 +140,6 @@ export default {
         if (response.total) {
           const data = response.data
           data.forEach(a => {
-            // a.score = (new Number(a.score) * 100).toFixed(0)
             a.score = (Number(a.score)).toFixed(2)
           })
           this.tableData = data.sort((a, b) => {
@@ -163,7 +154,7 @@ export default {
         this.tableData = []
         this.page.total = 0
       }
-      // fileList[0].status = 'ready'
+      fileList[fileList.length - 1].status = 'ready'
     },
     handleFileChange(file, fileList) {
       if (fileList[0] && fileList[0].size > 2097152) {
@@ -172,6 +163,7 @@ export default {
         return false
       }
       this.imgFile = file
+      fileList[fileList.length - 1].status = 'ready'
     },
     handleUploadBefore(file) {
       if (file.size > 2097152) {
