@@ -23,12 +23,30 @@ file:
   # 文件大小 /M
   maxSize: 3000
 
-##################### 向量引擎 ###############################
+# Vector Engine - Milvus
 search:
   host: 127.0.0.1
   port: 19530
-  indexFileSize: 1024 # maximum size (in MB) of each index file
-  nprobe: 16
+
+  # https://milvus.io/cn/docs/v2.0.0/build_index.md
+  # https://milvus.io/cn/docs/v2.0.0/metric.md#floating
+  # For floating point vectors:
+  #  IVF_FLAT
+  #  IVF_SQ8
+  #  IVF_PQ
+  #  HNSW
+  #  ANNOY
+  #  RHNSW_FLAT
+  #  RHNSW_PQ
+  #  RHNSW_SQ
+  # For binary vectors:
+  #  BIN_IVF_FLAT
+  indexType: IVF_FLAT
+  # 选择内积 IP (Inner Product) 作为距离计算方式 MetricType.IP
+  metricType: IP
+
+  nprobe: 256
   nlist: 16384
-  dimension: 768 #dimension of each vector
+  size: 768 # 设定词汇表的最大量为768
   collectionName: dna #collection name
+  partitionName: p1

@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ModelConfiguration {
     // 设定词汇表的最大量为768
-    @Value("${search.dimension}")
+    @Value("${search.size}")
     private int size;
 
     @Bean

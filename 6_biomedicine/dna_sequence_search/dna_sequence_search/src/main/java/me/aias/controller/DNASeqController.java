@@ -1,7 +1,6 @@
 package me.aias.controller;
 
-import io.milvus.client.ConnectFailedException;
-import io.milvus.client.HasCollectionResponse;
+import io.milvus.param.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -10,13 +9,8 @@ import me.aias.common.sentence.VectorizerModel;
 import me.aias.common.utils.DataUtils;
 import me.aias.common.utils.FeatureUtils;
 import me.aias.common.utils.FileUtils;
-import me.aias.config.FileProperties;
-import me.aias.domain.DNAInfoDto;
-import me.aias.domain.LocalStorage;
-import me.aias.domain.ResEnum;
-import me.aias.domain.ResultRes;
+import me.aias.domain.*;
 import me.aias.service.DNAService;
-import me.aias.service.FeatureService;
 import me.aias.service.LocalStorageService;
 import me.aias.service.SearchService;
 import org.apache.spark.ml.linalg.DenseVector;
@@ -52,7 +46,6 @@ import java.util.concurrent.ConcurrentHashMap;
 @Api(tags = "DNA数据管理")
 @RequestMapping("/api/text")
 public class DNASeqController {
-    private final FileProperties properties;
     @Autowired
     private VectorizerModel vectorizerModel;
 
@@ -63,16 +56,7 @@ public class DNASeqController {
     private SearchService searchService;
 
     @Autowired
-    private FeatureService featureService;
-
-    @Autowired
     private LocalStorageService localStorageService;
-
-    @Value("${search.dimension}")
-    int dimension;
-
-    @Value("${search.collectionName}")
-    String collectionName;
 
     @ApiOperation(value = "提取DNA特征值")
     @GetMapping("/extractFeatures")
@@ -107,6 +91,7 @@ public class DNASeqController {
         // 解析DNA信息
         ConcurrentHashMap<Long, DNAInfoDto> map = textService.getMap();
         long size = map.size();
+        int dimension = 0;
         for (int i = 0; i < rowList.size(); i++) {
             textInfoDto = new DNAInfoDto();
             String label = rowList.get(i).getString(0);
@@ -129,21 +114,25 @@ public class DNASeqController {
 
         // 将向量插入向量引擎
         try {
-
-            HasCollectionResponse response = searchService.hasCollection(this.collectionName);
-            if (!response.hasCollection()) {
-                searchService.createCollection(this.collectionName, dimension);
-                searchService.createIndex(this.collectionName);
+            R<Boolean> response = searchService.hasCollection();
+            if (!response.getData()) {
+                searchService.initSearchEngine(dimension);
             }
-            searchService.insertVectors(this.collectionName, list);
+            List<Long> vectorIds = new ArrayList<>();
+            List<List<Float>> vectors = new ArrayList<>();
+            for (DNAInfoDto textInfo : list) {
+                vectorIds.add(textInfo.getId());
+                vectors.add(textInfo.getFeature());
+            }
+            searchService.insert(vectorIds, vectors);
             textService.addTexts(list);
-        } catch (ConnectFailedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             log.error(e.getMessage());
             return new ResponseEntity<>(ResultRes.error(ResEnum.MILVUS_CONNECTION_ERROR.KEY, ResEnum.MILVUS_CONNECTION_ERROR.VALUE), HttpStatus.OK);
         }
 
 
-        return new ResponseEntity<>(ResultRes.success(), HttpStatus.OK);
+        return new ResponseEntity<>(ResultBean.success(), HttpStatus.OK);
     }
 }

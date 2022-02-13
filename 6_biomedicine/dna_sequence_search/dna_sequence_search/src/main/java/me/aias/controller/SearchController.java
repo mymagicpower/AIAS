@@ -1,8 +1,9 @@
 package me.aias.controller;
 
 import com.google.common.collect.Lists;
-import io.milvus.client.ConnectFailedException;
-import io.milvus.client.SearchResponse;
+import io.milvus.Response.SearchResultsWrapper;
+import io.milvus.grpc.SearchResults;
+import io.milvus.param.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -49,9 +50,6 @@ public class SearchController {
     @Autowired
     private FeatureService featureService;
 
-    @Value("${search.collectionName}")
-    String collectionName;
-
     @GetMapping("/sequence")
     @ApiOperation(value = "DNA序列搜索", nickname = "search")
     public ResultBean search(@RequestParam("sequence") String sequence, @RequestParam(value = "topK") String topk) {
@@ -63,8 +61,8 @@ public class SearchController {
                 new StructField("kmers", new ArrayType(DataTypes.StringType, false), false, Metadata.empty())
         });
 
-        Long topK = Long.parseLong(topk);
-        List<Float> vectorToSearch = null;
+        Integer topK = Integer.parseInt(topk);
+        List<Float> vectorToSearch;
         try {
             //获取数据 DataFrames
             List<Row> rawData = DataUtils.getRawData("", sequence);
@@ -81,50 +79,27 @@ public class SearchController {
 
         try {
             // 根据向量搜索
-            SearchResponse searchResponse = searchService.search(this.collectionName, topK, vectorsToSearch);
-            List<List<Long>> resultIds = searchResponse.getResultIdsList();
-            if (resultIds == null || resultIds.size() == 0) {
-                return ResultBean.failure().add(ResEnum.INFO_NOT_FOUND.KEY, ResEnum.INFO_NOT_FOUND.VALUE);
-            }
-            List<String> idList = Lists.transform(resultIds.get(0), (entity) -> {
-                return entity.toString();
-            });
+            R<SearchResults> searchResponse = searchService.search(topK, vectorsToSearch);
+            SearchResultsWrapper wrapper = new SearchResultsWrapper(searchResponse.getData().getResults());
+            List<SearchResultsWrapper.IDScore> scores = wrapper.getIDScore(0);
 
             // 根据ID获取文本信息
             ConcurrentHashMap<Long, DNAInfoDto> map = textService.getMap();
             List<DNAInfoRes> textInfoResList = new ArrayList<>();
-            for (String uid : idList) {
-                Long id = Long.parseLong(uid);
-                DNAInfoDto dnaInfoDto = map.get(id);
+            for (SearchResultsWrapper.IDScore score : scores) {
+                DNAInfoDto dnaInfoDto = map.get(score.getLongID());
                 DNAInfoRes textInfoRes = new DNAInfoRes();
-                Float score = maxScoreForTextId(searchResponse, id);
-                textInfoRes.setId(id);
-                textInfoRes.setScore(score);
+                textInfoRes.setId(score.getLongID());
+                textInfoRes.setScore(score.getScore());
                 textInfoRes.setLabel(dnaInfoDto.getLabel());
                 textInfoRes.setSequence(dnaInfoDto.getSequence());
                 textInfoResList.add(textInfoRes);
             }
-
             return ResultBean.success().add("result", textInfoResList);
-//            return new ResponseEntity<>(ResultRes.success(textInfoResList, textInfoResList.size()), HttpStatus.OK);
-        } catch (ConnectFailedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             log.error(e.getMessage());
             return ResultBean.failure().add(ResEnum.MILVUS_CONNECTION_ERROR.KEY, ResEnum.MILVUS_CONNECTION_ERROR.VALUE);
         }
-    }
-
-    private Float maxScoreForTextId(SearchResponse searchResponse, Long id) {
-        float maxScore = -1;
-        List<SearchResponse.QueryResult> list = searchResponse.getQueryResultsList().get(0);
-        for (SearchResponse.QueryResult result : list) {
-            if (result.getVectorId() == id.longValue()) {
-                if (result.getDistance() > maxScore) {
-                    maxScore = result.getDistance();
-                }
-            }
-        }
-
-        return maxScore;
     }
 }

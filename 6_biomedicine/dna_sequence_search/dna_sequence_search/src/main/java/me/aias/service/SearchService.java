@@ -1,80 +1,71 @@
 package me.aias.service;
 
-import io.milvus.client.*;
-import me.aias.domain.DNAInfoDto;
+import io.milvus.client.MilvusClient;
+import io.milvus.grpc.MutationResult;
+import io.milvus.grpc.QueryResults;
+import io.milvus.grpc.SearchResults;
+import io.milvus.param.R;
+import io.milvus.param.RpcStatus;
+import me.aias.common.milvus.ConnectionPool;
 
 import java.util.List;
 
-/**
- * 搜索服务接口
- *
- * @author Calvin
- * @date 2021-12-19
- **/
 public interface SearchService {
-    // 引擎初始化
-    void initSearchEngine() throws ConnectFailedException;
+    // 重置向量引擎
+    void clearSearchEngine();
+
+    // 初始化向量引擎
+    void initSearchEngine(Integer dimension);
+
+    // 获取连接池
+    ConnectionPool getConnectionPool(boolean refresh);
+
+    // 获取Milvus Client
+    MilvusClient getClient(ConnectionPool connPool);
 
     // 检查是否存在 collection
-    HasCollectionResponse hasCollection(MilvusClient client, String collectionName);
+    void returnConnection(ConnectionPool connPool, MilvusClient client);
 
-    HasCollectionResponse hasCollection(String collectionName) throws ConnectFailedException;
+    // 检查是否存在 collection
+    R<Boolean> hasCollection(MilvusClient milvusClient);
+    R<Boolean> hasCollection();
 
     // 创建 collection
-    Response createCollection(
-            MilvusClient client, String collectionName, long dimension, long indexFileSize);
+    R<RpcStatus> createCollection(MilvusClient milvusClient, Integer dimension, long timeoutMiliseconds) ;
 
-    Response createCollection(String collectionName, long dimension) throws ConnectFailedException;
+    // 加载 collection
+    R<RpcStatus> loadCollection(MilvusClient milvusClient);
+
+    // 释放 collection
+    R<RpcStatus> releaseCollection(MilvusClient milvusClient);
 
     // 删除 collection
-    Response dropCollection(MilvusClient client, String collectionName);
+    R<RpcStatus> dropCollection(MilvusClient milvusClient);
 
-    // 查看 collection 信息
-    Response getCollectionStats(MilvusClient client, String collectionName);
+    // 创建 分区
+    R<RpcStatus> createPartition(MilvusClient milvusClient, String partitionName);
 
-    void insertVectors(String collectionName, Long id, List<Float> feature) throws ConnectFailedException;
+    // 删除 分区
+    R<RpcStatus> dropPartition(MilvusClient milvusClient, String partitionName);
 
-    void insertVectors(String collectionName, List<Long> vectorIds, List<List<Float>> vectors) throws ConnectFailedException;
-
-    void insertVectors(String collectionName, List<DNAInfoDto> list) throws ConnectFailedException;
-
-    InsertResponse insertVectors(
-            MilvusClient client, String collectionName, List<Long> vectorIds, List<List<Float>> vectors);
-
-    // 查询向量数量
-    long count(MilvusClient client, String collectionName);
-
-    // 根据ID获取向量
-    GetEntityByIDResponse getEntityByID(
-            MilvusClient client, String collectionName, List<Long> vectorIds);
-
-    // 搜索向量
-    SearchResponse search(String collectionName, long topK, List<List<Float>> vectorsToSearch) throws ConnectFailedException;
-
-    SearchResponse search(
-            MilvusClient client,
-            String collectionName,
-            int nprobe,
-            long topK,
-            List<List<Float>> vectorsToSearch);
-
-    // 删除向量
-    Response deleteVectorsByIds(MilvusClient client, String collectionName, List<Long> vectorIds);
+    // 是否存在分区
+    R<Boolean> hasPartition(MilvusClient milvusClient, String partitionName);
 
     // 创建 index
-    Response createIndex(MilvusClient client, String collectionName);
-
-    Response createIndex(String collectionName) throws ConnectFailedException;
-
-    // 查看索引信息
-    GetIndexInfoResponse getIndexInfo(MilvusClient client, String collectionName);
+    R<RpcStatus> createIndex(MilvusClient client);
 
     // 删除 index
-    Response dropIndex(MilvusClient client, String collectionName);
+    R<RpcStatus> dropIndex(MilvusClient client);
 
-    // 压缩 collection
-    Response compactCollection(MilvusClient client, String collectionName);
+    // 插入向量
+    R<MutationResult> insert(List<Long> vectorIds, List<List<Float>> vectors);
 
-    // 检查 collection 中是否有 partition "tag"
-    HasPartitionResponse hasPartition(MilvusClient client, String collectionName, String tag);
+    // 查询向量
+    R<QueryResults> query(String expr);
+
+    // 搜索向量
+    R<SearchResults> search(Integer topK, List<List<Float>> vectorsToSearch);
+
+    // 删除向量
+    R<MutationResult> delete(String expr);
 }
