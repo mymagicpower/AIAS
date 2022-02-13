@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: '训练 UI',
+  title: '视频搜索',
 
   /**
    * @type {boolean} true | false

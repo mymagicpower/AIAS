@@ -1,19 +1,18 @@
 package me.aias.controller;
 
-import ai.djl.modality.cv.Image;
-import ai.djl.modality.cv.ImageFactory;
-import com.google.common.collect.Lists;
-import io.milvus.client.ConnectFailedException;
-import io.milvus.client.SearchResponse;
+import io.milvus.Response.SearchResultsWrapper;
+import io.milvus.grpc.SearchResults;
+import io.milvus.param.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import me.aias.common.face.FaceObject;
 import me.aias.common.utils.ImageUtil;
 import me.aias.domain.ImageInfoRes;
 import me.aias.domain.ResEnum;
 import me.aias.domain.ResultRes;
-import me.aias.service.FeatureService;
+import me.aias.service.DetectService;
 import me.aias.service.ImageService;
 import me.aias.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +32,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 搜索管理
+ *
  * @author Calvin
  * @date 2021-12-12
  **/
@@ -47,25 +47,23 @@ public class SearchController {
     @Autowired
     private ImageService imageService;
     @Autowired
-    private FeatureService featureService;
-
-    @Value("${search.faceCollectionName}")
-    String faceCollectionName;
-
+    private DetectService detectService;
     @Value("${image.baseurl}")
     String baseurl;
-    
+
     @PostMapping(value = "/image")
     @ApiOperation(value = "搜索图片", nickname = "searchImage")
     public ResponseEntity<Object> searchImage(@RequestParam("image") MultipartFile imageFile, @RequestParam(value = "topK") String topk) {
         // 根据base64 生成向量
         BufferedImage bufferedImage = ImageUtil.multipartFileToBufImage(imageFile);
-        Long topK = Long.parseLong(topk);
+        Integer topK = Integer.parseInt(topk);
 
-        Image img = ImageFactory.getInstance().fromImage(bufferedImage);
-        List<Float> vectorToSearch = null;
+        List<Float> vectorToSearch;
         try {
-            vectorToSearch = featureService.faceFeature(img);
+            //人脸检测 & 特征提取
+            List<FaceObject> faceObjects = detectService.faceDetect(bufferedImage);
+            //如何有多个人脸，取第一个（也可以选最大的，或者一起送入搜索引擎搜索）
+            vectorToSearch = faceObjects.get(0).getFeature();
         } catch (Exception e) {
             e.printStackTrace();
             log.error(e.getMessage());
@@ -77,43 +75,39 @@ public class SearchController {
 
         try {
             // 根据图片向量搜索
-            SearchResponse searchResponse = searchService.search(this.faceCollectionName, topK, vectorsToSearch);
-            List<List<Long>> resultIds = searchResponse.getResultIdsList();
-            List<String> idList = Lists.transform(resultIds.get(0), (entity) -> {
-                return entity.toString();
-            });
+            R<SearchResults> searchResponse = searchService.search(topK, vectorsToSearch);
+            SearchResultsWrapper wrapper = new SearchResultsWrapper(searchResponse.getData().getResults());
+            List<SearchResultsWrapper.IDScore> scores = wrapper.getIDScore(0);
 
             // 根据ID获取图片信息
             ConcurrentHashMap<String, String> map = imageService.getMap();
             List<ImageInfoRes> imageInfoResList = new ArrayList<>();
-            for (String id : idList) {
+            for (SearchResultsWrapper.IDScore score : scores) {
                 ImageInfoRes imageInfoRes = new ImageInfoRes();
-                Float score = maxScoreForImageId(searchResponse, Long.parseLong(id));
-                imageInfoRes.setScore(score);
-                imageInfoRes.setId(Long.parseLong(id));
-                imageInfoRes.setImgUrl(baseurl + map.get(id));
+                Float value = maxScoreForImageId(scores, score.getLongID());
+                imageInfoRes.setScore(value);
+                imageInfoRes.setId(score.getLongID());
+                imageInfoRes.setImgUrl(baseurl + map.get("" + score.getLongID()));
                 imageInfoResList.add(imageInfoRes);
             }
 
             return new ResponseEntity<>(ResultRes.success(imageInfoResList, imageInfoResList.size()), HttpStatus.OK);
-        } catch (ConnectFailedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             log.error(e.getMessage());
             return new ResponseEntity<>(ResultRes.error(ResEnum.MILVUS_CONNECTION_ERROR.KEY, ResEnum.MILVUS_CONNECTION_ERROR.VALUE), HttpStatus.OK);
         }
     }
 
-    private Float maxScoreForImageId(SearchResponse searchResponse, Long imageId) {
+    private Float maxScoreForImageId(List<SearchResultsWrapper.IDScore> scores, Long imageId) {
         float maxScore = -1;
-        List<SearchResponse.QueryResult> list = searchResponse.getQueryResultsList().get(0);
-        for (SearchResponse.QueryResult result : list) {
-            if (result.getVectorId() == imageId.longValue()) {
-                if (result.getDistance() > maxScore) {
-                    maxScore = result.getDistance();
+        for (SearchResultsWrapper.IDScore score : scores) {
+            if (score.getLongID() == imageId.longValue()) {
+                if (score.getScore() > maxScore) {
+                    maxScore = score.getScore();
                 }
             }
         }
-
         return maxScore;
     }
 }

@@ -1,12 +1,11 @@
 <template>
-  <div class="person-image-table">
+  <div class="person-image-list">
     <div class="head">
       <div class="bts">
         TopK：<el-input v-model="topK" type="primary" style="margin:0 5px;width: 100px;" placeholder="输入TopK" />
         <el-upload
-          ref="avatarUploader"
+          ref="imageUploader"
           name="image"
-          style="height: 28px;"
           :on-change="handleFileChange"
           :before-upload="handleUploadBefore"
           :on-success="handleSuccess"
@@ -134,7 +133,7 @@ export default {
     doFaceQuery() {
       this.page.pageNum = 1
       this.type = 1
-      this.$refs.avatarUploader.submit()
+      this.$refs.imageUploader.submit()
     },
     handleSuccess(response, file, fileList) {
       if (response.success && response.data) {
@@ -156,15 +155,16 @@ export default {
         this.tableData = []
         this.page.total = 0
       }
-      // fileList[0].status = 'ready'
+      fileList[fileList.length - 1].status = 'ready'
     },
     handleFileChange(file, fileList) {
       if (fileList[0] && fileList[0].size > 2097152) {
         this.$message.warning('请上传小于2M大小的图片')
-        this.$refs.avatarUploader.clearFiles()
+        this.$refs.imageUploader.clearFiles()
         return false
       }
       this.imgFile = file
+      fileList[fileList.length - 1].status = 'ready'
     },
     handleUploadBefore(file) {
       if (file.size > 2097152) {
@@ -173,13 +173,13 @@ export default {
       }
     },
     removeField() {
-      this.$refs.avatarUploader.clearFiles()
+      this.$refs.imageUploader.clearFiles()
     }
   }
 }
 </script>
 
-<style lang='scss' scoped>
+<style lang='scss'>
   @import "~@/assets/styles/base";
 
 .left {
@@ -197,38 +197,50 @@ export default {
   flex-wrap: wrap;
 }
 
-.person-image-table {
+.el-image {
+  display: inline-block;
+  text-align: center;
+  background: #ccc;
+  color: #fff;
+  white-space: nowrap;
   position: relative;
+  overflow: hidden;
+  vertical-align: middle;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 16px;
+}
+
+.person-image-list {
+  position: relative;
+  top: 15px;
   box-sizing: border-box;
-  height: calc(100vh - 200px);
+  height: calc(100vh - 100px);
+}
 
-  :global(.el-radio-button__inner) {
-    color: rgba(14, 37, 60, 1);
-    font-weight: 400;
-
-    .iconfont {
-      color: rgba(14, 37, 60, 1);
-      font-weight: 400;
-    }
-  }
-
-  :global(.el-upload) {
-    border: none;
-    display: inherit;
-  }
-
-  :global(.el-upload-dragger) {
+.el-upload-dragger {
     border: none;
     border-radius: 0;
     box-sizing: border-box;
-    width: 170px;
-    height: 36px;
+    width: 200px;
+    height: 40px;
     cursor: pointer;
     position: relative;
     overflow: hidden;
+}
+.el-radio-button__inner{
+  color: rgba(14, 37, 60, 1);
+  font-weight: 400;
+  .iconfont {
+    color: rgba(14, 37, 60, 1);
+    font-weight: 400;
   }
 }
-
+.el-upload{
+  border: none;
+  display: inherit;
+}
 .img-upload {
   @include all-height(36px);
   @include flex-row-between-center;

@@ -72,7 +72,7 @@ file:
     imageRootPath: /home/aias/file/image_root/ #图片文件根目录
   windows:
     ...
-    imageRootPath: C:\aias\file\image_root\ ##图片文件根目录
+    imageRootPath: file:/D:/aias/file/image_root/ ##图片文件根目录
     ...
 ```
 
@@ -165,29 +165,10 @@ http://localhost:8089/swagger-ui.html
 
 - 初始化向量引擎(清空数据): 
 me.aias.tools.MilvusInit.java 
-```bash
-        String host = "127.0.0.1";
-        int port = 19530;
-        final String collectionName = "faces"; // collection name
 
-        MilvusClient client = new MilvusGrpcClient();
-        // Connect to Milvus server
-        ConnectParam connectParam = new ConnectParam.Builder().withHost(host).withPort(port).build();
-        try {
-            Response connectResponse = client.connect(connectParam);
-        } catch (ConnectFailedException e) {
-            e.printStackTrace();
-        }
-
-        // 检查 collection 是否存在
-        HasCollectionResponse hasCollection = hasCollection(client, collectionName);
-        if (hasCollection.hasCollection()) {
-            dropIndex(client, collectionName);
-            dropCollection(client, collectionName);
-        }
-       ...
-
-```
+- Milvus向量引擎参考链接     
+[Milvus向量引擎官网](https://milvus.io/cn/docs/overview.md)      
+[Milvus向量引擎Github](https://github.com/milvus-io)
 
 ### 官网：
 [官网链接](http://www.aias.top/)

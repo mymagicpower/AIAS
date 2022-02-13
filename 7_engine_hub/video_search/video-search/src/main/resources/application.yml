@@ -45,12 +45,29 @@ face:
   # 人脸特征提取模型
   feature: https://aias-home.oss-cn-beijing.aliyuncs.com/models/face/face_feature.zip
 
-##################### 向量引擎 ###############################
+# Vector Engine - Milvus
 search:
   host: 127.0.0.1
   port: 19530
-  indexFileSize: 1024 # maximum size (in MB) of each index file
+
+  # https://milvus.io/cn/docs/v2.0.0/build_index.md
+  # https://milvus.io/cn/docs/v2.0.0/metric.md#floating
+  # For floating point vectors:
+  #  IVF_FLAT
+  #  IVF_SQ8
+  #  IVF_PQ
+  #  HNSW
+  #  ANNOY
+  #  RHNSW_FLAT
+  #  RHNSW_PQ
+  #  RHNSW_SQ
+  # For binary vectors:
+  #  BIN_IVF_FLAT
+  indexType: IVF_FLAT
+  metricType: L2
+
   nprobe: 256
   nlist: 16384
-  faceDimension: 512 #dimension of each vector
-  faceCollectionName: faces #collection name
+  dimension: 512 # dimension of each vector
+  collectionName: video_images #collection name
+  partitionName: p1

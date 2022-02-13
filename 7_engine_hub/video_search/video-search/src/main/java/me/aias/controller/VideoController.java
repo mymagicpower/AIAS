@@ -3,8 +3,7 @@ package me.aias.controller;
 import ai.djl.ModelException;
 import ai.djl.modality.cv.output.Rectangle;
 import ai.djl.translate.TranslateException;
-import io.milvus.client.ConnectFailedException;
-import io.milvus.client.HasCollectionResponse;
+import io.milvus.param.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -62,12 +61,6 @@ public class VideoController {
     @Autowired
     private LocalStorageService localStorageService;
 
-    @Value("${search.faceDimension}")
-    String faceDimension;
-
-    @Value("${search.faceCollectionName}")
-    String faceCollectionName;
-
     @Value("${image.baseurl}")
     String baseurl;
 
@@ -93,7 +86,7 @@ public class VideoController {
         try (FFmpegFrameGrabber grabber = new FFmpegFrameGrabber(input)) {
             grabber.start();
 
-            Frame frame = null;
+            Frame frame;
             Java2DFrameConverter converter = new Java2DFrameConverter();
             // 抓取图像画面
             int i = 1;
@@ -101,7 +94,7 @@ public class VideoController {
             for (; (frame = grabber.grabImage()) != null; ) {
                 BufferedImage image = converter.convert(frame);
                 try {
-                    List<FaceObject> faceObjects = detectService.faceDetect(image, "" + i, imagesPath);
+                    List<FaceObject> faceObjects = detectService.faceDetect(image);
                     if (faceObjects.size() > 0) {
                         if (count++ < mod)
                             continue;
@@ -118,6 +111,8 @@ public class VideoController {
                             imageInfoDto.setImageId(Long.valueOf(size + 1));
                             List<SimpleFaceObject> faceList = new ArrayList<>();
                             //转换检测对象，方便后面json转换
+                            List<Long> vectorIds = new ArrayList<>();
+                            List<List<Float>> vectors = new ArrayList<>();
                             for (FaceObject faceObject : faceObjects) {
                                 Rectangle rect = faceObject.getBoundingBox().getBounds();
                                 SimpleFaceObject faceDTO = new SimpleFaceObject();
@@ -128,15 +123,17 @@ public class VideoController {
                                 faceDTO.setWidth((int) rect.getWidth());
                                 faceDTO.setHeight((int) rect.getHeight());
                                 faceList.add(faceDTO);
+
+                                vectorIds.add(imageInfoDto.getImageId());
+                                vectors.add(faceObject.getFeature());
                             }
                             imageInfoDto.setFaceObjects(faceList);
-                            HasCollectionResponse response = searchService.hasCollection(this.faceCollectionName);
-                            if (!response.hasCollection()) {
-                                searchService.createCollection(this.faceCollectionName, Long.parseLong(this.faceDimension));
-                                searchService.createIndex(this.faceCollectionName);
+                            R<Boolean> response = searchService.hasCollection();
+                            if (!response.getData()) {
+                                searchService.initSearchEngine();
                             }
-                            searchService.insertVectors(this.faceCollectionName, imageInfoDto);
-                        } catch (ConnectFailedException e) {
+                            searchService.insert(vectorIds, vectors);
+                        } catch (Exception e) {
                             e.printStackTrace();
                             log.error(e.getMessage());
                             return new ResponseEntity<>(ResultRes.error(ResEnum.MILVUS_CONNECTION_ERROR.KEY, ResEnum.MILVUS_CONNECTION_ERROR.VALUE), HttpStatus.OK);

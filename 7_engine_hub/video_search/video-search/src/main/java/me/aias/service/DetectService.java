@@ -15,6 +15,6 @@ import java.util.List;
  * @date 2021-12-12
  **/
 public interface DetectService {
-    List<FaceObject> faceDetect(BufferedImage image, String name, String path)
+    List<FaceObject> faceDetect(BufferedImage image)
             throws IOException, ModelException, TranslateException;
 }
