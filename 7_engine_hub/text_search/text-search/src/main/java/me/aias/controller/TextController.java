@@ -115,6 +115,6 @@ public class TextController {
             e.printStackTrace();
         }
 
-        return new ResponseEntity<>(ResultRes.success(), HttpStatus.OK);
+        return new ResponseEntity<>(ResultBean.success(), HttpStatus.OK);
     }
 }

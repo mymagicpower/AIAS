@@ -151,6 +151,6 @@ public class VideoController {
             }
         }
 
-        return new ResponseEntity<>(ResultRes.success(), HttpStatus.OK);
+        return new ResponseEntity<>(ResultBean.success(), HttpStatus.OK);
     }
 }
