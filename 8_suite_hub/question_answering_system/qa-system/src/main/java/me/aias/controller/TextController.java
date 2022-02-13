@@ -5,23 +5,17 @@ import ai.djl.translate.TranslateException;
 import de.siegmar.fastcsv.reader.CsvParser;
 import de.siegmar.fastcsv.reader.CsvReader;
 import de.siegmar.fastcsv.reader.CsvRow;
-import io.milvus.client.ConnectFailedException;
-import io.milvus.client.HasCollectionResponse;
+import io.milvus.param.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import me.aias.config.FileProperties;
-import me.aias.domain.LocalStorage;
-import me.aias.domain.ResEnum;
-import me.aias.domain.ResultRes;
-import me.aias.domain.TextInfoDto;
+import me.aias.domain.*;
 import me.aias.service.FeatureService;
 import me.aias.service.LocalStorageService;
 import me.aias.service.SearchService;
 import me.aias.service.TextService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,8 +42,6 @@ import java.util.concurrent.ConcurrentHashMap;
 @Api(tags = "文本管理")
 @RequestMapping("/api/text")
 public class TextController {
-    private final FileProperties properties;
-
     @Autowired
     private TextService textService;
 
@@ -61,12 +53,6 @@ public class TextController {
 
     @Autowired
     private LocalStorageService localStorageService;
-
-    @Value("${search.dimension}")
-    String dimension;
-
-    @Value("${search.collectionName}")
-    String collectionName;
 
     @ApiOperation(value = "提取文本特征值")
     @GetMapping("/extractFeatures")
@@ -83,6 +69,8 @@ public class TextController {
         long size = map.size();
         try (CsvParser csvParser = csvReader.parse(file, StandardCharsets.UTF_8)) {
             CsvRow row;
+            List<Long> vectorIds = new ArrayList<>();
+            List<List<Float>> vectors = new ArrayList<>();
             while ((row = csvParser.nextRow()) != null) {
                 textInfoDto = new TextInfoDto();
                 String question = row.getField(0);
@@ -95,19 +83,19 @@ public class TextController {
                 List<Float> feature = featureService.textFeature(question);
                 textInfoDto.setFeature(feature);
                 list.add(textInfoDto);
+                vectorIds.add(textInfoDto.getId());
+                vectors.add(textInfoDto.getFeature());
             }
 
             // 将向量插入向量引擎
             try {
-
-                HasCollectionResponse response = searchService.hasCollection(this.collectionName);
-                if (!response.hasCollection()) {
-                    searchService.createCollection(this.collectionName, Long.parseLong(this.dimension));
-                    searchService.createIndex(this.collectionName);
+                R<Boolean> response = searchService.hasCollection();
+                if (!response.getData()) {
+                    searchService.initSearchEngine();
                 }
-                searchService.insertVectors(this.collectionName, list);
+                searchService.insert(vectorIds, vectors);
                 textService.addTexts(list);
-            } catch (ConnectFailedException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
                 log.error(e.getMessage());
                 return new ResponseEntity<>(ResultRes.error(ResEnum.MILVUS_CONNECTION_ERROR.KEY, ResEnum.MILVUS_CONNECTION_ERROR.VALUE), HttpStatus.OK);
@@ -121,6 +109,6 @@ public class TextController {
             e.printStackTrace();
         }
 
-        return new ResponseEntity<>(ResultRes.success(), HttpStatus.OK);
+        return new ResponseEntity<>(ResultBean.success(), HttpStatus.OK);
     }
 }
