@@ -2,7 +2,7 @@ package me.aias.config;
 
 import ai.djl.MalformedModelException;
 import ai.djl.repository.zoo.ModelNotFoundException;
-import me.aias.voice.VoiceprintModel;
+import me.aias.common.voice.VoiceprintModel;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

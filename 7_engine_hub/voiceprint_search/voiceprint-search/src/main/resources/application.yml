@@ -21,8 +21,8 @@ file:
     path: /home/aias/file/
     rootPath: /home/aias/file/audio_root/ #压缩包解压缩文件夹
   windows:
-    path: file:///D:/aias/file/
-    rootPath: file:///D:/aias/file/audio_root/ #压缩包解压缩文件夹
+    path: file:/D:/aias/file/
+    rootPath: file:/D:/aias/file/audio_root/ #压缩包解压缩文件夹
   # 文件大小 /M
   maxSize: 3000
 
@@ -33,12 +33,29 @@ audio:
   #  path: /Users/calvin/Documents/audio_root/ #文件存放文件夹
   baseUrl: http://127.0.0.1:8089/files/
   
-# 向量引擎 Milvus
+# Vector Engine - Milvus
 search:
   host: 127.0.0.1
   port: 19530
-  indexFileSize: 1024 # maximum size (in MB) of each index file
+
+  # https://milvus.io/cn/docs/v2.0.0/build_index.md
+  # https://milvus.io/cn/docs/v2.0.0/metric.md#floating
+  # For floating point vectors:
+  #  IVF_FLAT
+  #  IVF_SQ8
+  #  IVF_PQ
+  #  HNSW
+  #  ANNOY
+  #  RHNSW_FLAT
+  #  RHNSW_PQ
+  #  RHNSW_SQ
+  # For binary vectors:
+  #  BIN_IVF_FLAT
+  indexType: IVF_FLAT
+  metricType: L2
+
   nprobe: 256
   nlist: 16384
   dimension: 512 # dimension of each vector
   collectionName: voiceprint #collection name
+  partitionName: p1

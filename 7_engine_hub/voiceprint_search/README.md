@@ -77,8 +77,8 @@ file:
     path: /home/aias/file/
     rootPath: /home/aias/file/audio_root/ #压缩包解压缩文件夹
   windows:
-    path: file:///D:/aias/file/
-    rootPath: file:///D:/aias/file/audio_root/ #压缩包解压缩文件夹
+    path: file:/D:/aias/file/
+    rootPath: file:/D:/aias/file/audio_root/ #压缩包解压缩文件夹
     ...
 ```
 
@@ -97,54 +97,30 @@ java -jar voiceprint-search-0.1.0.jar
 
 ```
 
-## 3. 后端向量引擎部署（docker）
+## 3. 后端向量引擎部署（Milvus 2.0）
 #### 3.1 环境要求：
 - 需要安装docker运行环境，Mac环境可以使用Docker Desktop
 
 #### 3.2 拉取Milvus向量引擎镜像（用于计算特征值向量相似度）
-[安装文档](https://github.com/milvus-io/docs/blob/master/v0.10.0/site/zh-CN/quick_start/install_milvus/cpu_milvus_docker.md)
-##### 最新版本请参考官网
-- Milvus向量引擎参考链接     
-[Milvus向量引擎官网](https://milvus.io/cn/docs/overview.md)      
-[Milvus向量引擎Github](https://github.com/milvus-io)
-
+下载 milvus-standalone-docker-compose.yml 配置文件并保存为 docker-compose.yml        
+[单机版安装文档](https://milvus.io/docs/v2.0.0/install_standalone-docker.md)        
 ```bash
-sudo docker pull milvusdb/milvus:0.10.0-cpu-d061620-5f3c00
+wget https://github.com/milvus-io/milvus/releases/download/v2.0.0/milvus-standalone-docker-compose.yml -O docker-compose.yml
 ```
 
-#### 3.3 下载配置文件
-[vector_engine.zip](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/image_search/vector_engine.zip)  
-
-#### 3.4 启动 Docker 容器
-/Users/calvin/vector_engine为主机路径，根据需要修改。conf下为引擎所需的配置文件。
+#### 3.3 启动 Docker 容器
 ```bash
-docker run -d --name milvus_cpu_0.10.0 \
--p 19530:19530 \
--p 19121:19121 \
--p 9091:9091 \
--v /Users/calvin/vector_engine/db:/var/lib/milvus/db \
--v /Users/calvin/vector_engine/conf:/var/lib/milvus/conf \
--v /Users/calvin/vector_engine/logs:/var/lib/milvus/logs \
--v /Users/calvin/vector_engine/wal:/var/lib/milvus/wal \
-milvusdb/milvus:0.10.0-cpu-d061620-5f3c00
+sudo docker-compose up -d
 ```
 
 #### 3.5 编辑向量引擎连接配置信息
 - application.yml
 - 根据需要编辑向量引擎连接ip地址127.0.0.1为容器所在的主机ip
 ```bash
-##################### 向量引擎 ###############################
+################## 向量引擎 ################
 search:
   host: 127.0.0.1
   port: 19530
-  indexFileSize: 1024 # maximum size (in MB) of each index file
-  nprobe: 256
-  nlist: 16384
-  faceDimension: 512 #dimension of each vector
-  faceCollectionName: faces #collection name
-  commDimension: 512 #dimension of each vector
-  commCollectionName: comm #collection name
-
 ```
 
 ## 4. 打开浏览器
@@ -158,41 +134,21 @@ search:
 
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/audio_search/storage.png)
 
-- 视频搜索
-  上传图片，点击查询，可以看到返回的图片清单，根据相似度排序。
-
+- 音频搜索
+  上传wav格式音频文件，点击查询，可以看到返回的清单，根据相似度排序。     
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/audio_search/search.png)
 
 ## 5. 帮助信息
 - swagger接口文档:  
-http://localhost:8089/swagger-ui.html
+http://localhost:8089/swagger-ui.html     
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/audio_search/swagger.png)
 
 - 初始化向量引擎(清空数据): 
-me.aias.tools.MilvusInit.java 
-```bash
-        String host = "127.0.0.1";
-        int port = 19530;
-        final String collectionName = "voiceprint"; // collection name
+  me.aias.tools.MilvusInit.java 
 
-        MilvusClient client = new MilvusGrpcClient();
-        // Connect to Milvus server
-        ConnectParam connectParam = new ConnectParam.Builder().withHost(host).withPort(port).build();
-        try {
-            Response connectResponse = client.connect(connectParam);
-        } catch (ConnectFailedException e) {
-            e.printStackTrace();
-        }
-
-        // 检查 collection 是否存在
-        HasCollectionResponse hasCollection = hasCollection(client, collectionName);
-        if (hasCollection.hasCollection()) {
-            dropIndex(client, collectionName);
-            dropCollection(client, collectionName);
-        }
-       ...
-
-```
+- Milvus向量引擎参考链接     
+[Milvus向量引擎官网](https://milvus.io/cn/docs/overview.md)      
+[Milvus向量引擎Github](https://github.com/milvus-io)
 
 ### 官网：
 [官网链接](http://www.aias.top/)

@@ -145,7 +145,7 @@ export default {
       extract(id).then(response => {
         this.$message({
           type: 'success',
-          message: '已开始，刷新页面查看进度!'
+          message: '提取成功!'
         })
       })
     }

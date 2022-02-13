@@ -1,12 +1,11 @@
 <template>
-  <div class="image-table">
+  <div class="wave-table">
     <div class="head">
       <div class="bts">
         TopK：<el-input v-model="topK" type="primary" style="margin:0 5px;width: 100px;" placeholder="输入TopK" />
         <el-upload
-          ref="avatarUploader"
+          ref="waveUploader"
           name="audio"
-          style="height: 28px;"
           :on-change="handleFileChange"
           :before-upload="handleUploadBefore"
           :on-success="handleSuccess"
@@ -15,10 +14,10 @@
           :auto-upload="false"
           :action="upload()"
           :limit="0"
-          :show-file-list="true"
+          :show-file-list="false"
         >
           <el-input
-            style="margin-right: 5px;"
+            style="margin-right: 15px;"
             placeholder="请上传wav格式音频文件"
           >
             <i slot="prefix" class="el-icon-search el-input__icon" />
@@ -26,6 +25,7 @@
         </el-upload>
         <el-button
           ref="queryButton"
+          style="margin-left: 10px;"
           icon="el-icon-search"
           class="filter-item"
           size="medium"
@@ -115,7 +115,7 @@ export default {
     doFaceQuery() {
       this.page.pageNum = 1
       this.type = 1
-      this.$refs.avatarUploader.submit()
+      this.$refs.waveUploader.submit()
     },
     handleSuccess(response, file, fileList) {
       if (response.success && response.data) {
@@ -137,14 +137,16 @@ export default {
         this.tableData = []
         this.page.total = 0
       }
+      fileList[fileList.length - 1].status = 'ready'
     },
     handleFileChange(file, fileList) {
       if (fileList[0] && fileList[0].size > 2097152) {
         this.$message.warning('请上传小于2M大小的图片')
-        this.$refs.avatarUploader.clearFiles()
+        this.$refs.waveUploader.clearFiles()
         return false
       }
       this.imgFile = file
+      fileList[fileList.length - 1].status = 'ready'
     },
     handleUploadBefore(file) {
       if (file.size > 2097152) {
@@ -153,14 +155,14 @@ export default {
       }
     },
     removeField() {
-      this.$refs.avatarUploader.clearFiles()
+      this.$refs.waveUploader.clearFiles()
     }
   }
 }
 </script>
 
-<style lang='scss' scoped>
-  @import "~@/assets/styles/base";
+<style lang='scss'>
+@import "~@/assets/styles/base";
 
 .left {
   margin-left: 0 !important;
@@ -176,25 +178,44 @@ export default {
   overflow-y: auto;
   flex-wrap: wrap;
 }
-
-.image-table {
+.wave-table {
   position: relative;
+  top: 15px;
   box-sizing: border-box;
-  height: calc(100vh - 200px);
+  height: calc(100vh - 100px);
+}
 
-  :global(.el-radio-button__inner) {
+.el-upload-dragger {
+  border: none;
+  border-radius: 0;
+  box-sizing: border-box;
+  width: 200px;
+  height: 40px;
+  left: 2px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.el-radio-button__inner{
+  color: rgba(14, 37, 60, 1);
+  font-weight: 400;
+  .iconfont {
     color: rgba(14, 37, 60, 1);
     font-weight: 400;
-
-    .iconfont {
-      color: rgba(14, 37, 60, 1);
-      font-weight: 400;
-    }
   }
-
-  :global(.el-upload) {
-    border: none;
-    display: inherit;
+}
+.el-upload{
+  border: none;
+  display: inherit;
+}
+.img-upload {
+  @include all-height(36px);
+  @include flex-row-between-center;
+  width: 36px;
+  margin: 0 0 0 8px;
+  img {
+    width: 36px;
+    height: 36px;
   }
 }
 

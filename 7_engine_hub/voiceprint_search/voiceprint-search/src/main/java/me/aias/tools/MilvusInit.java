@@ -1,6 +1,14 @@
 package me.aias.tools;
 
-import io.milvus.client.*;
+import io.milvus.client.MilvusServiceClient;
+import io.milvus.param.ConnectParam;
+import io.milvus.param.R;
+import io.milvus.param.RpcStatus;
+import io.milvus.param.collection.DropCollectionParam;
+import io.milvus.param.collection.HasCollectionParam;
+import io.milvus.param.collection.ReleaseCollectionParam;
+import io.milvus.param.index.DropIndexParam;
+import io.milvus.param.partition.DropPartitionParam;
 
 /**
  * 搜索引擎初始化工具
@@ -9,49 +17,92 @@ import io.milvus.client.*;
  * @date 2021-12-12
  **/
 public class MilvusInit {
+    private static final MilvusServiceClient milvusClient;
 
-    public static void main(String[] args) throws InterruptedException {
+    static {
+        ConnectParam connectParam = ConnectParam.newBuilder()
+                .withHost("127.0.0.1")
+                .withPort(19530)
+                .build();
+        milvusClient = new MilvusServiceClient(connectParam);
+    }
 
-        String host = "127.0.0.1";
-        int port = 19530;
-        final String collectionName = "voiceprint"; // collection name
+    private static final String COLLECTION_NAME = "voiceprint";// collection name
+    private static final String VECTOR_FIELD = "feature";
 
-        MilvusClient client = new MilvusGrpcClient();
-        // Connect to Milvus server
-        ConnectParam connectParam = new ConnectParam.Builder().withHost(host).withPort(port).build();
+    public static void main(String[] args) {
         try {
-            Response connectResponse = client.connect(connectParam);
-        } catch (ConnectFailedException e) {
+            // 检查 collection 是否存在，不存在会抛异常
+            hasCollection();
+            releaseCollection();
+//            dropPartition("p1");
+            dropIndex();
+            dropCollection();
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
-        // 检查 collection 是否存在
-        HasCollectionResponse hasCollection = hasCollection(client, collectionName);
-        if (hasCollection.hasCollection()) {
-            dropIndex(client, collectionName);
-            dropCollection(client, collectionName);
-        }
-
         // 关闭 Milvus 连接
-        client.disconnect();
+        milvusClient.close();
     }
 
     // 检查是否存在 collection
-    public static HasCollectionResponse hasCollection(MilvusClient client, String collectionName) {
-        HasCollectionResponse response = client.hasCollection(collectionName);
+    private static R<Boolean> hasCollection() {
+        System.out.println("========== hasCollection() ==========");
+        R<Boolean> response = milvusClient.hasCollection(HasCollectionParam.newBuilder()
+                .withCollectionName(COLLECTION_NAME)
+                .build());
+        handleResponseStatus(response);
+        System.out.println(response);
         return response;
     }
 
     // 删除 collection
-    public static Response dropCollection(MilvusClient client, String collectionName) {
-        // Drop collection
-        Response dropCollectionResponse = client.dropCollection(collectionName);
-        return dropCollectionResponse;
+    private static R<RpcStatus> dropCollection() {
+        System.out.println("========== dropCollection() ==========");
+        R<RpcStatus> response = milvusClient.dropCollection(DropCollectionParam.newBuilder()
+                .withCollectionName(COLLECTION_NAME)
+                .build());
+        System.out.println(response);
+        return response;
+    }
+
+    private static R<RpcStatus> releaseCollection() {
+        System.out.println("========== releaseCollection() ==========");
+        R<RpcStatus> response = milvusClient.releaseCollection(ReleaseCollectionParam.newBuilder()
+                .withCollectionName(COLLECTION_NAME)
+                .build());
+        handleResponseStatus(response);
+        System.out.println(response);
+        return response;
     }
 
     // 删除 index
-    public static Response dropIndex(MilvusClient client, String collectionName) {
-        Response dropIndexResponse = client.dropIndex(collectionName);
-        return dropIndexResponse;
+    private static R<RpcStatus> dropIndex() {
+        System.out.println("========== dropIndex() ==========");
+        R<RpcStatus> response = milvusClient.dropIndex(DropIndexParam.newBuilder()
+                .withCollectionName(COLLECTION_NAME)
+                .withFieldName(VECTOR_FIELD)
+                .build());
+        handleResponseStatus(response);
+        System.out.println(response);
+        return response;
+    }
+
+    private static R<RpcStatus> dropPartition(String partitionName) {
+        System.out.println("========== dropPartition() ==========");
+        R<RpcStatus> response = milvusClient.dropPartition(DropPartitionParam.newBuilder()
+                .withCollectionName(COLLECTION_NAME)
+                .withPartitionName(partitionName)
+                .build());
+        handleResponseStatus(response);
+        System.out.println(response);
+        return response;
+    }
+
+    private static void handleResponseStatus(R<?> r) {
+        if (r.getStatus() != R.Status.Success.getCode()) {
+            throw new RuntimeException(r.getMessage());
+        }
     }
 }

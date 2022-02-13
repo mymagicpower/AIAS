@@ -1,4 +1,4 @@
-package me.aias.voice;
+package me.aias.common.voice;
 
 import ai.djl.MalformedModelException;
 import ai.djl.inference.Predictor;
@@ -18,22 +18,18 @@ import java.io.IOException;
  * @date 2021-12-12
  **/
 public final class VoiceprintModel {
-
     private ZooModel<float[][], float[]> model;
-    private Predictor<float[][], float[]> predictor;
 
     public void init(String modelUri) throws MalformedModelException, ModelNotFoundException, IOException {
         this.model = ModelZoo.loadModel(detectCriteria(modelUri));
-        this.predictor = model.newPredictor();
+    }
+
+    public ZooModel<float[][], float[]> getModel() {
+        return model;
     }
 
     public void close() {
         this.model.close();
-        this.predictor.close();
-    }
-
-    public float[] predict(float[][] mag) throws TranslateException {
-        return predictor.predict(mag);
     }
 
     private Criteria<float[][], float[]> detectCriteria(String modelUri) {

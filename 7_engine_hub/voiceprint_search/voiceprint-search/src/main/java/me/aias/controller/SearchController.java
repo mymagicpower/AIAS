@@ -2,9 +2,9 @@ package me.aias.controller;
 
 import ai.djl.Device;
 import ai.djl.ndarray.NDManager;
-import com.google.common.collect.Lists;
-import io.milvus.client.ConnectFailedException;
-import io.milvus.client.SearchResponse;
+import io.milvus.Response.SearchResultsWrapper;
+import io.milvus.grpc.SearchResults;
+import io.milvus.param.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -64,7 +64,7 @@ public class SearchController {
     @ApiOperation(value = "音频搜索", nickname = "searchAudio")
     public ResponseEntity<Object> searchImage(@RequestParam("audio") MultipartFile audioFile, @RequestParam(value = "topK") String topk) {
         // 生成向量
-        Long topK = Long.parseLong(topk);
+        Integer topK = Integer.parseInt(topk);
 
         float[][] mag;
         try {
@@ -95,43 +95,26 @@ public class SearchController {
 
         try {
             // 根据音频文件向量搜索
-            SearchResponse searchResponse = searchService.search(this.collectionName, topK, vectorsToSearch);
-            List<List<Long>> resultIds = searchResponse.getResultIdsList();
-            List<String> idList = Lists.transform(resultIds.get(0), (entity) -> {
-                return entity.toString();
-            });
+            R<SearchResults> searchResponse = searchService.search(topK, vectorsToSearch);
+            SearchResultsWrapper wrapper = new SearchResultsWrapper(searchResponse.getData().getResults());
+            List<SearchResultsWrapper.IDScore> scores = wrapper.getIDScore(0);
 
             // 根据ID获取图片信息
             ConcurrentHashMap<String, String> map = audioService.getMap();
             List<AudioInfoRes> audioInfoResList = new ArrayList<>();
-            for (String id : idList) {
+            for (SearchResultsWrapper.IDScore score : scores) {
                 AudioInfoRes imageInfoRes = new AudioInfoRes();
-                Float score = maxScore(searchResponse, Long.parseLong(id));
-                imageInfoRes.setScore(score);
-                imageInfoRes.setId(Long.parseLong(id));
-                imageInfoRes.setUrl(baseUrl + map.get(id));
+                imageInfoRes.setScore(score.getScore());
+                imageInfoRes.setId(score.getLongID());
+                imageInfoRes.setUrl(baseUrl + map.get("" + score.getLongID()));
                 audioInfoResList.add(imageInfoRes);
             }
 
             return new ResponseEntity<>(ResultRes.success(audioInfoResList, audioInfoResList.size()), HttpStatus.OK);
-        } catch (ConnectFailedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             log.error(e.getMessage());
             return new ResponseEntity<>(ResultRes.error(ResEnum.MILVUS_CONNECTION_ERROR.KEY, ResEnum.MILVUS_CONNECTION_ERROR.VALUE), HttpStatus.OK);
         }
-    }
-
-    private Float maxScore(SearchResponse searchResponse, Long imageId) {
-        float maxScore = -1;
-        List<SearchResponse.QueryResult> list = searchResponse.getQueryResultsList().get(0);
-        for (SearchResponse.QueryResult result : list) {
-            if (result.getVectorId() == imageId.longValue()) {
-                if (result.getDistance() > maxScore) {
-                    maxScore = result.getDistance();
-                }
-            }
-        }
-
-        return maxScore;
     }
 }

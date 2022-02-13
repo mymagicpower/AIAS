@@ -6,8 +6,7 @@ import ai.djl.ndarray.NDManager;
 import ai.djl.translate.TranslateException;
 import com.jlibrosa.audio.exception.FileFormatNotSupportedException;
 import com.jlibrosa.audio.wavFile.WavFileException;
-import io.milvus.client.ConnectFailedException;
-import io.milvus.client.HasCollectionResponse;
+import io.milvus.param.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -18,10 +17,7 @@ import me.aias.common.utils.UUIDUtil;
 import me.aias.common.utils.UserAgentUtil;
 import me.aias.common.utils.ZipUtil;
 import me.aias.config.FileProperties;
-import me.aias.domain.AudioInfo;
-import me.aias.domain.LocalStorage;
-import me.aias.domain.ResEnum;
-import me.aias.domain.ResultRes;
+import me.aias.domain.*;
 import me.aias.service.AudioService;
 import me.aias.service.FeatureService;
 import me.aias.service.LocalStorageService;
@@ -67,12 +63,6 @@ public class AudioController {
 
     @Autowired
     private LocalStorageService localStorageService;
-
-    @Value("${search.dimension}")
-    String dimension;
-
-    @Value("${search.collectionName}")
-    String collectionName;
 
     @ApiOperation(value = "视频解析图片帧并提取特征值")
     @GetMapping("/extractFeatures")
@@ -126,13 +116,12 @@ public class AudioController {
 
             // 将向量插入Milvus向量引擎
             try {
-                HasCollectionResponse response = searchService.hasCollection(this.collectionName);
-                if (!response.hasCollection()) {
-                    searchService.createCollection(this.collectionName, Long.parseLong(this.dimension));
-                    searchService.createIndex(this.collectionName);
+                R<Boolean> response = searchService.hasCollection();
+                if (!response.getData()) {
+                    searchService.initSearchEngine();
                 }
-                searchService.insertVectors(this.collectionName, vectorIds, vectors);
-            } catch (ConnectFailedException e) {
+                searchService.insert(vectorIds, vectors);
+            } catch (Exception e) {
                 e.printStackTrace();
                 log.error(e.getMessage());
                 return new ResponseEntity<>(ResultRes.error(ResEnum.MILVUS_CONNECTION_ERROR.KEY, ResEnum.MILVUS_CONNECTION_ERROR.VALUE), HttpStatus.OK);
@@ -149,6 +138,6 @@ public class AudioController {
             e.printStackTrace();
         }
 
-        return new ResponseEntity<>(ResultRes.success(), HttpStatus.OK);
+        return new ResponseEntity<>(ResultBean.success(), HttpStatus.OK);
     }
 }

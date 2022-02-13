@@ -1,9 +1,12 @@
 package me.aias.service.impl;
 
+import ai.djl.inference.Predictor;
+import ai.djl.modality.cv.Image;
+import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
 import lombok.extern.slf4j.Slf4j;
 import me.aias.service.FeatureService;
-import me.aias.voice.VoiceprintModel;
+import me.aias.common.voice.VoiceprintModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,17 +26,19 @@ public class FeatureServiceImpl implements FeatureService {
     private VoiceprintModel featureModel;
 
     public List<Float> feature(float[][] mag) throws TranslateException {
-        float[] embeddings = null;
-        embeddings = featureModel.predict(mag);
-        List<Float> feature = new ArrayList<>();
+        ZooModel<float[][], float[]> model = featureModel.getModel();
+        try (Predictor<float[][], float[]> predictor = model.newPredictor()) {
+            float[] embeddings = predictor.predict(mag);
+            List<Float> feature = new ArrayList<>();
 
-        if (embeddings != null) {
-            for (int i = 0; i < embeddings.length; i++) {
-                feature.add(embeddings[i]);
+            if (embeddings != null) {
+                for (int i = 0; i < embeddings.length; i++) {
+                    feature.add(embeddings[i]);
+                }
+            } else {
+                return null;
             }
-        } else {
-            return null;
+            return feature;
         }
-        return feature;
     }
 }

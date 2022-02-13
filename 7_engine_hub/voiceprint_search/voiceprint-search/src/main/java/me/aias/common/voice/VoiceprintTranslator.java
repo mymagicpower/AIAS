@@ -1,4 +1,4 @@
-package me.aias.voice;
+package me.aias.common.voice;
 
 import ai.djl.ndarray.NDArray;
 import ai.djl.ndarray.NDList;
