@@ -42,9 +42,21 @@ export const constantRoutes = [
     children: [
       {
         path: 'index',
-        component: () => import('@/views/search/index'),
+        component: () => import('@/views/textsearch/index'),
         name: 'search',
-        meta: { title: '跨模态搜索', icon: 'el-icon-search' }
+        meta: { title: '跨模态搜索-文本搜图', icon: 'el-icon-search' }
+      }
+    ]
+  },
+  {
+    path: '/image',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/imagesearch/index'),
+        name: 'storage',
+        meta: { title: '跨模态搜索-以图搜图', icon: 'el-icon-search' }
       }
     ]
   },

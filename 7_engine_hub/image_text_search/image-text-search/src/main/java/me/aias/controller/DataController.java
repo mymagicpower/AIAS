@@ -134,6 +134,6 @@ public class DataController {
             e.printStackTrace();
         }
 
-        return new ResponseEntity<>(ResultBean.success(), HttpStatus.OK);
+        return new ResponseEntity<>(ResultRes.success(), HttpStatus.OK);
     }
 }

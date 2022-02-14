@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: '声纹搜索 UI',
+  title: '跨模态搜索 UI',
 
   /**
    * @type {boolean} true | false

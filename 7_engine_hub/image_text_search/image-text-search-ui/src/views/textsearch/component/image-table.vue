@@ -4,7 +4,7 @@
       <div class="bts">
         <el-form ref="form" :model="form">
           <el-input v-model="form.text" placeholder="请输入内容" class="input-with-select">
-            <el-select slot="prepend" v-model="form.topK" placeholder="请选择">
+            <el-select slot="prepend" v-model="form.topK" style="width:80px;" placeholder="请选择">
               <el-option label="Top 5" value="5" />
               <el-option label="Top 10" value="10" />
               <el-option label="Top 20" value="20" />
@@ -24,13 +24,13 @@
           v-for="(data, index) of pageData"
           :key="index"
           :data="data"
-          :class="{'left': index%8 === 0, 'right': index%8 === 7}"
+          :class="{'left': index%5 === 0, 'right': index%5 === 4}"
         />
       </div>
       <el-pagination
         style="text-align: center; position: absolute; bottom: 10px;width:100%"
         :current-page.sync="page.pageNum"
-        :page-sizes="[16, 32, 64, 128]"
+        :page-sizes="[20, 40, 80, 160]"
         :page-size.sync="page.pageSize"
         layout=" total, prev, pager,next, jumper, sizes "
         :total="page.total"
@@ -49,7 +49,7 @@ import { mapGetters } from 'vuex'
 import { search } from '@/api/search'
 import EmptyData from '@/components/empty-data/EmptyData'
 import tableMixin from '@/common/mixin/table-mixin'
-import ImageCard from '@/views/search/component/image-card'
+import ImageCard from '@/views/textsearch/component/image-card'
 
 export default {
   name: 'ImageTable',
@@ -69,7 +69,7 @@ export default {
       tableData: [],
       page: {
         pageNum: 1,
-        pageSize: 16,
+        pageSize: 20,
         total: 0
       }
     }
@@ -104,7 +104,7 @@ export default {
             const data = response.data
             data.forEach(a => {
               // a.score = (new Number(a.score) * 100).toFixed(0)
-              a.score = (new Number(a.score)).toFixed(2)
+              a.score = (Number(a.score)).toFixed(2)
             })
             this.tableData = data.sort((a, b) => {
               return a.score - b.score
@@ -119,9 +119,6 @@ export default {
           this.page.total = 0
         }
       })
-    },
-    handleSuccess(response, file, fileList) {
-
     }
   }
 }
@@ -148,7 +145,8 @@ export default {
 .image-table {
   position: relative;
   box-sizing: border-box;
-  height: calc(100vh - 200px);
+  width: 800px;
+  height: calc(100vh - 150px);
 
   :global(.el-radio-button__inner) {
     color: rgba(14, 37, 60, 1);

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import ImageTable from '@/views/search/component/image-table'
+import ImageTable from '@/views/textsearch/component/image-table'
 
 export default {
   name: 'Audio',
