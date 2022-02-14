@@ -1,4 +1,4 @@
-## 目录：
+### 目录：
 http://aias.top/
 
 
@@ -74,7 +74,7 @@ sudo nginx -s stop
 sudo nginx     
 ```
 
-## 2. 后端jar部署
+### 2. 后端jar部署
 #### 2.1 环境要求：
 - 系统JDK 1.8+
 
@@ -111,7 +111,7 @@ java -jar image-text-search-0.1.0.jar
 
 ```
 
-## 3. 后端向量引擎部署（Milvus 2.0）
+### 3. 后端向量引擎部署（Milvus 2.0）
 #### 3.1 环境要求：
 - 需要安装docker运行环境，Mac环境可以使用Docker Desktop
 
@@ -137,17 +137,17 @@ search:
   port: 19530
 ```
 
-## 4. 打开浏览器
+### 4. 打开浏览器
 - 输入地址： http://localhost:8090
 
-- 图片上传
+#### 4.1 图片上传
 1). 点击上传按钮上传文件.  
 [测试图片数据](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/7_engine_hub/image_text_search/images.zip)
 2). 点击特征提取按钮. 
 等待图片特征提取，特征存入向量引擎。通过console可以看到进度信息。
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/7_engine_hub/image_text_search/storage.png)
 
-- 跨模态搜索
+#### 4.2 跨模态搜索 - 文本搜图
   输入文字描述，点击查询，可以看到返回的图片清单，根据相似度排序。
 
 - 例子1，输入文本：车
@@ -156,7 +156,10 @@ search:
 - 例子2，输入文本：雪地上两只狗
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/7_engine_hub/image_text_search/search2.png)
 
-## 5. 帮助信息
+#### 4.3 跨模态搜索 - 以图搜图
+![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/7_engine_hub/image_text_search/search3.png)
+
+### 5. 帮助信息
 - swagger接口文档:  
 http://localhost:8089/swagger-ui.html
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/video_search/swagger.png)
