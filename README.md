@@ -157,15 +157,9 @@ http://www.aias.top/
 
 <table>
   <tr>
-    <th>微信扫码入群：</th>
-    <th>QQ扫码入群：</th>
+    <th align="center">QQ扫码入群 (111257454)</th>
   </tr>
   <tr>
-    <td>
-      <div align="center">
-      <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/weixin.png?v=8"  width = "250"  />
-      </div>
-    </td>
     <td>
       <div align="center">
       <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/qq.png"  width = "300"  />
