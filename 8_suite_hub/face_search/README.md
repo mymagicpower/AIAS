@@ -15,20 +15,9 @@ http://aias.top/
 - 随时对数据进行插入、删除、搜索、更新等操作
 - 支持在线用户管理与服务器性能监控，支持限制单用户登录
 
-####  系统功能
-- 搜索管理：提供通用图像搜索，人像搜索，图像信息查看
-- 存储管理：提供图像压缩包(zip格式)上传，人像特征提取，通用特征提取
-- 用户管理：提供用户的相关配置，新增用户后，默认密码为123456
-- 角色管理：对权限与菜单进行分配，可根据部门设置角色的数据权限
-- 菜单管理：已实现菜单动态路由，后端可配置化，支持多级菜单
-- 部门管理：可配置系统组织架构，树形表格展示
-- 岗位管理：配置各个部门的职位
-- 字典管理：可维护常用一些固定的数据，如：状态，性别等
-- 系统日志：记录用户操作日志与异常日志，方便开发人员定位排错
-- SQL监控：采用druid 监控数据库访问性能，默认用户名admin，密码123456
-- 定时任务：整合Quartz做定时任务，加入任务日志，任务运行情况一目了然
-- 服务监控：监控服务器的负载情况
-
+####  功能
+- 人像搜索：上传人像图片搜索
+- 数据管理：提供图像压缩包(zip格式)上传，人像特征提取
 
 ### 1. 前端部署
 
@@ -53,13 +42,8 @@ vi /usr/local/etc/nginx/nginx.conf
         server_name  localhost;
 
         location / {
-            root   /Users/calvin/Documents/image_search/dist/;
+            root   /Users/calvin/face_search/dist/;
             index  index.html index.htm;
-        }
-        
-        location /aias {
-                alias  /Users/calvin/Documents/image_root/;  (请更新成你的文件路径，用于存放上传的图片及显示使用)
-                index  index.html index.html;
         }
      ......
      
@@ -82,63 +66,11 @@ sudo nginx
 - 需要安装redis
 - 需要安装MySQL数据库
 
-#### 2.2 导入SQL文件到MySQL数据库：
-使用命令行导入，或者mysql workbench, navicat 图形界面导入。     
-```bash
-face-search/sql/data.sql
-```
-
-#### 2.3 编辑环境配置信息
-- application-dev.yml    
-1). 根据需要编辑数据库名称face-search，用户名，密码 
-```bash
-      url: jdbc:log4jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:face-search}?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
-      username: ${DB_USER:root}
-      password: ${DB_PWD:??????}
-
-```
-2). 根据需要编辑图片上传根路径imageRootPath(需配置到nginx,用于web访问)     
-```bash
-# 文件存储路径
-file:
-  mac:
-    ...
-    imageRootPath: /Users/calvin/aias/image_root/ #图片文件根目录
-  linux:
-    ....
-    imageRootPath: /home/aias/image_root/ #图片文件根目录
-  windows:
-    ...
-    imageRootPath: file:/D:/aias/image_root/ ##图片文件根目录
-    ...
-```
-
-
-- application.yml     
-1). 根据需要编辑redis连接信息
-```bash
-  redis:
-    #数据库索引
-    database: ${REDIS_DB:0}
-    host: ${REDIS_HOST:127.0.0.1}
-    port: ${REDIS_PORT:6379}
-    password: ${REDIS_PWD:}
-    #连接超时时间
-    timeout: 5000
-
-```
-2). 根据需要编辑图片baseurl 
-```bash
-image:
-  #baseurl是图片的地址前缀，根据需要将127.0.0.1换成nginx所在服务器的ip地址及端口
-  baseurl: http://127.0.0.1:8080/aias/
-```
-
-#### 2.4 运行程序：
+#### 2.2 运行程序：
 ```bash
 # 运行程序
 
-java -jar aiplatform-search-1.0.jar
+java -jar face-search-1.0.jar
 
 ```
 
@@ -176,31 +108,21 @@ search:
   nprobe: 256
   nlist: 16384
   dimension: 512 #dimension of each vector
-  collectionName: faces #collection name
+  collectionName: face_search #collection name
 
 ```
 
 ## 4. 打开浏览器
-- 输入地址： http://localhost:8080
-
-![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/image_search/images/login.png)
-
-- 人像搜索
-![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/image_search/images/face_search.png)
+- 输入地址： http://localhost:8089
 
 - 图片上传        
 1). 点击上传按钮上传zip压缩包.  
-2). 如果是人像图片：点击提取人脸特征按钮.  
-3). 如果不是人像图片：点击提取特征按钮.  
-4). 刷新页面：可以看到"状态"列，如：45/100 的特征提取进度.  
+2). 点击提取人脸特征按钮.  
+![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/7_engine_hub/face_search/data.png)
 
-![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/image_search/images/storage.png)
+- 人像搜索
+![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/7_engine_hub/face_search/search.png)
 
-
-## 5. 帮助信息
-- 接口文档:  
-点击菜单：系统工具-接口文档
-![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/image_search/images/swagger.png)
 
 - 重置Milvus向量引擎(清空数据):  
 ```bash

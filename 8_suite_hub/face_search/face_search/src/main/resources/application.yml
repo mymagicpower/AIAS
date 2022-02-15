@@ -1,0 +1,70 @@
+server:
+  port: 8089
+
+# swagger-ui
+swagger:
+  enabled: true
+
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 3000MB
+      max-request-size: 3000MB
+
+# File storage path
+file:
+  mac:
+    path: ~/file/
+    # folder for unzip files
+    rootPath: ~/file/data_root/
+  linux:
+    path: /home/aias/file/
+    rootPath: /home/aias/file/data_root/
+  windows:
+    path: file:/D:/aias/file/
+    rootPath: file:/D:/aias/file/data_root/
+  # 文件大小 /M
+  maxSize: 3000
+
+image:
+  #  path: /Users/calvin/Documents/data_root/
+  baseUrl: http://127.0.0.1:8089/images/
+
+#Face
+face:
+  saveDetectedFace: true
+  topK: 200
+  confThresh: 0.85
+  nmsThresh: 0.45
+  # face detection model URI
+  det: https://aias-home.oss-cn-beijing.aliyuncs.com/models/face/ultranet.zip
+  # face feature model URI
+  feature: https://aias-home.oss-cn-beijing.aliyuncs.com/models/face/face_feature.zip
+
+# Vector Engine - Milvus
+search:
+  host: 127.0.0.1
+  port: 19530
+
+  # https://milvus.io/cn/docs/v2.0.0/build_index.md
+  # https://milvus.io/cn/docs/v2.0.0/metric.md#floating
+  # For floating point vectors:
+  #  IVF_FLAT
+  #  IVF_SQ8
+  #  IVF_PQ
+  #  HNSW
+  #  ANNOY
+  #  RHNSW_FLAT
+  #  RHNSW_PQ
+  #  RHNSW_SQ
+  # For binary vectors:
+  #  BIN_IVF_FLAT
+  indexType: IVF_FLAT
+  metricType: L2
+
+  nprobe: 256
+  nlist: 16384
+  dimension: 512 # dimension of each vector
+  collectionName: face_search #collection name
+  partitionName: p1
