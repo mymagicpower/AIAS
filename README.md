@@ -154,20 +154,10 @@ http://www.aias.top/
 ```
 
 #### 联系方式:
-
-<table>
-  <tr>
-    <th align="center">QQ扫码入群 (111257454)</th>
-  </tr>
-  <tr>
-    <td>
-      <div align="center">
-      <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/qq.png"  width = "300"  />
-      </div>
-    </td>
-  </tr>
-</table>
-
+<div align="center">
+  <div align="center">QQ扫码入群 (111257454)</div>
+<img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/qq.png"  width = "300"  />
+</div>
 
 
 Calvin
