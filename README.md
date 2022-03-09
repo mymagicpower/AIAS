@@ -111,27 +111,7 @@ http://www.aias.top/
       ...
 ```
 
-- 4. video_sdks - [图像SDK - 实时视频检测](http://aias.top/cv_sdk.html)    
-```text
-  1). 摄像头实时视频流处理
-  2). 离线视频处理
-  3). rtsp,rtmp视频流处理
-```
-
-- 5. bigdata_sdks - [图像SDK - 大数据处理](http://aias.top/cv_sdk.html)   [语音SDK - 大数据处理](http://aias.top/nlp_sdk.html)   
-```text
-  1). flink流式数据处理
-  2). kafka数据处理
-```
-
-- 6. biomedicine - [生物医药](http://aias.top/bio_sdk.html)      
-```text
-  1). 工具箱系列：RDKit工具箱，DNA工具箱
-  2). DNA序列搜索
-      ...
-```
-
-- 7. engine_hub - [平台引擎](http://aias.top/platform.html)      
+- 4. engine_hub - [平台引擎](http://aias.top/platform.html)      
 ```text
   1). 训练引擎
   2). 搜索引擎
@@ -140,16 +120,11 @@ http://www.aias.top/
       ...
 ```
 
-- 8. suite_hub - [场景套件](http://aias.top/suite.html)
+- 5. suite_hub - [场景套件](http://aias.top/suite.html)
 ```text
-  1). OCR自定义模版识别
-  2). 问答系统
-      ...
-```
-
-- 9. 9_metaverse - [元宇宙](http://aias.top/metaverse.html)
-```text
-  1). 2D虚拟偶像
+  1). ToB: OCR自定义模版识别, 问答系统等
+  2). 生物医药  
+  3). 数字虚拟人   
       ...
 ```
 
