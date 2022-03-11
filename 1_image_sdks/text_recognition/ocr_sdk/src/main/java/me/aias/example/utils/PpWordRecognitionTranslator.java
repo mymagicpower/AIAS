@@ -6,6 +6,8 @@ import ai.djl.modality.cv.util.NDImageUtils;
 import ai.djl.ndarray.NDArray;
 import ai.djl.ndarray.NDList;
 import ai.djl.ndarray.NDManager;
+import ai.djl.ndarray.index.NDIndex;
+import ai.djl.ndarray.types.Shape;
 import ai.djl.translate.Batchifier;
 import ai.djl.translate.Translator;
 import ai.djl.translate.TranslatorContext;
@@ -13,65 +15,82 @@ import ai.djl.util.Utils;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PpWordRecognitionTranslator implements Translator<Image, String> {
+    private boolean enableFilter;
+    private float thresh;
+    private List<String> table;
 
-  private List<String> table;
-
-  @Override
-  public void prepare(TranslatorContext ctx) throws IOException {
-    Model model = ctx.getModel();
-    //    ppocr_keys_v1.txt
-    try (InputStream is = model.getArtifact("ppocr_keys_v1.txt").openStream()) {
-      table = Utils.readLines(is, true);
-      table.add(0, "blank");
-      table.add("");
+    public PpWordRecognitionTranslator(boolean enableFilter, float thresh) {
+        this.enableFilter = enableFilter;
+        this.thresh = thresh;
     }
-  }
 
-  @Override
-  public String processOutput(TranslatorContext ctx, NDList list) throws IOException {
-    StringBuilder sb = new StringBuilder();
-    NDArray tokens = list.singletonOrThrow();
-    long[] indices = tokens.get(0).argMax(1).toLongArray();
-    int lastIdx = 0;
-    for (int i = 0; i < indices.length; i++) {
-      if (indices[i] > 0 && !(i > 0 && indices[i] == lastIdx)) {
-        sb.append(table.get((int) indices[i]));
-      }
+    @Override
+    public void prepare(TranslatorContext ctx) throws IOException {
+        Model model = ctx.getModel();
+        //    ppocr_keys_v1.txt
+        try (InputStream is = model.getArtifact("ppocr_keys_v1.txt").openStream()) {
+            table = Utils.readLines(is, true);
+            table.add(0, "blank");
+            table.add("");
+        }
     }
-    return sb.toString();
-  }
 
-  @Override
-  public NDList processInput(TranslatorContext ctx, Image input) {
-    NDArray img = input.toNDArray(ctx.getNDManager(), Image.Flag.COLOR);
-    //    int[] hw = resize32(input.getHeight(), input.getWidth());
+    @Override
+    public String processOutput(TranslatorContext ctx, NDList list) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        NDArray tokens = list.singletonOrThrow();
+        long[] indices = tokens.get(0).argMax(1).toLongArray();
+        // 字符置信度
+        float[] probs = new float[indices.length];
+        for (int row = 0; row < indices.length; row++) {
+            NDArray value = tokens.get(0).get(new NDIndex(""+ row +":" + (row + 1) +"," + indices[row] +":" + ( indices[row] + 1)));
+            probs[row] = value.toFloatArray()[0];
+        }
 
-    int h = input.getHeight();
-    int w = input.getWidth();
-    float ratio = (float) w / (float) h;
-    int resized_w = (int) (Math.ceil(32 * ratio));
+        int lastIdx = 0;
+        for (int i = 0; i < indices.length; i++) {
+            if (indices[i] > 0 && !(i > 0 && indices[i] == lastIdx)) {
+                if(enableFilter && probs[i] < thresh){
+                    continue;
+                }
+                sb.append(table.get((int) indices[i]));
+            }
+        }
+        return sb.toString();
+    }
 
-    //    img = NDImageUtils.resize(img, hw[1], hw[0]);
-    img = NDImageUtils.resize(img, resized_w, 32);
+    @Override
+    public NDList processInput(TranslatorContext ctx, Image input) {
+        NDArray img = input.toNDArray(ctx.getNDManager(), Image.Flag.COLOR);
+        //    int[] hw = resize32(input.getHeight(), input.getWidth());
 
-    img = NDImageUtils.toTensor(img).sub(0.5f).div(0.5f);
+        int h = input.getHeight();
+        int w = input.getWidth();
+        float ratio = (float) w / (float) h;
+        int resized_w = (int) (Math.ceil(32 * ratio));
 
-    img = img.expandDims(0);
-    return new NDList(img);
-  }
+        //    img = NDImageUtils.resize(img, hw[1], hw[0]);
+        img = NDImageUtils.resize(img, resized_w, 32);
 
-  @Override
-  public Batchifier getBatchifier() {
-    return null;
-  }
+        img = NDImageUtils.toTensor(img).sub(0.5f).div(0.5f);
 
-  private int[] resize32(double h, double w) {
-    double h32Ratio = h / 32d;
-    double w32 = w / h32Ratio;
-    int w32Ratio = (int) Math.round(w32 / 32d);
-    return new int[] {32, w32Ratio * 32}; // height: 32 (fixed), width: 32 * N
-  }
+        img = img.expandDims(0);
+        return new NDList(img);
+    }
+
+    @Override
+    public Batchifier getBatchifier() {
+        return null;
+    }
+
+    private int[] resize32(double h, double w) {
+        double h32Ratio = h / 32d;
+        double w32 = w / h32Ratio;
+        int w32Ratio = (int) Math.round(w32 / 32d);
+        return new int[]{32, w32Ratio * 32}; // height: 32 (fixed), width: 32 * N
+    }
 }

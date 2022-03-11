@@ -34,11 +34,14 @@ public final class LightOcrRecognitionExample {
   public static void main(String[] args) throws IOException, ModelException, TranslateException {
     Path imageFile = Paths.get("src/test/resources/ticket_0.png");
     Image image = ImageFactory.getInstance().fromFile(imageFile);
-
+    // 是否启用字符置信度过滤，用于辅助解决重复字符问题
+    boolean enableFilter = true;
+    // 置信度阈值
+    float thresh = 0.99f;
     LightOcrRecognition recognition = new LightOcrRecognition();
     try (ZooModel detectionModel = ModelZoo.loadModel(recognition.detectCriteria());
         Predictor<Image, DetectedObjects> detector = detectionModel.newPredictor();
-        ZooModel recognitionModel = ModelZoo.loadModel(recognition.recognizeCriteria());
+        ZooModel recognitionModel = ModelZoo.loadModel(recognition.recognizeCriteria(enableFilter, thresh));
         Predictor<Image, String> recognizer = recognitionModel.newPredictor()) {
 
       DetectedObjects detections = recognition.predict(image, detector, recognizer);

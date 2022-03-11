@@ -41,7 +41,10 @@ public final class SingleTableRecognitionExample {
     Image image = ImageFactory.getInstance().fromFile(imageFile);
     int height = image.getHeight();
     int width = image.getWidth();
-
+    // 是否启用字符置信度过滤，用于辅助解决重复字符问题
+    boolean enableFilter = true;
+    // 置信度阈值
+    float thresh = 0.99f;
     // 表格单元检测
     TableDetection tableDetection = new TableDetection();
     // 文本框检测
@@ -51,7 +54,7 @@ public final class SingleTableRecognitionExample {
          Predictor<Image, TableResult> tableDetector = tableModel.newPredictor();
          ZooModel detectionModel = ModelZoo.loadModel(recognition.detectCriteria());
          Predictor<Image, DetectedObjects> detector = detectionModel.newPredictor();
-         ZooModel recognitionModel = ModelZoo.loadModel(recognition.recognizeCriteria());
+         ZooModel recognitionModel = ModelZoo.loadModel(recognition.recognizeCriteria(enableFilter, thresh));
          Predictor<Image, String> recognizer = recognitionModel.newPredictor();
          BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("build/output/table.html"))) {
 

@@ -27,29 +27,33 @@ import java.util.List;
  */
 public final class ServerOcrRecognitionExample {
 
-  private static final Logger logger = LoggerFactory.getLogger(ServerOcrRecognitionExample.class);
+    private static final Logger logger = LoggerFactory.getLogger(ServerOcrRecognitionExample.class);
 
-  private ServerOcrRecognitionExample() {}
-
-  public static void main(String[] args) throws IOException, ModelException, TranslateException {
-    Path imageFile = Paths.get("src/test/resources/ticket_0.png");
-    Image image = ImageFactory.getInstance().fromFile(imageFile);
-
-    ServerOcrRecognition recognition = new ServerOcrRecognition();
-    try (ZooModel detectionModel = ModelZoo.loadModel(recognition.detectCriteria());
-        Predictor<Image, DetectedObjects> detector = detectionModel.newPredictor();
-        ZooModel recognitionModel = ModelZoo.loadModel(recognition.recognizeCriteria());
-        Predictor<Image, String> recognizer = recognitionModel.newPredictor()) {
-
-      DetectedObjects detections = recognition.predict(image, detector, recognizer);
-
-      List<DetectedObjects.DetectedObject> boxes = detections.items();
-      for (DetectedObjects.DetectedObject result : boxes) {
-        System.out.println(result.getClassName() + " : " + result.getProbability());
-      }
-
-      ImageUtils.saveBoundingBoxImage(image, detections, "server_ocr_result.png", "build/output");
-      logger.info("{}", detections);
+    private ServerOcrRecognitionExample() {
     }
-  }
+
+    public static void main(String[] args) throws IOException, ModelException, TranslateException {
+        Path imageFile = Paths.get("src/test/resources/ticket_0.png");
+        Image image = ImageFactory.getInstance().fromFile(imageFile);
+        // 是否启用字符置信度过滤，用于辅助解决重复字符问题
+        boolean enableFilter = true;
+        // 置信度阈值
+        float thresh = 0.99f;
+        ServerOcrRecognition recognition = new ServerOcrRecognition();
+        try (ZooModel detectionModel = ModelZoo.loadModel(recognition.detectCriteria());
+             Predictor<Image, DetectedObjects> detector = detectionModel.newPredictor();
+             ZooModel recognitionModel = ModelZoo.loadModel(recognition.recognizeCriteria(enableFilter, thresh));
+             Predictor<Image, String> recognizer = recognitionModel.newPredictor()) {
+
+            DetectedObjects detections = recognition.predict(image, detector, recognizer);
+
+            List<DetectedObjects.DetectedObject> boxes = detections.items();
+            for (DetectedObjects.DetectedObject result : boxes) {
+                System.out.println(result.getClassName() + " : " + result.getProbability());
+            }
+
+            ImageUtils.saveBoundingBoxImage(image, detections, "server_ocr_result.png", "build/output");
+            logger.info("{}", detections);
+        }
+    }
 }

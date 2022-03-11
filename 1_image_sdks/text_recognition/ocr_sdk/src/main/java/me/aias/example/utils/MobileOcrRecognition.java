@@ -70,7 +70,7 @@ public final class MobileOcrRecognition {
     return criteria;
   }
 
-  public Criteria<Image, String> recognizeCriteria() {
+  public Criteria<Image, String> recognizeCriteria(boolean enableFilter, float thresh) {
     Criteria<Image, String> criteria =
         Criteria.builder()
             .optEngine("PaddlePaddle")
@@ -79,7 +79,7 @@ public final class MobileOcrRecognition {
                 "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_mobile_v2.0_rec_infer.zip")
             // .optDevice(Device.cpu())
             .optProgress(new ProgressBar())
-            .optTranslator(new PpWordRecognitionTranslator())
+            .optTranslator(new PpWordRecognitionTranslator(enableFilter, thresh))
             .build();
 
     return criteria;

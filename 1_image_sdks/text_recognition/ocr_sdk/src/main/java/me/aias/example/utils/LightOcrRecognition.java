@@ -70,7 +70,7 @@ public final class LightOcrRecognition {
     return criteria;
   }
 
-  public Criteria<Image, String> recognizeCriteria() {
+  public Criteria<Image, String> recognizeCriteria(boolean enableFilter, float thresh) {
     Criteria<Image, String> criteria =
         Criteria.builder()
             .optEngine("PaddlePaddle")
@@ -79,7 +79,7 @@ public final class LightOcrRecognition {
                 "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv2_rec_infer.zip")
             // .optDevice(Device.cpu())
             .optProgress(new ProgressBar())
-            .optTranslator(new PpWordRecognitionTranslator())
+            .optTranslator(new PpWordRecognitionTranslator(enableFilter, thresh))
             .build();
 
     return criteria;
