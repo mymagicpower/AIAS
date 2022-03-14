@@ -1,7 +1,6 @@
 package me.aias.util;
 
 import ai.djl.modality.cv.Image;
-import ai.djl.modality.cv.ImageFactory;
 import ai.djl.modality.cv.output.BoundingBox;
 import ai.djl.modality.cv.output.DetectedObjects;
 import ai.djl.modality.cv.output.Joints;
@@ -17,23 +16,6 @@ import java.nio.file.Paths;
 import java.util.Iterator;
 
 public class ImageUtils {
-
-  public static Image bufferedImage2DJLImage(BufferedImage img) {
-    return ImageFactory.getInstance().fromImage(img);
-  }
-
-  public static void saveImage(BufferedImage img, String name, String path) {
-    Image newImage = ImageFactory.getInstance().fromImage(img); // 支持多种图片格式，自动适配
-    Path outputDir = Paths.get(path);
-    Path imagePath = outputDir.resolve(name);
-    // OpenJDK 不能保存 jpg 图片的 alpha channel
-    try {
-      newImage.save(Files.newOutputStream(imagePath), "png");
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
-
   public static void saveImage(Image img, String name, String path) {
     Path outputDir = Paths.get(path);
     Path imagePath = outputDir.resolve(name);

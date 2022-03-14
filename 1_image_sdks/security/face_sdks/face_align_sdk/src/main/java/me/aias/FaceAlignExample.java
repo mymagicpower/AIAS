@@ -10,16 +10,15 @@ import ai.djl.modality.cv.output.Point;
 import ai.djl.modality.cv.output.Rectangle;
 import ai.djl.ndarray.NDArray;
 import ai.djl.ndarray.NDManager;
+import ai.djl.opencv.OpenCVImageFactory;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
 import me.aias.util.*;
-import org.bytedeco.javacv.Java2DFrameUtils;
-import org.bytedeco.opencv.opencv_core.Mat;
+import org.opencv.core.Mat;
+import org.opencv.core.Rect;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -41,9 +40,8 @@ public class FaceAlignExample {
   public static void process(String facePath)
       throws IOException, ModelException, TranslateException {
     Path path = Paths.get(facePath);
-    File file = path.toFile();
-    BufferedImage img = (BufferedImage) ImageIO.read(file);
-    Image image = ImageFactory.getInstance().fromImage(img);
+    ImageFactory defFactory = new OpenCVImageFactory();
+    Image image = defFactory.fromFile(path);
 
     // topk值
     int topK = 500;
@@ -69,12 +67,12 @@ public class FaceAlignExample {
         // 人脸抠图
         // factor = 0.1f, 意思是扩大10%，防止人脸仿射变换后，人脸被部分截掉
         Rectangle subImageRect =
-            FaceUtils.getSubImageRect(rectangle, img.getWidth(), img.getHeight(), 1.0f);
+            FaceUtils.getSubImageRect(rectangle, image.getWidth(), image.getHeight(), 1.0f);
         int x = (int) (subImageRect.getX());
         int y = (int) (subImageRect.getY());
         int w = (int) (subImageRect.getWidth());
         int h = (int) (subImageRect.getHeight());
-        BufferedImage subImage = img.getSubimage(x, y, w, h);
+        Image subImage = image.getSubImage(x, y, w, h);
 
         // 保存，抠出的人脸图
         ImageUtils.saveImage(subImage, "face_" + index + ".png", "build/output");
@@ -90,9 +88,6 @@ public class FaceAlignExample {
         // 计算人脸关键点在子图中的新坐标
         double[][] pointsArray = FaceUtils.pointsArray(subImageRect, points);
 
-        // buffered image 转 mat
-        Mat mat = Java2DFrameUtils.toMat(subImage);
-
         // 转 NDArray
         NDManager manager = NDManager.newBaseManager();
         NDArray srcPoints = manager.create(pointsArray);
@@ -100,16 +95,12 @@ public class FaceAlignExample {
 
         // 定制的5点仿射变换
         Mat svdMat = NDArrayUtils.toOpenCVMat(manager, srcPoints, dstPoints);
-        mat = FaceAlignment.get5WarpAffineImg(mat, svdMat);
+        Mat mat = FaceAlignment.get5WarpAffineImg((Mat)subImage.getWrappedImage(), svdMat);
 
-        // mat转bufferedImage类型
-        BufferedImage bufferedImage = Java2DFrameUtils.toBufferedImage(mat);
-        int width = bufferedImage.getWidth() > 112 ? 112 : bufferedImage.getWidth();
-        int height = bufferedImage.getHeight() > 112 ? 112 : bufferedImage.getHeight();
-        bufferedImage = bufferedImage.getSubimage(0, 0, width, height);
-
-        // 保存，对齐后的人脸图
-        ImageUtils.saveImage(bufferedImage, "face_align_" + index++ + ".png", "build/output");
+        int width = mat.width() > 112 ? 112 : mat.width();
+        int height = mat.height() > 112 ? 112 : mat.height();
+        Image img = OpenCVImageFactory.getInstance().fromImage(mat).getSubImage(0, 0, width, height);
+        ImageUtils.saveImage(img, "face_align_" + index++ + ".png", "build/output");
       }
     }
   }

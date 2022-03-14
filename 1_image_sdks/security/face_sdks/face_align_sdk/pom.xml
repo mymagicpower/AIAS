@@ -31,7 +31,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <djl.version>0.14.0</djl.version>
+        <djl.version>0.15.0</djl.version>
     </properties>
 
     <build>
@@ -102,7 +102,11 @@
             <artifactId>javacv-platform</artifactId>
             <version>1.5.1</version>
         </dependency>
-        
+        <dependency>
+            <groupId>ai.djl.opencv</groupId>
+            <artifactId>opencv</artifactId>
+            <version>0.15.0</version>
+        </dependency>
         <dependency>
             <groupId>gov.nist.math</groupId>
             <artifactId>jama</artifactId>
