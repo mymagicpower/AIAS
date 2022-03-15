@@ -24,18 +24,18 @@
     <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-api:2.15.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.logging.log4j:log4j-core:2.15.0" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.5" level="project" />
-    <orderEntry type="library" name="Maven: ai.djl:api:0.14.0" level="project" />
+    <orderEntry type="library" name="Maven: ai.djl:api:0.15.0" level="project" />
     <orderEntry type="library" name="Maven: net.java.dev.jna:jna:5.9.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-compress:1.21" level="project" />
-    <orderEntry type="library" name="Maven: ai.djl:basicdataset:0.14.0" level="project" />
+    <orderEntry type="library" name="Maven: ai.djl:basicdataset:0.15.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-csv:1.8" level="project" />
-    <orderEntry type="library" name="Maven: ai.djl:model-zoo:0.14.0" level="project" />
-    <orderEntry type="library" name="Maven: ai.djl.mxnet:mxnet-model-zoo:0.14.0" level="project" />
-    <orderEntry type="library" name="Maven: ai.djl.mxnet:mxnet-engine:0.14.0" level="project" />
+    <orderEntry type="library" name="Maven: ai.djl:model-zoo:0.15.0" level="project" />
+    <orderEntry type="library" name="Maven: ai.djl.mxnet:mxnet-model-zoo:0.15.0" level="project" />
+    <orderEntry type="library" name="Maven: ai.djl.mxnet:mxnet-engine:0.15.0" level="project" />
     <orderEntry type="library" name="Maven: ai.djl.mxnet:mxnet-native-auto:1.8.0" level="project" />
-    <orderEntry type="library" name="Maven: ai.djl.paddlepaddle:paddlepaddle-engine:0.14.0" level="project" />
+    <orderEntry type="library" name="Maven: ai.djl.paddlepaddle:paddlepaddle-engine:0.15.0" level="project" />
     <orderEntry type="library" name="Maven: ai.djl.paddlepaddle:paddlepaddle-native-auto:2.0.2" level="project" />
-    <orderEntry type="library" name="Maven: ai.djl.paddlepaddle:paddlepaddle-model-zoo:0.14.0" level="project" />
+    <orderEntry type="library" name="Maven: ai.djl.paddlepaddle:paddlepaddle-model-zoo:0.15.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.12.0" level="project" />
     <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.projectlombok:lombok:1.18.18" level="project" />
