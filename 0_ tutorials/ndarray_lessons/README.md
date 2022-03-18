@@ -1,7 +1,3 @@
-<div align="center">
-  <a href="http://aias.top/">点击返回网站首页</a>
-</div>  
-
 
 #### NDArray培训目录
 
@@ -15,8 +11,3 @@
    <a href="http://aias.top/AIAS/guides/tutorials/ndarray/1_basic.html" target="_blank">点击查看</a>
 </div>  
 
-
-
-<div align="center">
-  <a href="http://aias.top/">点击返回网站首页</a>
-</div>  
