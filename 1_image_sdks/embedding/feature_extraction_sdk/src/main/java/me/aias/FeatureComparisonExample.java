@@ -1,11 +1,15 @@
 package me.aias;
 
 import ai.djl.ModelException;
+import ai.djl.inference.Predictor;
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.ImageFactory;
+import ai.djl.repository.zoo.Criteria;
+import ai.djl.repository.zoo.ModelZoo;
+import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
 import me.aias.util.FeatureComparison;
-import me.aias.util.FeatureExtraction;
+import me.aias.util.ImageEncoderModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,14 +37,20 @@ public final class FeatureComparisonExample {
         Image img1 = ImageFactory.getInstance().fromFile(imageFile1);
         Path imageFile2 = Paths.get("src/test/resources/car2.png");
         Image img2 = ImageFactory.getInstance().fromFile(imageFile2);
+        Criteria<Image, float[]> criteria = new ImageEncoderModel().criteria();
+        try (ZooModel model = ModelZoo.loadModel(criteria);
+             Predictor<Image, float[]> predictor = model.newPredictor()) {
+            float[] feature1 = predictor.predict(img1);
+            float[] feature2 = predictor.predict(img2);
 
-        float[] feature1 = new FeatureExtraction().predict(img1);
-        float[] feature2 = new FeatureExtraction().predict(img2);
+            //欧式距离
+            float dis = FeatureComparison.dis(feature1, feature2);
+            logger.info(Float.toString(dis));
 
-        //欧式距离
-        float prob = FeatureComparison.calculSimilar(feature1, feature2);
-
-        logger.info(Float.toString(prob));
+            //余弦相似度
+            float cos = FeatureComparison.cosineSim(feature1, feature2);
+            logger.info(Float.toString(cos));
+        }
     }
 
 }
