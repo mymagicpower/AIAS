@@ -128,6 +128,19 @@ http://www.aias.top/
       ...
 ```
 
+#### 培训教程:
+
+[NDArray入门教程](http://aias.top/AIAS/guides/tutorials/ndarray/index.html)
+[性能优化常见问题](http://aias.top/AIAS/guides/performance.html)
+[引擎配置（包括CPU，GPU）](http://aias.top/AIAS/guides/engine_config.html)
+[Windows环境常见问题](http://aias.top/AIAS/guides/windows.html)
+[模型加载方式](http://aias.top/AIAS/guides/load_model.html)
+[PaddleOCR的java高性能部署](http://aias.top/AIAS/guides/PaddleOCR.pdf)
+[数字虚拟人](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/guides/vtuber.pdf)
+
+
+
+
 #### 联系方式:
 <div align="center">
   <div align="center">QQ扫码入群 (111257454)</div>
@@ -135,7 +148,6 @@ http://www.aias.top/
 </div>
 
 
-Calvin
-QQ: 179209347       
+Calvin   
 Mail: 179209347@qq.com
 
