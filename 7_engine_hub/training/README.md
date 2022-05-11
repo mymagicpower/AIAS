@@ -1,3 +1,5 @@
+# 该项目仅用于学习研究使用，项目落地建议使用Python训练框架,如：paddlepaddle, pytorch, tensorflow等等。
+
 # AI 训练平台
 AI训练平台提供分类模型训练能力。并以REST API形式为上层应用提供接口。
 当前版包含功能如下：

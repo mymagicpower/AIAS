@@ -1,3 +1,5 @@
+# 该项目仅用于学习研究使用，项目落地建议使用Python训练框架,如：paddlepaddle, pytorch, tensorflow等等。
+
 # 基于 AIAS & DJL的可视化训练
 前端使用VUE开发，后端使用spring boot开发。
 
