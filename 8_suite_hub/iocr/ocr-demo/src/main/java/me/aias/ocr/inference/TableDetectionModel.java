@@ -21,91 +21,90 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-
 /**
+ * 关于如何优化性能，请参考ocr_sdk中的多线程处理，以及： http://aias.top/AIAS/guides/performance.html
  * @author Calvin
  * @date Oct 19, 2021
  */
 public final class TableDetectionModel {
     private ZooModel<Image, TableResult> model;
-    private Predictor<Image, TableResult> predictor;
 
     public void init(String tableUri) throws MalformedModelException, ModelNotFoundException, IOException {
         this.model = ModelZoo.loadModel(detectCriteria(tableUri));
-        this.predictor = model.newPredictor();
     }
 
     public void close() {
         this.model.close();
-        this.predictor.close();
     }
 
     public String getTableHtml(Image image, DetectedObjects textDetections) throws TranslateException {
-        // Table cell detection
-        TableResult tableResult = predictor.predict(image);
-        List<BoundingBox> cells = tableResult.getBoxes();
+        try (Predictor<Image, TableResult> predictor = model.newPredictor()) {
+            // Table cell detection
+            TableResult tableResult = predictor.predict(image);
+            List<BoundingBox> cells = tableResult.getBoxes();
 
-        List<DetectedObjects.DetectedObject> dt_boxes = textDetections.items();
+            List<DetectedObjects.DetectedObject> dt_boxes = textDetections.items();
 
-        // 获取 Cell 与 文本检测框 的对应关系(1:N)。
-        Map<Integer, List<Integer>> matched = new ConcurrentHashMap<>();
+            // 获取 Cell 与 文本检测框 的对应关系(1:N)。
+            Map<Integer, List<Integer>> matched = new ConcurrentHashMap<>();
 
-        for (int i = 0; i < dt_boxes.size(); i++) {
-            DetectedObjects.DetectedObject item = dt_boxes.get(i);
-            Rectangle textBounds = item.getBoundingBox().getBounds();
-            int[] box_1 = rectXYXY(textBounds, image.getWidth(), image.getHeight());
-            // 获取两两cell之间的L1距离和 1- IOU
-            List<Pair<Float, Float>> distances = new ArrayList<>();
-            for (BoundingBox cell : cells) {
-                Rectangle cellBounds = cell.getBounds();
-                int[] box_2 = rectXYXY(cellBounds, image.getWidth(), image.getHeight());
-                float distance = distance(box_1, box_2);
-                float iou = 1 - compute_iou(box_1, box_2);
-                distances.add(Pair.of(distance, iou));
-            }
-            // 根据距离和IOU挑选最"近"的cell
-            Pair<Float, Float> nearest = sorted(distances);
+            for (int i = 0; i < dt_boxes.size(); i++) {
+                DetectedObjects.DetectedObject item = dt_boxes.get(i);
+                Rectangle textBounds = item.getBoundingBox().getBounds();
+                int[] box_1 = rectXYXY(textBounds, image.getWidth(), image.getHeight());
+                // 获取两两cell之间的L1距离和 1- IOU
+                List<Pair<Float, Float>> distances = new ArrayList<>();
+                for (BoundingBox cell : cells) {
+                    Rectangle cellBounds = cell.getBounds();
+                    int[] box_2 = rectXYXY(cellBounds, image.getWidth(), image.getHeight());
+                    float distance = distance(box_1, box_2);
+                    float iou = 1 - compute_iou(box_1, box_2);
+                    distances.add(Pair.of(distance, iou));
+                }
+                // 根据距离和IOU挑选最"近"的cell
+                Pair<Float, Float> nearest = sorted(distances);
 
-            // 获取最小距离对应的下标id，也等价于cell的下标id  （distances列表是根据遍历cells生成的）
-            int id = 0;
-            for (int idx = 0; idx < distances.size(); idx++) {
-                Pair<Float, Float> current = distances.get(idx);
-                if (current.getLeft().floatValue() == nearest.getLeft().floatValue()
-                        && current.getRight().floatValue() == nearest.getRight().floatValue()) {
-                    id = idx;
-                    break;
+                // 获取最小距离对应的下标id，也等价于cell的下标id  （distances列表是根据遍历cells生成的）
+                int id = 0;
+                for (int idx = 0; idx < distances.size(); idx++) {
+                    Pair<Float, Float> current = distances.get(idx);
+                    if (current.getLeft().floatValue() == nearest.getLeft().floatValue()
+                            && current.getRight().floatValue() == nearest.getRight().floatValue()) {
+                        id = idx;
+                        break;
+                    }
+                }
+                if (!matched.containsKey(id)) {
+                    List<Integer> textIds = new ArrayList<>();
+                    textIds.add(i);
+                    // cell id, text id list (dt_boxes index list)
+                    matched.put(id, textIds);
+                } else {
+                    matched.get(id).add(i);
                 }
             }
-            if (!matched.containsKey(id)) {
-                List<Integer> textIds = new ArrayList<>();
-                textIds.add(i);
-                // cell id, text id list (dt_boxes index list)
-                matched.put(id, textIds);
-            } else {
-                matched.get(id).add(i);
-            }
-        }
 
-        List<String> cell_contents = new ArrayList<>();
-        List<Double> probs = new ArrayList<>();
-        for (int i = 0; i < cells.size(); i++) {
-            List<Integer> textIds = matched.get(i);
-            List<String> contents = new ArrayList<>();
-            String content = "";
-            if (textIds != null) {
-                for (Integer id : textIds) {
-                    DetectedObjects.DetectedObject item = dt_boxes.get(id);
-                    contents.add(item.getClassName());
+            List<String> cell_contents = new ArrayList<>();
+            List<Double> probs = new ArrayList<>();
+            for (int i = 0; i < cells.size(); i++) {
+                List<Integer> textIds = matched.get(i);
+                List<String> contents = new ArrayList<>();
+                String content = "";
+                if (textIds != null) {
+                    for (Integer id : textIds) {
+                        DetectedObjects.DetectedObject item = dt_boxes.get(id);
+                        contents.add(item.getClassName());
+                    }
+                    content = StringUtils.join(contents, " ");
                 }
-                content = StringUtils.join(contents, " ");
+
+                cell_contents.add(content);
+                probs.add(-1.0);
             }
 
-            cell_contents.add(content);
-            probs.add(-1.0);
+            List<String> pred_structures = tableResult.getStructure_str_list();
+            return getPredHtml(pred_structures, cell_contents);
         }
-
-        List<String> pred_structures = tableResult.getStructure_str_list();
-        return getPredHtml(pred_structures, cell_contents);
     }
 
     /**
@@ -137,7 +136,7 @@ public final class TableDetectionModel {
                         .optEngine("PaddlePaddle")
                         .setTypes(Image.class, TableResult.class)
                         .optModelUrls(tableUri)
-                        
+
                         .optOption("removePass", "repeated_fc_relu_fuse_pass")
                         .optTranslator(new TableStructTranslator(new ConcurrentHashMap<String, String>()))
                         .optProgress(new ProgressBar())

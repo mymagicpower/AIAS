@@ -8,9 +8,6 @@ import ai.djl.translate.TranslateException;
 import me.aias.ocr.inference.LayoutDetectionModel;
 import me.aias.ocr.inference.RecognitionModel;
 import me.aias.ocr.inference.TableDetectionModel;
-import me.aias.ocr.model.DataBean;
-import me.aias.ocr.model.Point;
-import me.aias.ocr.service.InferService;
 import me.aias.ocr.service.TableInferService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -52,9 +48,9 @@ public class TableInferServiceImpl implements TableInferService {
         for (int i = 0; i < boxes.size(); i++) {
             // TODO 模型需优化, 页面出现多个表不准，但是当前可以用于表单中一个表格自动检测识别
             if (boxes.get(i).getClassName().equals("Table")) {
-                Image subImage = getSubImage(image, boxes.get(i).getBoundingBox());
+                Image subImage = getSubTableImage(image, boxes.get(i).getBoundingBox());
                 // 表格单元检测
-                DetectedObjects textDetections = recognitionModel.predict(subImage);
+                DetectedObjects textDetections = recognitionModel.predict(image);
                 String tableHtml = tableDetectionModel.getTableHtml(subImage, textDetections);
                 tableHtmlList.add(tableHtml);
             }
@@ -62,7 +58,7 @@ public class TableInferServiceImpl implements TableInferService {
         return tableHtmlList;
     }
 
-    private Image getSubImage(Image img, BoundingBox box) {
+    private Image getSubTableImage(Image img, BoundingBox box) {
         Rectangle rect = box.getBounds();
         int width = img.getWidth();
         int height = img.getHeight();

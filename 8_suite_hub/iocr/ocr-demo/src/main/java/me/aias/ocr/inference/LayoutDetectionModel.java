@@ -19,26 +19,26 @@ import java.io.IOException;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
+ * 关于如何优化性能，请参考ocr_sdk中的多线程处理，以及： http://aias.top/AIAS/guides/performance.html
  * @author Calvin
  * @date Oct 20, 2021
  */
 public final class LayoutDetectionModel {
 
     private ZooModel<Image, DetectedObjects> model;
-    private Predictor<Image, DetectedObjects> predictor;
 
     public void init(String layoutUri) throws MalformedModelException, ModelNotFoundException, IOException {
         this.model = ModelZoo.loadModel(detectCriteria(layoutUri));
-        this.predictor = model.newPredictor();
     }
 
     public void close() {
         this.model.close();
-        this.predictor.close();
     }
 
     public DetectedObjects predict(Image image) throws TranslateException {
-        return predictor.predict(image);
+        try (Predictor<Image, DetectedObjects> predictor = model.newPredictor()) {
+            return predictor.predict(image);
+        }
     }
 
     private Criteria<Image, DetectedObjects> detectCriteria(String layoutUri) {
@@ -47,7 +47,7 @@ public final class LayoutDetectionModel {
                         .optEngine("PaddlePaddle")
                         .setTypes(Image.class, DetectedObjects.class)
                         .optModelUrls(layoutUri)
-                        
+
                         .optTranslator(new LayoutDetectionTranslator())
                         .optProgress(new ProgressBar())
                         .build();

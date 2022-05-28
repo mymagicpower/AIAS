@@ -28,55 +28,30 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
+ * 关于如何优化性能，请参考ocr_sdk中的多线程处理，以及： http://aias.top/AIAS/guides/performance.html
  * @author Calvin
  * @date Oct 19, 2021
  */
 public final class RecognitionModel {
-    private ZooModel<Image, DetectedObjects> detectionModel;
-    private ZooModel<Image, String> recognitionModel;
-    private Predictor<Image, String> recognizer;
-    private Predictor<Image, DetectedObjects> detector;
+    private ZooModel<Image, DetectedObjects> detModel;
+    private ZooModel<Image, String> recModel;
 
     public void init(String detUri, String recUri) throws MalformedModelException, ModelNotFoundException, IOException {
-        this.detectionModel = ModelZoo.loadModel(detectCriteria(detUri));
-        this.recognitionModel = ModelZoo.loadModel(recognizeCriteria(recUri));
-        this.recognizer = recognitionModel.newPredictor();
-        this.detector = detectionModel.newPredictor();
+        this.detModel = ModelZoo.loadModel(detectCriteria(detUri));
+        this.recModel = ModelZoo.loadModel(recognizeCriteria(recUri));
+    }
+
+    public ZooModel<Image, DetectedObjects> getDetModel() {
+        return detModel;
+    }
+
+    public ZooModel<Image, String> getRecModel() {
+        return recModel;
     }
 
     public void close() {
-        this.detectionModel.close();
-        this.recognitionModel.close();
-        this.recognizer.close();
-        this.detector.close();
-    }
-
-    public String predictSingleLineText(Image image)
-            throws TranslateException {
-        String text = recognizer.predict(image);
-        return text;
-    }
-
-    public DetectedObjects predict(Image image)
-            throws TranslateException {
-        DetectedObjects detections = detector.predict(image);
-        List<DetectedObjects.DetectedObject> boxes = detections.items();
-        List<String> names = new ArrayList<>();
-        List<Double> prob = new ArrayList<>();
-        List<BoundingBox> rect = new ArrayList<>();
-        for (int i = 0; i < boxes.size(); i++) {
-            Image subImg = getSubImage(image, boxes.get(i).getBoundingBox());
-            if (subImg.getHeight() * 1.0 / subImg.getWidth() > 1.5) {
-                subImg = rotateImg(subImg);
-            }
-            String name = recognizer.predict(subImg);
-            System.out.println(name);
-            names.add(name);
-            prob.add(-1.0);
-            rect.add(boxes.get(i).getBoundingBox());
-        }
-        DetectedObjects detectedObjects = new DetectedObjects(names, prob, rect);
-        return detectedObjects;
+        this.detModel.close();
+        this.recModel.close();
     }
 
     private Criteria<Image, DetectedObjects> detectCriteria(String detUri) {
@@ -85,7 +60,6 @@ public final class RecognitionModel {
                         .optEngine("PaddlePaddle")
                         .setTypes(Image.class, DetectedObjects.class)
                         .optModelUrls(detUri)
-                        
                         .optTranslator(new PpWordDetectionTranslator(new ConcurrentHashMap<String, String>()))
                         .optProgress(new ProgressBar())
                         .build();
@@ -99,12 +73,46 @@ public final class RecognitionModel {
                         .optEngine("PaddlePaddle")
                         .setTypes(Image.class, String.class)
                         .optModelUrls(recUri)
-                        
                         .optProgress(new ProgressBar())
                         .optTranslator(new PpWordRecognitionTranslator())
                         .build();
 
         return criteria;
+    }
+
+    public String predictSingleLineText(Image image)
+            throws TranslateException {
+        try (Predictor<Image, String> recognizer = recModel.newPredictor()) {
+            String text = recognizer.predict(image);
+            return text;
+        }
+    }
+
+    public DetectedObjects predict(Image image)
+            throws TranslateException {
+        try (Predictor<Image, String> recognizer = recModel.newPredictor();
+             Predictor<Image, DetectedObjects> detector = detModel.newPredictor()) {
+
+            DetectedObjects detections = detector.predict(image);
+            List<DetectedObjects.DetectedObject> boxes = detections.items();
+            List<String> names = new ArrayList<>();
+            List<Double> prob = new ArrayList<>();
+            List<BoundingBox> rect = new ArrayList<>();
+            for (int i = 0; i < boxes.size(); i++) {
+                Image subImg = getSubImage(image, boxes.get(i).getBoundingBox());
+                if (subImg.getHeight() * 1.0 / subImg.getWidth() > 1.5) {
+                    subImg = rotateImg(subImg);
+                }
+                String name = recognizer.predict(subImg);
+                System.out.println(name);
+                names.add(name);
+                prob.add(-1.0);
+                rect.add(boxes.get(i).getBoundingBox());
+            }
+            DetectedObjects detectedObjects = new DetectedObjects(names, prob, rect);
+            return detectedObjects;
+
+        }
     }
 
     private Image getSubImage(Image img, BoundingBox box) {
@@ -119,6 +127,13 @@ public final class RecognitionModel {
                 (int) (extended[3] * height)
         };
         return img.getSubImage(recovered[0], recovered[1], recovered[2], recovered[3]);
+    }
+
+    private Image rotateImg(Image image) {
+        try (NDManager manager = NDManager.newBaseManager()) {
+            NDArray rotated = NDImageUtils.rotate90(image.toNDArray(manager), 1);
+            return ImageFactory.getInstance().fromNDArray(rotated);
+        }
     }
 
     private double[] extendRect(double xmin, double ymin, double width, double height) {
@@ -136,12 +151,5 @@ public final class RecognitionModel {
         double newWidth = newX + width > 1 ? 1 - newX : width;
         double newHeight = newY + height > 1 ? 1 - newY : height;
         return new double[]{newX, newY, newWidth, newHeight};
-    }
-
-    private Image rotateImg(Image image) {
-        try (NDManager manager = NDManager.newBaseManager()) {
-            NDArray rotated = NDImageUtils.rotate90(image.toNDArray(manager), 1);
-            return ImageFactory.getInstance().fromNDArray(rotated);
-        }
     }
 }

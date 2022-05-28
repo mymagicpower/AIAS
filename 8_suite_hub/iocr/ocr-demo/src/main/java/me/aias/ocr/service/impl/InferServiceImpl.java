@@ -4,27 +4,19 @@ import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.output.BoundingBox;
 import ai.djl.modality.cv.output.DetectedObjects;
 import ai.djl.modality.cv.output.Rectangle;
-import ai.djl.ndarray.NDManager;
 import ai.djl.translate.TranslateException;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import me.aias.ocr.inference.LayoutDetectionModel;
-import me.aias.ocr.inference.PerspectiveRecogition;
 import me.aias.ocr.inference.RecognitionModel;
-import me.aias.ocr.inference.TableDetectionModel;
-import me.aias.ocr.model.*;
+import me.aias.ocr.model.DataBean;
+import me.aias.ocr.model.Point;
 import me.aias.ocr.service.InferService;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author Calvin
@@ -63,4 +55,6 @@ public class InferServiceImpl implements InferService {
         }
         return dataList;
     }
+
+
 }
