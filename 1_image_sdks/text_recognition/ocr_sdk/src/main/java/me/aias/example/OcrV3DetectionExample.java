@@ -10,7 +10,7 @@ import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
 import me.aias.example.utils.ImageUtils;
-import me.aias.example.utils.ServerOcrDetection;
+import me.aias.example.utils.OcrV3Detection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,23 +20,23 @@ import java.nio.file.Paths;
 import java.util.List;
 
 /**
- * OCR文字检测(服务器端大模型).
+ * OCR文字检测(mobile模型).
  *
  * @author Calvin
  * @date 2021-10-04
  * @email 179209347@qq.com
  */
-public final class ServerOcrDetectionExample {
+public final class OcrV3DetectionExample {
 
-  private static final Logger logger = LoggerFactory.getLogger(ServerOcrDetectionExample.class);
+  private static final Logger logger = LoggerFactory.getLogger(OcrV3DetectionExample.class);
 
-  private ServerOcrDetectionExample() {}
+  private OcrV3DetectionExample() {}
 
   public static void main(String[] args) throws IOException, ModelException, TranslateException {
-    Path imageFile = Paths.get("src/test/resources/ticket_270.png");
+    Path imageFile = Paths.get("src/test/resources/ticket_0.png");
     Image image = ImageFactory.getInstance().fromFile(imageFile);
 
-    ServerOcrDetection detection = new ServerOcrDetection();
+    OcrV3Detection detection = new OcrV3Detection();
     try (ZooModel detectionModel = ModelZoo.loadModel(detection.detectCriteria());
          Predictor<Image, DetectedObjects> detector = detectionModel.newPredictor();
          ZooModel rotateModel = ModelZoo.loadModel(detection.clsCriteria());
@@ -48,8 +48,8 @@ public final class ServerOcrDetectionExample {
       for (DetectedObjects.DetectedObject result : boxes) {
         System.out.println(result.getClassName() + " : " + result.getProbability());
       }
-                           
-      ImageUtils.saveBoundingBoxImage(image, detections, "server_detect_result.png", "build/output");
+
+      ImageUtils.saveBoundingBoxImage(image, detections, "detect_result.png", "build/output");
       logger.info("{}", detections);
     }
   }

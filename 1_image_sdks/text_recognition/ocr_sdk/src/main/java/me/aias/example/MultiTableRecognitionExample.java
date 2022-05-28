@@ -49,7 +49,7 @@ public final class MultiTableRecognitionExample {
     // 表格单元检测
     TableDetection tableDetection = new TableDetection();
     // 文本框检测
-    MobileOcrRecognition recognition = new MobileOcrRecognition();
+    OcrV3Recognition recognition = new OcrV3Recognition();
 
     try (ZooModel tableModel = ModelZoo.loadModel(tableDetection.criteria());
          Predictor<Image, TableResult> tableDetector = tableModel.newPredictor();

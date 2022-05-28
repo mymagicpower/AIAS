@@ -9,7 +9,7 @@ import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
 import me.aias.example.utils.ImageUtils;
-import me.aias.example.utils.MobileOcrRecognition;
+import me.aias.example.utils.OcrV3Recognition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,11 +25,11 @@ import java.util.List;
  * @date 2021-10-07
  * @email 179209347@qq.com
  */
-public final class MobileOcrRecognitionExample {
+public final class OcrV3RecognitionExample {
 
-  private static final Logger logger = LoggerFactory.getLogger(MobileOcrRecognitionExample.class);
+  private static final Logger logger = LoggerFactory.getLogger(OcrV3RecognitionExample.class);
 
-  private MobileOcrRecognitionExample() {}
+  private OcrV3RecognitionExample() {}
 
   public static void main(String[] args) throws IOException, ModelException, TranslateException {
     Path imageFile = Paths.get("src/test/resources/ticket_0.png");
@@ -37,8 +37,8 @@ public final class MobileOcrRecognitionExample {
     // 是否启用字符置信度过滤，用于辅助解决重复字符问题
     boolean enableFilter = true;
     // 置信度阈值
-    float thresh = 0.99f;
-    MobileOcrRecognition recognition = new MobileOcrRecognition();
+    float thresh = 0.65f;
+    OcrV3Recognition recognition = new OcrV3Recognition();
     try (ZooModel detectionModel = ModelZoo.loadModel(recognition.detectCriteria());
         Predictor<Image, DetectedObjects> detector = detectionModel.newPredictor();
         ZooModel recognitionModel = ModelZoo.loadModel(recognition.recognizeCriteria(enableFilter, thresh));
@@ -51,7 +51,7 @@ public final class MobileOcrRecognitionExample {
         System.out.println(result.getClassName() + " : " + result.getProbability());
       }
 
-      ImageUtils.saveBoundingBoxImage(image, detections, "mobile_ocr_result.png", "build/output");
+      ImageUtils.saveBoundingBoxImage(image, detections, "ocr_result.png", "build/output");
       logger.info("{}", detections);
     }
   }

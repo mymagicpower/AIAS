@@ -1,6 +1,5 @@
 package me.aias.example.utils;
 
-import ai.djl.Device;
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.output.BoundingBox;
 import ai.djl.modality.cv.output.DetectedObjects;

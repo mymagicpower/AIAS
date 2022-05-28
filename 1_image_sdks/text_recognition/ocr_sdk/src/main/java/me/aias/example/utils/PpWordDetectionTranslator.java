@@ -24,6 +24,7 @@ import ai.djl.paddlepaddle.zoo.cv.objectdetection.BoundFinder;
 import ai.djl.translate.Batchifier;
 import ai.djl.translate.Translator;
 import ai.djl.translate.TranslatorContext;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

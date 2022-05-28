@@ -1,8 +1,6 @@
 package me.aias.example.utils;
 
-import ai.djl.Device;
 import ai.djl.inference.Predictor;
-import ai.djl.modality.Classifications;
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.ImageFactory;
 import ai.djl.modality.cv.output.BoundingBox;
@@ -11,6 +9,7 @@ import ai.djl.modality.cv.output.Rectangle;
 import ai.djl.modality.cv.util.NDImageUtils;
 import ai.djl.ndarray.NDArray;
 import ai.djl.ndarray.NDManager;
+import ai.djl.paddlepaddle.zoo.cv.objectdetection.PpWordDetectionTranslator;
 import ai.djl.repository.zoo.Criteria;
 import ai.djl.training.util.ProgressBar;
 import ai.djl.translate.TranslateException;
@@ -21,16 +20,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
-public final class LightOcrDetection {
+public final class OcrV3Recognition {
 
-  private static final Logger logger = LoggerFactory.getLogger(LightOcrDetection.class);
+  private static final Logger logger = LoggerFactory.getLogger(OcrV3Recognition.class);
 
-  public LightOcrDetection() {}
+  public OcrV3Recognition() {}
 
   public DetectedObjects predict(
-      Image image,
-      Predictor<Image, DetectedObjects> detector,
-      Predictor<Image, Classifications> rotateClassifier)
+      Image image, Predictor<Image, DetectedObjects> detector, Predictor<Image, String> recognizer)
       throws TranslateException {
     DetectedObjects detections = detector.predict(image);
 
@@ -42,25 +39,12 @@ public final class LightOcrDetection {
 
     for (int i = 0; i < boxes.size(); i++) {
       Image subImg = getSubImage(image, boxes.get(i).getBoundingBox());
-      Classifications.Classification result = null;
       if (subImg.getHeight() * 1.0 / subImg.getWidth() > 1.5) {
         subImg = rotateImg(subImg);
-        result = rotateClassifier.predict(subImg).best();
-        prob.add(result.getProbability());
-        if (result.getClassName().equalsIgnoreCase("Rotate")) {
-          names.add("90");
-        } else {
-          names.add("270");
-        }
-      } else {
-        result = rotateClassifier.predict(subImg).best();
-        prob.add(result.getProbability());
-        if (result.getClassName().equalsIgnoreCase("No Rotate")) {
-          names.add("0");
-        } else {
-          names.add("180");
-        }
       }
+      String name = recognizer.predict(subImg);
+      names.add(name);
+      prob.add(-1.0);
       rect.add(boxes.get(i).getBoundingBox());
     }
     DetectedObjects detectedObjects = new DetectedObjects(names, prob, rect);
@@ -74,7 +58,7 @@ public final class LightOcrDetection {
             .optEngine("PaddlePaddle")
             .setTypes(Image.class, DetectedObjects.class)
             .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv2_det_infer.zip")
+                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv3_det_infer.zip")
             //            .optModelUrls(
             // "/Users/calvin/Documents/build/paddle_models/ppocr/ch_PP-OCRv2_det_infer")
             .optTranslator(new PpWordDetectionTranslator(new ConcurrentHashMap<String, String>()))
@@ -84,19 +68,17 @@ public final class LightOcrDetection {
     return criteria;
   }
 
-  public Criteria<Image, Classifications> clsCriteria() {
-
-    Criteria<Image, Classifications> criteria =
+  public Criteria<Image, String> recognizeCriteria(boolean enableFilter, float thresh) {
+    Criteria<Image, String> criteria =
         Criteria.builder()
             .optEngine("PaddlePaddle")
-            .setTypes(Image.class, Classifications.class)
+            .setTypes(Image.class, String.class)
             .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_mobile_v2.0_cls_infer.zip")
-            //            .optModelUrls(
-            // "/Users/calvin/Documents/build/paddle_models/ppocr/ch_ppocr_mobile_v2.0_cls_infer")
-            .optTranslator(new PpWordRotateTranslator())
+                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv3_rec_infer.zip")
             .optProgress(new ProgressBar())
+            .optTranslator(new PpWordRecognitionTranslator(enableFilter, thresh))
             .build();
+
     return criteria;
   }
 

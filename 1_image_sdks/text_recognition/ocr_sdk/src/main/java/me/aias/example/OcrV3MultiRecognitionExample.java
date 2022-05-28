@@ -9,7 +9,8 @@ import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
 import me.aias.example.utils.ImageUtils;
-import me.aias.example.utils.LightOcrRecognition;
+import me.aias.example.utils.OcrV3MultiThreadRecognition;
+import me.aias.example.utils.OcrV3Recognition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,17 +20,17 @@ import java.nio.file.Paths;
 import java.util.List;
 
 /**
- * 轻量级OCR文字识别.
+ * Mobile OCR文字识别.
  *
  * @author Calvin
  * @date 2021-10-07
  * @email 179209347@qq.com
  */
-public final class LightOcrRecognitionExample {
+public final class OcrV3MultiRecognitionExample {
 
-  private static final Logger logger = LoggerFactory.getLogger(LightOcrRecognitionExample.class);
+  private static final Logger logger = LoggerFactory.getLogger(OcrV3MultiRecognitionExample.class);
 
-  private LightOcrRecognitionExample() {}
+  private OcrV3MultiRecognitionExample() {}
 
   public static void main(String[] args) throws IOException, ModelException, TranslateException {
     Path imageFile = Paths.get("src/test/resources/ticket_0.png");
@@ -37,21 +38,23 @@ public final class LightOcrRecognitionExample {
     // 是否启用字符置信度过滤，用于辅助解决重复字符问题
     boolean enableFilter = true;
     // 置信度阈值
-    float thresh = 0.99f;
-    LightOcrRecognition recognition = new LightOcrRecognition();
+    float thresh = 0.65f;
+    // 并发线程数，最大上限为 CPU 核数
+    int threadNum = 4;
+
+    OcrV3MultiThreadRecognition recognition = new OcrV3MultiThreadRecognition();
     try (ZooModel detectionModel = ModelZoo.loadModel(recognition.detectCriteria());
         Predictor<Image, DetectedObjects> detector = detectionModel.newPredictor();
-        ZooModel recognitionModel = ModelZoo.loadModel(recognition.recognizeCriteria(enableFilter, thresh));
-        Predictor<Image, String> recognizer = recognitionModel.newPredictor()) {
+        ZooModel recognitionModel = ModelZoo.loadModel(recognition.recognizeCriteria(enableFilter, thresh))) {
 
-      DetectedObjects detections = recognition.predict(image, detector, recognizer);
+      DetectedObjects detections = recognition.predict(image, detector, recognitionModel, threadNum);
 
       List<DetectedObjects.DetectedObject> boxes = detections.items();
       for (DetectedObjects.DetectedObject result : boxes) {
         System.out.println(result.getClassName() + " : " + result.getProbability());
       }
 
-      ImageUtils.saveBoundingBoxImage(image, detections, "light_ocr_result.png", "build/output");
+      ImageUtils.saveBoundingBoxImage(image, detections, "ocr_result.png", "build/output");
       logger.info("{}", detections);
     }
   }

@@ -1,6 +1,5 @@
 package me.aias.example.utils;
 
-import ai.djl.Device;
 import ai.djl.inference.Predictor;
 import ai.djl.modality.Classifications;
 import ai.djl.modality.cv.Image;
@@ -21,11 +20,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
-public final class MobileOcrDetection {
+public final class OcrV3Detection {
 
-  private static final Logger logger = LoggerFactory.getLogger(MobileOcrDetection.class);
+  private static final Logger logger = LoggerFactory.getLogger(OcrV3Detection.class);
 
-  public MobileOcrDetection() {}
+  public OcrV3Detection() {}
 
   public DetectedObjects predict(
       Image image,
@@ -74,7 +73,7 @@ public final class MobileOcrDetection {
             .optEngine("PaddlePaddle")
             .setTypes(Image.class, DetectedObjects.class)
             .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_mobile_v2.0_det_infer.zip")
+                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv3_det_infer.zip")
             //            .optModelUrls(
             // "/Users/calvin/Documents/build/paddle_models/ppocr/ch_PP-OCRv2_det_infer")
             .optTranslator(new PpWordDetectionTranslator(new ConcurrentHashMap<String, String>()))
