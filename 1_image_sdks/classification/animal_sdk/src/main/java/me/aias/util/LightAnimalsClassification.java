@@ -72,7 +72,6 @@ public final class LightAnimalsClassification {
             .optModelName("inference")
             .optTranslator(new AnimalTranslator())
             .optProgress(new ProgressBar())
-            // .optDevice(Device.cpu())
             .build();
 
     try (ZooModel rotateModel = ModelZoo.loadModel(criteria)) {

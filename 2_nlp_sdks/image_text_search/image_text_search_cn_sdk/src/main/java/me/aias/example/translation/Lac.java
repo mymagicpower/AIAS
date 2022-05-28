@@ -23,7 +23,6 @@ public final class Lac {
             .optTranslator(new LacTranslator())
             .optProgress(new ProgressBar())
             .optEngine("PaddlePaddle") // Use PaddlePaddle engine
-            // .optDevice(Device.cpu())
             .build();
 
     return criteria;

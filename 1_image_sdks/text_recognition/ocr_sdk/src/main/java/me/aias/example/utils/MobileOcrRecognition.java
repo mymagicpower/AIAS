@@ -62,7 +62,6 @@ public final class MobileOcrRecognition {
                 "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_mobile_v2.0_det_infer.zip")
             //            .optModelUrls(
             // "/Users/calvin/Documents/build/paddle_models/ppocr/ch_PP-OCRv2_det_infer")
-            // .optDevice(Device.cpu())
             .optTranslator(new PpWordDetectionTranslator(new ConcurrentHashMap<String, String>()))
             .optProgress(new ProgressBar())
             .build();
@@ -77,7 +76,6 @@ public final class MobileOcrRecognition {
             .setTypes(Image.class, String.class)
             .optModelUrls(
                 "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_mobile_v2.0_rec_infer.zip")
-            // .optDevice(Device.cpu())
             .optProgress(new ProgressBar())
             .optTranslator(new PpWordRecognitionTranslator(enableFilter, thresh))
             .build();

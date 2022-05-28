@@ -85,7 +85,7 @@ public final class RecognitionModel {
                         .optEngine("PaddlePaddle")
                         .setTypes(Image.class, DetectedObjects.class)
                         .optModelUrls(detUri)
-                        // .optDevice(Device.cpu())
+                        
                         .optTranslator(new PpWordDetectionTranslator(new ConcurrentHashMap<String, String>()))
                         .optProgress(new ProgressBar())
                         .build();
@@ -99,7 +99,7 @@ public final class RecognitionModel {
                         .optEngine("PaddlePaddle")
                         .setTypes(Image.class, String.class)
                         .optModelUrls(recUri)
-                        // .optDevice(Device.cpu())
+                        
                         .optProgress(new ProgressBar())
                         .optTranslator(new PpWordRecognitionTranslator())
                         .build();

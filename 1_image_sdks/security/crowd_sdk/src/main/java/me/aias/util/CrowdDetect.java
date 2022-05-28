@@ -34,7 +34,6 @@ public final class CrowdDetect {
             //            .optModelName("inference")
             .optTranslator(new CrowdTranslator())
             .optProgress(new ProgressBar())
-            // .optDevice(Device.cpu())
             .build();
 
     return criteria;

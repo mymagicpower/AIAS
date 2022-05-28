@@ -16,8 +16,7 @@ public class Tacotron2Encoder {
                     .optModelUrls("https://aias-home.oss-cn-beijing.aliyuncs.com/models/speech_models/tacotron2.zip")
                     .optTranslator(new TacotronTranslator())
                     .optEngine("PyTorch") // Use PyTorch engine
-                    // This model was traced on CPU and can only run on CPU
-                    .optDevice(Device.cpu())
+                    .optOption("mapLocation", "true")
                     .optProgress(new ProgressBar())
                     .build();
 

@@ -24,7 +24,6 @@ public final class SimnetBow {
             //            .optModelUrls("/Users/calvin/model/simnet_bow/")
             .optTranslator(new SimnetBowTranslator())
             .optEngine("PaddlePaddle") // Use PyTorch engine
-            // .optDevice(Device.cpu())
             .optProgress(new ProgressBar())
             .build();
 

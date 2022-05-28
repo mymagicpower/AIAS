@@ -52,7 +52,7 @@ public final class FaceDetectionModel {
                         .optModelUrls(layoutUri)
                         .optTranslator(translator)
                         .optEngine("PyTorch") // Use PyTorch engine
-                        .optDevice(Device.cpu())
+                        .optOption("mapLocation", "true")
                         .optProgress(new ProgressBar())
                         .build();
         return criteria;

@@ -10,7 +10,7 @@
     </parent>
     <groupId>aias</groupId>
     <artifactId>iocr-demo</artifactId>
-    <version>0.1.0</version>
+    <version>0.17.0</version>
     <name>aias-ocr-demo</name>
     <description>AIAS IOCR Demo Project</description>
 
@@ -22,7 +22,7 @@
         <jna.version>5.6.0</jna.version>
         <fastjson.version>1.2.70</fastjson.version>
         <swagger.version>2.9.2</swagger.version>
-        <djl.version>0.14.0</djl.version>
+        <djl.version>0.17.0</djl.version>
     </properties>
 
     <dependencies>
@@ -63,7 +63,7 @@
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
-            <version>2.15.0</version>
+            <version>2.17.2</version>
         </dependency>
         <!-- DJL -->
         <dependency>
@@ -86,20 +86,7 @@
             <artifactId>mxnet-engine</artifactId>
             <version>${djl.version}</version>
         </dependency>
-        <dependency>
-            <groupId>ai.djl.mxnet</groupId>
-            <artifactId>mxnet-native-auto</artifactId>
-            <version>1.8.0</version>
-        </dependency>
-        
-<!--        <dependency>-->
-<!--            <groupId>ai.djl.mxnet</groupId>-->
-<!--            <artifactId>mxnet-native-mkl</artifactId>-->
-<!--            <classifier>linux-x86_64</classifier>-->
-<!--            <scope>runtime</scope>-->
-<!--            <version>1.8.0</version>-->
-<!--        </dependency>-->
-        
+
         <dependency>
             <groupId>net.java.dev.jna</groupId>
             <artifactId>jna</artifactId>
@@ -112,26 +99,6 @@
             <artifactId>paddlepaddle-engine</artifactId>
             <version>${djl.version}</version>
         </dependency>
-        
-        <dependency>
-            <groupId>ai.djl.paddlepaddle</groupId>
-            <artifactId>paddlepaddle-native-auto</artifactId>
-            <version>2.0.2</version>
-        </dependency>
-
-<!--        <dependency>-->
-<!--            <groupId>ai.djl.paddlepaddle</groupId>-->
-<!--            <artifactId>paddlepaddle-native-cpu</artifactId>-->
-<!--            <classifier>linux-x86_64</classifier>-->
-<!--            <version>2.0.2</version>-->
-<!--        </dependency>-->
-        
-        <dependency>
-            <groupId>ai.djl.paddlepaddle</groupId>
-            <artifactId>paddlepaddle-model-zoo</artifactId>
-            <version>${djl.version}</version>
-        </dependency>
-
         <dependency>
             <groupId>ai.djl.paddlepaddle</groupId>
             <artifactId>paddlepaddle-model-zoo</artifactId>
@@ -142,7 +109,7 @@
         <dependency>
             <groupId>org.bytedeco</groupId>
             <artifactId>javacv-platform</artifactId>
-            <version>1.5.1</version>
+            <version>1.5.7</version>
         </dependency>
 
         <dependency>

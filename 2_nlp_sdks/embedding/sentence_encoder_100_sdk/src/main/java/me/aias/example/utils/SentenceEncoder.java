@@ -22,8 +22,7 @@ public final class SentenceEncoder {
             //            .optModelUrls("/Users/calvin/models/paraphrase-xlm-r-multilingual-v1/")
             .optTranslator(new SentenceTransTranslator(processor))
             .optEngine("PyTorch") // Use PyTorch engine
-            // This model was traced on CPU and can only run on CPU
-            .optDevice(Device.cpu())
+            .optOption("mapLocation", "true")
             .optProgress(new ProgressBar())
             .build();
 

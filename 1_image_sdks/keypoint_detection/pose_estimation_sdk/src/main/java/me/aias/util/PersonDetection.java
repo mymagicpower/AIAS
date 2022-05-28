@@ -60,7 +60,6 @@ public final class PersonDetection {
             // .optModelUrls("/Users/calvin/Documents/build/mxnet_models/ssd_512_resnet50_v1_voc/")
             .optTranslator(translator)
             .optProgress(new ProgressBar())
-            // .optDevice(Device.cpu())
             .build();
 
     try (ZooModel<Image, DetectedObjects> ssd = ModelZoo.loadModel(criteria)) {

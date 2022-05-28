@@ -42,7 +42,7 @@ public final class LargeHelmetHeadPersonDetect {
             .optTranslator(translator)
             .optProgress(new ProgressBar())
             .optEngine("PyTorch")
-            .optDevice(Device.cpu())
+            .optOption("mapLocation", "true")
             .build();
 
     return criteria;

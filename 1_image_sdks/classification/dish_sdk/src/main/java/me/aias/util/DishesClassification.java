@@ -68,7 +68,7 @@ public final class DishesClassification {
             .optModelName("inference")
             .optTranslator(new DishTranslator())
             .optProgress(new ProgressBar())
-            // .optDevice(Device.cpu())
+
             .build();
 
     try (ZooModel model = ModelZoo.loadModel(criteria)) {

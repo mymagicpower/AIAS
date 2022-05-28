@@ -22,8 +22,7 @@ public final class QANaturalQuestions {
             //            .optModelUrls("/Users/calvin/nq-distilbert-base-v1/")
             .optTranslator(new QATranslator())
             .optEngine("PyTorch") // Use PyTorch engine
-            // This model was traced on CPU and can only run on CPU
-            .optDevice(Device.cpu())
+            .optOption("mapLocation", "true")
             .optProgress(new ProgressBar())
             .build();
 

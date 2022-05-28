@@ -56,7 +56,6 @@ public final class PoseResnet50Estimation {
             // .optModelUrls("/Users/calvin/Documents/build/mxnet_models/simple_pose_resnet50_v1b/")
             .optTranslator(translator)
             .optProgress(new ProgressBar())
-            // .optDevice(Device.cpu())
             .build();
 
     try (ZooModel<Image, Joints> pose = ModelZoo.loadModel(criteria);

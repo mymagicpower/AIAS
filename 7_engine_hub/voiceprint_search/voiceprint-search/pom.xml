@@ -11,13 +11,12 @@
     </parent>
     <groupId>aias</groupId>
     <artifactId>voiceprint-search</artifactId>
-    <version>0.1.0</version>
+    <version>0.17.0</version>
     <description>AAIS Voiceprint Search Project</description>
 
     <properties>
         <jna.version>5.6.0</jna.version>
-        <djl.version>0.14.0</djl.version>
-        <pytorch-native-auto.version>1.9.1</pytorch-native-auto.version>
+        <djl.version>0.17.0</djl.version>
         <fastjson.version>1.2.70</fastjson.version>
         <swagger.version>2.9.2</swagger.version>
         <hutool.version>5.3.4</hutool.version>
@@ -55,7 +54,7 @@
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
-            <version>2.15.0</version>
+            <version>2.17.2</version>
         </dependency>
         <!-- Gson -->
         <dependency>
@@ -84,11 +83,6 @@
             <artifactId>pytorch-engine</artifactId>
             <version>${djl.version}</version>
         </dependency>
-        <dependency>
-            <groupId>ai.djl.pytorch</groupId>
-            <artifactId>pytorch-native-auto</artifactId>
-            <version>${pytorch-native-auto.version}</version>
-        </dependency>
         <!-- PaddlePaddle -->
         <dependency>
             <groupId>ai.djl.paddlepaddle</groupId>
@@ -100,11 +94,6 @@
             <artifactId>paddlepaddle-engine</artifactId>
             <version>${djl.version}</version>
         </dependency>
-        <dependency>
-            <groupId>ai.djl.paddlepaddle</groupId>
-            <artifactId>paddlepaddle-native-auto</artifactId>
-            <version>2.0.2</version>
-        </dependency>
         <!-- 向量引擎 -->
         <dependency>
             <groupId>io.milvus</groupId>
@@ -115,7 +104,7 @@
         <dependency>
             <groupId>org.bytedeco</groupId>
             <artifactId>javacv-platform</artifactId>
-            <version>1.5.1</version>
+            <version>1.5.7</version>
         </dependency>
 
         <dependency>

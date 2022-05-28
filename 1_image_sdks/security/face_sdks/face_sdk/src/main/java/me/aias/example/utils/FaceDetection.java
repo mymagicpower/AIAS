@@ -38,7 +38,6 @@ public final class FaceDetection {
             // .optModelUrls("/Users/calvin/model/face_mask/pyramidbox_lite/")
             // .optModelName("inference")
             .optProgress(new ProgressBar())
-            //.optDevice(Device.cpu())
             .optTranslator(new FaceTranslator(shrink, threshold))
             .build();
 

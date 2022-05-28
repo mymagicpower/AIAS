@@ -29,7 +29,6 @@ public final class Translation {
             .optTranslator(new TranslationTranslator())
             .optEngine("PaddlePaddle") // Use PyTorch engine
             .optModelName("inference")
-            // .optDevice(Device.cpu())
             .optProgress(new ProgressBar())
             .build();
 

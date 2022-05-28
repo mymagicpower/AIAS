@@ -24,7 +24,6 @@ public final class LayoutDetection {
                 "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ppyolov2_r50vd_dcn_365e_publaynet_infer.zip")
             //            .optModelUrls(
             // "/Users/calvin/.paddledet/inference_model/ppyolov2_r50vd_dcn_365e_publaynet/ppyolov2_r50vd_dcn_365e_publaynet_infer")
-            // .optDevice(Device.cpu())
             .optTranslator(new LayoutDetectionTranslator())
             .optProgress(new ProgressBar())
             .build();

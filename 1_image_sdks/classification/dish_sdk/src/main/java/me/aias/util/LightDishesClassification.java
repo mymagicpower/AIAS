@@ -72,7 +72,6 @@ public final class LightDishesClassification {
             .optModelName("inference")
             .optTranslator(new DishTranslator())
             .optProgress(new ProgressBar())
-            // .optDevice(Device.cpu())
             .build();
 
     try (ZooModel model = ModelZoo.loadModel(criteria)) {

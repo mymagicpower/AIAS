@@ -11,12 +11,12 @@
     </parent>
     <groupId>aias</groupId>
     <artifactId>api-platform</artifactId>
-    <version>0.1.0</version>
+    <version>0.17.0</version>
     <description>AIAS API Platform Project</description>
 
     <properties>
         <jna.version>5.6.0</jna.version>
-        <djl.version>0.14.0</djl.version>
+        <djl.version>0.17.0</djl.version>
         <fastjson.version>1.2.70</fastjson.version>
         <swagger.version>2.9.2</swagger.version>
     </properties>
@@ -99,11 +99,6 @@
         </dependency>
         <dependency>
             <groupId>ai.djl.paddlepaddle</groupId>
-            <artifactId>paddlepaddle-native-auto</artifactId>
-            <version>2.0.2</version>
-        </dependency>
-        <dependency>
-            <groupId>ai.djl.paddlepaddle</groupId>
             <artifactId>paddlepaddle-model-zoo</artifactId>
             <version>${djl.version}</version>
         </dependency>
@@ -111,11 +106,6 @@
             <groupId>ai.djl.pytorch</groupId>
             <artifactId>pytorch-engine</artifactId>
             <version>${djl.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>ai.djl.pytorch</groupId>
-            <artifactId>pytorch-native-auto</artifactId>
-            <version>1.9.1</version>
         </dependency>
         <!--lombok-->
         <dependency>

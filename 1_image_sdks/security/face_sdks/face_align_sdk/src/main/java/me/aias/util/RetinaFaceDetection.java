@@ -27,7 +27,7 @@ public final class RetinaFaceDetection {
             .optTranslator(translator)
             .optProgress(new ProgressBar())
             .optEngine("PyTorch") // Use PyTorch engine
-            .optDevice(Device.cpu())
+            .optOption("mapLocation", "true")
             .build();
 
     return criteria;

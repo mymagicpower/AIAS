@@ -22,8 +22,7 @@ public final class SemanticSearchPublications {
 //            .optModelUrls("/Users/calvin/allenai-specter/")
             .optTranslator(new SemanticSearchTranslator())
             .optEngine("PyTorch") // Use PyTorch engine
-            // This model was traced on CPU and can only run on CPU
-            .optDevice(Device.cpu())
+            .optOption("mapLocation", "true")
             .optProgress(new ProgressBar())
             .build();
 

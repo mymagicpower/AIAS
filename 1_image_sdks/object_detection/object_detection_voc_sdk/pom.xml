@@ -25,13 +25,13 @@
 
     <groupId>calvin</groupId>
     <artifactId>object-detection-voc-sdk</artifactId>
-    <version>0.1</version>
+    <version>0.17.0</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <djl.version>0.14.0</djl.version>
+        <djl.version>0.17.0</djl.version>
     </properties>
 
     <build>
@@ -61,7 +61,7 @@
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
-            <version>2.15.0</version>
+            <version>2.17.2</version>
         </dependency>
         <dependency>
             <groupId>ai.djl</groupId>
@@ -88,11 +88,6 @@
             <groupId>ai.djl.mxnet</groupId>
             <artifactId>mxnet-engine</artifactId>
             <version>${djl.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>ai.djl.mxnet</groupId>
-            <artifactId>mxnet-native-auto</artifactId>
-            <version>1.8.0</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

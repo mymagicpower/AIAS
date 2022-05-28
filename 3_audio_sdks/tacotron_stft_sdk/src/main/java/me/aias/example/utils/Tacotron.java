@@ -19,8 +19,7 @@ public class Tacotron {
             // .optModelPath(Paths.get("src/main/resources/voice/tacotronSTFT.pt"))
             .optTranslator(new TacotronTranslator())
             .optEngine("PyTorch") // Use PyTorch engine
-            // This model was traced on CPU and can only run on CPU
-            .optDevice(Device.cpu())
+            .optOption("mapLocation", "true")
             .optProgress(new ProgressBar())
             .build();
 

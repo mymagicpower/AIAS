@@ -66,7 +66,6 @@ public final class FaceMaskDetect {
             .optModelUrls(
                 "https://aias-home.oss-cn-beijing.aliyuncs.com/models/face_mask/face_mask.zip")
             .optProgress(new ProgressBar())
-            // .optDevice(Device.cpu())
             .build();
 
     return criteria;

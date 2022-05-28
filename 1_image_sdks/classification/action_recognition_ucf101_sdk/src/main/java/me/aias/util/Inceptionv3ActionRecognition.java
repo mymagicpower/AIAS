@@ -58,7 +58,6 @@ public final class Inceptionv3ActionRecognition {
             // .optModelUrls("/Users/calvin/Documents/build/mxnet_models/inceptionv3_ucf101/")
             .optTranslator(translator)
             .optProgress(new ProgressBar())
-            //.optDevice(Device.cpu())
             .build();
 
     try (ZooModel<Image, Classifications> inception = ModelZoo.loadModel(criteria)) {
