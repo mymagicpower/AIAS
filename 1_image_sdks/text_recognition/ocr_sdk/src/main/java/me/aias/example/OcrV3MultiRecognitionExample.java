@@ -37,8 +37,8 @@ public final class OcrV3MultiRecognitionExample {
     Image image = ImageFactory.getInstance().fromFile(imageFile);
     // 是否启用字符置信度过滤，用于辅助解决重复字符问题
     boolean enableFilter = true;
-    // 置信度阈值
-    float thresh = 0.65f;
+    // 置信度阈值, 越高重复字符概率越低，但是可能多度过滤字符
+    float thresh = 0.5f;
     // 并发线程数，最大上限为 CPU 核数
     int threadNum = 4;
 

@@ -43,8 +43,8 @@ public final class SingleTableRecognitionExample {
     int width = image.getWidth();
     // 是否启用字符置信度过滤，用于辅助解决重复字符问题
     boolean enableFilter = true;
-    // 置信度阈值
-    float thresh = 0.99f;
+    // 置信度阈值, 越高重复字符概率越低，但是可能多度过滤字符
+    float thresh = 0.5f;
     // 表格单元检测
     TableDetection tableDetection = new TableDetection();
     // 文本框检测
