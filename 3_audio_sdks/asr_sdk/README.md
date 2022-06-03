@@ -19,6 +19,9 @@ DeepSpeech2是基于PaddlePaddle实现的端到端自动语音识别（ASR）引
 [INFO ] - Words : 近几年不但我用书给女儿压岁也劝说亲朋友不要给女儿压岁钱而改送压岁书
 ```
 
+### 本例子VAD只支持Mac & Linux, VAD windows环境支持，请参考：
+https://gitee.com/endlesshh/ttskit-java
+
 
 ### 帮助 
 引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         

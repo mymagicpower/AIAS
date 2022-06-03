@@ -27,6 +27,9 @@ DeepSpeech2是基于PaddlePaddle实现的端到端自动语音识别（ASR）引
 padding_duration_ms：300 
 frame_duration_ms：30
 
+### 本例子VAD只支持Mac & Linux, VAD windows环境支持，请参考：
+https://gitee.com/endlesshh/ttskit-java
+
 ### 帮助 
 引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
 [引擎定制化配置](http://aias.top/engine_cpu.html)
