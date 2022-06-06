@@ -66,7 +66,7 @@ sudo nginx
 ### 2. 后端部署
 
 #### 2.1 jar包
-构建jar包 
+maven 构建jar包 
  
 #### 2.2 运行程序
 ```bash
@@ -146,6 +146,10 @@ http://127.0.0.1:8089/swagger-ui.html
 3. 增加模板匹配的debug功能，输出变换后的图片效果，及变换坐标后的匹配效果图。
   
   
-### 帮助 
-引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
-[引擎定制化配置](http://aias.top/engine_cpu.html)  
+### 参考资料
+1. 基于模板的文字识别结果结构化处理技术
+https://blog.csdn.net/dqcfkyqdxym3f8rb0/article/details/89819785#comments
+2. ocr的预处理--透视变换，重映射，仿射变换，水平矫正
+https://blog.csdn.net/zhouguangfei0717/article/details/103026139/
+3. 图片文档扫描矫正处理(手机扫描仪)，OCR识别，图片修改库整合
+https://blog.csdn.net/u014133119/article/details/82222656
