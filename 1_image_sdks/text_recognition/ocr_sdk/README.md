@@ -47,22 +47,6 @@ OCR（文字识别）是目前常用的一种AI能力。
 - 输出图片效果如下：
 ![detect_result](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/detect_result.png)
 
-#### 1.2 文字方向检测帮助类（增加置信度信息显示，便于调试）：
-- 例子代码: OcrDetectionHelperExample.java 
-- 运行成功后，命令行应该看到下面的信息:
-```text
-[INFO ] - Result image has been saved in: build/output/detect_result_helper.png
-[INFO ] - [
-	class: "0 :1.0", probability: 1.00000, bounds: [x=0.073, y=0.069, width=0.275, height=0.026]
-	class: "0 :1.0", probability: 1.00000, bounds: [x=0.652, y=0.158, width=0.222, height=0.040]
-	class: "0 :1.0", probability: 1.00000, bounds: [x=0.143, y=0.252, width=0.144, height=0.026]
-	class: "0 :1.0", probability: 1.00000, bounds: [x=0.628, y=0.328, width=0.168, height=0.026]
-	class: "0 :1.0", probability: 1.00000, bounds: [x=0.064, y=0.330, width=0.450, height=0.023]
-]
-```
-- 输出图片效果如下：
-![detect_result_helper](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/detect_result_helper.png)
-
 #### 2. 图片旋转：
 每调用一次rotateImg方法，会使图片逆时针旋转90度。
 - 例子代码: RotationExample.java 
@@ -143,9 +127,34 @@ OCR（文字识别）是目前常用的一种AI能力。
 - 生成excel效果如下：
 ![excel](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/excel.jpeg)
 
-### 帮助 
-引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
-[引擎定制化配置](http://aias.top/engine_cpu.html)
+### 模型列表：
+```text
+  table模型:
+    # Layout detection model URI
+    layout: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ppyolov2_r50vd_dcn_365e_publaynet_infer.zip
+    # Table detection model URI
+    table-en: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/en_table.zip
+  mobile模型:
+    # mobile detection model URI
+    检测: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_mobile_v2.0_det_infer.zip
+    # mobile recognition model URI
+    识别: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_mobile_v2.0_rec_infer.zip
+  light模型:
+    # light detection model URI
+    检测: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv2_det_infer.zip
+    # light recognition model URI
+    识别: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv2_rec_infer.zip
+  server模型:
+    # server detection model URI
+    检测: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_server_v2.0_det_infer.zip
+    # server recognition model URI
+    识别: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_server_v2.0_rec_infer.zip
+  v3模型:
+    # v3 detection model URI
+    检测: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv3_det_infer.zip
+    # v3 recognition model URI
+    识别: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv3_rec_infer.zip
+```
 
 ### 官网：
 [官网链接](http://www.aias.top/)
