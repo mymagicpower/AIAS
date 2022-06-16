@@ -39,7 +39,8 @@ public final class TextEncoderModel {
                         // .optModelUrls("/Users/calvin/M-BERT-Base-ViT-B/M-BERT-Base-ViT-B.zip") // Load model from local disk
                         .optTranslator(new TextTranslator(isChinese))
                         .optEngine("PyTorch") // Use PyTorch engine
-                        .optOption("mapLocation", "true")
+                        .optDevice(Device.cpu())
+//                        .optOption("mapLocation", "true")
                         .optProgress(new ProgressBar())
                         .build();
 
