@@ -156,6 +156,20 @@ OCR（文字识别）是目前常用的一种AI能力。
     识别: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv3_rec_infer.zip
 ```
 
+
+### OCR图像预处理项目：
+https://gitee.com/mymagicpower/AIAS/tree/main/1_image_sdks/imagekit_java
+
+### 参考文章：
+https://blog.csdn.net/dqcfkyqdxym3f8rb0/article/details/89819785#comments
+https://www.jianshu.com/p/9eb9d6f6f837
+https://www.jianshu.com/p/173d329afa3a
+https://blog.csdn.net/zhouguangfei0717/article/details/103026139/
+https://blog.csdn.net/u014133119/article/details/82222656
+https://blog.csdn.net/wsp_1138886114/article/details/83374333
+以上文章供参考，并不一定是最好的，建议根据相关关键字进一步去搜索。
+
+
 ### 官网：
 [官网链接](http://www.aias.top/)
 
