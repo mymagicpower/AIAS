@@ -20,7 +20,7 @@ public final class TinyBertCrossEncoder {
             //            .optModelUrls("/Users/calvin/ms-marco-TinyBERT-L-2-v2/")
             .optTranslator(new CrossEncoderTranslator())
             .optEngine("PyTorch") // Use PyTorch engine
-            .optOption("mapLocation", "true")
+            .optDevice(Device.cpu())
             .optProgress(new ProgressBar())
             .build();
 

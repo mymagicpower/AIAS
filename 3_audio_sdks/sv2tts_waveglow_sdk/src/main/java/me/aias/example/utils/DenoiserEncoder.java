@@ -17,7 +17,7 @@ public class DenoiserEncoder {
                                 "https://aias-home.oss-cn-beijing.aliyuncs.com/models/speech_models/denoiser.zip")
                         .optTranslator(new DenoiserTranslator())
                         .optEngine("PyTorch") // Use PyTorch engine
-                        .optOption("mapLocation", "true")
+                        .optDevice(Device.cpu())
                         .optProgress(new ProgressBar())
                         .build();
 

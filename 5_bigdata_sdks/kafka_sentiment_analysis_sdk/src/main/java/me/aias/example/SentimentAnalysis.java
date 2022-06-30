@@ -24,7 +24,7 @@ public final class SentimentAnalysis {
             // "/Users/calvin/Documents/build/pytorch_models/distilbert_sst_english/")
             .optTranslator(new PtDistilBertTranslator())
             .optEngine("PyTorch") // Use PyTorch engine
-            .optOption("mapLocation", "true")
+            .optDevice(Device.cpu())
             .optProgress(new ProgressBar())
             .build();
 

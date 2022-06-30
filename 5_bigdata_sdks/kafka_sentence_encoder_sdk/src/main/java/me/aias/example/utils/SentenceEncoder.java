@@ -22,7 +22,7 @@ public final class SentenceEncoder {
             // .optModelUrls("/Users/calvin/models/distiluse-base-multilingual-cased-v1/")
             .optTranslator(new SentenceTransTranslator())
             .optEngine("PyTorch") // Use PyTorch engine
-            .optOption("mapLocation", "true")
+            .optDevice(Device.cpu())
             .optProgress(new ProgressBar())
             .build();
 

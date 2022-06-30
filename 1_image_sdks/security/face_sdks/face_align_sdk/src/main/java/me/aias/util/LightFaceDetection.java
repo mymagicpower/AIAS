@@ -27,7 +27,7 @@ public final class LightFaceDetection {
             .optTranslator(translator)
             .optProgress(new ProgressBar())
             .optEngine("PyTorch") // Use PyTorch engine
-            .optOption("mapLocation", "true")
+            .optDevice(Device.cpu())
             .build();
 
     return criteria;

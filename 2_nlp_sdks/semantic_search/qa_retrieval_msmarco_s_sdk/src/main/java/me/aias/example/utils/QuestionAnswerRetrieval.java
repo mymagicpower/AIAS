@@ -22,7 +22,7 @@ public final class QuestionAnswerRetrieval {
             //            .optModelUrls("/Users/calvin/msmarco-MiniLM-L-6-v3/")
             .optTranslator(new SentenceTransTranslator())
             .optEngine("PyTorch") // Use PyTorch engine
-            .optOption("mapLocation", "true")
+            .optDevice(Device.cpu())
             .optProgress(new ProgressBar())
             .build();
 

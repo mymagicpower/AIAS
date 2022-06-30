@@ -22,7 +22,7 @@ public final class QANaturalQuestions {
             //            .optModelUrls("/Users/calvin/nq-distilbert-base-v1/")
             .optTranslator(new QATranslator())
             .optEngine("PyTorch") // Use PyTorch engine
-            .optOption("mapLocation", "true")
+            .optDevice(Device.cpu())
             .optProgress(new ProgressBar())
             .build();
 

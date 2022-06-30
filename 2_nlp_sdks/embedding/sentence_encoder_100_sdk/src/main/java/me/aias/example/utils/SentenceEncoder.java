@@ -22,7 +22,7 @@ public final class SentenceEncoder {
             //            .optModelUrls("/Users/calvin/models/paraphrase-xlm-r-multilingual-v1/")
             .optTranslator(new SentenceTransTranslator(processor))
             .optEngine("PyTorch") // Use PyTorch engine
-            .optOption("mapLocation", "true")
+            .optDevice(Device.cpu())
             .optProgress(new ProgressBar())
             .build();
 

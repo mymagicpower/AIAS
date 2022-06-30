@@ -41,7 +41,7 @@ public final class FireSmokeDetect {
             .optTranslator(translator)
             .optProgress(new ProgressBar())
             .optEngine("PyTorch")
-            .optOption("mapLocation", "true")
+            .optDevice(Device.cpu())
             .build();
 
     return criteria;

@@ -28,7 +28,7 @@ public final class ImageEncoderModel {
                         //.optModelUrls("/Users/calvin/CLIP-ViT-B-32-IMAGE/CLIP-ViT-B-32-IMAGE.zip")
                         .optTranslator(new ImageTranslator())
                         .optEngine("PyTorch") // Use PyTorch engine
-                        .optOption("mapLocation", "true")
+                        .optDevice(Device.cpu())
                         .optProgress(new ProgressBar())
                         .build();
 

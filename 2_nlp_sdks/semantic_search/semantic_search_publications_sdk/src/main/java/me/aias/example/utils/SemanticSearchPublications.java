@@ -22,7 +22,7 @@ public final class SemanticSearchPublications {
 //            .optModelUrls("/Users/calvin/allenai-specter/")
             .optTranslator(new SemanticSearchTranslator())
             .optEngine("PyTorch") // Use PyTorch engine
-            .optOption("mapLocation", "true")
+            .optDevice(Device.cpu())
             .optProgress(new ProgressBar())
             .build();
 

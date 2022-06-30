@@ -18,7 +18,7 @@ public final class TextEncoder {
             // .optModelUrls("/Users/calvin/M-BERT-Base-ViT-B/")
             .optTranslator(new TextTranslator(isChinese))
             .optEngine("PyTorch") // Use PyTorch engine
-            .optOption("mapLocation", "true")
+            .optDevice(Device.cpu())
             .optProgress(new ProgressBar())
             .build();
 

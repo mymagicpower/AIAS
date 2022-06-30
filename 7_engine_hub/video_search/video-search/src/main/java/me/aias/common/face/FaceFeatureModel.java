@@ -39,7 +39,7 @@ public final class FaceFeatureModel {
                         .optTranslator(new FaceFeatureTranslator())
                         .optEngine("PyTorch") // Use PyTorch engine
                         .optDevice(Device.cpu())
-//                        .optOption("mapLocation", "true")
+//                        .optDevice(Device.cpu())
                         .optProgress(new ProgressBar())
                         .build();
         return criteria;

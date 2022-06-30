@@ -28,7 +28,7 @@ public final class StyleTransfer {
             .optEngine("PyTorch") // Use PyTorch engine
             .optModelUrls(modelUrl)
             .optProgress(new ProgressBar())
-            .optOption("mapLocation", "true")
+            .optDevice(Device.cpu())
             .optTranslatorFactory(new StyleTransferTranslatorFactory())
             .build();
 

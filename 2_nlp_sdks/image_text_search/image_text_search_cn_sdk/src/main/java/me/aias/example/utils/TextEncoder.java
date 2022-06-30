@@ -23,7 +23,7 @@ public final class TextEncoder {
 //            .optModelUrls("/Users/calvin/CLIP-ViT-B-32-TEXT/")
             .optTranslator(new TextTranslator())
             .optEngine("PyTorch") // Use PyTorch engine
-            .optOption("mapLocation", "true")
+            .optDevice(Device.cpu())
             .optProgress(new ProgressBar())
             .build();
 

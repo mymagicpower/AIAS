@@ -18,7 +18,7 @@ public class SpeakerEncoder {
             // .optModelPath(Paths.get("src/main/resources/voice/tacotronSTFT.pt"))
             .optTranslator(new SpeakerEncoderTranslator())
             .optEngine("PyTorch") // Use PyTorch engine
-            .optOption("mapLocation", "true")
+            .optDevice(Device.cpu())
             .optProgress(new ProgressBar())
             .build();
 

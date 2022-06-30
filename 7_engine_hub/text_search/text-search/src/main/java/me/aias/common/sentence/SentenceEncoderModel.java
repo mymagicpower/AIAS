@@ -44,7 +44,7 @@ public final class SentenceEncoderModel {
                         .optTranslator(new SentenceTransTranslator())
                         .optEngine("PyTorch") // Use PyTorch engine
                         .optDevice(Device.cpu())
-//                        .optOption("mapLocation", "true")
+//                        .optDevice(Device.cpu())
                         .optProgress(new ProgressBar())
                         .build();
         return criteria;

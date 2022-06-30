@@ -17,7 +17,7 @@ public class WaveGlowEncoder {
                                 "https://aias-home.oss-cn-beijing.aliyuncs.com/models/speech_models/waveGlow.zip")
                         .optTranslator(new WaveGlowTranslator())
                         .optEngine("PyTorch") // Use PyTorch engine
-                        .optOption("mapLocation", "true")
+                        .optDevice(Device.cpu())
                         .optProgress(new ProgressBar())
                         .build();
 

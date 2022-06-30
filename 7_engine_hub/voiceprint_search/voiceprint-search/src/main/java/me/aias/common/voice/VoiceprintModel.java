@@ -39,7 +39,7 @@ public final class VoiceprintModel {
                         .optModelUrls(modelUri)
                         .optTranslator(new VoiceprintTranslator())
                         .optEngine("PaddlePaddle") // Use PyTorch engine
-                        //.optOption("mapLocation", "true")
+                        //.optDevice(Device.cpu())
                         .optProgress(new ProgressBar())
                         .build();
         return criteria;

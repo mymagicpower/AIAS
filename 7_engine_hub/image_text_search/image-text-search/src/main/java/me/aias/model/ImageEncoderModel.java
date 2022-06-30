@@ -41,7 +41,7 @@ public final class ImageEncoderModel {
                         .optTranslator(new ImageTranslator())
                         .optEngine("PyTorch") // Use PyTorch engine
                         .optDevice(Device.cpu())
-//                        .optOption("mapLocation", "true")
+//                        .optDevice(Device.cpu())
                         .optProgress(new ProgressBar())
                         .build();
 
