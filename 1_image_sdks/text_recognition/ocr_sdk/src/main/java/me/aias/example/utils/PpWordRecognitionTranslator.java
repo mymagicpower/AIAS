@@ -72,7 +72,7 @@ public class PpWordRecognitionTranslator implements Translator<Image, String> {
 
         //    img = NDImageUtils.resize(img, hw[1], hw[0]);
         img = NDImageUtils.resize(img, resized_w, 32);
-
+//        img = NDImageUtils.resize(img, 192, 48);
         img = NDImageUtils.toTensor(img).sub(0.5f).div(0.5f);
 
         img = img.expandDims(0);

@@ -37,7 +37,7 @@ public final class OcrV3RecognitionExample {
     // 是否启用字符置信度过滤，用于辅助解决重复字符问题
     boolean enableFilter = true;
     // 置信度阈值, 越高重复字符概率越低，但是可能多度过滤字符
-    float thresh = 0.5f;
+    float thresh = 0.8f;
     OcrV3Recognition recognition = new OcrV3Recognition();
     try (ZooModel detectionModel = ModelZoo.loadModel(recognition.detectCriteria());
         Predictor<Image, DetectedObjects> detector = detectionModel.newPredictor();
