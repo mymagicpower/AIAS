@@ -29,7 +29,7 @@ http://www.aias.top/
 2. Engine Hub
    包含了API平台引擎，搜索引擎，训练引擎，边缘计算引擎等。
 3. Suite Hub
-   包含了面向ToB，ToC，ToG各场景的套件。比如：泛安防套件，ToB套件（IOCR, 非结构化解析，推荐系统等）...
+   包含了面向ToB，ToC，ToG各场景的套件。比如：生物医药套件，泛安防套件，ToB套件（IOCR, 非结构化解析，推荐系统等）...
 ```
 
 <div align="center">
