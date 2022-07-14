@@ -3,7 +3,7 @@
 <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/logo.png"  width = "200"  />
 </div>
 
-[![star](https://gitee.com/mymagicpower/AIAS/badge/star.svg?theme=gvp)](https://gitee.com/mymagicpower/AIAS/stargazers)[![fork](https://gitee.com/mymagicpower/AIAS/badge/fork.svg?theme=gvp)](https://gitee.com/mymagicpower/AIAS/members)  
+[![star](https://gitee.com/mymagicpower/AIAS/badge/star.svg?theme=gvp)](https://gitee.com/mymagicpower/AIAS/stargazers)   [![fork](https://gitee.com/mymagicpower/AIAS/badge/fork.svg?theme=gvp)](https://gitee.com/mymagicpower/AIAS/members)  
 - 官网: http://www.aias.top/
 - 帮助文档: http://aias.top/guides.html
 - Gitee:  https://gitee.com/mymagicpower/AIAS  
@@ -14,7 +14,7 @@
 <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/qq.png"  width = "200"  />
 </div>
 
-作者：Calvin
+作者：Calvin    
 Mail: 179209347@qq.com
 
 
