@@ -151,15 +151,16 @@ Mail: 179209347@qq.com
 
 
 
-#### 其它研究专题
-##### 1. AI + 量子计算
+#### 其它研究专题:
+
+#### 1. AI + 量子计算
 <div align="left">
 <img src="https://qubits.oss-cn-shanghai.aliyuncs.com/images/logo.png"  width = "150"  />
 </div>
 - 官网: http://qubits.top/
 
 
-##### 2. AI + 生物医药
+#### 2. AI + 生物医药
 <div align="left">
 <img src="https://bio-computing.oss-cn-shanghai.aliyuncs.com/images/logo.png"  width = "200"  />
 </div>
