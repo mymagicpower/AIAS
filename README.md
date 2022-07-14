@@ -1,5 +1,24 @@
-#### 官网：
-http://www.aias.top/
+
+<div align="left">
+<img src="http://aias.top/images/logo.png"  width = "200"  />
+</div>
+
+[![star](https://gitee.com/mymagicpower/AIAS/badge/star.svg?theme=gvp)](https://gitee.com/mymagicpower/AIAS/stargazers)[![fork](https://gitee.com/mymagicpower/AIAS/badge/fork.svg?theme=gvp)](https://gitee.com/mymagicpower/AIAS/members)  
+- 官网: http://www.aias.top/
+- 帮助文档: http://aias.top/guides.html
+- Gitee:  https://gitee.com/mymagicpower/AIAS  
+- GitHub: https://github.com/mymagicpower/AIAS
+
+<div align="center">
+  <div align="center">欢迎交流，QQ群： 111257454，请给源码项目点个 <b><font color="#CE0000">Star</font></b> 吧！！！</div>
+<img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/qq.png"  width = "200"  />
+</div>
+
+作者：Calvin
+Mail: 179209347@qq.com
+
+
+
 
 #### AIAS (AI Acceleration Suite - AI算法落地加速器套件)
 - AIAS提供的参考能力:
@@ -130,27 +149,5 @@ http://www.aias.top/
       ...
 ```
 
-#### 培训教程:
 
-- [NDArray入门教程](http://aias.top/AIAS/guides/tutorials/ndarray/index.html)    
-- [性能优化常见问题](http://aias.top/AIAS/guides/performance.html)    
-- [引擎配置（包括CPU，GPU）](http://aias.top/AIAS/guides/engine_config.html)    
-- [Windows环境常见问题](http://aias.top/AIAS/guides/windows.html)    
-- [模型加载方式](http://aias.top/AIAS/guides/load_model.html)    
-- [PaddleOCR的java高性能部署](http://aias.top/AIAS/guides/PaddleOCR.pdf)    
-- [数字虚拟人](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/guides/vtuber.pdf)    
-
-
-
-
-
-#### 联系方式:
-<div align="center">
-  <div align="center">QQ扫码入群 (111257454)</div>
-<img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/qq.png"  width = "300"  />
-</div>
-
-
-Calvin   
-Mail: 179209347@qq.com
 
