@@ -20,10 +20,10 @@ import java.nio.file.Paths;
 import java.util.List;
 
 /**
- * OCR文字检测(mobile模型).
+ * OCR文字检测(V3).
  *
  * @author Calvin
- * @date 2021-10-04
+ * @date 2022-07-23
  * @email 179209347@qq.com
  */
 public final class OcrV3DetectionExample {

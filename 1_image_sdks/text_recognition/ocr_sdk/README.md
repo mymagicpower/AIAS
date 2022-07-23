@@ -4,31 +4,64 @@
 OCR（文字识别）是目前常用的一种AI能力。
 
 ### OCR工具箱功能:
-1. 方向检测   
+#### 1. 方向检测   
 - 0度   
 - 90度   
 - 180度   
 - 270度   
 ![detect_direction](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/detect_direction.png)
 
-2. 图片旋转
+#### 2. 图片旋转
 
-3. 文字识别(提供三个模型)
-- mobile模型   
-- light模型   
-- 服务器端模型 
-  
-4. 版面分析（支持5个类别, 用于配合文字识别，表格识别的流水线处理）
+#### 3. 文字识别(提供4组模型，请看文档)
+- mobile模型
+- light模型
+- server模型
+- v3模型
+- 
+##### 模型列表（根据需要自行替换）：
+```text
+  mobile模型:
+    # mobile detection model URI
+    检测: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_mobile_v2.0_det_infer.zip
+    # mobile recognition model URI
+    识别: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_mobile_v2.0_rec_infer.zip
+  light模型:
+    # light detection model URI
+    检测: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv2_det_infer.zip
+    # light recognition model URI
+    识别: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv2_rec_infer.zip
+  server模型:
+    # server detection model URI
+    检测: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_server_v2.0_det_infer.zip
+    # server recognition model URI
+    识别: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_server_v2.0_rec_infer.zip
+  v3模型:
+    # v3 detection model URI
+    检测: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv3_det_infer.zip
+    # v3 recognition model URI
+    识别: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv3_rec_infer.zip
+```
+
+5. 版面分析（支持5个类别, 用于配合文字识别，表格识别的流水线处理）
 - Text
 - Title
 - List
 - Table
 - Figure
 
+```text
+    # 版面分析 model URI
+    layout: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ppyolov2_r50vd_dcn_365e_publaynet_infer.zip
+```
+
 5. 表格识别
 - 生成html表格
 - 生成excel文件
-
+```text
+    # 表格识别 model URI
+    table-en: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/en_table.zip
+```
 
 ### 运行OCR识别例子
 #### 1.1 文字方向检测：
@@ -57,7 +90,7 @@ OCR（文字识别）是目前常用的一种AI能力。
 
 #### 3. 文字识别：
 再使用本方法前，请调用上述方法使图片文字呈水平(0度)方向。  
-- 例子代码: LightOcrRecognitionExample.java  
+- 例子代码: OcrV3RecognitionExample.java  
 - 运行成功后，命令行应该看到下面的信息:
 ```text
 [INFO ] - [
@@ -127,35 +160,10 @@ OCR（文字识别）是目前常用的一种AI能力。
 - 生成excel效果如下：
 ![excel](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/excel.jpeg)
 
-### 模型列表：
-```text
-  table模型:
-    # Layout detection model URI
-    layout: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ppyolov2_r50vd_dcn_365e_publaynet_infer.zip
-    # Table detection model URI
-    table-en: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/en_table.zip
-  mobile模型:
-    # mobile detection model URI
-    检测: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_mobile_v2.0_det_infer.zip
-    # mobile recognition model URI
-    识别: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_mobile_v2.0_rec_infer.zip
-  light模型:
-    # light detection model URI
-    检测: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv2_det_infer.zip
-    # light recognition model URI
-    识别: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv2_rec_infer.zip
-  server模型:
-    # server detection model URI
-    检测: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_server_v2.0_det_infer.zip
-    # server recognition model URI
-    识别: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_server_v2.0_rec_infer.zip
-  v3模型:
-    # v3 detection model URI
-    检测: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv3_det_infer.zip
-    # v3 recognition model URI
-    识别: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv3_rec_infer.zip
-```
 
+### 重要说明：
+paddleOCR的文字检测识别，默认支持文字是旋转歪斜（即：支持自动文字转正）。
+这个功能暂时没有时间适配（所以需要保证图片是摆正的，或者使用下面的预处理工具对整个图片转正，虽然不如原算法处理的完美）。
 
 ### OCR图像预处理项目：
 https://gitee.com/mymagicpower/AIAS/tree/main/1_image_sdks/imagekit_java

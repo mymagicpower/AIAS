@@ -22,101 +22,104 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public final class OcrV3Recognition {
 
-  private static final Logger logger = LoggerFactory.getLogger(OcrV3Recognition.class);
+    private static final Logger logger = LoggerFactory.getLogger(OcrV3Recognition.class);
 
-  public OcrV3Recognition() {}
-
-  public DetectedObjects predict(
-      Image image, Predictor<Image, DetectedObjects> detector, Predictor<Image, String> recognizer)
-      throws TranslateException {
-    DetectedObjects detections = detector.predict(image);
-
-    List<DetectedObjects.DetectedObject> boxes = detections.items();
-
-    List<String> names = new ArrayList<>();
-    List<Double> prob = new ArrayList<>();
-    List<BoundingBox> rect = new ArrayList<>();
-
-    for (int i = 0; i < boxes.size(); i++) {
-      Image subImg = getSubImage(image, boxes.get(i).getBoundingBox());
-      if (subImg.getHeight() * 1.0 / subImg.getWidth() > 1.5) {
-        subImg = rotateImg(subImg);
-      }
-      String name = recognizer.predict(subImg);
-      names.add(name);
-      prob.add(-1.0);
-      rect.add(boxes.get(i).getBoundingBox());
+    public OcrV3Recognition() {
     }
-    DetectedObjects detectedObjects = new DetectedObjects(names, prob, rect);
 
-    return detectedObjects;
-  }
+    public DetectedObjects predict(
+            Image image, Predictor<Image, DetectedObjects> detector, Predictor<Image, String> recognizer)
+            throws TranslateException {
+        DetectedObjects detections = detector.predict(image);
 
-  public Criteria<Image, DetectedObjects> detectCriteria() {
-    Criteria<Image, DetectedObjects> criteria =
-        Criteria.builder()
-            .optEngine("PaddlePaddle")
-            .setTypes(Image.class, DetectedObjects.class)
-            .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv3_det_infer.zip")
-            //            .optModelUrls(
-            // "/Users/calvin/Documents/build/paddle_models/ppocr/ch_PP-OCRv2_det_infer")
-            .optTranslator(new PpWordDetectionTranslator(new ConcurrentHashMap<String, String>()))
-            .optProgress(new ProgressBar())
-            .build();
+        List<DetectedObjects.DetectedObject> boxes = detections.items();
 
-    return criteria;
-  }
+        List<String> names = new ArrayList<>();
+        List<Double> prob = new ArrayList<>();
+        List<BoundingBox> rect = new ArrayList<>();
 
-  public Criteria<Image, String> recognizeCriteria(boolean enableFilter, float thresh) {
-    Criteria<Image, String> criteria =
-        Criteria.builder()
-            .optEngine("PaddlePaddle")
-            .setTypes(Image.class, String.class)
-            .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv3_rec_infer.zip")
-            .optProgress(new ProgressBar())
-            .optTranslator(new PpWordRecognitionTranslator(enableFilter, thresh))
-            .build();
+        for (int i = 0; i < boxes.size(); i++) {
+            Image subImg = getSubImage(image, boxes.get(i).getBoundingBox());
+            if (subImg.getHeight() * 1.0 / subImg.getWidth() > 1.5) {
+                subImg = rotateImg(subImg);
+            }
+            ImageUtils.saveImage(subImg, i + ".png", "build/output");
+            String name = recognizer.predict(subImg);
+            names.add(name);
+            prob.add(-1.0);
+            rect.add(boxes.get(i).getBoundingBox());
+        }
+        DetectedObjects detectedObjects = new DetectedObjects(names, prob, rect);
 
-    return criteria;
-  }
-
-  private Image getSubImage(Image img, BoundingBox box) {
-    Rectangle rect = box.getBounds();
-    double[] extended = extendRect(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
-    int width = img.getWidth();
-    int height = img.getHeight();
-    int[] recovered = {
-      (int) (extended[0] * width),
-      (int) (extended[1] * height),
-      (int) (extended[2] * width),
-      (int) (extended[3] * height)
-    };
-    return img.getSubImage(recovered[0], recovered[1], recovered[2], recovered[3]);
-  }
-
-  private double[] extendRect(double xmin, double ymin, double width, double height) {
-    double centerx = xmin + width / 2;
-    double centery = ymin + height / 2;
-    if (width > height) {
-      width += height * 2.0;
-      height *= 3.0;
-    } else {
-      height += width * 2.0;
-      width *= 3.0;
+        return detectedObjects;
     }
-    double newX = centerx - width / 2 < 0 ? 0 : centerx - width / 2;
-    double newY = centery - height / 2 < 0 ? 0 : centery - height / 2;
-    double newWidth = newX + width > 1 ? 1 - newX : width;
-    double newHeight = newY + height > 1 ? 1 - newY : height;
-    return new double[] {newX, newY, newWidth, newHeight};
-  }
 
-  private Image rotateImg(Image image) {
-    try (NDManager manager = NDManager.newBaseManager()) {
-      NDArray rotated = NDImageUtils.rotate90(image.toNDArray(manager), 1);
-      return ImageFactory.getInstance().fromNDArray(rotated);
+    public Criteria<Image, DetectedObjects> detectCriteria() {
+        Criteria<Image, DetectedObjects> criteria =
+                Criteria.builder()
+                        .optEngine("PaddlePaddle")
+                        .setTypes(Image.class, DetectedObjects.class)
+                        .optModelUrls(
+                                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv3_det_infer.zip")
+                        //            .optModelUrls(
+                        // "/Users/calvin/Documents/build/paddle_models/ppocr/ch_PP-OCRv2_det_infer")
+                        .optTranslator(new PpWordDetectionTranslator(new ConcurrentHashMap<String, String>()))
+                        .optProgress(new ProgressBar())
+                        .build();
+
+        return criteria;
     }
-  }
+
+    public Criteria<Image, String> recognizeCriteria() {
+        Criteria<Image, String> criteria =
+                Criteria.builder()
+                        .optEngine("PaddlePaddle")
+                        .setTypes(Image.class, String.class)
+                        .optModelUrls(
+                                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv3_rec_infer.zip")
+                        .optProgress(new ProgressBar())
+                        .optTranslator(new PpWordRecognitionTranslator())
+                        .build();
+
+        return criteria;
+    }
+
+    private Image getSubImage(Image img, BoundingBox box) {
+        Rectangle rect = box.getBounds();
+        double[] extended = extendRect(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
+        int width = img.getWidth();
+        int height = img.getHeight();
+        int[] recovered = {
+                (int) (extended[0] * width),
+                (int) (extended[1] * height),
+                (int) (extended[2] * width),
+                (int) (extended[3] * height)
+        };
+
+        return img.getSubImage(recovered[0], recovered[1], recovered[2], recovered[3]);
+    }
+
+    private double[] extendRect(double xmin, double ymin, double width, double height) {
+        double centerx = xmin + width / 2;
+        double centery = ymin + height / 2;
+        if (width > height) {
+            width += height * 2.0;
+            height *= 3.0;
+        } else {
+            height += width * 2.0;
+            width *= 3.0;
+        }
+        double newX = centerx - width / 2 < 0 ? 0 : centerx - width / 2;
+        double newY = centery - height / 2 < 0 ? 0 : centery - height / 2;
+        double newWidth = newX + width > 1 ? 1 - newX : width;
+        double newHeight = newY + height > 1 ? 1 - newY : height;
+        return new double[]{newX, newY, newWidth, newHeight};
+    }
+
+    private Image rotateImg(Image image) {
+        try (NDManager manager = NDManager.newBaseManager()) {
+            NDArray rotated = NDImageUtils.rotate90(image.toNDArray(manager), 1);
+            return ImageFactory.getInstance().fromNDArray(rotated);
+        }
+    }
 }

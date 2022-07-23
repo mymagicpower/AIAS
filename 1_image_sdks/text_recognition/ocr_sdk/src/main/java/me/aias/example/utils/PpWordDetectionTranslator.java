@@ -26,6 +26,7 @@ import ai.djl.translate.Translator;
 import ai.djl.translate.TranslatorContext;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.IntStream;
@@ -38,13 +39,13 @@ public class PpWordDetectionTranslator implements Translator<Image, DetectedObje
         maxLength =
                 arguments.containsKey("maxLength")
                         ? Integer.parseInt(arguments.get("maxLength").toString())
-                        : 960;
+                        : 2400;
     }
 
     @Override
     public DetectedObjects processOutput(TranslatorContext ctx, NDList list) {
         NDArray result = list.singletonOrThrow();
-        result = result.squeeze().mul(255f).toType(DataType.UINT8, true).gt(0.3);   // thresh=0.3
+        result = result.squeeze().toType(DataType.UINT8, true).gt(0.3);   // thresh=0.3 .mul(255f)
         boolean[] flattened = result.toBooleanArray();
         Shape shape = result.getShape();
         int w = (int) shape.get(0);
@@ -76,10 +77,10 @@ public class PpWordDetectionTranslator implements Translator<Image, DetectedObje
         img =
                 NDImageUtils.normalize(
                         img,
-                        new float[] {0.485f, 0.456f, 0.406f},
-                        new float[] {0.229f, 0.224f, 0.225f});
+                        new float[]{0.485f, 0.456f, 0.406f},
+                        new float[]{0.229f, 0.224f, 0.225f});
         img = img.expandDims(0);
-        return new NDList(img);                                      
+        return new NDList(img);
     }
 
     @Override
@@ -87,24 +88,22 @@ public class PpWordDetectionTranslator implements Translator<Image, DetectedObje
         return null;
     }
 
-    private int[] scale(int h, int w, int max) {
-        int localMax = Math.max(h, w);
-        float scale = 1.0f;
-        if (max < localMax) {
-            scale = max * 1.0f / localMax;
+    private int[] scale(int h, int w, int maxLength) {
+        float ratio = 1.0f;
+        if (Math.max(h, w) > maxLength) {
+            if (h > w) {
+                ratio = (float) maxLength / h;
+            } else {
+                ratio = (float) maxLength / w;
+            }
         }
-        // paddle model only take 32-based size
-        return resize32(h * scale, w * scale);
-    }
 
-    private int[] resize32(double h, double w) {
-        double min = Math.min(h, w);
-        if (min < 32) {
-            h = 32.0 / min * h;
-            w = 32.0 / min * w;
-        }
-        int h32 = (int) h / 32;
-        int w32 = (int) w / 32;
-        return new int[] {h32 * 32, w32 * 32};
+        int resize_h = (int) (h * ratio);
+        int resize_w = (int) (w * ratio);
+        resize_h = Math.max((Math.round((float) resize_h / 32) * 32), 32);
+        resize_w = Math.max((Math.round((float) resize_w / 32) * 32), 32);
+
+        // paddle model only take 32-based size
+        return new int[]{resize_h, resize_w};
     }
 }

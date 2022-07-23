@@ -40,10 +40,6 @@ public final class MultiTableRecognitionExample {
     Image image = ImageFactory.getInstance().fromFile(imageFile);
     int height = image.getHeight();
     int width = image.getWidth();
-    // 是否启用字符置信度过滤，用于辅助解决重复字符问题
-    boolean enableFilter = true;
-    // 置信度阈值
-    float thresh = 0.99f;
     // 表单布局检测
     LayoutDetection layoutDetection = new LayoutDetection();
     // 表格单元检测
@@ -55,7 +51,7 @@ public final class MultiTableRecognitionExample {
          Predictor<Image, TableResult> tableDetector = tableModel.newPredictor();
          ZooModel detectionModel = ModelZoo.loadModel(recognition.detectCriteria());
          Predictor<Image, DetectedObjects> detector = detectionModel.newPredictor();
-         ZooModel recognitionModel = ModelZoo.loadModel(recognition.recognizeCriteria(enableFilter, thresh));
+         ZooModel recognitionModel = ModelZoo.loadModel(recognition.recognizeCriteria());
          Predictor<Image, String> recognizer = recognitionModel.newPredictor();
          ZooModel layoutModel = ModelZoo.loadModel(layoutDetection.criteria());
          Predictor<Image, DetectedObjects> layoutDetector = layoutModel.newPredictor()) {

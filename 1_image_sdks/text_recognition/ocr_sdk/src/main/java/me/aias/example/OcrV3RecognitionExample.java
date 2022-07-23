@@ -34,14 +34,10 @@ public final class OcrV3RecognitionExample {
   public static void main(String[] args) throws IOException, ModelException, TranslateException {
     Path imageFile = Paths.get("src/test/resources/ticket_0.png");
     Image image = ImageFactory.getInstance().fromFile(imageFile);
-    // 是否启用字符置信度过滤，用于辅助解决重复字符问题
-    boolean enableFilter = true;
-    // 置信度阈值, 越高重复字符概率越低，但是可能多度过滤字符
-    float thresh = 0.8f;
     OcrV3Recognition recognition = new OcrV3Recognition();
     try (ZooModel detectionModel = ModelZoo.loadModel(recognition.detectCriteria());
         Predictor<Image, DetectedObjects> detector = detectionModel.newPredictor();
-        ZooModel recognitionModel = ModelZoo.loadModel(recognition.recognizeCriteria(enableFilter, thresh));
+        ZooModel recognitionModel = ModelZoo.loadModel(recognition.recognizeCriteria());
         Predictor<Image, String> recognizer = recognitionModel.newPredictor()) {
 
       DetectedObjects detections = recognition.predict(image, detector, recognizer);

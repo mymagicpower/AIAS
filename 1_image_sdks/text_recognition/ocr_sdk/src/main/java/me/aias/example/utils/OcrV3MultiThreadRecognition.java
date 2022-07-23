@@ -111,7 +111,7 @@ public final class OcrV3MultiThreadRecognition {
         return criteria;
     }
 
-    public Criteria<Image, String> recognizeCriteria(boolean enableFilter, float thresh) {
+    public Criteria<Image, String> recognizeCriteria() {
         Criteria<Image, String> criteria =
                 Criteria.builder()
                         .optEngine("PaddlePaddle")
@@ -119,7 +119,7 @@ public final class OcrV3MultiThreadRecognition {
                         .optModelUrls(
                                 "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv3_rec_infer.zip")
                         .optProgress(new ProgressBar())
-                        .optTranslator(new PpWordRecognitionTranslator(enableFilter, thresh))
+                        .optTranslator(new PpWordRecognitionTranslator())
                         .build();
 
         return criteria;
