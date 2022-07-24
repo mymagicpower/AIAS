@@ -5,6 +5,9 @@ import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.util.NDImageUtils;
 import ai.djl.ndarray.NDArray;
 import ai.djl.ndarray.NDList;
+import ai.djl.ndarray.index.NDIndex;
+import ai.djl.ndarray.types.DataType;
+import ai.djl.ndarray.types.Shape;
 import ai.djl.translate.Batchifier;
 import ai.djl.translate.Translator;
 import ai.djl.translate.TranslatorContext;
@@ -12,6 +15,7 @@ import ai.djl.util.Utils;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -34,13 +38,29 @@ public class PpWordRecognitionTranslator implements Translator<Image, String> {
     }
 
     @Override
-    public String processOutput(TranslatorContext ctx, NDList list) throws IOException {
+    public String processOutput(TranslatorContext ctx, NDList list) {
         StringBuilder sb = new StringBuilder();
         NDArray tokens = list.singletonOrThrow();
+
         long[] indices = tokens.get(0).argMax(1).toLongArray();
+        boolean[] selection = new boolean[indices.length];
+        Arrays.fill(selection, true);
+        for (int i = 1; i < indices.length; i++) {
+            if (indices[i] == indices[i - 1]) {
+                selection[i] = false;
+            }
+        }
+
+        // 字符置信度
+//        float[] probs = new float[indices.length];
+//        for (int row = 0; row < indices.length; row++) {
+//            NDArray value = tokens.get(0).get(new NDIndex(""+ row +":" + (row + 1) +"," + indices[row] +":" + ( indices[row] + 1)));
+//            probs[row] = value.toFloatArray()[0];
+//        }
+
         int lastIdx = 0;
         for (int i = 0; i < indices.length; i++) {
-            if (indices[i] > 0 && !(i > 0 && indices[i] == lastIdx)) {
+            if (selection[i] == true && indices[i] > 0 && !(i > 0 && indices[i] == lastIdx)) {
                 sb.append(table.get((int) indices[i]));
             }
         }
@@ -50,17 +70,25 @@ public class PpWordRecognitionTranslator implements Translator<Image, String> {
     @Override
     public NDList processInput(TranslatorContext ctx, Image input) {
         NDArray img = input.toNDArray(ctx.getNDManager(), Image.Flag.COLOR);
-        //    int[] hw = resize32(input.getHeight(), input.getWidth());
+        int imgC = 3;
+        int imgH = 48;
+        int imgW = 320;
 
         int h = input.getHeight();
         int w = input.getWidth();
         float ratio = (float) w / (float) h;
-        int resized_w = (int) (Math.ceil(32 * ratio));
 
-        //    img = NDImageUtils.resize(img, hw[1], hw[0]);
-        img = NDImageUtils.resize(img, resized_w, 32);
+        int resized_w;
+        if (Math.ceil(imgH * ratio) > imgW) {
+            resized_w = imgW;
+        } else {
+            resized_w = (int) (Math.ceil(imgH * ratio));
+        }
 
-        img = NDImageUtils.toTensor(img).sub(0.5f).div(0.5f);
+        img = NDImageUtils.resize(img, resized_w, imgH);
+        img = img.transpose(2, 0, 1).div(255).sub(0.5f).div(0.5f);
+        NDArray padding_im = ctx.getNDManager().zeros(new Shape(imgC, imgH, imgW), DataType.FLOAT32);
+        padding_im.set(new NDIndex(":,:,0:" + resized_w), img);
 
         img = img.expandDims(0);
         return new NDList(img);
@@ -71,10 +99,4 @@ public class PpWordRecognitionTranslator implements Translator<Image, String> {
         return null;
     }
 
-    private int[] resize32(double h, double w) {
-        double h32Ratio = h / 32d;
-        double w32 = w / h32Ratio;
-        int w32Ratio = (int) Math.round(w32 / 32d);
-        return new int[]{32, w32Ratio * 32}; // height: 32 (fixed), width: 32 * N
-    }
 }

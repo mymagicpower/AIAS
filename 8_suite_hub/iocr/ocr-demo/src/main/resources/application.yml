@@ -36,7 +36,7 @@ file:
 
 # Model type: mobile, light, server
 model:
-  type: mobile
+  type: v3
   table:
     # Layout detection model URI
     layout: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ppyolov2_r50vd_dcn_365e_publaynet_infer.zip

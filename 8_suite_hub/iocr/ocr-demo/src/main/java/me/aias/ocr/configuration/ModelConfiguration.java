@@ -41,15 +41,20 @@ public class ModelConfiguration {
     private String serverDet;
     @Value("${model.server.rec}")
     private String serverRec;
+    // v3 model
+    @Value("${model.v3.det}")
+    private String v3Det;
+    @Value("${model.v3.rec}")
+    private String v3Rec;
 
     @Bean
     public RecognitionModel recognitionModel() throws IOException, ModelNotFoundException, MalformedModelException {
         RecognitionModel recognitionModel = new RecognitionModel();
-        if (StringUtils.isEmpty(type) || type.toLowerCase().equals("mobile")) {
-            recognitionModel.init(mobileDet, mobileRec);
-        } else if (type.toLowerCase().equals("light")) {
+        if (StringUtils.isEmpty(type) || type.equalsIgnoreCase("v3")) {
+            recognitionModel.init(v3Det, v3Rec);
+        } else if (type.equalsIgnoreCase("light")) {
             recognitionModel.init(lightDet, lightRec);
-        } else if (type.toLowerCase().equals("server")) {
+        } else if (type.equalsIgnoreCase("server")) {
             recognitionModel.init(serverDet, serverRec);
         } else {
             recognitionModel.init(mobileDet, mobileRec);

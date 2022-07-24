@@ -1,8 +1,6 @@
 package me.aias.ocr.inference;
 
-import ai.djl.Device;
 import ai.djl.MalformedModelException;
-import ai.djl.ModelException;
 import ai.djl.inference.Predictor;
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.ImageFactory;
@@ -12,15 +10,12 @@ import ai.djl.modality.cv.output.Rectangle;
 import ai.djl.modality.cv.util.NDImageUtils;
 import ai.djl.ndarray.NDArray;
 import ai.djl.ndarray.NDManager;
-import ai.djl.paddlepaddle.zoo.cv.objectdetection.PpWordDetectionTranslator;
 import ai.djl.repository.zoo.Criteria;
 import ai.djl.repository.zoo.ModelNotFoundException;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.training.util.ProgressBar;
 import ai.djl.translate.TranslateException;
-import me.aias.ocr.model.TableResult;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -60,8 +55,8 @@ public final class RecognitionModel {
                         .optEngine("PaddlePaddle")
                         .setTypes(Image.class, DetectedObjects.class)
                         .optModelUrls(detUri)
-                        .optTranslator(new PpWordDetectionTranslator(new ConcurrentHashMap<String, String>()))
                         .optProgress(new ProgressBar())
+                        .optTranslator(new PpWordDetectionTranslator(new ConcurrentHashMap<String, String>()))
                         .build();
 
         return criteria;

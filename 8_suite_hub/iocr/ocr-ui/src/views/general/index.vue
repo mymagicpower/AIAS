@@ -93,7 +93,7 @@ export default {
     return {
       fullscreenLoading: false,
       form: {
-        url: 'https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/freetxt.png',
+        url: 'https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/bank.jpeg',
         result1: '',
         result2: '',
         base64Img: ''
