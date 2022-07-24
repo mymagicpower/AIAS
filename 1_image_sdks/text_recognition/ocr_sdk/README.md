@@ -65,7 +65,7 @@ OCR（文字识别）是目前常用的一种AI能力。
 
 ### 运行OCR识别例子
 #### 1.1 文字方向检测：
-- 例子代码: OcrDetectionExample.java    
+- 例子代码: OcrV3DetectionExample.java    
 - 运行成功后，命令行应该看到下面的信息:
 ```text
 [INFO ] - Result image has been saved in: build/output/detect_result.png
@@ -88,20 +88,36 @@ OCR（文字识别）是目前常用的一种AI能力。
 - 旋转后图片效果如下：
 ![rotate_result](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/rotate_result.png)
 
-#### 3. 文字识别：
+#### 3.1 单线程文字识别：
 再使用本方法前，请调用上述方法使图片文字呈水平(0度)方向。  
 - 例子代码: OcrV3RecognitionExample.java  
 - 运行成功后，命令行应该看到下面的信息:
 ```text
 [INFO ] - [
-	class: "你", probability: -1.0e+00, bounds: [x=0.319, y=0.164, width=0.050, height=0.057]
-	class: "永远都", probability: -1.0e+00, bounds: [x=0.329, y=0.349, width=0.206, height=0.044]
-	class: "无法叫醒一个", probability: -1.0e+00, bounds: [x=0.328, y=0.526, width=0.461, height=0.044]
-	class: "装睡的人", probability: -1.0e+00, bounds: [x=0.330, y=0.708, width=0.294, height=0.043]
-]
+	class: "检票：B1", probability: -1.0e+00, bounds: [x=0.761, y=0.099, width=0.129, height=0.028]
+	class: "Z31C014941", probability: -1.0e+00, bounds: [x=0.110, y=0.109, width=0.256, height=0.026]
+	class: "九江站", probability: -1.0e+00, bounds: [x=0.649, y=0.188, width=0.214, height=0.042]
+	class: "南昌站", probability: -1.0e+00, bounds: [x=0.138, y=0.193, width=0.209, height=0.038]
+	class: "D6262", probability: -1.0e+00, bounds: [x=0.431, y=0.205, width=0.139, height=0.031]
+	class: "Nanchang", probability: -1.0e+00, bounds: [x=0.173, y=0.276, width=0.136, height=0.026]
+	class: "Jiujiang", probability: -1.0e+00, bounds: [x=0.684, y=0.276, width=0.118, height=0.026]
+	class: "03车02A号", probability: -1.0e+00, bounds: [x=0.628, y=0.347, width=0.159, height=0.024]
+	class: "2019年06月07日06：56开", probability: -1.0e+00, bounds: [x=0.099, y=0.349, width=0.424, height=0.023]
+	class: "二等座", probability: -1.0e+00, bounds: [x=0.692, y=0.415, width=0.092, height=0.031]
+	class: "网折", probability: -1.0e+00, bounds: [x=0.420, y=0.420, width=0.058, height=0.028]
+	class: "￥39.5元", probability: -1.0e+00, bounds: [x=0.104, y=0.425, width=0.127, height=0.026]
+	class: "折", probability: -1.0e+00, bounds: [x=0.482, y=0.438, width=0.049, height=0.076]
+	class: "限乘当日当次车", probability: -1.0e+00, bounds: [x=0.101, y=0.498, width=0.239, height=0.023]
+	class: "3604211990****2417", probability: -1.0e+00, bounds: [x=0.101, y=0.646, width=0.365, height=0.024]
+	class: "买票请到12306发货请到95306", probability: -1.0e+00, bounds: [x=0.197, y=0.733, width=0.420, height=0.019]
+	class: "中国铁路祝您旅途愉快", probability: -1.0e+00, bounds: [x=0.252, y=0.793, width=0.304, height=0.019]
+	class: "3227030010607C014941上海南售", probability: -1.0e+00, bounds: [x=0.101, y=0.878, width=0.508, height=0.021]
 ```
 - 输出图片效果如下：
-![ocr_result](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/ocr_result.png)
+![ocr_result](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/ticket_result.jpeg)
+
+#### 3.2 多线程文字识别：
+- 例子代码: OcrV3MultiThreadRecExample.java
 
 #### 4. 版面分析：
 - 运行成功后，命令行应该看到下面的信息:
@@ -158,7 +174,7 @@ OCR（文字识别）是目前常用的一种AI能力。
 ![table](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/table.jpeg)
 
 - 生成excel效果如下：
-![excel](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/excel.jpeg)
+![excel](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/excel.png)
 
 
 ### 重要说明：
