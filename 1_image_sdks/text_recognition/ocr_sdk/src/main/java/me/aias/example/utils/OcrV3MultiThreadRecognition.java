@@ -1,5 +1,6 @@
 package me.aias.example.utils;
 
+import ai.djl.MalformedModelException;
 import ai.djl.inference.Predictor;
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.ImageFactory;
@@ -11,12 +12,15 @@ import ai.djl.ndarray.NDArray;
 import ai.djl.ndarray.NDManager;
 import ai.djl.paddlepaddle.zoo.cv.objectdetection.PpWordDetectionTranslator;
 import ai.djl.repository.zoo.Criteria;
+import ai.djl.repository.zoo.ModelNotFoundException;
+import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.training.util.ProgressBar;
 import ai.djl.translate.TranslateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -32,7 +36,7 @@ public final class OcrV3MultiThreadRecognition {
     }
 
     public DetectedObjects predict(
-            Image image, Predictor<Image, DetectedObjects> detector, ZooModel recognitionModel, int threadNum)
+            Image image, List<ZooModel> recModels, Predictor<Image, DetectedObjects> detector, int threadNum)
             throws TranslateException {
         DetectedObjects detections = detector.predict(image);
 
@@ -51,7 +55,7 @@ public final class OcrV3MultiThreadRecognition {
 
         List<InferCallable> callables = new ArrayList<>(threadNum);
         for (int i = 0; i < threadNum; i++) {
-            callables.add(new InferCallable(recognitionModel, queue));
+            callables.add(new InferCallable(recModels.get(i), queue));
         }
 
         ExecutorService es = Executors.newFixedThreadPool(threadNum);
@@ -130,8 +134,8 @@ public final class OcrV3MultiThreadRecognition {
         private ConcurrentLinkedQueue<ImageInfo> queue;
         private List<ImageInfo> resultList = new ArrayList<>();
 
-        public InferCallable(ZooModel<Image, String> model, ConcurrentLinkedQueue<ImageInfo> queue) {
-            recognizer = model.newPredictor();
+        public InferCallable(ZooModel recognitionModel, ConcurrentLinkedQueue<ImageInfo> queue){
+            recognizer = recognitionModel.newPredictor();
             this.queue = queue;
         }
 

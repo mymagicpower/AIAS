@@ -38,17 +38,21 @@ public final class OcrV3Recognition {
         List<Double> prob = new ArrayList<>();
         List<BoundingBox> rect = new ArrayList<>();
 
+        long timeInferStart = System.currentTimeMillis();
         for (int i = 0; i < boxes.size(); i++) {
             Image subImg = getSubImage(image, boxes.get(i).getBoundingBox());
             if (subImg.getHeight() * 1.0 / subImg.getWidth() > 1.5) {
                 subImg = rotateImg(subImg);
             }
-            ImageUtils.saveImage(subImg, i + ".png", "build/output");
+//            ImageUtils.saveImage(subImg, i + ".png", "build/output");
             String name = recognizer.predict(subImg);
             names.add(name);
             prob.add(-1.0);
             rect.add(boxes.get(i).getBoundingBox());
         }
+        long timeInferEnd = System.currentTimeMillis();
+        System.out.println("time: " + (timeInferEnd - timeInferStart));
+
         DetectedObjects detectedObjects = new DetectedObjects(names, prob, rect);
 
         return detectedObjects;

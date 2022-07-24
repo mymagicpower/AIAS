@@ -19,7 +19,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 /**
- * Mobile OCR文字识别.
+ * OCR V3模型 文字识别.
  *
  * @author Calvin
  * @date 2021-10-07
@@ -40,7 +40,10 @@ public final class OcrV3RecognitionExample {
         ZooModel recognitionModel = ModelZoo.loadModel(recognition.recognizeCriteria());
         Predictor<Image, String> recognizer = recognitionModel.newPredictor()) {
 
+      long timeInferStart = System.currentTimeMillis();
       DetectedObjects detections = recognition.predict(image, detector, recognizer);
+      long timeInferEnd = System.currentTimeMillis();
+      System.out.println("time: " + (timeInferEnd - timeInferStart));
 
       List<DetectedObjects.DetectedObject> boxes = detections.items();
       for (DetectedObjects.DetectedObject result : boxes) {
