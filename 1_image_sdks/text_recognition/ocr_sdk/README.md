@@ -13,37 +13,8 @@ OCR（文字识别）是目前常用的一种AI能力。
 
 #### 2. 图片旋转
 
-#### 3. 文字识别(提供4组模型，请看文档)
-- mobile模型
-- light模型
-- server模型
-- v3模型
-- 
-##### 模型列表（根据需要自行替换）：
-```text
-  mobile模型:
-    # mobile detection model URI
-    检测: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_mobile_v2.0_det_infer.zip
-    # mobile recognition model URI
-    识别: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_mobile_v2.0_rec_infer.zip
-  light模型:
-    # light detection model URI
-    检测: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv2_det_infer.zip
-    # light recognition model URI
-    识别: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv2_rec_infer.zip
-  server模型:
-    # server detection model URI
-    检测: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_server_v2.0_det_infer.zip
-    # server recognition model URI
-    识别: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_server_v2.0_rec_infer.zip
-  v3模型:
-    # v3 detection model URI
-    检测: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv3_det_infer.zip
-    # v3 recognition model URI
-    识别: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv3_rec_infer.zip
-```
 
-5. 版面分析（支持5个类别, 用于配合文字识别，表格识别的流水线处理）
+#### 3. 版面分析（支持5个类别, 用于配合文字识别，表格识别的流水线处理）
 - Text
 - Title
 - List
@@ -55,7 +26,7 @@ OCR（文字识别）是目前常用的一种AI能力。
     layout: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ppyolov2_r50vd_dcn_365e_publaynet_infer.zip
 ```
 
-5. 表格识别
+#### 4. 表格识别
 - 生成html表格
 - 生成excel文件
 ```text

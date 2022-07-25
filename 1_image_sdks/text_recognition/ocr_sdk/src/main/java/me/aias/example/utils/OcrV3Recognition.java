@@ -44,7 +44,7 @@ public final class OcrV3Recognition {
             if (subImg.getHeight() * 1.0 / subImg.getWidth() > 1.5) {
                 subImg = rotateImg(subImg);
             }
-//            ImageUtils.saveImage(subImg, i + ".png", "build/output");
+            ImageUtils.saveImage(subImg, i + ".png", "build/output");
             String name = recognizer.predict(subImg);
             names.add(name);
             prob.add(-1.0);
