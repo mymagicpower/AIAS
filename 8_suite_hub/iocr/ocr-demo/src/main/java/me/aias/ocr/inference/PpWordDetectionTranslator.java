@@ -38,7 +38,7 @@ public class PpWordDetectionTranslator implements Translator<Image, DetectedObje
         maxLength =
                 arguments.containsKey("maxLength")
                         ? Integer.parseInt(arguments.get("maxLength").toString())
-                        : 2400;
+                        : 960;
     }
 
     @Override
