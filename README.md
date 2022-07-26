@@ -9,6 +9,7 @@
 - Gitee:  https://gitee.com/mymagicpower/AIAS  
 - GitHub: https://github.com/mymagicpower/AIAS
 
+
 <div align="center">
   <div align="center">欢迎交流，QQ群： 111257454，请给源码项目点个 <b><font color="#CE0000">Star</font></b> 吧！！！</div>
 <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/qq.png"  width = "200"  />
@@ -148,6 +149,15 @@ Mail: 179209347@qq.com
   3). 数字虚拟人   
       ...
 ```
+
+#### 项目归档:
+不再维护的项目会移至下面的repo，但仍具有参考学习的价值。
+- Gitee:  https://gitee.com/mymagicpower/AIAS_Archive
+- GitHub: https://github.com/mymagicpower/AIAS_Archive
+
+归档的项目选择标准：
+- 没有对应的开源项目，即不支持训练。
+- 有更好的替代项目。
 
 
 

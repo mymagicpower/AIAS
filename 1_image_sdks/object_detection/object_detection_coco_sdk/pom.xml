@@ -24,7 +24,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>aias</groupId>
-    <artifactId>object-detection-coco-sdk</artifactId>
+    <artifactId>traffic-sdk</artifactId>
     <version>0.17.0</version>
 
     <properties>
@@ -63,6 +63,7 @@
             <artifactId>log4j-slf4j-impl</artifactId>
             <version>2.17.2</version>
         </dependency>
+        <!-- 服务器端推理引擎 -->
         <dependency>
             <groupId>ai.djl</groupId>
             <artifactId>api</artifactId>
@@ -78,15 +79,26 @@
             <artifactId>model-zoo</artifactId>
             <version>${djl.version}</version>
         </dependency>
-        <!-- MXNet -->
+        <!-- Pytorch -->
         <dependency>
-            <groupId>ai.djl.mxnet</groupId>
-            <artifactId>mxnet-model-zoo</artifactId>
+            <groupId>ai.djl.pytorch</groupId>
+            <artifactId>pytorch-engine</artifactId>
             <version>${djl.version}</version>
         </dependency>
         <dependency>
-            <groupId>ai.djl.mxnet</groupId>
-            <artifactId>mxnet-engine</artifactId>
+            <groupId>ai.djl.pytorch</groupId>
+            <artifactId>pytorch-model-zoo</artifactId>
+            <version>${djl.version}</version>
+        </dependency>
+        <!-- PaddlePaddle -->
+        <dependency>
+            <groupId>ai.djl.paddlepaddle</groupId>
+            <artifactId>paddlepaddle-model-zoo</artifactId>
+            <version>${djl.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ai.djl.paddlepaddle</groupId>
+            <artifactId>paddlepaddle-engine</artifactId>
             <version>${djl.version}</version>
         </dependency>
         <dependency>
