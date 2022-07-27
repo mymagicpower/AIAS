@@ -1,4 +1,8 @@
-# 人群密度检测 SDK
+### 官网：
+[官网链接](http://www.aias.top/)
+
+
+### 人群密度检测 SDK
 CrowdNet模型是2016年提出的人流密度估计模型，论文为《CrowdNet: A Deep Convolutional Network for DenseCrowd Counting》，
 CrowdNet模型主要有深层卷积神经网络和浅层卷积神经组成，通过输入原始图像和高斯滤波器得到的密度图进行训练，最终得到的模型估计图像中的行人的数量。
 当然这不仅仅可以用于人流密度估计，理论上其他的动物等等的密度估计应该也可以。
@@ -7,15 +11,15 @@ CrowdNet模型主要有深层卷积神经网络和浅层卷积神经组成，通
 两组网络通过拼接成一个网络，接着输入到一个卷积核数量和大小都是1的卷积层，最后通过插值方式得到一个密度图数据，通过统计这个密度就可以得到估计人数。
 ![model](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/network.png)
 
-#### sdk功能：
+### sdk功能：
 - 计算人数
 - 计算密度图
 
-## 运行例子 - CrowdDetectExample
+### 运行例子 - CrowdDetectExample
 - 测试图片
 ![crowd](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/crowd1.jpg)
 
-例子代码：
+- 例子代码：
 ```text
     Path imageFile = Paths.get("src/test/resources/crowd1.jpg");
     Image image = ImageFactory.getInstance().fromFile(imageFile);
@@ -37,7 +41,7 @@ CrowdNet模型主要有深层卷积神经网络和浅层卷积神经组成，通
 ```
 
 
-运行成功后，命令行应该看到下面的信息:
+- 运行成功后，命令行应该看到下面的信息:
 ```text
 [INFO ] - 人数 quantity: 11
 
@@ -59,12 +63,42 @@ CrowdNet模型主要有深层卷积神经网络和浅层卷积神经组成，通
 ![density](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/density.png)
 
 
-### 帮助 
-引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
-[引擎定制化配置](http://aias.top/engine_cpu.html)
+### 开源算法
+#### 1. sdk使用的开源算法
+- [PaddlePaddle-CrowdNet](https://github.com/yeyupiaoling/PaddlePaddle-CrowdNet)
+#### 2. 模型如何导出 ?
+- [how_to_create_paddlepaddle_model](http://docs.djl.ai/docs/paddlepaddle/how_to_create_paddlepaddle_model_zh.html)
+- export_model.py
+```text
+import paddle
+import paddle.fluid as fluid
 
-### 官网：
-[官网链接](http://www.aias.top/)
+INFER_MODEL = 'infer_model/'
+
+def save_pretrained(dirname='infer/', model_filename=None, params_filename=None, combined=True):
+if combined:
+model_filename = "__model__" if not model_filename else model_filename
+params_filename = "__params__" if not params_filename else params_filename
+place = fluid.CPUPlace()
+exe = fluid.Executor(place)
+
+    program, feeded_var_names, target_vars = fluid.io.load_inference_model(INFER_MODEL, executor=exe)
+
+    fluid.io.save_inference_model(
+        dirname=dirname,
+        main_program=program,
+        executor=exe,
+        feeded_var_names=feeded_var_names,
+        target_vars=target_vars,
+        model_filename=model_filename,
+        params_filename=params_filename)
+
+
+if __name__ == '__main__':
+paddle.enable_static()
+save_pretrained()
+```
+
 
 ### Git地址：   
 [Github链接](https://github.com/mymagicpower/AIAS)    

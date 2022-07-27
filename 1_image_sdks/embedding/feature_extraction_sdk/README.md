@@ -1,12 +1,12 @@
-## 目录：
-http://aias.top/
+### 官网：
+[官网链接](http://www.aias.top/)
 
 
-# 特征提取(512维)SDK
+### 特征提取(512维)SDK
 提取图片512维特征值，并支持图片1:1特征比对，给出置信度。
 
-## SDK功能：
-### 1. 特征提取
+### SDK功能：
+#### 1. 特征提取
 使用imagenet预训练模型resnet50，提取图片512维特征。
 
 - 运行例子 - FeatureExtractionExample
@@ -21,7 +21,7 @@ http://aias.top/
 
 ```
 
-### 2. 图片1:1比对
+#### 2. 图片1:1比对
 计算图片相似度。
 
 - 运行例子 - FeatureComparisonExample
@@ -34,12 +34,67 @@ http://aias.top/
 [INFO ] - 0.77396494
 
 ```
-### 帮助 
-引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
-[引擎定制化配置](http://aias.top/engine_cpu.html)
 
-### 官网：
-[官网链接](http://www.aias.top/)
+
+### 开源算法
+#### 1. sdk使用的开源算法
+- [sentence-transformers](https://github.com/UKPLab/sentence-transformers)
+- [预训练模型](https://www.sbert.net/docs/pretrained_models.html#image-text-models)
+- [安装](https://www.sbert.net/docs/installation.html)
+
+
+#### 2. 模型如何导出 ?
+- [how_to_convert_your_model_to_torchscript](http://docs.djl.ai/docs/pytorch/how_to_convert_your_model_to_torchscript.html)
+
+- 导出CPU模型（pytorch 模型特殊，CPU&GPU模型不通用。所以CPU，GPU需要分别导出）
+```text
+from sentence_transformers import SentenceTransformer, util
+from PIL import Image
+import torch
+
+#Load CLIP model
+model = SentenceTransformer('clip-ViT-B-32', device='cpu')
+
+#Encode an image:
+# img_emb = model.encode(Image.open('two_dogs_in_snow.jpg'))
+
+#Encode text descriptions
+# text_emb = model.encode(['Two dogs in the snow', 'A cat on a table', 'A picture of London at night'])
+text_emb = model.encode(['Two dogs in the snow'])
+sm = torch.jit.script(model)
+sm.save("models/clip-ViT-B-32/clip-ViT-B-32.pt")
+
+#Compute cosine similarities
+# cos_scores = util.cos_sim(img_emb, text_emb)
+# print(cos_scores)
+```
+
+- 导出GPU模型
+```text
+  from sentence_transformers import SentenceTransformer, util
+  from PIL import Image
+  import torch
+
+#Load CLIP model
+model = SentenceTransformer('clip-ViT-B-32', device='gpu')
+
+#Encode an image:
+# img_emb = model.encode(Image.open('two_dogs_in_snow.jpg'))
+
+#Encode text descriptions
+# text_emb = model.encode(['Two dogs in the snow', 'A cat on a table', 'A picture of London at night'])
+text_emb = model.encode(['Two dogs in the snow'])
+sm = torch.jit.script(model)
+sm.save("models/clip-ViT-B-32/clip-ViT-B-32.pt")
+
+#Compute cosine similarities
+# cos_scores = util.cos_sim(img_emb, text_emb)
+# print(cos_scores)
+```
+
+### 其它帮助信息
+http://aias.top/guides.html
+
 
 ### Git地址：   
 [Github链接](https://github.com/mymagicpower/AIAS)    

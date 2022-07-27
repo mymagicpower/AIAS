@@ -1,6 +1,10 @@
-# 图像&文本的跨模态相似性比对检索 SDK【支持40种语言】
+### 官网：
+[官网链接](http://www.aias.top/)
 
-### 背景介绍
+
+### 图像&文本的跨模态相似性比对检索 SDK【支持40种语言】
+
+#### 背景介绍
 OpenAI 发布了两个新的神经网络：CLIP 和 DALL·E。它们将 NLP（自然语言识别）与 图像识别结合在一起，      
 对日常生活中的图像和语言有了更好的理解。      
 之前都是用文字搜文字，图片搜图片，现在通过CLIP这个模型，可是实现文字搜图片，图片搜文字。      
@@ -8,7 +12,7 @@ OpenAI 发布了两个新的神经网络：CLIP 和 DALL·E。它们将 NLP（�
 - 特征向量空间（由图片 & 文本组成）  
 ![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/clip_Imagesearch.png)
 
-### CLIP，“另类”的图像识别
+#### CLIP，“另类”的图像识别
 目前，大多数模型学习从标注好的数据集的带标签的示例中识别图像，而 CLIP 则是学习从互联网获取的图像及其描述, 
 即通过一段描述而不是“猫”、“狗”这样的单词标签来认识图像。
 为了做到这一点，CLIP 学习将大量的对象与它们的名字和描述联系起来，并由此可以识别训练集以外的对象。
@@ -24,7 +28,7 @@ https://github.com/openai/CLIP/blob/main/README.md
 -  相似度计算
 -  softmax计算置信度
 
-### 支持的语言列表：
+#### 支持的语言列表：
 * Albanian
 * Amharic
 * Arabic
@@ -66,7 +70,7 @@ https://github.com/openai/CLIP/blob/main/README.md
 * Urdu
 * Vietnamese
 
-## 运行例子 - ImageTextSearchExample
+#### 运行例子 - ImageTextSearchExample
 运行成功后，命令行应该看到下面的信息:
 ```text
 ...
@@ -104,12 +108,45 @@ https://github.com/openai/CLIP/blob/main/README.md
 # "在雪地里有两条狗" 与图片相似的置信度为：0.9999999 
 ```
 
-### 帮助 
-引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
-[引擎定制化配置](http://aias.top/engine_cpu.html)
+### 开源算法
+#### 1. sdk使用的开源算法
+- [sentence-transformers](https://github.com/UKPLab/sentence-transformers)
+- [预训练模型](https://www.sbert.net/docs/pretrained_models.html#image-text-models)
+- [安装](https://www.sbert.net/docs/installation.html)
+- [说明](https://www.sbert.net/examples/applications/image-search/README.html)
+  
 
-### 官网：
-[官网链接](http://www.aias.top/)
+#### 2. 模型如何导出 ?
+- [how_to_convert_your_model_to_torchscript](http://docs.djl.ai/docs/pytorch/how_to_convert_your_model_to_torchscript.html)
+
+- 导出CPU模型（pytorch 模型特殊，CPU&GPU模型不通用。所以CPU，GPU需要分别导出）
+- device='cpu'
+- device='gpu'
+- export_image_search.py
+```text
+from sentence_transformers import SentenceTransformer, util
+from PIL import Image
+import torch
+
+#Load CLIP model
+model = SentenceTransformer('clip-ViT-B-32', device='cpu')
+
+#Encode an image:
+# img_emb = model.encode(Image.open('two_dogs_in_snow.jpg'))
+
+#Encode text descriptions
+# text_emb = model.encode(['Two dogs in the snow', 'A cat on a table', 'A picture of London at night'])
+text_emb = model.encode(['Two dogs in the snow'])
+sm = torch.jit.script(model)
+sm.save("models/clip-ViT-B-32/clip-ViT-B-32.pt")
+
+#Compute cosine similarities
+# cos_scores = util.cos_sim(img_emb, text_emb)
+# print(cos_scores)
+```
+
+### 其它帮助信息
+http://aias.top/guides.html
 
 ### Git地址：   
 [Github链接](https://github.com/mymagicpower/AIAS)    

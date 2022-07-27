@@ -1,4 +1,9 @@
-# 文本 - 词法分析SDK [中文]
+### 官网：
+[官网链接](http://www.aias.top/)
+
+
+
+### 文本 - 词法分析SDK [中文]
 词法分析模型能整体性地完成中文分词、词性标注、专名识别任务。
 
 词性标注：
@@ -39,7 +44,7 @@
 - 论文：     
 https://arxiv.org/abs/1807.01882
 
-## 运行例子 - LacExample
+#### 运行例子 - LacExample
 运行成功后，命令行应该看到下面的信息:
 ```text
 ...
@@ -49,12 +54,17 @@ https://arxiv.org/abs/1807.01882
 ```
 
 
-### 帮助 
-引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
-[引擎定制化配置](http://aias.top/engine_cpu.html)
+### 开源算法
+#### 1. sdk使用的开源算法
+- [PaddleNLP](https://github.com/PaddlePaddle/PaddleNLP)
+#### 2. 模型如何导出 ?
+- [how_to_create_paddlepaddle_model](http://docs.djl.ai/docs/paddlepaddle/how_to_create_paddlepaddle_model_zh.html)
 
-### 官网：
-[官网链接](http://www.aias.top/)
+
+### 其它帮助信息
+http://aias.top/guides.html
+
+
 
 ### Git地址：   
 [Github链接](https://github.com/mymagicpower/AIAS)    

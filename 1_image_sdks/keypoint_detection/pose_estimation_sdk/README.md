@@ -1,7 +1,8 @@
-## 目录：
-http://aias.top/
+### 官网：
+[官网链接](http://www.aias.top/)
 
-# 人体关键点SDK
+
+### 人体关键点SDK
 检测图片中所有的行人，并识别每个人的肢体关键点。
 
 ### SDK功能
@@ -14,7 +15,7 @@ simple pose, backbone: resnet18, dataset:imagenet
 -  PoseResnet50Estimation
 simple pose, backbone: resnet50, dataset:imagenet
 
-## 运行例子 - PoseResnet18EstimationExample
+### 运行例子 - PoseResnet18EstimationExample
 - 测试图片
 ![pose-estimation](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/pose_estimation_sdk/pose-estimation.png)
 
@@ -43,13 +44,11 @@ simple pose, backbone: resnet50, dataset:imagenet
 ]
 ```
 
-### 帮助 
-引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
-[引擎定制化配置](http://aias.top/engine_cpu.html)
+### 开源算法
+#### 找不到了，后面会有更好的替换
 
-
-### 官网：
-[官网链接](http://www.aias.top/)
+### 其它帮助信息
+http://aias.top/guides.html
 
 ### Git地址：   
 [Github链接](https://github.com/mymagicpower/AIAS)    

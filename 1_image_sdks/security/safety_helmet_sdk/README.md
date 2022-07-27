@@ -1,4 +1,8 @@
-# 安全帽检测SDK
+### 官网：
+[官网链接](http://www.aias.top/)
+
+
+### 安全帽检测SDK
 安全帽检测。
 - 支持类别：
 - safe
@@ -11,15 +15,15 @@
 - 中模型（mobilenet1.0）
 - 大模型（darknet53）
 
-## 运行小模型例子 - SmallSafetyHelmetDetectExample
+#### 运行小模型例子 - SmallSafetyHelmetDetectExample
 - 测试图片
 ![small](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/safety_helmet_result_s.png)
 
-## 运行中模型例子 - MediumSafetyHelmetDetectExample
+#### 运行中模型例子 - MediumSafetyHelmetDetectExample
 - 测试图片
 ![medium](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/safety_helmet_result_m.png)
 
-## 运行大模型例子 - LargeSafetyHelmetDetectExample
+#### 运行大模型例子 - LargeSafetyHelmetDetectExample
 - 测试图片
 ![large](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/safety_helmet_result_l.png)
 
@@ -35,12 +39,16 @@
 ]
 ```
 
-### 帮助 
-引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
-[引擎定制化配置](http://aias.top/engine_cpu.html)
+### 开源算法
+#### 1. sdk使用的开源算法
+- [Safety-Helmet-Wearing-Dataset](https://github.com/njvisionpower/Safety-Helmet-Wearing-Dataset)
 
-### 官网：
-[官网链接](http://www.aias.top/)
+#### 2. 模型如何导出 ?
+- 直接支持，无需特殊格式导出。
+
+### 其它帮助信息
+http://aias.top/guides.html
+
 
 ### Git地址：   
 [Github链接](https://github.com/mymagicpower/AIAS)    

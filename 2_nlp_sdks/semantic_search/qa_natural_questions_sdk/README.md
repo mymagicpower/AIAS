@@ -1,4 +1,9 @@
-# 自然问题问答 SDK【英文】
+### 官网：
+[官网链接](http://www.aias.top/)
+
+
+
+### 自然问题问答 SDK【英文】
 模型基于Google的Natural Questions dataset（100k Google search查询数据，
 及源自Wikipedia的相关passages）训练。
 谷歌发布的大规模训练和评估开放领域问答系统的语料库Natural Questions(NQ),旨在推动人们开发出更有效,更强大的问答系统。
@@ -12,7 +17,7 @@ NQ是一个大规模训练和评估开放领域问题回答系统的语料库,�
 -  query / passage[title, text]向量提取
 -  相似度计算
 
-## 运行例子 - QANaturalQuestionsExample
+#### 运行例子 - QANaturalQuestionsExample
 运行成功后，命令行应该看到下面的信息:
 ```text
 ...
@@ -33,13 +38,45 @@ NQ是一个大规模训练和评估开放领域问题回答系统的语料库,�
 
 ```
 
-### 帮助 
-引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
-[引擎定制化配置](http://aias.top/engine_cpu.html)
+### 开源算法
+#### 1. sdk使用的开源算法
+- [sentence-transformers](https://github.com/UKPLab/sentence-transformers)
+- [预训练模型](https://www.sbert.net/docs/pretrained_models.html)
+- [安装](https://www.sbert.net/docs/installation.html)
 
 
-### 官网：
-[官网链接](http://www.aias.top/)
+#### 2. 模型如何导出 ?
+- [how_to_convert_your_model_to_torchscript](http://docs.djl.ai/docs/pytorch/how_to_convert_your_model_to_torchscript.html)
+
+- 导出CPU模型（pytorch 模型特殊，CPU&GPU模型不通用。所以CPU，GPU需要分别导出）
+- device='cpu'
+- device='gpu'
+- export_model_natural_questions.py
+```text
+from sentence_transformers import SentenceTransformer
+import torch
+
+# model = SentenceTransformer('stsb-distilbert-base', device='cpu')
+model = SentenceTransformer('nq-distilbert-base-v1', device='cpu')
+model.eval()
+batch_size=1
+max_seq_length=128
+device = torch.device("cpu")
+model.to(device)
+input_ids = torch.zeros(batch_size, max_seq_length, dtype=torch.long).to(device)
+input_type_ids = torch.zeros(batch_size, max_seq_length, dtype=torch.long).to(device)
+input_mask = torch.zeros(batch_size, max_seq_length, dtype=torch.long).to(device)
+# input_features = (input_ids, input_type_ids, input_mask)
+input_features = {'input_ids': input_ids,'attention_mask': input_mask}
+
+# traced_model = torch.jit.trace(model, example_inputs=input_features)
+traced_model = torch.jit.trace(model, example_inputs=input_features,strict=False)
+traced_model.save("models/nq-distilbert-base-v1/nq-distilbert-base-v1.pt")
+```
+
+### 其它帮助信息
+http://aias.top/guides.html
+
 
 ### Git地址：   
 [Github链接](https://github.com/mymagicpower/AIAS)    

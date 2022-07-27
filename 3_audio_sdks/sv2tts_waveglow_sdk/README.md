@@ -70,13 +70,23 @@ WaveGlow:一种依靠流的从梅尔频谱图合成高质量语音的网络。�
 文本 - "基于给定音色将文本转为语音" - 生成的语音效果：
 [audio.wav](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/voice_sdks/audio.wav)
 
-### 帮助 
-引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
-[引擎定制化配置](http://aias.top/engine_cpu.html)
 
-### 官网：
-[官网链接](http://www.aias.top/)
+### 开源算法
+#### 1. sdk使用的开源算法
+- [ttskit](https://gitee.com/kuangdd/ttskit)
+
+
+#### 2. 模型如何导出 ?
+- [how_to_convert_your_model_to_torchscript](http://docs.djl.ai/docs/pytorch/how_to_convert_your_model_to_torchscript.html)
+
+### 其它帮助信息
+http://aias.top/guides.html
+
 
 ### Git地址：   
 [Github链接](https://github.com/mymagicpower/AIAS)    
 [Gitee链接](https://gitee.com/mymagicpower/AIAS)   
+
+
+#### 参考链接
+https://gitee.com/endlesshh/ttskit-java

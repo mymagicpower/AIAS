@@ -1,15 +1,16 @@
-## 目录：
-http://aias.top/
+### 官网：
+[官网链接](http://www.aias.top/)
 
-# 口罩检测SDK
+
+### 口罩检测SDK
 口罩检测助力抗击肺炎，人工智能技术正被应用到疫情防控中来。
 抗疫切断传播途径中，佩戴口罩已经几乎成为了最重要的举措之一。但是在实际场景中，仍然有不重视、不注意、侥幸心理的人员不戴口罩，尤其在公众场合，给个人和公众造成极大的风险隐患。
 而基于人工智能的口罩检测功能可以基于摄像头视频流进行实时检测。
 
-### SDK功能
+#### SDK功能
 - 口罩检测
 
-## 运行例子
+#### 运行例子
 1. 运行成功后，命令行应该看到下面的信息:
 ```text
 [INFO ] -  Face mask detection result image has been saved in: build/output/faces_detected.png
@@ -25,12 +26,19 @@ http://aias.top/
 ![result](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/mask_sdk/face-masks.png)
 
 
-### 帮助 
-引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
-[引擎定制化配置](http://aias.top/engine_cpu.html)
+### 开源算法
+#### 1. sdk使用的开源算法
+- [PaddleDetection](https://github.com/PaddlePaddle/PaddleDetection)
+- [PaddleClas](https://github.com/PaddlePaddle/PaddleClas/blob/release%2F2.2/README_ch.md)
 
-### 官网：
-[官网链接](http://www.aias.top/)
+#### 2. 模型如何导出 ?
+- [export_model](https://github.com/PaddlePaddle/PaddleDetection/blob/release%2F2.4/tools/export_model.py)
+- [how_to_create_paddlepaddle_model](http://docs.djl.ai/docs/paddlepaddle/how_to_create_paddlepaddle_model_zh.html)
+
+
+### 其它帮助信息
+http://aias.top/guides.html
+
 
 ### Git地址：   
 [Github链接](https://github.com/mymagicpower/AIAS)    

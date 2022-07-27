@@ -1,7 +1,8 @@
-## 目录：
-http://aias.top/
+### 官网：
+[官网链接](http://www.aias.top/)
 
-# 目标检测(支持coco数据集分类)SDK
+
+### 目标检测(支持coco数据集分类)SDK
 检测图片中80个分类的目标。
 
 ### 支持分类如下：
@@ -21,7 +22,7 @@ http://aias.top/
 
 [点击下载](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/object_detection_sdk/coco_classes.txt)
 
-## 运行例子 - TrafficDetectionExample
+### 运行例子 - CocoDetectionExample
 - 测试图片
 ![tiger](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/traffic_sdk/result.png)
 
@@ -37,8 +38,17 @@ http://aias.top/
 ```
 
 
-### 官网：
-[官网链接](http://www.aias.top/)
+### 开源算法
+#### 1. sdk使用的开源算法
+- [PaddleDetection](https://github.com/PaddlePaddle/PaddleDetection)
+#### 2. 模型如何导出 ?
+- [export_model](https://github.com/PaddlePaddle/PaddleDetection/blob/release%2F2.4/tools/export_model.py)
+- [how_to_create_paddlepaddle_model](http://docs.djl.ai/docs/paddlepaddle/how_to_create_paddlepaddle_model_zh.html)
+
+
+
+### 其它帮助信息
+http://aias.top/guides.html
 
 ### Git地址：   
 [Github链接](https://github.com/mymagicpower/AIAS)    

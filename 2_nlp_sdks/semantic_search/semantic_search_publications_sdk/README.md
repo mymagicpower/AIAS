@@ -1,4 +1,8 @@
-# 学术论文语义搜索 SDK【英文】
+### 官网：
+[官网链接](http://www.aias.top/)
+
+
+### 学术论文语义搜索 SDK【英文】
 学术论文搜索模型提供了学术论文的特征提取与相似性比对能力。
 传入的参数为文章的[标题,摘要]([title, abstract])组成。
 subword级切词，最大长度 max_sequence_length: 256（按经验上限平均130个单词左右）。
@@ -18,7 +22,7 @@ https://github.com/allenai/specter/blob/master/README.md
 -  paper [title, abstract]特征向量提取
 -  相似度计算
 
-## 运行例子 - SemanticSearchPublicationsExample
+#### 运行例子 - SemanticSearchPublicationsExample
 运行成功后，命令行应该看到下面的信息:
 ```text
 ...
@@ -38,12 +42,42 @@ https://github.com/allenai/specter/blob/master/README.md
 
 ```
 
-### 帮助 
-引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
-[引擎定制化配置](http://aias.top/engine_cpu.html)
+### 开源算法
+#### 1. sdk使用的开源算法
+- [sentence-transformers](https://github.com/UKPLab/sentence-transformers)
+- [预训练模型](https://www.sbert.net/docs/pretrained_models.html)
+- [安装](https://www.sbert.net/docs/installation.html)
 
-### 官网：
-[官网链接](http://www.aias.top/)
+
+#### 2. 模型如何导出 ?
+- [how_to_convert_your_model_to_torchscript](http://docs.djl.ai/docs/pytorch/how_to_convert_your_model_to_torchscript.html)
+
+- 导出CPU模型（pytorch 模型特殊，CPU&GPU模型不通用。所以CPU，GPU需要分别导出）
+- device='cpu'
+- device='gpu'
+- export_model.py
+```text
+from sentence_transformers import SentenceTransformer
+import torch
+
+model = SentenceTransformer('allenai-specter', device='cpu')
+model.eval()
+batch_size=1
+max_seq_length=256
+device = torch.device("cpu")
+model.to(device)
+input_ids = torch.zeros(batch_size, max_seq_length, dtype=torch.long).to(device)
+input_type_ids = torch.zeros(batch_size, max_seq_length, dtype=torch.long).to(device)
+input_mask = torch.zeros(batch_size, max_seq_length, dtype=torch.long).to(device)
+input_features = {'input_ids': input_ids, 'token_type_ids': input_type_ids, 'attention_mask': input_mask}
+
+traced_model = torch.jit.trace(model, example_inputs=input_features,strict=False)
+traced_model.save("models/allenai-specter/allenai-specter.pt")
+```
+
+### 其它帮助信息
+http://aias.top/guides.html
+
 
 ### Git地址：   
 [Github链接](https://github.com/mymagicpower/AIAS)    

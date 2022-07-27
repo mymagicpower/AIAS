@@ -1,4 +1,8 @@
-# TacotronSTFT 提取mel(梅尔)频谱
+### 官网：
+[官网链接](http://www.aias.top/)
+
+
+### TacotronSTFT 提取mel(梅尔)频谱
 为什么tacotron生成语音时需要先生成Mel(梅尔)频谱？
 一般认为语音的频域信号（频谱）相对于时域信号（波形振幅）具备更强的一致性（相同的发音频谱上表现一致但波形差别很大），
 经过加窗等处理后相邻帧的频谱具备连贯性，相比于波形数据具备更好的可预测性；另外就是频谱一般处理到帧级别，而波形处理采样点，数量多很多，计算量也自然更大，
@@ -7,13 +11,13 @@
 - mel频谱
 ![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/voice_sdks/mel_spec.jpeg)
 
-### 傅立叶变换
+#### 傅立叶变换
 音频信号由几个单频声波组成。 在一段时间内对信号进行采样时，我们仅捕获得到的幅度。 
 因为每个信号都可以分解为一组正弦波和余弦波，它们加起来等于原始信号。 这就是著名傅立叶定理。
 傅立叶变换是一个数学公式，它使我们可以将信号分解为单个频率和频率幅度。 换句话说，它将信号从时域转换到频域。 结果称为频谱。
 快速傅立叶变换（FFT）是一种可以有效计算傅立叶变换的算法。 它广泛用于信号处理。
 
-### 短时傅立叶变换 - 生成频谱图
+#### 短时傅立叶变换 - 生成频谱图
 快速傅立叶变换是一种功能强大的工具，可让我们分析信号的频率成分。
 但是大多数音频信号的频率成分随时间变化，这些信号称为非周期性信号。 
 这时我们需要一种表示这些信号随时间变化的频谱的方法。 
@@ -22,7 +26,7 @@ FFT是在信号的重叠窗口部分上计算的，我们得到了所谓的频�
 - 短时傅立叶变换(STFT)
 ![stft](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/voice_sdks/fft.jpeg)
 
-## 运行例子 - TacotronSTFTExample
+#### 运行例子 - TacotronSTFTExample
 运行成功后，命令行应该看到下面的信息:
 ```text
 ...
@@ -43,13 +47,21 @@ FFT是在信号的重叠窗口部分上计算的，我们得到了所谓的频�
 
 ```
 
-### 帮助 
-引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
-[引擎定制化配置](http://aias.top/engine_cpu.html)
+### 开源算法
+#### 1. sdk使用的开源算法
+- [ttskit](https://gitee.com/kuangdd/ttskit)
 
-### 官网：
-[官网链接](http://www.aias.top/)
+
+#### 2. 模型如何导出 ?
+- [how_to_convert_your_model_to_torchscript](http://docs.djl.ai/docs/pytorch/how_to_convert_your_model_to_torchscript.html)
+
+### 其它帮助信息
+http://aias.top/guides.html
 
 ### Git地址：   
 [Github链接](https://github.com/mymagicpower/AIAS)    
 [Gitee链接](https://gitee.com/mymagicpower/AIAS)   
+
+
+#### 参考链接
+https://gitee.com/endlesshh/ttskit-java

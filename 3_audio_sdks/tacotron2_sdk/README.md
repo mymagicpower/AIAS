@@ -1,4 +1,9 @@
-# 模型生成文本基于目标音色的梅尔频谱图
+### 官网：
+[官网链接](http://www.aias.top/)
+
+
+
+#### 模型生成文本基于目标音色的梅尔频谱图
 声音克隆是指使用特定的音色，结合文字的读音合成音频，使得合成后的音频具有目标说话人的特征，从而达到克隆的目的。
 在训练语音克隆模型时，目标音色作为Speaker Encoder的输入，模型会提取这段语音的说话人特征（音色）作为Speaker Embedding。接着，
 在训练模型重新合成此类音色的语音时，除了输入的目标文本外，说话人的特征也将成为额外条件加入模型的训练。
@@ -27,7 +32,7 @@ SV2TTS工作首先将这两个过程分开，通过第一个语音特征编码�
 将梅尔频谱图（谱域）转化为时间序列声音波形图（时域），完成语音的合成。
 需要注意的是，这三部分网络都是独立训练的，声音编码器网络主要对序列映射网络起到条件监督作用，保证生成的语音具有说话者的独特声音特征。
 
-### 序列到序列的映射合成网络
+#### 序列到序列的映射合成网络
 该网络独立于编码器网络的训练，以音频信号和对应的文本作为输入，音频信号首先经过预训练的编码器提取特征，然后再作为attention层的输入。
 网络输出特征由窗口长度为50ms，步长为12.5ms序列构成，经过梅尔标度滤波器和对数动态范围压缩后，得到梅尔频谱图。
 为了降低噪声数据的影响，还对该部分的损失函数额外添加了L1正则化。
@@ -36,7 +41,7 @@ SV2TTS工作首先将这两个过程分开，通过第一个语音特征编码�
 ![embedding](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/voice_sdks/tacotron2.jpeg)
 右图红线表示文本和频谱的对应关系。可以看到，用于参考监督的语音信号不需要与目标语音信号在文本上一致，这也是SV2TTS论文工作的一大特色。
 
-## 运行例子 - Tacotron2EncoderExample
+#### 运行例子 - Tacotron2EncoderExample
 运行成功后，命令行应该看到下面的信息:
 ```text
 ...
@@ -52,13 +57,22 @@ SV2TTS工作首先将这两个过程分开，通过第一个语音特征编码�
 ```
 
 
-### 帮助 
-引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
-[引擎定制化配置](http://aias.top/engine_cpu.html)
+### 开源算法
+#### 1. sdk使用的开源算法
+- [ttskit](https://gitee.com/kuangdd/ttskit)
 
-### 官网：
-[官网链接](http://www.aias.top/)
+
+#### 2. 模型如何导出 ?
+- [how_to_convert_your_model_to_torchscript](http://docs.djl.ai/docs/pytorch/how_to_convert_your_model_to_torchscript.html)
+
+### 其它帮助信息
+http://aias.top/guides.html
+
 
 ### Git地址：   
 [Github链接](https://github.com/mymagicpower/AIAS)    
 [Gitee链接](https://gitee.com/mymagicpower/AIAS)   
+
+
+#### 参考链接
+https://gitee.com/endlesshh/ttskit-java

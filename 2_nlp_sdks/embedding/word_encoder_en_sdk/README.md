@@ -1,4 +1,8 @@
-# 词向量SDK【英文】
+### 官网：
+[官网链接](http://www.aias.top/)
+
+
+### 词向量SDK【英文】
 词向量/词嵌入（Word embedding）是自然语言处理（NLP）中语言模型与表征学习技术的统称。
 概念上而言，它是指把一个维数为所有词的数量的高维空间嵌入到一个维数低得多的连续向量空间中，
 每个单词或词组被映射为实数域上的向量。
@@ -34,7 +38,7 @@
 -   余弦相似度
 -   内积
  
-### 运行例子 - WordEncoderExample1
+#### 运行例子 - WordEncoderExample1
 运行成功后，命令行应该看到下面的信息:
 ```text
 ...
@@ -43,7 +47,7 @@
 [INFO ] - 余弦相似度: 0.6434219
 [INFO ] - 内积: 20.194983
 ```
-### 运行例子 - WordEncoderExample2
+#### 运行例子 - WordEncoderExample2
 运行成功后，命令行应该看到下面的信息:
 ```text
 ...
@@ -52,7 +56,7 @@
 [INFO ] - 余弦相似度: 0.6434219
 [INFO ] - 内积: 20.194983
 ```
-### 运行例子 - WordEncoderExample3
+#### 运行例子 - WordEncoderExample3
 运行成功后，命令行应该看到下面的信息:
 ```text
 ...
@@ -61,7 +65,7 @@
 [INFO ] - 余弦相似度: 0.33554545
 [INFO ] - 内积: 15.388843
 ```
-### 运行例子 - WordEncoderExample4
+#### 运行例子 - WordEncoderExample4
 运行成功后，命令行应该看到下面的信息:
 ```text
 ...
@@ -71,7 +75,7 @@
 [INFO ] - 内积: 20.657845
 ```
 
-### 运行例子 - WordEncoderExample5
+#### 运行例子 - WordEncoderExample5
 运行成功后，命令行应该看到下面的信息:
 ```text
 ...
@@ -81,7 +85,7 @@
 [INFO ] - 内积: 20.837606
 ```
 
-### 帮助 
+#### 帮助 
 -  添加依赖库：lib/aias-word-encoder-en-lib-0.1.0.jar
 -  下载对应模型特征数据，添加到 src/test/resources/ 路径下：
 -  WordEncoderExample1~3:
@@ -100,12 +104,18 @@
 -  WordEncoderExample5:
 -  [glove_twitter_dim100](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/glove_twitter_dim100.npy)  
 
-### 帮助 
-引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
-[引擎定制化配置](http://aias.top/engine_cpu.html)
 
-### 官网：
-[官网链接](http://www.aias.top/)
+
+### 开源算法
+#### 1. sdk使用的开源算法
+- [PaddleNLP](https://github.com/PaddlePaddle/PaddleNLP)
+#### 2. 模型如何导出 ?
+- [how_to_create_paddlepaddle_model](http://docs.djl.ai/docs/paddlepaddle/how_to_create_paddlepaddle_model_zh.html)
+
+
+### 其它帮助信息
+http://aias.top/guides.html
+
 
 ### Git地址：   
 [Github链接](https://github.com/mymagicpower/AIAS)    

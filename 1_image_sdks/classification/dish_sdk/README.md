@@ -1,8 +1,8 @@
-## 目录：
-http://aias.top/
+### 官网：
+[官网链接](http://www.aias.top/)
 
 
-# 菜品分类识别SDK
+### 菜品分类识别SDK
 菜品识别sdk，支持8416种菜品的分类识别。
 
 ### SDK功能
@@ -13,7 +13,7 @@ http://aias.top/
 
 [菜品分类](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/dish_sdk/dishes.txt)
 
-## 运行例子
+### 运行例子
 - 测试图片
 ![dish](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/dish_sdk/dish.jpeg)
 
@@ -29,12 +29,17 @@ http://aias.top/
 ]
 ```
 
-### 帮助 
-引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
-[引擎定制化配置](http://aias.top/engine_cpu.html)
+### 开源算法
+#### 1. sdk使用的开源算法
+[PaddleClas](https://github.com/PaddlePaddle/PaddleClas/blob/release%2F2.2/README_ch.md)
+#### 2. 模型如何导出 ?
+- [export_model](https://github.com/PaddlePaddle/PaddleClas/blob/release%2F2.2/tools/export_model.py)
+- [how_to_create_paddlepaddle_model](http://docs.djl.ai/docs/paddlepaddle/how_to_create_paddlepaddle_model_zh.html)
 
-### 官网：
-[官网链接](http://www.aias.top/)
+
+
+### 其它帮助信息
+http://aias.top/guides.html
 
 ### Git地址：   
 [Github链接](https://github.com/mymagicpower/AIAS)    

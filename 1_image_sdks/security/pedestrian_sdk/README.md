@@ -1,4 +1,8 @@
-# 行人检测SDK
+### 官网：
+[官网链接](http://www.aias.top/)
+
+
+### 行人检测SDK
 行人检测是利用计算机视觉技术判断图像中是否存在行人并给予精确定位，一般用矩形框表示。
 行人检测技术有很强的使用价值，它可以与行人跟踪，行人重识别等技术结合，应用于汽车无人驾驶系统，
 智能视频监控，人体行为分析，客流统计系统，智能交通等领域。
@@ -7,7 +11,7 @@
 ### SDK功能
 - 行人检测，给出检测框和置信度
 
-## 运行例子 - PedestrianDetectExample
+#### 运行例子 - PedestrianDetectExample
 - 测试图片
 ![pedestrian](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/ped_result.png)
 
@@ -22,12 +26,17 @@
 ]
 ```
 
-### 帮助 
-引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
-[引擎定制化配置](http://aias.top/engine_cpu.html)
+### 开源算法
+#### 1. sdk使用的开源算法
+- [PaddleDetection](https://github.com/PaddlePaddle/PaddleDetection)
 
-### 官网：
-[官网链接](http://www.aias.top/)
+#### 2. 模型如何导出 ?
+- [export_model](https://github.com/PaddlePaddle/PaddleDetection/blob/release%2F2.4/tools/export_model.py)
+- [how_to_create_paddlepaddle_model](http://docs.djl.ai/docs/paddlepaddle/how_to_create_paddlepaddle_model_zh.html)
+
+
+### 其它帮助信息
+http://aias.top/guides.html
 
 ### Git地址：   
 [Github链接](https://github.com/mymagicpower/AIAS)    

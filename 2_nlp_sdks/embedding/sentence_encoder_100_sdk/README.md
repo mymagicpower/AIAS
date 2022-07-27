@@ -1,4 +1,8 @@
-# 句向量SDK【支持100种语言】
+### 官网：
+[官网链接](http://www.aias.top/)
+
+
+### 句向量SDK【支持100种语言】
 句向量是指将语句映射至固定维度的实数向量。
 将不定长的句子用定长的向量表示，为NLP下游任务提供服务。
 
@@ -20,7 +24,7 @@
 -  相似度（余弦）计算
 -  max_seq_length: 128（subword切词，如果是英文句子，上限平均大约60个单词）
 
-## 运行例子 - SentenceEncoderExample
+#### 运行例子 - SentenceEncoderExample
 运行成功后，命令行应该看到下面的信息:
 ```text
 ...
@@ -53,12 +57,47 @@
 
 ```
 
-### 帮助 
-引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
-[引擎定制化配置](http://aias.top/engine_cpu.html)
+### 开源算法
+#### 1. sdk使用的开源算法
+- [sentence-transformers](https://github.com/UKPLab/sentence-transformers)
+- [预训练模型](https://www.sbert.net/docs/pretrained_models.html)
+- [安装](https://www.sbert.net/docs/installation.html)
 
-### 官网：
-[官网链接](http://www.aias.top/)
+
+#### 2. 模型如何导出 ?
+- [how_to_convert_your_model_to_torchscript](http://docs.djl.ai/docs/pytorch/how_to_convert_your_model_to_torchscript.html)
+
+- 导出CPU模型（pytorch 模型特殊，CPU&GPU模型不通用。所以CPU，GPU需要分别导出）
+- device = torch.device("cpu")
+- device = torch.device("gpu")
+- export_model_100.py
+```text
+from sentence_transformers import SentenceTransformer
+import torch
+
+# model = SentenceTransformer('stsb-distilbert-base', device='cpu')
+model = SentenceTransformer('paraphrase-xlm-r-multilingual-v1', device='cpu')
+model.eval()
+batch_size=1
+max_seq_length=128
+device = torch.device("cpu")
+model.to(device)
+input_ids = torch.zeros(batch_size, max_seq_length, dtype=torch.long).to(device)
+input_type_ids = torch.zeros(batch_size, max_seq_length, dtype=torch.long).to(device)
+input_mask = torch.zeros(batch_size, max_seq_length, dtype=torch.long).to(device)
+# input_features = (input_ids, input_type_ids, input_mask)
+input_features = {'input_ids': input_ids, 'attention_mask': input_mask}
+
+# traced_model = torch.jit.trace(model, example_inputs=input_features)
+traced_model = torch.jit.trace(model, example_inputs=input_features,strict=False)
+traced_model.save("models/paraphrase-xlm-r-multilingual-v1/paraphrase-xlm-r-multilingual-v1.pt")
+```
+
+
+
+### 其它帮助信息
+http://aias.top/guides.html
+
 
 ### Git地址：   
 [Github链接](https://github.com/mymagicpower/AIAS)    

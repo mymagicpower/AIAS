@@ -1,7 +1,7 @@
-## 目录：
-http://aias.top/
+### 官网：
+[官网链接](http://www.aias.top/)
 
-## 人脸关键点SDK
+### 人脸关键点SDK
 识别输入图片中的所有人脸关键点，每张人脸检测出68个关键点（人脸轮廓17个点，左右眉毛各5个点，左右眼睛各6个点，鼻子9个点，嘴巴20个点）。
 
 - 关键点定义
@@ -10,7 +10,7 @@ http://aias.top/
 ### SDK功能
 - 人脸关键点检测（每张人脸检测出68个关键点）
 
-## 运行例子 - FaceLandmarkExample
+### 运行例子 - FaceLandmarkExample
 - 测试图片
 ![landmarks](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/face_landmark_sdk/face-landmarks.png)
 
@@ -29,13 +29,13 @@ http://aias.top/
 ]
 ```
 
+### 开源算法
+#### 1. sdk使用的开源算法
+- [PaddleDetection](https://github.com/PaddlePaddle/PaddleDetection)
+#### 2. 模型如何导出 ?
+- [export_model](https://github.com/PaddlePaddle/PaddleDetection/blob/release%2F2.4/tools/export_model.py)
+- [how_to_create_paddlepaddle_model](http://docs.djl.ai/docs/paddlepaddle/how_to_create_paddlepaddle_model_zh.html)
 
-### 帮助 
-引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
-[引擎定制化配置](http://aias.top/engine_cpu.html)
-
-### 官网：
-[官网链接](http://www.aias.top/)
 
 ### Git地址：   
 [Github链接](https://github.com/mymagicpower/AIAS)    

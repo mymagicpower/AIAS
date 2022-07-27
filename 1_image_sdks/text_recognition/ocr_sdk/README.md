@@ -1,3 +1,7 @@
+### 官网：
+[官网链接](http://www.aias.top/)
+
+
 ## 文字识别（OCR）工具箱
 文字识别（OCR）目前在多个行业中得到了广泛应用，比如金融行业的单据识别输入，餐饮行业中的发票识别，
 交通领域的车票识别，企业中各种表单识别，以及日常工作生活中常用的身份证，驾驶证，护照识别等等。
@@ -165,8 +169,15 @@ https://blog.csdn.net/wsp_1138886114/article/details/83374333
 以上文章供参考，并不一定是最好的，建议根据相关关键字进一步去搜索。
 
 
-### 官网：
-[官网链接](http://www.aias.top/)
+### 开源算法
+#### 1. sdk使用的开源算法
+- [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)
+
+#### 2. 模型如何导出 ?
+(readme.md 里提供了推理模型的下载链接)
+- [export_model](https://github.com/PaddlePaddle/PaddleOCR/blob/release%2F2.5/tools/export_model.py)
+- [how_to_create_paddlepaddle_model](http://docs.djl.ai/docs/paddlepaddle/how_to_create_paddlepaddle_model_zh.html)
+
 
 ### Git地址：   
 [Github链接](https://github.com/mymagicpower/AIAS)    

@@ -1,10 +1,14 @@
-# Bert问答SDK
+### 官网：
+[官网链接](http://www.aias.top/)
+
+
+### Bert问答SDK
 基于BERT QA模型，输入一个问题及包含答案的文本段落（最大长度384），
 模型可以从文本段落中找到最佳的答案。
 
 ![image](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/bertQA.png)
 
-## 运行例子 - BertQaInferenceExample
+### 运行例子 - BertQaInferenceExample
 - 问题: 
 ```text
 When did Radio International start broadcasting?
@@ -28,12 +32,11 @@ Which operated between December 1983 and April 2001.
 
 ```
 
-### 帮助 
-引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
-[引擎定制化配置](http://aias.top/engine_cpu.html)
+### 开源算法
+#### 无
 
-### 官网：
-[官网链接](http://www.aias.top/)
+### 其它帮助信息
+http://aias.top/guides.html
 
 ### Git地址：   
 [Github链接](https://github.com/mymagicpower/AIAS)    

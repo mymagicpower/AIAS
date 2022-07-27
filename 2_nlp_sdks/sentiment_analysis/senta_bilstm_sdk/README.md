@@ -1,4 +1,9 @@
-# 文本 - 情感分析SDK [中文]
+### 官网：
+[官网链接](http://www.aias.top/)
+
+
+
+### 文本 - 情感分析SDK [中文]
 情感倾向分析（Sentiment Classification，简称Senta）针对带有主观描述的中文文本，
 可自动判断该文本的情感极性类别并给出相应的置信度，能够帮助企业理解用户消费习惯、
 分析热点话题和危机舆情监控，为企业提供有利的决策支持。
@@ -15,7 +20,7 @@ SDK包含两个模型：
 - 消极（negative）
 - 积极（positive）
 
-## 运行例子 - SentaLstmExample
+#### 运行例子 - SentaLstmExample
 运行成功后，命令行应该看到下面的信息:
 ```text
 ...
@@ -34,7 +39,7 @@ SDK包含两个模型：
 
 ```
 
-## 运行例子 - SentaBilstmExample
+#### 运行例子 - SentaBilstmExample
 运行成功后，命令行应该看到下面的信息:
 ```text
 ...
@@ -53,12 +58,16 @@ SDK包含两个模型：
 
 ```
 
-### 帮助 
-引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
-[引擎定制化配置](http://aias.top/engine_cpu.html)
+### 开源算法
+#### 1. sdk使用的开源算法
+- [PaddleNLP](https://github.com/PaddlePaddle/PaddleNLP)
+#### 2. 模型如何导出 ?
+- [how_to_create_paddlepaddle_model](http://docs.djl.ai/docs/paddlepaddle/how_to_create_paddlepaddle_model_zh.html)
 
-### 官网：
-[官网链接](http://www.aias.top/)
+
+### 其它帮助信息
+http://aias.top/guides.html
+
 
 ### Git地址：   
 [Github链接](https://github.com/mymagicpower/AIAS)    

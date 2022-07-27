@@ -1,4 +1,8 @@
-# 文本 - 短文本相似度SDK [中文]
+### 官网：
+[官网链接](http://www.aias.top/)
+
+
+### 文本 - 短文本相似度SDK [中文]
 计算两个句子的cosin相似度:
 可以根据用户输入的两个文本，计算出相似度得分。
 
@@ -7,7 +11,7 @@
 ### SDK算法：
 该模型基于SimNet，是一个计算句子相似度的模型。
 
-## 运行例子 - SemanticExample
+#### 运行例子 - SemanticExample
 运行成功后，命令行应该看到下面的信息:
 ```text
 ...
@@ -39,12 +43,17 @@
 [INFO ] - 相似度 : 0.8260221
 
 ```
-### 帮助 
-引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
-[引擎定制化配置](http://aias.top/engine_cpu.html)
 
-### 官网：
-[官网链接](http://www.aias.top/)
+### 开源算法
+#### 1. sdk使用的开源算法
+- [PaddleNLP](https://github.com/PaddlePaddle/PaddleNLP)
+#### 2. 模型如何导出 ?
+- [how_to_create_paddlepaddle_model](http://docs.djl.ai/docs/paddlepaddle/how_to_create_paddlepaddle_model_zh.html)
+
+
+### 其它帮助信息
+http://aias.top/guides.html
+
 
 ### Git地址：   
 [Github链接](https://github.com/mymagicpower/AIAS)    

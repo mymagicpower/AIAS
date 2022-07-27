@@ -1,4 +1,7 @@
-# 词向量SDK【中文】
+### 官网：
+[官网链接](http://www.aias.top/)
+
+### 词向量SDK【中文】
 词向量/词嵌入（Word embedding）是自然语言处理（NLP）中语言模型与表征学习技术的统称。
 概念上而言，它是指把一个维数为所有词的数量的高维空间嵌入到一个维数低得多的连续向量空间中，
 每个单词或词组被映射为实数域上的向量。
@@ -184,12 +187,16 @@
 [w2v_zhihu_dim300_vocab](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_zhihu_dim300_vocab.txt) 
 [w2v_zhihu_dim300](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_zhihu_dim300.npy) 
 
-### 帮助 
-引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
-[引擎定制化配置](http://aias.top/engine_cpu.html)
 
-### 官网：
-[官网链接](http://www.aias.top/)
+### 开源算法
+#### 1. sdk使用的开源算法
+- [PaddleNLP](https://github.com/PaddlePaddle/PaddleNLP)
+#### 2. 模型如何导出 ?
+- [how_to_create_paddlepaddle_model](http://docs.djl.ai/docs/paddlepaddle/how_to_create_paddlepaddle_model_zh.html)
+
+
+### 其它帮助信息
+http://aias.top/guides.html
 
 ### Git地址：   
 [Github链接](https://github.com/mymagicpower/AIAS)    

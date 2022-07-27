@@ -1,4 +1,8 @@
-# 车辆检测SDK
+### 官网：
+[官网链接](http://www.aias.top/)
+
+
+### 车辆检测SDK
 车辆检测是城市交通监控中非常重要并且具有挑战性的任务，该任务的难度在于对复杂场景中相对较小的车辆进行精准地定位和分类。
 支持car (汽车)，truck (卡车)，bus (公交车)，motorbike (摩托车)，tricycle (三轮车)等车型的识别。
 
@@ -13,7 +17,7 @@
 - carplate
 
 
-## 运行例子 - VehicleDetectExample
+#### 运行例子 - VehicleDetectExample
 - 测试图片
 ![vehicle](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/vehicle_result.png)
 
@@ -28,12 +32,14 @@
 ]
 ```
 
-### 帮助 
-引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
-[引擎定制化配置](http://aias.top/engine_cpu.html)
+### 开源算法
+#### 1. sdk使用的开源算法
+- [PaddleDetection](https://github.com/PaddlePaddle/PaddleDetection)
 
-### 官网：
-[官网链接](http://www.aias.top/)
+#### 2. 模型如何导出 ?
+- [export_model](https://github.com/PaddlePaddle/PaddleDetection/blob/release%2F2.4/tools/export_model.py)
+- [how_to_create_paddlepaddle_model](http://docs.djl.ai/docs/paddlepaddle/how_to_create_paddlepaddle_model_zh.html)
+
 
 ### Git地址：   
 [Github链接](https://github.com/mymagicpower/AIAS)    
