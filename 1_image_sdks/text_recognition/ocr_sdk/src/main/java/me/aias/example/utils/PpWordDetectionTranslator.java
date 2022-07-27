@@ -33,19 +33,19 @@ import java.util.stream.IntStream;
 
 public class PpWordDetectionTranslator implements Translator<Image, DetectedObjects> {
 
-    private final int maxLength;
+    private final int max_side_len;
 
     public PpWordDetectionTranslator(Map<String, ?> arguments) {
-        maxLength =
+        max_side_len =
                 arguments.containsKey("maxLength")
                         ? Integer.parseInt(arguments.get("maxLength").toString())
-                        : 960;
+                        : 2400;
     }
 
     @Override
     public DetectedObjects processOutput(TranslatorContext ctx, NDList list) {
         NDArray result = list.singletonOrThrow();
-        result = result.squeeze().toType(DataType.UINT8, true).gt(0.3);   // thresh=0.3 .mul(255f)
+        result = result.squeeze().mul(255f).toType(DataType.UINT8, true).gt(0.3);   // thresh=0.3
         boolean[] flattened = result.toBooleanArray();
         Shape shape = result.getShape();
         int w = (int) shape.get(0);
@@ -70,7 +70,7 @@ public class PpWordDetectionTranslator implements Translator<Image, DetectedObje
         NDArray img = input.toNDArray(ctx.getNDManager());
         int h = input.getHeight();
         int w = input.getWidth();
-        int[] hw = scale(h, w, maxLength);
+        int[] hw = scale(h, w, max_side_len);
 
         img = NDImageUtils.resize(img, hw[1], hw[0]);
         img = NDImageUtils.toTensor(img);
@@ -88,20 +88,20 @@ public class PpWordDetectionTranslator implements Translator<Image, DetectedObje
         return null;
     }
 
-    private int[] scale(int h, int w, int maxLength) {
+    private int[] scale(int h, int w, int limit_side_len) {
         float ratio = 1.0f;
-        if (Math.max(h, w) > maxLength) {
+        if (Math.max(h, w) > limit_side_len) {
             if (h > w) {
-                ratio = (float) maxLength / h;
+                ratio = (float) limit_side_len / (float) h;
             } else {
-                ratio = (float) maxLength / w;
+                ratio = (float) limit_side_len / (float) w;
             }
         }
 
         int resize_h = (int) (h * ratio);
         int resize_w = (int) (w * ratio);
-        resize_h = Math.max((Math.round((float) resize_h / 32) * 32), 32);
-        resize_w = Math.max((Math.round((float) resize_w / 32) * 32), 32);
+        resize_h = Math.max((Math.round((float) resize_h / 32f) * 32), 32);
+        resize_w = Math.max((Math.round((float) resize_w / 32f) * 32), 32);
 
         // paddle model only take 32-based size
         return new int[]{resize_h, resize_w};
