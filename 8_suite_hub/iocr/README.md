@@ -1,3 +1,6 @@
+### IOCR是OCR公司主打产品，这里只给出一个基础参考实现，要做成完成态产品还有很多工作要做。
+
+
 ## 目录：
 http://www.aias.top/
 
@@ -34,68 +37,12 @@ npm run dev
 npm run build:prod
 ```
 
-#### 1.3 nginx部署运行(mac环境为例)：
-```bash
-cd /usr/local/etc/nginx/
-vi /usr/local/etc/nginx/nginx.conf
-# 编辑nginx.conf
+## 2. 功能测试
 
-    server {
-        listen       8080;
-        server_name  localhost;
-
-        location / {
-            root   /Users/calvin/ocr/dist/;
-            index  index.html index.htm;
-        }
-     ......
-     
-# 重新加载配置：
-sudo nginx -s reload 
-
-# 部署应用后，重启：
-cd /usr/local/Cellar/nginx/1.19.6/bin
-
-# 快速停止
-sudo nginx -s stop
-
-# 启动
-sudo nginx     
-```
-
-### 2. 后端部署
-
-#### 2.1 jar包
-maven 构建jar包 
- 
-#### 2.2 运行程序
-```bash
-java -jar iocr-demo-0.1.0.jar
-```
-
-#### 2.3 样例文件
-[样例模板图片](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/ticket.jpeg)   
-```bash
-# 模板配置文件路径
-# <path>/templates
-# 模板图片存储路径
-# <path>/images
-
-# path 路径信息
-#   mac:
-#     path: ./file/
-#   linux:
-#     path: ./file/
-#   windows:
-#     path: C:\ocr\file\
-```
-
-## 3. 功能测试
-
-#### 3.1 打开浏览器
+#### 2.1 打开浏览器
 输入地址： http://localhost:8080
 
-#### 3.2 标注模板
+#### 2.2 标注模板
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/ocr_anchor.png)
 
 ```bash
@@ -120,18 +67,18 @@ java -jar iocr-demo-0.1.0.jar
 2. 字段名需使用有业务意义的字母数字组合，如：name，age, address
 3. 字段名不能含有特殊字符及空格
 ```
-
-#### 3.3 基于模板文字识别
+ 
+#### 2.3 基于模板文字识别
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/ocr_recognize.png)
 
-#### 3.4 通用文本识别  
+#### 2.4 通用文本识别  
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/ocr_freetxt.png)
  
-#### 3.5 表格文字识别 / 表格自动检测文字识别
+#### 2.5 表格文字识别 / 表格自动检测文字识别
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/single_table.png)
 
   
-### 4. 接口文档  
+### 3. 接口文档  
 http://127.0.0.1:8089/swagger-ui.html
 
 
