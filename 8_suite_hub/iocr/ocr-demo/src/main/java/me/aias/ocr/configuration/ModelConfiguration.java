@@ -19,28 +19,10 @@ import java.io.IOException;
  */
 @Configuration
 public class ModelConfiguration {
-    @Value("${model.type}")
-    private String type;
-
     @Value("${model.table.layout}")
     private String tableLayout;
     @Value("${model.table.table-en}")
     private String table;
-    // mobile model
-    @Value("${model.mobile.det}")
-    private String mobileDet;
-    @Value("${model.mobile.rec}")
-    private String mobileRec;
-    // light model
-    @Value("${model.light.det}")
-    private String lightDet;
-    @Value("${model.light.rec}")
-    private String lightRec;
-    // server model
-    @Value("${model.server.det}")
-    private String serverDet;
-    @Value("${model.server.rec}")
-    private String serverRec;
     // v3 model
     @Value("${model.v3.det}")
     private String v3Det;
@@ -50,15 +32,7 @@ public class ModelConfiguration {
     @Bean
     public RecognitionModel recognitionModel() throws IOException, ModelNotFoundException, MalformedModelException {
         RecognitionModel recognitionModel = new RecognitionModel();
-        if (StringUtils.isEmpty(type) || type.equalsIgnoreCase("v3")) {
-            recognitionModel.init(v3Det, v3Rec);
-        } else if (type.equalsIgnoreCase("light")) {
-            recognitionModel.init(lightDet, lightRec);
-        } else if (type.equalsIgnoreCase("server")) {
-            recognitionModel.init(serverDet, serverRec);
-        } else {
-            recognitionModel.init(mobileDet, mobileRec);
-        }
+        recognitionModel.init(v3Det, v3Rec);
         return recognitionModel;
     }
 

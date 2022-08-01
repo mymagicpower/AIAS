@@ -25,7 +25,8 @@ import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -50,9 +51,6 @@ public class TemplateServiceImpl implements TemplateService {
      */
     @Autowired
     private RecognitionModel recognitionModel;
-
-    @Value("${model.type}")
-    private String type;
 
     @Value("${image.debug}")
     private boolean debug;
