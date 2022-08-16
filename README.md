@@ -35,9 +35,14 @@ Mail: 179209347@qq.com
 2. 为集成商赋能
 3. 为企业内部项目赋能
 ```
+
+<div align="center">
+<img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/roadmap.jpg"  width = "600"  />
+</div>
 <div align="center">
 <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/AIAS.png"  width = "600"  />
 </div>
+
 
 - 在Data Hub, Model Hub 的基础上扩展出三个新的Hub概念:
 
@@ -149,13 +154,10 @@ Mail: 179209347@qq.com
 ```
 
 #### 项目归档:
-不再维护的项目会移至下面的repo，但仍具有参考学习的价值。
+不再维护的项目会移至下面的repo，但仍具有参考学习的价值。归档的项目选择标准：没有对应的开源项目，即不支持训练。
+或者有更好的替代项目。
 - Gitee:  https://gitee.com/mymagicpower/AIAS_Archive
 - GitHub: https://github.com/mymagicpower/AIAS_Archive
-
-归档的项目选择标准：
-- 没有对应的开源项目，即不支持训练。
-- 有更好的替代项目。
 
 
 
@@ -166,12 +168,16 @@ Mail: 179209347@qq.com
 <img src="https://qubits.oss-cn-shanghai.aliyuncs.com/images/logo.png"  width = "150"  />
 </div>
 - 官网: http://qubits.top/
-
+- Gitee:  https://gitee.com/mymagicpower/quantum_quest  
+- GitHub: https://github.com/mymagicpower/quantum_quest
+- Gitee:  https://gitee.com/mymagicpower/quantum
+- GitHub: https://github.com/mymagicpower/quantum
 
 #### 2. AI + 生物医药
 <div align="left">
 <img src="https://bio-computing.oss-cn-shanghai.aliyuncs.com/images/logo.png"  width = "200"  />
 </div>
 - 官网: http://biocomputing.top/
-
+- Gitee:  https://gitee.com/mymagicpower/bio-computing
+- GitHub: https://github.com/mymagicpower/bio-computing
 
