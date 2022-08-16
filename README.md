@@ -167,17 +167,19 @@ Mail: 179209347@qq.com
 <div align="left">
 <img src="https://qubits.oss-cn-shanghai.aliyuncs.com/images/logo.png"  width = "150"  />
 </div>
-- 官网: http://qubits.top/
-- Gitee:  https://gitee.com/mymagicpower/quantum_quest  
-- GitHub: https://github.com/mymagicpower/quantum_quest
-- Gitee:  https://gitee.com/mymagicpower/quantum
-- GitHub: https://github.com/mymagicpower/quantum
+
+- 官网: http://qubits.top/     
+- Gitee:  https://gitee.com/mymagicpower/quantum_quest             
+- GitHub: https://github.com/mymagicpower/quantum_quest     
+- Gitee:  https://gitee.com/mymagicpower/quantum     
+- GitHub: https://github.com/mymagicpower/quantum     
 
 #### 2. AI + 生物医药
 <div align="left">
 <img src="https://bio-computing.oss-cn-shanghai.aliyuncs.com/images/logo.png"  width = "200"  />
 </div>
-- 官网: http://biocomputing.top/
-- Gitee:  https://gitee.com/mymagicpower/bio-computing
-- GitHub: https://github.com/mymagicpower/bio-computing
+
+- 官网: http://biocomputing.top/     
+- Gitee:  https://gitee.com/mymagicpower/bio-computing     
+- GitHub: https://github.com/mymagicpower/bio-computing     
 
