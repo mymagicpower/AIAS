@@ -168,9 +168,7 @@ Mail: 179209347@qq.com
 <img src="https://qubits.oss-cn-shanghai.aliyuncs.com/images/logo.png"  width = "150"  />
 </div>
 
-- 官网: http://qubits.top/     
-- Gitee:  https://gitee.com/mymagicpower/quantum_quest             
-- GitHub: https://github.com/mymagicpower/quantum_quest     
+- 官网: http://qubits.top/      
 - Gitee:  https://gitee.com/mymagicpower/quantum     
 - GitHub: https://github.com/mymagicpower/quantum     
 
