@@ -169,8 +169,8 @@ Mail: 179209347@qq.com
 </div>
 
 - 官网: http://qubits.top/      
-- Gitee:  https://gitee.com/mymagicpower/quantum     
-- GitHub: https://github.com/mymagicpower/quantum     
+- Gitee:  https://gitee.com/mymagicpower/qubits     
+- GitHub: https://github.com/mymagicpower/qubits     
 
 #### 2. AI + 生物医药
 <div align="left">
