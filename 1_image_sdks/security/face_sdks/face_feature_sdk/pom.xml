@@ -90,6 +90,17 @@
             <artifactId>pytorch-model-zoo</artifactId>
             <version>${djl.version}</version>
         </dependency>
+        <!-- PaddlePaddle -->
+        <dependency>
+            <groupId>ai.djl.paddlepaddle</groupId>
+            <artifactId>paddlepaddle-model-zoo</artifactId>
+            <version>${djl.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ai.djl.paddlepaddle</groupId>
+            <artifactId>paddlepaddle-engine</artifactId>
+            <version>${djl.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>

@@ -32,6 +32,8 @@
     <orderEntry type="library" name="Maven: ai.djl:model-zoo:0.17.0" level="project" />
     <orderEntry type="library" name="Maven: ai.djl.pytorch:pytorch-engine:0.17.0" level="project" />
     <orderEntry type="library" name="Maven: ai.djl.pytorch:pytorch-model-zoo:0.17.0" level="project" />
+    <orderEntry type="library" name="Maven: ai.djl.paddlepaddle:paddlepaddle-model-zoo:0.17.0" level="project" />
+    <orderEntry type="library" name="Maven: ai.djl.paddlepaddle:paddlepaddle-engine:0.17.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.testng:testng:6.8.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.10" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:1.1" level="project" />

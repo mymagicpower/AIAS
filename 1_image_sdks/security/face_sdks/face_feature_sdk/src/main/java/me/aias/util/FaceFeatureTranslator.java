@@ -3,8 +3,11 @@ package me.aias.util;
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.transform.Normalize;
 import ai.djl.modality.cv.transform.ToTensor;
+import ai.djl.modality.cv.util.NDImageUtils;
 import ai.djl.ndarray.NDArray;
 import ai.djl.ndarray.NDList;
+import ai.djl.ndarray.types.DataType;
+import ai.djl.ndarray.types.Shape;
 import ai.djl.translate.Batchifier;
 import ai.djl.translate.Pipeline;
 import ai.djl.translate.Translator;
@@ -14,23 +17,38 @@ public final class FaceFeatureTranslator implements Translator<Image, float[]> {
 
   public FaceFeatureTranslator() {}
 
-  /** {@inheritDoc} */
   @Override
-  public NDList processInput(TranslatorContext ctx, Image input) {
+  public NDList processInput(TranslatorContext ctx, Image input){
     NDArray array = input.toNDArray(ctx.getNDManager(), Image.Flag.COLOR);
-    Pipeline pipeline = new Pipeline();
-    pipeline
-        // .add(new Resize(160))
-        .add(new ToTensor())
-        .add(
-            new Normalize(
-                new float[] {127.5f / 255.0f, 127.5f / 255.0f, 127.5f / 255.0f},
-                new float[] {128.0f / 255.0f, 128.0f / 255.0f, 128.0f / 255.0f}));
 
-    return pipeline.transform(new NDList(array));
+    float percent = 128f / Math.min(input.getWidth(), input.getHeight());
+    int resizedWidth = Math.round(input.getWidth() * percent);
+    int resizedHeight = Math.round(input.getHeight() * percent);
+//        img = img.resize((resizedWidth, resizedHeight), Image.LANCZOS)
+
+    array = NDImageUtils.resize(array,resizedWidth,resizedHeight);
+    array = NDImageUtils.centerCrop(array,112,112);
+
+    // The network by default takes float32
+    if (!array.getDataType().equals(DataType.FLOAT32)) {
+      array = array.toType(DataType.FLOAT32, false);
+    }
+
+    array = array.transpose(2, 0, 1).div(255f);  // HWC -> CHW RGB
+
+    NDArray mean =
+            ctx.getNDManager().create(new float[] {0.5f, 0.5f, 0.5f}, new Shape(3, 1, 1));
+    NDArray std =
+            ctx.getNDManager().create(new float[] {0.5f, 0.5f, 0.5f}, new Shape(3, 1, 1));
+
+    array = array.sub(mean);
+    array = array.div(std);
+
+//    array = array.expandDims(0);
+
+    return new NDList(array);
   }
 
-  /** {@inheritDoc} */
   @Override
   public float[] processOutput(TranslatorContext ctx, NDList list) {
     NDList result = new NDList();

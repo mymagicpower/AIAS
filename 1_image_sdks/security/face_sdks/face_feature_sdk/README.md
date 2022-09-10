@@ -26,7 +26,10 @@
 ![face_sdk](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/face_sdk/images/face_sdk.png)
 
 本文的例子给出了人脸特征提取，人脸比对的参考实现。
-####人脸特征提取：
+完整的例子请参考 8_suite_hub/face_search（pytorch算法实现，根据需要自行参考已有实现，转换为paddle算法）。     
+人脸识别完整的pipeline：人脸检测(含人脸关键点) --> 人脸对齐 --> 人脸特征提取 --> 人脸比对
+
+####人脸特征提取：（省略了前序步骤： 人脸检测(含人脸关键点) --> 人脸对齐）
 模型推理例子: FeatureExtractionExample 
 
 ####人脸特征比对：
@@ -56,10 +59,15 @@
 
 ### 开源算法
 #### 1. sdk使用的开源算法
-- [facenet-pytorch](https://github.com/timesler/facenet-pytorch)
+- [insightface](https://github.com/deepinsight/insightface)
+
+#### 项目使用的预训练模型：
+- [model_zoo](https://github.com/deepinsight/insightface/tree/master/model_zoo)
+- [iresnet50](https://paddle-model-ecology.bj.bcebos.com/model/insight-face/arcface_iresnet50_v1.0_infer.tar)
+
 
 #### 2. 模型如何导出 ?
-- [how_to_convert_your_model_to_torchscript](http://docs.djl.ai/docs/pytorch/how_to_convert_your_model_to_torchscript.html)
+- [how_to_export_paddle_model](https://github.com/deepinsight/insightface/blob/master/recognition/arcface_paddle/tools/export.py)
 
 
 ### 其它帮助信息
