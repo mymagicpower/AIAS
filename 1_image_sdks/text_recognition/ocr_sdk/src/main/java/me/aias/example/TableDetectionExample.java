@@ -10,9 +10,9 @@ import ai.djl.modality.cv.output.Rectangle;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
-import me.aias.example.utils.ImageUtils;
-import me.aias.example.utils.TableDetection;
-import me.aias.example.utils.TableResult;
+import me.aias.example.utils.common.ImageUtils;
+import me.aias.example.utils.table.TableDetection;
+import me.aias.example.utils.table.TableResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

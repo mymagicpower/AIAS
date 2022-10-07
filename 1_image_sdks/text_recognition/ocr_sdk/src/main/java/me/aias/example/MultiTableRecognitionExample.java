@@ -10,7 +10,12 @@ import ai.djl.modality.cv.output.Rectangle;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
-import me.aias.example.utils.*;
+import me.aias.example.utils.common.ImageUtils;
+import me.aias.example.utils.layout.LayoutDetection;
+import me.aias.example.utils.recognition.OcrV3AlignedRecognition;
+import me.aias.example.utils.table.ConvertHtml2Excel;
+import me.aias.example.utils.table.TableDetection;
+import me.aias.example.utils.table.TableResult;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,7 +50,7 @@ public final class MultiTableRecognitionExample {
     // 表格单元检测
     TableDetection tableDetection = new TableDetection();
     // 文本框检测
-    OcrV3Recognition recognition = new OcrV3Recognition();
+    OcrV3AlignedRecognition recognition = new OcrV3AlignedRecognition();
 
     try (ZooModel tableModel = ModelZoo.loadModel(tableDetection.criteria());
          Predictor<Image, TableResult> tableDetector = tableModel.newPredictor();

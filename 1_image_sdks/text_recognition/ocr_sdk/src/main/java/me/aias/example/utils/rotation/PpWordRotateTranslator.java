@@ -1,4 +1,4 @@
-package me.aias.example.utils;
+package me.aias.example.utils.rotation;
 
 import ai.djl.modality.Classifications;
 import ai.djl.modality.cv.Image;

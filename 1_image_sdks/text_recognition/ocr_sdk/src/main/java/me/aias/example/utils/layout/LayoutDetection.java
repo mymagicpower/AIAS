@@ -1,4 +1,4 @@
-package me.aias.example.utils;
+package me.aias.example.utils.layout;
 
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.output.DetectedObjects;

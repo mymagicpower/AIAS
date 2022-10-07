@@ -1,4 +1,4 @@
-package me.aias.example.utils;
+package me.aias.example.utils.table;
 
 import ai.djl.modality.cv.output.BoundingBox;
 

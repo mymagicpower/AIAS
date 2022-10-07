@@ -10,7 +10,7 @@
  * OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
  * and limitations under the License.
  */
-package me.aias.example.utils;
+package me.aias.example.utils.detection;
 
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.output.BoundingBox;
@@ -26,7 +26,6 @@ import ai.djl.translate.Translator;
 import ai.djl.translate.TranslatorContext;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.IntStream;
@@ -39,7 +38,7 @@ public class PpWordDetectionTranslator implements Translator<Image, DetectedObje
         max_side_len =
                 arguments.containsKey("maxLength")
                         ? Integer.parseInt(arguments.get("maxLength").toString())
-                        : 2400;
+                        : 960;
     }
 
     @Override
@@ -70,9 +69,39 @@ public class PpWordDetectionTranslator implements Translator<Image, DetectedObje
         NDArray img = input.toNDArray(ctx.getNDManager());
         int h = input.getHeight();
         int w = input.getWidth();
-        int[] hw = scale(h, w, max_side_len);
+        int resize_w = w;
+        int resize_h = h;
 
-        img = NDImageUtils.resize(img, hw[1], hw[0]);
+        // limit the max side
+        float ratio = 1.0f;
+        if (Math.max(resize_h, resize_w) > max_side_len) {
+            if (resize_h > resize_w) {
+                ratio = (float) max_side_len / (float) resize_h;
+            } else {
+                ratio = (float) max_side_len / (float) resize_w;
+            }
+        }
+
+        resize_h = (int) (resize_h * ratio);
+        resize_w = (int) (resize_w * ratio);
+
+        if (resize_h % 32 == 0) {
+            resize_h = resize_h;
+        } else if (Math.floor((float) resize_h / 32f) <= 1) {
+            resize_h = 32;
+        } else {
+            resize_h = (int) Math.floor((float) resize_h / 32f) * 32;
+        }
+
+        if (resize_w % 32 == 0) {
+            resize_w = resize_w;
+        } else if (Math.floor((float) resize_w / 32f) <= 1) {
+            resize_w = 32;
+        } else {
+            resize_w = (int) Math.floor((float) resize_w / 32f) * 32;
+        }
+
+        img = NDImageUtils.resize(img, resize_w, resize_h);
         img = NDImageUtils.toTensor(img);
         img =
                 NDImageUtils.normalize(
@@ -88,22 +117,4 @@ public class PpWordDetectionTranslator implements Translator<Image, DetectedObje
         return null;
     }
 
-    private int[] scale(int h, int w, int limit_side_len) {
-        float ratio = 1.0f;
-        if (Math.max(h, w) > limit_side_len) {
-            if (h > w) {
-                ratio = (float) limit_side_len / (float) h;
-            } else {
-                ratio = (float) limit_side_len / (float) w;
-            }
-        }
-
-        int resize_h = (int) (h * ratio);
-        int resize_w = (int) (w * ratio);
-        resize_h = Math.max((Math.round((float) resize_h / 32f) * 32), 32);
-        resize_w = Math.max((Math.round((float) resize_w / 32f) * 32), 32);
-
-        // paddle model only take 32-based size
-        return new int[]{resize_h, resize_w};
-    }
 }

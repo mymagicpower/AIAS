@@ -5,14 +5,13 @@ import ai.djl.ModelException;
 import ai.djl.inference.Predictor;
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.ImageFactory;
-import ai.djl.modality.cv.output.BoundingBox;
 import ai.djl.modality.cv.output.DetectedObjects;
 import ai.djl.repository.zoo.ModelNotFoundException;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
-import me.aias.example.utils.ImageUtils;
-import me.aias.example.utils.OcrV3MultiThreadRecognition;
+import me.aias.example.utils.common.ImageUtils;
+import me.aias.example.utils.recognition.OcrV3MultiThreadRecognition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

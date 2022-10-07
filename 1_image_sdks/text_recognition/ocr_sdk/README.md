@@ -1,27 +1,17 @@
 ### 官网：
 [官网链接](http://www.aias.top/)
 
-### **** 重要说明 **** ：
-paddleOCR的文字检测识别，默认支持文字是旋转歪斜（即：支持自动文字转正）。
-检测算法的简化实现，导致图像没有摆正，或者宽纵比高的图片，效果会有差别。
-这个功能没有时间适配（所以需要保证图片是摆正的，或者使用下面的预处理工具对整个图片转正，虽然不如原算法处理的完美）。
-请自行参考python代码实现。
-
 ## 文字识别（OCR）工具箱
 文字识别（OCR）目前在多个行业中得到了广泛应用，比如金融行业的单据识别输入，餐饮行业中的发票识别，
 交通领域的车票识别，企业中各种表单识别，以及日常工作生活中常用的身份证，驾驶证，护照识别等等。
 OCR（文字识别）是目前常用的一种AI能力。
 
 ### OCR工具箱功能:
-#### 1. 方向检测   
-- 0度   
-- 90度   
-- 180度   
-- 270度   
-![detect_direction](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/detect_direction.png)
+#### 1. 文字识别 (原生支持倾斜文本)
+- SimpleOcrV3RecognitionExample （原文字识别，需要图片转正）
+- OcrV3RecognitionExample（新文字识别，原生支持倾斜文本） 
 
 #### 2. 图片旋转
-
 
 #### 3. 版面分析（支持5个类别, 用于配合文字识别，表格识别的流水线处理）
 - Text
@@ -34,7 +24,6 @@ OCR（文字识别）是目前常用的一种AI能力。
     # 版面分析 model URI
     layout: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ppyolov2_r50vd_dcn_365e_publaynet_infer.zip
 ```
-
 #### 4. 表格识别
 - 生成html表格
 - 生成excel文件
@@ -44,21 +33,22 @@ OCR（文字识别）是目前常用的一种AI能力。
 ```
 
 ### 运行OCR识别例子
-#### 1.1 文字方向检测：
-- 例子代码: OcrV3DetectionExample.java    
+#### 1.1 文字识别：
+- 例子代码: OcrV3RecognitionExample.java    
 - 运行成功后，命令行应该看到下面的信息:
 ```text
-[INFO ] - Result image has been saved in: build/output/detect_result.png
-[INFO ] - [
-	class: "0", probability: 1.00000, bounds: [x=0.073, y=0.069, width=0.275, height=0.026]
-	class: "0", probability: 1.00000, bounds: [x=0.652, y=0.158, width=0.222, height=0.040]
-	class: "0", probability: 1.00000, bounds: [x=0.143, y=0.252, width=0.144, height=0.026]
-	class: "0", probability: 1.00000, bounds: [x=0.628, y=0.328, width=0.168, height=0.026]
-	class: "0", probability: 1.00000, bounds: [x=0.064, y=0.330, width=0.450, height=0.023]
-]
+time: 766
+time: 2221
+烦恼！
+无数个
+吃饱了就有
+烦恼
+没有吃饱只有一个
 ```
+
 - 输出图片效果如下：
-![detect_result](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/detect_result.png)
+![text_with_angle](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/text_with_angle.png)
+
 
 #### 2. 图片旋转：
 每调用一次rotateImg方法，会使图片逆时针旋转90度。
@@ -68,35 +58,7 @@ OCR（文字识别）是目前常用的一种AI能力。
 - 旋转后图片效果如下：
 ![rotate_result](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/rotate_result.png)
 
-#### 3.1 单线程文字识别：
-再使用本方法前，请调用上述方法使图片文字呈水平(0度)方向。  
-- 例子代码: OcrV3RecognitionExample.java  
-- 运行成功后，命令行应该看到下面的信息:
-```text
-[INFO ] - [
-	class: "检票：B1", probability: -1.0e+00, bounds: [x=0.761, y=0.099, width=0.129, height=0.028]
-	class: "Z31C014941", probability: -1.0e+00, bounds: [x=0.110, y=0.109, width=0.256, height=0.026]
-	class: "九江站", probability: -1.0e+00, bounds: [x=0.649, y=0.188, width=0.214, height=0.042]
-	class: "南昌站", probability: -1.0e+00, bounds: [x=0.138, y=0.193, width=0.209, height=0.038]
-	class: "D6262", probability: -1.0e+00, bounds: [x=0.431, y=0.205, width=0.139, height=0.031]
-	class: "Nanchang", probability: -1.0e+00, bounds: [x=0.173, y=0.276, width=0.136, height=0.026]
-	class: "Jiujiang", probability: -1.0e+00, bounds: [x=0.684, y=0.276, width=0.118, height=0.026]
-	class: "03车02A号", probability: -1.0e+00, bounds: [x=0.628, y=0.347, width=0.159, height=0.024]
-	class: "2019年06月07日06：56开", probability: -1.0e+00, bounds: [x=0.099, y=0.349, width=0.424, height=0.023]
-	class: "二等座", probability: -1.0e+00, bounds: [x=0.692, y=0.415, width=0.092, height=0.031]
-	class: "网折", probability: -1.0e+00, bounds: [x=0.420, y=0.420, width=0.058, height=0.028]
-	class: "￥39.5元", probability: -1.0e+00, bounds: [x=0.104, y=0.425, width=0.127, height=0.026]
-	class: "折", probability: -1.0e+00, bounds: [x=0.482, y=0.438, width=0.049, height=0.076]
-	class: "限乘当日当次车", probability: -1.0e+00, bounds: [x=0.101, y=0.498, width=0.239, height=0.023]
-	class: "3604211990****2417", probability: -1.0e+00, bounds: [x=0.101, y=0.646, width=0.365, height=0.024]
-	class: "买票请到12306发货请到95306", probability: -1.0e+00, bounds: [x=0.197, y=0.733, width=0.420, height=0.019]
-	class: "中国铁路祝您旅途愉快", probability: -1.0e+00, bounds: [x=0.252, y=0.793, width=0.304, height=0.019]
-	class: "3227030010607C014941上海南售", probability: -1.0e+00, bounds: [x=0.101, y=0.878, width=0.508, height=0.021]
-```
-- 输出图片效果如下：
-![ocr_result](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/ticket_result.jpeg)
-
-#### 3.2 多线程文字识别：
+#### 3 多线程文字识别：
 - 例子代码: OcrV3MultiThreadRecExample.java
 
 #### 4. 版面分析：
@@ -156,9 +118,6 @@ OCR（文字识别）是目前常用的一种AI能力。
 - 生成excel效果如下：
 ![excel](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/excel.png)
 
-
-### OCR图像预处理项目：
-https://gitee.com/mymagicpower/AIAS/tree/main/1_image_sdks/imagekit_java
 
 ### 参考文章：
 https://blog.csdn.net/dqcfkyqdxym3f8rb0/article/details/89819785#comments

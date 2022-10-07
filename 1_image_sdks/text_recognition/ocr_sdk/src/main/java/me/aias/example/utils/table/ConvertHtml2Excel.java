@@ -1,4 +1,4 @@
-package me.aias.example.utils;
+package me.aias.example.utils.table;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;

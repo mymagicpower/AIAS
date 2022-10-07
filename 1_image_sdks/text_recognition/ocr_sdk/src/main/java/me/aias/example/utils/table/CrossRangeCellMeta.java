@@ -1,4 +1,4 @@
-package me.aias.example.utils;
+package me.aias.example.utils.table;
 
 /**
  * @Auther: xiaoqiang

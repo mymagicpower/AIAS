@@ -1,4 +1,4 @@
-package me.aias.example.utils;
+package me.aias.example.utils.common;
 
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.output.BoundingBox;
@@ -9,7 +9,7 @@ public class ImageInfo {
     private Image image;
     private BoundingBox box;
 
-    ImageInfo(Image image, BoundingBox box) {
+    public ImageInfo(Image image, BoundingBox box) {
         this.image = image;
         this.box = box;
     }

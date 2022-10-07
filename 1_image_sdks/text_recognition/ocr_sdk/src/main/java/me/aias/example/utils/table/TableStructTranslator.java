@@ -1,4 +1,4 @@
-package me.aias.example.utils;
+package me.aias.example.utils.table;
 
 import ai.djl.Model;
 import ai.djl.modality.cv.Image;
@@ -16,6 +16,7 @@ import ai.djl.translate.Batchifier;
 import ai.djl.translate.Translator;
 import ai.djl.translate.TranslatorContext;
 import ai.djl.util.Utils;
+import me.aias.example.utils.table.TableResult;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
