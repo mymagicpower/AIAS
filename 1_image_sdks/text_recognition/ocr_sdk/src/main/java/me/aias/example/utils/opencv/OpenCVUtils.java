@@ -99,11 +99,6 @@ public class OpenCVUtils {
         mat.get(0, 0, data);
         BufferedImage ret = new BufferedImage(width, height, 5);
         ret.getRaster().setDataElements(0, 0, width, height, data);
-
-
-
-        org.bytedeco.opencv.opencv_core.Mat aa = new org.bytedeco.opencv.opencv_core.Mat();
-
         return ret;
     }
 

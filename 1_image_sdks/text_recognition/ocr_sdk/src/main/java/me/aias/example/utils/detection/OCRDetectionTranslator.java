@@ -114,9 +114,6 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
         ldIdx.release();
 
         NDArray boxes = boxes_from_bitmap(manager, pred, mask, box_thresh);
-        // 矩阵使用完记得 release
-        srcMat.release();
-        mask.release();
 
         //boxes[:, :, 0] = boxes[:, :, 0] / ratio_w
         NDArray boxes1 = boxes.get(":, :, 0").div(ratio_w);
@@ -427,7 +424,6 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
         int height = rect.boundingRect().height();
         int width = rect.boundingRect().width();
         int sside = Math.min(height, width);
-        points.release();
         return sside;
     }
 
@@ -496,10 +492,6 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
         floatRawIndexer.release();
 
         Scalar score = org.bytedeco.opencv.global.opencv_core.mean(bitMapMat, maskMat);
-
-        maskMat.release();
-        boxMat.release();
-        bitMapMat.release();
 
         return (float) score.get();
     }
