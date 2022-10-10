@@ -8,8 +8,7 @@ OCR（文字识别）是目前常用的一种AI能力。
 
 ### OCR工具箱功能:
 #### 1. 文字识别 (原生支持倾斜文本)
-- SimpleOcrV3RecognitionExample （原文字识别，需要图片转正）
-- OcrV3RecognitionExample（新文字识别，原生支持倾斜文本） 
+- OcrV3RecognitionExample
 
 #### 2. 图片旋转
 
