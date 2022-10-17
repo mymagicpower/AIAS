@@ -14,7 +14,7 @@ public final class FaceFeature {
                 Criteria.builder()
                         .optEngine("PaddlePaddle")
                         .setTypes(Image.class, float[].class)
-                        .optModelUrls("https://aias-home.oss-cn-beijing.aliyuncs.com/models/sec_models/arcface_iresnet50_v1.0_infer.zip")
+                        .optModelUrls("https://aias-home.oss-cn-beijing.aliyuncs.com/models/sec_models/MobileFace.zip")
 //                    .optModelUrls("/Users/calvin/Downloads/models/arcface_iresnet50_v1.0_infer/")
                         .optModelName("inference")
                         .optTranslator(new FaceFeatureTranslator())
@@ -34,6 +34,6 @@ public final class FaceFeature {
             mod1 += feature1[i] * feature1[i];
             mod2 += feature2[i] * feature2[i];
         }
-        return (float) ((ret / Math.sqrt(mod1) / Math.sqrt(mod2) + 1) / 2.0f);
+        return (float) ((ret / Math.sqrt(mod1) / Math.sqrt(mod2)));
     }
 }

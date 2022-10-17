@@ -32,10 +32,12 @@ public final class FeatureComparisonExample {
 
     public static void main(String[] args) throws IOException, ModelException, TranslateException {
 
-        Path imageFile1 = Paths.get("src/test/resources/kana1.jpg");
+        Path imageFile1 = Paths.get("src/test/resources/kana1.png");
         Image img1 = ImageFactory.getInstance().fromFile(imageFile1);
-        Path imageFile2 = Paths.get("src/test/resources/kana2.jpg");
+        Path imageFile2 = Paths.get("src/test/resources/kana2.png");
         Image img2 = ImageFactory.getInstance().fromFile(imageFile2);
+        Path imageFile3 = Paths.get("src/test/resources/beauty1.png");
+        Image img3 = ImageFactory.getInstance().fromFile(imageFile3);
 
         FaceFeature faceFeature = new FaceFeature();
         try (ZooModel<Image, float[]> model = ModelZoo.loadModel(faceFeature.criteria());
@@ -45,8 +47,12 @@ public final class FeatureComparisonExample {
             logger.info("face1 feature: " + Arrays.toString(feature1));
             float[] feature2 = predictor.predict(img2);
             logger.info("face2 feature: " + Arrays.toString(feature2));
+            float[] feature3 = predictor.predict(img3);
+            logger.info("face3 feature: " + Arrays.toString(feature3));
 
-            logger.info("相似度： "+ Float.toString(faceFeature.calculSimilar(feature1, feature2)));
+            logger.info("kana1 - kana2 Similarity： "+ Float.toString(faceFeature.calculSimilar(feature1, feature2)));
+            logger.info("kana1 - beauty1 Similarity： "+ Float.toString(faceFeature.calculSimilar(feature1, feature3)));
+
         }
     }
 }

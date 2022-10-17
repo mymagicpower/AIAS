@@ -31,7 +31,7 @@ public final class FeatureExtractionExample {
     }
 
     public static void main(String[] args) throws IOException, ModelException, TranslateException {
-        Path imageFile = Paths.get("src/test/resources/kana1.jpg");
+        Path imageFile = Paths.get("src/test/resources/kana1.png");
         Image img = ImageFactory.getInstance().fromFile(imageFile);
 
         FaceFeature faceFeature = new FaceFeature();
