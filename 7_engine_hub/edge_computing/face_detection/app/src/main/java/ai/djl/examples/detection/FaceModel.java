@@ -41,7 +41,7 @@ final class FaceModel {
         Criteria<Image, FaceDetectedObjects> criteria =
                 Criteria.builder()
                         .setTypes(Image.class, FaceDetectedObjects.class)
-                        .optModelUrls("https://aias-home.oss-cn-beijing.aliyuncs.com/ultranet.zip")
+                        .optModelUrls("https://aias-home.oss-cn-beijing.aliyuncs.com/models/face/ultranet.zip")
                         // https://resources.djl.ai/test-models/pytorch/ultranet.zip
                         // https://aias-home.oss-cn-beijing.aliyuncs.com/ultranet.zip
                         .optTranslator(translator)
