@@ -7,12 +7,24 @@
 OCR（文字识别）是目前常用的一种AI能力。
 
 ### OCR工具箱功能:
-#### 1. 文字识别 (原生支持倾斜文本)
-- OcrV3RecognitionExample
+
+#### 1. 方向检测
+- OcrDirectionExample
+- 0度
+- 90度
+- 180度
+- 270度   
+  ![detect_direction](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/detect_direction.png)
 
 #### 2. 图片旋转
+- RotationExample
 
-#### 3. 版面分析（支持5个类别, 用于配合文字识别，表格识别的流水线处理）
+#### 3. 文字识别 (原生支持倾斜文本, 1 & 2 需要时可以作为辅助)
+- OcrV3RecognitionExample
+
+#### 4. 图片旋转
+
+#### 5. 版面分析（支持5个类别, 用于配合文字识别，表格识别的流水线处理）
 - Text
 - Title
 - List
@@ -23,7 +35,7 @@ OCR（文字识别）是目前常用的一种AI能力。
     # 版面分析 model URI
     layout: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ppyolov2_r50vd_dcn_365e_publaynet_infer.zip
 ```
-#### 4. 表格识别
+#### 6. 表格识别
 - 生成html表格
 - 生成excel文件
 ```text
