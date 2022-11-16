@@ -52,3 +52,15 @@ http://aias.top/guides.html
 
 ### Reference：
 https://gitee.com/endlesshh/first-order-model-java 
+
+
+#### 帮助文档：
+- http://aias.top/guides.html
+- 1.性能优化常见问题:
+- http://aias.top/AIAS/guides/performance.html
+- 2.引擎配置（包括CPU，GPU在线自动加载，及本地配置）:
+- http://aias.top/AIAS/guides/engine_config.html
+- 3.模型加载方式（在线自动加载，及本地配置）:
+- http://aias.top/AIAS/guides/load_model.html
+- 4.Windows环境常见问题:
+- http://aias.top/AIAS/guides/windows.html
