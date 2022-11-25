@@ -116,6 +116,8 @@ public final class OcrV3Recognition {
         mat.release();
         dstMat.release();
         cvmat.release();
+        srcPoint2f.releaseReference();
+        dstPoint2f.releaseReference();
 
         return subImg;
     }
