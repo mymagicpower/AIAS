@@ -12,7 +12,6 @@ import ai.djl.opencv.OpenCVImageFactory;
 import ai.djl.repository.zoo.Criteria;
 import ai.djl.training.util.ProgressBar;
 import ai.djl.translate.TranslateException;
-import me.aias.example.utils.common.ImageUtils;
 import me.aias.example.utils.common.RotatedBox;
 import me.aias.example.utils.opencv.NDArrayUtils;
 import me.aias.example.utils.opencv.OpenCVUtils;
@@ -113,6 +112,11 @@ public final class OcrV3Recognition {
         org.opencv.core.Mat cvmat = converter2.convert(converter1.convert(dstMat));
         Image subImg = OpenCVImageFactory.getInstance().fromImage(cvmat);
         subImg = subImg.getSubImage(0,0,img_crop_width,img_crop_height);
+
+        mat.release();
+        dstMat.release();
+        cvmat.release();
+
         return subImg;
     }
 

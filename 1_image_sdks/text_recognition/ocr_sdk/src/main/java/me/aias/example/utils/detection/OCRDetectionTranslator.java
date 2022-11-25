@@ -67,15 +67,6 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
         pred = pred.squeeze();
         NDArray segmentation = pred.toType(DataType.UINT8, true).gt(0.3);   // thresh=0.3 .mul(255f)
 
-
-        boolean[] flattened = segmentation.toBooleanArray();
-        int count = 0;
-        for (int i = 0; i < flattened.length; i++) {
-            if (flattened[i] == true) {
-                count++;
-            }
-        }
-
         segmentation = segmentation.toType(DataType.UINT8, true);
 
         //convert from NDArray to Mat
@@ -125,6 +116,11 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
         NDList dt_boxes = this.filter_tag_det_res(boxes);
 
         dt_boxes.detach();
+
+        // release Mat
+        srcMat.release();
+        mask.release();
+        structImage.release();
 
         return dt_boxes;
     }
@@ -262,6 +258,9 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
                 scores[index] = score;
                 count++;
             }
+
+            // release memory
+            contour.release();
         }
 //        if (count < num_contours) {
 //            NDArray newBoxes = manager.zeros(new Shape(count, 4, 2), DataType.FLOAT32);
@@ -269,6 +268,11 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
 //            boxes = newBoxes;
 //        }
         NDArray boxes = NDArrays.stack(boxList);
+
+        // release
+        hierarchy.release();
+        contours.releaseReference();
+
         return boxes;
     }
 
@@ -424,6 +428,12 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
         int height = rect.boundingRect().height();
         int width = rect.boundingRect().width();
         int sside = Math.min(height, width);
+
+
+        // release
+        points.release();
+        rect.releaseReference();
+
         return sside;
     }
 
@@ -492,8 +502,15 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
         floatRawIndexer.release();
 
         Scalar score = org.bytedeco.opencv.global.opencv_core.mean(bitMapMat, maskMat);
+        float scoreValue = (float) score.get();
+        // release
+        maskMat.release();
+        boxMat.release();
+        bitMapMat.release();
+        matVector.releaseReference();
+        score.releaseReference();
 
-        return (float) score.get();
+        return scoreValue;
     }
 
     @Override
