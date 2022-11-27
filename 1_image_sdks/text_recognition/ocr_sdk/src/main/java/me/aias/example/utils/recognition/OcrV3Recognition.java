@@ -12,7 +12,6 @@ import ai.djl.opencv.OpenCVImageFactory;
 import ai.djl.repository.zoo.Criteria;
 import ai.djl.training.util.ProgressBar;
 import ai.djl.translate.TranslateException;
-import me.aias.example.utils.common.ImageUtils;
 import me.aias.example.utils.common.RotatedBox;
 import me.aias.example.utils.opencv.NDArrayUtils;
 import me.aias.example.utils.opencv.OpenCVUtils;
@@ -54,11 +53,50 @@ public final class OcrV3Recognition {
 
         List<RotatedBox> result = new ArrayList<>();
         long timeInferStart = System.currentTimeMillis();
+
+        OpenCVFrameConverter.ToMat cv = new OpenCVFrameConverter.ToMat();
+        OpenCVFrameConverter.ToMat converter1 = new OpenCVFrameConverter.ToMat();
+        OpenCVFrameConverter.ToOrgOpenCvCoreMat converter2 = new OpenCVFrameConverter.ToOrgOpenCvCoreMat();
+
         for (int i = 0; i < boxes.size(); i++) {
             NDArray box = boxes.get(i);
-            Image subImg = get_rotate_crop_image(image, box);
+//            BufferedImage bufferedImage = get_rotate_crop_image(image, box);
+
+            float[] pointsArr = box.toFloatArray();
+            float[] lt = java.util.Arrays.copyOfRange(pointsArr, 0, 2);
+            float[] rt = java.util.Arrays.copyOfRange(pointsArr, 2, 4);
+            float[] rb = java.util.Arrays.copyOfRange(pointsArr, 4, 6);
+            float[] lb = java.util.Arrays.copyOfRange(pointsArr, 6, 8);
+            int img_crop_width = (int) Math.max(distance(lt, rt), distance(rb, lb));
+            int img_crop_height = (int) Math.max(distance(lt, lb), distance(rt, rb));
+            List<Point> srcPoints = new ArrayList<>();
+            srcPoints.add(new Point(lt[0], lt[1]));
+            srcPoints.add(new Point(rt[0], rt[1]));
+            srcPoints.add(new Point(rb[0], rb[1]));
+            srcPoints.add(new Point(lb[0], lb[1]));
+            List<Point> dstPoints = new ArrayList<>();
+            dstPoints.add(new Point(0, 0));
+            dstPoints.add(new Point(img_crop_width, 0));
+            dstPoints.add(new Point(img_crop_width, img_crop_height));
+            dstPoints.add(new Point(0, img_crop_height));
+
+            Point2f srcPoint2f = NDArrayUtils.toOpenCVPoint2f(srcPoints, 4);
+            Point2f dstPoint2f = NDArrayUtils.toOpenCVPoint2f(dstPoints, 4);
+
+            BufferedImage bufferedImage = OpenCVUtils.matToBufferedImage((org.opencv.core.Mat) image.getWrappedImage());
+            //        try {
+            //            File outputfile = new File("build/output/srcImage.jpg");
+            //            ImageIO.write(bufferedImage, "jpg", outputfile);
+            //        } catch (IOException e) {
+            //            e.printStackTrace();
+            //        }
+            org.bytedeco.opencv.opencv_core.Mat mat = cv.convertToMat(new Java2DFrameConverter().convert(bufferedImage));
+            org.bytedeco.opencv.opencv_core.Mat dstMat = OpenCVUtils.perspectiveTransform(mat, srcPoint2f, dstPoint2f);
+            org.opencv.core.Mat cvMat = converter2.convert(converter1.convert(dstMat));
+            Image subImg = OpenCVImageFactory.getInstance().fromImage(cvMat);
 //            ImageUtils.saveImage(subImg, i + ".png", "build/output");
 
+            subImg = subImg.getSubImage(0,0,img_crop_width,img_crop_height);
             if (subImg.getHeight() * 1.0 / subImg.getWidth() > 1.5) {
                 subImg = rotateImg(subImg);
             }
@@ -66,61 +104,24 @@ public final class OcrV3Recognition {
             String name = recognizer.predict(subImg);
             RotatedBox rotatedBox = new RotatedBox(box, name);
             result.add(rotatedBox);
+
+            mat.release();
+            dstMat.release();
+            cvMat.release();
+            srcPoint2f.releaseReference();
+            dstPoint2f.releaseReference();
         }
+        cv.close();
+        converter1.close();
+        converter2.close();
         long timeInferEnd = System.currentTimeMillis();
         System.out.println("time: " + (timeInferEnd - timeInferStart));
-
 
         return result;
     }
 
-    private Image get_rotate_crop_image(Image image, NDArray box) {
-        float[] pointsArr = box.toFloatArray();
-        float[] lt = java.util.Arrays.copyOfRange(pointsArr, 0, 2);
-        float[] rt = java.util.Arrays.copyOfRange(pointsArr, 2, 4);
-        float[] rb = java.util.Arrays.copyOfRange(pointsArr, 4, 6);
-        float[] lb = java.util.Arrays.copyOfRange(pointsArr, 6, 8);
-        int img_crop_width = (int) Math.max(distance(lt, rt), distance(rb, lb));
-        int img_crop_height = (int) Math.max(distance(lt, lb), distance(rt, rb));
-        List<Point> srcPoints = new ArrayList<>();
-        srcPoints.add(new Point(lt[0], lt[1]));
-        srcPoints.add(new Point(rt[0], rt[1]));
-        srcPoints.add(new Point(rb[0], rb[1]));
-        srcPoints.add(new Point(lb[0], lb[1]));
-        List<Point> dstPoints = new ArrayList<>();
-        dstPoints.add(new Point(0, 0));
-        dstPoints.add(new Point(img_crop_width, 0));
-        dstPoints.add(new Point(img_crop_width, img_crop_height));
-        dstPoints.add(new Point(0, img_crop_height));
-
-        Point2f srcPoint2f = NDArrayUtils.toOpenCVPoint2f(srcPoints, 4);
-        Point2f dstPoint2f = NDArrayUtils.toOpenCVPoint2f(dstPoints, 4);
-
-        BufferedImage bufferedImage = OpenCVUtils.matToBufferedImage((org.opencv.core.Mat) image.getWrappedImage());
-//        try {
-//            File outputfile = new File("build/output/srcImage.jpg");
-//            ImageIO.write(bufferedImage, "jpg", outputfile);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-        OpenCVFrameConverter.ToMat cv = new OpenCVFrameConverter.ToMat();
-        org.bytedeco.opencv.opencv_core.Mat mat = cv.convertToMat(new Java2DFrameConverter().convert(bufferedImage));
-        org.bytedeco.opencv.opencv_core.Mat dstMat = OpenCVUtils.perspectiveTransform(mat, srcPoint2f, dstPoint2f);
-
-        OpenCVFrameConverter.ToMat converter1 = new OpenCVFrameConverter.ToMat();
-        OpenCVFrameConverter.ToOrgOpenCvCoreMat converter2 = new OpenCVFrameConverter.ToOrgOpenCvCoreMat();
-        org.opencv.core.Mat cvMat = converter2.convert(converter1.convert(dstMat));
-        Image subImg = OpenCVImageFactory.getInstance().fromImage(cvMat);
-        subImg = subImg.getSubImage(0,0,img_crop_width,img_crop_height);
-
-        mat.release();
-//        dstMat.release();
-//        cvMat.release();
-        srcPoint2f.releaseReference();
-        dstPoint2f.releaseReference();
-
-        return subImg;
+    private BufferedImage get_rotate_crop_image(Image image, NDArray box) {
+        return null;
     }
 
     private float distance(float[] point1, float[] point2) {
