@@ -54,8 +54,9 @@ public final class OcrV3RecognitionExample {
             long timeInferStart = System.currentTimeMillis();
             List<RotatedBox> detections = recognition.predict(image, detector, recognizer);
 
-//            for (int i = 0; i < 300; i++) {
+//            for (int i = 0; i < 1000; i++) {
 //                detections = recognition.predict(image, detector, recognizer);
+//                System.out.println("time: " + i);
 //            }
 
             long timeInferEnd = System.currentTimeMillis();
