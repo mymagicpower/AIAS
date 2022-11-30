@@ -5,10 +5,19 @@
 
 [![star](https://gitee.com/mymagicpower/AIAS/badge/star.svg?theme=gvp)](https://gitee.com/mymagicpower/AIAS/stargazers)   [![fork](https://gitee.com/mymagicpower/AIAS/badge/fork.svg?theme=gvp)](https://gitee.com/mymagicpower/AIAS/members)  
 - 官网: http://www.aias.top/
-- 帮助文档: http://aias.top/guides.html
 - Gitee:  https://gitee.com/mymagicpower/AIAS  
 - GitHub: https://github.com/mymagicpower/AIAS
 
+#### 帮助文档：
+- http://aias.top/guides.html
+- 1.性能优化常见问题:
+- http://aias.top/AIAS/guides/performance.html
+- 2.引擎配置（包括CPU，GPU在线自动加载，及本地配置）:
+- http://aias.top/AIAS/guides/engine_config.html
+- 3.模型加载方式（在线自动加载，及本地配置）:
+- http://aias.top/AIAS/guides/load_model.html
+- 4.Windows环境常见问题:
+- http://aias.top/AIAS/guides/windows.html
 
 <div align="center">
   <div align="center">欢迎交流，QQ群： 111257454，请给源码项目点个 <b><font color="#CE0000">Star</font></b> 吧！！！</div>
