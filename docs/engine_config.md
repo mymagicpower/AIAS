@@ -77,10 +77,8 @@ ubuntu 18.04及以上
 4). Linux - GPU
 需要设置环境变量LD_LIBRARY_PATH，如在 /etc/profile中设置。
 ```text
-LD_LIBRARY_PATH=$HOME/.djl.ai/paddle/2.2.2-<cuda-flavor>-linux-x86_64
+LD_LIBRARY_PATH=$HOME/.djl.ai/paddle/x.x.x-<cuda-flavor>-linux-x86_64
 ```
-- ai.djl.paddlepaddle:paddlepaddle-native-cu102:2.2.2:linux-x86_64 - CUDA 10.2
-- ai.djl.paddlepaddle:paddlepaddle-native-cu112:2.2.2:linux-x86_64 - CUDA 11.2
 
 ```text
 <dependency>
@@ -100,6 +98,20 @@ LD_LIBRARY_PATH=$HOME/.djl.ai/paddle/2.2.2-<cuda-flavor>-linux-x86_64
 </dependency>
 
 ```
+- CUDA 支持的版本
+```text
+- <artifactId>paddlepaddle-native-cuXXX</artifactId>
+  <version>X.X.X</version>
+```
+
+```text
+# 搜索 ai.djl.paddlepaddle 查询 ： https://mvnrepository.com/ 
+# 或者 https://repo1.maven.org/maven2/ai/djl/paddlepaddle/
+CUDA 11.2: paddlepaddle-native-cu112
+CUDA 11.0: paddlepaddle-native-cu110
+CUDA 10.2: pytorch-native-cu102
+CUDA 10.1: pytorch-native-cu101
+```
 
 5). Windows - CPU
 ```text
@@ -116,11 +128,26 @@ LD_LIBRARY_PATH=$HOME/.djl.ai/paddle/2.2.2-<cuda-flavor>-linux-x86_64
 ```text
 <dependency>
     <groupId>ai.djl.paddlepaddle</groupId>
-    <artifactId>paddlepaddle-native-cu110</artifactId>
+    <artifactId>paddlepaddle-native-cu112</artifactId>
     <classifier>win-x86_64</classifier>
     <version>2.2.2</version>
     <scope>runtime</scope>
 </dependency>
+```
+
+- CUDA 支持的版本
+```text
+- <artifactId>paddlepaddle-native-cuXXX</artifactId>
+  <version>X.X.X</version>
+```
+
+```text
+# 搜索 ai.djl.paddlepaddle 查询 ： https://mvnrepository.com/ 
+# 或者 https://repo1.maven.org/maven2/ai/djl/paddlepaddle/
+CUDA 11.2: paddlepaddle-native-cu112
+CUDA 11.0: paddlepaddle-native-cu110
+CUDA 10.2: pytorch-native-cu102
+CUDA 10.1: pytorch-native-cu101
 ```
 
 #### 2. Pytorch engine
@@ -316,7 +343,7 @@ ai.djl.pytorch:pytorch-native-cpu-precxx11:1.11.0:linux-x86_64 - CPU
 
 ```
 
-7). Linux - GPU - <classifier>linux-x86_64</classifier>
+7). Linux - GPU
 ```text
 <dependency>
     <groupId>ai.djl.pytorch</groupId>
@@ -334,10 +361,14 @@ ai.djl.pytorch:pytorch-native-cpu-precxx11:1.11.0:linux-x86_64 - CPU
 
 ```
 - CUDA 支持的版本
+```text
 - <artifactId>pytorch-native-cuXXX</artifactId>
+  <version>X.X.X</version>
+```
 
 ```text
 # 搜索 ai.djl.pytorch 查询 ： https://mvnrepository.com/ 
+# 或者 https://repo1.maven.org/maven2/ai/djl/pytorch/
 CUDA 11.7: pytorch-native-cu117
 CUDA 11.6: pytorch-native-cu116
 CUDA 11.3: pytorch-native-cu113
@@ -365,7 +396,7 @@ CUDA 9.2: pytorch-native-cu92
 </dependency>
 ```
 
-9). Windows - GPU - <classifier>win-x86_64</classifier>
+9). Windows - GPU
 ```text
 <dependency>
     <groupId>ai.djl.pytorch</groupId>
@@ -383,9 +414,14 @@ CUDA 9.2: pytorch-native-cu92
 ```
 
 - CUDA 支持的版本
+```text
 - <artifactId>pytorch-native-cuXXX</artifactId>
+  <version>X.X.X</version>
+```
+
 ```text
 # 搜索 ai.djl.pytorch 查询 ： https://mvnrepository.com/ 
+# 或者 https://repo1.maven.org/maven2/ai/djl/pytorch/
 CUDA 11.7: pytorch-native-cu117
 CUDA 11.6: pytorch-native-cu116
 CUDA 11.3: pytorch-native-cu113
@@ -439,9 +475,15 @@ CUDA 9.2: pytorch-native-cu92
 </dependency>
 ```
 - CUDA 支持的版本 
-- <artifactId>mxnet-native-cuXXXmkl</artifactId>
+
+```text
+  <artifactId>mxnet-native-cuXXXmkl</artifactId>
+  <version>X.X.X</version>
+```
+
 ```text
 # 搜索 ai.djl.mxnet 查询 ： https://mvnrepository.com/ 
+# 或者 https://repo1.maven.org/maven2/ai/djl/mxnet/
 CUDA 11.2: mxnet-native-cu112mkl
 CUDA 11.0: mxnet-native-cu101mkl
 CUDA 10.2: mxnet-native-cu101mkl
@@ -472,9 +514,14 @@ CUDA 9.2: mxnet-native-cu102mkl
 ```
 
 - CUDA 支持的版本 
-- <artifactId>mxnet-native-cuXXXmkl</artifactId>
+```text
+  <artifactId>mxnet-native-cuXXXmkl</artifactId>
+  <version>X.X.X</version>
+```
+
 ```text
 # 搜索 ai.djl.mxnet 查询 ： https://mvnrepository.com/ 
+# 或者 https://repo1.maven.org/maven2/ai/djl/mxnet/
 CUDA 11.2: mxnet-native-cu112mkl
 CUDA 11.0: mxnet-native-cu101mkl
 CUDA 10.2: mxnet-native-cu101mkl
@@ -525,9 +572,14 @@ CUDA 9.2: mxnet-native-cu102mkl
 </dependency>
 ```
 - CUDA 支持的版本 
-- <artifactId>tensorflow-native-cuXXX</artifactId>
+```text
+  <artifactId>tensorflow-native-cuXXX</artifactId>
+  <version>X.X.X</version>
+```
+
 ```text
 # 搜索 ai.djl.tensorflow 查询 ： https://mvnrepository.com/ 
+# 或者 https://repo1.maven.org/maven2/ai/djl/tensorflow/
 CUDA 11.3:  tensorflow-native-cu113
 CUDA 11.0:  tensorflow-native-cu110
 CUDA 10.1:  tensorflow-native-cu101
@@ -555,9 +607,14 @@ CUDA 10.1:  tensorflow-native-cu101
 </dependency>
 ```
 - CUDA 支持的版本 
-- <artifactId>tensorflow-native-cuXXX</artifactId>
+```text
+  <artifactId>tensorflow-native-cuXXX</artifactId>
+  <version>X.X.X</version>
+```
+
 ```text
 # 搜索 ai.djl.tensorflow 查询 ： https://mvnrepository.com/ 
+# 或者 https://repo1.maven.org/maven2/ai/djl/tensorflow/
 CUDA 11.3:  tensorflow-native-cu113
 CUDA 11.0:  tensorflow-native-cu110
 CUDA 10.1:  tensorflow-native-cu101
