@@ -14,7 +14,7 @@
 - http://aias.top/AIAS/guides/performance.html
 - 2.引擎配置（包括CPU，GPU在线自动加载，及本地配置）:
 - http://aias.top/AIAS/guides/engine_config.html
-- 3.模型加载方式（在线自动加载，及本地配置）:
+- 3.模型在线/离线加载方式（在线自动加载，及离线加载配置）:
 - http://aias.top/AIAS/guides/load_model.html
 - 4.Windows环境常见问题:
 - http://aias.top/AIAS/guides/windows.html
