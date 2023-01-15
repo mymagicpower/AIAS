@@ -1,0 +1,50 @@
+.container {
+  height: 600px;
+}
+.drawboard{
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  color: $textColor;
+}
+.center{
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  .topBar {
+    flex: 0 0 $topBarWidth;
+    background-color: $drawboardBg;
+    border-bottom: 1px solid $borderColor;
+  }
+  .wrapper {
+    flex: 1 1 0; 
+    display: flex;
+    flex-direction: row;
+    .tools {
+      flex: 0 0 $topBarWidth;
+      background-color: $drawboardBg;
+      border-right: 1px solid $borderColor;
+    }
+    .view {
+      flex: 1 1 0; 
+      background-color: $wrapperBg;
+      position: relative;
+      overflow: hidden;
+      #canvas {
+        top: 0;
+        left: 0;
+        position: absolute;
+      }
+      #image {
+        top: 0px;
+        left: 0px;
+        position: absolute;
+      }
+    }
+  }
+  .bottomBar {
+    flex: 0 0 $bottomBarWidth;
+    background-color: $drawboardBg;
+    border-top: 1px solid $borderColor;
+  }
+}

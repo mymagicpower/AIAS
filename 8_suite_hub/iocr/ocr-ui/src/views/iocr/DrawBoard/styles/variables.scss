@@ -1,0 +1,29 @@
+$textColor:#bfcbd9;
+$activeTextColor:#409EFF;
+
+$drawboardBg:#282828;
+$drawboardHover:#263445;
+$borderColor: #171717;
+
+$wrapperBg:#EBEEF5;
+
+$leftWidth: 200px;
+$rightWidth: 300px;
+
+$topBarWidth: 40px;
+$bottomBarWidth: 40px;
+
+
+// the :export directive is the magic sauce for webpack
+:export {
+  textColor: $textColor;
+  activeTextColor: $activeTextColor;
+  drawboardBg: $drawboardBg;
+  drawboardHover: $drawboardHover;
+  wrapperBg: $wrapperBg;
+  leftWidth: $leftWidth;
+  rightWidth: $rightWidth;
+  topBarWidth: $topBarWidth;
+  bottomBarWidth: $bottomBarWidth;
+  borderColor: $borderColor;
+}
