@@ -33,9 +33,9 @@ Mail: 179209347@qq.com
 #### AIAS (AI Acceleration Suite - AI算法落地加速器套件)
 - AIAS提供的参考能力:
 ```bash
-1. SDK
-2. 平台引擎
-3. 场景套件
+1. SDK：包含了对各Model Hub，以及GitHub优选模型的支持。
+2. 平台引擎：包含了API平台引擎，搜索引擎，训练引擎，边缘计算引擎等。
+3. 场景套件：包含了面向ToB，ToC，ToG各场景的套件，比如：生物医药套件。
 ```
 
 - AIAS的目标:
@@ -52,17 +52,6 @@ Mail: 179209347@qq.com
 <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/AIAS.png"  width = "600"  />
 </div>
 
-
-- 在Data Hub, Model Hub 的基础上扩展出三个新的Hub概念:
-
-```bash
-1. SDK Hub
-	 包含了对各Model Hub，以及GitHub优选模型的支持。
-2. Engine Hub
-   包含了API平台引擎，搜索引擎，训练引擎，边缘计算引擎等。
-3. Suite Hub
-   包含了面向ToB，ToC，ToG各场景的套件。比如：生物医药套件，泛安防套件，ToB套件（IOCR, 非结构化解析，推荐系统等）...
-```
 
 <div align="center">
   <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/aias_scope.png"  width = "600"  />
@@ -156,7 +145,7 @@ Mail: 179209347@qq.com
 
 - 5. suite_hub - [场景套件](http://aias.top/suite.html)
 ```text
-  1). ToB: OCR自定义模版识别, 问答系统等
+  1). ToB: 问答系统等
   2). 生物医药  
   3). 数字虚拟人   
       ...
