@@ -19,10 +19,10 @@
 - 4.Windows环境常见问题:
 - http://aias.top/AIAS/guides/windows.html
 
-<!-- <div align="center">
+<div align="center">
   <div align="center">欢迎交流，QQ群： 111257454，请给源码项目点个 <b><font color="#CE0000">Star</font></b> 吧！！！</div>
 <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/qq.png"  width = "200"  />
-</div> -->
+</div>
 
 作者：Calvin    
 Mail: 179209347@qq.com
