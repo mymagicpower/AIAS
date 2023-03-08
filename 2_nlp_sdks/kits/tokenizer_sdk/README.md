@@ -1,5 +1,6 @@
 ## huggingface Tokenizer
 
+## https://github.com/deepjavalibrary/djl/blob/master/extensions/tokenizers/README.md
 ### 1. pom 配置
         <dependency>
             <groupId>ai.djl.huggingface</groupId>
@@ -7,9 +8,10 @@
             <version>0.19.0</version>
         </dependency>
 
-    private static final HuggingFaceTokenizer tokenizer;
 
 ### 2. 例子代码
+    private static final HuggingFaceTokenizer tokenizer;
+    
     # 声明
     static {
         try {
