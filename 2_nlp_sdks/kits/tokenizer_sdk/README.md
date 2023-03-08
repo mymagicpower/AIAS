@@ -1,4 +1,44 @@
-# Transformer的常用Tokenizer系列 - Java实现
+## huggingface Tokenizer
+
+### 1. pom 配置
+        <dependency>
+            <groupId>ai.djl.huggingface</groupId>
+            <artifactId>tokenizers</artifactId>
+            <version>0.19.0</version>
+        </dependency>
+
+    private static final HuggingFaceTokenizer tokenizer;
+
+### 2. 例子代码
+    # 声明
+    static {
+        try {
+            tokenizer =
+                    HuggingFaceTokenizer.builder()
+                            .optManager(manager)
+                            .optPadding(true)
+                            .optPadToMaxLength()
+                            .optMaxLength(MAX_LENGTH)
+                            .optTruncation(true)
+                            .optTokenizerName("openai/clip-vit-large-patch14")
+                            .build();
+            // sentence-transformers/msmarco-distilbert-dot-v5
+            // openai/clip-vit-large-patch14
+            // https://huggingface.co/sentence-transformers/msmarco-distilbert-dot-v5
+            // https://huggingface.co/runwayml/stable-diffusion-v1-5/blob/main/tokenizer/tokenizer_config.json
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    # 使用
+    List<String> tokens = tokenizer.tokenize(prompt);
+
+
+
+### 下面方法已废弃，仅用于学习参考，请使用上面的库及用法
+
+### Transformer的常用Tokenizer系列 - Java实现
 这个sdk里包含了用于自然语言处理的tokenizer（分词器）。
 切词输出的token序列，兼容huggingface（一个python实现的知名NLP库）。
 java实现的Tokenizer有助于在java环境部署NLP模型。
