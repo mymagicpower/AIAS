@@ -234,3 +234,25 @@ Mail: 179209347@qq.com
 </div> 
 
 #### 3.N.持续更新中......
+
+
+
+
+#### 请作者喝杯咖啡
+
+<div align="center">
+  <table>
+    <tr>
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/money_wechat.jpeg"  width = "250"  />
+        </div>
+      </td>
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/money_alipay.jpeg"  width = "250"  />
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
