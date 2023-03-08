@@ -84,6 +84,7 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
             }
         }
         ldIdx.release();
+        ldIdx.close();
 
         Mat mask = new Mat();
         // size 越小，腐蚀的单位越小，图片越接近原图
@@ -103,6 +104,7 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
             }
         }
         ldIdx.release();
+        ldIdx.close();
 
         NDArray boxes = boxes_from_bitmap(manager, pred, mask, box_thresh);
 
@@ -119,8 +121,11 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
 
         // release Mat
         srcMat.release();
+        srcMat.close();
         mask.release();
+        mask.close();
         structImage.release();
+        structImage.close();
 
         return dt_boxes;
     }
@@ -261,6 +266,7 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
 
             // release memory
             contour.release();
+            contour.close();
         }
 //        if (count < num_contours) {
 //            NDArray newBoxes = manager.zeros(new Shape(count, 4, 2), DataType.FLOAT32);
@@ -271,7 +277,9 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
 
         // release
         hierarchy.release();
+        hierarchy.close();
         contours.releaseReference();
+        contours.close();
 
         return boxes;
     }
@@ -384,6 +392,7 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
             fourPoints[row][1] = ldIdx.get(row, 1);
         }
         ldIdx.release();
+        ldIdx.close();
 
         float[] tmpPoint = new float[2];
         for (int i = 0; i < 4; i++) {
@@ -432,7 +441,9 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
 
         // release
         points.release();
+        points.close();
         rect.releaseReference();
+        rect.close();
 
         return sside;
     }
@@ -471,6 +482,7 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
             }
         }
         ldIdx.release();
+        ldIdx.close();
 
         //mask - convert from NDArray to Mat
         float[] boxArray = box.toFloatArray();
@@ -481,6 +493,7 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
             intRawIndexer.put(row, 1, (int) boxArray[row * 2 + 1]);
         }
         intRawIndexer.release();
+        intRawIndexer.close();
 
 //        boxMat.reshape(1, new int[]{1, 4, 2});
         MatVector matVector = new MatVector();
@@ -500,15 +513,21 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
             }
         }
         floatRawIndexer.release();
+        floatRawIndexer.close();
 
         Scalar score = org.bytedeco.opencv.global.opencv_core.mean(bitMapMat, maskMat);
         float scoreValue = (float) score.get();
         // release
         maskMat.release();
+        maskMat.close();
         boxMat.release();
+        boxMat.close();
         bitMapMat.release();
+        bitMapMat.close();
         matVector.releaseReference();
+        matVector.close();
         score.releaseReference();
+        score.close();
 
         return scoreValue;
     }

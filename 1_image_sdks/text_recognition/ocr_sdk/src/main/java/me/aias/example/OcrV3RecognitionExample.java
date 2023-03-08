@@ -56,7 +56,10 @@ public final class OcrV3RecognitionExample {
 
 //            for (int i = 0; i < 1000; i++) {
 //                detections = recognition.predict(image, detector, recognizer);
-//                System.out.println("time: " + i);
+//                for (RotatedBox result : detections) {
+//                    System.out.println(result.getText());
+//                }
+//                System.out.println("index : " + i);
 //            }
 
             long timeInferEnd = System.currentTimeMillis();
@@ -66,12 +69,19 @@ public final class OcrV3RecognitionExample {
                 System.out.println(result.getText());
             }
 
-            BufferedImage bufferedImage = OpenCVUtils.mat2Image((org.opencv.core.Mat) image.getWrappedImage());
+            org.opencv.core.Mat wrappedImage = (org.opencv.core.Mat) image.getWrappedImage();
+            BufferedImage bufferedImage = OpenCVUtils.mat2Image(wrappedImage);
             for (RotatedBox result : detections) {
                 ImageUtils.drawImageRectWithText(bufferedImage, result.getBox(), result.getText());
             }
-            image = ImageFactory.getInstance().fromImage(OpenCVUtils.image2Mat(bufferedImage));
+
+            org.opencv.core.Mat image2Mat = OpenCVUtils.image2Mat(bufferedImage);
+            image = ImageFactory.getInstance().fromImage(image2Mat);
             ImageUtils.saveImage(image, "ocr_result.png", "build/output");
+
+            wrappedImage.release();
+            image2Mat.release();
+
             logger.info("{}", detections);
         }
     }

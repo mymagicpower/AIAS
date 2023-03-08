@@ -15,6 +15,7 @@ import ai.djl.translate.TranslateException;
 import me.aias.example.utils.common.RotatedBox;
 import me.aias.example.utils.opencv.NDArrayUtils;
 import me.aias.example.utils.opencv.OpenCVUtils;
+import org.bytedeco.javacv.Frame;
 import org.bytedeco.javacv.Java2DFrameConverter;
 import org.bytedeco.javacv.OpenCVFrameConverter;
 import org.bytedeco.opencv.opencv_core.Point2f;
@@ -58,6 +59,10 @@ public final class OcrV3Recognition {
         OpenCVFrameConverter.ToMat converter1 = new OpenCVFrameConverter.ToMat();
         OpenCVFrameConverter.ToOrgOpenCvCoreMat converter2 = new OpenCVFrameConverter.ToOrgOpenCvCoreMat();
 
+        BufferedImage bufferedImage = OpenCVUtils.matToBufferedImage((org.opencv.core.Mat) image.getWrappedImage());
+        Frame buf2Frame = new Java2DFrameConverter().convert(bufferedImage);
+        org.bytedeco.opencv.opencv_core.Mat mat = cv.convertToMat(buf2Frame);
+
         for (int i = 0; i < boxes.size(); i++) {
             NDArray box = boxes.get(i);
 //            BufferedImage bufferedImage = get_rotate_crop_image(image, box);
@@ -83,16 +88,16 @@ public final class OcrV3Recognition {
             Point2f srcPoint2f = NDArrayUtils.toOpenCVPoint2f(srcPoints, 4);
             Point2f dstPoint2f = NDArrayUtils.toOpenCVPoint2f(dstPoints, 4);
 
-            BufferedImage bufferedImage = OpenCVUtils.matToBufferedImage((org.opencv.core.Mat) image.getWrappedImage());
             //        try {
             //            File outputfile = new File("build/output/srcImage.jpg");
             //            ImageIO.write(bufferedImage, "jpg", outputfile);
             //        } catch (IOException e) {
             //            e.printStackTrace();
             //        }
-            org.bytedeco.opencv.opencv_core.Mat mat = cv.convertToMat(new Java2DFrameConverter().convert(bufferedImage));
+
             org.bytedeco.opencv.opencv_core.Mat dstMat = OpenCVUtils.perspectiveTransform(mat, srcPoint2f, dstPoint2f);
             org.opencv.core.Mat cvMat = converter2.convert(converter1.convert(dstMat));
+
             Image subImg = OpenCVImageFactory.getInstance().fromImage(cvMat);
 //            ImageUtils.saveImage(subImg, i + ".png", "build/output");
 
@@ -105,15 +110,21 @@ public final class OcrV3Recognition {
             RotatedBox rotatedBox = new RotatedBox(box, name);
             result.add(rotatedBox);
 
-            mat.release();
             dstMat.release();
+            dstMat.close();
             cvMat.release();
             srcPoint2f.releaseReference();
             dstPoint2f.releaseReference();
+
         }
+
+        mat.release();
+        mat.close();
         cv.close();
         converter1.close();
         converter2.close();
+        buf2Frame.close();
+
         long timeInferEnd = System.currentTimeMillis();
         System.out.println("time: " + (timeInferEnd - timeInferStart));
 

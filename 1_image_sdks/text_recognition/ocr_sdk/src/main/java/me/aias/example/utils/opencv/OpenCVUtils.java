@@ -19,6 +19,7 @@ public class OpenCVUtils {
         Mat warp_mat = opencv_imgproc.getPerspectiveTransform(srcPoints.position(0), dstPoints.position(0));
         opencv_imgproc.warpPerspective(src, dst, warp_mat, dst.size());
         warp_mat.release();
+        warp_mat.close();
 
         return dst;
     }
