@@ -20,7 +20,7 @@ import java.nio.file.Paths;
 
 /**
  * 行人检测例子
- * http://aias.top/
+ * https://aias.top/
  * @author Calvin
  */
 

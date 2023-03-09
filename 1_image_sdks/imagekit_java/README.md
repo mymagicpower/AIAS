@@ -1,5 +1,5 @@
 ## 目录：
-http://aias.top/
+https://aias.top/
 
 # 图像预处理SDK
 在OCR文字识别的时候，我们得到的图像一般情况下都不是正的，多少都会有一定的倾斜。
@@ -31,10 +31,10 @@ height = 753
 
 ### 帮助 
 引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
-[引擎定制化配置](http://aias.top/engine_cpu.html)
+[引擎定制化配置](https://aias.top/engine_cpu.html)
 
 ### 官网：
-[官网链接](http://www.aias.top/)
+[官网链接](https://www.aias.top/)
 
 ### Git地址：   
 [Github链接](https://github.com/mymagicpower/AIAS)    
