@@ -238,7 +238,7 @@ Mail: 179209347@qq.com
 
 
 
-#### 请作者喝杯咖啡
+#### 如果对您有帮助的话，请作者喝杯咖啡（记得添加备注 - gitee,或者github账号，以便记录）
 <div align="center">
 <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/pay.png"  width = "500"  />
 </div>
