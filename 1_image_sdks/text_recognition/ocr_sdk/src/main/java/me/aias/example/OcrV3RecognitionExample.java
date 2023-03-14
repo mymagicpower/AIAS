@@ -13,6 +13,7 @@ import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
 import me.aias.example.utils.common.ImageUtils;
 import me.aias.example.utils.common.RotatedBox;
+import me.aias.example.utils.common.RotatedBoxCompX;
 import me.aias.example.utils.detection.OcrV3Detection;
 import me.aias.example.utils.opencv.OpenCVUtils;
 import me.aias.example.utils.recognition.OcrV3AlignedRecognition;
@@ -24,6 +25,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -65,9 +68,51 @@ public final class OcrV3RecognitionExample {
             long timeInferEnd = System.currentTimeMillis();
             System.out.println("time: " + (timeInferEnd - timeInferStart));
 
+//            for (RotatedBox result : detections) {
+//                System.out.println(result.getText());
+//            }
+
+            // 对检测结果根据坐标位置，根据从上到下，从做到右，重新排序，下面算法对图片倾斜旋转角度较小的情形适用
+            // 如果图片旋转角度较大，则需要自行改进算法，需要根据斜率校正计算位置。
+            List<RotatedBox> initList = new ArrayList<>();
             for (RotatedBox result : detections) {
-                System.out.println(result.getText());
+                // put low Y value at the head of the queue.
+                initList.add(result);
             }
+            Collections.sort(initList);
+
+            List<ArrayList<RotatedBoxCompX>> lines = new ArrayList<>();
+            List<RotatedBoxCompX> line = new ArrayList<>();
+            RotatedBoxCompX firstBox = new RotatedBoxCompX(initList.get(0).getBox(), initList.get(0).getText());
+            line.add(firstBox);
+            lines.add((ArrayList) line);
+            for (int i = 1; i < initList.size(); i++) {
+                RotatedBoxCompX tmpBox = new RotatedBoxCompX(initList.get(i).getBox(), initList.get(i).getText());
+                float y1 = firstBox.getBox().toFloatArray()[1];
+                float y2 = tmpBox.getBox().toFloatArray()[1];
+                float dis = Math.abs(y2 - y1);
+                if (dis < 32) { // 认为是同 1 行
+                    line.add(tmpBox);
+                } else { // 换行
+                    firstBox = tmpBox;
+                    Collections.sort(line);
+                    line = new ArrayList<>();
+                    line.add(firstBox);
+                    lines.add((ArrayList) line);
+                }
+            }
+
+
+            String fullText = "";
+            for (int i = 0; i < lines.size(); i++) {
+                for (int j = 0; j < lines.get(i).size(); j++) {
+                    fullText += lines.get(i).get(j).getText() + "\t";
+                }
+                fullText += '\n';
+            }
+
+            System.out.println(fullText);
+
 
             org.opencv.core.Mat wrappedImage = (org.opencv.core.Mat) image.getWrappedImage();
             BufferedImage bufferedImage = OpenCVUtils.mat2Image(wrappedImage);
