@@ -8,12 +8,12 @@ import ai.djl.ndarray.types.DataType;
 import ai.djl.ndarray.types.Shape;
 
 /**
- * Ndarray 数组操作
- * http://aias.top/
+ * NDarray Operations
  *
  * @author Calvin
+ * Mail: 179209347@qq.com
+ *
  */
-
 public final class No2ArrayExample {
 
     private No2ArrayExample() {
@@ -21,145 +21,145 @@ public final class No2ArrayExample {
 
     public static void main(String[] args) {
         try (NDManager manager = NDManager.newBaseManager()) {
-            // 1. 数组的维数
-            NDArray nd = manager.arange(24); // 现只有一个维度
+            // 1. Number of dimensions of the array, initially with only one dimension.
+            NDArray nd = manager.arange(24);
             System.out.println(nd.getShape().dimension());
-            // 现在调整其大小
-            nd = nd.reshape(2, 4, 3); // 现在拥有三个维度
+            // Resize it to have three dimensions.
+            nd = nd.reshape(2, 4, 3);
             System.out.println(nd.getShape().dimension());
 
-            // 2. 数组的shape
+            // 2. Shape of the array.
             nd = manager.create(new int[][]{{1, 2, 3}, {4, 5, 6}});
             System.out.println(nd.getShape());
 
-            // 3. 调整数组形状
+            // 3. Reshape the array.
             nd = nd.reshape(3, 2);
             System.out.println(nd.toDebugString(100, 10, 100, 100));
 
-            // 4. 创建数组 zeros
+            // 4. Create an array filled with zeros.
             nd = manager.zeros(new Shape(5), DataType.INT32);
             System.out.println(nd.toDebugString(100, 10, 100, 100));
 
-            // 5. 创建数组 ones
+            // 5. Create an array filled with ones.
             nd = manager.ones(new Shape(2, 2), DataType.INT32);
             System.out.println(nd.toDebugString(100, 10, 100, 100));
 
-            // 6. 从数值范围创建数组
-            // 6.1 生成 0 到 5 的数组
+            // 6. Create an array from a range of values.
+            // 6.1 Create an array from 0 to 5.
             nd = manager.arange(5);
             System.out.println(nd.toDebugString(100, 10, 100, 100));
 
-            // 6.2 设置返回类型为 float
+            // 6.2 Set the return type to float.
             nd = manager.arange(0, 5, 1, DataType.FLOAT32);
             System.out.println(nd.toDebugString(100, 10, 100, 100));
 
-            // 6.3 设置了起始值、终止值及步长
+            // 6.3 Set the start, stop, and step values.
             nd = manager.arange(10, 20, 2);
             System.out.println(nd.toDebugString(100, 10, 100, 100));
 
-            // 6.4 等差数列 linspace
+            // 6.4 Create an array of evenly spaced values using linspace.
             nd = manager.linspace(1, 10, 10);
             System.out.println(nd.toDebugString(100, 10, 100, 100));
 
-            // 7. 数组操作
-            // 7.1 生成 0 到 5 的数组
+            // 7. Array operations.
+            // 7.1 Create an array from 0 to 5.
             nd = manager.arange(12).reshape(3, 4);
             System.out.println(nd.toDebugString(100, 10, 100, 100));
             nd = nd.transpose();
             System.out.println(nd.toDebugString(100, 10, 100, 100));
 
-            // 7.2 交换数组的两个轴
+            // 7.2 Swap the two axes of the array.
             nd = manager.arange(8).reshape(2, 2, 2);
             System.out.println(nd.toDebugString(100, 10, 100, 100));
             nd = nd.swapAxes(2, 0);
             System.out.println(nd.toDebugString(100, 10, 100, 100));
 
-            // 7.3 广播 - 将数组广播到新形状
+            // 7.3 Broadcasting - broadcast the array to a new shape.
             nd = manager.arange(4).reshape(1, 4);
             System.out.println(nd.toDebugString(100, 10, 100, 100));
             nd = nd.broadcast(new Shape(4, 4));
             System.out.println(nd.toDebugString(100, 10, 100, 100));
 
-            // 7.4 在指定位置插入新的轴来扩展数组形状
+            // 7.4 Insert a new axis at a specified position to expand the shape of the array.
             NDArray x = manager.create(new int[][]{{1, 2}, {3, 4}});
-            System.out.println("数组 x：");
+            System.out.println("Array x: ");
             System.out.println(x.toDebugString(100, 10, 100, 100));
-            // 在位置 0 插入轴
+            // Insert axis at position 0.
             NDArray y = x.expandDims(0);
-            System.out.println("数组 y：");
+            System.out.println("Array y:");
             System.out.println(y.toDebugString(100, 10, 100, 100));
-            System.out.println("数组 x 和 y 的形状：");
+            System.out.println("Shapes of array x and y: ");
             System.out.println(x.getShape() + " " + y.getShape());
-            // 在位置 1 插入轴
+            // Insert axis at position 1.
             y = x.expandDims(1);
-            System.out.println("在位置 1 插入轴之后的数组 y：");
+            System.out.println("Array y after inserting axis at position 1:\n ");
             System.out.println(y.toDebugString(100, 10, 100, 100));
 
-            System.out.println("x.ndim 和 y.ndim：");
+            System.out.println("x.ndim and y.ndim：");
             System.out.println(x.getShape().dimension() + " " + y.getShape().dimension());
 
-            System.out.println("数组 x 和 y 的形状：");
+            System.out.println("Shapes of array x and y: ");
             System.out.println(x.getShape() + " " + y.getShape());
 
-            // 7.5 从给定数组的形状中删除一维的条目 squeeze
+            // 7.5 Remove a single-dimensional entry from the shape of a given array using squeeze.
             x = manager.arange(9).reshape(1, 3, 3);
-            System.out.println("数组 x：");
+            System.out.println("Array x：");
             System.out.println(x.toDebugString(100, 10, 100, 100));
 
             y = x.squeeze();
-            System.out.println("数组 y：");
+            System.out.println("Array y: ");
             System.out.println(y.toDebugString(100, 10, 100, 100));
 
-            System.out.println("数组 x 和 y 的形状：");
+            System.out.println("Shapes of array x and y: ");
             System.out.println(x.getShape() + " " + y.getShape());
 
-            // 7.6 连接数组 concatenate
+            // 7.6 Concatenate arrays using concatenate.
             NDArray a = manager.create(new int[][]{{1, 2}, {3, 4}});
-            System.out.println("第一个数组：");
+            System.out.println("First array: ");
             System.out.println(a.toDebugString(100, 10, 100, 100));
 
             NDArray b = manager.create(new int[][]{{5, 6}, {7, 8}});
-            System.out.println("第二个数组：");
+            System.out.println("Second array: ");
             System.out.println(b.toDebugString(100, 10, 100, 100));
 
             nd = NDArrays.concat(new NDList(a, b));
-            System.out.println("沿轴 0 连接两个数组：");
+            System.out.println("Concatenate the two arrays along axis 0: ");
             System.out.println(nd.toDebugString(100, 10, 100, 100));
 
             nd = NDArrays.concat(new NDList(a, b), 1);
-            System.out.println("沿轴 1 连接两个数组：");
+            System.out.println("Concatenate the two arrays along axis 1: ");
             System.out.println(nd.toDebugString(100, 10, 100, 100));
 
-            // 7.7 沿新轴堆叠数组序列 stack
+            // 7.7 Stack arrays in sequence along a new axis using stack.
             a = manager.create(new int[][]{{1, 2}, {3, 4}});
-            System.out.println("第一个数组：");
+            System.out.println("First array: ");
             System.out.println(a.toDebugString(100, 10, 100, 100));
 
             b = manager.create(new int[][]{{5, 6}, {7, 8}});
-            System.out.println("第二个数组：");
+            System.out.println("Second array: ");
             System.out.println(b.toDebugString(100, 10, 100, 100));
 
             nd = NDArrays.stack(new NDList(a, b));
-            System.out.println("沿轴 0 堆叠两个数组：");
+            System.out.println("Stack the two arrays along axis 0: ");
             System.out.println(nd.toDebugString(100, 10, 100, 100));
 
             nd = NDArrays.stack(new NDList(a, b), 1);
-            System.out.println("沿轴 1 堆叠两个数组：");
+            System.out.println("Stack the two arrays along axis 1: ");
             System.out.println(nd.toDebugString(100, 10, 100, 100));
 
-            // 7.8 沿特定的轴将数组分割为子数组 numpy.split
+            // 7.8 Split an array into multiple sub-arrays along a specified axis using numpy.split.
             a = manager.arange(9);
-            System.out.println("第一个数组：");
+            System.out.println("First array: ");
             System.out.println(a.toDebugString(100, 10, 100, 100));
 
             NDList list = a.split(3);
-            System.out.println("将数组分为三个大小相等的子数组：");
+            System.out.println("Split the array into three equally sized sub-arrays: ");
             System.out.println(list.get(0).toDebugString(100, 10, 100, 100));
             System.out.println(list.get(1).toDebugString(100, 10, 100, 100));
             System.out.println(list.get(2).toDebugString(100, 10, 100, 100));
 
             list = a.split(new long[]{4, 7});
-            System.out.println("将数组在一维数组中表明的位置分割：");
+            System.out.println("Split the array at the positions indicated in a one-dimensional array: ");
             System.out.println(list.get(0).toDebugString(100, 10, 100, 100));
             System.out.println(list.get(1).toDebugString(100, 10, 100, 100));
             System.out.println(list.get(2).toDebugString(100, 10, 100, 100));

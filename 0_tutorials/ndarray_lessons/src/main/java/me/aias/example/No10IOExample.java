@@ -11,9 +11,9 @@ import java.nio.file.Paths;
 
 /**
  * Ndarray IO - npy/npz
- * http://aias.top/
  *
  * @author Calvin
+ * Mail: 179209347@qq.com
  */
 
 public final class No10IOExample {
@@ -23,20 +23,20 @@ public final class No10IOExample {
 
     public static void main(String[] args) throws IOException {
         try (NDManager manager = NDManager.newBaseManager()) {
-            // 1. 将数组保存到以 .npy 为扩展名的文件
+            // 1. Save an array to a binary file in NumPy .npy format.
             NDArray a = manager.create(new int[]{1, 2, 3, 4, 5});
             NDList encoded = new NDList(a);
             encoded.encode();
             OutputStream os = Files.newOutputStream(Paths.get("src/test/resources/outfile.npy"));
             encoded.encode(os, true);
 
-            // 2. 读取 .npy 文件
+            // 2. Load arrays or pickled objects from .npy, .npz or pickled files.
             byte[] data = readFile("outfile.npy");
             NDList decoded = NDList.decode(manager, data);
             NDArray array = decoded.get(0);
             System.out.println(array.toDebugString(100, 10, 100, 100));
 
-            // 3. 将多个数组保存到以 npz 为扩展名的文件
+            // 3. Save several arrays into a single file in uncompressed .npz format.
             a = manager.create(new int[][]{{1, 2, 3}, {4, 5, 6}});
             NDArray b = manager.arange(0f, 1f, 0.1f);
             encoded = new NDList(a, b);
@@ -44,7 +44,7 @@ public final class No10IOExample {
             os = Files.newOutputStream(Paths.get("src/test/resources/runoob.npz"));
             encoded.encode(os, true);
 
-            // 4. 读取 .npz 文件
+            // 4. Load data from .npz file.
             data = readFile("runoob.npz");
             decoded = NDList.decode(manager, data);
             a = decoded.get(0);
