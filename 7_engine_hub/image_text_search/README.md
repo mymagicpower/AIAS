@@ -2,7 +2,8 @@
 http://aias.top/
 
 ### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1PdJ_mn7JnJf7UFJK6orEdA?pwd=t49j
+- 链接1: https://github.com/mymagicpower/AIAS/releases/download/apps/CLIP-ViT-B-32-IMAGE.zip
+- 链接2: https://github.com/mymagicpower/AIAS/releases/download/apps/M-BERT-Base-ViT-B.zip
 
 ### 图像&文本的跨模态相似性比对检索【支持40种语言】
 本例子提供了通过文本搜图片的能力展示（模型本身当然也支持图片搜文字，或者混合搜索）。
@@ -144,7 +145,7 @@ search:
 
 #### 4.1 图片上传
 1). 点击上传按钮上传文件.  
-[测试图片数据](https://pan.baidu.com/s/1QtF6syNUKS5qkf4OKAcuLA?pwd=wfd8)
+[测试图片数据](https://github.com/mymagicpower/AIAS/releases/download/apps/images.zip)
 2). 点击特征提取按钮. 
 等待图片特征提取，特征存入向量引擎。通过console可以看到进度信息。
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/7_engine_hub/image_text_search/storage.png)

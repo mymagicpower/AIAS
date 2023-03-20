@@ -1,24 +1,23 @@
-### 官网：
-[官网链接](http://www.aias.top/)
 
-### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1LnKnwM2TcEi8SpP-cHbA9g?pwd=yu4g
+### Download the model and place it in the models directory
+- Link: https://github.com/mymagicpower/AIAS/releases/download/apps/fire_smoke.zip
 
-### 烟火检测SDK
-支持烟雾-火灾2类检测.
+### Fire Detection SDK
+Supports smoke-fire detection.
 
 
-### SDK功能
-- 烟火检测，给出检测框和置信度
-- 支持类别：
-- fire
-- smoke
+### SDK Features
+
+- Fire and smoke detection with bounding box and confidence level
+- Supports two categories:
+    - fire
+    - smoke
 
 #### 运行例子 - FireSmokeDetectExample
-- 测试图片
+- Test Image
 ![fire_detect](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/fire_detect_result.png)
 
-运行成功后，命令行应该看到下面的信息:
+After running successfully, the command line should display the following information:
 ```text
 [INFO ] - [
 	class: "fire 0.847178041934967", probability: 0.84717, bounds: [x=0.522, y=0.516, width=0.083, height=0.173]
@@ -27,14 +26,14 @@
 ]
 ```
 
-### 开源算法
-#### 1. sdk使用的开源算法
+### Open-source Algorithm
+#### 1. Open-source algorithm used in the SDK
 - [fire-smoke-detect-yolov4](https://github.com/gengyanlei/fire-smoke-detect-yolov4)
 
-#### 2. 模型如何导出 ?
+#### 2. How to export the model?
 - [how_to_convert_your_model_to_torchscript](http://docs.djl.ai/docs/pytorch/how_to_convert_your_model_to_torchscript.html)
 
-- 导出模型（pytorch 模型特殊，CPU&GPU模型不通用。所以CPU，GPU需要分别导出）
+- Export the model (Note: pytorch models are different for CPU and GPU, so they should be exported separately)
 - torch.device('cpu')
 - torch.device('gpu')
 ```text
@@ -116,23 +115,3 @@ if __name__ == '__main__':
     # Finish
     print('\nExport complete. Visualize with https://github.com/lutzroeder/netron.')
 ```
-
-### 其它帮助信息
-http://aias.top/guides.html
-
-
-### Git地址：   
-[Github链接](https://github.com/mymagicpower/AIAS)    
-[Gitee链接](https://gitee.com/mymagicpower/AIAS)   
-
-
-#### 帮助文档：
-- http://aias.top/guides.html
-- 1.性能优化常见问题:
-- http://aias.top/AIAS/guides/performance.html
-- 2.引擎配置（包括CPU，GPU在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/engine_config.html
-- 3.模型加载方式（在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/load_model.html
-- 4.Windows环境常见问题:
-- http://aias.top/AIAS/guides/windows.html

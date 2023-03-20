@@ -1,6 +1,6 @@
 
 ### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/12M7yGQJbKFh_gTHbMRYipQ?pwd=vnrs
+- 链接: https://github.com/mymagicpower/AIAS/releases/download/apps/distiluse-base-multilingual-cased-v1.zip
 
 ### flink-句向量提取【支持15种语言】SDK
 句向量是指将语句映射至固定维度的实数向量。

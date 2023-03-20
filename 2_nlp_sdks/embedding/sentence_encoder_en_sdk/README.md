@@ -2,7 +2,7 @@
 [官网链接](http://www.aias.top/)
 
 ### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1E1UkCHbQX7hdc4ZOFqFTCg?pwd=gxey
+- 链接: https://github.com/mymagicpower/AIAS/releases/download/apps/paraphrase-MiniLM-L6-v2.zip
 
 ### 轻量句向量SDK【英文】
 句向量是指将语句映射至固定维度的实数向量。

@@ -2,7 +2,7 @@
 [官网链接](http://www.aias.top/)
 
 ### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1sCupNmtmZqE1ycjyPJkevA?pwd=fexd
+- 链接: https://github.com/mymagicpower/AIAS/releases/download/apps/allenai-specter.zip
 
 ### 学术论文语义搜索 SDK【英文】
 学术论文搜索模型提供了学术论文的特征提取与相似性比对能力。

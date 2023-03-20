@@ -1,19 +1,17 @@
-### 官网：
-[官网链接](http://www.aias.top/)
 
-### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1hM3HFi3kviMshOGKKlVCLg?pwd=p6t4
+### Download the model and place it in the /models directory
+- Link 1: https://github.com/mymagicpower/AIAS/releases/download/apps/face_detection.zip
+- Link 2: https://github.com/mymagicpower/AIAS/releases/download/apps/face_detection.zip
 
-### 口罩检测SDK
-口罩检测助力抗击肺炎，人工智能技术正被应用到疫情防控中来。
-抗疫切断传播途径中，佩戴口罩已经几乎成为了最重要的举措之一。但是在实际场景中，仍然有不重视、不注意、侥幸心理的人员不戴口罩，尤其在公众场合，给个人和公众造成极大的风险隐患。
-而基于人工智能的口罩检测功能可以基于摄像头视频流进行实时检测。
+### Mask Detection SDK
+Mask detection helps fight against pneumonia, and artificial intelligence technology is being applied to epidemic prevention and control. Wearing a mask has become one of the most important measures to cut off transmission routes in epidemic prevention. However, in practical scenarios, there are still people who do not take it seriously, do not pay attention, and have a lucky mentality, especially in public places, which poses great risks to individuals and the public.
+Based on artificial intelligence, mask detection function can perform real-time detection based on camera video stream.
 
-#### SDK功能
-- 口罩检测
+#### SDK function
+- Mask detection
 
-#### 运行例子
-1. 运行成功后，命令行应该看到下面的信息:
+#### Running example
+1. After successful operation, the command line should see the following information:
 ```text
 [INFO ] -  Face mask detection result image has been saved in: build/output/faces_detected.png
 [INFO ] - [
@@ -24,36 +22,16 @@
 	class: "MASK", probability: 0.99981, bounds: [x=0.251, y=0.671, width=0.088, height=0.193]
 ]
 ```
-2. 输出图片效果如下：
+2. The output image effect is as follows:
 ![result](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/mask_sdk/face-masks.png)
 
 
-### 开源算法
-#### 1. sdk使用的开源算法
+### Open source algorithms
+#### 1. Open source algorithms used by SDK
 - [PaddleDetection](https://github.com/PaddlePaddle/PaddleDetection)
 - [PaddleClas](https://github.com/PaddlePaddle/PaddleClas/blob/release%2F2.2/README_ch.md)
 
-#### 2. 模型如何导出 ?
+#### 2. How to export the model?
 - [export_model](https://github.com/PaddlePaddle/PaddleDetection/blob/release%2F2.4/tools/export_model.py)
 - [how_to_create_paddlepaddle_model](http://docs.djl.ai/docs/paddlepaddle/how_to_create_paddlepaddle_model_zh.html)
 
-
-### 其它帮助信息
-http://aias.top/guides.html
-
-
-### Git地址：   
-[Github链接](https://github.com/mymagicpower/AIAS)    
-[Gitee链接](https://gitee.com/mymagicpower/AIAS)   
-
-
-#### 帮助文档：
-- http://aias.top/guides.html
-- 1.性能优化常见问题:
-- http://aias.top/AIAS/guides/performance.html
-- 2.引擎配置（包括CPU，GPU在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/engine_config.html
-- 3.模型加载方式（在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/load_model.html
-- 4.Windows环境常见问题:
-- http://aias.top/AIAS/guides/windows.html

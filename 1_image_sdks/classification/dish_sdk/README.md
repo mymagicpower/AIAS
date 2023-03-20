@@ -1,25 +1,25 @@
-### 官网：
-[官网链接](https://www.aias.top/)
 
-### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1No67j8xhXlDfx676P14yQw?pwd=gtdq
+###Download models and place them in the /models directory
 
-### 菜品分类识别SDK
-菜品识别sdk，支持8416种菜品的分类识别。
+- Link 1: https://github.com/mymagicpower/AIAS/releases/download/apps/dishes.zip
+- Link 2: https://github.com/mymagicpower/AIAS/releases/download/apps/mobilenet_dishes.zip
 
-### SDK功能
-- 支持8416种菜品的分类识别，并给出置信度。
-- 提供两个可用模型例子
-1). 大模型(resnet50)例子：DishesClassificationExample
-2). 小模型(mobilenet_v2)例子：LightDishesClassExample
+### Dish Classification Recognition SDK
+The dish recognition SDK supports the classification recognition of 8416 kinds of dishes.
 
-[菜品分类](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/dish_sdk/dishes.txt)
+### SDK Functions
+-Supports the classification recognition of 8416 kinds of dishes and provides confidence levels.
+-Provides two available model examples
+1. Example of the large model (resnet50): DishesClassificationExample
+2. Example of the small model (mobilenet_v2): LightDishesClassExample
 
-### 运行例子
-- 测试图片
+[Dish Classification](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/dish_sdk/dishes.txt)
+
+### Running Examples
+-Test image
 ![dish](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/dish_sdk/dish.jpeg)
 
-运行成功后，命令行应该看到下面的信息:
+After successful execution, the command line should display the following information:
 ```text
 清炒虾仁 : 1.0
 [INFO ] - [
@@ -31,30 +31,10 @@
 ]
 ```
 
-### 开源算法
-#### 1. sdk使用的开源算法
+### Open source algorithms
+#### 1. Open source algorithms used in the SDK
 [PaddleClas](https://github.com/PaddlePaddle/PaddleClas/blob/release%2F2.2/README_ch.md)
-#### 2. 模型如何导出 ?
+#### 2. How to export models?
 - [export_model](https://github.com/PaddlePaddle/PaddleClas/blob/release%2F2.2/tools/export_model.py)
 - [how_to_create_paddlepaddle_model](http://docs.djl.ai/docs/paddlepaddle/how_to_create_paddlepaddle_model_zh.html)
 
-
-
-### 其它帮助信息
-https://aias.top/guides.html
-
-### Git地址：   
-[Github链接](https://github.com/mymagicpower/AIAS)    
-[Gitee链接](https://gitee.com/mymagicpower/AIAS)   
-
-
-#### 帮助文档：
-- https://aias.top/guides.html
-- 1.性能优化常见问题:
-- https://aias.top/AIAS/guides/performance.html
-- 2.引擎配置（包括CPU，GPU在线自动加载，及本地配置）:
-- https://aias.top/AIAS/guides/engine_config.html
-- 3.模型加载方式（在线自动加载，及本地配置）:
-- https://aias.top/AIAS/guides/load_model.html
-- 4.Windows环境常见问题:
-- https://aias.top/AIAS/guides/windows.html

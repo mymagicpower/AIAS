@@ -1,36 +1,40 @@
-### 官网：
-[官网链接](http://www.aias.top/)
 
-### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1dbWkbO0N5jsk-sruJo7XJQ?pwd=s1qv
+### Download the model, place it in the models directory, and unzip
+- Link: https://github.com/mymagicpower/AIAS/releases/download/apps/smart_construction_models.zip
 
-### 智慧工地检测SDK
-支持检测的类别：
-- person （人体）
-- head   （没戴安全帽）
-- helmet （戴安全帽）
+### Smart Construction Detection SDK
+Supported categories:
 
-### SDK功能
-工地安全检测，给出检测框和置信度。
-- 提供三个模型：
-- 小模型（yolov5s 29.7M）
-- 中模型（yolov5m 86.8M）
-- 大模型（yolov5l 190.8M）
+- person (human body)
+- head (without safety helmet)
+- helmet (with safety helmet)
 
-#### 运行小模型例子 - Yolov5sExample
-- 测试图片效果（只显示安全帽检测，过滤了其它类别的显示，具体看代码）
+### SDK Functionality
+Construction safety detection, providing detection boxes and confidence levels.
+
+- Provides three models:
+- Small model (yolov5s 29.7M)
+- Medium model (yolov5m 86.8M)
+- Large model (yolov5l 190.8M)
+- 
+
+### Run Small Model Example- Yolov5sExample
+
+- Test image effect (only display safety helmet detection, filter out other categories for display, see code for details)
 ![small](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/helmet_head_person_s.jpeg)
 
-#### 运行中模型例子 - Yolov5mExample
-- 测试图片效果
+### Run Medium Model Example- Yolov5mExample
+
+- Test image effect
 ![medium](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/helmet_head_person_m.jpeg)
 
-#### 运行大模型例子 - Yolov5lExample
-- 测试图片效果
+### Run Large Model Example- Yolov5lExample
+
+- Test image effect
 ![large](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/helmet_head_person_l.jpeg)
 
 
-运行成功后，命令行应该看到下面的信息:
+After a successful run, the command line should display the following information:
 ```text
 [INFO ] - [
 	class: "helmet", probability: 0.89502, bounds: [x=0.956, y=0.525, width=0.044, height=0.067]
@@ -42,14 +46,14 @@
 ```
 
 
-### 开源算法
-#### 1. sdk使用的开源算法
+### Open source algorithm
+#### 1. Open source algorithm used by the SDK
 - [Smart_Construction](https://github.com/PeterH0323/Smart_Construction)
 
-#### 2. 模型如何导出 ?
+#### 2. How to export the model?
 - [how_to_convert_your_model_to_torchscript](http://docs.djl.ai/docs/pytorch/how_to_convert_your_model_to_torchscript.html)
 
-- 导出模型（pytorch 模型特殊，CPU&GPU模型不通用。所以CPU，GPU需要分别导出）
+- Export model (pytorch model is special, CPU&GPU models are not universal. So CPU and GPU need to be exported separately)
 - torch.device('cpu')
 - torch.device('gpu')
 ```text
@@ -132,22 +136,3 @@ if __name__ == '__main__':
     print('\nExport complete. Visualize with https://github.com/lutzroeder/netron.')
 
 ```
-
-### 其它帮助信息
-http://aias.top/guides.html
-
-### Git地址：   
-[Github链接](https://github.com/mymagicpower/AIAS)    
-[Gitee链接](https://gitee.com/mymagicpower/AIAS)   
-
-
-#### 帮助文档：
-- http://aias.top/guides.html
-- 1.性能优化常见问题:
-- http://aias.top/AIAS/guides/performance.html
-- 2.引擎配置（包括CPU，GPU在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/engine_config.html
-- 3.模型加载方式（在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/load_model.html
-- 4.Windows环境常见问题:
-- http://aias.top/AIAS/guides/windows.html

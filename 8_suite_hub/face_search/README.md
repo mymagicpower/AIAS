@@ -2,7 +2,8 @@
 https://aias.top/
 
 ### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1Ro8KrkZesUQqj-0prVsPpQ?pwd=zkhp
+- 链接1: https://github.com/mymagicpower/AIAS/releases/download/apps/face_feature.zip
+- 链接2: https://github.com/mymagicpower/AIAS/releases/download/apps/ultranet.zip
 
 ### 人脸大数据搜索介绍
 - 人像高精度搜索：人脸特征提取(使用人脸特征模型提取512维特征)前先做 - 人脸检测，人脸关键点提取，人脸对齐

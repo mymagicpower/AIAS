@@ -2,7 +2,7 @@
 https://www.aias.top/
 
 ### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/10C7HOSeShuYFpj-1H8a0eQ?pwd=958m
+- 链接: https://github.com/mymagicpower/AIAS/releases/download/apps/iocr.zip
 
 ## OCR 自定义模板识别(支持表格识别)
 

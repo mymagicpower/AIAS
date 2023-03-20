@@ -2,7 +2,8 @@
 [官网链接](http://www.aias.top/)
 
 ### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1isT3QSEZv2ltEOJax-rBWA?pwd=9eyh
+- 链接1: https://github.com/mymagicpower/AIAS/releases/download/apps/lac.zip
+- 链接2: https://github.com/mymagicpower/AIAS/releases/download/apps/simnet_bow.zip
 
 ### 文本 - 短文本相似度SDK [中文]
 计算两个句子的cosin相似度:

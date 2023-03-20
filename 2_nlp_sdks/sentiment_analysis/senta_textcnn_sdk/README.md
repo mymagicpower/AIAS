@@ -2,7 +2,8 @@
 [官网链接](http://www.aias.top/)
 
 ### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1bwhlsvUVIPhrjqQwClJ6_w?pwd=dim4
+- 链接1: https://github.com/mymagicpower/AIAS/releases/download/apps/lac.zip
+- 链接2: https://github.com/mymagicpower/AIAS/releases/download/apps/senta_textcnn.zip
 
 ### 文本 - 对话情绪识别SDK [中文]
 对话情绪识别（Emotion Detection）专注于识别智能对话场景中用户的情绪，

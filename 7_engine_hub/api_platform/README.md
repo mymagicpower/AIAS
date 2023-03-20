@@ -1,5 +1,5 @@
-## 目录：
-http://aias.top/
+### 下载模型，放置于models目录 and unzip
+- 链接: https://github.com/mymagicpower/AIAS/releases/download/apps/api_platform.zip
 
 # AI 赋能平台
 AI赋能平台以REST API形式为上层应用提供接口。

@@ -2,7 +2,7 @@
 http://aias.top/
 
 ### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/19qP_WsjAAgTR1cVRBp6_NA?pwd=8bjf
+- 链接: https://github.com/mymagicpower/AIAS/releases/download/apps/distiluse-base-multilingual-cased-v1.zip
 
 ### 文本搜索
 本例子提供了文本搜索，支持上传csv文件，使用句向量模型提取特征，并基于milvus向量引擎进行后续检索。

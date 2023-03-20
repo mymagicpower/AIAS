@@ -2,7 +2,7 @@
 [官网链接](http://www.aias.top/)
 
 ### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1Lhij5axLTWSdpWWwi3dX1g?pwd=abx4
+- 链接: https://github.com/mymagicpower/AIAS/releases/download/apps/tacotronSTFT.zip
 
 ### TacotronSTFT 提取mel(梅尔)频谱
 为什么tacotron生成语音时需要先生成Mel(梅尔)频谱？

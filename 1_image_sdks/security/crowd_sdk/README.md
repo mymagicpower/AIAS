@@ -1,27 +1,23 @@
-### 官网：
-[官网链接](http://www.aias.top/)
 
-### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1aFIcYOE2uzlmQFWEJopBoQ?pwd=svvt
+### Download the model and place it in the /models directory
+- Link: https://github.com/mymagicpower/AIAS/releases/download/apps/crowdnet.zip
 
-### 人群密度检测 SDK
-CrowdNet模型是2016年提出的人流密度估计模型，论文为《CrowdNet: A Deep Convolutional Network for DenseCrowd Counting》，
-CrowdNet模型主要有深层卷积神经网络和浅层卷积神经组成，通过输入原始图像和高斯滤波器得到的密度图进行训练，最终得到的模型估计图像中的行人的数量。
-当然这不仅仅可以用于人流密度估计，理论上其他的动物等等的密度估计应该也可以。
+### Crowd Density Detection SDK
+The CrowdNet model is a crowd density estimation model proposed in 2016. The paper is "CrowdNet: A Deep Convolutional Network for DenseCrowd Counting". The CrowdNet model is mainly composed of deep convolutional neural networks and shallow convolutional neural networks. It is trained by inputting the original image and the density map obtained by the Gaussian filter. Finally, the model estimates the number of people in the image. Of course, this can not only be used for crowd density estimation, theoretically, density estimation of other animals, etc. should also be possible.
 
-以下是CrowdNet模型的结构图，从结构图中可以看出，CrowdNet模型是深层卷积网络（Deep Network）和浅层卷积网络（Shallow Network）组成，
-两组网络通过拼接成一个网络，接着输入到一个卷积核数量和大小都是1的卷积层，最后通过插值方式得到一个密度图数据，通过统计这个密度就可以得到估计人数。
+The following is the structural diagram of the CrowdNet model. From the structural diagram, it can be seen that the CrowdNet model is composed of a deep convolutional network (Deep Network) and a shallow convolutional network (Shallow Network). The two groups of networks are spliced into one network and then input into a convolutional layer with a convolutional kernel size of 1. Finally, a density map data is obtained through interpolation, and the estimated number of people can be obtained by counting this density.
+
 ![model](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/network.png)
 
-### sdk功能：
-- 计算人数
-- 计算密度图
+### SDK functions:
+- Calculate the number of people
+- Calculate the density map
 
-### 运行例子 - CrowdDetectExample
-- 测试图片
+### Running Example- CrowdDetectExample
+- Test picture
 ![crowd](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/crowd1.jpg)
 
-- 例子代码：
+- Example code:
 ```text
     Path imageFile = Paths.get("src/test/resources/crowd1.jpg");
     Image image = ImageFactory.getInstance().fromFile(imageFile);
@@ -32,22 +28,21 @@ CrowdNet模型主要有深层卷积神经网络和浅层卷积神经组成，通
         Predictor<Image, NDList> predictor = model.newPredictor()) {
       NDList list = predictor.predict(image);
 
-      //quantity为人数
+      //person quantity
       float q = list.get(1).toFloatArray()[0];
       int quantity = (int)(Math.abs(q) + 0.5);
       logger.info("人数 quantity: {}", quantity);
       
-      // density为密度图
       NDArray densityArray = list.get(0);
-      logger.info("密度图 density: {}", densityArray.toDebugString(1000000000, 1000, 1000, 1000));
+      logger.info("density: {}", densityArray.toDebugString(1000000000, 1000, 1000, 1000));
 ```
 
 
-- 运行成功后，命令行应该看到下面的信息:
+- After the operation is successful, the command line should see the following information:
 ```text
-[INFO ] - 人数 quantity: 11
+[INFO ] - Person quantity: 11
 
-[INFO ] - 密度图 density: ND: (1, 1, 80, 60) cpu() float32
+[INFO ] - Density: ND: (1, 1, 80, 60) cpu() float32
 [  
    [ 4.56512964e-04,  2.19504116e-04,  3.44428350e-04,  ..., -1.44560239e-04,  1.58709008e-04],
    [ 9.59073077e-05,  2.53924576e-04,  2.51444580e-04,  ..., -1.64886122e-04,  1.14555296e-04],
@@ -61,14 +56,14 @@ CrowdNet模型主要有深层卷积神经网络和浅层卷积神经组成，通
 ]
 
 ```
-#### 密度图
+#### Density map
 ![density](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/density.png)
 
 
-### 开源算法
-#### 1. sdk使用的开源算法
+### Open source algorithm
+#### 1. Open source algorithm used by SDK
 - [PaddlePaddle-CrowdNet](https://github.com/yeyupiaoling/PaddlePaddle-CrowdNet)
-#### 2. 模型如何导出 ?
+#### 2. How to export the model?
 - [how_to_create_paddlepaddle_model](http://docs.djl.ai/docs/paddlepaddle/how_to_create_paddlepaddle_model_zh.html)
 - export_model.py
 ```text
@@ -100,20 +95,3 @@ if __name__ == '__main__':
 paddle.enable_static()
 save_pretrained()
 ```
-
-
-### Git地址：   
-[Github链接](https://github.com/mymagicpower/AIAS)    
-[Gitee链接](https://gitee.com/mymagicpower/AIAS)   
-
-
-#### 帮助文档：
-- http://aias.top/guides.html
-- 1.性能优化常见问题:
-- http://aias.top/AIAS/guides/performance.html
-- 2.引擎配置（包括CPU，GPU在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/engine_config.html
-- 3.模型加载方式（在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/load_model.html
-- 4.Windows环境常见问题:
-- http://aias.top/AIAS/guides/windows.html

@@ -1,6 +1,6 @@
 
 ### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1vduRynjwR69qCCAoIoXAwQ?pwd=t9j5
+- 链接: https://github.com/mymagicpower/AIAS/releases/download/apps/distilbert_sst_english.zip
 
 ### flink-情感倾向分析【英文】SDK
 情感倾向分析（Sentiment Classification）

@@ -2,7 +2,7 @@
 [官网链接](http://www.aias.top/)
 
 ### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1K3I2PaH-odSnTQCvW8wtng?pwd=2m91
+- 链接: https://github.com/mymagicpower/AIAS/releases/download/apps/msmarco-distilbert-base-v4.zip
 
 ### 语义搜索SDK【英文】
 语义搜索，通过句向量相似性，检索语料库中与query最匹配的文本。

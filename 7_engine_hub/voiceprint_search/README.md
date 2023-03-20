@@ -2,7 +2,7 @@
 http://aias.top/
 
 ### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1c6Xrmf8nGbtM0ZilD-OeYQ?pwd=yett
+- 链接: https://github.com/mymagicpower/AIAS/releases/download/apps/voiceprint.zip
 
 ### 音频搜索 - 声纹搜索
 

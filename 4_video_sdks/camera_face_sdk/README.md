@@ -2,7 +2,7 @@
 http://aias.top/
 
 ### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1e8It7ShvzaZCDmI_CqZs5Q?pwd=f8ut
+- 链接: https://github.com/mymagicpower/AIAS/releases/download/apps/face_detection.zip
 
 ### 人脸检测
 人脸识别技术目前已经广泛应用于包括人脸门禁系统、刷脸支付等各行各业。随着人脸识别技术的提升，应用越来越广泛。目前中国的人脸识

@@ -2,7 +2,8 @@
 http://aias.top/
 
 ### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1XIs7AJLyGmwnldPH-beLzQ?pwd=kmbr
+- 链接1: https://github.com/mymagicpower/AIAS/releases/download/apps/face_detection.zip
+- 链接2: https://github.com/mymagicpower/AIAS/releases/download/apps/face_mask.zip
 
 ### 口罩检测
 口罩检测助力抗击肺炎，人工智能技术正被应用到疫情防控中来。 抗疫切断传播途径中，

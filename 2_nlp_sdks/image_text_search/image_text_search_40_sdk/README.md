@@ -2,7 +2,8 @@
 [官网链接](http://www.aias.top/)
 
 ### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1p-K12Qa7YS9_inPkBKAz5Q?pwd=g842
+- 链接1: https://github.com/mymagicpower/AIAS/releases/download/apps/CLIP-ViT-B-32-IMAGE.zip
+- 链接2: https://github.com/mymagicpower/AIAS/releases/download/apps/M-BERT-Base-ViT-B.zip
 
 ### 图像&文本的跨模态相似性比对检索 SDK【支持40种语言】
 

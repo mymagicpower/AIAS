@@ -1,6 +1,6 @@
 
 ### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1KiEvyH-nk2uy_8lON-p8HQ?pwd=rywv
+- 链接: https://github.com/mymagicpower/AIAS/releases/download/apps/ultranet.zip
 
 ## kafka-人脸检测SDK
 人脸识别技术目前已经广泛应用于包括人脸门禁系统、刷脸支付等各行各业。随着人脸识别技术的提升，

@@ -28,7 +28,7 @@ fingerprint生成，化合物结构相似性计算，2D和3D分子展示等。
 
 
 ### 依赖库下载&配置环境变量
-[点击下载本地依赖库](https://pan.baidu.com/s/1XF9VQiM2ytTKDZG3Llqv6w?pwd=43rv)     
+[点击下载本地依赖库](https://github.com/mymagicpower/AIAS/releases/download/apps/native.zip)     
 
 #### 什么是java.library.path
 通俗的说它是JVM启动可以指定的一个参数。类似classpath，指定的是class文件或者jar文件的路径。java.library.path指定的是JNI链接的其他程序文件的路径，比如dll或者so文件。

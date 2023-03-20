@@ -1,29 +1,28 @@
-### 官网：
-[官网链接](http://www.aias.top/)
 
-### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/144DQ7G-cCXOSox-I7WMp8g?pwd=sgve
+### Download the model and place it in the models folder
+- Link: https://github.com/mymagicpower/AIAS/releases/download/apps/vehicle.zip
 
-### 车辆检测SDK
-车辆检测是城市交通监控中非常重要并且具有挑战性的任务，该任务的难度在于对复杂场景中相对较小的车辆进行精准地定位和分类。
-支持car (汽车)，truck (卡车)，bus (公交车)，motorbike (摩托车)，tricycle (三轮车)等车型的识别。
+### Vehicle Detection SDK
+Vehicle detection is a very important and challenging task in urban traffic monitoring, and its difficulty lies in accurately locating and classifying relatively small vehicles in complex scenes.
+Recognize vehicle types such as car, truck, bus, motorbike, and tricycle.
 
-### SDK功能
-- 车辆检测，给出检测框和置信度
-- 支持的类别：
-- car
-- truck
-- bus
-- motorbike
-- tricycle
-- carplate
+### SDK functions
+
+- Vehicle detection, giving detection boxes and confidence
+- Supported categories:
+  -car
+  -truck
+  -bus
+  -motorbike
+  -tricycle
+  -carplate
 
 
-#### 运行例子 - VehicleDetectExample
-- 测试图片
+#### Example-VehicleDetectExample
+- Test image
 ![vehicle](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/vehicle_result.png)
 
-运行成功后，命令行应该看到下面的信息:
+After running successfully, the command line should see the following information:
 ```text
 [INFO ] - [
 	class: "car", probability: 0.98734, bounds: [x=0.210, y=0.420, width=0.225, height=0.218]
@@ -34,27 +33,10 @@
 ]
 ```
 
-### 开源算法
-#### 1. sdk使用的开源算法
+### Open source algorithm
+#### 1. Open source algorithms used by the SDK
 - [PaddleDetection](https://github.com/PaddlePaddle/PaddleDetection)
 
-#### 2. 模型如何导出 ?
+#### 2. How to export the model?
 - [export_model](https://github.com/PaddlePaddle/PaddleDetection/blob/release%2F2.4/tools/export_model.py)
 - [how_to_create_paddlepaddle_model](http://docs.djl.ai/docs/paddlepaddle/how_to_create_paddlepaddle_model_zh.html)
-
-
-### Git地址：   
-[Github链接](https://github.com/mymagicpower/AIAS)    
-[Gitee链接](https://gitee.com/mymagicpower/AIAS)   
-
-
-#### 帮助文档：
-- http://aias.top/guides.html
-- 1.性能优化常见问题:
-- http://aias.top/AIAS/guides/performance.html
-- 2.引擎配置（包括CPU，GPU在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/engine_config.html
-- 3.模型加载方式（在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/load_model.html
-- 4.Windows环境常见问题:
-- http://aias.top/AIAS/guides/windows.html

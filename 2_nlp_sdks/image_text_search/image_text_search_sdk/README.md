@@ -1,6 +1,7 @@
 
 ### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1zA_kyI_LhXIzgERaAjzQmg?pwd=vdzh
+- 链接1: https://github.com/mymagicpower/AIAS/releases/download/apps/CLIP-ViT-B-32-IMAGE.zip
+- 链接2: https://github.com/mymagicpower/AIAS/releases/download/apps/CLIP-ViT-B-32-TEXT.zip
 
 # 图像&文本的跨模态相似性比对检索 SDK【英文】
 OpenAI 发布了两个新的神经网络：CLIP 和 DALL·E。它们将 NLP（自然语言识别）与 图像识别结合在一起，

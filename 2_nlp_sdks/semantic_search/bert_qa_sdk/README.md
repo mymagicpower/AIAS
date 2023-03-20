@@ -1,8 +1,6 @@
-### 官网：
-[官网链接](http://www.aias.top/)
 
 ### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1KoIIDISDWlTtfLeOFXnr2g?pwd=zrmq
+- 链接: https://github.com/mymagicpower/AIAS/releases/download/apps/static_bert_qa.zip
 
 ### Bert问答SDK
 基于BERT QA模型，输入一个问题及包含答案的文本段落（最大长度384），
@@ -33,16 +31,6 @@ Which operated between December 1983 and April 2001.
 [INFO ] - Answer: [december, 1983]
 
 ```
-
-### 开源算法
-#### 无
-
-### 其它帮助信息
-http://aias.top/guides.html
-
-### Git地址：   
-[Github链接](https://github.com/mymagicpower/AIAS)    
-[Gitee链接](https://gitee.com/mymagicpower/AIAS)   
 
 
 #### 帮助文档：

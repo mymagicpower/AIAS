@@ -2,7 +2,7 @@
 [官网链接](http://www.aias.top/)
 
 ### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1jM5vy82-60V9-qmeyHrDZg?pwd=xqiu
+- 链接: https://github.com/mymagicpower/AIAS/releases/download/apps/lac.zip
 
 ### 文本 - 词法分析SDK [中文]
 词法分析模型能整体性地完成中文分词、词性标注、专名识别任务。

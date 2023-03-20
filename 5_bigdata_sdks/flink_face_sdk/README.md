@@ -1,5 +1,5 @@
 ### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1waa6PWa_zJF3pGPvY1Wysw?pwd=sbnu
+- 链接: https://github.com/mymagicpower/AIAS/releases/download/apps/ultranet.zip
 
 ## 人工智能技术如何与大数据技术栈协同工作？
 人工智能模型训练很大程度依赖标注的数据。而需要标注数据量大的话，离不开大数据平台提供技术支持。

@@ -1,21 +1,19 @@
-### 官网：
-[官网链接](http://www.aias.top/)
 
-### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1GdQ_4Xuh0hSP8I09pxdIeQ?pwd=2u13
+### Download the model and place it in the /models directory
+- Link: https://github.com/mymagicpower/AIAS/releases/download/apps/reflective_clothes.zip
 
-### 反光衣检测SDK
-实现施工区域或者危险区域人员穿戴检测.
+### Reflective Vest Detection SDK
+Implements detection of personnel wearing reflective vests in construction or danger zones.
 
 
-### SDK功能
-- 反光衣检测，给出检测框和置信度
+### SDK Features
+- Reflective vest detection, providing detection boxes and confidence scores.
 
-#### 运行例子 - ReflectiveVestDetectExample
-- 测试图片
+#### Running example - ReflectiveVestDetectExample
+- Test image
 ![pedestrian](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/reflective_detect_result.png)
 
-运行成功后，命令行应该看到下面的信息:
+After successful execution, you should see the following information in the command line:
 ```text
 [INFO ] - [
 	class: "safe 0.936024010181427", probability: 0.93602, bounds: [x=0.316, y=0.628, width=0.259, height=0.370]
@@ -26,14 +24,14 @@
 ]
 ```
 
-### 开源算法
-#### 1. sdk使用的开源算法
+### Open source algorithm
+#### 1. Open source algorithm used in SDK
 - [yolov5-reflective-clothes-detect-python](https://github.com/RichardoMrMu/yolov5-reflective-clothes-detect-python)
 
-#### 2. 模型如何导出 ?
+#### 2. How to export the model?
 - [how_to_convert_your_model_to_torchscript](http://docs.djl.ai/docs/pytorch/how_to_convert_your_model_to_torchscript.html)
 
-- 导出模型（pytorch 模型特殊，CPU&GPU模型不通用。所以CPU，GPU需要分别导出）
+- Export the model (PyTorch models are special and CPU and GPU models are not universal. Therefore, CPU and GPU models need to be exported separately)
 - torch.device('cpu')
 - torch.device('gpu')
 ```text
@@ -116,23 +114,3 @@ if __name__ == '__main__':
     print('\nExport complete. Visualize with https://github.com/lutzroeder/netron.')
 
 ```
-
-### 其它帮助信息
-http://aias.top/guides.html
-
-
-### Git地址：   
-[Github链接](https://github.com/mymagicpower/AIAS)    
-[Gitee链接](https://gitee.com/mymagicpower/AIAS)   
-
-
-#### 帮助文档：
-- http://aias.top/guides.html
-- 1.性能优化常见问题:
-- http://aias.top/AIAS/guides/performance.html
-- 2.引擎配置（包括CPU，GPU在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/engine_config.html
-- 3.模型加载方式（在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/load_model.html
-- 4.Windows环境常见问题:
-- http://aias.top/AIAS/guides/windows.html

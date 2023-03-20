@@ -1,6 +1,6 @@
 
 ### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1u6zGdB7GW83H9Kg64OB_Sw?pwd=c73c
+- 链接: https://github.com/mymagicpower/AIAS/releases/download/apps/distilbert_sst_english.zip
 
 ### kafka-情感倾向分析【英文】SDK
 情感倾向分析（Sentiment Classification）

@@ -2,7 +2,8 @@
 http://aias.top/
 
 ### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1yHfmJV45mvqXY1d0qo-zUw?pwd=aiu8
+- 链接1: https://github.com/mymagicpower/AIAS/releases/download/apps/face_detection.zip
+- 链接2: https://github.com/mymagicpower/AIAS/releases/download/apps/face_feature.zip
 
 ### 视频搜索
 本例子提供了人像搜索，使用了人脸检测算法，人脸特征提取算法。

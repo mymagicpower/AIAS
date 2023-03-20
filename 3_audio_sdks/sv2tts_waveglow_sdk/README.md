@@ -1,7 +1,10 @@
 
 ### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1N3N0-AsUwV6fMc5BSBFNKA?pwd=dv9s
-
+- 链接1: https://github.com/mymagicpower/AIAS/releases/download/apps/denoiser.zip
+- 链接2: https://github.com/mymagicpower/AIAS/releases/download/apps/speakerEncoder.zip
+- 链接3: https://github.com/mymagicpower/AIAS/releases/download/apps/tacotron2.zip
+- 链接4: https://github.com/mymagicpower/AIAS/releases/download/apps/waveGlow.zip
+- 
 ### TTS 文本转为语音
 注意: 为了防止克隆他人声音用于非法用途，代码限定音色文件只能使用程序中给定的音色文件。
 声音克隆是指使用特定的音色，结合文字的读音合成音频，使得合成后的音频具有目标说话人的特征，从而达到克隆的目的。

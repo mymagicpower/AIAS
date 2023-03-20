@@ -30,7 +30,7 @@
 目前app只能支持2D效果，也只能够支持面部表情的跟踪。要想拥有一个完整真实的虚拟形象，还需要3D技术的支持。
 (这个demo使用的是live2d的旧版sdk，建议自行升级适配最新版sdk)
 
-[Demo APP下载](https://pan.baidu.com/s/1clYgJJABOnelm1_okHqdsw?pwd=j4vu)  
+[Demo APP下载](https://github.com/mymagicpower/AIAS/releases/download/apps/2D_vtuber.apk)  
 
 #### 效果图：
 <div align="center">

@@ -1,7 +1,7 @@
 ### 该项目仅用于学习研究使用，项目落地建议使用Python训练框架,如：paddlepaddle, pytorch, tensorflow等等。
 
 ### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1pGHMzUH5Kyc_LhTDRc-laA?pwd=amfh
+- 链接: https://github.com/mymagicpower/AIAS/releases/download/apps/resnet50_v2.zip
 
 ### AI 训练平台
 AI训练平台提供分类模型训练能力。并以REST API形式为上层应用提供接口。
@@ -69,7 +69,7 @@ java -jar aais-platform-train-0.1.0.jar
 
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/train_platform/images/folder.png)
 
--[320张车辆图片测试数据下载](https://pan.baidu.com/s/1Mcj3r097M0m7VnZWfpEm3g?pwd=7vpq)   
+-[320张车辆图片测试数据下载](https://github.com/mymagicpower/AIAS/releases/download/apps/Cars_320.zip)   
 
 #### 2. 上传数据并开始训练:
 -选择zip文件并上传

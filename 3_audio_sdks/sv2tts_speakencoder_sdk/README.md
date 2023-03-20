@@ -2,7 +2,7 @@
 [官网链接](http://www.aias.top/)
 
 ### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1h71yDUp2jIxEtAUeg5uQxA?pwd=j5g7
+- 链接: https://github.com/mymagicpower/AIAS/releases/download/apps/speakerEncoder.zip
 
 #### 音特征编码器提取特征向量
 Google 团队提出了一种文本语音合成（text to speech）神经系统，能通过少量样本学习到多个不同说话者（speaker）的语音特征，
