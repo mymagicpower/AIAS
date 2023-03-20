@@ -1,33 +1,34 @@
 
-### NDArray 排序、条件刷选函数
+### NDArray Sorting and Conditional Filtering Functions
 
-#### 1. 数组的排序 - numpy.sort()
+#### 1. Sorting NDArrays - numpy.sort()
 - Python
-NumPy 提供了多种排序的方法。 这些排序函数实现不同的排序算法，每个排序算法的特征在于执行速度，最坏情况性能，所需的工作空间和算法的稳定性。 下表显示了三种排序算法的比较。
+  NumPy provides various methods for sorting. These sorting functions implement different sorting algorithms, and the characteristics of each sorting algorithm are defined by execution speed, worst-case performance, required workspace, and algorithm stability. The table below shows a comparison of three sorting algorithms.
+
 ```text
-import numpy as np  
- 
-a = np.array([[3,7],[9,1]])  
-print ('我们的数组是：')
+import numpy as np
+
+a = np.array([[3,7],[9,1]])
+print ('Our array is:')
 print (a)
 print ('\n')
-print ('调用 sort() 函数：')
+print ('Applying sort() function:')
 print (np.sort(a))
 print ('\n')
-print ('按列排序：')
+print ('Sort along axis 0:')
 print (np.sort(a, axis =  0))
 print ('\n')
 
-# 输出结果如下：
-我们的数组是：
+# Output:
+Our array is:
 [[3 7]
  [9 1]]
 
-调用 sort() 函数：
+Applying sort() function:
 [[3 7]
  [1 9]]
 
-按列排序：
+Sort along axis 0:
 [[3 1]
  [9 7]]
 ```
@@ -35,242 +36,245 @@ print ('\n')
 - Java
 ```text
 NDArray a = manager.create(new int[][]{{3, 7}, {9, 1}});
-System.out.println("我们的数组是：");
+System.out.println("Our array is:");
 System.out.println(a.toDebugString(100, 10, 100, 100));
-System.out.println("调用 sort() 函数：");
+System.out.println("Applying sort() function:");
 NDArray b = a.sort();
 System.out.println(b.toDebugString(100, 10, 100, 100));
-System.out.println("按列排序：");
+System.out.println("Sort along axis 0:");
 b = a.sort(0);
 System.out.println(b.toDebugString(100, 10, 100, 100));
 
-# 输出结果如下：
-我们的数组是：
+# Output:
+Our array is:
 ND: (2, 2) cpu() int32
 [[ 3,  7],
  [ 9,  1],
 ]
 
-调用 sort() 函数：
+Applying sort() function:
 ND: (2, 2) cpu() int32
 [[ 3,  7],
  [ 1,  9],
 ]
 
-按列排序：
+Sort along axis 0:
 ND: (2, 2) cpu() int32
 [[ 3,  1],
  [ 9,  7],
 ]
 ```
 
-#### 2. 数组值从小到大的索引值 - numpy.argsort()
+#### 2. Indexing NDArray elements in ascending order - numpy.argsort()
 - Python
-numpy.argsort() 函数返回的是数组值从小到大的索引值。
+  The numpy.argsort() function returns the indices that would sort an array in ascending order.
 
 ```text
-import numpy as np 
- 
-x = np.array([3,  1,  2])  
-print ('我们的数组是：')
+import numpy as np
+
+x = np.array([3,  1,  2])
+print ('Our array is:')
 print (x)
 print ('\n')
-print ('对 x 调用 argsort() 函数：')
-y = np.argsort(x)  
+print ('Applying argsort() function:')
+y = np.argsort(x)
 print (y)
 
-
-# 输出结果如下：
-我们的数组是：
+# Output:
+Our array is:
 [3 1 2]
 
-对 x 调用 argsort() 函数：
+Applying argsort() function:
 [1 2 0]
+
 ```
 
 - Java
 ```text
 a = manager.create(new int[]{3, 1, 2});
-System.out.println("我们的数组是：");
+System.out.println("Our array is:");
 System.out.println(a.toDebugString(100, 10, 100, 100));
-System.out.println("调用 argsort() 函数：");
+System.out.println("Applying argsort() function:");
 b = a.argSort();
 System.out.println(b.toDebugString(100, 10, 100, 100));
 
-# 输出结果如下：
-我们的数组是：
+# Output:
+Our array is:
 ND: (3) cpu() int32
 [ 3,  1,  2]
 
-调用 argsort() 函数：
+Applying argsort() function:
 ND: (3) cpu() int64
 [ 1,  2,  0]
 ```
 
-#### 3. 返回最大和最小元素的索引 - numpy.argmax() 和 numpy.argmin()
+#### 3. Indexing the maximum and minimum elements in an NDArray - numpy.argmax() and numpy.argmin()
 - Python
-numpy.argmax() 和 numpy.argmin()函数分别沿给定轴返回最大和最小元素的索引。
+  The numpy.argmax() and numpy.argmin() functions return the indices of the maximum and minimum elements, respectively, along the given axis.
 
 ```text
-import numpy as np 
- 
-a = np.array([[30,40,70],[80,20,10],[50,90,60]])  
-print  ('我们的数组是：') 
-print (a) 
-print ('\n') 
-print ('调用 argmax() 函数：') 
-print (np.argmax(a)) 
-print ('\n') 
-print ('展开数组：') 
-print (a.flatten()) 
-print ('\n') 
-print ('沿轴 0 的最大值索引：') 
-maxindex = np.argmax(a, axis =  0)  
-print (maxindex) 
-print ('\n') 
-print ('沿轴 1 的最大值索引：') 
-maxindex = np.argmax(a, axis =  1)  
-print (maxindex) 
-print ('\n') 
-print ('调用 argmin() 函数：') 
-minindex = np.argmin(a)  
-print (minindex) 
-print ('\n') 
-print ('沿轴 0 的最小值索引：') 
-minindex = np.argmin(a, axis =  0)  
-print (minindex) 
-print ('\n') 
-print ('沿轴 1 的最小值索引：') 
-minindex = np.argmin(a, axis =  1)  
+import numpy as np
+
+a = np.array([[30,40,70],[80,20,10],[50,90,60]])
+print  ('Our array is:')
+print (a)
+print ('\n')
+print ('Applying argmax() function:')
+print (np.argmax(a))
+print ('\n')
+print ('Flattened array:')
+print (a.flatten())
+print ('\n')
+print ('Index of max element along axis 0:')
+maxindex = np.argmax(a, axis =  0)
+print (maxindex)
+print ('\n')
+print ('Index of max element along axis 1:')
+maxindex = np.argmax(a, axis =  1)
+print (maxindex)
+print ('\n')
+print ('Applying argmin() function:')
+minindex = np.argmin(a)
+print (minindex)
+print ('\n')
+print ('Index of min element along axis 0:')
+minindex = np.argmin(a, axis =  0)
+print (minindex)
+print ('\n')
+print ('Index of min element along axis 1:')
+minindex = np.argmin(a, axis =  1)
 print (minindex)
 
-# 输出结果如下：
-我们的数组是：
+# Output:
+Our array is:
 [[30 40 70]
  [80 20 10]
  [50 90 60]]
 
-调用 argmax() 函数：
+Applying argmax() function:
 7
 
-展开数组：
+Flattened array:
 [30 40 70 80 20 10 50 90 60]
 
-沿轴 0 的最大值索引：
+Index of max element along axis 0:
 [1 2 0]
 
-沿轴 1 的最大值索引：
+Index of max element along axis 1:
 [2 0 1]
 
-调用 argmin() 函数：
+Applying argmin() function:
 5
 
-沿轴 0 的最小值索引：
+Index of min element along axis 0:
 [0 1 1]
 
-沿轴 1 的最小值索引：
+Index of min element along axis 1:
 [0 2 0]
+
 ```
 
 - Java
 ```text
 a = manager.create(new int[][]{{30, 40, 70}, {80, 20, 10}, {50, 90, 60}});
-System.out.println("我们的数组是：");
+System.out.println("Our array is:");
 System.out.println(a.toDebugString(100, 10, 100, 100));
-System.out.println("调用 argmax() 函数：");
+System.out.println("Applying argmax() function:");
 b = a.argMax();
 System.out.println(b.toDebugString(100, 10, 100, 100));
-System.out.println("展开数组：");
+System.out.println("Flattened array:");
 b = a.flatten();
 System.out.println(b.toDebugString(100, 10, 100, 100));
-System.out.println("沿轴 0 的最大值索引：");
+System.out.println("Index of max element along axis 0:");
 b = a.argMax(0);
 System.out.println(b.toDebugString(100, 10, 100, 100));
-System.out.println("沿轴 1 的最大值索引：");
+System.out.println("Index of max element along axis 1:");
 b = a.argMax(1);
 System.out.println(b.toDebugString(100, 10, 100, 100));
-System.out.println("调用 argmin() 函数：");
+System.out.println("Applying argmin() function:");
 b = a.argMin();
 System.out.println(b.toDebugString(100, 10, 100, 100));
-System.out.println("沿轴 0 的最大值索引：");
+System.out.println("Index of min element along axis 0:");
 b = a.argMin(0);
 System.out.println(b.toDebugString(100, 10, 100, 100));
-System.out.println("沿轴 1 的最大值索引：");
+System.out.println("Index of min element along axis 1:");
 b = a.argMin(1);
-System.out.println(b.toDebugString(100, 10, 100, 100));          
-        
-# 输出结果如下：
-我们的数组是：
+System.out.println(b.toDebugString(100, 10, 100, 100));
+
+# Output:
+Our array is:
 ND: (3, 3) cpu() int32
 [[30, 40, 70],
  [80, 20, 10],
  [50, 90, 60],
 ]
 
-调用 argmax() 函数：
+Applying argmax() function:
 ND: () cpu() int64
 7
 
-展开数组：
+Flattened array:
 ND: (9) cpu() int32
 [30, 40, 70, 80, 20, 10, 50, 90, 60]
 
-沿轴 0 的最大值索引：
+Index of max element along axis 0:
 ND: (3) cpu() int64
 [ 1,  2,  0]
 
-沿轴 1 的最大值索引：
+Index of max element along axis 1:
 ND: (3) cpu() int64
 [ 2,  0,  1]
 
-调用 argmin() 函数：
+Applying argmin() function:
 ND: () cpu() int64
 5
 
-沿轴 0 的最大值索引：
+Index of min element along axis 0:
 ND: (3) cpu() int64
 [ 0,  1,  1]
 
-沿轴 1 的最大值索引：
+Index of min element along axis 1:
 ND: (3) cpu() int64
 [ 0,  2,  0]
+
 ```
 
-#### 4. 数组中非零元素的索引 - numpy.nonzero()
+#### 4. Indexing the non-zero elements in an NDArray - numpy.nonzero()
 - Python
-numpy.nonzero() 函数返回输入数组中非零元素的索引。
+  The numpy.nonzero() function returns the indices of the non-zero elements in an input array.
 
 ```text
-import numpy as np 
- 
-a = np.array([[30,40,0],[0,20,10],[50,0,60]])  
-print ('我们的数组是：')
+import numpy as np
+
+a = np.array([[30,40,0],[0,20,10],[50,0,60]])
+print ('Our array is:')
 print (a)
 print ('\n')
-print ('调用 nonzero() 函数：')
+print ('Applying nonzero() function:')
 print (np.nonzero (a))
 
-# 输出结果如下：
-我们的数组是：
+# Output:
+Our array is:
 [[30 40  0]
  [ 0 20 10]
  [50  0 60]]
 
-调用 nonzero() 函数：
+Applying nonzero() function:
 (array([0, 0, 1, 1, 2, 2]), array([0, 1, 1, 2, 0, 2]))
+
 ```
 
 - Java
 ```text
 a = manager.create(new int[][]{{30, 40, 0}, {0, 20, 10}, {50, 0, 60}});
-System.out.println("我们的数组是：");
+System.out.println("Our array is:");
 System.out.println(a.toDebugString(100, 10, 100, 100));
-System.out.println("调用 nonzero() 函数：");
+System.out.println("Applying nonzero() function:");
 b = a.nonzero();
 System.out.println(b.toDebugString(100, 10, 100, 100));
-       
-# 输出结果如下：
-调用 nonzero() 函数：
+
+# Output:
+Applying nonzero() function:
 ND: (6, 2) cpu() int64
 [[ 0,  0],
  [ 0,  1],
@@ -279,63 +283,65 @@ ND: (6, 2) cpu() int64
  [ 2,  0],
  [ 2,  2],
 ]
+
 ```
 
-#### 5. 数组中满足给定条件的元素的索引 - numpy.where()
+#### 5. Indexing the elements in an NDArray satisfying a given condition - numpy.where()
 - Python
-numpy.where() 函数返回输入数组中满足给定条件的元素的索引。
+  The numpy.where() function returns the indices of the elements in an input array that satisfy a given condition.
 
 ```text
-import numpy as np 
- 
-x = np.arange(9.).reshape(3,  3)  
-print ('我们的数组是：')
+import numpy as np
+
+x = np.arange(9.).reshape(3,  3)
+print ('Our array is:')
 print (x)
-print ( '大于 3 的元素的索引：')
-y = np.where(x >  3)  
+print ( 'Indices of elements > 3:')
+y = np.where(x >  3)
 print (y)
-print ('使用这些索引来获取满足条件的元素：')
+print ('Elements satisfying the condition:')
 print (x[y])
 
-# 输出结果如下：
-我们的数组是：
+# Output:
+Our array is:
 [[0. 1. 2.]
  [3. 4. 5.]
  [6. 7. 8.]]
-大于 3 的元素的索引：
+Indices of elements > 3:
 (array([1, 1, 2, 2, 2]), array([1, 2, 0, 1, 2]))
-使用这些索引来获取满足条件的元素：
+Elements satisfying the condition:
 [4. 5. 6. 7. 8.]
+
 ```
 
 - Java
 ```text
 a = manager.arange(9f).reshape(3, 3);
-System.out.println("我们的数组是：");
+System.out.println("Our array is:");
 System.out.println(a.toDebugString(100, 10, 100, 100));
-System.out.println("大于 3 的元素的索引：");
+System.out.println("Indices of elements > 3:");
 b = a.gt(3);
 System.out.println(b.toDebugString(100, 10, 100, 100));
-System.out.println("使用这些索引来获取满足条件的元素：");
+System.out.println("Elements satisfying the condition:");
 b = a.get(b);
 System.out.println(b.toDebugString(100, 10, 100, 100));
-     
-# 输出结果如下：
-我们的数组是：
-ND: (3, 3) cpu() float32
-[[0., 1., 2.],
- [3., 4., 5.],
- [6., 7., 8.],
-]
 
-大于 3 的元素的索引：
+# Output:
+Indices of elements > 3:
 ND: (3, 3) cpu() boolean
 [[false, false, false],
  [false,  true,  true],
  [ true,  true,  true],
 ]
 
-使用这些索引来获取满足条件的元素：
+Our array is:
+ND: (3, 3) cpu() float32
+[[0., 1., 2.],
+ [3., 4., 5.],
+ [6., 7., 8.],
+]
+
+Elements satisfying the condition:
 ND: (5) cpu() float32
 [4., 5., 6., 7., 8.]
 ```

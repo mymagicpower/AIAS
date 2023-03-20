@@ -1,11 +1,8 @@
 
-### NDArray 广播(Broadcast)
-广播(Broadcast)是 numpy 对不同形状(shape)的数组进行数值计算的方式， 对数组的算术运算通常在相应的元素上进行。
-如果两个数组 a 和 b 形状相同，即满足 a.shape == b.shape，
-那么 a*b 的结果就是 a 与 b 数组对应位相乘。这要求维数相同，且各维度的长度相同。
+### NDArray Broadcasting
+Broadcasting is the way numpy performs arithmetic operations on arrays with different shapes. The arithmetic operation on arrays is usually performed on the corresponding elements. If two arrays a and b have the same shape, i.e., a.shape == b.shape, then the result of a*b is the element-wise multiplication of the a and b arrays. This requires the dimensions to be the same, and the length of each dimension to be the same.
 
-
-#### 1.两个数组 a 和 b 形状相同
+#### 1. Two arrays a and b have the same shape
 - Python
 ```text
 import numpy as np 
@@ -15,7 +12,7 @@ b = np.array([10,20,30,40])
 c = a * b 
 print (c)
 
-# 输出结果如下：
+# Output:
 [ 10  40  90 160]
 ```
 
@@ -26,12 +23,12 @@ NDArray y = manager.create(new int[]{10, 20, 30, 40});
 NDArray z = x.mul(y);
 System.out.println(z.toDebugString(100, 10, 100, 100));
 
-# 输出结果如下：
+# Output:
 ND: (3) cpu() int32
 [ 10,  40,  90, 160]
 ```
 
-#### 2. 当运算中的 2 个数组的形状不同时，将自动触发广播机制
+#### 2. Broadcasting is triggered automatically when the shapes of the two arrays in the operation are different
 - Python
 ```text
 import numpy as np 
@@ -43,7 +40,7 @@ a = np.array([[ 0, 0, 0],
 b = np.array([1,2,3])
 print(a + b)
 
-# 输出结果如下：
+# Output:
 [[ 1  2  3]
  [11 12 13]
  [21 22 23]
@@ -57,7 +54,7 @@ y = manager.create(new int[]{1, 2, 3});
 z = x.add(y);
 System.out.println(z.toDebugString(100, 10, 100, 100));
 
-# 输出结果如下：
+# Output:
 [[ 1,  2,  3],
  [11, 12, 13],
  [21, 22, 23],

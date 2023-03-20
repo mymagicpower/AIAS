@@ -1,326 +1,324 @@
 
-### NDArray 数学函数
-NDArray包含大量的各种数学运算的函数，包括三角函数，算术运算的函数，复数处理函数等。
+### NDArray Mathematical Functions
+NDArray contains a large number of mathematical functions, including trigonometric functions, arithmetic functions, complex number processing functions, etc.
 
-#### 1.三角函数
-NDArray 提供了标准的三角函数：sin()、cos()、tan()。
+#### 1. Trigonometric Functions
+NDArray provides standard trigonometric functions: sin (), cos (), tan ().
 - Python
 ```text
 import numpy as np
- 
+
 a = np.array([0,30,45,60,90])
-print ('不同角度的正弦值：')
-# 通过乘 pi/180 转化为弧度  
+print ('Sine value of different angles:')
+# Convert to radians by multiplying with pi/180
 print (np.sin(a*np.pi/180))
 print ('\n')
-print ('数组中角度的余弦值：')
+print ('Cosine value of different angles:')
 print (np.cos(a*np.pi/180))
 print ('\n')
-print ('数组中角度的正切值：')
+print ('Tangent value of different angles:')
 print (np.tan(a*np.pi/180))
 
-# 输出结果如下：
-不同角度的正弦值：
+# The output is as follows:
+Sine value of different angles:
 [0.         0.5        0.70710678 0.8660254  1.        ]
 
-数组中角度的余弦值：
+Cosine value of different angles:
 [1.00000000e+00 8.66025404e-01 7.07106781e-01 5.00000000e-01
  6.12323400e-17]
 
-数组中角度的正切值：
+Tangent value of different angles:
 [0.00000000e+00 5.77350269e-01 1.00000000e+00 1.73205081e+00
  1.63312394e+16]
+
 ```
 
 - Java
 ```text
 NDArray a = manager.create(new int[]{0, 30, 45, 60, 90});
-System.out.println("不同角度的正弦值：");
-// 通过乘 pi/180 转化为弧度
+System.out.println("Sine value of different angles:");
+// Convert to radians by multiplying with pi/180
 NDArray b = a.mul(Math.PI / 180).sin();
 System.out.println(b.toDebugString(100, 10, 100, 100));
-System.out.println("数组中角度的余弦值：");
+System.out.println("Cosine value of different angles:");
  b = a.mul(Math.PI / 180).cos();
 System.out.println(b.toDebugString(100, 10, 100, 100));
-System.out.println("数组中角度的正切值：");
+System.out.println("Tangent value of different angles:");
  b = a.mul(Math.PI / 180).tan();
 System.out.println(b.toDebugString(100, 10, 100, 100));
 
-
-# 输出结果如下：
-不同角度的正弦值：
+# The output is as follows:
+Sine value of different angles:
 ND: (5) cpu() float64
 [0.    , 0.5   , 0.7071, 0.866 , 1.    ]
 
-数组中角度的余弦值：
+Cosine value of different angles:
 ND: (5) cpu() float64
 [ 1.00000000e+00,  8.66025404e-01,  7.07106781e-01,  5.00000000e-01,  6.12323400e-17]
 
-数组中角度的正切值：
+Tangent value of different angles:
 ND: (5) cpu() float64
 [ 0.00000000e+00,  5.77350269e-01,  1.00000000e+00,  1.73205081e+00,  1.63312394e+16]
 ```
 
-#### 2. 反三角函数
-arcsin，arccos，和 arctan 函数返回给定角度的 sin，cos 和 tan 的反三角函数。
-这些函数的结果可以通过toDegrees() 函数将弧度转换为角度。
+#### 2. Inverse Trigonometric Functions
+The arcsin, arccos, and arctan functions return the inverse trigonometric functions of sin, cos, and tan of a given angle.
+These functions' results can be converted to degrees using the toDegrees() function.
 
 - Python
 ```text
 import numpy as np
- 
-a = np.array([0,30,45,60,90])  
-print ('含有正弦值的数组：')
-sin = np.sin(a*np.pi/180)  
+
+a = np.array([0,30,45,60,90])
+print ('Array containing sine values:')
+sin = np.sin(a*np.pi/180)
 print (sin)
 print ('\n')
-print ('计算角度的反正弦，返回值以弧度为单位：')
-inv = np.arcsin(sin)  
+print ('Calculating inverse sine, result in radians:')
+inv = np.arcsin(sin)
 print (inv)
 print ('\n')
-print ('通过转化为角度制来检查结果：')
+print ('Result in degrees:')
 print (np.degrees(inv))
 print ('\n')
-print ('arccos 和 arctan 函数行为类似：')
-cos = np.cos(a*np.pi/180)  
+print ('arccos and arctan behave similarly:')
+cos = np.cos(a*np.pi/180)
 print (cos)
 print ('\n')
-print ('反余弦：')
-inv = np.arccos(cos)  
+print ('Inverse cosine:')
+inv = np.arccos(cos)
 print (inv)
 print ('\n')
-print ('角度制单位：')
+print ('Result in degrees:')
 print (np.degrees(inv))
 print ('\n')
-print ('tan 函数：')
-tan = np.tan(a*np.pi/180)  
+print ('tan function:')
+tan = np.tan(a*np.pi/180)
 print (tan)
 print ('\n')
-print ('反正切：')
-inv = np.arctan(tan)  
+print ('Inverse tangent:')
+inv = np.arctan(tan)
 print (inv)
 print ('\n')
-print ('角度制单位：')
+print ('Result in degrees:')
 print (np.degrees(inv))
 
-# 输出结果如下：
-含有正弦值的数组：
+# The output is as follows:
+Array containing sine values:
 [0.         0.5        0.70710678 0.8660254  1.        ]
 
-计算角度的反正弦，返回值以弧度为单位：
+Calculating inverse sine, result in radians:
 [0.         0.52359878 0.78539816 1.04719755 1.57079633]
 
-通过转化为角度制来检查结果：
+Result in degrees:
 [ 0. 30. 45. 60. 90.]
 
-arccos 和 arctan 函数行为类似：
+arccos and arctan behave similarly:
 [1.00000000e+00 8.66025404e-01 7.07106781e-01 5.00000000e-01
  6.12323400e-17]
 
-反余弦：
+Inverse cosine:
 [0.         0.52359878 0.78539816 1.04719755 1.57079633]
 
-角度制单位：
+Result in degrees:
 [ 0. 30. 45. 60. 90.]
 
-tan 函数：
+tan function:
 [0.00000000e+00 5.77350269e-01 1.00000000e+00 1.73205081e+00
  1.63312394e+16]
 
-反正切：
+Inverse tangent:
 [0.         0.52359878 0.78539816 1.04719755 1.57079633]
 
-角度制单位：
+Result in degrees:
 [ 0. 30. 45. 60. 90.]
 ```
 
 - Java
 ```text
+
+-Java
+```text
 a = manager.create(new int[]{0, 30, 45, 60, 90});
-System.out.println("含有正弦值的数组：");
+System.out.println("Array with sine values:");
 NDArray sin = a.mul(Math.PI / 180).sin();
 System.out.println(sin.toDebugString(100, 10, 100, 100));
-System.out.println("计算角度的反正弦，返回值以弧度为单位：");
+System.out.println("Calculate the arcsine, returns the value in radians:");
 NDArray inv = sin.asin();
 System.out.println(inv.toDebugString(100, 10, 100, 100));
-System.out.println("通过转化为角度制来检查结果：");
+System.out.println("Check the results by converting to degrees:");
 b = inv.toDegrees();
 System.out.println(b.toDebugString(100, 10, 100, 100));
-System.out.println("arccos 和 arctan 函数行为类似：");
+System.out.println("Arccos and arctan functions behave similarly:");
 NDArray cos = a.mul(Math.PI / 180).cos();
 System.out.println(cos.toDebugString(100, 10, 100, 100));
-System.out.println("反余弦：");
+System.out.println("Inverse cosine:");
 inv = cos.acos();
 System.out.println(inv.toDebugString(100, 10, 100, 100));
-System.out.println("角度制单位：");
+System.out.println("Degree unit:");
 b = inv.toDegrees();
 System.out.println(b.toDebugString(100, 10, 100, 100));
-System.out.println("tan 函数：");
+System.out.println("Tan function:");
 NDArray tan = a.mul(Math.PI / 180).tan();
 System.out.println(tan.toDebugString(100, 10, 100, 100));
-System.out.println("反正切：");
+System.out.println("Inverse tangent:");
 inv = tan.atan();
 System.out.println(inv.toDebugString(100, 10, 100, 100));
-System.out.println("角度制单位：");
+System.out.println("Degree unit:");
 b = inv.toDegrees();
 System.out.println(b.toDebugString(100, 10, 100, 100));
 
-
-# 输出结果如下：
-含有正弦值的数组：
+#Output:
+Array with sine values:
 ND: (5) cpu() float64
 [0.    , 0.5   , 0.7071, 0.866 , 1.    ]
-
-计算角度的反正弦，返回值以弧度为单位：
+Calculate the arcsine, returns the value in radians:
 ND: (5) cpu() float64
 [0.    , 0.5236, 0.7854, 1.0472, 1.5708]
-
-通过转化为角度制来检查结果：
+Check the results by converting to degrees:
 ND: (5) cpu() float64
 [ 0., 30., 45., 60., 90.]
-
-arccos 和 arctan 函数行为类似：
+Arccos and arctan functions behave similarly:
 ND: (5) cpu() float64
 [ 1.00000000e+00,  8.66025404e-01,  7.07106781e-01,  5.00000000e-01,  6.12323400e-17]
-
-反余弦：
+Inverse cosine:
 ND: (5) cpu() float64
 [0.    , 0.5236, 0.7854, 1.0472, 1.5708]
-
-角度制单位：
+Degree unit:
 ND: (5) cpu() float64
 [ 0., 30., 45., 60., 90.]
-
-tan 函数：
+Tan function:
 ND: (5) cpu() float64
 [ 0.00000000e+00,  5.77350269e-01,  1.00000000e+00,  1.73205081e+00,  1.63312394e+16]
-
-反正切：
+Inverse tangent:
 ND: (5) cpu() float64
 [0.    , 0.5236, 0.7854, 1.0472, 1.5708]
-
-角度制单位：
+Degree unit:
 ND: (5) cpu() float64
 [ 0., 30., 45., 60., 90.]
 ```
 
-#### 3. 舍入函数
-#### 3.1 四舍五入
-numpy.around() 函数返回指定数字的四舍五入值。
+#### 3.Rounding Functions
+#### 3.1 Round
+numpy.around() returns the rounded value of a specified number.
+
 - Python
 ```text
 import numpy as np
- 
-a = np.array([1.0,5.55,  123,  0.567,  25.532])  
-print  ('原数组：')
+
+a = np.array([1.0,5.55,  123,  0.567,  25.532])
+print  ('Original array:')
 print (a)
-print ('\n')
-print ('舍入后：')
+print ('\\n')
+print ('Array after rounding:')
 print (np.around(a))
 
 # The output is as follows:
-原数组：
+Original array:
 [  1.      5.55  123.      0.567  25.532]
 
-舍入后：
+Array after rounding:
 [  1.   6. 123.   1.  26.]
 ```
 
 - Java
 ```text
 a = manager.create(new double[]{1.0, 5.55, 123, 0.567, 25.532});
-System.out.println("原数组：");
+System.out.println("Original array:");
 System.out.println(a.toDebugString(100, 10, 100, 100));
-System.out.println("舍入后：");
+System.out.println("Array after rounding:");
 b = a.round();
 System.out.println(b.toDebugString(100, 10, 100, 100));
 
 # The output is as follows:
-原数组：
+Original array:
 ND: (5) cpu() float64
 [  1.   ,   5.55 , 123.   ,   0.567,  25.532]
 
-舍入后：
+Array after rounding:
 ND: (5) cpu() float64
 [  1.,   6., 123.,   1.,  26.]
 ```
 
-#### 3.2 向下取整
-numpy.floor() 返回小于或者等于指定表达式的最大整数，即向下取整。
+#### 3.2 Floor
+numpy.floor() returns the largest integer less than or equal to a specified number.
+
 - Python
 ```text
 import numpy as np
- 
+
 a = np.array([-1.7,  1.5,  -0.2,  0.6,  10])
-print ('提供的数组：')
+print ('Provided array:')
 print (a)
-print ('\n')
-print ('修改后的数组：')
+print ('\\n')
+print ('Modified array:')
 print (np.floor(a))
 
 # The output is as follows:
-提供的数组：
+Provided array:
 [-1.7  1.5 -0.2  0.6 10. ]
 
-修改后的数组：
+Modified array:
 [-2.  1. -1.  0. 10.]
+
 ```
 
 - Java
 ```text
 a = manager.create(new double[]{-1.7, 1.5, -0.2, 0.6, 10});
-System.out.println("提供的数组：");
+System.out.println("Provided array:");
 System.out.println(a.toDebugString(100, 10, 100, 100));
-System.out.println("修改后的数组：");
+System.out.println("Modified array:");
 b = a.floor();
 System.out.println(b.toDebugString(100, 10, 100, 100));
 
 # The output is as follows:
-提供的数组：
+Provided array:
 ND: (5) cpu() float64
 [-1.7,  1.5, -0.2,  0.6, 10. ]
 
-修改后的数组：
+Modified array:
 ND: (5) cpu() float64
 [-2.,  1., -1.,  0., 10.]
 ```
 
-#### 3.3 向上取整
-numpy.ceil() 返回大于或者等于指定表达式的最小整数，即向上取整。
+#### 3.3 Ceil
+numpy.ceil() returns the smallest integer greater than or equal to a specified number.
+
 - Python
 ```text
 import numpy as np
- 
-a = np.array([-1.7,  1.5,  -0.2,  0.6,  10])  
-print  ('提供的数组：')
+
+a = np.array([-1.7,  1.5,  -0.2,  0.6,  10])
+print  ('Provided array:')
 print (a)
-print ('\n')
-print ('修改后的数组：')
+print ('\\n')
+print ('Modified array:')
 print (np.ceil(a))
 
 # The output is as follows:
-提供的数组：
+Provided array:
 [-1.7  1.5 -0.2  0.6 10. ]
 
-修改后的数组：
+Modified array:
 [-1.  2. -0.  1. 10.]
 ```
 
 - Java
 ```text
 a = manager.create(new double[]{-1.7, 1.5, -0.2, 0.6, 10});
-System.out.println("提供的数组：");
+System.out.println("Provided array:");
 System.out.println(a.toDebugString(100, 10, 100, 100));
-System.out.println("修改后的数组：");
+System.out.println("Modified array:");
 b = a.ceil();
 System.out.println(b.toDebugString(100, 10, 100, 100));
 
 # The output is as follows:
-提供的数组：
+Provided array:
 ND: (5) cpu() float64
 [-1.7,  1.5, -0.2,  0.6, 10. ]
 
-修改后的数组：
+Modified array:
 ND: (5) cpu() float64
 [-1.,  2., -0.,  1., 10.]
 ```

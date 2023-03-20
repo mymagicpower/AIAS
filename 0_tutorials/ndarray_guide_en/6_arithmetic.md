@@ -1,59 +1,58 @@
 
-### NDArray 算术函数
+### NDArray Arithmetic Functions
 
-#### 1. 加减乘除
-算术函数包含简单的加减乘除: add()，subtract()，multiply() 和 divide()。
-需要注意的是数组必须具有相同的形状或符合数组广播规则。
+#### 1. Addition, subtraction, multiplication and division
+Arithmetic functions include simple addition, subtraction, multiplication and division: add(), subtract(), multiply() and divide(). Note that the arrays must have the same shape or comply with the array broadcast rule.
 
 - Python
 ```text
-import numpy as np 
- 
-a = np.arange(9, dtype = np.float_).reshape(3,3)  
-print ('第一个数组：')
+import numpy as np
+
+a = np.arange(9, dtype = np.float_).reshape(3,3)
+print ('First array:')
 print (a)
 print ('\n')
-print ('第二个数组：')
-b = np.array([10,10,10])  
+print ('Second array:')
+b = np.array([10,10,10])
 print (b)
 print ('\n')
-print ('两个数组相加：')
+print ('Add the two arrays:')
 print (np.add(a,b))
 print ('\n')
-print ('两个数组相减：')
+print ('Subtract the two arrays:')
 print (np.subtract(a,b))
 print ('\n')
-print ('两个数组相乘：')
+print ('Multiply the two arrays:')
 print (np.multiply(a,b))
 print ('\n')
-print ('两个数组相除：')
+print ('Divide the two arrays:')
 print (np.divide(a,b))
 
-# 输出结果如下：
-第一个数组：
+#Output:
+First array:
 [[0. 1. 2.]
  [3. 4. 5.]
  [6. 7. 8.]]
 
-第二个数组：
+Second array:
 [10 10 10]
 
-两个数组相加：
+Add the two arrays:
 [[10. 11. 12.]
  [13. 14. 15.]
  [16. 17. 18.]]
 
-两个数组相减：
+Subtract the two arrays:
 [[-10.  -9.  -8.]
  [ -7.  -6.  -5.]
  [ -4.  -3.  -2.]]
 
-两个数组相乘：
+Multiply the two arrays:
 [[ 0. 10. 20.]
  [30. 40. 50.]
  [60. 70. 80.]]
 
-两个数组相除：
+Divide the two arrays:
 [[0.  0.1 0.2]
  [0.3 0.4 0.5]
  [0.6 0.7 0.8]]
@@ -62,59 +61,58 @@ print (np.divide(a,b))
 - Java
 ```text
 NDArray a = manager.arange(0, 9, 1, DataType.FLOAT32).reshape(3, 3);
-System.out.println("第一个数组：");
+System.out.println("First array:");
 System.out.println(a.toDebugString(100, 10, 100, 100));
-System.out.println("第二个数组：");
+System.out.println("Second array:");
 NDArray b = manager.create(new int[]{10, 10, 10});
 System.out.println(b.toDebugString(100, 10, 100, 100));
-System.out.println("两个数组相加：");
+System.out.println("Add the two arrays:");
 NDArray c = a.add(b);
 System.out.println(c.toDebugString(100, 10, 100, 100));
-System.out.println("两个数组相减：");
+System.out.println("Subtract the two arrays:");
 c = a.sub(b);
 System.out.println(c.toDebugString(100, 10, 100, 100));
-System.out.println("两个数组相乘：");
+System.out.println("Multiply the two arrays:");
 c = a.mul(b);
 System.out.println(c.toDebugString(100, 10, 100, 100));
-System.out.println("两个数组相除：");
+System.out.println("Divide the two arrays:");
 c = a.div(b);
 System.out.println(c.toDebugString(100, 10, 100, 100));
 
-
-# 输出结果如下：
-第一个数组：
+#Output:
+First array:
 ND: (3, 3) cpu() float32
 [[0., 1., 2.],
  [3., 4., 5.],
  [6., 7., 8.],
 ]
 
-第二个数组：
+Second array:
 ND: (3) cpu() int32
 [10, 10, 10]
 
-两个数组相加：
+Add the two arrays:
 ND: (3, 3) cpu() float32
 [[10., 11., 12.],
  [13., 14., 15.],
  [16., 17., 18.],
 ]
 
-两个数组相减：
+Subtract the two arrays:
 ND: (3, 3) cpu() float32
 [[-10.,  -9.,  -8.],
  [ -7.,  -6.,  -5.],
  [ -4.,  -3.,  -2.],
 ]
 
-两个数组相乘：
+Multiply the two arrays:
 ND: (3, 3) cpu() float32
 [[ 0., 10., 20.],
  [30., 40., 50.],
  [60., 70., 80.],
 ]
 
-两个数组相除：
+Divide the two arrays:
 ND: (3, 3) cpu() float32
 [[0. , 0.1, 0.2],
  [0.3, 0.4, 0.5],
@@ -122,125 +120,128 @@ ND: (3, 3) cpu() float32
 ]
 ```
 
-#### 2. 幂函数
-numpy.power() 函数将第一个输入数组中的元素作为底数，计算它与第二个输入数组中相应元素的幂。
+#### 2. Power function
+The numpy.power() function takes the elements in the first input array as the base and calculates their power with the corresponding elements in the second input array.
 
 - Python
 ```text
-import numpy as np 
- 
-a = np.array([10,100,1000])  
-print ('我们的数组是；')
+import numpy as np
+
+a = np.array([10,100,1000])
+print ('Our array is:')
 print (a)
-print ('\n') 
-print ('调用 power 函数：')
+print ('\n')
+print ('Calling power function:')
 print (np.power(a,2))
 print ('\n')
-print ('第二个数组：')
-b = np.array([1,2,3])  
+print ('Second array:')
+b = np.array([1,2,3])
 print (b)
 print ('\n')
-print ('再次调用 power 函数：')
+print ('Calling power function again:')
 print (np.power(a,b))
 
-# 输出结果如下：
-我们的数组是；
+#Output:
+Our array is:
 [  10  100 1000]
 
-调用 power 函数：
+Calling power function:
 [    100   10000 1000000]
 
-第二个数组：
+Second array:
 [1 2 3]
 
-再次调用 power 函数：
+Calling power function again:
 [        10      10000 1000000000]
+
 ```
 
 - Java
 ```text
 a = manager.create(new int[]{10,100,1000});
-System.out.println("我们的数组是: ");
+System.out.println("Our array is: ");
 System.out.println(a.toDebugString(100, 10, 100, 100));
-System.out.println("调用 power 函数：");
+System.out.println("Calling power function:");
 b = a.pow(2);
 System.out.println(b.toDebugString(100, 10, 100, 100));
-System.out.println("第二个数组：");
+System.out.println("Second array:");
 b = manager.create(new int[]{1,2,3});
 System.out.println(b.toDebugString(100, 10, 100, 100));
-System.out.println("再次调用 power 函数：");
+System.out.println("Calling power function again:");
 c = a.pow(b);
 System.out.println(c.toDebugString(100, 10, 100, 100));
 
-# 输出结果如下：
-我们的数组是: 
+#Output:
+Our array is:
 ND: (3) cpu() int32
 [  10,  100, 1000]
 
-调用 power 函数：
+Calling power function:
 ND: (3) cpu() int32
 [    100,   10000, 1000000]
 
-第二个数组：
+Second array:
 ND: (3) cpu() int32
 [ 1,  2,  3]
 
-再次调用 power 函数：
+Calling power function again:
 ND: (3) cpu() int32
 [ 1.00000000e+01,  1.00000000e+04,  1.00000000e+09]
+
 ```
 
-#### 3. 余数
-numpy.mod() 计算输入数组中相应元素的相除后的余数。 函数 numpy.remainder() 也产生相同的结果。
+#### 3. Remainder
+numpy.mod() calculates the remainder of the input arrays after division. The numpy.remainder() function produces the same result.
 
 - Python
 ```text
 import numpy as np
- 
-a = np.array([10,20,30]) 
-b = np.array([3,5,7])  
-print ('第一个数组：')
+
+a = np.array([10,20,30])
+b = np.array([3,5,7])
+print ('First array:')
 print (a)
 print ('\n')
-print ('第二个数组：')
+print ('Second array:')
 print (b)
 print ('\n')
-print ('调用 mod() 函数：')
+print ('Calling mod() function:')
 print (np.mod(a,b))
 
-# 输出结果如下：
-第一个数组：
+#Output:
+First array:
 [10 20 30]
 
-第二个数组：
+Second array:
 [3 5 7]
 
-调用 mod() 函数：
+Calling mod() function:
 [1 0 2]
+
 ```
 
 - Java
 ```text
 a = manager.create(new int[]{10, 20, 30});
-System.out.println("第一个数组：");
+System.out.println("The first array:");
 System.out.println(a.toDebugString(100, 10, 100, 100));
-System.out.println("第二个数组：");
+System.out.println("The second array:");
 b = manager.create(new int[]{3, 5, 7});
 System.out.println(b.toDebugString(100, 10, 100, 100));
-System.out.println("调用 mod() 函数：");
+System.out.println("Calling the mod() function:");
 c = a.mod(b);
 System.out.println(c.toDebugString(100, 10, 100, 100));
 
-# 输出结果如下：
-第一个数组：
+# The output is as follows:
+The first array:
 ND: (3) cpu() int32
 [10, 20, 30]
 
-第二个数组：
+The second array:
 ND: (3) cpu() int32
 [ 3,  5,  7]
 
-调用 mod() 函数：
+Calling the mod() function:
 ND: (3) cpu() int32
 [ 1,  0,  2]
 ```
