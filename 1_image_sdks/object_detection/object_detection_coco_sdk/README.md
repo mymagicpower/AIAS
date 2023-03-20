@@ -1,6 +1,9 @@
 ### 官网：
 [官网链接](http://www.aias.top/)
 
+### 下载模型，放置于models目录
+- 链接: https://pan.baidu.com/s/1HYTfWazlk8W9pQDGVWAYbA?pwd=8mwt
+
 
 ### 目标检测(支持coco数据集分类)SDK
 检测图片中80个分类的目标。

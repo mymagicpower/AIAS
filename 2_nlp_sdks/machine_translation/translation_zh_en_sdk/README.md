@@ -1,6 +1,8 @@
 ### 官网：
 [官网链接](http://www.aias.top/)
 
+### 下载模型，放置于models目录
+- 链接: https://pan.baidu.com/s/1ky9ljTdGKOYgRPhkRl9kMQ?pwd=yzgx
 
 ### 中文翻译为英文SDK
 机器翻译，又称为自动翻译，是利用计算机将一种自然语言(源语言)转换为另一种自然语言(目标语言)的过程。

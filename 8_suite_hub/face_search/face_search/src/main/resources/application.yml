@@ -38,9 +38,9 @@ face:
   confThresh: 0.85
   nmsThresh: 0.45
   # face detection model URI
-  det: https://aias-home.oss-cn-beijing.aliyuncs.com/models/face/ultranet.zip
+  det: models/ultranet.zip
   # face feature model URI
-  feature: https://aias-home.oss-cn-beijing.aliyuncs.com/models/face/face_feature.zip
+  feature: models/face_feature.zip
 
 # Vector Engine - Milvus
 search:

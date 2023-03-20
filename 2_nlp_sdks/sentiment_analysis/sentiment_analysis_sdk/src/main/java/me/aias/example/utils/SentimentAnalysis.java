@@ -7,6 +7,8 @@ import ai.djl.repository.zoo.Criteria;
 import ai.djl.training.util.ProgressBar;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public final class SentimentAnalysis {
 
@@ -18,10 +20,7 @@ public final class SentimentAnalysis {
     Criteria<String, Classifications> criteria =
         Criteria.builder()
             .setTypes(String.class, Classifications.class)
-            .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/distilbert_sst_english.zip")
-            //  .optModelUrls(
-            // "/Users/calvin/Documents/build/pytorch_models/distilbert_sst_english/")
+            .optModelPath(Paths.get("models/distilbert_sst_english.zip"))
             .optTranslator(new PtDistilBertTranslator())
             .optEngine("PyTorch") // Use PyTorch engine
             .optDevice(Device.cpu())

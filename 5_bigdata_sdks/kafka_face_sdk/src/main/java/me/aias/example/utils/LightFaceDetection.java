@@ -69,7 +69,7 @@ public final class LightFaceDetection {
         Criteria<Image, DetectedObjects> criteria =
                 Criteria.builder()
                         .setTypes(Image.class, DetectedObjects.class)
-                        .optModelUrls("https://resources.djl.ai/test-models/pytorch/ultranet.zip")
+                        .optModelPath(Paths.get("models/ultranet.zip"))
                         .optTranslator(translator)
                         .optProgress(new ProgressBar())
                         .optEngine("PyTorch") // Use PyTorch engine

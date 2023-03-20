@@ -5,6 +5,8 @@ import ai.djl.repository.zoo.Criteria;
 import ai.djl.training.util.ProgressBar;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 // https://www.paddlepaddle.org.cn/hubdetail?name=porn_detection_lstm&en_category=TextCensorship
 
@@ -19,9 +21,7 @@ public final class ReviewDetection {
     Criteria<String, float[]> criteria =
         Criteria.builder()
             .setTypes(String.class, float[].class)
-            .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/review_detection_lstm.zip")
-            //            .optModelUrls("/Users/calvin/model/review_detection_lstm/")
+            .optModelPath(Paths.get("models/review_detection_lstm.zip"))
             .optTranslator(new ReviewTranslator())
             .optEngine("PaddlePaddle") // Use PyTorch engine
             

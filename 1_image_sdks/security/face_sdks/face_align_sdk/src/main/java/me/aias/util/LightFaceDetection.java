@@ -5,6 +5,8 @@ import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.output.DetectedObjects;
 import ai.djl.repository.zoo.Criteria;
 import ai.djl.training.util.ProgressBar;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public final class LightFaceDetection {
 
@@ -23,7 +25,7 @@ public final class LightFaceDetection {
     Criteria<Image, DetectedObjects> criteria =
         Criteria.builder()
             .setTypes(Image.class, DetectedObjects.class)
-            .optModelUrls("https://aias-home.oss-cn-beijing.aliyuncs.com/models/face/ultranet.zip")
+            .optModelPath(Paths.get("models/ultranet.zip"))
             .optTranslator(translator)
             .optProgress(new ProgressBar())
             .optEngine("PyTorch") // Use PyTorch engine

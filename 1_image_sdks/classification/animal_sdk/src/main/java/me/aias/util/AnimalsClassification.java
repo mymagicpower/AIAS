@@ -16,6 +16,8 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 // https://www.paddlepaddle.org.cn/hubdetail?name=resnet50_vd_animals&en_category=ImageClassification
 //
@@ -66,8 +68,7 @@ public final class AnimalsClassification {
         Criteria.builder()
             .optEngine("PaddlePaddle")
             .setTypes(Image.class, Classifications.class)
-            .optModelUrls("https://aias-home.oss-cn-beijing.aliyuncs.com/models/animals.zip")
-            //            .optModelUrls("/Users/calvin/model/animals/")
+            .optModelPath(Paths.get("models/animals.zip"))
             .optModelName("inference")
             .optTranslator(new AnimalTranslator())
             .optProgress(new ProgressBar())

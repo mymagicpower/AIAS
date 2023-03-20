@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /** 烟火检测 https://github.com/gengyanlei/fire-smoke-detect-yolov4 */
 public final class FireSmokeDetect {
@@ -36,8 +38,7 @@ public final class FireSmokeDetect {
     Criteria<Image, DetectedObjects> criteria =
         Criteria.builder()
             .setTypes(Image.class, DetectedObjects.class)
-            .optModelUrls("https://aias-home.oss-cn-beijing.aliyuncs.com/models/fire_smoke.zip")
-            // .optModelUrls("/Users/calvin/Documents/build/pytorch_models/fire_smoke/")
+            .optModelPath(Paths.get("models/fire_smoke.zip"))
             .optTranslator(translator)
             .optProgress(new ProgressBar())
             .optEngine("PyTorch")

@@ -98,10 +98,7 @@ public final class OcrV3MultiThreadRecognition {
                 Criteria.builder()
                         .optEngine("PaddlePaddle")
                         .setTypes(Image.class, DetectedObjects.class)
-                        .optModelUrls(
-                                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv3_det_infer.zip")
-                        //            .optModelUrls(
-                        // "/Users/calvin/Documents/build/paddle_models/ppocr/ch_PP-OCRv2_det_infer")
+                        .optModelPath(Paths.get("models/ch_PP-OCRv3_det_infer.zip"))
                         .optTranslator(new PpWordDetectionTranslator(new ConcurrentHashMap<String, String>()))
                         .optProgress(new ProgressBar())
                         .build();
@@ -114,8 +111,7 @@ public final class OcrV3MultiThreadRecognition {
                 Criteria.builder()
                         .optEngine("PaddlePaddle")
                         .setTypes(Image.class, String.class)
-                        .optModelUrls(
-                                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv3_rec_infer.zip")
+                        .optModelPath(Paths.get("models/ch_PP-OCRv3_rec_infer.zip"))
                         .optProgress(new ProgressBar())
                         .optTranslator(new PpWordRecognitionTranslator((new ConcurrentHashMap<String, String>())))
                         .build();

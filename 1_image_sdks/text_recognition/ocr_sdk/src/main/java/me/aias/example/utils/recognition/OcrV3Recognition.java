@@ -26,6 +26,8 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public final class OcrV3Recognition {
 
@@ -39,8 +41,7 @@ public final class OcrV3Recognition {
                 Criteria.builder()
                         .optEngine("PaddlePaddle")
                         .setTypes(Image.class, String.class)
-                        .optModelUrls(
-                                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv3_rec_infer.zip")
+                        .optModelPath(Paths.get("models/ch_PP-OCRv3_rec_infer.zip"))
                         .optProgress(new ProgressBar())
                         .optTranslator(new PpWordRecognitionTranslator((new ConcurrentHashMap<String, String>())))
                         .build();

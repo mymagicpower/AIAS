@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
@@ -40,8 +41,7 @@ public final class SuperResolution {
     Criteria<Image, Image> criteria =
         Criteria.builder()
             .setTypes(Image.class, Image.class)
-            .optModelUrls("https://aias-home.oss-cn-beijing.aliyuncs.com/models/esrgan-tf2_1.zip")
-            // .optModelUrls("/Users/calvin/Documents/build/tf_models/esrgan-tf2_1")
+            .optModelPath(Paths.get("models/esrgan-tf2_1.zip"))
             .optOption("Tags", "serve")
             .optEngine("TensorFlow") // Use TensorFlow engine
             .optOption("SignatureDefKey", "serving_default")
@@ -60,8 +60,7 @@ public final class SuperResolution {
     Criteria<Image, Image> criteria =
         Criteria.builder()
             .setTypes(Image.class, Image.class)
-            .optModelUrls("https://aias-home.oss-cn-beijing.aliyuncs.com/models/esrgan-tf2_1.zip")
-            // .optModelUrls("/Users/calvin/Documents/build/tf_models/esrgan-tf2_1")
+            .optModelPath(Paths.get("models/esrgan-tf2_1.zip"))
             .optOption("Tags", "serve")
             .optEngine("TensorFlow") // Use TensorFlow engine
             .optOption("SignatureDefKey", "serving_default")

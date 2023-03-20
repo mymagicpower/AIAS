@@ -10,6 +10,8 @@ import ai.djl.repository.zoo.ZooModel;
 import ai.djl.training.util.ProgressBar;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * @author Calvin
@@ -35,7 +37,7 @@ public final class FaceDetectionModel {
                 Criteria.builder()
                         .optEngine("PaddlePaddle")
                         .setTypes(Image.class, DetectedObjects.class)
-                        .optModelUrls(modelUrl)
+                        .optModelPath(Paths.get(modelUrl))
                         .optTranslator(new FaceDetectionTranslator(shrink, threshold))
                         .optProgress(new ProgressBar())
                         .build();

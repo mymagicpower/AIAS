@@ -61,7 +61,7 @@ public final class FeatureExtraction {
                 Criteria.builder()
                         .setTypes(Image.class, Classifications.class)
                         .optTranslator(oldTranslator)
-                        .optModelUrls("https://aias-home.oss-cn-beijing.aliyuncs.com/models/resnet50_v2.zip")
+                        .optModelPath(Paths.get("models/resnet50_v2.zip"))
                         .optProgress(new ProgressBar())
                         .optEngine("MXNet") // Use MXNet engine
                         .optModelName("resnet50_v2");
@@ -76,7 +76,7 @@ public final class FeatureExtraction {
         Criteria.Builder<Image, float[]> builder =
                 Criteria.builder()
                         .setTypes(Image.class, float[].class)
-                        .optModelUrls(newModelPath)
+                        .optModelPath(Paths.get(newModelPath))
                         .optBlock(block)
                         .optTranslator(new FeatureExtraction.FeatureTranslator())
                         .optProgress(new ProgressBar())

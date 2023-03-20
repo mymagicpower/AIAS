@@ -1,7 +1,10 @@
 ## 目录：
 http://aias.top/
 
-## 音频搜索 - 声纹搜索
+### 下载模型，放置于models目录
+- 链接: https://pan.baidu.com/s/1c6Xrmf8nGbtM0ZilD-OeYQ?pwd=yett
+
+### 音频搜索 - 声纹搜索
 
 ### 声纹识别
 所谓声纹(Voiceprint)，是用电声学仪器显示的携带言语信息的声波频谱。人类语言的产生是人体语言中枢与发音器官之间一个复杂的生理物理过程，

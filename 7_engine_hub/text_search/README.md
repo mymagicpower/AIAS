@@ -1,8 +1,10 @@
 ## 目录：
 http://aias.top/
 
+### 下载模型，放置于models目录
+- 链接: https://pan.baidu.com/s/19qP_WsjAAgTR1cVRBp6_NA?pwd=8bjf
 
-## 文本搜索
+### 文本搜索
 本例子提供了文本搜索，支持上传csv文件，使用句向量模型提取特征，并基于milvus向量引擎进行后续检索。
 
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/text_search/arc.png)

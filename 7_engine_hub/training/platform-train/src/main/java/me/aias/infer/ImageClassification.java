@@ -54,7 +54,7 @@ public final class ImageClassification {
                 Criteria.builder()
                         .setTypes(Image.class, Classifications.class)
                         .optTranslator(oldTranslator)
-                        .optModelUrls("https://aias-home.oss-cn-beijing.aliyuncs.com/models/resnet50_v2.zip")
+                        .optModelPath(Paths.get("models/resnet50_v2.zip"))
                         .optProgress(new ProgressBar())
                         .optEngine("MXNet") // Use MXNet engine
                         .optModelName("resnet50_v2");

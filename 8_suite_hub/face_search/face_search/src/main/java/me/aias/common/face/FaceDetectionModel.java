@@ -11,6 +11,8 @@ import ai.djl.repository.zoo.ZooModel;
 import ai.djl.training.util.ProgressBar;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * @author Calvin
@@ -31,7 +33,7 @@ public final class FaceDetectionModel {
         this.model.close();
     }
 
-    private Criteria<Image, DetectedObjects> detectCriteria(String layoutUri, int topK, double confThresh, double nmsThresh) {
+    private Criteria<Image, DetectedObjects> detectCriteria(String modelUri, int topK, double confThresh, double nmsThresh) {
         double[] variance = {0.1f, 0.2f};
 
         int[][] scales = {{10, 16, 24}, {32, 48}, {64, 96}, {128, 192, 256}};
@@ -43,7 +45,7 @@ public final class FaceDetectionModel {
         Criteria<Image, DetectedObjects> criteria =
                 Criteria.builder()
                         .setTypes(Image.class, DetectedObjects.class)
-                        .optModelUrls(layoutUri)
+                        .optModelPath(Paths.get(modelUri))
                         .optTranslator(translator)
                         .optEngine("PyTorch") // Use PyTorch engine
                         .optDevice(Device.cpu())

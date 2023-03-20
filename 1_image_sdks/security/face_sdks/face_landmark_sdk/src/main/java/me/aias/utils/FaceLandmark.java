@@ -13,6 +13,8 @@ import ai.djl.translate.Translator;
 import ai.djl.translate.TranslatorContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public final class FaceLandmark {
 
@@ -25,8 +27,7 @@ public final class FaceLandmark {
         Criteria.builder()
             .optEngine("PaddlePaddle")
             .setTypes(Image.class, float[][].class)
-            .optModelUrls("https://aias-home.oss-cn-beijing.aliyuncs.com/models/face_landmark.zip")
-            //            .optModelUrls("/Users/calvin/model/face_landmark/face_landmark/")
+            .optModelPath(Paths.get("models/face_landmark.zip"))
             .optModelName("inference")
             .optProgress(new ProgressBar())
             .optTranslator(new FaceLandmarkTranslator())

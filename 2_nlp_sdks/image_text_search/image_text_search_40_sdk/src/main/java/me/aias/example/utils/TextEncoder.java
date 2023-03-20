@@ -3,6 +3,8 @@ package me.aias.example.utils;
 import ai.djl.Device;
 import ai.djl.repository.zoo.Criteria;
 import ai.djl.training.util.ProgressBar;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public final class TextEncoder {
 
@@ -13,9 +15,7 @@ public final class TextEncoder {
     Criteria<String, float[]> criteria =
         Criteria.builder()
             .setTypes(String.class, float[].class)
-            .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/clip_series/M-BERT-Base-ViT-B.zip")
-            // .optModelUrls("/Users/calvin/M-BERT-Base-ViT-B/")
+            .optModelPath(Paths.get("models/M-BERT-Base-ViT-B.zip"))
             .optTranslator(new TextTranslator(isChinese))
             .optEngine("PyTorch") // Use PyTorch engine
             .optDevice(Device.cpu())

@@ -3,6 +3,8 @@ package me.aias.util;
 import ai.djl.modality.cv.Image;
 import ai.djl.repository.zoo.Criteria;
 import ai.djl.training.util.ProgressBar;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public final class FaceFeature {
 
@@ -14,8 +16,7 @@ public final class FaceFeature {
                 Criteria.builder()
                         .optEngine("PaddlePaddle")
                         .setTypes(Image.class, float[].class)
-                        .optModelUrls("https://aias-home.oss-cn-beijing.aliyuncs.com/models/sec_models/MobileFace.zip")
-//                    .optModelUrls("/Users/calvin/Downloads/models/arcface_iresnet50_v1.0_infer/")
+                        .optModelPath(Paths.get("models/MobileFace.zip"))
                         .optModelName("inference")
                         .optTranslator(new FaceFeatureTranslator())
                         .optProgress(new ProgressBar())

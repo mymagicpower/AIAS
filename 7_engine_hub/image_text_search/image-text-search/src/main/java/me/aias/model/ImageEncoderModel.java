@@ -10,6 +10,8 @@ import ai.djl.repository.zoo.ZooModel;
 import ai.djl.training.util.ProgressBar;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * 图片特征提取模型
@@ -36,8 +38,7 @@ public final class ImageEncoderModel {
         Criteria<Image, float[]> criteria =
                 Criteria.builder()
                         .setTypes(Image.class, float[].class)
-                        .optModelUrls(modelUri)
-                        //.optModelUrls("/Users/calvin/CLIP-ViT-B-32-IMAGE/CLIP-ViT-B-32-IMAGE.zip")
+                        .optModelPath(Paths.get(modelUri))
                         .optTranslator(new ImageTranslator())
                         .optEngine("PyTorch") // Use PyTorch engine
                         .optDevice(Device.cpu())

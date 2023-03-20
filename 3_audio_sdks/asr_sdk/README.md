@@ -2,6 +2,9 @@
 [官网链接](http://www.aias.top/)
 
 
+### 下载模型，放置于models目录
+- 链接: https://pan.baidu.com/s/1HFpOECcBYbrQ1A9k_mqszQ?pwd=59e5
+
 ### 语音识别（ASR）【短语音】
 语音识别（Automatic Speech Recognition）是以语音为研究对象，通过语音信号处理和模式识别让机器自动识别和理解人类口述的语。
 语音识别技术就是让机器通过识别和理解过程把语音信号转变为相应的文本或命令的高技术。

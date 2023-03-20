@@ -1,6 +1,8 @@
 ### 官网：
 [官网链接](https://www.aias.top/)
 
+### 下载模型，放置于models目录
+- 链接: https://pan.baidu.com/s/1No67j8xhXlDfx676P14yQw?pwd=gtdq
 
 ### 菜品分类识别SDK
 菜品识别sdk，支持8416种菜品的分类识别。

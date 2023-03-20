@@ -36,8 +36,6 @@ public final class LargeHelmetHeadPersonDetect {
     Criteria<Image, DetectedObjects> criteria =
         Criteria.builder()
             .setTypes(Image.class, DetectedObjects.class)
-//            .optModelUrls(
-//                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/reflective_clothes.zip")
             .optModelUrls("/Users/calvin/Documents/build/pytorch_models/helmet_head_person_l/")
             .optTranslator(translator)
             .optProgress(new ProgressBar())

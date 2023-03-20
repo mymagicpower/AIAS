@@ -21,6 +21,8 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public final class FaceDetection {
 
@@ -33,10 +35,7 @@ public final class FaceDetection {
         Criteria.builder()
             .optEngine("PaddlePaddle")
             .setTypes(Image.class, DetectedObjects.class)
-            .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/face_mask/face_detection.zip")
-            // .optModelUrls("/Users/calvin/model/face_mask/pyramidbox_lite/")
-            // .optModelName("inference")
+            .optModelPath(Paths.get("models/face_detection.zip"))
             .optProgress(new ProgressBar())
             
             .optTranslator(new FaceTranslator(shrink, threshold))

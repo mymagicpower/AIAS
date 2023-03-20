@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * 安全帽检测
@@ -38,8 +40,7 @@ public final class SmallSafetyHelmetDetect {
     Criteria<Image, DetectedObjects> criteria =
         Criteria.builder()
             .setTypes(Image.class, DetectedObjects.class)
-            .optModelUrls("https://aias-home.oss-cn-beijing.aliyuncs.com/models/sec_models/mobilenet0.25.zip")
-            // .optModelUrls("/Users/calvin/Desktop/Download/browser/Safety-Helmet-Wearing-Dataset-master/symbol/darknet53/")
+            .optModelPath(Paths.get("models/mobilenet0.25.zip"))
             .optTranslator(translator)
             .optProgress(new ProgressBar())
             .optEngine("MXNet")

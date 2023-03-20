@@ -1,6 +1,9 @@
 ### 官网：
 [官网链接](http://www.aias.top/)
 
+### 下载模型，放置于models目录
+- 链接: https://pan.baidu.com/s/1yCzwcWED9n74kw2cDy5hSg?pwd=pfjx
+
 ### 人脸关键点SDK
 识别输入图片中的所有人脸关键点，每张人脸检测出68个关键点（人脸轮廓17个点，左右眉毛各5个点，左右眼睛各6个点，鼻子9个点，嘴巴20个点）。
 

@@ -10,6 +10,8 @@ import ai.djl.repository.zoo.ZooModel;
 import ai.djl.training.util.ProgressBar;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * @author Calvin
@@ -35,7 +37,7 @@ public final class FaceFeatureModel {
                 Criteria.builder()
                         .setTypes(Image.class, float[].class)
                         .optModelName("face_feature") // specify model file prefix
-                        .optModelUrls(layoutUri)
+                        .optModelPath(Paths.get(modelUrl))
                         .optTranslator(new FaceFeatureTranslator())
                         .optEngine("PyTorch") // Use PyTorch engine
                         .optDevice(Device.cpu())

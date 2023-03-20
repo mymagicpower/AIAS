@@ -5,6 +5,8 @@ import ai.djl.repository.zoo.Criteria;
 import ai.djl.training.util.ProgressBar;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 // https://www.paddlepaddle.org.cn/hubdetail?name=senta_lstm&en_category=SentimentAnalysis
 
@@ -19,9 +21,7 @@ public final class SentaLstm {
     Criteria<String[], float[]> criteria =
         Criteria.builder()
             .setTypes(String[].class, float[].class)
-            .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/senta_lstm.zip")
-            //            .optModelUrls("/Users/calvin/model/senta_lstm/")
+            .optModelPath(Paths.get("models/senta_lstm.zip"))
             .optTranslator(new SentaTranslator())
             .optEngine("PaddlePaddle") // Use PyTorch engine
 

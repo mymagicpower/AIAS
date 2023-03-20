@@ -1,6 +1,8 @@
 ### 官网：
 [官网链接](https://www.aias.top/)
 
+### 下载模型，放置于models目录
+- 链接: https://pan.baidu.com/s/12EhV1_2bicchioVMskHH_Q?pwd=frac
 
 ### 人脸检测SDK
 

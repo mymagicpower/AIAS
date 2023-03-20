@@ -5,6 +5,8 @@ import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.output.DetectedObjects;
 import ai.djl.repository.zoo.Criteria;
 import ai.djl.training.util.ProgressBar;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public final class RetinaFaceDetection {
 
@@ -20,9 +22,7 @@ public final class RetinaFaceDetection {
     Criteria<Image, DetectedObjects> criteria =
         Criteria.builder()
             .setTypes(Image.class, DetectedObjects.class)
-            .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/face/retinaface.zip")
-            // Load model from local file, e.g:
+            .optModelPath(Paths.get("models/retinaface.zip"))
             .optModelName("retinaface") // specify model file prefix
             .optTranslator(translator)
             .optProgress(new ProgressBar())

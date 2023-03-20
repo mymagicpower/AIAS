@@ -28,6 +28,8 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * An example of inference using a face detection model.
@@ -69,7 +71,7 @@ public final class LightFaceDetection {
         Criteria<Image, DetectedObjects> criteria =
                 Criteria.builder()
                         .setTypes(Image.class, DetectedObjects.class)
-                        .optModelUrls("https://resources.djl.ai/test-models/pytorch/ultranet.zip")
+                        .optModelPath(Paths.get("models/ultranet.zip"))
                         .optTranslator(translator)
                         .optProgress(new ProgressBar())
                         .optEngine("PyTorch") // Use PyTorch engine

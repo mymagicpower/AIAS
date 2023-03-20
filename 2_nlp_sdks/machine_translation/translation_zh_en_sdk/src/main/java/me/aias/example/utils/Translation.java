@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.net.MalformedURLException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 // https://www.paddlepaddle.org.cn/hubdetail?name=transformer_zh-en&en_category=MachineTranslation
 
@@ -21,11 +23,7 @@ public final class Translation {
     Criteria<String[], String[]> criteria =
         Criteria.builder()
             .setTypes(String[].class, String[].class)
-            .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/translation/translation_zh_en.zip")
-            //            .optModelUrls("/Users/calvin/model/transformer/")
-            //            .optModelPath(
-            //                Paths.get("/Users/calvin/model/transformer/transformer.zip"))
+            .optModelPath(Paths.get("models/translation_zh_en.zip"))
             .optTranslator(new TranslationTranslator())
             .optEngine("PaddlePaddle") // Use PyTorch engine
             .optModelName("inference")

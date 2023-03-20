@@ -136,7 +136,7 @@ public final class TableDetectionModel {
                 Criteria.builder()
                         .optEngine("PaddlePaddle")
                         .setTypes(Image.class, TableResult.class)
-                        .optModelUrls(tableUri)
+                        .optModelPath(Paths.get(tableUri))
                         // .optDevice(Device.cpu())
                         .optOption("removePass", "repeated_fc_relu_fuse_pass")
                         .optTranslator(new TableStructTranslator(new ConcurrentHashMap<String, String>()))

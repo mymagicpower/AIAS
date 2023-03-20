@@ -55,9 +55,7 @@ public final class PersonDetection {
         Criteria.builder()
             .optEngine("MXNet")
             .setTypes(Image.class, DetectedObjects.class)
-            .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ssd_512_resnet50_v1_voc.zip")
-            // .optModelUrls("/Users/calvin/Documents/build/mxnet_models/ssd_512_resnet50_v1_voc/")
+            .optModelPath(Paths.get("models/ssd_512_resnet50_v1_voc.zip"))
             .optTranslator(translator)
             .optProgress(new ProgressBar())
             .build();

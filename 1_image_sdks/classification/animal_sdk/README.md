@@ -1,6 +1,9 @@
 ### 官网：
 [官网链接](https://www.aias.top/)
 
+### 下载模型，放置于models目录
+- 链接: https://pan.baidu.com/s/1LLwbo3Wvu96c1lID4drgoQ?pwd=41mj
+
 ### 动物分类识别SDK
 动物识别sdk，支持7978种动物的分类识别。
 

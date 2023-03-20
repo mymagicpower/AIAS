@@ -127,7 +127,7 @@ public final class TrainResNet50V2 {
                 Criteria.builder()
                         .setTypes(Image.class, Classifications.class)
                         .optTranslator(translator)
-                        .optModelUrls("https://aias-home.oss-cn-beijing.aliyuncs.com/models/resnet50_v2.zip")
+                        .optModelPath(Paths.get("models/resnet50_v2.zip"))
                         .optProgress(new ProgressBar())
                         .optModelName("resnet50_v2");
         // load the model

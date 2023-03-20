@@ -19,6 +19,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public final class FaceMaskDetect {
 
@@ -63,8 +65,7 @@ public final class FaceMaskDetect {
                             new float[] {0.5f, 0.5f, 0.5f}, new float[] {1.0f, 1.0f, 1.0f}))
                     .addTransform(nd -> nd.flip(0)) // RGB -> GBR
                     .build())
-            .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/face_mask/face_mask.zip")
+            .optModelPath(Paths.get("models/face_mask.zip"))
             .optProgress(new ProgressBar())
             .build();
 

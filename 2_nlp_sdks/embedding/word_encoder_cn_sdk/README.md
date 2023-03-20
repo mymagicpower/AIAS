@@ -1,6 +1,11 @@
 ### 官网：
 [官网链接](http://www.aias.top/)
 
+
+### 下载相应的模型特征数据
+- 链接: https://pan.baidu.com/s/1DOzp8AJ7Rjpf8C8i6alEaA?pwd=y6z3
+  添加到 src/test/resources/ 路径下。
+
 ### 词向量SDK【中文】
 词向量/词嵌入（Word embedding）是自然语言处理（NLP）中语言模型与表征学习技术的统称。
 概念上而言，它是指把一个维数为所有词的数量的高维空间嵌入到一个维数低得多的连续向量空间中，
@@ -145,47 +150,6 @@
 [INFO ] - 内积: 9.433272
 ```
 
-### 帮助
--  添加依赖库：lib/aias-word-encoder-cn-lib-0.1.0.jar
-
-### 下载相应的模型特征数据
-添加到 src/test/resources/ 路径下。     
-
--  WordEncoderExample1      
-[w2v_wiki_vocab](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_wiki_vocab.txt) 
-[w2v_wiki_dim300](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_wiki_dim300.npy) 
-
--  WordEncoderExample2      
-[w2v_weibo_vocab](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_weibo_vocab.txt) 
-[w2v_weibo_dim300](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_weibo_dim300.npy) 
-
--  WordEncoderExample3    
-[w2v_financial_dim300_vocab](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_financial_dim300_vocab.txt) 
-[w2v_financial_dim300](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_financial_dim300.npy) 
-
--  WordEncoderExample4     
-[w2v_sikuquanshu_dim300_vocab](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_sikuquanshu_dim300_vocab.txt) 
-[w2v_sikuquanshu_dim300](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_sikuquanshu_dim300.npy) 
-
--  WordEncoderExample5    
-[w2v_literature_dim300_vocab](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_literature_dim300_vocab.txt) 
-[w2v_literature_dim300](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_literature_dim300.npy) 
-
--  WordEncoderExample6    
-[w2v_people_daily_dim300_vocab](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_people_daily_dim300_vocab.txt) 
-[w2v_people_daily_dim300](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_people_daily_dim300.npy) 
-
--  WordEncoderExample7    
-[w2v_sogou_dim300_vocab](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_sogou_dim300_vocab.txt) 
-[w2v_sogou_dim300](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_sogou_dim300.npy) 
-
--  WordEncoderExample8     
-[w2v_baidu_encyclopedia_dim300_vocab](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_baidu_encyclopedia_dim300_vocab.txt) 
-[w2v_baidu_encyclopedia_dim300](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_baidu_encyclopedia_dim300.npy) 
-
--  WordEncoderExample9     
-[w2v_zhihu_dim300_vocab](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_zhihu_dim300_vocab.txt) 
-[w2v_zhihu_dim300](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/embedding_cn/w2v_zhihu_dim300.npy) 
 
 
 ### 开源算法

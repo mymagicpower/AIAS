@@ -1,6 +1,8 @@
 ### 官网：
 [官网链接](http://www.aias.top/)
 
+### 下载模型，放置于models目录
+- 链接: https://pan.baidu.com/s/1dbWkbO0N5jsk-sruJo7XJQ?pwd=s1qv
 
 ### 智慧工地检测SDK
 支持检测的类别：

@@ -1,7 +1,8 @@
 ### 官网：
 [官网链接](http://www.aias.top/)
 
-
+### 下载模型，放置于models目录
+- 链接: https://pan.baidu.com/s/1621hcP3h8fX6boKCS1sZrA?pwd=3jmx
 
 ### 文本 - 情感分析SDK [中文]
 情感倾向分析（Sentiment Classification，简称Senta）针对带有主观描述的中文文本，

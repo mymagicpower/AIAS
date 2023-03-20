@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /** https://github.com/gengyanlei/reflective-clothes-detect-yolov5/blob/master/README_ZN.md */
 public final class ReflectiveVest {
@@ -36,9 +38,7 @@ public final class ReflectiveVest {
     Criteria<Image, DetectedObjects> criteria =
         Criteria.builder()
             .setTypes(Image.class, DetectedObjects.class)
-            .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/reflective_clothes.zip")
-            // .optModelUrls("/Users/calvin/Documents/build/pytorch_models/reflective_clothes/")
+            .optModelPath(Paths.get("models/reflective_clothes.zip"))
             .optTranslator(translator)
             .optProgress(new ProgressBar())
             .optEngine("PyTorch")

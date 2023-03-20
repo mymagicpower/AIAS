@@ -5,6 +5,8 @@ import ai.djl.ndarray.NDArray;
 import ai.djl.ndarray.NDList;
 import ai.djl.repository.zoo.Criteria;
 import ai.djl.training.util.ProgressBar;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Tacotron2Encoder {
   public Tacotron2Encoder() {}
@@ -13,7 +15,7 @@ public class Tacotron2Encoder {
     Criteria<NDList, NDArray> criteria =
             Criteria.builder()
                     .setTypes(NDList.class, NDArray.class)
-                    .optModelUrls("https://aias-home.oss-cn-beijing.aliyuncs.com/models/speech_models/tacotron2.zip")
+                    .optModelPath(Paths.get("models/tacotron2.zip"))
                     .optTranslator(new TacotronTranslator())
                     .optEngine("PyTorch") // Use PyTorch engine
                     .optDevice(Device.cpu())

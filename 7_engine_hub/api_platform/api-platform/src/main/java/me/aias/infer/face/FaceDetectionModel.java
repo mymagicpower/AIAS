@@ -13,6 +13,8 @@ import ai.djl.training.util.ProgressBar;
 import ai.djl.translate.TranslateException;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * @author Calvin
@@ -49,7 +51,7 @@ public final class FaceDetectionModel {
         Criteria<Image, DetectedObjects> criteria =
                 Criteria.builder()
                         .setTypes(Image.class, DetectedObjects.class)
-                        .optModelUrls(layoutUri)
+                        .optModelPath(Paths.get(layoutUri))
                         .optTranslator(translator)
                         .optEngine("PyTorch") // Use PyTorch engine
                         .optDevice(Device.cpu())

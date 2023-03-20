@@ -9,6 +9,8 @@ import ai.djl.repository.zoo.ZooModel;
 import ai.djl.training.util.ProgressBar;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * 文本特征提取模型
@@ -35,8 +37,7 @@ public final class TextEncoderModel {
         Criteria<String, float[]> criteria =
                 Criteria.builder()
                         .setTypes(String.class, float[].class)
-                        .optModelUrls(modelUri)
-                        // .optModelUrls("/Users/calvin/M-BERT-Base-ViT-B/M-BERT-Base-ViT-B.zip") // Load model from local disk
+                        .optModelPath(Paths.get(modelUri))
                         .optTranslator(new TextTranslator(isChinese))
                         .optEngine("PyTorch") // Use PyTorch engine
                         .optDevice(Device.cpu())

@@ -2,6 +2,8 @@
 [官网链接](http://www.aias.top/)
 
 
+### 下载模型，放置于models目录
+- 链接: https://pan.baidu.com/s/1kn16xviQPDYFhwbmERlwYQ?pwd=6g47
 
 #### 模型生成文本基于目标音色的梅尔频谱图
 声音克隆是指使用特定的音色，结合文字的读音合成音频，使得合成后的音频具有目标说话人的特征，从而达到克隆的目的。

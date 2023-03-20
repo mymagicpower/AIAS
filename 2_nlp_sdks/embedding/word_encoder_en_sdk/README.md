@@ -1,6 +1,8 @@
 ### 官网：
 [官网链接](http://www.aias.top/)
 
+### 下载对应模型特征数据，添加到 src/test/resources/ 路径下
+- 链接: https://pan.baidu.com/s/1vg_elLHW4vm79dnJ3U5XcA?pwd=yyju
 
 ### 词向量SDK【英文】
 词向量/词嵌入（Word embedding）是自然语言处理（NLP）中语言模型与表征学习技术的统称。
@@ -84,25 +86,6 @@
 [INFO ] - 余弦相似度: 0.6482242
 [INFO ] - 内积: 20.837606
 ```
-
-#### 帮助 
--  添加依赖库：lib/aias-word-encoder-en-lib-0.1.0.jar
--  下载对应模型特征数据，添加到 src/test/resources/ 路径下：
--  WordEncoderExample1~3:
--  [glove_wiki2014_gigaword_vocab](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/glove_wiki2014_gigaword_vocab.txt) 
--  WordEncoderExample1:
--  [glove_wiki2014_gigaword_dim50](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/glove_wiki2014_gigaword_dim50.npy)
--  WordEncoderExample2:
--  [glove_wiki2014_gigaword_dim100](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/glove_wiki2014_gigaword_dim100.npy)  
--  WordEncoderExample3:
--  [glove_wiki2014_gigaword_dim300](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/glove_wiki2014_gigaword_dim300.npy)  
-
--  WordEncoderExample4~5:
--  [glove_twitter_vocab](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/glove_twitter_vocab.txt)  
--  WordEncoderExample4:
--  [glove_twitter_dim50](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/glove_twitter_dim50.npy)  
--  WordEncoderExample5:
--  [glove_twitter_dim100](https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/glove_twitter_dim100.npy)  
 
 
 

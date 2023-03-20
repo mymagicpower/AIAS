@@ -1,6 +1,8 @@
 ### 官网：
 [官网链接](http://www.aias.top/)
 
+### 下载模型，放置于models目录
+- 链接: https://pan.baidu.com/s/1EcT7QH_yoqIQDqdO0Hiv5A?pwd=1e1k
 
 ### 句向量SDK【支持100种语言】
 句向量是指将语句映射至固定维度的实数向量。

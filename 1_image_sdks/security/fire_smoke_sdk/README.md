@@ -1,6 +1,8 @@
 ### 官网：
 [官网链接](http://www.aias.top/)
 
+### 下载模型，放置于models目录
+- 链接: https://pan.baidu.com/s/1LnKnwM2TcEi8SpP-cHbA9g?pwd=yu4g
 
 ### 烟火检测SDK
 支持烟雾-火灾2类检测.

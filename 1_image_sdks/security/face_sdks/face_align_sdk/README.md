@@ -1,6 +1,8 @@
 ### 官网：
 [官网链接](https://www.aias.top/)
 
+### 下载模型，放置于models目录
+- 链接: https://pan.baidu.com/s/1RMuZ0ULwrbrKc75R0ccGCg?pwd=a5hw
 
 ### 人脸对齐 SDK
 本文给出了人脸对齐的参考实现。

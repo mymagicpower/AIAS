@@ -13,6 +13,8 @@ import ai.djl.translate.Translator;
 import ai.djl.translate.TranslatorContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 // https://gitee.com/mymagicpower/PaddlePaddle-CrowdNet
 
@@ -27,11 +29,8 @@ public final class CrowdDetect {
     Criteria<Image, NDList> criteria =
         Criteria.builder()
             .setTypes(Image.class, NDList.class)
-            .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/sec_models/crowdnet.zip")
-            //            .optModelUrls("/Users/calvin/aias_projects/PaddlePaddle-CrowdNet/infer/")
+            .optModelPath(Paths.get("models/crowdnet.zip"))
             .optEngine("PaddlePaddle")
-            //            .optModelName("inference")
             .optTranslator(new CrowdTranslator())
             .optProgress(new ProgressBar())
             .build();

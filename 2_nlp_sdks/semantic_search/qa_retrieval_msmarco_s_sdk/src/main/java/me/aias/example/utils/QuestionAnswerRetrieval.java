@@ -5,6 +5,8 @@ import ai.djl.repository.zoo.Criteria;
 import ai.djl.training.util.ProgressBar;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public final class QuestionAnswerRetrieval {
 
@@ -17,9 +19,7 @@ public final class QuestionAnswerRetrieval {
     Criteria<String, float[]> criteria =
         Criteria.builder()
             .setTypes(String.class, float[].class)
-            .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/sentence_transformers/msmarco-distilbert-base-v4.zip")
-            //            .optModelUrls("/Users/calvin/msmarco-MiniLM-L-6-v3/")
+            .optModelPath(Paths.get("models/msmarco-distilbert-base-v4.zip"))
             .optTranslator(new SentenceTransTranslator())
             .optEngine("PyTorch") // Use PyTorch engine
             .optDevice(Device.cpu())

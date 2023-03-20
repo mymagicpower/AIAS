@@ -6,6 +6,8 @@ import ai.djl.repository.zoo.Criteria;
 import ai.djl.training.util.ProgressBar;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public final class LayoutDetection {
 
@@ -19,10 +21,7 @@ public final class LayoutDetection {
         Criteria.builder()
             .optEngine("PaddlePaddle")
             .setTypes(Image.class, DetectedObjects.class)
-            .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ppyolov2_r50vd_dcn_365e_publaynet_infer.zip")
-            //            .optModelUrls(
-            // "/Users/calvin/.paddledet/inference_model/ppyolov2_r50vd_dcn_365e_publaynet/ppyolov2_r50vd_dcn_365e_publaynet_infer")
+            .optModelPath(Paths.get("models/ppyolov2_r50vd_dcn_365e_publaynet_infer.zip"))
             .optTranslator(new LayoutDetectionTranslator())
             .optProgress(new ProgressBar())
             .build();

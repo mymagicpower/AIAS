@@ -1,6 +1,9 @@
 ### 官网：
 [官网链接](http://www.aias.top/)
 
+### 下载模型，放置于models目录
+- 链接: https://pan.baidu.com/s/19dALs1IotozuTozKDmiDTQ?pwd=e53q
+
 
 ### 人脸检测(含5个人脸关键点)SDK
 

@@ -1,7 +1,8 @@
 ### 官网：
 [官网链接](http://www.aias.top/)
 
-
+### 下载模型，放置于models目录
+- 链接: https://pan.baidu.com/s/16aCpE_wM_9gr4-S4VbAKCg?pwd=eyvy
 
 ### 语义搜索 - 重排序(Re-Rank) SDK【英文】
 对于复杂的搜索任务，通过使用 Retrieve & Re-Rank 的流水线可以显著提高搜索的精度。

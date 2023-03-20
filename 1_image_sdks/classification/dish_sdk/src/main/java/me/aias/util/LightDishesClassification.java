@@ -16,6 +16,8 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 // https://www.paddlepaddle.org.cn/hubdetail?name=mobilenet_v2_dishes&en_category=ImageClassification
 //
@@ -66,9 +68,7 @@ public final class LightDishesClassification {
         Criteria.builder()
             .optEngine("PaddlePaddle")
             .setTypes(Image.class, Classifications.class)
-            .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/mobilenet_dishes.zip")
-            //             .optModelUrls("/Users/calvin/model/mobilennet_dishes/")
+            .optModelPath(Paths.get("models/mobilenet_dishes.zip"))
             .optModelName("inference")
             .optTranslator(new DishTranslator())
             .optProgress(new ProgressBar())

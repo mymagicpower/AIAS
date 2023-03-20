@@ -11,6 +11,8 @@ import ai.djl.training.util.ProgressBar;
 import ai.djl.translate.TranslateException;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * 句向量提取是指将语句映射至固定维度的实数向量。
@@ -44,7 +46,7 @@ public final class SentenceEncoderModel {
         Criteria<String, float[]> criteria =
                 Criteria.builder()
                         .setTypes(String.class, float[].class)
-                        .optModelUrls(modelUri)
+                        .optModelPath(Paths.get(modelUri))
                         .optTranslator(new SentenceTransTranslator())
                         .optEngine("PyTorch") // Use PyTorch engine
                         .optDevice(Device.cpu())

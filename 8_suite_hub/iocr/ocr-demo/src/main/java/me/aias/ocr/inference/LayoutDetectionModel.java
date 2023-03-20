@@ -46,7 +46,7 @@ public final class LayoutDetectionModel {
                 Criteria.builder()
                         .optEngine("PaddlePaddle")
                         .setTypes(Image.class, DetectedObjects.class)
-                        .optModelUrls(layoutUri)
+                        .optModelPath(Paths.get(layoutUri))
                         // .optDevice(Device.cpu())
                         .optTranslator(new LayoutDetectionTranslator())
                         .optProgress(new ProgressBar())

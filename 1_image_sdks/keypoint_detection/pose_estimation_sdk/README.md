@@ -1,6 +1,8 @@
 ### 官网：
 [官网链接](http://www.aias.top/)
 
+### 下载模型，放置于models目录
+- 链接: https://pan.baidu.com/s/1QlEPthADjv73NRSGtQviKw?pwd=zpbm
 
 ### 人体关键点SDK
 检测图片中所有的行人，并识别每个人的肢体关键点。

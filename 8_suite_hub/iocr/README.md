@@ -1,6 +1,9 @@
 ## 目录：
 https://www.aias.top/
 
+### 下载模型，放置于models目录
+- 链接: https://pan.baidu.com/s/10C7HOSeShuYFpj-1H8a0eQ?pwd=958m
+
 ## OCR 自定义模板识别(支持表格识别)
 
 文字识别（OCR）目前在多个行业中得到了广泛应用，比如金融行业的单据识别输入，餐饮行业中的发票识别，

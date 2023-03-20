@@ -14,6 +14,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public final class TableDetection {
 
@@ -27,10 +29,7 @@ public final class TableDetection {
         Criteria.builder()
             .optEngine("PaddlePaddle")
             .setTypes(Image.class, TableResult.class)
-            .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/en_table.zip")
-            //            .optModelUrls(
-            // "/Users/calvin/Documents/build/paddle_models/ppocr/en_ppocr_mobile_v2.0_table_structure_infer")
+            .optModelPath(Paths.get("models/en_table.zip"))
             .optOption("removePass", "repeated_fc_relu_fuse_pass")
             .optTranslator(new TableStructTranslator(new ConcurrentHashMap<String, String>()))
             .optProgress(new ProgressBar())

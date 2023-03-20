@@ -6,6 +6,8 @@ import ai.djl.training.util.ProgressBar;
 
 import java.util.List;
 import java.util.Map;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class FirstOrder {
 
@@ -18,9 +20,7 @@ public class FirstOrder {
             .optTranslator(new NPtKTranslator())
             .optEngine("PyTorch")
             .optProgress(new ProgressBar())
-            .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/gan_models/kpdetector.zip")
-            // .optModelPath(Paths.get("/Users/calvin/Documents/build/pytorch_models/AI_MODEL/kpdetector"))
+            .optModelPath(Paths.get("models/kpdetector.zip"))
             .build();
     return kpDetector;
   }
@@ -32,9 +32,7 @@ public class FirstOrder {
             .optEngine("PyTorch")
             .optTranslator(new PtGTranslator())
             .optProgress(new ProgressBar())
-            .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/gan_models/generator.zip")
-            // .optModelPath(Paths.get("/Users/calvin/Documents/build/pytorch_models/AI_MODEL/generator"))
+            .optModelPath(Paths.get("models/generator.zip"))
             .build();
     return generator;
   }

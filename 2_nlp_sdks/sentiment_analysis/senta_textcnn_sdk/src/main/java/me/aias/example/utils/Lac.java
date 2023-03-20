@@ -5,6 +5,8 @@ import ai.djl.repository.zoo.Criteria;
 import ai.djl.training.util.ProgressBar;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 // https://www.paddlepaddle.org.cn/hubdetail?name=lac&en_category=LexicalAnalysis
 public final class Lac {
@@ -17,9 +19,7 @@ public final class Lac {
     Criteria<String, String[][]> criteria =
         Criteria.builder()
             .setTypes(String.class, String[][].class)
-            .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/lac.zip")
-            //            .optModelUrls("/Users/calvin/model/lac/")
+            .optModelPath(Paths.get("models/lac.zip"))
             .optTranslator(new LacTranslator())
             .optProgress(new ProgressBar())
             .optEngine("PaddlePaddle") // Use PaddlePaddle engine

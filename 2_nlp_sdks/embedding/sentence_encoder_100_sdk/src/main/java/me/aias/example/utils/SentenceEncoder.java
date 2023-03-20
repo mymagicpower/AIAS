@@ -5,6 +5,8 @@ import ai.djl.repository.zoo.Criteria;
 import ai.djl.training.util.ProgressBar;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public final class SentenceEncoder {
 
@@ -17,9 +19,7 @@ public final class SentenceEncoder {
     Criteria<String, float[]> criteria =
         Criteria.builder()
             .setTypes(String.class, float[].class)
-            .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/sentence_transformers/paraphrase-xlm-r-multilingual-v1.zip")
-            //            .optModelUrls("/Users/calvin/models/paraphrase-xlm-r-multilingual-v1/")
+            .optModelPath(Paths.get("models/paraphrase-xlm-r-multilingual-v1.zip"))
             .optTranslator(new SentenceTransTranslator(processor))
             .optEngine("PyTorch") // Use PyTorch engine
             .optDevice(Device.cpu())

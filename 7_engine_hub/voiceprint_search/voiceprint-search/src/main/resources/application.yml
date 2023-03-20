@@ -29,7 +29,7 @@ file:
 # Voice 
 audio:
   # 特征提取模型
-  feature: https://aias-home.oss-cn-beijing.aliyuncs.com/models/speech_models/voiceprint.zip
+  feature: models/voiceprint.zip
   #  path: /Users/calvin/Documents/audio_root/ #文件存放文件夹
   baseUrl: http://127.0.0.1:8089/files/
   

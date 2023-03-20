@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /** https://gitee.com/mymagicpower/Smart_Construction */
 public final class Yolov5sDetect {
@@ -36,9 +38,7 @@ public final class Yolov5sDetect {
     Criteria<Image, DetectedObjects> criteria =
         Criteria.builder()
             .setTypes(Image.class, DetectedObjects.class)
-            .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/sec_models/helmet_head_person_s.zip")
-            // .optModelUrls("/Users/calvin/Documents/build/pytorch_models/helmet_head_person_s/")
+            .optModelPath(Paths.get("models/helmet_head_person_s.zip"))
             .optTranslator(translator)
             .optProgress(new ProgressBar())
             .optEngine("PyTorch")

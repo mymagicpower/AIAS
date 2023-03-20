@@ -1,8 +1,10 @@
-## 目录：
+### 目录：
 http://aias.top/
 
+### 下载模型，放置于models目录
+- 链接: https://pan.baidu.com/s/1yHfmJV45mvqXY1d0qo-zUw?pwd=aiu8
 
-## 视频搜索
+### 视频搜索
 本例子提供了人像搜索，使用了人脸检测算法，人脸特征提取算法。
 
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/video_search/arc.png)

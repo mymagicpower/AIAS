@@ -1,4 +1,8 @@
-## flink-句向量提取【支持15种语言】SDK
+
+### 下载模型，放置于models目录
+- 链接: https://pan.baidu.com/s/12M7yGQJbKFh_gTHbMRYipQ?pwd=vnrs
+
+### flink-句向量提取【支持15种语言】SDK
 句向量是指将语句映射至固定维度的实数向量。
 将不定长的句子用定长的向量表示，为NLP下游任务提供服务。
 支持 15 种语言： 

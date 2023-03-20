@@ -51,9 +51,7 @@ public final class PoseResnet50Estimation {
         Criteria.builder()
             .optEngine("MXNet")
             .setTypes(Image.class, Joints.class)
-            .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/simple_pose_resnet50_v1b.zip")
-            // .optModelUrls("/Users/calvin/Documents/build/mxnet_models/simple_pose_resnet50_v1b/")
+            .optModelPath(Paths.get("models/simple_pose_resnet50_v1b.zip"))
             .optTranslator(translator)
             .optProgress(new ProgressBar())
             .build();

@@ -1,6 +1,8 @@
 ### 官网：
 [官网链接](http://www.aias.top/)
 
+### 下载模型，放置于models目录
+- 链接: https://pan.baidu.com/s/1CV7mWcLOhcCJG4n1nf5apA?pwd=v182
 
 ### 安全帽检测SDK
 安全帽检测。

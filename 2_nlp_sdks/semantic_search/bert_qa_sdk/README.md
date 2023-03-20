@@ -1,6 +1,8 @@
 ### 官网：
 [官网链接](http://www.aias.top/)
 
+### 下载模型，放置于models目录
+- 链接: https://pan.baidu.com/s/1KoIIDISDWlTtfLeOFXnr2g?pwd=zrmq
 
 ### Bert问答SDK
 基于BERT QA模型，输入一个问题及包含答案的文本段落（最大长度384），

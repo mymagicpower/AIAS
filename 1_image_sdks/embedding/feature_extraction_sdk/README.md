@@ -1,6 +1,8 @@
 ### 官网：
 [官网链接](https://www.aias.top/)
 
+### 下载模型，放置于models目录
+- 链接: https://pan.baidu.com/s/1EjrCjBOxyZc2aAptOgi8BQ?pwd=6aaw
 
 ### 特征提取(512维)SDK
 提取图片512维特征值，并支持图片1:1特征比对，给出置信度。

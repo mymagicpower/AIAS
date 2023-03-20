@@ -20,6 +20,10 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public final class OcrDirectionDetection {
 
@@ -73,11 +77,7 @@ public final class OcrDirectionDetection {
         Criteria.builder()
             .optEngine("PaddlePaddle")
             .setTypes(Image.class, DetectedObjects.class)
-            .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_PP-OCRv2_det_infer.zip")
-            //            .optModelUrls(
-            // "/Users/calvin/Documents/build/paddle_models/ppocr/ch_PP-OCRv2_det_infer")
-            // .optDevice(Device.cpu())
+            .optModelPath(Paths.get("models/ch_PP-OCRv2_det_infer.zip"))
             .optTranslator(new PpWordDetectionTranslator(new ConcurrentHashMap<String, String>()))
             .optProgress(new ProgressBar())
             .build();
@@ -91,10 +91,7 @@ public final class OcrDirectionDetection {
         Criteria.builder()
             .optEngine("PaddlePaddle")
             .setTypes(Image.class, Classifications.class)
-            .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ch_ppocr_mobile_v2.0_cls_infer.zip")
-            //            .optModelUrls(
-            // "/Users/calvin/Documents/build/paddle_models/ppocr/ch_ppocr_mobile_v2.0_cls_infer")
+            .optModelPath(Paths.get("models/ch_ppocr_mobile_v2.0_cls_infer.zip"))
             .optTranslator(new PpWordRotateTranslator())
             .optProgress(new ProgressBar())
             .build();

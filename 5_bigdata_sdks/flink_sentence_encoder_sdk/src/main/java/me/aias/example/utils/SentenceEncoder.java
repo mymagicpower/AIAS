@@ -17,9 +17,7 @@ public final class SentenceEncoder {
     Criteria<String, float[]> criteria =
         Criteria.builder()
             .setTypes(String.class, float[].class)
-            .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/sentence_transformers/distiluse-base-multilingual-cased-v1.zip")
-            // .optModelUrls("/Users/calvin/models/distiluse-base-multilingual-cased-v1/")
+            .optModelPath(Paths.get("models/distiluse-base-multilingual-cased-v1.zip"))
             .optTranslator(new SentenceTransTranslator())
             .optEngine("PyTorch") // Use PyTorch engine
             .optDevice(Device.cpu())

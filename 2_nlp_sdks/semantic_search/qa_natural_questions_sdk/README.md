@@ -1,7 +1,8 @@
 ### 官网：
 [官网链接](http://www.aias.top/)
 
-
+### 下载模型，放置于models目录
+- 链接: https://pan.baidu.com/s/1NqyGxUA8-cDOTk8aCmcsuQ?pwd=qsvn
 
 ### 自然问题问答 SDK【英文】
 模型基于Google的Natural Questions dataset（100k Google search查询数据，

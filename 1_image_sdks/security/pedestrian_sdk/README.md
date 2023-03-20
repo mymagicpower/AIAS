@@ -1,6 +1,8 @@
 ### 官网：
 [官网链接](https://www.aias.top/)
 
+### 下载模型，放置于models目录
+- 链接: https://pan.baidu.com/s/1kPDducw29Ln_Hxv17ks86A?pwd=gq36
 
 ### 行人检测SDK
 行人检测是利用计算机视觉技术判断图像中是否存在行人并给予精确定位，一般用矩形框表示。

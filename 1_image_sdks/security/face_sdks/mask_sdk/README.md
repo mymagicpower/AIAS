@@ -1,6 +1,8 @@
 ### 官网：
 [官网链接](http://www.aias.top/)
 
+### 下载模型，放置于models目录
+- 链接: https://pan.baidu.com/s/1hM3HFi3kviMshOGKKlVCLg?pwd=p6t4
 
 ### 口罩检测SDK
 口罩检测助力抗击肺炎，人工智能技术正被应用到疫情防控中来。

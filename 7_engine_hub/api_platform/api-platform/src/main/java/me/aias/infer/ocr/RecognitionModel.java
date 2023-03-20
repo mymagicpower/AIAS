@@ -23,6 +23,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * @author Calvin
@@ -81,8 +83,7 @@ public final class RecognitionModel {
                 Criteria.builder()
                         .optEngine("PaddlePaddle")
                         .setTypes(Image.class, DetectedObjects.class)
-                        .optModelUrls(detUri)
-                        
+                        .optModelPath(Paths.get(detUri))
                         .optTranslator(new PpWordDetectionTranslator(new ConcurrentHashMap<String, String>()))
                         .optProgress(new ProgressBar())
                         .build();
@@ -95,8 +96,7 @@ public final class RecognitionModel {
                 Criteria.builder()
                         .optEngine("PaddlePaddle")
                         .setTypes(Image.class, String.class)
-                        .optModelUrls(recUri)
-                        
+                        .optModelPath(Paths.get(recUri))
                         .optProgress(new ProgressBar())
                         .optTranslator(new PpWordRecognitionTranslator())
                         .build();

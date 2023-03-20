@@ -5,6 +5,8 @@ import ai.djl.repository.zoo.Criteria;
 import ai.djl.training.util.ProgressBar;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 // https://www.paddlepaddle.org.cn/hubdetail?name=simnet_bow&en_category=SemanticModel
 
@@ -19,9 +21,7 @@ public final class SimnetBow {
     Criteria<String[][], Float> criteria =
         Criteria.builder()
             .setTypes(String[][].class, Float.class)
-            .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/semantic/simnet_bow.zip")
-            //            .optModelUrls("/Users/calvin/model/simnet_bow/")
+            .optModelPath(Paths.get("models/simnet_bow.zip"))
             .optTranslator(new SimnetBowTranslator())
             .optEngine("PaddlePaddle") // Use PyTorch engine
             .optProgress(new ProgressBar())

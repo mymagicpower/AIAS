@@ -26,7 +26,7 @@ file:
 #Sentence
 nlp:
   # 特征提取模型
-  feature: https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/sentence_transformers/distiluse-base-multilingual-cased-v1.zip
+  feature: models/distiluse-base-multilingual-cased-v1.zip
 
 # Vector Engine - Milvus
 search:

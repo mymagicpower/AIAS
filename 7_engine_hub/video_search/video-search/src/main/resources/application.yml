@@ -41,9 +41,9 @@ face:
   # 检测结果的置信度过滤阈值
   threshold: 0.7
   # 人脸检测模型
-  det: https://aias-home.oss-cn-beijing.aliyuncs.com/models/face_mask/face_detection.zip
+  det: models/face_detection.zip
   # 人脸特征提取模型
-  feature: https://aias-home.oss-cn-beijing.aliyuncs.com/models/face/face_feature.zip
+  feature: models/face_feature.zip
 
 # Vector Engine - Milvus
 search:

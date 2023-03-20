@@ -21,6 +21,8 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 // https://www.paddlepaddle.org.cn/hubdetail?name=yolov3_darknet53_pedestrian&en_category=ObjectDetection
 
@@ -37,8 +39,7 @@ public final class PedestrianDetect {
         Criteria.builder()
             .optEngine("PaddlePaddle")
             .setTypes(Image.class, DetectedObjects.class)
-            .optModelUrls("https://aias-home.oss-cn-beijing.aliyuncs.com/models/pedestrian.zip")
-            // .optModelUrls("/Users/calvin/Desktop/Download/browser/PaddleHub-release-v2.1/tests/model/pedestrian/")
+            .optModelPath(Paths.get("models/pedestrian.zip"))
             .optModelName("inference")
             .optTranslator(new PedestrianTranslator())
             .optProgress(new ProgressBar())

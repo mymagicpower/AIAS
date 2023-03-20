@@ -1,6 +1,9 @@
 ### 官网：
 [官网链接](https://www.aias.top/)
 
+### 下载模型，放置于models目录
+- 链接: https://pan.baidu.com/s/1fe273YmYsB_63vtuDaQNdA?pwd=ke3b
+
 ### 动作驱动 SDK
 ### 不得用于非法用途！
 sdk以一段动作视频去驱动一张图片运动。可以驱动任意类型的运动，如：人脸、全身运动，动画运动的驱动。

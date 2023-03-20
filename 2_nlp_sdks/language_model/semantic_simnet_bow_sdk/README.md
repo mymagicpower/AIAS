@@ -1,6 +1,8 @@
 ### 官网：
 [官网链接](http://www.aias.top/)
 
+### 下载模型，放置于models目录
+- 链接: https://pan.baidu.com/s/1isT3QSEZv2ltEOJax-rBWA?pwd=9eyh
 
 ### 文本 - 短文本相似度SDK [中文]
 计算两个句子的cosin相似度:

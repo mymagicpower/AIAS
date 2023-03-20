@@ -10,6 +10,8 @@ import ai.djl.training.util.ProgressBar;
 import ai.djl.translate.TranslateException;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * 声纹模型
@@ -36,7 +38,7 @@ public final class VoiceprintModel {
         Criteria<float[][], float[]> criteria =
                 Criteria.builder()
                         .setTypes(float[][].class, float[].class)
-                        .optModelUrls(modelUri)
+                        .optModelPath(Paths.get(modelUri))
                         .optTranslator(new VoiceprintTranslator())
                         .optEngine("PaddlePaddle") // Use PyTorch engine
                         //.optDevice(Device.cpu())

@@ -24,6 +24,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 // https://www.paddlepaddle.org.cn/hubdetail?name=yolov3_darknet53_vehicles&en_category=ObjectDetection
 
@@ -41,8 +43,7 @@ public final class VehicleDetect {
         Criteria.builder()
             .optEngine("PaddlePaddle")
             .setTypes(Image.class, DetectedObjects.class)
-            .optModelUrls("https://aias-home.oss-cn-beijing.aliyuncs.com/models/vehicle.zip")
-            // .optModelUrls("/Users/calvin/model/vehicle/")
+            .optModelPath(Paths.get("models/vehicle.zip"))
             .optModelName("inference")
             .optTranslator(new VehicleTranslator())
             .optProgress(new ProgressBar())

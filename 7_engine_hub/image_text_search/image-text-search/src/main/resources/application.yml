@@ -34,8 +34,8 @@ image:
 # Model URI
 model:
   # Embedding Model
-  textModel: https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/clip_series/M-BERT-Base-ViT-B.zip
-  imageModel: https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/clip_series/CLIP-ViT-B-32-IMAGE.zip
+  textModel: models/M-BERT-Base-ViT-B.zip
+  imageModel: models/CLIP-ViT-B-32-IMAGE.zip
   # Support 40 languages, for chinese - ture, others - false
   chinese: true
 

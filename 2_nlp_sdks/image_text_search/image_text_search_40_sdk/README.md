@@ -1,6 +1,8 @@
 ### 官网：
 [官网链接](http://www.aias.top/)
 
+### 下载模型，放置于models目录
+- 链接: https://pan.baidu.com/s/1p-K12Qa7YS9_inPkBKAz5Q?pwd=g842
 
 ### 图像&文本的跨模态相似性比对检索 SDK【支持40种语言】
 

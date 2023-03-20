@@ -18,10 +18,7 @@ public final class SentimentAnalysis {
     Criteria<String, Classifications> criteria =
         Criteria.builder()
             .setTypes(String.class, Classifications.class)
-            .optModelUrls(
-                "https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/distilbert_sst_english.zip")
-            //  .optModelUrls(
-            // "/Users/calvin/Documents/build/pytorch_models/distilbert_sst_english/")
+            .optModelPath(Paths.get("models/distilbert_sst_english.zip"))
             .optTranslator(new PtDistilBertTranslator())
             .optEngine("PyTorch") // Use PyTorch engine
             .optDevice(Device.cpu())
