@@ -17,7 +17,7 @@
     <properties>
         <jna.version>5.6.0</jna.version>
         <djl.version>0.17.0</djl.version>
-        <fastjson.version>1.2.70</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <swagger.version>2.9.2</swagger.version>
         <hutool.version>5.3.4</hutool.version>
     </properties>
