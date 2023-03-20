@@ -234,12 +234,12 @@ Mail: 179209347@qq.com
 <img src="https://aiart.oss-cn-shanghai.aliyuncs.com/assets/ocr.jpeg"  width = "500"/>
 </div> 
 
-#### 3.N.持续更新中......
 
 
 
 
-#### 如果对您有帮助的话，请作者喝杯咖啡
+
+####  如果对您有帮助的话，请作者喝杯咖啡
 <div align="center">
 <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/pay.png"  width = "500"  />
 </div>
