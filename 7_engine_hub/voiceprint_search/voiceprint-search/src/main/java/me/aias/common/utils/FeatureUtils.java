@@ -2,6 +2,8 @@ package me.aias.common.utils;
 
 /**
  * 特征计算类
+ * Feature Calculation Utility Class
+ *
  * @author Calvin
  * @date 2021-12-12
  **/

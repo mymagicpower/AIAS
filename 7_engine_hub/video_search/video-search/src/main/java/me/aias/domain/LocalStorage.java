@@ -21,22 +21,22 @@ public class LocalStorage  implements Serializable {
     @ApiModelProperty(value = "ID")
     private int id;
 
-    @ApiModelProperty(value = "真实文件名")
+    @ApiModelProperty(value = "realName")
     private String realName;
 
-    @ApiModelProperty(value = "文件名")
+    @ApiModelProperty(value = "name")
     private String name;
 
-    @ApiModelProperty(value = "后缀")
+    @ApiModelProperty(value = "suffix")
     private String suffix;
 
-    @ApiModelProperty(value = "路径")
+    @ApiModelProperty(value = "path")
     private String path;
 
-    @ApiModelProperty(value = "类型")
+    @ApiModelProperty(value = "type")
     private String type;
 
-    @ApiModelProperty(value = "大小")
+    @ApiModelProperty(value = "size")
     private String size;
 
     public LocalStorage(String realName, String name, String suffix, String path, String type, String size) {

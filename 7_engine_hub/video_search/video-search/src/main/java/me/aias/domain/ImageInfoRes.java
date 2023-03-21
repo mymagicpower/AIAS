@@ -7,31 +7,35 @@ import lombok.Data;
 import java.util.Date;
 import java.util.List;
 
-/** 图片信息返回对象 */
+/**
+ * 图片信息返回对象
+ * Image information response object
+ *
+ */
 @Data
-@ApiModel(value = "ImageInfoRes", description = "图片信息返回对象")
+@ApiModel(value = "ImageInfoRes", description = "图片信息返回对象 - Image information response object")
 public class ImageInfoRes {
-  @ApiModelProperty(value = "大图", name = "id")
+  @ApiModelProperty(value = "大图 - Big picture", name = "id")
   private Long id;
 
   @ApiModelProperty(value = "Score", name = "score")
   private Float score;
   
-  @ApiModelProperty(value = "大图uuid", name = "uuid")
+  @ApiModelProperty(value = "uuid", name = "uuid")
   private String uuid;
 
-  @ApiModelProperty(value = "图片原名称", name = "preName")
+  @ApiModelProperty(value = "图片原名称 - Image original name", name = "preName")
   private String preName;
 
-  @ApiModelProperty(value = "图片url", name = "imgUrl")
+  @ApiModelProperty(value = "图片url - Image URL", name = "imgUrl")
   private String imgUrl;
 
-  @ApiModelProperty(value = "类型 - 1: 本地url，0: 远程图片url", name = "type")
+  @ApiModelProperty(value = "Type - 1: local URL, 0: remote image URL", name = "type")
   private String type;
 
-  @ApiModelProperty(value = "图片url", name = "imgUrl")
+  @ApiModelProperty(value = "Image URL", name = "imgUrl")
   private List<SimpleFaceObject> faces;
 
-  @ApiModelProperty(value = "创建时间", name = "createTime")
+  @ApiModelProperty(value = "Creation time", name = "createTime")
   private Date createTime; 
 }

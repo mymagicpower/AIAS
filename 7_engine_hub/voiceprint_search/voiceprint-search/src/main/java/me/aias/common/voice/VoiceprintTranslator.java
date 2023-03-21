@@ -10,6 +10,7 @@ import me.aias.common.utils.JLibrasaEx;
 
 /**
  * 模型预处理/后处理
+ * Model pre-processing/post-processing
  *
  * @author Calvin
  * @date 2021-12-12
@@ -28,6 +29,7 @@ public final class VoiceprintTranslator implements Translator<float[][], float[]
         NDArray spec_mag = magNDArray.get(":, :" + spec_len);
 
         // 按列计算均值
+        // Calculate the mean by column
         NDArray mean = spec_mag.mean(new int[]{0}, true);
         NDArray std = manager.create(JLibrasaEx.std(spec_mag, mean)).reshape(1, spec_len);
 

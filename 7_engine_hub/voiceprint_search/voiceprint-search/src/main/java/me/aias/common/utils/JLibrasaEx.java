@@ -8,20 +8,22 @@ import com.jlibrosa.audio.wavFile.WavFileException;
 import org.apache.commons.math3.complex.Complex;
 
 import java.io.IOException;
-
 /**
- * JLibrasa操作类
+ *
  * @author Calvin
- * @date 2021-12-12
+ *
+ * @email 179209347@qq.com
  **/
+
 public class JLibrasaEx {
   public static float[][] magnitude(NDManager manager, String audioFilePath)
-      throws FileFormatNotSupportedException, IOException, WavFileException {
+          throws FileFormatNotSupportedException, IOException, WavFileException {
     int defaultAudioDuration = -1; // -1 value implies the method to process complete audio duration
 
     JLibrosa jLibrosa = new JLibrosa();
 
     // 读取音频数据
+    // Reading audio data
     float audioFeatureValues[] = jLibrosa.loadAndRead(audioFilePath, 16000, defaultAudioDuration);
 
     float[] reverseArray = new float[audioFeatureValues.length];
@@ -31,10 +33,11 @@ public class JLibrasaEx {
     NDArray reverse = manager.create(reverseArray);
 
     // 数据拼接
+    // Data concatenation
     NDArray extended_wav = manager.create(audioFeatureValues).concat(reverse);
 
     Complex[][] stftComplexValues =
-        jLibrosa.generateSTFTFeatures(extended_wav.toFloatArray(), -1, -1, 512, -1, 160);
+            jLibrosa.generateSTFTFeatures(extended_wav.toFloatArray(), -1, -1, 512, -1, 160);
     float[][] mag = JLibrasaEx.magnitude(stftComplexValues, 1);
     return mag;
   }
@@ -55,11 +58,14 @@ public class JLibrasaEx {
   }
 
   // 计算全局标准差
+  // Calculating global standard deviation
   public static float[] std(NDArray array, NDArray mean) {
     // 按列减去均值
+    // Subtracting mean by column
     array = array.sub(mean);
 
     // 计算全局标准差
+    // Calculating global standard deviation
     int cols = (int) array.getShape().get(1);
     float[] stds = new float[cols];
     for (int i = 0; i < cols; i++) {
@@ -70,6 +76,7 @@ public class JLibrasaEx {
   }
 
   // 计算全局标准差
+  // Calculating global standard deviation
   public static float std(NDArray array) {
     array = array.square();
     float[] doubleResult = array.toFloatArray();

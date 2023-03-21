@@ -15,6 +15,7 @@ import java.nio.file.Paths;
 
 /**
  * 声纹模型
+ * Voiceprint Model
  *
  * @author Calvin
  * @date 2021-12-12

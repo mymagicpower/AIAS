@@ -32,12 +32,13 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 搜索管理
+ * Search management
  *
  * @author Calvin
  * @date 2021-12-12
  **/
 @Slf4j
-@Api(tags = "搜索管理")
+@Api(tags = "搜索管理 - Search management")
 @RequestMapping("/api/search")
 @RequiredArgsConstructor
 @RestController
@@ -52,17 +53,20 @@ public class SearchController {
     String baseurl;
 
     @PostMapping(value = "/image")
-    @ApiOperation(value = "搜索图片", nickname = "searchImage")
+    @ApiOperation(value = "搜索图片 - Search for images", nickname = "searchImage")
     public ResponseEntity<Object> searchImage(@RequestParam("image") MultipartFile imageFile, @RequestParam(value = "topK") String topk) {
         // 根据base64 生成向量
+        // Generate vectors based on base64
         BufferedImage bufferedImage = ImageUtil.multipartFileToBufImage(imageFile);
         Integer topK = Integer.parseInt(topk);
 
         List<Float> vectorToSearch;
         try {
             //人脸检测 & 特征提取
+            // Face detection & feature extraction
             List<FaceObject> faceObjects = detectService.faceDetect(bufferedImage);
             //如何有多个人脸，取第一个（也可以选最大的，或者一起送入搜索引擎搜索）
+            // If there are multiple faces, take the first one (can also choose the largest, or search all in the search engine)
             vectorToSearch = faceObjects.get(0).getFeature();
         } catch (Exception e) {
             e.printStackTrace();
@@ -75,11 +79,13 @@ public class SearchController {
 
         try {
             // 根据图片向量搜索
+            // Search based on image vectors
             R<SearchResults> searchResponse = searchService.search(topK, vectorsToSearch);
             SearchResultsWrapper wrapper = new SearchResultsWrapper(searchResponse.getData().getResults());
             List<SearchResultsWrapper.IDScore> scores = wrapper.getIDScore(0);
 
             // 根据ID获取图片信息
+            // Get image information based on ID
             ConcurrentHashMap<String, String> map = imageService.getMap();
             List<ImageInfoRes> imageInfoResList = new ArrayList<>();
             for (SearchResultsWrapper.IDScore score : scores) {

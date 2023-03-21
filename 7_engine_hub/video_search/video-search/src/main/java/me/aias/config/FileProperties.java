@@ -6,7 +6,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * 图片操作常量类
+ * 文件属性配置
+ * File Properties
+ *
  * @author Calvin
  * @date 2021-12-12
  **/
@@ -15,7 +17,6 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "file")
 public class FileProperties {
 
-    /** 文件大小限制 */
     private Long maxSize;
 
     private ElPath mac;

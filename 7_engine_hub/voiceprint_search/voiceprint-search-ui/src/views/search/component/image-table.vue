@@ -18,7 +18,7 @@
         >
           <el-input
             style="margin-right: 15px;"
-            placeholder="请上传wav格式音频文件"
+            placeholder="Please upload an audio file in WAV format"
           >
             <i slot="prefix" class="el-icon-search el-input__icon" />
           </el-input>
@@ -31,8 +31,8 @@
           size="medium"
           type="primary"
           @click="doFaceQuery"
-        >查询</el-button>
-        <el-button size="medium" type="primary" @click="restQuery">重置</el-button>
+        >Query</el-button>
+        <el-button size="medium" type="primary" @click="restQuery">Reset</el-button>
       </div>
     </div>
 
@@ -56,9 +56,9 @@
     </template>
     <empty-data
       v-else-if="!imgFile || !imgFile.size"
-      title="您还未上传音频文件，请拖入音频文件或点击上传"
+      title="You haven't uploaded an audio file yet. Please drag and drop the audio file or click to upload."
     />
-    <empty-data v-else title="未查询到信息" />
+    <empty-data v-else title="No information found" />
   </div>
 </template>
 

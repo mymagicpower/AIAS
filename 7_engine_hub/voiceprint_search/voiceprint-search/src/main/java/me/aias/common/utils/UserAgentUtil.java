@@ -9,6 +9,8 @@ import java.net.UnknownHostException;
 
 /**
  * 获取系统信息
+ * Get system info
+ *
  * @author Calvin
  * @date 2021-12-12
  **/
@@ -26,6 +28,8 @@ public class UserAgentUtil {
 
     /**
      * 获取操作系统
+     * Get os info
+     *
      */
     public String getOS() {
         if (null == userAgent) {

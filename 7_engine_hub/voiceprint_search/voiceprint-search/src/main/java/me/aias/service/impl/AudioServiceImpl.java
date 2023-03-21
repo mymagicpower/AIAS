@@ -23,6 +23,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 音频文件服务
+ * Audio file service
  *
  * @author Calvin
  * @date 2021-12-12
@@ -61,6 +62,7 @@ public class AudioServiceImpl implements AudioService {
 
     /**
      * 新增文件
+     * Add file
      */
     public void addAudioFile(String id, String audioPath) {
         map.put(id, audioPath);
@@ -69,6 +71,7 @@ public class AudioServiceImpl implements AudioService {
 
     /**
      * 根据ID查询
+     * Query by ID
      */
     public String findById(String id) {
         return map.get(id);
@@ -76,6 +79,7 @@ public class AudioServiceImpl implements AudioService {
 
     /**
      * 获取清单
+     * Get file list
      */
     public ConcurrentHashMap<String, String> getMap() {
         return map;
@@ -83,6 +87,7 @@ public class AudioServiceImpl implements AudioService {
 
     /**
      * 保存上传文件列表
+     * Save uploaded file list
      */
     private void saveAudioList() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -102,14 +107,19 @@ public class AudioServiceImpl implements AudioService {
         if (!new File(rootPath).exists()) {
             new File(rootPath).mkdirs();
         }
-        String unZipFilePath = rootPath + UUID; // 以压缩文件名为新目录
+        String unZipFilePath = rootPath + UUID;
+        // 以压缩文件名为新目录
+        // the new directory name is the same as the compressed file name
         try {
             // 记录文件集合
+            // record the file collection
             List<AudioInfo> resultList = new ArrayList<>();
             // 解压缩后的文件
+            // decompressed files
             File[] listFiles = new File(unZipFilePath).listFiles();
 
             // 判断上传文件是否包含音频文件
+            // determine whether the uploaded file contains audio files
             boolean audioFound = false;
             for (File file : listFiles) {
                 String suffix = FileUtil.getExtensionName(file.getName());
@@ -120,10 +130,12 @@ public class AudioServiceImpl implements AudioService {
             }
             if (!audioFound) {
                 // 通用异常
+                // general exception
                 throw new BadRequestException(ResEnum.IMAGE_NOT_FOUND.VALUE);
             }
 
             // 保存文件到可访问路径
+            // save file to accessible path
             for (File file : listFiles) {
                 AudioInfo audioInfo = new AudioInfo();
                 audioInfo.setPreName(file.getName());
@@ -133,13 +145,16 @@ public class AudioServiceImpl implements AudioService {
                     byte[] bytes = FileUtil.getByte(file);
                     String uuid = UUIDUtil.getUUID();
                     audioInfo.setUuid(uuid);
+                    // file name to be stored
                     String fileName = uuid + "." + ext; // 待存储的文件名
                     String relativePath = FileUtil.generatePath(rootPath);
                     // filePath 完整路径（含uuid文件名）
+                    // filePath complete path (including uuid filename)
                     String filePath = rootPath + relativePath + fileName;
                     audioInfo.setFullPath(filePath);
                     audioInfo.setRelativePath(relativePath + fileName);
                     // 转成文件保存
+                    // convert to file and save
                     FileUtil.bytesToFile(bytes, filePath);
                     resultList.add(audioInfo);
                 }
@@ -147,6 +162,7 @@ public class AudioServiceImpl implements AudioService {
             return resultList;
         } finally {
             // unZipFilePath = rootPath + uuid; // 以压缩文件名为新目录
+            // unZipFilePath = rootPath + uuid; // the new directory name is the same as the compressed file name
             FileUtil.delete(unZipFilePath);
 
         }

@@ -8,9 +8,10 @@ import java.util.Date;
 
 /**
  * 音频信息对象
+ * Audio info object
  */
 @Data
-@ApiModel(value = "AudioInfo", description = "音频信息对象")
+@ApiModel(value = "AudioInfo", description = "音频信息对象 -Audio info object")
 public class AudioInfo {
     @ApiModelProperty(value = "id", name = "id")
     private Long id;
@@ -21,15 +22,16 @@ public class AudioInfo {
     @ApiModelProperty(value = "uuid", name = "uuid")
     private String uuid;
 
-    @ApiModelProperty(value = "原名称", name = "preName")
+    @ApiModelProperty(value = "preName", name = "preName")
     private String preName;
 
-    @ApiModelProperty(value = "全路径", name = "fullPath")
+    @ApiModelProperty(value = "fullPath", name = "fullPath")
     private String fullPath;
 
-    @ApiModelProperty(value = "相对路径", name = "relativePath")
+    @ApiModelProperty(value = "relativePath", name = "relativePath")
     private String relativePath;
 
-    @ApiModelProperty(value = "创建时间", name = "createTime")
+    @ApiModelProperty(value = "createTime", name = "createTime")
     private Date createTime;
 }
+

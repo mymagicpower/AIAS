@@ -10,15 +10,15 @@ import me.aias.common.enums.ResEnum;
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
-@ApiModel(value = "公共输出对象", description = "公共输出对象")
+@ApiModel(value = "Public Output Object", description = "Public Output Object")
 public class ResultRes<T> {
-    @ApiModelProperty(value = "输出编码，如：0000", name = "code", example = "0000")
+    @ApiModelProperty(value = "Output code：0000", name = "code", example = "0000")
     private String code;
-    @ApiModelProperty(value = "输出消息(String)", name = "msg", example = "操作成功")
+    @ApiModelProperty(value = "Output message(String)", name = "msg", example = "Operation succeeded")
     private String msg;
-    @ApiModelProperty(value = "输出对象(Object)", name = "data")
+    @ApiModelProperty(value = "Output object(Object)", name = "data")
     private int total;
-    @ApiModelProperty(value = "输出对象数量", name = "total")
+    @ApiModelProperty(value = "Number of output objects", name = "total")
     private T data;
 
     public ResultRes(String code, String msg) {
@@ -28,8 +28,10 @@ public class ResultRes<T> {
 
     /**
      * 系统默认返回内置错误编码
+     * System default return built-in error code
+     *
      * code : 9999
-     * msg : 系统繁忙
+     * msg : 系统繁忙 - System busy
      *
      * @return BaseRes
      */
@@ -42,10 +44,12 @@ public class ResultRes<T> {
 
     /**
      * 系统默认返回内置错误编码
-     * code : 9999
-     * msg : 系统繁忙
+     * System default return built-in error code
      *
-     * @param data 返回消息数据
+     * code : 9999
+     * msg : 系统繁忙 - System busy
+     *
+     * @param data
      * @return BaseRes
      */
     public static ResultRes error(String data) {
@@ -57,6 +61,7 @@ public class ResultRes<T> {
 
     /**
      * 返回错误消息编码，不包含消息体
+     * Return error message code, does not include message body
      *
      * @param code
      * @param msg
@@ -71,6 +76,7 @@ public class ResultRes<T> {
 
     /**
      * 返回错误消息编码，包含消息体
+     * Return error message code, including message body
      *
      * @param code 编码
      * @param msg  消息
@@ -87,6 +93,7 @@ public class ResultRes<T> {
 
     /**
      * 返回正确消息体
+     * Return correct message body
      *
      * @param data
      * @param <T>
@@ -98,6 +105,7 @@ public class ResultRes<T> {
 
     /**
      * 返回正确消息体
+     *Return correct message body
      *
      * @param data
      * @param <T>
@@ -109,6 +117,7 @@ public class ResultRes<T> {
 
     /**
      * 返回正确消息
+     * Return correct message
      *
      * @param <T>
      * @return
@@ -119,6 +128,7 @@ public class ResultRes<T> {
 
     /**
      * 判断是否执行正确
+     * Determine whether to execute correctly
      *
      * @return
      */

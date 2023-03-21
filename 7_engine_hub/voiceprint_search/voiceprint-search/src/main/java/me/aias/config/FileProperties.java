@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * 文件操作常量类
+ * File operation constants class
+ *
  * @author Calvin
  * @date 2021-12-12
  **/
@@ -15,7 +17,8 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "file")
 public class FileProperties {
 
-    /** 文件大小限制 */
+    // 文件大小限制
+    // File size limit
     private Long maxSize;
 
     private ElPath mac;

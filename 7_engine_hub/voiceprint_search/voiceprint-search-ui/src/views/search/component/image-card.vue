@@ -12,9 +12,9 @@
           <i class="el-icon-document" />
         </div>
       </el-image>
-      <div class="score">距离 {{ data.score }}</div>
+      <div class="score">Dis {{ data.score }}</div>
       <div class="footer">
-        <el-link class="title" type="primary" :href="data.url">音频文件 {{ data.id }}</el-link>
+        <el-link class="title" type="primary" :href="data.url">Audio file {{ data.id }}</el-link>
       </div>
     </div>
   </div>

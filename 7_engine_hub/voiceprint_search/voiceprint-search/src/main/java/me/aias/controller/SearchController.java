@@ -35,12 +35,13 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 搜索管理
+ * Search management
  *
  * @author Calvin
  * @date 2021-12-12
  **/
 @Slf4j
-@Api(tags = "搜索管理")
+@Api(tags = "搜索管理 - Search management")
 @RequestMapping("/api/search")
 @RequiredArgsConstructor
 @RestController
@@ -61,9 +62,10 @@ public class SearchController {
     String baseUrl;
 
     @PostMapping(value = "/audio")
-    @ApiOperation(value = "音频搜索", nickname = "searchAudio")
+    @ApiOperation(value = "音频搜索 - Audio search", nickname = "searchAudio")
     public ResponseEntity<Object> searchImage(@RequestParam("audio") MultipartFile audioFile, @RequestParam(value = "topK") String topk) {
         // 生成向量
+        // Generate vectors
         Integer topK = Integer.parseInt(topk);
 
         float[][] mag;
@@ -95,11 +97,13 @@ public class SearchController {
 
         try {
             // 根据音频文件向量搜索
+            // Search for vectors based on audio files
             R<SearchResults> searchResponse = searchService.search(topK, vectorsToSearch);
             SearchResultsWrapper wrapper = new SearchResultsWrapper(searchResponse.getData().getResults());
             List<SearchResultsWrapper.IDScore> scores = wrapper.getIDScore(0);
 
             // 根据ID获取图片信息
+            // Get image information based on ID
             ConcurrentHashMap<String, String> map = audioService.getMap();
             List<AudioInfoRes> audioInfoResList = new ArrayList<>();
             for (SearchResultsWrapper.IDScore score : scores) {

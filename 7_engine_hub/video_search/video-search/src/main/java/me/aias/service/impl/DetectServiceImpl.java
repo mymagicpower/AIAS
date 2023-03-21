@@ -29,6 +29,7 @@ import java.util.List;
 
 /**
  * 目标检测服务
+ * Target Detection Service
  *
  * @author Calvin
  * @date 2021-12-12
@@ -63,6 +64,7 @@ public class DetectServiceImpl implements DetectService {
                 Rectangle rectangle = box.getBounds();
 
                 // 抠人脸图
+                // Extract face image
                 Rectangle subImageRect =
                         FaceUtil.getSubImageRect(
                                 image, rectangle, djlImg.getWidth(), djlImg.getHeight(), 0f);
@@ -73,6 +75,7 @@ public class DetectServiceImpl implements DetectService {
                 BufferedImage subImage = image.getSubimage(x, y, w, h);
                 Image img = DJLImageUtil.bufferedImage2DJLImage(subImage);
                 //获取特征向量
+                // Get feature vector
                 List<Float> feature = featureService.faceFeature(img);
 
                 FaceObject faceObject = new FaceObject();

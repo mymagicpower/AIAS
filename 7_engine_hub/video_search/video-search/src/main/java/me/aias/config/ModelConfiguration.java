@@ -12,7 +12,9 @@ import org.springframework.context.annotation.Configuration;
 import java.io.IOException;
 
 /**
- * 图片操作常量类
+ * 模型配置类
+ * Model Configuration
+ *
  * @author Calvin
  * @date 2021-12-12
  **/

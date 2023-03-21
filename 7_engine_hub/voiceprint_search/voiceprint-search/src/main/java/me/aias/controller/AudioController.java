@@ -40,6 +40,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 视频管理
+ * Video management
  *
  * @author Calvin
  * @date 2021-12-12
@@ -47,7 +48,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@Api(tags = "视频管理")
+@Api(tags = "视频管理 -Video management")
 @RequestMapping("/api/voices")
 public class AudioController {
     private final FileProperties properties;
@@ -64,7 +65,7 @@ public class AudioController {
     @Autowired
     private LocalStorageService localStorageService;
 
-    @ApiOperation(value = "视频解析图片帧并提取特征值")
+    @ApiOperation(value = "视频解析图片帧并提取特征值 - Extract image frames and feature values from videos")
     @GetMapping("/extractFeatures")
     public ResponseEntity<Object> extractFeatures(@RequestParam(value = "id") String id, HttpServletRequest request) throws IOException {
         LocalStorage localStorage = localStorageService.findById(Integer.parseInt(id));
@@ -75,6 +76,7 @@ public class AudioController {
         }
 
         // 获取上传者操作系统
+        // Get operating system of the uploader
         UserAgentUtil userAgentGetter = new UserAgentUtil(request);
         String os = userAgentGetter.getOS();
 
@@ -82,6 +84,7 @@ public class AudioController {
             new File(properties.getPath().getRootPath()).mkdirs();
         }
         //生成UUID作为解压缩的目录
+        // Generate UUID as the directory to be extracted to
         String UUID = UUIDUtil.getUUID();
         String unZipFilePath = properties.getPath().getRootPath() + UUID;
         if (!new File(unZipFilePath).exists()) {
@@ -90,6 +93,7 @@ public class AudioController {
         ZipUtil.unZip(localStorage.getPath(), os, unZipFilePath);
 
         //生成视频文件提取的图片帧目录
+        // Generate directory for image frames extracted from video files
         String imagesPath = properties.getPath().getRootPath();
         if (!new File(imagesPath).exists()) {
             new File(imagesPath).mkdirs();
@@ -100,6 +104,7 @@ public class AudioController {
         NDManager manager = NDManager.newBaseManager(Device.cpu());
 
         // 抓取图像画面
+        // Capture image frames
         try {
             List<Long> vectorIds = new ArrayList<>();
             List<List<Float>> vectors = new ArrayList<>();
@@ -107,6 +112,7 @@ public class AudioController {
                 float[][] mag = JLibrasaEx.magnitude(manager, audioInfo.getFullPath());
                 List<Float> feature = featureService.feature(mag);
                 // 保存文件信息
+                // Save file information
                 ConcurrentHashMap<String, String> map = audioService.getMap();
                 int size = map.size();
                 audioService.addAudioFile(String.valueOf(size + 1), audioInfo.getRelativePath());
@@ -115,6 +121,7 @@ public class AudioController {
             }
 
             // 将向量插入Milvus向量引擎
+            // Insert vectors into Milvus vector engine
             try {
                 R<Boolean> response = searchService.hasCollection();
                 if (!response.getData()) {

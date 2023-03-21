@@ -38,13 +38,15 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 视频管理
+ * Video Management
+ *
  * @author Calvin
  * @date 2021-12-12
  **/
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@Api(tags = "视频管理")
+@Api(tags = "视频管理 - Video Management")
 @RequestMapping("/api/video")
 public class VideoController {
     private final FileProperties properties;
@@ -67,7 +69,7 @@ public class VideoController {
     @Value("${face.mod}")
     int mod;
 
-    @ApiOperation(value = "视频解析图片帧并提取特征值")
+    @ApiOperation(value = "视频解析图片帧并提取特征值 - Extract features from video to images and extract feature values")
     @GetMapping("/extractFeatures")
     public ResponseEntity<Object> extractFeatures(@RequestParam(value = "id") String id) throws IOException {
         LocalStorage localStorage = localStorageService.findById(Integer.parseInt(id));
@@ -76,6 +78,7 @@ public class VideoController {
             new File(properties.getPath().getImageRootPath()).mkdirs();
         }
         //生成视频文件提取的图片帧目录
+        // Generate the directory of image frames extracted from the video file
         String imagesPath = properties.getPath().getImageRootPath();
         if (!new File(imagesPath).exists()) {
             new File(imagesPath).mkdirs();
@@ -83,12 +86,14 @@ public class VideoController {
 
         String input = localStorage.getPath();
         //支持视频文件（mp4,flv,avi等）,流媒体地址（rtmp，rtsp,http-flv等）
+        // Support video files (mp4, flv, avi, etc.), streaming media addresses (rtmp, rtsp, http-flv, etc.)
         try (FFmpegFrameGrabber grabber = new FFmpegFrameGrabber(input)) {
             grabber.start();
 
             Frame frame;
             Java2DFrameConverter converter = new Java2DFrameConverter();
             // 抓取图像画面
+            // Capture the image frame
             int i = 1;
             int count = 1;
             for (; (frame = grabber.grabImage()) != null; ) {
@@ -102,15 +107,18 @@ public class VideoController {
                         ImageIO.write(image, "png", new FileOutputStream(imagesPath + i + ".png"));
                         ImageInfoDto imageInfoDto = new ImageInfoDto();
                         // 保存图片信息
+                        // Save image information
                         ConcurrentHashMap<String, String> map = imageService.getMap();
                         int size = map.size();
                         imageService.addImageFile(String.valueOf(size + 1), +i + ".png");
 
                         // 将向量插入向量引擎
+                        // Insert the vector into the vector engine
                         try {
                             imageInfoDto.setImageId(Long.valueOf(size + 1));
                             List<SimpleFaceObject> faceList = new ArrayList<>();
                             //转换检测对象，方便后面json转换
+                            // Convert the detection object for easy json conversion later
                             List<Long> vectorIds = new ArrayList<>();
                             List<List<Float>> vectors = new ArrayList<>();
                             for (FaceObject faceObject : faceObjects) {

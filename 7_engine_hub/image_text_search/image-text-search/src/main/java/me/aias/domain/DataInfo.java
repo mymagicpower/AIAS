@@ -8,6 +8,7 @@ import java.util.Date;
 
 /**
  * 数据信息对象
+ * Data info object
  */
 @Data
 @ApiModel(value = "DataInfo", description = "DataInfo")

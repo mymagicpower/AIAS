@@ -66,6 +66,7 @@ public class SearchServiceImpl implements SearchService {
     private static final String VECTOR_FIELD = "feature";
 
     // 重置向量引擎
+    // Reset vector engine
     public void clearSearchEngine() {
         ConnectionPool connPool = this.getConnectionPool(false);
         MilvusClient client = connPool.getConnection();
@@ -80,6 +81,7 @@ public class SearchServiceImpl implements SearchService {
     }
 
     // 初始化向量引擎
+    // Initialize vector engine
     public void initSearchEngine() {
         ConnectionPool connPool = this.getConnectionPool(false);
         MilvusClient client = connPool.getConnection();
@@ -130,6 +132,7 @@ public class SearchServiceImpl implements SearchService {
     }
 
     // 创建 collection
+    // create collection
     public R<RpcStatus> createCollection(MilvusClient milvusClient, long timeoutMiliseconds) {
         System.out.println("========== createCollection() ==========");
         FieldType fieldType1 = FieldType.newBuilder()
@@ -137,7 +140,7 @@ public class SearchServiceImpl implements SearchService {
                 .withDescription("image id")
                 .withDataType(DataType.Int64)
                 .withPrimaryKey(true)
-                .withAutoID(false) // 使用数据库生成的id
+                .withAutoID(false)
                 .build();
 
         FieldType fieldType2 = FieldType.newBuilder()
@@ -161,6 +164,7 @@ public class SearchServiceImpl implements SearchService {
     }
 
     // 加载 collection
+    // load collection
     public R<RpcStatus> loadCollection(MilvusClient milvusClient) {
         System.out.println("========== loadCollection() ==========");
         R<RpcStatus> response = milvusClient.loadCollection(LoadCollectionParam.newBuilder()
@@ -170,6 +174,7 @@ public class SearchServiceImpl implements SearchService {
     }
 
     // 释放 collection
+    // release collection
     public R<RpcStatus> releaseCollection(MilvusClient milvusClient) {
         System.out.println("========== releaseCollection() ==========");
         R<RpcStatus> response = milvusClient.releaseCollection(ReleaseCollectionParam.newBuilder()
@@ -179,6 +184,7 @@ public class SearchServiceImpl implements SearchService {
     }
 
     // 删除 collection
+    // delete collection
     public R<RpcStatus> dropCollection(MilvusClient milvusClient) {
         System.out.println("========== dropCollection() ==========");
         R<RpcStatus> response = milvusClient.dropCollection(DropCollectionParam.newBuilder()
@@ -188,6 +194,7 @@ public class SearchServiceImpl implements SearchService {
     }
 
     // 创建 分区
+    // Create Partition
     public R<RpcStatus> createPartition(MilvusClient milvusClient, String partitionName) {
         System.out.println("========== createPartition() ==========");
         R<RpcStatus> response = milvusClient.createPartition(CreatePartitionParam.newBuilder()
@@ -198,6 +205,7 @@ public class SearchServiceImpl implements SearchService {
     }
 
     // 删除 分区
+    // Delete Partition
     public R<RpcStatus> dropPartition(MilvusClient milvusClient, String partitionName) {
         System.out.println("========== dropPartition() ==========");
         R<RpcStatus> response = milvusClient.dropPartition(DropPartitionParam.newBuilder()
@@ -208,6 +216,7 @@ public class SearchServiceImpl implements SearchService {
     }
 
     // 是否存在分区
+    // Check Partition Existing or not
     public R<Boolean> hasPartition(MilvusClient milvusClient, String partitionName) {
         System.out.println("========== hasPartition() ==========");
         R<Boolean> response = milvusClient.hasPartition(HasPartitionParam.newBuilder()
@@ -218,6 +227,7 @@ public class SearchServiceImpl implements SearchService {
     }
 
     // 创建 index
+    // Create Index
     public R<RpcStatus> createIndex(MilvusClient milvusClient) {
         System.out.println("========== createIndex() ==========");
         String INDEX_PARAM = "{\"nlist\":" + nlist + "}";
@@ -296,6 +306,7 @@ public class SearchServiceImpl implements SearchService {
     }
 
     // 删除 index
+    // Delete Index
     public R<RpcStatus> dropIndex(MilvusClient milvusClient) {
         System.out.println("========== dropIndex() ==========");
         R<RpcStatus> response = milvusClient.dropIndex(DropIndexParam.newBuilder()
@@ -306,6 +317,7 @@ public class SearchServiceImpl implements SearchService {
     }
 
     // 插入向量
+    // Insert vectors
     public R<MutationResult> insert(List<Long> vectorIds, List<List<Float>> vectors) {
         System.out.println("========== insert() ==========");
         ConnectionPool connPool = this.getConnectionPool(false);
@@ -328,6 +340,7 @@ public class SearchServiceImpl implements SearchService {
     }
 
     // 查询向量
+    // Query Vectors
     // queryExpr = ID_FIELD + " == 60";
     public R<QueryResults> query(String expr) {
         System.out.println("========== query() ==========");
@@ -351,6 +364,7 @@ public class SearchServiceImpl implements SearchService {
     }
 
     // 搜索向量
+    // Search Vectors
     public R<SearchResults> search(Integer topK, List<List<Float>> vectorsToSearch) {
         System.out.println("========== searchImage() ==========");
         ConnectionPool connPool = this.getConnectionPool(false);
@@ -385,6 +399,7 @@ public class SearchServiceImpl implements SearchService {
     }
 
     // 删除向量
+    // Delete Vectors
     // String deleteExpr = ID_FIELD + " in " + deleteIds.toString();
     public R<MutationResult> delete(String expr) {
         System.out.println("========== delete() ==========");

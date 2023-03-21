@@ -15,6 +15,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 图片服务
+ * Image Service
+ *
  * @author Calvin
  * @date 2021-12-12
  **/
@@ -52,6 +54,7 @@ public class ImageServiceImpl implements ImageService {
 
     /**
      * 新增图片
+     * Add image
      */
     public void addImageFile(String id, String imagePath) {
         map.put(id, imagePath);
@@ -60,6 +63,7 @@ public class ImageServiceImpl implements ImageService {
 
     /**
      * 根据ID查询
+     * Get image by id
      */
     public String findById(String id) {
         return map.get(id);
@@ -67,6 +71,7 @@ public class ImageServiceImpl implements ImageService {
 
     /**
      * 获取图片清单
+     * Get image list
      */
     public ConcurrentHashMap<String, String> getMap() {
         return map;
@@ -74,6 +79,7 @@ public class ImageServiceImpl implements ImageService {
 
     /**
      * 保存上传文件列表
+     * Save image list
      */
     private void saveImageList() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();

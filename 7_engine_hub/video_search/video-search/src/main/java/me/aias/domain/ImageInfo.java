@@ -10,46 +10,46 @@ import java.sql.Timestamp;
 
 /**
  * @author Calvin
- * @description /
+ *
  * @date 2021-02-17
  **/
 @Data
 public class ImageInfo implements Serializable {
 
-    @ApiModelProperty(value = "图片主键id")
+    @ApiModelProperty(value = "id")
     private Long imageId;
 
-    @ApiModelProperty(value = "图片uuid")
+    @ApiModelProperty(value = "uuid")
     private String uuid;
 
     @ApiModelProperty(value = "preName")
     private String preName;
 
-    @ApiModelProperty(value = "图片分组id")
+    @ApiModelProperty(value = "group id")
     private String groupId;
 
-    @ApiModelProperty(value = "检测目标json")
+    @ApiModelProperty(value = "json")
     private String detectObjs;
 
-    @ApiModelProperty(value = "图片相对路径")
+    @ApiModelProperty(value = "image url")
     private String imgUrl;
 
     @ApiModelProperty(value = "fullPath")
     private String fullPath;
 
-    @ApiModelProperty(value = "1: 本地url，0: 远程图片url")
+    @ApiModelProperty(value = "1: local url，0: remote url")
     private Integer type;
 
-    @ApiModelProperty(value = "创建时间")
+    @ApiModelProperty(value = "Created Time")
     private Timestamp createTime;
 
-    @ApiModelProperty(value = "创建人")
+    @ApiModelProperty(value = "createBy")
     private String createBy;
 
-    @ApiModelProperty(value = "修改时间")
+    @ApiModelProperty(value = "updateTime")
     private Timestamp updateTime;
 
-    @ApiModelProperty(value = "修改人")
+    @ApiModelProperty(value = "updateBy")
     private String updateBy;
 
     public void copy(ImageInfo source) {

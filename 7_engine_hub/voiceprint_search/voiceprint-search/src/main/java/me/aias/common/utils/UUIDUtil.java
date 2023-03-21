@@ -4,6 +4,7 @@ import java.util.UUID;
 
 /**
  * 获取UUID
+ * Get UUID
  *
  * @author Calvin
  * @date 2021-12-12
