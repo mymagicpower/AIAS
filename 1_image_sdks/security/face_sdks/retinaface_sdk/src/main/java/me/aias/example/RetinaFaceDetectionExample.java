@@ -19,6 +19,7 @@ import java.nio.file.Paths;
 
 /**
  * 人脸检测大模型.
+ * Face detection model.
  *
  * @author Calvin
  * @email 179209347@qq.com
@@ -33,11 +34,11 @@ public final class RetinaFaceDetectionExample {
   public static void main(String[] args) throws IOException, ModelException, TranslateException {
     Path facePath = Paths.get("src/test/resources/largest_selfie.jpg");
     Image img = ImageFactory.getInstance().fromFile(facePath);
-    // topk值
+    // topk值 - topk value
     int topK = 500;
-    // 置信度阈值
+    // 置信度阈值 - confidence threshold
     double confThresh = 0.85f;
-    // 非极大值抑制阈值
+    // 非极大值抑制阈值 - non-maximum suppression threshold
     double nmsThresh = 0.45f;
     RetinaFaceDetection retinaFaceDetection = new RetinaFaceDetection();
     try (ZooModel<Image, DetectedObjects> model =

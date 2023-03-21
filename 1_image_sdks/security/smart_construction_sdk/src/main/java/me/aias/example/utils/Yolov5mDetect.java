@@ -14,7 +14,12 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-/** https://gitee.com/mymagicpower/Smart_Construction */
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public final class Yolov5mDetect {
 
   private static final Logger logger = LoggerFactory.getLogger(Yolov5mDetect.class);

@@ -10,7 +10,13 @@ import java.net.MalformedURLException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-// https://www.paddlepaddle.org.cn/hubdetail?name=transformer_en-de&en_category=MachineTranslation
+/**
+ * https://www.paddlepaddle.org.cn/hubdetail?name=transformer_en-de&en_category=MachineTranslation
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 
 public final class Translation {
 

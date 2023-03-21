@@ -29,6 +29,7 @@ import java.util.List;
 
 /**
  * 表格识别.
+ * Single Table Recognition
  *
  * @author Calvin
  * @date 2021-10-05
@@ -47,8 +48,10 @@ public final class SingleTableRecognitionExample {
         int height = image.getHeight();
         int width = image.getWidth();
         // 表格单元检测
+        // Table cell detection
         TableDetection tableDetection = new TableDetection();
         // 文本框检测
+        // Text box detection
         OcrV3AlignedRecognition recognition = new OcrV3AlignedRecognition();
 
         try (ZooModel tableModel = ModelZoo.loadModel(tableDetection.criteria());
@@ -60,6 +63,7 @@ public final class SingleTableRecognitionExample {
              BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("build/output/table.html"))) {
 
             // 表格单元检测
+            // Table cell detection
             TableResult result = tableDetector.predict(image);
 
             List<BoundingBox> cells = result.getBoxes();
@@ -90,6 +94,7 @@ public final class SingleTableRecognitionExample {
             bufferedWriter.write(html);
 
             // 创建一个Excel文件
+            // Create an Excel file
             html = html.replace("<html><body>", "");
             html = html.replace("</body></html>", "");
             HSSFWorkbook workbook = ConvertHtml2Excel.table2Excel(html);

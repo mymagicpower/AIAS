@@ -17,15 +17,29 @@ import java.util.List;
 
 /**
  * 获取音频数组
+ * Get audio array
  *
  * @author Calvin
  */
 public class AudioArrayUtils {
     public static void main(String[] args) throws FrameGrabber.Exception {
-        System.out.println(Arrays.toString(AudioArrayUtils.floatData("src/test/resources/test.wav")));
+        System.out.println(
+                Arrays.toString(AudioArrayUtils.audioSegment("src/test/resources/test.wav").samples));
     }
 
-    private static final class FrameData {
+    public static final class AudioSegment {
+        public final float[] samples;
+        public final Integer sampleRate;
+        public final Integer audioChannels;
+
+        public AudioSegment(float[] samples, Integer sampleRate, Integer audioChannels) {
+            this.samples = samples;
+            this.sampleRate = sampleRate;
+            this.audioChannels = audioChannels;
+        }
+    }
+
+    public static final class FrameData {
         public final Buffer[] samples;
         public final Integer sampleRate;
         public final Integer audioChannels;
@@ -38,14 +52,17 @@ public class AudioArrayUtils {
     }
 
     /**
-     * 获取音频文件的float数组
-     * Read and convert audio file to float32.
+     * 获取音频文件的float数组,sampleRate,audioChannels
+     * Get the float array, sample rate, and audio channels of the audio file
      *
      * @param path
      * @return
      * @throws FrameGrabber.Exception
      */
-    public static float[] floatData(String path) throws FrameGrabber.Exception {
+    public static AudioSegment audioSegment(String path) throws FrameGrabber.Exception {
+        AudioSegment audioSegment = null;
+        int sampleRate = -1;
+        int audioChannels = -1;
         //  Audio sample type is usually integer or float-point.
         //  Integers will be scaled to [-1, 1] in float32.
         float scale = (float) 1.0 / Float.valueOf(1 << ((8 * 2) - 1));
@@ -54,6 +71,8 @@ public class AudioArrayUtils {
         try (FFmpegFrameGrabber audioGrabber = new FFmpegFrameGrabber(path)) {
             try {
                 audioGrabber.start();
+                sampleRate = audioGrabber.getSampleRate();
+                audioChannels = audioGrabber.getAudioChannels();
                 Frame frame;
                 while ((frame = audioGrabber.grabFrame()) != null) {
                     Buffer[] buffers = frame.samples;
@@ -77,7 +96,8 @@ public class AudioArrayUtils {
             for (Float f : floatList) {
                 floatArray[i++] = (f != null ? f : Float.NaN); // Or whatever default you want.
             }
-            return floatArray;
+            audioSegment = new AudioSegment(floatArray, sampleRate, audioChannels);
+            return audioSegment;
         }
     }
 
@@ -129,13 +149,14 @@ public class AudioArrayUtils {
 
     /**
      * 获取音频文件的FrameData列表
+     * Get the FrameData list of the audio file
      *
      * @param path
      * @return
      * @throws FrameGrabber.Exception
      */
     public static List<FrameData> frameData(String path) throws FrameGrabber.Exception {
-        //frameRecorder setup during initialization
+        // frameRecorder setup during initialization
         List<FrameData> audioData = new ArrayList<>();
 
         try (FFmpegFrameGrabber audioGrabber = new FFmpegFrameGrabber(path)) {
@@ -162,6 +183,7 @@ public class AudioArrayUtils {
 
     /**
      * 保存音频文件
+     * Save the audio file
      *
      * @param buffer
      * @param sampleRate
@@ -169,7 +191,8 @@ public class AudioArrayUtils {
      * @param outs
      * @throws Exception
      */
-    public static void toWavFile(float[] buffer, float sampleRate, int audioChannels, File outs) throws Exception {
+    public static void toWavFile(float[] buffer, float sampleRate, int audioChannels, File outs)
+            throws Exception {
         if (sampleRate == 0.0) {
             sampleRate = 22050;
         }
@@ -182,7 +205,7 @@ public class AudioArrayUtils {
 
         int bufferIndex = 0;
         for (int i = 0; i < byteBuffer.length; i++) {
-            final int x = (int) (buffer[bufferIndex++]); //* 32767.0
+            final int x = (int) (buffer[bufferIndex++]); // * 32767.0
 
             byteBuffer[i++] = (byte) x;
             byteBuffer[i] = (byte) (x >>> 8);
@@ -197,6 +220,7 @@ public class AudioArrayUtils {
 
     /**
      * 保存音频文件
+     * Save the audio file
      *
      * @param audioData
      * @param path

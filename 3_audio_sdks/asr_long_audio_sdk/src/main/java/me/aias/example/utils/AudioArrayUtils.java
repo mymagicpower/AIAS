@@ -2,7 +2,14 @@ package me.aias.example.utils;
 
 import org.bytedeco.javacv.*;
 
+import javax.sound.sampled.AudioFileFormat;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.nio.Buffer;
+import java.nio.ByteBuffer;
 import java.nio.ShortBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,6 +17,7 @@ import java.util.List;
 
 /**
  * 获取音频数组
+ * Get audio array
  *
  * @author Calvin
  */
@@ -45,6 +53,7 @@ public class AudioArrayUtils {
 
   /**
    * 获取音频文件的float数组,sampleRate,audioChannels
+   * Get the float array, sample rate, and audio channels of the audio file
    *
    * @param path
    * @return
@@ -116,7 +125,31 @@ public class AudioArrayUtils {
   }
 
   /**
+   * Deep copy - byteBuffer
+   *
+   * @param source
+   * @param target
+   * @return
+   */
+  private static ByteBuffer deepCopy(ByteBuffer source, ByteBuffer target) {
+
+    int sourceP = source.position();
+    int sourceL = source.limit();
+
+    if (null == target) {
+      target = ByteBuffer.allocate(source.remaining());
+    }
+    target.put(source);
+    target.flip();
+
+    source.position(sourceP);
+    source.limit(sourceL);
+    return target;
+  }
+
+  /**
    * 获取音频文件的FrameData列表
+   * Get the FrameData list of the audio file
    *
    * @param path
    * @return
@@ -150,6 +183,44 @@ public class AudioArrayUtils {
 
   /**
    * 保存音频文件
+   * Save the audio file
+   *
+   * @param buffer
+   * @param sampleRate
+   * @param audioChannels
+   * @param outs
+   * @throws Exception
+   */
+  public static void toWavFile(float[] buffer, float sampleRate, int audioChannels, File outs)
+          throws Exception {
+    if (sampleRate == 0.0) {
+      sampleRate = 22050;
+    }
+
+    if (audioChannels == 0) {
+      audioChannels = 1;
+    }
+
+    final byte[] byteBuffer = new byte[buffer.length * 2];
+
+    int bufferIndex = 0;
+    for (int i = 0; i < byteBuffer.length; i++) {
+      final int x = (int) (buffer[bufferIndex++]); // * 32767.0
+
+      byteBuffer[i++] = (byte) x;
+      byteBuffer[i] = (byte) (x >>> 8);
+    }
+
+    AudioFormat format = new AudioFormat(sampleRate, 16, audioChannels, true, false);
+    try (ByteArrayInputStream bais = new ByteArrayInputStream(byteBuffer);
+         AudioInputStream audioInputStream = new AudioInputStream(bais, format, buffer.length)) {
+      AudioSystem.write(audioInputStream, AudioFileFormat.Type.WAVE, outs);
+    }
+  }
+
+  /**
+   * 保存音频文件
+   * Save the audio file
    *
    * @param audioData
    * @param path

@@ -6,11 +6,16 @@ import org.bytedeco.opencv.opencv_core.Point2f;
 import org.bytedeco.opencv.opencv_core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
-/** 透视变换工具类 因为我透视变换做的也不是很好，就仅提供一个大概的函数... */
+/**
+ * 透视变换工具类
+ * Perspective transformation
+ *
+ */
 public class WarpPerspectiveUtils {
 
   /**
    * 透视变换
+   * Perspective transformation
    *
    * @param src
    * @param srcPoints
@@ -20,6 +25,7 @@ public class WarpPerspectiveUtils {
   public static Mat warpPerspective(Mat src, Mat srcPoints, Mat dstPoints) {
     // srcPoints, dstPoints
     // 点的顺序[左上 ，右上 ，右下 ，左下]
+    // Point order [top left, top right, bottom right, bottom left]
     Mat perspectiveMmat = opencv_imgproc.getPerspectiveTransform(srcPoints, dstPoints);
 
     Mat dst = new Mat();

@@ -23,6 +23,7 @@ import java.util.Arrays;
 
 /**
  * 句向量 支持 50+ 语言
+ * Sentence vectors support 50+ languages
  *
  * @author calvin
  * @mail 179209347@qq.com
@@ -47,17 +48,7 @@ public final class SentenceEncoderExample {
     logger.info("input Sentence4: {}", input4);
 
     SentenceEncoder sentenceEncoder = new SentenceEncoder();
-    URL url =
-        new URL(
-            "https://aias-home.oss-cn-beijing.aliyuncs.com/models/nlp_models/sentence_transformers/sentencepiece.bpe.model");
-    Path path = Paths.get("build/test/models");
-    Path modelFile = path.resolve("sentencepiece.bpe.model");
-    if (!Files.exists(modelFile)) {
-      Files.createDirectories(path);
-      try (InputStream is = url.openStream()) {
-        Files.copy(is, modelFile, StandardCopyOption.REPLACE_EXISTING);
-      }
-    }
+    Path modelFile = Paths.get("src/main/resources/sentencepiece.bpe.model");
 
     try (SpTokenizer tokenizer = new SpTokenizer(modelFile)) {
       SpProcessor processor = tokenizer.getProcessor();
@@ -71,14 +62,14 @@ public final class SentenceEncoderExample {
         float[] embeddings2 = predictor.predict(input2);
         logger.info("Sentence2 embeddings: {}", Arrays.toString(embeddings2));
 
-        logger.info("英文 Similarity: {}", FeatureComparison.cosineSim(embeddings1, embeddings2));
+        logger.info("English Similarity: {}", FeatureComparison.cosineSim(embeddings1, embeddings2));
 
         float[] embeddings3 = predictor.predict(input3);
         logger.info("Sentence1 embeddings: {}", Arrays.toString(embeddings3));
         float[] embeddings4 = predictor.predict(input4);
         logger.info("Sentence2 embeddings: {}", Arrays.toString(embeddings4));
 
-        logger.info("中文 Similarity: {}", FeatureComparison.cosineSim(embeddings3, embeddings4));
+        logger.info("Chinese Similarity: {}", FeatureComparison.cosineSim(embeddings3, embeddings4));
       }
     }
   }

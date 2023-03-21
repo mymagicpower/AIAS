@@ -15,6 +15,7 @@ import java.io.UnsupportedEncodingException;
 
 /**
  * mp4视频文件转gif动态图
+ * mp4 video file to gif animation
  *
  * @author Calvin
  */
@@ -28,7 +29,7 @@ public class Mp4ToGif {
 
     /**
      * mp4转gif动态图
-     *
+     * mp4 to gif animation
      * @param input
      * @param width
      * @param height
@@ -44,35 +45,37 @@ public class Mp4ToGif {
                 height = grabber.getImageHeight();
             }
 
-            //gif录制器
+            // gif录制器
+            // gif recorder
             try (FFmpegFrameRecorder recorder = new FFmpegFrameRecorder(output, width, height, 0)) {
-                //设置像素格式
+                // 设置像素格式
+                // set pixel format
                 recorder.setPixelFormat(avutil.AV_PIX_FMT_RGB4_BYTE);
-                //设置编码
+                //设置编码 - set encoding
                 recorder.setVideoCodec(avcodec.AV_CODEC_ID_GIF);
-                //设置帧率
+                //设置帧率 - set frame rate
                 if (frameRate != null) {
                     recorder.setFrameRate(frameRate);
                 }
                 recorder.start();
 
-                CanvasFrame canvas = new CanvasFrame("转换gif中屏幕预览");
+                CanvasFrame canvas = new CanvasFrame("转换gif中屏幕预览 - Converting to gif and previewing on screen");
                 canvas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 canvas.setAlwaysOnTop(true);
                 Frame frame = null;
 
-                // 只抓取图像画面
+                // 只抓取图像画面 - only grab image frames
                 for (; (frame = grabber.grabImage()) != null; ) {
                     try {
-                        //录制
+                        //录制 - record
                         recorder.record(frame);
-                        //显示画面
+                        //显示画面 - show image
                         canvas.showImage(frame);
                     } catch (org.bytedeco.javacv.FrameRecorder.Exception e) {
                         e.printStackTrace();
                     }
                 }
-//                //close包含stop和release方法
+//                //close包含stop和release方法 - close includes stop and release methods
 //                recorder.close();
 //                grabber.close();
                 canvas.dispose();

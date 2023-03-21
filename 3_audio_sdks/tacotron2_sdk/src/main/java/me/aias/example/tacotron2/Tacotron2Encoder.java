@@ -7,6 +7,12 @@ import ai.djl.repository.zoo.Criteria;
 import ai.djl.training.util.ProgressBar;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 
 public class Tacotron2Encoder {
   public Tacotron2Encoder() {}

@@ -9,7 +9,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 // https://www.paddlepaddle.org.cn/hubdetail?name=simnet_bow&en_category=SemanticModel
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public final class SimnetBow {
 
   private static final Logger logger = LoggerFactory.getLogger(SimnetBow.class);

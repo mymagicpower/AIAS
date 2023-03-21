@@ -14,7 +14,6 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "file")
 public class FileProperties {
 
-    /** 文件大小限制 */
     private Long maxSize;
 
     private ElPath mac;

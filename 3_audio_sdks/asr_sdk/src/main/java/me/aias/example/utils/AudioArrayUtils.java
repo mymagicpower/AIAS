@@ -17,13 +17,14 @@ import java.util.List;
 
 /**
  * 获取音频数组
+ * Get audio array
  *
  * @author Calvin
  */
 public class AudioArrayUtils {
   public static void main(String[] args) throws FrameGrabber.Exception {
     System.out.println(
-        Arrays.toString(AudioArrayUtils.audioSegment("src/test/resources/test.wav").samples));
+            Arrays.toString(AudioArrayUtils.audioSegment("src/test/resources/test.wav").samples));
   }
 
   public static final class AudioSegment {
@@ -52,6 +53,7 @@ public class AudioArrayUtils {
 
   /**
    * 获取音频文件的float数组,sampleRate,audioChannels
+   * Get the float array, sample rate, and audio channels of the audio file
    *
    * @param path
    * @return
@@ -147,6 +149,7 @@ public class AudioArrayUtils {
 
   /**
    * 获取音频文件的FrameData列表
+   * Get the FrameData list of the audio file
    *
    * @param path
    * @return
@@ -180,6 +183,7 @@ public class AudioArrayUtils {
 
   /**
    * 保存音频文件
+   * Save the audio file
    *
    * @param buffer
    * @param sampleRate
@@ -188,7 +192,7 @@ public class AudioArrayUtils {
    * @throws Exception
    */
   public static void toWavFile(float[] buffer, float sampleRate, int audioChannels, File outs)
-      throws Exception {
+          throws Exception {
     if (sampleRate == 0.0) {
       sampleRate = 22050;
     }
@@ -209,13 +213,14 @@ public class AudioArrayUtils {
 
     AudioFormat format = new AudioFormat(sampleRate, 16, audioChannels, true, false);
     try (ByteArrayInputStream bais = new ByteArrayInputStream(byteBuffer);
-        AudioInputStream audioInputStream = new AudioInputStream(bais, format, buffer.length)) {
+         AudioInputStream audioInputStream = new AudioInputStream(bais, format, buffer.length)) {
       AudioSystem.write(audioInputStream, AudioFileFormat.Type.WAVE, outs);
     }
   }
 
   /**
    * 保存音频文件
+   * Save the audio file
    *
    * @param audioData
    * @param path

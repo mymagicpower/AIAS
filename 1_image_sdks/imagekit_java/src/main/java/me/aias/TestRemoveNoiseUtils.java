@@ -9,12 +9,14 @@ import org.junit.Test;
 
 /**
  * 测试降噪
+ * Test denoising
  */
 public class TestRemoveNoiseUtils {
 
     @Test
     /**
      * 测试8邻域降噪
+     * Test 8-neighborhood denoising
      */
     public void testNativeRemoveNoise(){
         String imgPath = "src/test/resources/1.png";
@@ -27,6 +29,7 @@ public class TestRemoveNoiseUtils {
         src = BinaryUtils.binaryzation(src);
 
         // 8邻域降噪
+        // 8-neighborhood denoising
         src = NoiseUtils.navieRemoveNoise(src , 1);
 
         GeneralUtils.saveImg(src , destPath + "nativeRemoveNoise.png");
@@ -36,6 +39,7 @@ public class TestRemoveNoiseUtils {
     @Test
     /**
      * 连通域降噪
+     * Connected domain denoising
      */
     public void testConnectedRemoveNoise(){
         String imgPath = "src/test/resources/1.png";
@@ -47,7 +51,7 @@ public class TestRemoveNoiseUtils {
 
         src = BinaryUtils.binaryzation(src);
 
-        // 连通域降噪
+        // 连通域降噪 - Connected domain denoising
         src = NoiseUtils.connectedRemoveNoise(src , 1);
 
         GeneralUtils.saveImg(src , destPath + "connectedRemoveNoise.png");

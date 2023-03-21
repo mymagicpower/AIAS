@@ -7,10 +7,11 @@ import java.util.Queue;
 
 /**
  * 固定长度队列
- *
+ * Fixed-length queue
  */
 public class FixedQueue<E> implements Queue<E> {
   // 队列长度
+  // Length of the queue
   private int size;
 
   Queue<E> queue = new LinkedList<E>();
@@ -21,6 +22,7 @@ public class FixedQueue<E> implements Queue<E> {
 
   /**
    * 入队
+   * Enqueue
    *
    * @param e
    */
@@ -35,6 +37,7 @@ public class FixedQueue<E> implements Queue<E> {
 
   /**
    * 出队
+   * Dequeue
    *
    * @return
    */
@@ -45,6 +48,7 @@ public class FixedQueue<E> implements Queue<E> {
 
   /**
    * 获取队列
+   * Get queue
    *
    * @return
    */
@@ -54,6 +58,7 @@ public class FixedQueue<E> implements Queue<E> {
 
   /**
    * 获取限制大小
+   * Get limit size
    *
    * @return
    */

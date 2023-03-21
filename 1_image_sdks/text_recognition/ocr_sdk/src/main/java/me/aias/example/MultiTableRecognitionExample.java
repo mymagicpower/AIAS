@@ -29,6 +29,7 @@ import java.util.List;
                                    
 /**
  * 表格识别.
+ * Table Recognition
  *
  * @author Calvin
  * @date 2021-10-05
@@ -46,10 +47,13 @@ public final class MultiTableRecognitionExample {
     int height = image.getHeight();
     int width = image.getWidth();
     // 表单布局检测
+    // Form layout detection
     LayoutDetection layoutDetection = new LayoutDetection();
     // 表格单元检测
+    // Table cell detection
     TableDetection tableDetection = new TableDetection();
     // 文本框检测
+    // Text box detection
     OcrV3AlignedRecognition recognition = new OcrV3AlignedRecognition();
 
     try (ZooModel tableModel = ModelZoo.loadModel(tableDetection.criteria());
@@ -66,9 +70,11 @@ public final class MultiTableRecognitionExample {
       List<DetectedObjects.DetectedObject> boxes = layoutDetections.items();
       for (int i = 0; i < boxes.size(); i++) {
         // TODO 模型需优化, 页面出现多个表不准，但是当前可以用于表单中一个表格自动检测识别
+        // TODO: Model needs to be optimized. It may not be accurate when multiple tables appear on the page, but currently it can be used to automatically detect and recognize a table in a form.
         if (boxes.get(i).getClassName().equals("Table")) {
           Image subImage = getSubImage(image, boxes.get(i).getBoundingBox());
           // 表格单元检测
+          // Table cell detection
           TableResult result = tableDetector.predict(subImage);
 
           List<BoundingBox> cells = result.getBoxes();
@@ -98,6 +104,7 @@ public final class MultiTableRecognitionExample {
           System.out.println(html);
 
           // 创建一个Excel文件
+          // Create an Excel file
           html = html.replace("<html><body>", "");
           html = html.replace("</body></html>", "");
           HSSFWorkbook workbook = ConvertHtml2Excel.table2Excel(html);

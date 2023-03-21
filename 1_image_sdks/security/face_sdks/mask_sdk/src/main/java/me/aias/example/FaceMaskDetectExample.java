@@ -22,6 +22,7 @@ import java.io.IOException;
 
 /**
  * 口罩检测模型.
+ * Face mask detection
  *
  * @author Calvin
  * @email 179209347@qq.com
@@ -40,8 +41,10 @@ public final class FaceMaskDetectExample {
     Image image = ImageFactory.getInstance().fromImage(img);
 
     // 图像缩放比，越小速度越快，精度越低，需根据场景调优
+    // The scaling ratio of the image. The smaller it is, the faster the speed, but the lower the accuracy.
     float scale = 0.5f;
     // 检测结果的置信度过滤阈值
+    // Confidence threshold for filtering detection results.
     float threshold = 0.7f;
     FaceDetection faceDetection = new FaceDetection();
     FaceMaskDetect faceMaskDetect = new FaceMaskDetect();

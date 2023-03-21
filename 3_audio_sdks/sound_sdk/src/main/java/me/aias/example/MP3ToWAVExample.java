@@ -9,9 +9,10 @@ import javax.sound.sampled.*;
 
 /**
  * JAVA mp3 转 wav
+ * JAVA mp3 to wav conversion
+ *
  * @author calvin
  * @mail 179209347@qq.com
- * @website www.aias.top
  */
 public class MP3ToWAVExample {
     private static final Logger logger = LoggerFactory.getLogger(MP3ToWAVExample.class);

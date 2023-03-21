@@ -11,6 +11,12 @@ import org.apache.kafka.common.serialization.VoidDeserializer;
 
 import java.time.Duration;
 import java.util.*;
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 
 public class ConsumerLoop implements Runnable {
     private final KafkaConsumer<Void, String> consumer;

@@ -13,7 +13,7 @@
         </div>
       </el-image>
 
-      <div class="score">距离 {{ data.score }}</div>
+      <div class="score">Dis {{ data.score }}</div>
       <div class="footer">
         <div class="title">{{ data.id }}</div>
 <!--        <div class="date-time">{{ data.createTime }}</div>-->

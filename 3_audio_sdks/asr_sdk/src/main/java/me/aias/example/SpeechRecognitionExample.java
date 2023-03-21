@@ -14,12 +14,11 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 预测短语音
- *
+ * Predictive text input
  * <p>https://github.com/yeyupiaoling/PaddlePaddle-DeepSpeech
  *
  * @author calvin
  * @mail 179209347@qq.com
- * @website www.aias.top
  */
 public final class SpeechRecognitionExample {
     private static final Logger logger = LoggerFactory.getLogger(SpeechRecognitionExample.class);

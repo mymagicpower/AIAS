@@ -17,7 +17,13 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-
+/**
+ * Image & Text search【40 Languages】
+ *
+ * @author calvin
+ * @mail 179209347@qq.com
+ * @website www.aias.top
+ */
 public final class ImageTextSearchExample2 {
 
     private static final Logger logger = LoggerFactory.getLogger(ImageTextSearchExample2.class);
@@ -25,16 +31,9 @@ public final class ImageTextSearchExample2 {
     private ImageTextSearchExample2() {
     }
 
-    /**
-     * Image & Text search【40 Languages】
-     *
-     * @author calvin
-     * @mail 179209347@qq.com
-     * @website www.aias.top
-     */
     public static void main(String[] args) throws IOException, ModelException, TranslateException {
 
-        String text = "在雪地里有两条狗";
+        String text = "There are two dogs in the snow.";
 
         Path imageFile = Paths.get("src/test/resources/two_dogs_in_snow.jpg");
         Image image = ImageFactory.getInstance().fromFile(imageFile);

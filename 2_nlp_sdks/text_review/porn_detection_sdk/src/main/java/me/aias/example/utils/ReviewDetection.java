@@ -8,7 +8,12 @@ import org.slf4j.LoggerFactory;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-// https://www.paddlepaddle.org.cn/hubdetail?name=porn_detection_lstm&en_category=TextCensorship
+/**
+ * https://www.paddlepaddle.org.cn/hubdetail?name=porn_detection_lstm&en_category=TextCensorship
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 
 public final class ReviewDetection {
 

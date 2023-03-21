@@ -5,7 +5,12 @@ import com.jlibrosa.audio.exception.FileFormatNotSupportedException;
 import com.jlibrosa.audio.wavFile.WavFileException;
 
 import java.io.IOException;
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public class Complex {
     private final double re; // the real part
     private final double im; // the imaginary part

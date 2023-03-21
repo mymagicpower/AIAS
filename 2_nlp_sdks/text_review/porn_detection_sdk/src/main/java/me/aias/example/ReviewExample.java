@@ -11,7 +11,12 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Arrays;
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public final class ReviewExample {
 
   private static final Logger logger = LoggerFactory.getLogger(ReviewExample.class);
@@ -30,7 +35,7 @@ public final class ReviewExample {
       String input = "黄色内容";
       logger.info("input Sentence: {}", input);
 
-      // 文本检查
+      // 文本检查 Text check
       float[] result = predictor.predict(input);
       logger.info(Arrays.toString(result));
       logger.info("not_porn : " + result[0]);
@@ -40,7 +45,7 @@ public final class ReviewExample {
       input = "黄牛党";
       logger.info("input Sentence: {}", input);
 
-      // 文本检查
+      // 文本检查 Text check
       result = predictor.predict(input);
       logger.info(Arrays.toString(result));
       logger.info("not_porn : " + result[0]);

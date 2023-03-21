@@ -17,7 +17,13 @@ import java.util.List;
 import static org.bytedeco.ffmpeg.global.avcodec.AV_CODEC_ID_AAC;
 import static org.bytedeco.ffmpeg.global.avcodec.AV_CODEC_ID_H264;
 import static org.bytedeco.ffmpeg.global.avutil.AV_PIX_FMT_YUV420P;
-
+/**
+ * Video Utils
+ *
+ * @author Calvin
+ * @date 2021-07-10
+ * @email 179209347@qq.com
+ **/
 public class VideoUtils {
   public static List<Image> getKeyFrame(String filePath) throws Exception {
     File vf = new File(filePath);
@@ -26,16 +32,18 @@ public class VideoUtils {
     Java2DFrameConverter converter = new Java2DFrameConverter();
 
     // 帧总数
+    // Total number of frames
     BufferedImage bImg = null;
-    System.out.println("总时长:" + grabberI.getLengthInTime() / 1000 / 60);
-    System.out.println("音频帧数:" + grabberI.getLengthInAudioFrames());
-    System.out.println("视频帧数:" + grabberI.getLengthInVideoFrames());
-    System.out.println("总帧数:" + grabberI.getLengthInFrames());
+    System.out.println("Total duration(总时长):" + grabberI.getLengthInTime() / 1000 / 60);
+    System.out.println("Number of audio frames(音频帧数):" + grabberI.getLengthInAudioFrames());
+    System.out.println("Number of video frames:(视频帧数):" + grabberI.getLengthInVideoFrames());
+    System.out.println("Total number of frames:(总帧数):" + grabberI.getLengthInFrames());
     int vidoes =
         grabberI.getLengthInVideoFrames() >= Integer.MAX_VALUE
             ? 0
             : grabberI.getLengthInVideoFrames();
     // 获取图片
+    // Get image
     int frame_number = vidoes;
     Frame img = null;
     grabberI.flush();
@@ -70,8 +78,10 @@ public class VideoUtils {
         new FFmpegFrameRecorder(des, grabberI.getImageWidth(), grabberI.getImageHeight(), 2);
     recorder.setVideoCodec(AV_CODEC_ID_H264);
     // 音频编/解码器
+    // audio encoder/decoder
     recorder.setAudioCodec(AV_CODEC_ID_AAC);
-    // rtmp的类型
+    // rtmp 的类型
+    // rtmp type
     recorder.setFormat(fileType);
     recorder.setPixelFormat(AV_PIX_FMT_YUV420P);
     recorder.start();
@@ -79,11 +89,12 @@ public class VideoUtils {
     OpenCVFrameConverter.ToIplImage conveter = new OpenCVFrameConverter.ToIplImage();
     Java2DFrameConverter converter = new Java2DFrameConverter();
     // 帧总数
+    // Total number of frames
     BufferedImage bImg = null;
-    System.out.println("总时长:" + grabberI.getLengthInTime() / 1000 / 60);
-    System.out.println("音频帧数:" + grabberI.getLengthInAudioFrames());
-    System.out.println("视频帧数:" + grabberI.getLengthInVideoFrames());
-    System.out.println("总帧数:" + grabberI.getLengthInFrames());
+    System.out.println("Total duration(总时长):" + grabberI.getLengthInTime() / 1000 / 60);
+    System.out.println("Number of audio frames(音频帧数):" + grabberI.getLengthInAudioFrames());
+    System.out.println("Number of video frames:(视频帧数):" + grabberI.getLengthInVideoFrames());
+    System.out.println("Total number of frames:(总帧数):" + grabberI.getLengthInFrames());
     int audios =
         grabberI.getLengthInAudioFrames() >= Integer.MAX_VALUE
             ? 0
@@ -102,7 +113,7 @@ public class VideoUtils {
 
     grabberI.flush();
     for (int i = 0; i < frame_number; i++) {
-      System.out.println("总共：" + frame_number + " 完成：" + i);
+      System.out.println("Total：" + frame_number + " Completed：" + i);
       Frame frame = grabberI.grab();
 
       if (frame == null) {
@@ -116,7 +127,7 @@ public class VideoUtils {
 
       if (img != null) {
         if ((bImg = converter.convert(frame)) != null) {
-          System.out.println("放入图片");
+          System.out.println("Insert image");
           if (index >= cimgs.size()) break;
           Mat face = OpencvImageUtils.b2M(cimgs.get(index), opencv_core.CV_8UC3);
           opencv_imgproc.resize(face, face, new Size(width, height));

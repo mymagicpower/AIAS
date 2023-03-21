@@ -18,6 +18,7 @@ import java.util.Arrays;
 
 /**
  * 人脸比对 - 1:1.
+ * Face feature comparison - 1:1.
  *
  * @author Calvin
  * @email 179209347@qq.com

@@ -22,7 +22,7 @@ import java.util.List;
  * @author Calvin
  * @date Oct 19, 2021
  */
-@Api(tags = "文字识别")
+@Api(tags = "文字识别 - Text Recognition")
 @RestController
 @RequestMapping("/ocr")
 public class OcrController {
@@ -31,7 +31,7 @@ public class OcrController {
     @Autowired
     private OcrService inferService;
 
-    @ApiOperation(value = "通用文字识别-URL")
+    @ApiOperation(value = "通用文字识别-URL - General Text Recognition - URL")
     @GetMapping(value = "/generalInfoForImageUrl")
     public ResultBean generalInfoForImageUrl(@RequestParam(value = "url") String url) throws IOException {
         Image image = ImageFactory.getInstance().fromUrl(url);
@@ -39,7 +39,7 @@ public class OcrController {
         return ResultBean.success().add("result", dataList);
     }
 
-    @ApiOperation(value = "通用文字识别-图片")
+    @ApiOperation(value = "通用文字识别-图片 - General Text Recognition - Image")
     @PostMapping("/generalInfoForImageFile")
     public ResultBean generalInfoForImageFile(@RequestParam(value = "imageFile") MultipartFile imageFile) {
         InputStream fis = null;

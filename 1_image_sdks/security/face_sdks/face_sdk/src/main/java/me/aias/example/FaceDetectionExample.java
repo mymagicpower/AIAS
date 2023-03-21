@@ -19,6 +19,7 @@ import java.nio.file.Paths;
 
 /**
  * 人脸检测模型.
+ * Face Detection Model.
  *
  * @author Calvin
  * @email 179209347@qq.com
@@ -34,9 +35,11 @@ public final class FaceDetectionExample {
   public static void main(String[] args) throws IOException, ModelException, TranslateException {
     Path imageFile = Paths.get("src/test/resources/faces.jpg");
     Image image = ImageFactory.getInstance().fromFile(imageFile);
-    //图像缩放比，越小速度越快，精度越低，需根据场景调优
+    // 图像缩放比，越小速度越快，精度越低，需根据场景调优
+    // The scaling ratio of the image. The smaller it is, the faster the speed, but the lower the accuracy.
     float scale = 0.5f;
-    //检测结果的置信度过滤阈值
+    // 检测结果的置信度过滤阈值
+    // Confidence threshold for filtering detection results.
     float threshold = 0.7f;
     FaceDetection faceDetection = new FaceDetection();
     try (ZooModel<Image, DetectedObjects> model = ModelZoo.loadModel(faceDetection.criteria(scale,threshold));

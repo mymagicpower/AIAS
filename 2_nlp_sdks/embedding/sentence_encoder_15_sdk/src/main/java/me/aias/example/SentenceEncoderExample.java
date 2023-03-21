@@ -17,6 +17,9 @@ import java.util.Arrays;
  * 句向量 支持 15 languages: Arabic, Chinese, Dutch, English, French, German, Italian, Korean, Polish,
  * Portuguese, Russian, Spanish, Turkish.
  *
+ * Sentence Encoder - support 15 languages: Arabic, Chinese, Dutch, English, French, German, Italian, Korean, Polish,
+ * Portuguese, Russian, Spanish, Turkish.
+ *
  * @author calvin
  * @mail 179209347@qq.com
  * @website www.aias.top
@@ -49,14 +52,14 @@ public final class SentenceEncoderExample {
       float[] embeddings2 = predictor.predict(input2);
       logger.info("Sentence2 embeddings: {}", Arrays.toString(embeddings2));
 
-      logger.info("英文 Similarity: {}", FeatureComparison.cosineSim(embeddings1, embeddings2));
+      logger.info("English Similarity: {}", FeatureComparison.cosineSim(embeddings1, embeddings2));
 
       float[] embeddings3 = predictor.predict(input3);
       logger.info("Sentence1 embeddings: {}", Arrays.toString(embeddings3));
       float[] embeddings4 = predictor.predict(input4);
       logger.info("Sentence2 embeddings: {}", Arrays.toString(embeddings4));
 
-      logger.info("中文 Similarity: {}", FeatureComparison.cosineSim(embeddings3, embeddings4));
+      logger.info("Chinese Similarity: {}", FeatureComparison.cosineSim(embeddings3, embeddings4));
     }
   }
 }

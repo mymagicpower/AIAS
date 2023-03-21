@@ -1,10 +1,10 @@
 <template>
   <div class="app-container">
     <el-form ref="form" :model="form" label-width="120">
-      <el-form-item label="图片1">
+      <el-form-item label="Image1">
         <el-input v-model="form.url1" />
       </el-form-item>
-      <el-form-item label="图片2">
+      <el-form-item label="Image2">
         <el-input v-model="form.url2" />
       </el-form-item>
       <el-row>
@@ -32,9 +32,9 @@
           v-loading.fullscreen.lock="fullscreenLoading"
           type="primary"
           size="small"
-          element-loading-text="拼命加载中"
+          element-loading-text="loading"
           @click="onSubmit"
-        >图片比对</el-button>
+        >Submit</el-button>
       </el-form-item>
       <el-form-item>
         <el-divider />
@@ -59,15 +59,15 @@
               ::limit="2"
               :auto-upload="false"
             >
-              <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+              <el-button slot="trigger" size="small" type="primary">Select</el-button>
               <el-button
                 v-loading.fullscreen.lock="fullscreenLoading"
                 style="margin-left: 10px;"
                 type="success"
                 size="small"
-                element-loading-text="拼命加载中"
+                element-loading-text="loading"
                 @click="submitUpload"
-              >上传</el-button>
+              >Upload</el-button>
               <div slot="tip" class="el-upload__tip">Image format: JPG(JPEG), PNG</div>
             </el-upload>
           </el-form-item>
@@ -101,7 +101,7 @@ export default {
     return {
       fullscreenLoading: false,
       file: [],
-      fileList: [], // upload多文件数组
+      fileList: [], // upload多文件数组 - upload file list
       form: {
         url1: 'https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/train_platform/images/car1.jpg',
         url2: 'https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/train_platform/images/car2.jpg',
@@ -115,7 +115,7 @@ export default {
     upload() {
       return `${process.env.VUE_APP_BASE_API}/api/inference/compareForImageFiles`
     },
-    // 上传文件
+    // 上传文件 - upload file
     uploadFile(param) {
       this.file.push(param.file)
     },
@@ -123,16 +123,17 @@ export default {
       // this.$refs.upload.submit()
       if (this.fileList.length !== 2) {
         this.$message({
-          message: '请选择且仅选择 2 个图像文件',
+          message: 'Please select and only select 2 image files',
           type: 'warning'
         })
       } else {
         this.fullscreenLoading = true
-        const formData = new FormData() // new formData对象
-        this.$refs.upload.submit() // 提交调用uploadFile函数
-        this.file.forEach(function(file) { // 遍历上传多个文件
+        const formData = new FormData() // new formData对象 - new formData object
+        this.$refs.upload.submit() // 提交调用uploadFile函数 - submit calls uploadFile function
+        this.file.forEach(function(file) { // 遍历上传多个文件 - traverse to upload multiple files
           formData.append('imageFiles', file, file.name)
           // upData.append('file', this.file); //不要直接使用文件数组进行上传，传给后台的是两个Object
+          // Do not upload directly using the file array, it is two Objects passed to the background
         })
         compareForImageFiles(formData).then(response => {
           this.form.base64Img1 = response.data.base64Img1
@@ -144,20 +145,23 @@ export default {
       }
     },
     // 移除
+    // Remove
     handleRemove(file, fileList) {
       this.fileList = fileList
       // return this.$confirm(`确定移除 ${ file.name }？`);
     },
 
     // 选取文件超过数量提示
+    // Selecting files exceeds the limit warning
     handleExceed(files, fileList) {
-      this.$message.warning(`当前限制选择 2 个文件`)
+      this.$message.warning(`Currently limited to selecting 2 files`)
     },
     // 监控上传文件列表
+    // Monitor the uploaded file list
     handleChange(file, fileList) {
       const existFile = fileList.slice(0, fileList.length - 1).find(f => f.name === file.name)
       if (existFile) {
-        this.$message.error('当前文件已经存在!')
+        this.$message.error('The current file already exists!')
         fileList.pop()
       }
       this.fileList = fileList

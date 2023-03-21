@@ -4,17 +4,22 @@ import org.bytedeco.opencv.opencv_core.*;
 
 import static org.bytedeco.opencv.global.opencv_imgproc.minAreaRect;
 
-/** 矩形框工具类 */
+/**
+ * 矩形框工具类
+ * Rectangle tool class
+ */
+
 public class RectUtils {
 
   /**
    * 返回边缘检测之后的最大矩形
+   * Returns the maximum rectangle after edge detection
    *
    * @param contours
    * @return
    */
   public static RotatedRect getMaxRect(MatVector contours) {
-    // 找出匹配到的最大轮廓
+    // 找出匹配到的最大轮廓 - Find the largest contour
     Mat maxContour = ContourUtils.getMaxContour(contours);
     RotatedRect rect = minAreaRect(maxContour);
     return rect;
@@ -22,12 +27,13 @@ public class RectUtils {
 
   /**
    * 返回边缘检测之后的最大矩形
+   * Returns the maximum rectangle after edge detection
    *
-   * @param cannyMat Canny之后的mat矩阵
+   * @param cannyMat Canny之后的mat矩阵 - Canny's mat matrix
    * @return
    */
   public static RotatedRect getMaxRect(Mat cannyMat) {
-    // 找出匹配到的最大轮廓
+    // 找出匹配到的最大轮廓 - Find the largest contour
     Mat maxContour = ContourUtils.getMaxContour(cannyMat);
     RotatedRect rect = minAreaRect(maxContour);
     return rect;
@@ -35,14 +41,15 @@ public class RectUtils {
   
   /**
    * 把矫正后的图像切割出来
+   * Cut the corrected image
    *
-   * @param correctMat 图像矫正后的Mat矩阵
+   * @param correctMat 图像矫正后的Mat矩阵 - The corrected Mat matrix of the image
    */
   public static Mat cutRect(Mat correctMat, Mat nativeCorrectMat) {
-    // 获取所有轮廓
+    // 获取所有轮廓 - Obtain all contours
     MatVector contours = ContourUtils.getContours(correctMat);
 
-    // 获取最大矩形
+    // 获取最大矩形 - Obtain the largest rectangle
     RotatedRect rect = getMaxRect(contours);
 
     Point2f rectPoint = new Point2f(4);
@@ -67,10 +74,6 @@ public class RectUtils {
     System.out.println("width = " + width);
     System.out.println("height = " + height);
 
-    // TODO
-    //        int[] roi = cutRectHelp(rectPoint);
-    //        Mat temp = new Mat(nativeCorrectMat, new Rect(roi[0], roi[1], roi[2], roi[3]));
-
     Mat temp = new Mat(nativeCorrectMat, new Rect(x, y, width, height));
     Mat t = new Mat();
     temp.copyTo(t);
@@ -80,8 +83,9 @@ public class RectUtils {
 
   /**
    * 把矫正后的图像切割出来--辅助函数(修复)
+   * Cut the corrected image -- auxiliary function (repair)
    *
-   * @param rectPoint 矩形的四个点
+   * @param rectPoint 矩形的四个点 - The four points of the rectangle
    * @return int[startLeft , startUp , width , height]
    */
   public static int[] cutRectHelp(Point2f rectPoint) {

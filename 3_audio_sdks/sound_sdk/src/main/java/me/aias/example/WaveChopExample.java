@@ -8,9 +8,10 @@ import java.io.File;
 
 /**
  * JAVA 截取部分wav文件
+ * JAVA code to extract a portion of a wav file
+ *
  * @author calvin
  * @mail 179209347@qq.com
- * @website www.aias.top
  */
 public class WaveChopExample {
     private static final Logger logger = LoggerFactory.getLogger(WaveChopExample.class);

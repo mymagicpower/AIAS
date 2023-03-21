@@ -9,10 +9,9 @@ import javax.sound.sampled.AudioSystem;
 import java.io.File;
 
 /**
- * JAVA wav文件格式转换
+ * JAVA wav file format conversion - 文件格式转换
  * @author calvin
  * @mail 179209347@qq.com
- * @website www.aias.top
  */
 public class WavToWavExample {
     public static void main(String [] args){

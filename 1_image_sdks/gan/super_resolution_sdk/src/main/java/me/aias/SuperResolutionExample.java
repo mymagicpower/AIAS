@@ -14,7 +14,14 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
-
+/**
+ * 超分辨- 提升分辨率
+ * Super Resolution - Enhance Resolution
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public final class SuperResolutionExample {
 
   private static final Logger logger = LoggerFactory.getLogger(SuperResolutionExample.class);
@@ -28,14 +35,9 @@ public final class SuperResolutionExample {
     Image image = ImageFactory.getInstance().fromFile(imageFile);
     SuperResolution enhancer = new SuperResolution();
 
-    //单图片超分辨
-//    Image img = enhancer.predict(image);
-//    ImageUtils.saveImage(img, "single.png", "build/output");
-
-    //批量图片超分辨
-    List<Image> inputImages =
-            Arrays.asList(image);
-    List<Image> enhancedImages = new SuperResolution().predict(inputImages);
+    // Super Resolution - Enhance Resolution
+    Image img = enhancer.predict(image);
+    ImageUtils.saveImage(img, "single.png", "build/output");
 
     logger.info("Images generated: {}", enhancedImages.size());
     ImageUtils.saveImages(inputImages, enhancedImages, "build/output/");

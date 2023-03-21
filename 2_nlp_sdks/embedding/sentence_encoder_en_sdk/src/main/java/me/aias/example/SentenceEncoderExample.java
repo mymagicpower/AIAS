@@ -12,6 +12,12 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Arrays;
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 
 public final class SentenceEncoderExample {
 

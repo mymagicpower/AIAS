@@ -17,7 +17,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 import java.util.stream.Collectors;
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public final class SimnetBowTranslator implements Translator<String[][], Float> {
   SimnetBowTranslator() {}
 
@@ -35,13 +40,13 @@ public final class SimnetBowTranslator implements Translator<String[][], Float> 
               word -> {
                 String[] ws = word.split("	");
                 if (ws.length == 1) {
-                  //                  word2id_dict.put("", ws[0]); // 文字是key,id是value
+                  //                  word2id_dict.put("", ws[0]); // 文字是key,id是value - Text is the key, ID is the value.
                 } else {
-                  word2id_dict.put(ws[0], ws[1]); // 文字是key,id是value
+                  word2id_dict.put(ws[0], ws[1]); // 文字是key,id是value - Text is the key, ID is the value.
                 }
               });
     }
-    unk_id = "" + word2id_dict.size(); // 文字是key,id是value
+    unk_id = "" + word2id_dict.size(); // 文字是key,id是value - Text is the key, ID is the value.
   }
 
   @Override

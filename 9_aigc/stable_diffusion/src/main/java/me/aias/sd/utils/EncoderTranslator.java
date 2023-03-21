@@ -10,6 +10,12 @@ import ai.djl.translate.TranslatorContext;
 
 import java.io.IOException;
 import java.util.List;
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 
 public class EncoderTranslator implements Translator<Image, NDArray> {
     List<String> classes;

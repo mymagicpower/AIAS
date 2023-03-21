@@ -18,6 +18,7 @@ import java.util.Arrays;
 
 /**
  * 人脸特征提取
+ * Face feature extraction
  *
  * @author Calvin
  * @email 179209347@qq.com

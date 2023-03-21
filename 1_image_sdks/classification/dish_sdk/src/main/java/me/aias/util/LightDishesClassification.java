@@ -20,9 +20,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 // https://www.paddlepaddle.org.cn/hubdetail?name=mobilenet_v2_dishes&en_category=ImageClassification
-//
-// /Users/calvin/Desktop/Download/browser/PaddleHub-release-v2.1/modules/image/classification/mobilenet_v2_dishes
-
+/**
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ */
 public final class LightDishesClassification {
 
   private static final Logger logger = LoggerFactory.getLogger(LightDishesClassification.class);

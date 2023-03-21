@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * CTC贪婪(最佳路径)解码器
+ * CTC Greedy (Best Path) Decoder
  *
  * @author Calvin <179209347@qq.com>
  */
@@ -16,17 +17,20 @@ public class CTCGreedyDecoder {
 
   /**
    * 由最可能的令牌组成的路径将被进一步后处理到去掉连续重复和所有空白
+   * The path consisting of the most probable tokens is further post-processed to remove consecutive duplicates and all blanks
    *
    * @param manager
    * @param probs_seq: 每一条都是2D的概率表。每个元素都是浮点数概率的列表一个字符
-   * @param vocabulary: 词汇列表
-   * @param blank_index: 需要移除的空白索引
-   * @return 解码后得到的 score,字符串
+   *                   a list of 2D probability tables. Each element is a list of floating point probabilities for a character
+   * @param vocabulary: 词汇列表  - vocabulary list
+   * @param blank_index: 需要移除的空白索引 - blank index that needs to be removed
+   * @return 解码后得到的 score,字符串 - the score and string obtained after decoding
    * @throws Exception
    */
   public static Pair greedyDecoder(
       NDManager manager, NDArray probs_seq, List<String> vocabulary, long blank_index) {
     // 获得每个时间步的最佳索引
+    // Get the best index for each time step
     float[] floats = probs_seq.toFloatArray();
     int rows = (int) probs_seq.getShape().get(0);
     int cols = (int) probs_seq.getShape().get(1);
@@ -41,6 +45,7 @@ public class CTCGreedyDecoder {
     }
 
     // 删除连续的重复"索引"
+    // Remove consecutive duplicate "indices"
     List<Long> index_list = new ArrayList<>();
     long current = max_index_list[0];
     index_list.add(current);
@@ -52,6 +57,7 @@ public class CTCGreedyDecoder {
     }
 
     // 删除空索引
+    // Remove blank indices
     List<Long> pure_index_list = new ArrayList<>();
     for (Long value : index_list) {
       if (value != blank_index) {
@@ -60,6 +66,7 @@ public class CTCGreedyDecoder {
     }
 
     // 索引列表转换为字符串
+    // Convert index list to string
     StringBuffer sb = new StringBuffer();
     for (Long value : pure_index_list) {
       sb.append(vocabulary.get(value.intValue()));

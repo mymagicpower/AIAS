@@ -57,6 +57,7 @@ public class TrainArgumentService {
 
     /**
      * 保存设置
+     * save config
      */
     public void saveTrainArgument() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -72,6 +73,7 @@ public class TrainArgumentService {
 
     /**
      * 编辑
+     * edit
      *
      * @param trainArgument
      */

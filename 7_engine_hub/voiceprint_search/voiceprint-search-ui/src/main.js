@@ -17,6 +17,7 @@ import '@/permission' // permission control
 // set ElementUI lang to EN
 Vue.use(ElementUI, { locale })
 // 如果想要中文版 element-ui，按如下方式声明
+// To use the Chinese version of element-ui, declare as follows
 // Vue.use(ElementUI)
 
 Vue.config.productionTip = false

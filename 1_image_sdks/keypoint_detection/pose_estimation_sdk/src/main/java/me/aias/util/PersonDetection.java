@@ -24,7 +24,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public final class PersonDetection {
 
   private static final Logger logger = LoggerFactory.getLogger(PersonDetection.class);

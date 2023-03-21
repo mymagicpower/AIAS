@@ -6,7 +6,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public class FileUtils {
     public static void downloadModel() throws IOException {
         Path modelFile = Paths.get("build/tmp/model/text_classification.bin");

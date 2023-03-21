@@ -16,7 +16,12 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public final class PoseResnet50EstimationExample {
 
   private static final Logger logger = LoggerFactory.getLogger(PoseResnet50EstimationExample.class);
@@ -36,17 +41,20 @@ public final class PoseResnet50EstimationExample {
 
     for (DetectedObjects.DetectedObject person : persons) {
       // 外扩比例 factor = 1, 100%, factor = 0.2, 20%
+      // Expand the border of the bounding box by factor=1, 100%; factor=0.2, 20%
       Image subImg = ImageUtils.getSubImage(image, person.getBoundingBox(), 0f);
       Joints joints = new PoseResnet50Estimation().predict(subImg);
 
       //在抠出的小图中画出关键点
+      // Draw the keypoints in the cropped image
       subImg.drawJoints(joints);
       ImageUtils.saveImage(subImg, "person_" + index++ + ".png", "build/output");
       logger.info("{}", joints);
 
       int x = ImageUtils.getX(image, person.getBoundingBox());
       int y = ImageUtils.getY(image, person.getBoundingBox());
-      //在大图中画出关键点
+      // 在大图中画出关键点
+      // Draw the keypoints in the original image
       ImageUtils.drawJoints(image,subImg, x, y, joints);
 
       //      names.add(face.getClassName());

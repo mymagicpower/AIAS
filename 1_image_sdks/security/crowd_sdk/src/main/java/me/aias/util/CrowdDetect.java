@@ -17,7 +17,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 // https://gitee.com/mymagicpower/PaddlePaddle-CrowdNet
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public final class CrowdDetect {
 
   private static final Logger logger = LoggerFactory.getLogger(CrowdDetect.class);

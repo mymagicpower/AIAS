@@ -18,10 +18,12 @@ public class TestRotation {
         GeneralUtils.saveImg(marcel, "build/output/srcImg.jpg");
 
         // 边缘检测
+        // Edge detection
         Mat cannyMat = GeneralUtils.canny(marcel);
         GeneralUtils.saveImg(cannyMat, "build/output/canny.jpg");
 
         // 获取所有轮廓
+        // Get all the contours
         MatVector contours = ContourUtils.getContours(cannyMat);
 
         Mat resultImage = cannyMat.clone();
@@ -36,6 +38,7 @@ public class TestRotation {
         GeneralUtils.saveImg(resultImage, "build/output/contours.jpg");
 
         // 获取最大外接矩形
+        // Get the maximum bounding rectangle
         RotatedRect rect = RectUtils.getMaxRect(contours);
         Mat rectMat = marcel.clone();
         Scalar scalar = new Scalar(255, 0, 0, 1);
@@ -44,6 +47,7 @@ public class TestRotation {
         GeneralUtils.saveImg(rectMat, "build/output/maxRect.jpg");
 
         // 旋转矩形
+        // Rotate the rectangle
         Mat rotatedImg = RotationUtils.rotation(cannyMat, rect);
         GeneralUtils.saveImg(rotatedImg, "build/output/rotatedImg.jpg");
 
@@ -51,6 +55,7 @@ public class TestRotation {
         GeneralUtils.saveImg(nativeRotatedImg, "build/output/nativeRotatedImg.jpg");
 
         // 裁剪矩形
+        // Crop the rectangle
         Mat cutMat = RectUtils.cutRect(rotatedImg, nativeRotatedImg);
         GeneralUtils.saveImg(cutMat, "build/output/cutRect.jpg");
     }

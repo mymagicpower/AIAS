@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * 获取客户端设备信息
+ * Get user device info
  *
  * @author Calvin
  * @date 2021-06-20
@@ -25,6 +26,7 @@ public class UserAgentUtil {
 
     /**
      * 获取浏览器类型
+     * Get broswer type
      */
     public String getBrowser() {
         if (null == userAgent) {
@@ -35,6 +37,7 @@ public class UserAgentUtil {
 
     /**
      * 获取操作系统
+     * Get os info
      */
     public String getOS() {
         if (null == userAgent) {

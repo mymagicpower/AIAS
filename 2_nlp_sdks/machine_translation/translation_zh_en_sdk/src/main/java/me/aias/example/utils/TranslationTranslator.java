@@ -17,7 +17,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 import java.util.stream.Collectors;
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public final class TranslationTranslator implements Translator<String[], String[]> {
   TranslationTranslator() {}
 

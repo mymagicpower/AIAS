@@ -19,7 +19,11 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * First Order Example
+ *
+ * @author Calvin
+ */
 public final class FirstOrderExample {
 
   private static final Logger logger = LoggerFactory.getLogger(FirstOrderExample.class);
@@ -27,15 +31,15 @@ public final class FirstOrderExample {
   private FirstOrderExample() {}
 
   public static void main(String[] args) throws Exception {
-    // 源图
+    // 源图 - Source image
     Path imageFile = Paths.get("src/test/resources/beauty.jpg");
-    // 驱动视频
+    // 驱动视频 - Driving video
     Path videoPath = Paths.get("src/test/resources/driver.mp4");
-    // 生成视频
+    // 生成视频 - Generated video
     Path outPath = Paths.get("build/output/result.mp4");
 
     Image image = ImageFactory.getInstance().fromFile(imageFile);
-    // 获取视频关键帧
+    // 获取视频关键帧 - Get key frames from the video
     List<Image> driverFrames = VideoUtils.getKeyFrame(videoPath.toString());
     List<BufferedImage> imgList = new ArrayList();
 
@@ -49,10 +53,10 @@ public final class FirstOrderExample {
       Map kpDrivingInitial = detector.predict(driverFrames.get(0));
 
       int total = driverFrames.size();
-      // 进度条打印
+      // 进度条打印 - Progress bar printing
       try (ProgressBar bar =
           new ProgressBarBuilder()
-              .setTaskName("视频合成")
+              .setTaskName("视频合成 - Video Generation")
               .setStyle(ProgressBarStyle.ASCII)
               .setInitialMax(total)
               .build(); ) {

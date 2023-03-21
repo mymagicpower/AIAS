@@ -41,7 +41,7 @@ import static com.google.common.collect.Lists.newArrayList;
 import static springfox.documentation.schema.AlternateTypeRules.newRule;
 
 /**
- * api页面 /doc.html
+ * api docs page /doc.html
  * @author Calvin
  * @date Oct 19, 2021
  */
@@ -68,7 +68,7 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .description("")
-                .title("接口文档")
+                .title("API Documentation")
                 .version("1.0")
                 .build();
     }
@@ -77,6 +77,7 @@ public class SwaggerConfig {
 
 /**
  *  将Pageable转换展示在swagger中
+ *  Convert Pageable to be displayed in Swagger
  */
 @Configuration
 class SwaggerDataConfig {
@@ -99,13 +100,13 @@ class SwaggerDataConfig {
     @ApiModel
     @Data
     private static class Page {
-        @ApiModelProperty("页码 (0..N)")
+        @ApiModelProperty("Page number (0..N)")
         private Integer page;
 
-        @ApiModelProperty("每页显示的数目")
+        @ApiModelProperty("Number of items per page")
         private Integer size;
 
-        @ApiModelProperty("以下列格式排序标准：property[,asc | desc]。 默认排序顺序为升序。 支持多种排序条件：如：id,asc")
+        @ApiModelProperty("Sorting criteria in the format: property[,asc|desc]. Default sort order is ascending. Supports multiple sort conditions, e.g.: id,asc")
         private List<String> sort;
     }
 }

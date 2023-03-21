@@ -15,7 +15,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public final class FaceLandmark {
 
   private static final Logger logger = LoggerFactory.getLogger(FaceLandmark.class);
@@ -53,6 +58,7 @@ public final class FaceLandmark {
     @Override
     public NDList processInput(TranslatorContext ctx, Image input) {
       // 转灰度图
+      // Convert to grayscale image
       NDArray array = input.toNDArray(ctx.getNDManager(), Image.Flag.GRAYSCALE);
       Shape shape = array.getShape();
 
@@ -74,6 +80,7 @@ public final class FaceLandmark {
   }
 
   // 计算全局标准差
+  // Calculate the global standard deviation
   private float std(NDArray points) {
     byte[] arr = points.toByteArray();
     float std = 0;

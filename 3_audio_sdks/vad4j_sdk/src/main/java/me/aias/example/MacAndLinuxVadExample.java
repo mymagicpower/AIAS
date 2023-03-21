@@ -6,6 +6,12 @@ import me.aias.example.utils.SoundUtils;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import java.io.File;
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 
 public class MacAndLinuxVadExample {
 

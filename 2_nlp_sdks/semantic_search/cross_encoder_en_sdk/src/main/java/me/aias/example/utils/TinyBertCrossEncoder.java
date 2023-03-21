@@ -8,6 +8,12 @@ import java.nio.file.Paths;
 
 // https://www.sbert.net/docs/pretrained_cross-encoders.html
 // https://www.sbert.net/docs/pretrained-models/ce-msmarco.html
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public final class TinyBertCrossEncoder {
 
   public TinyBertCrossEncoder() {}

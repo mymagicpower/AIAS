@@ -17,6 +17,7 @@ public class ZipUtil {
 
     /**
      * 解压Zip文件
+     * unzip file
      */
     public static void unZip(String receivedZipFile, String osName, String filePath) {
         int count = -1;

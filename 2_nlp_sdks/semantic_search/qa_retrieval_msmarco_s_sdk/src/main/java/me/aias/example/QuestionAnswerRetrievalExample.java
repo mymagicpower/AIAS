@@ -15,10 +15,10 @@ import java.util.Arrays;
 
 /**
  * 语义搜索
+ * Question Answer Retrieval
  *
  * @author calvin
  * @mail 179209347@qq.com
- * @website www.aias.top
  */
 
 public final class QuestionAnswerRetrievalExample {

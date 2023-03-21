@@ -9,6 +9,7 @@ import java.util.Queue;
 
 /**
  * 对音频预处理的工具: 静音切除，音频分段
+ * Tools for audio preprocessing: silence removal, audio segmentation
  *
  * @author Calvin <179209347@qq.com>
  */

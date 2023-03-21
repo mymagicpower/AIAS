@@ -30,7 +30,6 @@ import java.util.stream.Stream;
  *
  * @author calvin
  * @mail 179209347@qq.com
- * @website www.aias.top
  */
 
 public class ClipBPETokenizer extends SimpleTokenizer {

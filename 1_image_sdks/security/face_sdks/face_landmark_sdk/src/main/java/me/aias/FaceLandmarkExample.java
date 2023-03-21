@@ -32,8 +32,10 @@ public final class FaceLandmarkExample {
         Image image = ImageFactory.getInstance().fromFile(imageFile);
 
         // 图像缩放比，越小速度越快，精度越低，需根据场景调优
+        // Scaling factor for the image, smaller is faster but less accurate, tune for your use case
         float scale = 0.5f;
         // 检测结果的置信度过滤阈值
+        // Confidence threshold to filter detection results
         float threshold = 0.7f;
         FaceDetection faceDetection = new FaceDetection();
         FaceLandmark faceLandmark = new FaceLandmark();
@@ -57,6 +59,7 @@ public final class FaceLandmarkExample {
                 // rect.add(face.getBoundingBox());
 
                 // 外扩人脸比例 factor = 1, 100%, factor = 0.2, 20%
+                // Expand the ratio of the face outward: factor = 1, 100%; factor = 0.2, 20%
                 Image subImg = ImageUtils.getSubImage(image, face.getBoundingBox(), 0f);
                 ImageUtils.saveImage(subImg, "face_" + index++ + ".png", "build/output");
                 float[][] result = landmarkDetector.predict(subImg);

@@ -5,7 +5,9 @@ import me.aias.example.utils.NumberUtils;
 
 /**
  * 数字读法。
+ * Read numbers.
  * 按数值大小读，一个一个数字读。
+ * Read one digit at a time according to the value size.
  */
 public class NumberExample {
     public static void main(String[] args) {

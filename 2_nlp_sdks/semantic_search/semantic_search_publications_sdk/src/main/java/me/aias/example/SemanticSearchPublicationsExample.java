@@ -13,23 +13,26 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.Arrays;
 
+/**
+ * 学术文章语义搜索
+ * Academic article semantic search
+ *
+ * @author calvin
+ * @mail 179209347@qq.com
+ * @website www.aias.top
+ */
 public final class SemanticSearchPublicationsExample {
 
   private static final Logger logger = LoggerFactory.getLogger(SemanticSearchPublicationsExample.class);
 
   private SemanticSearchPublicationsExample() {}
 
-  /**
-   * 学术文章语义搜索
-   *
-   * @author calvin
-   * @mail 179209347@qq.com
-   * @website www.aias.top
-   */
   public static void main(String[] args) throws IOException, ModelException, TranslateException {
 
-    //传入的参数为文章[标题,摘要] [title, abstract]
+    // 传入的参数为文章[标题,摘要] [title, abstract]
+    // The incoming parameters are the article [title, abstract] [title, abstract]
     // subword切词，合计最大长度 max_sequence_length: 256, 按经验上限平均130个单词左右
+    // Subword segmentation, total maximum length max_sequence_length: 256, according to the empirical upper limit, an average of about 130 words
     String[] paper1 = {"BERT", "We introduce a new language representation model called BERT"};
     String[] paper2 = {"Attention is all you need", "The dominant sequence transduction models are based on complex recurrent or convolutional neural networks"};
     logger.info("paper1 [title, abstract]: {}", Arrays.toString(paper1));

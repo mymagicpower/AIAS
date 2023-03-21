@@ -19,6 +19,7 @@ import java.util.List;
 public class PermissionUtils {
     /**
      * 权限列表
+     * Permission List
      */
     private static String[] permissionList = new String[]{
             Manifest.permission.CAMERA,
@@ -27,6 +28,7 @@ public class PermissionUtils {
     };
     /***
      * 权限请求结果code
+     * Permission request result code
      */
     public static final int PERMISSIONS_REQUEST = 1;
 

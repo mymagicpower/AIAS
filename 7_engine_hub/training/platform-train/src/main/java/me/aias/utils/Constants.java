@@ -2,15 +2,16 @@ package me.aias.utils;
 
 /**
  * 常用静态常量
+ * Constants
  */
 public class Constants {
     /**
-     * win 系统
+     * win
      */
     public static final String WIN = "win";
 
     /**
-     * mac 系统
+     * mac
      */
     public static final String MAC = "mac";
 }

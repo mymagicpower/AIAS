@@ -8,11 +8,13 @@ import org.junit.Test;
 
 /**
  * 测试灰度化
+ * Testing grayscale
  */
 public class TestGrayUtils {
     @Test
     /**
      * 测试opencv自带的灰度化方法
+     * Testing OpenCV's built-in grayscale method
      */
     public void testGrayNative(){
         String imgPath = "src/test/resources/1.png";
@@ -28,7 +30,9 @@ public class TestGrayUtils {
     @Test
     /**
      * 测试细粒度灰度化方法
+     * Testing fine-grained grayscale method
      * 均值灰度化减噪
+     * Mean grayscale denoising
      */
     public void testGrayColByMidle() {
         String imgPath = "src/test/resources/1.png";
@@ -45,7 +49,9 @@ public class TestGrayUtils {
     @Test
     /**
      * 测试细粒度灰度化方法
+     * Testing fine-grained grayscale method
      * k值灰度化减噪
+     * K-value grayscale denoising
      */
     public void testGrayColByKLargest() {
         String imgPath = "src/test/resources/1.png";
@@ -61,7 +67,9 @@ public class TestGrayUtils {
     @Test
     /**
      * 测试细粒度灰度化方法
+     * Testing fine-grained grayscale method
      * 局部自适应阀值灰度化减噪
+     * Local adaptive threshold grayscale denoising
      */
     public void testGrayColByPartAdapThreshold() {
         String imgPath = "src/test/resources/1.png";
@@ -78,7 +86,9 @@ public class TestGrayUtils {
     @Test
     /**
      * 测试细粒度灰度化方法
+     * Testing fine-grained grayscale method
      * 全局自适应阀值灰度化减噪
+     * Global adaptive threshold grayscale denoising
      */
     public void testGrayColByAdapThreshold() {
         String imgPath = "src/test/resources/1.png";

@@ -15,7 +15,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-
+/**
+ *
+ * @author Calvin
+ * @date 2021-12-19
+ **/
 public class ImageTranslator implements Translator<Image, float[]> {
 
   private static final Logger logger = LoggerFactory.getLogger(ImageTranslator.class);

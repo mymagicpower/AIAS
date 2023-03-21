@@ -13,10 +13,10 @@ import java.io.IOException;
 
 /**
  * 英文翻译为德文
+ * English translation to German
  *
  * @author calvin
  * @mail 179209347@qq.com
- * @website www.aias.top
  */
 
 public final class TranslationExample {
@@ -38,6 +38,7 @@ public final class TranslationExample {
             logger.info("input Sentence: {}", input);
 
             // 翻译结果
+            // Translation result
             String[] translationResult = sentaPredictor.predict(input);
             for (int i = 0; i < translationResult.length; i++) {
                 logger.info("T" + i + ": " + translationResult[i]);

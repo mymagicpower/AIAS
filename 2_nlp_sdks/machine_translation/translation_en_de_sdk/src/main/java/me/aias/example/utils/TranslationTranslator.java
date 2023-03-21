@@ -16,7 +16,12 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public final class TranslationTranslator implements Translator<String, String[]> {
   TranslationTranslator() {}
 
@@ -37,8 +42,8 @@ public final class TranslationTranslator implements Translator<String, String[]>
     try (InputStream is = model.getArtifact("assets/vocab_all.bpe.33708").openStream()) {
       List<String> words = Utils.readLines(is, true);
       for (int i = 0; i < words.size(); i++) {
-        src_word2id_dict.put(words.get(i), "" + i); // 文字是key,id是value
-        trg_id2word_dict.put("" + i, words.get(i)); // id是key,文字是value
+        src_word2id_dict.put(words.get(i), "" + i); // 文字是key,id是value - Text is the key, ID is the value
+        trg_id2word_dict.put("" + i, words.get(i)); // id是key,文字是value - ID is the key, text is the value
       }
     }
 

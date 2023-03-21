@@ -24,21 +24,21 @@ import java.util.List;
  **/
 @RestController
 @RequiredArgsConstructor
-@Api(tags = "存储管理")
+@Api(tags = "Storage Management")
 @RequestMapping("/api/localStorage")
 public class LocalStorageController {
 
     private final LocalStorageService localStorageService;
     private final FileProperties properties;
 
-    @ApiOperation("查询文件列表")
+    @ApiOperation("Get File List")
     @GetMapping("/list")
     public ResultBean getContact() {
         List<LocalStorage> result = localStorageService.getStorageList();
         return ResultBean.success().add("result", result);
     }
 
-    @ApiOperation("上传文件")
+    @ApiOperation("Upload File")
     @PostMapping("/file")
     public ResultBean create(@RequestParam("file") MultipartFile multipartFile) {
         FileUtil.checkSize(properties.getMaxSize(), multipartFile.getSize());
@@ -46,7 +46,7 @@ public class LocalStorageController {
         String type = FileUtil.getFileType(suffix);
         File file = FileUtil.upload(multipartFile, properties.getPath().getPath() + type + File.separator);
         if (ObjectUtil.isNull(file)) {
-            throw new BadRequestException("上传失败");
+            throw new BadRequestException("Upload failed");
         }
         try {
             LocalStorage localStorage = new LocalStorage(
@@ -66,7 +66,7 @@ public class LocalStorageController {
         return ResultBean.success();
     }
 
-    @ApiOperation("删除文件")
+    @ApiOperation("Delete File")
     @DeleteMapping
     public ResultBean delete(@RequestBody LocalStorage localStorage) {
         LocalStorage storage = localStorageService.findById(localStorage.getId());
@@ -76,7 +76,7 @@ public class LocalStorageController {
     }
 
     @PostMapping("/features")
-    @ApiOperation("提取特征")
+    @ApiOperation("Extract Features")
     public ResponseEntity<Object> extractFeatures(@RequestBody Long[] ids) {
         Long[] idArr = ids;
 //        localStorageService.deleteAll(ids);

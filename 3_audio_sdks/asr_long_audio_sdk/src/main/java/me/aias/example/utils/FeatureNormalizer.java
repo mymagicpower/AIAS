@@ -11,17 +11,19 @@ import java.nio.file.Paths;
 
 /**
  * 对音频预处理的工具
+ * Tool for audio preprocessing
  *
  * @author Calvin <179209347@qq.com>
  */
 public class FeatureNormalizer {
-  static float eps = 1e-20f; // 添加到标准值以提供数值稳定性
+  static float eps = 1e-20f; // 添加到标准值以提供数值稳定性 - added to the standard value to provide numerical stability
   /**
    * 使用均值和标准值计算音频特征的归一化值
+   * Calculate the normalized value of audio features using mean and standard values
    *
    * @param manager
-   * @param npzDataPath: 均值和标准值的文件路径
-   * @param features: 需要归一化的音频
+   * @param npzDataPath: 均值和标准值的文件路径 - file path of mean and standard values
+   * @param features: 需要归一化的音频 - audio features that need to be normalized
    * @return
    * @throws Exception
    */

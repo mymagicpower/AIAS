@@ -1,5 +1,9 @@
 package me.aias.example.utils;
-
+/**
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public class AudioIntegerConverter {
 
     public static int[] bytesToInt1(byte[] frame) {

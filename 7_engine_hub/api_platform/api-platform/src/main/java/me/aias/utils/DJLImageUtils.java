@@ -10,6 +10,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 
 public class DJLImageUtils {
 
@@ -18,10 +24,9 @@ public class DJLImageUtils {
   }
 
   public static void saveImage(BufferedImage img, String name, String path) {
-    Image djlImg = ImageFactory.getInstance().fromImage(img); // 支持多种图片格式，自动适配
+    Image djlImg = ImageFactory.getInstance().fromImage(img);
     Path outputDir = Paths.get(path);
     Path imagePath = outputDir.resolve(name);
-    // OpenJDK 不能保存 jpg 图片的 alpha channel
     try {
       djlImg.save(Files.newOutputStream(imagePath), "png");
     } catch (IOException e) {
@@ -32,7 +37,6 @@ public class DJLImageUtils {
   public static void saveDJLImage(Image img, String name, String path) {
     Path outputDir = Paths.get(path);
     Path imagePath = outputDir.resolve(name);
-    // OpenJDK 不能保存 jpg 图片的 alpha channel
     try {
       img.save(Files.newOutputStream(imagePath), "png");
     } catch (IOException e) {
@@ -47,16 +51,13 @@ public class DJLImageUtils {
     Path outputDir = Paths.get(path);
     Files.createDirectories(outputDir);
     Path imagePath = outputDir.resolve(name);
-    // OpenJDK can't save jpg with alpha channel
     img.save(Files.newOutputStream(imagePath), "png");
   }
 
   public static void drawImageRect(BufferedImage image, int x, int y, int width, int height) {
-    // 将绘制图像转换为Graphics2D
     Graphics2D g = (Graphics2D) image.getGraphics();
     try {
       g.setColor(new Color(246, 96, 0));
-      // 声明画笔属性 ：粗 细（单位像素）末端无修饰 折线处呈尖角
       BasicStroke bStroke = new BasicStroke(4, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER);
       g.setStroke(bStroke);
       g.drawRect(x, y, width, height);
@@ -68,11 +69,9 @@ public class DJLImageUtils {
 
   public static void drawImageRect(
       BufferedImage image, int x, int y, int width, int height, Color c) {
-    // 将绘制图像转换为Graphics2D
     Graphics2D g = (Graphics2D) image.getGraphics();
     try {
       g.setColor(c);
-      // 声明画笔属性 ：粗 细（单位像素）末端无修饰 折线处呈尖角
       BasicStroke bStroke = new BasicStroke(4, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER);
       g.setStroke(bStroke);
       g.drawRect(x, y, width, height);

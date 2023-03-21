@@ -13,7 +13,12 @@ import java.nio.FloatBuffer;
 import static org.bytedeco.opencv.global.opencv_calib3d.findHomography;
 import static org.bytedeco.opencv.global.opencv_core.cvCreateMat;
 
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public class FaceAlignmentOld {
 
   public static Mat affineTransform(
@@ -82,22 +87,26 @@ public class FaceAlignmentOld {
   }
 
   // 根据目标5点，进行旋转仿射变换
+  // Perform rotation affine transformation based on the target 5 points
   public static Mat get5WarpAffineImg(Mat src, Mat rot_mat) {
     Mat oral = new Mat();
     src.copyTo(oral);
     Mat rot = new Mat();
     // 进行仿射变换，变换后大小为src的大小
+    // Perform affine transformation, and the size after transformation is the same as that of src
     opencv_imgproc.warpAffine(src, rot, rot_mat, src.size());
     return rot;
   }
 
   // 根据两眼中心点，进行旋转仿射变换
+  // Perform rotation affine transformation based on the center point of two eyes
   //      Point2fVector pv = FaceUtils.point2fVector(subImageRect, points);
   //      mat = FaceAlignment.get5WarpAffineImg(mat, pv);
   public static Mat get5WarpAffineImg(Mat src, Point2fVector landmarks) {
     Mat oral = new Mat();
     src.copyTo(oral);
     //	  图中关键点坐标
+    //    Coordinates of keypoints in the image
     //	  1.  left_eye_x , left_eye_y
     //	  2.  right_eye_x , right_eye_y
     //	  3.  nose_x , nose_y
@@ -105,20 +114,25 @@ public class FaceAlignmentOld {
     //	  5.  right_mouth_x , right_mouth_y
 
     // 计算两眼中心点，按照此中心点进行旋转， 第1个为左眼坐标，第2个为右眼坐标
-    Point2f eyesCenter = new Point2f(landmarks.get()[2].x(), landmarks.get()[2].y()); // 第 3 个点为两眼之间
+    // Calculate the center point of two eyes and rotate according to this center point, where the first is the coordinate of the left eye and the second is the coordinate of the right eye
+    Point2f eyesCenter = new Point2f(landmarks.get()[2].x(), landmarks.get()[2].y()); // 第 3 个点为两眼之间 - The third point is in the middle of the two eyes
 
     // 计算两个眼睛间的角度
+    // Calculate the angle between the two eyes
     float dy = (landmarks.get()[1].y() - landmarks.get()[0].y()); // 2 - 1
     float dx = (landmarks.get()[1].x() - landmarks.get()[0].x()); // 2 - 1
 
     double angle = Math.atan2(dy, dx) * 180.0 / opencv_core.CV_PI;
     // 弧度转角度
+    // Convert radians to degrees
     // 由 eyesCenter, angle, scale 按照公式计算仿射变换矩阵，此时1.0表示不进行缩放
+    // Calculate the affine transformation matrix according to the formula based on eyesCenter, angle and scale, where 1.0 means no scaling
     // cv2.getRotationMatrix2D 三个参数分别为：1.旋转中心，2.旋转角度，3.缩放比例。角度为正，则图像逆时针旋转，旋转后图像可能会超出边界。
+    // cv2.getRotationMatrix2D has three parameters: 1. Rotation center, 2. Rotation angle, 3. Scaling ratio. If the angle is positive, the image is rotated counterclockwise, and the rotated image may exceed the boundary.
     Mat rot_mat = opencv_imgproc.getRotationMatrix2D(eyesCenter, angle, 1.0);
     Mat rot = new Mat();
     // 进行仿射变换，变换后大小为src的大小
-
+    // Perform affine transformation, and the size after transformation is the same as that of src
     opencv_imgproc.warpAffine(src, rot, rot_mat, src.size());
     return rot;
   }
@@ -133,39 +147,27 @@ public class FaceAlignmentOld {
     //		opencv_imgcodecs.imwrite("/Users/calvin/Documents/Data_Faces_0/fa_result_1.jpg",oral);
 
     // 计算两眼中心点，按照此中心点进行旋转， 第40个点为左眼坐标，第43个点为右眼坐标
+    // Calculate the center point of two eyes and rotate according to this center point, where the 40th point is the coordinate of the left eye and the 43rd point is the coordinate of the right eye
     // Point2f eyesCenter = new Point2f( (landmarks.get()[39].x() + landmarks.get()[42].x()) * 0.5f,
     // (landmarks.get()[39].y() + landmarks.get()[42].y()) * 0.5f );
     Point2f eyesCenter =
             new Point2f(landmarks.get()[27].x(), landmarks.get()[27].y()); // 第 28 个点为两眼之间
 
     // 计算两个眼睛间的角度
+    // Calculate the angle between the two eyes
     float dy = (landmarks.get()[42].y() - landmarks.get()[39].y()); // 43 - 40
     float dx = (landmarks.get()[42].x() - landmarks.get()[39].x()); // 43 - 40
 
     double angle = Math.atan2(dy, dx) * 180.0 / opencv_core.CV_PI;
     // 弧度转角度
+    // Convert radians to degrees
     // 由eyesCenter, angle, scale 按照公式计算仿射变换矩阵，此时1.0表示不进行缩放
+    // Calculate the affine transformation matrix based on eyesCenter, angle and scale, where 1.0 means no scaling
     Mat rot_mat = opencv_imgproc.getRotationMatrix2D(eyesCenter, angle, 1.0);
     Mat rot = new Mat();
     // 进行仿射变换，变换后大小为src的大小
+    // Perform affine transformation, and the size after transformation is the same as that of src
     opencv_imgproc.warpAffine(src, rot, rot_mat, src.size());
-
-    //		PointVector marks = new PointVector();
-    //		//按照仿射变换矩阵，计算变换后各关键点在新图中所对应的位置坐标。
-    //		for (int n = 0; n<landmarks.get().length; n++)     {
-    //			Point p =new Point(0, 0);
-    //			p.x((int)(rot_mat.ptr(0).get(0)* landmarks.get()[n].x() + rot_mat.ptr(0).get(1) *
-    // landmarks.get()[n].y() + rot_mat.ptr(0).get(2)));
-    //			p.y((int)(rot_mat.ptr(1).get(0)* landmarks.get()[n].x() + rot_mat.ptr(1).get(1) *
-    // landmarks.get()[n].y() + rot_mat.ptr(1).get(2)));
-    //			marks.push_back(p);
-    //		}
-    // 标出关键点
-    //		for (int j = 0; j < landmarks.get().length; j++)     {
-    //				opencv_imgproc.circle(rot, marks.get(j), 2,new Scalar(0, 0, 255, 0));
-    //		}
-    //		opencv_imgcodecs.imwrite("/Users/calvin/Documents/Data_Faces_0/fa_result_2.jpg",rot);
-
     return rot;
   }
 }

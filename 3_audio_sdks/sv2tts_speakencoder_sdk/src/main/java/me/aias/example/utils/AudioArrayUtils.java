@@ -13,6 +13,7 @@ import java.util.List;
 
 /**
  * 获取音频数组
+ * Get audio array
  *
  * @author Calvin
  */

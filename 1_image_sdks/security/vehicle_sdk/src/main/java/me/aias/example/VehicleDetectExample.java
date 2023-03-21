@@ -22,7 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 车辆检测例子 http://aias.top/
+ * 车辆检测例子
+ * Vehicle Detection
  *
  * @author Calvin
  */

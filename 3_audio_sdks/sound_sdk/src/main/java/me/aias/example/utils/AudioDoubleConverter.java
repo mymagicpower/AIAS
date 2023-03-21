@@ -1,7 +1,11 @@
 package me.aias.example.utils;
 
 import java.math.BigDecimal;
-
+/**
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public class AudioDoubleConverter {
 
     public static double[] float2Double(float[] fs) {

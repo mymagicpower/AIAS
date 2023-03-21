@@ -16,7 +16,12 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public class TextTranslator implements Translator<String, float[]> {
 
   private final int maxSequenceLength = 512;

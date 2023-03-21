@@ -20,6 +20,7 @@ import java.nio.file.Paths;
 
 /**
  * 人群密度检测
+ * density map detection
  *
  * @author Calvin
  * @email 179209347@qq.com
@@ -41,12 +42,12 @@ public final class CrowdDetectExample {
         Predictor<Image, NDList> predictor = model.newPredictor()) {
       NDList list = predictor.predict(image);
 
-      //quantity为人数
+      //quantity 为人数
       float q = list.get(1).toFloatArray()[0];
       int quantity = (int)(Math.abs(q) + 0.5);
       logger.info("人数 quantity: {}", quantity);
       
-      // density为密度图
+      // density 为密度图
       NDArray densityArray = list.get(0);
       logger.info("密度图 density: {}", densityArray.toDebugString(1000000000, 1000, 1000, 1000));
 

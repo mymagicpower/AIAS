@@ -23,9 +23,12 @@ import java.util.List;
 
 /**
  * OCR V3模型 多线程文字识别.
+ * OCR V3 model multi-threaded text recognition.
  * 由于底层引擎原因，与其它引擎可以共享一个模型不同，paddle多线程需要加载多个模型。
+ * Due to engine limitations, unlike other engines that can share a model, paddle multi-threading requires loading multiple models.
  ***************************************************************************
  *   请参考 OcrV3RecognitionExample 更新检测与识别部分，这个例子只是演示多线程的使用 *
+ *   Please refer to OcrV3RecognitionExample to update the detection and recognition parts, this example only demonstrates the use of multi-threading *
  ***************************************************************************
  * @author Calvin
  * @date 2022-07-24
@@ -42,13 +45,16 @@ public final class OcrV3MultiThreadRecExample {
         Path imageFile = Paths.get("src/test/resources/ticket_0.png");
         Image image = ImageFactory.getInstance().fromFile(imageFile);
         // 并发线程数，最大上限为 CPU 核数
+        // Concurrent threads, with a maximum limit of CPU cores
         int threadNum = 4;
 
         OcrV3MultiThreadRecognition recognition = new OcrV3MultiThreadRecognition();
         try (ZooModel detectionModel = ModelZoo.loadModel(recognition.detectCriteria());
              Predictor<Image, DetectedObjects> detector = detectionModel.newPredictor()) {
             // 由于底层引擎原因，与其它引擎可以共享一个模型不同，paddle多线程需要每个线程加载一个模型
+            // Due to engine limitations, unlike other engines that can share a model, paddle multi-threading requires each thread to load a model
             // 可以将paddle模型转换成ONNX，ONNX底层引擎支持的更好
+            // Paddle models can be converted to ONNX, which is better supported by the ONNX engine.
             List<ZooModel> recModels = new ArrayList<>();
             try {
                 for (int i = 0; i < threadNum; i++) {

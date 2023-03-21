@@ -4,8 +4,14 @@ import ai.djl.ndarray.NDArray;
 import ai.djl.ndarray.NDManager;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public class NDArrayUtils {
-  // NDArray 转 opencv_core.Mat
+  // NDArray to opencv_core.Mat
   public static Mat toOpenCVMat(NDManager manager, NDArray srcPoints, NDArray dstPoints) {
     NDArray svdMat = SVDUtils.transformationFromPoints(manager, srcPoints, dstPoints);
     double[] doubleArray = svdMat.toDoubleArray();

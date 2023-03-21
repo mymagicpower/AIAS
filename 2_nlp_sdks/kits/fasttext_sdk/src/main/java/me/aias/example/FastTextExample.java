@@ -23,7 +23,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public class FastTextExample {
 
     private static final Logger logger = LoggerFactory.getLogger(FastTextExample.class);
@@ -88,8 +93,7 @@ public class FastTextExample {
         if (System.getProperty("os.name").toLowerCase().contains("win")) {
             throw new SkipException("fastText is not supported on windows");
         }
-        //下载  text_classification.bin
-        logger.info("下载 text_classification.bin");
+        logger.info("download text_classification.bin");
         FileUtils.downloadModel();
         
         Path path = Paths.get("build/tmp/model");

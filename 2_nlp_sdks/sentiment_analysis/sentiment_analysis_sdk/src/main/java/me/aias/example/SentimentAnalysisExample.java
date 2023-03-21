@@ -11,7 +11,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public final class SentimentAnalysisExample {
 
   private static final Logger logger = LoggerFactory.getLogger(SentimentAnalysisExample.class);

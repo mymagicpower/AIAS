@@ -10,10 +10,12 @@ import java.util.Base64.Decoder;
 
 /**
  * 常规图片处理工具
+ * General image processing tool
  */
 public class ImageUtils {
     /**
      * base64 编码转换为 BufferedImage
+     * Convert base64 encoding to BufferedImage
      *
      * @param base64
      * @return
@@ -32,6 +34,7 @@ public class ImageUtils {
 
     /**
      * BufferedImage 编码转换为 base64
+     * Convert BufferedImage encoding to base64
      *
      * @param image
      * @return

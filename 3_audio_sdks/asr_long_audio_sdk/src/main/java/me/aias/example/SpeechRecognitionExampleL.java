@@ -20,12 +20,11 @@ import java.util.Queue;
 
 /**
  * 预测长语音
- *
+ * Speech Recognition(long)
  * <p>https://github.com/yeyupiaoling/PaddlePaddle-DeepSpeech
  *
  * @author calvin
  * @mail 179209347@qq.com
- * @website www.aias.top
  */
 public class SpeechRecognitionExampleL {
   private static final Logger logger = LoggerFactory.getLogger(SpeechRecognitionExampleL.class);
@@ -55,10 +54,12 @@ public class SpeechRecognitionExampleL {
         NDArray audioFeature = AudioProcess.processUtterance(manager, array);
         Pair result = predictor.predict(audioFeature);
         texts = texts + "," + result.getRight();
+        logger.info("Segmented audio {} with score: {}, recognition result: {}", index++, result.getLeft(), result.getRight());
         logger.info("第{}个分割音频, 得分: {}, 识别结果: {}", index++, result.getLeft(), result.getRight());
       }
 
       logger.info("最终识别结果:" + texts);
+      logger.info("Final recognition result: " + texts);
     }
   }
 }

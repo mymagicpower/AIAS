@@ -14,7 +14,12 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-/** https://github.com/gengyanlei/reflective-clothes-detect-yolov5/blob/master/README_ZN.md */
+/**
+ * https://github.com/gengyanlei/reflective-clothes-detect-yolov5/blob/master/README_ZN.md
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public final class ReflectiveVest {
 
   private static final Logger logger = LoggerFactory.getLogger(ReflectiveVest.class);

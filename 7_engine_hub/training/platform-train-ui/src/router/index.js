@@ -44,32 +44,32 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: '训练可视化', icon: 'el-icon-data-line' }
+      meta: { title: 'Training Visualization', icon: 'el-icon-data-line' }
     }]
   },
   {
     path: '/inference',
     component: Layout,
     name: 'inference',
-    meta: { title: '在线推理', icon: 'el-icon-picture' },
+    meta: { title: 'Online Inference', icon: 'el-icon-picture' },
     children: [
       {
         path: 'classification',
         component: () => import('@/views/inference/classification'),
         name: 'classification',
-        meta: { title: '图像分类', icon: 'el-icon-s-grid' }
+        meta: { title: 'Classification', icon: 'el-icon-s-grid' }
       },
       {
         path: 'feature',
         component: () => import('@/views/inference/feature'),
         name: 'feature',
-        meta: { title: '特征提取', icon: 'el-icon-view' }
+        meta: { title: 'Feature', icon: 'el-icon-view' }
       },
       {
         path: 'comparison',
         component: () => import('@/views/inference/comparison'),
         name: 'comparison',
-        meta: { title: '图像比对', icon: 'el-icon-copy-document' }
+        meta: { title: 'Comparison', icon: 'el-icon-copy-document' }
       }
     ]
   },

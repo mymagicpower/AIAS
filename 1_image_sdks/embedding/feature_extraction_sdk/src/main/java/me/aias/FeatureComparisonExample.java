@@ -18,8 +18,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * 图片比对 - 1:1.
- *
+ * Feature Comparison - 1:1.
+ * 特征比对 - 1:1.
  * @author Calvin
  * @date 2021-07-10
  * @email 179209347@qq.com
@@ -43,11 +43,13 @@ public final class FeatureComparisonExample {
             float[] feature1 = predictor.predict(img1);
             float[] feature2 = predictor.predict(img2);
 
-            //欧式距离
+            // 欧式距离
+            // Euclidean distance
             float dis = FeatureComparison.dis(feature1, feature2);
             logger.info(Float.toString(dis));
 
-            //余弦相似度
+            // 余弦相似度
+            // Cosine similarity
             float cos = FeatureComparison.cosineSim(feature1, feature2);
             logger.info(Float.toString(cos));
         }

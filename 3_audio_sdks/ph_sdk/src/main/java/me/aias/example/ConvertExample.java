@@ -4,8 +4,9 @@ package me.aias.example;
 import me.aias.example.utils.ConvertUtils;
 
 /**
- * 文本转换。
+ * 文本转换 - Text conversion.
  * 全角半角转换，简体繁体转换。
+ * Convert full-width/half-width characters, Convert simplified/traditional Chinese characters.
  */
 public class ConvertExample {
     public static void main(String[] args) {

@@ -19,7 +19,11 @@ import java.util.List;
 /**
  * https://www.sbert.net/docs/pretrained_cross-encoders.html
  * https://www.sbert.net/docs/pretrained-models/ce-msmarco.html
- */
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
+
 public class CrossEncoderTranslator implements Translator<String[], Float> {
 
   private final int maxSequenceLength = 512;

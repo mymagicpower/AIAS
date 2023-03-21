@@ -22,7 +22,11 @@ import java.util.stream.Collectors;
 
 /**
  * https://github.com/neonbjb/transformers-tokenizer-java
- */
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public abstract class Tokenizer {
     static final String VOCAB_FILE_KEY = "vocab_file.json";
     static final String MERGES_FILE_KEY = "merges_file";

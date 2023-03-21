@@ -7,7 +7,13 @@ import javax.sound.sampled.*;
 import java.io.*;
 import java.util.*;
 
-/** Sound format conversion utility class */
+/**
+ * Sound format conversion utility class
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
+
 public class SoundUtils {
   // Audio type contants
   public static final AudioType MP3 = new AudioType("MPEG1L3", "MP3", "mp3");

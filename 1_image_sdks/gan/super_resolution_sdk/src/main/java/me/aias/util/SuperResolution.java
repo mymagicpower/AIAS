@@ -16,7 +16,14 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
-
+/**
+ * 超分辨- 提升分辨率
+ * Super Resolution - Enhance Resolution
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public final class SuperResolution {
 
   private static final Logger logger = LoggerFactory.getLogger(SuperResolution.class);

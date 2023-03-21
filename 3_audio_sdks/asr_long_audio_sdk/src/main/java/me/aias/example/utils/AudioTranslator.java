@@ -15,6 +15,12 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 
 public final class AudioTranslator implements Translator<NDArray, Pair> {
   AudioTranslator() {}

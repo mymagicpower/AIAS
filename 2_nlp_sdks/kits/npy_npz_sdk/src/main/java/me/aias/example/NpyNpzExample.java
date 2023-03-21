@@ -13,10 +13,10 @@ import java.util.Set;
 
 /**
  * 读取numpy保存的npz、npy文件
+ * Read npz and npy files saved in numpy
  *
  * @author calvin
  * @mail 179209347@qq.com
- * @website www.aias.top
  */
 
 public final class NpyNpzExample {
@@ -30,7 +30,7 @@ public final class NpyNpzExample {
         String npyDataPath = "src/test/resources/data.npy";
         String npzDataPath = "src/test/resources/data.npz";
 
-        logger.info("npy读取测试: ");
+        logger.info("npy reading test: ");
         File file = new File(npyDataPath);
         INDArray array = Nd4j.readNpy(file);
         float[][] npyData = array.toFloatMatrix();
@@ -38,14 +38,14 @@ public final class NpyNpzExample {
             logger.info(Arrays.toString(npyData[i]));
         }
 
-        logger.info("npz读取测试: ");
+        logger.info("npz reading test: ");
         file = new File(npzDataPath);
         Map<String, INDArray> map = Nd4j.createFromNpzFile(file);
         Set<Map.Entry<String, INDArray>> set = map.entrySet();
         Iterator<Map.Entry<String, INDArray>> iter = set.iterator();
         while (iter.hasNext()) {
             Map.Entry<String, INDArray> me = iter.next();
-            logger.info("数组名: "+ me.getKey());
+            logger.info("Array name: " + me.getKey());
             array = me.getValue();
             npyData = array.toFloatMatrix();
 

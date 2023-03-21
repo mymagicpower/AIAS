@@ -9,6 +9,12 @@ import ai.djl.translate.Translator;
 import ai.djl.translate.TranslatorContext;
 
 import java.util.Arrays;
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 
 public class SentenceTransTranslator implements Translator<String, float[]> {
 
@@ -28,6 +34,7 @@ public class SentenceTransTranslator implements Translator<String, float[]> {
   public float[] processOutput(TranslatorContext ctx, NDList list) {
     NDArray array = null;
     // 下面的排序非固定，每次运行顺序可能会变
+    // The following order is not fixed, and the order may change each time it is run.
     //  input_ids
     //  token_type_ids
     //  attention_mask
@@ -59,7 +66,8 @@ public class SentenceTransTranslator implements Translator<String, float[]> {
     input_ids[0] = 0;
     input_ids[input_ids.length - 1] = 2;
 
-    //编号跟原算法编号差1，可能是由于首行处理不同造成的
+    // 编号跟原算法编号差1，可能是由于首行处理不同造成的
+    // The numbers are one less than the original algorithm numbering, which may be caused by different initial processing.
     long[] newIds = Arrays.stream(ids).map(e -> (e + 1)).mapToLong(t->(long)t).toArray();
 
     System.arraycopy(newIds, 0, input_ids, 1, length);

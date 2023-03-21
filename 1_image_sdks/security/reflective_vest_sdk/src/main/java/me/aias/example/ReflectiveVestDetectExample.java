@@ -22,7 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 行人检测例子 http://aias.top/
+ * 反光衣检测例子
+ * ReflectiveVest Detection Example
  *
  * @author Calvin
  */

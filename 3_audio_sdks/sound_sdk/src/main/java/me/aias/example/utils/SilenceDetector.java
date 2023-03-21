@@ -2,7 +2,10 @@ package me.aias.example.utils;
 
 /**
  * The silence detector.
- */
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public class SilenceDetector {
     //db
     public static final double DEFAULT_SILENCE_THRESHOLD = -70.0;

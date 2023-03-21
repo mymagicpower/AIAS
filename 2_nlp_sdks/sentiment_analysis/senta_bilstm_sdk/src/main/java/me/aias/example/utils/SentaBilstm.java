@@ -8,7 +8,13 @@ import org.slf4j.LoggerFactory;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-// https://www.paddlepaddle.org.cn/hubdetail?name=senta_bilstm&en_category=SentimentAnalysis
+/**
+ * https://www.paddlepaddle.org.cn/hubdetail?name=senta_bilstm&en_category=SentimentAnalysis
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
+
 public final class SentaBilstm {
 
   private static final Logger logger = LoggerFactory.getLogger(SentaBilstm.class);

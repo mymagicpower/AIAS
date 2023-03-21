@@ -67,12 +67,15 @@ public final class FeatureExtraction {
                         .optModelName("resnet50_v2");
 
         // 加载模型
+        // load model
         Model oldModel = ModelZoo.loadModel(oldBuilder.build());
         SymbolBlock block = (SymbolBlock) oldModel.getBlock();
         // 去掉全连接层
+        // remove last block
         block.removeLastBlock();
 
         // 指定模型的搜索目录
+        // criteria config
         Criteria.Builder<Image, float[]> builder =
                 Criteria.builder()
                         .setTypes(Image.class, float[].class)
@@ -87,6 +90,7 @@ public final class FeatureExtraction {
         ZooModel<Image, float[]> modelWithParams = ModelZoo.loadModel(builder.build());
         MxSymbolBlock mxSymbolBlock = (MxSymbolBlock) modelWithParams.getBlock();
         //去掉后面几层，直到512维输出层
+        // remove last block until 512 dimenstion output layer
         mxSymbolBlock.removeLastBlock();
         mxSymbolBlock.removeLastBlock();
         mxSymbolBlock.removeLastBlock();

@@ -22,6 +22,12 @@ import java.nio.file.Paths;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public final class PoseResnet50Estimation {
 
   private static final Logger logger = LoggerFactory.getLogger(PersonDetection.class);

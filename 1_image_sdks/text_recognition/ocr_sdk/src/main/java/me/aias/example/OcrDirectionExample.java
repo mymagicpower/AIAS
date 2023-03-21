@@ -21,6 +21,7 @@ import java.util.List;
 
 /**
  * OCR文字方向检测(轻量级模型).
+ * OCR text direction detection (light model)
  *
  * @author Calvin
  * @date 2021-10-04

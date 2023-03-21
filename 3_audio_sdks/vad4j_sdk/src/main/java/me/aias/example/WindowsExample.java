@@ -7,6 +7,12 @@ import org.jitsi.webrtcvadwrapper.WebRTCVad;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import java.io.File;
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 
 public class WindowsExample {
 

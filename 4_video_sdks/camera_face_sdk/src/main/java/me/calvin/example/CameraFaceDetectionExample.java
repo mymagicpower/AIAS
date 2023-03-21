@@ -31,6 +31,7 @@ import static org.bytedeco.opencv.global.opencv_imgproc.*;
 
 /**
  * 本地摄像头人脸检测
+ * Local camera face detection.
  *
  * @author Calvin
  */
@@ -41,6 +42,8 @@ public class CameraFaceDetectionExample {
 
   /**
    * 人脸检测
+   * Face detection.
+   *
    */
   public static void faceDetection()
       throws IOException, ModelException, TranslateException {
@@ -50,11 +53,13 @@ public class CameraFaceDetectionExample {
     Criteria<Image, DetectedObjects> criteria = new FaceDetection().criteria(shrink, threshold);
 
     // 开启摄像头，获取图像（得到的图像为frame类型，需要转换为mat类型进行检测和识别）
+    // Open the camera, get the image (the obtained image is of frame type, which needs to be converted to mat type for detection and recognition)
     OpenCVFrameGrabber grabber = new OpenCVFrameGrabber(0);
     
     grabber.start();
 
     // Frame与Mat转换
+    // Frame to Mat conversion
     OpenCVFrameConverter.ToMat converter = new OpenCVFrameConverter.ToMat();
 
     CanvasFrame canvas = new CanvasFrame("人脸检测"); // 新建一个预览窗口
@@ -62,6 +67,7 @@ public class CameraFaceDetectionExample {
     canvas.setVisible(true);
     canvas.setFocusable(true);
     // 窗口置顶
+    // Window top
     if (canvas.isAlwaysOnTopSupported()) {
       canvas.setAlwaysOnTop(true);
     }
@@ -70,9 +76,11 @@ public class CameraFaceDetectionExample {
     try (ZooModel model = ModelZoo.loadModel(criteria);
         Predictor<Image, DetectedObjects> predictor = model.newPredictor()) {
       // 获取图像帧
+      // Get image frame
       for (; canvas.isVisible() && (frame = grabber.grab()) != null; ) {
 
         // 将获取的frame转化成mat数据类型
+        // Convert the obtained frame into mat data type
         Mat img = converter.convert(frame);
         BufferedImage buffImg = OpenCVImageUtil.mat2BufferedImage(img);
 
@@ -84,6 +92,7 @@ public class CameraFaceDetectionExample {
         List<DetectedObjects.DetectedObject> items = detections.items();
 
         // 遍历人脸
+        // Traverse faces
         for (DetectedObjects.DetectedObject item : items) {
           BoundingBox box = item.getBoundingBox();
           Rectangle rectangle = box.getBounds();
@@ -97,11 +106,13 @@ public class CameraFaceDetectionExample {
                   (int) (rectangle.getHeight() * imageHeight));
 
           // 绘制人脸矩形区域，scalar色彩顺序：BGR(蓝绿红)
+          // // Draw face rectangle area, scalar color order: BGR (blue green red)
           rectangle(img, face, new Scalar(0, 0, 255, 1));
 
           int pos_x = Math.max(face.tl().x() - 10, 0);
           int pos_y = Math.max(face.tl().y() - 10, 0);
           // 在人脸矩形上面绘制文字
+          // Draw text above the face rectangle
           putText(
               img,
               "Face",
@@ -112,6 +123,7 @@ public class CameraFaceDetectionExample {
         }
 
         // 显示视频图像
+        // Display video image
         canvas.showImage(frame);
       }
     }

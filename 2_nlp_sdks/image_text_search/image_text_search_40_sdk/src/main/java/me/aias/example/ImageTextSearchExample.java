@@ -20,25 +20,24 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Image & Text search【40 Languages】
+ *
+ * @author calvin
+ * @mail 179209347@qq.com
+ */
 public final class ImageTextSearchExample {
 
   private static final Logger logger = LoggerFactory.getLogger(ImageTextSearchExample.class);
 
   private ImageTextSearchExample() {}
 
-  /**
-   * Image & Text search【40 Languages】
-   *
-   * @author calvin
-   * @mail 179209347@qq.com
-   * @website www.aias.top
-   */
   public static void main(String[] args) throws IOException, ModelException, TranslateException {
 
     List<String> texts = new ArrayList<>();
-    texts.add("在雪地里有两条狗");
-    texts.add("一只猫在桌子上");
-    texts.add("夜晚的伦敦");
+    texts.add("There are two dogs in the snow.\n");
+    texts.add("A cat on the table");
+    texts.add("London at night");
 
     logger.info("texts: {}", Arrays.toString(texts.toArray()));
 

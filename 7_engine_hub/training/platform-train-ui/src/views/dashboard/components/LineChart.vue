@@ -7,22 +7,22 @@
       <el-col :xs="12" :sm="12" :lg="6" style="padding:16px 16px 0;margin-bottom:32px;width:30%;">
         <el-card class="box-card">
           <div slot="header" class="header">
-            <span>训练信息</span>
+            <span>Training Info</span>
             <div style="float:right;margin-top:10px;">
               <el-button
                 :disabled="displayDisabled"
                 type="primary"
                 size="medium"
                 @click="doQuery"
-              >显示信息
+              >Show
               </el-button>
             </div>
           </div>
           <div class="text item">
-            训练设备：{{ devices }}
+            Device：{{ devices }}
           </div>
           <div class="text item">
-            迭代周期：{{ epoch }}
+            epoch：{{ epoch }}
           </div>
           <!--          <div class="text item">-->
           <!--            Speed：{{ speed }} images/sec-->
@@ -30,7 +30,7 @@
           <div class="text item">
             <!--            https://github.com/dreambo8563/easy-circular-progress-->
             <div class="text item">
-              训练进度：
+              Progress：
             </div>
             <Progress
               :transition-duration="0"
@@ -41,7 +41,7 @@
           </div>
           <div class="text item">
             <div class="text item">
-              验证进度：
+              validatingProgress：
             </div>
             <Progress
               :transition-duration="0"
@@ -187,7 +187,7 @@ export default {
     setOptions({ xAxis, accuracyAxis, lossAxis } = {}) {
       this.chart.setOption({
         title: {
-          text: '训练性能指标',
+          text: 'Training performance indicators',
           textStyle: {
             fontWeight: 'normal',
             color: '#666'

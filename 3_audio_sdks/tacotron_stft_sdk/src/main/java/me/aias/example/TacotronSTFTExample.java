@@ -16,10 +16,10 @@ import java.util.Arrays;
 
 /**
  * TacotronSTFT 提取mel频谱
+ * TacotronSTFT extract mel spectrogram
  *
  * @author calvin
  * @mail 179209347@qq.com
- * @website www.aias.top
  */
 public final class TacotronSTFTExample {
 
@@ -32,6 +32,7 @@ public final class TacotronSTFTExample {
     Path audioFile = Paths.get("src/test/resources/biaobei-009502.mp3");
 
     // 使用ffmpeg 将mp3文件转为wav格式
+    // Use FfmpegUtils to convert mp3 files to wav format
     NDArray audioArray = FfmpegUtils.load_wav_to_torch(audioFile.toString(), 22050);
     Tacotron tacotron = new Tacotron();
 

@@ -15,11 +15,11 @@ import org.slf4j.LoggerFactory;
 /**
  * Java Librosa
  * <p>
- * 加载音频文件，读取幅值(magnitude)
- * 梅尔频率倒谱系数
+ * 加载音频文件，读取幅值(magnitude) - Load audio file, read magnitude values
+ * 梅尔频率倒谱系数 - Mel-frequency cepstral coefficients
  * 从wav提取mel(MelSpectrogram)特征值
- * 短时傅里叶变换
- * 短时傅立叶逆变换（ISTFT）
+ * 短时傅里叶变换 - Short-time Fourier transform
+ * 短时傅立叶逆变换（ISTFT） - Inverse short-time Fourier transform (ISTFT)
  */
 public class JLibrosaExample {
     private static final Logger logger = LoggerFactory.getLogger(JLibrosaExample.class);

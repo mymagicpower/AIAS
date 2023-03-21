@@ -27,10 +27,12 @@ import java.util.List;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-// https://www.paddlepaddle.org.cn/hubdetail?name=yolov3_darknet53_vehicles&en_category=ObjectDetection
-
-// Users/calvin/Desktop/Download/browser/PaddleHub-release-v2.1/modules/image/object_detection/yolov3_darknet53_vehicles
-
+/**
+ * https://www.paddlepaddle.org.cn/hubdetail?name=yolov3_darknet53_vehicles&en_category=ObjectDetection
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public final class VehicleDetect {
 
   private static final Logger logger = LoggerFactory.getLogger(VehicleDetect.class);

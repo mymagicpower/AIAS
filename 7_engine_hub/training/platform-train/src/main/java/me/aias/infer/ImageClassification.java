@@ -60,9 +60,11 @@ public final class ImageClassification {
                         .optModelName("resnet50_v2");
 
         // 加载模型
+        // laod model
         Model oldModel = ModelZoo.loadModel(oldBuilder.build());
         SymbolBlock block = (SymbolBlock) oldModel.getBlock();
         // 去掉全连接层
+        // remove full connection layers
         block.removeLastBlock();
 
 
@@ -74,6 +76,7 @@ public final class ImageClassification {
                         .build();
 
         // 指定模型的搜索目录
+        // crietria config
         Criteria.Builder<Image, Classifications> builder =
                 Criteria.builder()
                         .setTypes(Image.class, Classifications.class)
@@ -88,6 +91,7 @@ public final class ImageClassification {
         ZooModel<Image, Classifications> modelWithParams = ModelZoo.loadModel(builder.build());
         MxSymbolBlock mxSymbolBlock = (MxSymbolBlock) modelWithParams.getBlock();
         //去掉后面几层，直到512维输出层
+        // remove last block
 //        mxSymbolBlock.removeLastBlock();
 //        mxSymbolBlock.removeLastBlock();
 //        mxSymbolBlock.removeLastBlock();

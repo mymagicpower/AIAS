@@ -2,7 +2,7 @@
   <div class="person-image-list">
     <div class="head">
       <div class="bts">
-        TopK：<el-input v-model="topK" type="primary" style="margin:0 5px;width: 100px;" placeholder="输入TopK" />
+        TopK：<el-input v-model="topK" type="primary" style="margin:0 5px;width: 100px;" placeholder="TopK" />
         <el-upload
           ref="imageUploader"
           name="image"
@@ -21,7 +21,7 @@
         >
           <el-input
             style="margin-right: 5px;"
-            placeholder="请上传图片或拖入图片"
+            placeholder="Please upload an image or drag in an image."
           >
             <i slot="prefix" class="el-icon-search el-input__icon" />
           </el-input>
@@ -45,8 +45,8 @@
           type="primary"
           :disabled="!imgUrl"
           @click="doFaceQuery"
-        >查询</el-button>
-        <el-button size="medium" type="primary" @click="restQuery">重置</el-button>
+        >Query</el-button>
+        <el-button size="medium" type="primary" @click="restQuery">Reset</el-button>
       </div>
     </div>
 
@@ -70,9 +70,9 @@
     </template>
     <empty-data
       v-else-if="!imgFile || !imgFile.size"
-      title="您还未上传图片，请拖入图片或点击上传"
+      title="You have not uploaded an image yet. Please drag an image or click to upload."
     />
-    <empty-data v-else title="未查询到信息" />
+    <empty-data v-else title="No information found" />
   </div>
 </template>
 
@@ -159,7 +159,7 @@ export default {
     },
     handleFileChange(file, fileList) {
       if (fileList[0] && fileList[0].size > 2097152) {
-        this.$message.warning('请上传小于2M大小的图片')
+        this.$message.warning('Please upload an image smaller than 2MB in size.')
         this.$refs.imageUploader.clearFiles()
         return false
       }
@@ -168,7 +168,7 @@ export default {
     },
     handleUploadBefore(file) {
       if (file.size > 2097152) {
-        this.$message.warning('请上传小于2M大小的图片')
+        this.$message.warning('Please upload an image smaller than 2MB in size.')
         return false
       }
     },

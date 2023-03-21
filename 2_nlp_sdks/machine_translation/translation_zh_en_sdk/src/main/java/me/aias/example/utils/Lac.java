@@ -8,7 +8,13 @@ import org.slf4j.LoggerFactory;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-// https://www.paddlepaddle.org.cn/hubdetail?name=lac&en_category=LexicalAnalysis
+/**
+ * https://www.paddlepaddle.org.cn/hubdetail?name=lac&en_category=LexicalAnalysis
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
+
 public final class Lac {
 
   private static final Logger logger = LoggerFactory.getLogger(Lac.class);

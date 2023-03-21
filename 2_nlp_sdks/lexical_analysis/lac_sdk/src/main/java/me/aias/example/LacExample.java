@@ -11,6 +11,14 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Arrays;
+/**
+ * 中文切词 LAC
+ * Chinese Tokenization - LAC
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 
 public final class LacExample {
 

@@ -14,19 +14,19 @@ import org.springframework.web.bind.annotation.*;
  **/
 @RestController
 @RequiredArgsConstructor
-@Api(tags = "超参数管理")
+@Api(tags = "Hyperparameter Management")
 @RequestMapping("/api/trainArgument")
 public class TrainArgumentController {
     private final TrainArgumentService trainArgumentService;
 
-    @ApiOperation("查看超参数")
+    @ApiOperation("View Hyperparameters")
     @GetMapping(value="/info",produces="application/json;charset=utf-8")
     public ResultBean trainArgument() {
         TrainArgument trainArgument = trainArgumentService.getTrainArgument();
         return ResultBean.success().add("result", trainArgument);
     }
     
-    @ApiOperation("修改超参数")
+    @ApiOperation("Modify Hyperparameters")
     @PostMapping("/update")
     public ResultBean update(@RequestBody TrainArgument trainArgument) {
         trainArgumentService.update(trainArgument);

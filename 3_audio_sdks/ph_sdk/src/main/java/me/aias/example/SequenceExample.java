@@ -4,10 +4,10 @@ package me.aias.example;
 import me.aias.example.utils.SequenceUtils;
 
 /**
- * 文本转为拼音
- * 拼音转为音素
- * 文本转为音素
- * 文本转为ID列表
+ * 文本转为拼音 - Convert text to Pinyin
+ * 拼音转为音素 - Convert Pinyin to phonemes
+ * 文本转为音素 - Convert text to phonemes
+ * 文本转为ID列表 - Convert text to ID list
  */
 public class SequenceExample {
     public static void main(String[] args) {

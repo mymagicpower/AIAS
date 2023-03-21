@@ -20,9 +20,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 // https://www.paddlepaddle.org.cn/hubdetail?name=mobilenet_v2_animals&en_category=ImageClassification
-//
-// /Users/calvin/Desktop/Download/browser/PaddleHub-release-v2.1/modules/image/classification/mobilenet_v2_animals
-
+/**
+ * @author Calvin
+ * @email 179209347@qq.com
+ */
 public final class LightAnimalsClassification {
 
   private static final Logger logger = LoggerFactory.getLogger(LightAnimalsClassification.class);

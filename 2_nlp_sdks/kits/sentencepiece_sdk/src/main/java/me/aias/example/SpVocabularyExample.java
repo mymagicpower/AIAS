@@ -8,7 +8,12 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public class SpVocabularyExample {
     private static final Logger logger = LoggerFactory.getLogger(SpVocabularyExample.class);
 
@@ -26,9 +31,11 @@ public class SpVocabularyExample {
     public static void testTokenIdConversion(Path modelPath) throws IOException {
         try (SpTokenizer tokenizer = new SpTokenizer(modelPath)) {
             SpVocabulary vocabulary = SpVocabulary.from(tokenizer);
-            //根据id获取词表中的词
+            // 根据id获取词表中的词
+            // Get the word from the vocabulary based on its ID
             logger.info(vocabulary.getToken(1));
-            //获取词表中的词对应的id
+            // 获取词表中的词对应的id
+            // Get the ID of the word from the vocabulary
             logger.info("" + vocabulary.getIndex("<s>"));
             for(int i=0;i<100;i++)
                 logger.info(vocabulary.getToken(i));

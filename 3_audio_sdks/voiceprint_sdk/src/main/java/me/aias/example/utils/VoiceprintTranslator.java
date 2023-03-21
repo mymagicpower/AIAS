@@ -6,6 +6,12 @@ import ai.djl.ndarray.NDManager;
 import ai.djl.translate.Batchifier;
 import ai.djl.translate.Translator;
 import ai.djl.translate.TranslatorContext;
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 
 public final class VoiceprintTranslator implements Translator<float[][], float[]> {
   VoiceprintTranslator() {}

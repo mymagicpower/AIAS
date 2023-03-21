@@ -15,16 +15,16 @@
         :show-file-list="false"
         :auto-upload="false"
       >
-        <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+        <el-button slot="trigger" size="small" type="primary">Select</el-button>
         <el-button
           v-loading.fullscreen.lock="fullscreenLoading"
           style="margin-left: 10px;"
           type="success"
           size="small"
-          element-loading-text="拼命加载中"
+          element-loading-text="loading"
           @click="submitUpload"
-        >上传</el-button>
-        <div slot="tip" class="el-upload__tip">文件类型: zip</div>
+        >Upload</el-button>
+        <div slot="tip" class="el-upload__tip">File Type: zip</div>
       </el-upload>
     </el-row>
 
@@ -41,25 +41,25 @@
           {{ scope.row.id }}
         </template>
       </el-table-column>
-      <el-table-column label="文件名" align="center">
+      <el-table-column label="Name" align="center">
         <template slot-scope="scope">
           {{ scope.row.name }}
         </template>
       </el-table-column>
-      <el-table-column label="文件类型" align="center">
+      <el-table-column label="Type" align="center">
         <template slot-scope="scope">
           {{ scope.row.suffix }}
         </template>
       </el-table-column>
-      <el-table-column label="大小" align="center">
+      <el-table-column label="Size" align="center">
         <template slot-scope="scope">
           {{ scope.row.size }}
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center">
+      <el-table-column label="Action" align="center">
         <template slot-scope="scope">
-          <el-button size="mini" type="primary" @click="doTrain(scope.row)">训练</el-button>
-          <el-button size="mini" type="danger" @click="handleDelete(scope.row)">删除</el-button>
+          <el-button size="mini" type="primary" @click="doTrain(scope.row)">Train</el-button>
+          <el-button size="mini" type="danger" @click="handleDelete(scope.row)">Delete</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -105,40 +105,31 @@ export default {
     handleError(file) {
       this.fullscreenLoading = false
     },
-    // beforeUpload(file) {
-    //   if (file.type !== 'application/zip') {
-    //     this.fullscreenLoading = false
-    //     this.$message.error('文件应为zip格式压缩包!')
-    //     return false
-    //   } else {
-    //     return true
-    //   }
-    // },
     fetchData() {
       this.listLoading = true
       getStorageList().then(response => {
         this.list = response.data.result
         this.listLoading = false
       }).catch(function(response) {
-        console.log(response)// 发生错误时执行的代码
+        console.log(response)
       })
     },
     handleDelete(row) {
-      this.$confirm('此操作将删除设置项，是否继续?', '删除确认', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
+      this.$confirm('This operation will delete the setting item. Do you want to continue?', 'Delete confirmation', {
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel',
         type: 'warning'
       }).then(() => {
         const id = row.id
         del(id).then(response => {
           this.$message({
             type: 'success',
-            message: '删除成功!'
+            message: 'Deleted successfully!'
           })
           this.fetchData()
         })
       }).catch(() => {
-        console.log('取消成功')
+        console.log('Cancelled successfully')
       })
     },
     doTrain(row) {
@@ -146,7 +137,7 @@ export default {
       train(id).then(response => {
         this.$message({
           type: 'success',
-          message: '已开始训练，请到训练可视化页面，查看训练实时过程!'
+          message: 'Training has started, please go to the training visualization page to view the real-time training process!'
         })
       })
     }

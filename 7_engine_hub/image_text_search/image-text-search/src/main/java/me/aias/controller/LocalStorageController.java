@@ -22,26 +22,28 @@ import java.util.List;
 
 /**
  * 存储管理
+ * Storage management
+ *
  * @author Calvin
  * @date 2021-12-12
  **/
 @RestController
 @RequiredArgsConstructor
-@Api(tags = "存储管理")
+@Api(tags = "存储管理 - Storage management")
 @RequestMapping("/api/localStorage")
 public class LocalStorageController {
 
     private final LocalStorageService localStorageService;
     private final FileProperties properties;
 
-    @ApiOperation("查询文件列表")
+    @ApiOperation("查询文件列表 - Query file list")
     @GetMapping("/list")
     public ResponseEntity<Object> getContact() {
         List<LocalStorage> result = localStorageService.getStorageList();
         return new ResponseEntity<>(ResultRes.success(result, result.size()), HttpStatus.OK);
     }
 
-    @ApiOperation("上传文件")
+    @ApiOperation("上传文件 - Upload file")
     @PostMapping("/file")
     public ResponseEntity<Object> create(@RequestParam("file") MultipartFile multipartFile) {
         FileUtil.checkSize(properties.getMaxSize(), multipartFile.getSize());
@@ -69,7 +71,7 @@ public class LocalStorageController {
         return new ResponseEntity<>(ResultRes.success(), HttpStatus.OK);
     }
 
-    @ApiOperation("删除文件")
+    @ApiOperation("删除文件 - Delete file")
     @DeleteMapping
     public ResponseEntity<Object> delete(@RequestBody LocalStorage localStorage) {
         LocalStorage storage = localStorageService.findById(localStorage.getId());

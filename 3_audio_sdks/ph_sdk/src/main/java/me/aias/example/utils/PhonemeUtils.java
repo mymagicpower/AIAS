@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class PhonemeUtils {
 	// 拼音转音素映射表：420
+	// Phonetic-to-phoneme mapping table: 420
 	static ImmutableMap<String,String> shengyun2ph_dict = ImmutableMap.<String, String>builder()
 			.put("a", "aa a")
 		    .put("ai", "aa ai")

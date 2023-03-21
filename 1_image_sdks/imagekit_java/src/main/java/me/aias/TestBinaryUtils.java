@@ -11,6 +11,7 @@ public class TestBinaryUtils {
     @Test
     /**
      * 测试opencv自带的二值化
+     * Test OpenCV's built-in binary method
      */
     public void testBinaryNative(){
         String imgPath = "src/test/resources/1.png";
@@ -28,6 +29,7 @@ public class TestBinaryUtils {
     @Test
     /**
      * 测试自定义二值化
+     * Test custom binary method
      */
     public void testBinaryzation(){
         String imgPath = "src/test/resources/1.png";

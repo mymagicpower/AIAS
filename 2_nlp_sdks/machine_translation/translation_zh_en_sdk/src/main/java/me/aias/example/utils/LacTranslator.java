@@ -20,7 +20,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public final class LacTranslator implements Translator<String, String[][]> {
   LacTranslator() {}
 
@@ -43,10 +48,10 @@ public final class LacTranslator implements Translator<String, String[][]> {
               word -> {
                 String[] ws = word.split("	");
                 if (ws.length == 1) {
-                  word2id_dict.put("", ws[0]); // 文字是key,id是value
+                  word2id_dict.put("", ws[0]); // 文字是key,id是value - Text is the key, ID is the value.
                   id2word_dict.put(ws[0], "");
                 } else {
-                  word2id_dict.put(ws[1], ws[0]); // 文字是key,id是value
+                  word2id_dict.put(ws[1], ws[0]); // 文字是key,id是value - Text is the key, ID is the value.
                   id2word_dict.put(ws[0], ws[1]);
                 }
               });
@@ -58,7 +63,7 @@ public final class LacTranslator implements Translator<String, String[][]> {
           .forEach(
               word -> {
                 String[] ws = word.split("	");
-                label2id_dict.put(ws[1], ws[0]); // 文字是key,id是value
+                label2id_dict.put(ws[1], ws[0]); // 文字是key,id是value - Text is the key, ID is the value.
                 id2label_dict.put(ws[0], ws[1]);
               });
     }
@@ -68,17 +73,17 @@ public final class LacTranslator implements Translator<String, String[][]> {
           .forEach(
               word -> {
                 if (StringUtils.isBlank(word)) {
-                  word_replace_dict.put("　", " "); // 文字是key,id是value
+                  word_replace_dict.put("　", " "); // 文字是key,id是value - Text is the key, ID is the value.
                 } else {
                   String[] ws = word.split("	");
                   if (ws.length == 1) {
                     if (ws[0] != null) {
-                      word_replace_dict.put(ws[0], ""); // 文字是key,id是value
+                      word_replace_dict.put(ws[0], ""); // 文字是key,id是value - Text is the key, ID is the value.
                     } else {
-                      word_replace_dict.put("", ws[1]); // 文字是key,id是value
+                      word_replace_dict.put("", ws[1]); // 文字是key,id是value - Text is the key, ID is the value.
                     }
                   } else {
-                    word_replace_dict.put(ws[0], ws[1]); // 文字是key,id是value
+                    word_replace_dict.put(ws[0], ws[1]); // 文字是key,id是value - Text is the key, ID is the value.
                   }
                 }
               });

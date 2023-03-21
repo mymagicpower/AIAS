@@ -18,6 +18,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+/**
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ */
 public class DishTranslator implements Translator<Image, Classifications> {
     List<String> classes;
     

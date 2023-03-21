@@ -18,6 +18,11 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Translator
+ *
+ * @author Calvin
+ */
 public class PtGTranslator implements Translator<List, Image> {
 
     public PtGTranslator() {

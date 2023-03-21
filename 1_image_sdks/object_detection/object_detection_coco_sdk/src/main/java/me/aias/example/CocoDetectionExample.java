@@ -16,7 +16,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public final class CocoDetectionExample {
 
   private static final Logger logger = LoggerFactory.getLogger(CocoDetectionExample.class);

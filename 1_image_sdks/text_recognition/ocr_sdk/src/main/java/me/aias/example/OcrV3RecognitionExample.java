@@ -31,6 +31,7 @@ import java.util.List;
 
 /**
  * OCR V3模型 文字识别. 支持文本有旋转角度
+ * OCR V3 model for text recognition. Supports text with rotation angles.
  *
  * @author Calvin
  * @date 2022-10-07
@@ -74,6 +75,8 @@ public final class OcrV3RecognitionExample {
 
             // 对检测结果根据坐标位置，根据从上到下，从做到右，重新排序，下面算法对图片倾斜旋转角度较小的情形适用
             // 如果图片旋转角度较大，则需要自行改进算法，需要根据斜率校正计算位置。
+            // Reorder the detection results based on the coordinate positions, from top to bottom, from left to right. The algorithm below is suitable for situations where the image is slightly tilted or rotated.
+            // If the image rotation angle is large, the algorithm needs to be improved, and the position needs to be calculated based on the slope correction.
             List<RotatedBox> initList = new ArrayList<>();
             for (RotatedBox result : detections) {
                 // put low Y value at the head of the queue.
@@ -91,9 +94,9 @@ public final class OcrV3RecognitionExample {
                 float y1 = firstBox.getBox().toFloatArray()[1];
                 float y2 = tmpBox.getBox().toFloatArray()[1];
                 float dis = Math.abs(y2 - y1);
-                if (dis < 32) { // 认为是同 1 行
+                if (dis < 32) { // 认为是同 1 行  - Considered to be in the same line
                     line.add(tmpBox);
-                } else { // 换行
+                } else { // 换行 - Line break
                     firstBox = tmpBox;
                     Collections.sort(line);
                     line = new ArrayList<>();

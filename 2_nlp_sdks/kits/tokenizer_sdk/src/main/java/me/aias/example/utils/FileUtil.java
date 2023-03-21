@@ -10,7 +10,12 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public class FileUtil {
     static String S3_BUCKET_PREFIX = "https://s3.amazonaws.com/models.huggingface.co/bert";
 

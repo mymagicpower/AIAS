@@ -44,7 +44,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/ocr/index'),
         name: 'inference',
-        meta: { title: '自由文本识别', icon: 'el-icon-picture' }
+        meta: { title: 'Free Text', icon: 'el-icon-picture' }
       }
     ]
   },
@@ -56,7 +56,7 @@ export const constantRoutes = [
         path: 'detection',
         component: () => import('@/views/face/detection'),
         name: 'detection',
-        meta: { title: '人脸检测', icon: 'el-icon-picture' }
+        meta: { title: 'Face Detection', icon: 'el-icon-picture' }
       }
     ]
   },
@@ -68,7 +68,7 @@ export const constantRoutes = [
         path: 'feature',
         component: () => import('@/views/face/feature'),
         name: 'feature',
-        meta: { title: '人脸特征提取', icon: 'el-icon-picture' }
+        meta: { title: 'Face Feature', icon: 'el-icon-picture' }
       }
     ]
   },
@@ -80,7 +80,7 @@ export const constantRoutes = [
         path: 'comparison',
         component: () => import('@/views/face/comparison'),
         name: 'comparison',
-        meta: { title: '人脸比对 (1:1)', icon: 'el-icon-picture' }
+        meta: { title: 'Face Comparison (1:1)', icon: 'el-icon-picture' }
       }
     ]
   },

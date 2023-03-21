@@ -10,15 +10,20 @@ import javax.sound.sampled.AudioSystem;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 
-/** Sound utility class */
+/**
+ * Sound utility class
+ *
+ */
 public class SoundUtils {
   public static int samplerate = 0;
   public static int channels = 0;
   // float转为16int需要的 基数
+  // Base number needed to convert float to 16-bit int
   public static int _int16_max = (int) (Math.pow(2, 15) - 1);
 
   /**
    * 数据保存成wav文件
+   * Save data as wav files
    *
    * @param wav
    * @param volume

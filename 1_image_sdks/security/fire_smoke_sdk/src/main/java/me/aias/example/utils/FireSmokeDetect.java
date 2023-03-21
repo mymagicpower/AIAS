@@ -14,7 +14,12 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-/** 烟火检测 https://github.com/gengyanlei/fire-smoke-detect-yolov4 */
+/**
+ * https://github.com/gengyanlei/fire-smoke-detect-yolov4
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public final class FireSmokeDetect {
 
   private static final Logger logger = LoggerFactory.getLogger(FireSmokeDetect.class);

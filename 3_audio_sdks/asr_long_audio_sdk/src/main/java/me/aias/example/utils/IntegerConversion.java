@@ -1,5 +1,10 @@
 package me.aias.example.utils;
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public class IntegerConversion {
 	public static int convertTwoBytesToInt1(byte b1, byte b2) // signed
 	{

@@ -7,6 +7,12 @@ import ai.djl.training.util.ProgressBar;
 import org.apache.commons.lang3.tuple.Pair;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 
 public class SpeechRecognition {
   public SpeechRecognition() {}

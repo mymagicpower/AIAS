@@ -12,7 +12,11 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
+/**
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ */
 public final class AnimalsClassExample {
 
   private static final Logger logger = LoggerFactory.getLogger(AnimalsClassExample.class);

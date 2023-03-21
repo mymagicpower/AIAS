@@ -15,6 +15,7 @@ import java.util.Arrays;
 
 /**
  * 声纹识别
+ * Voiceprint recognition
  *
  * <p>https://github.com/yeyupiaoling/VoiceprintRecognition-PaddlePaddle
  *
@@ -57,9 +58,9 @@ public final class VoiceprintExample {
       logger.info("b_1.wav feature: " + Arrays.toString(feature3));
 
       logger.info(
-          "a_1.wav,a_2.wav 相似度： " + Float.toString(FeatureUtils.calculSimilar(feature1, feature2)));
+          "a_1.wav,a_2.wav Similarity： " + Float.toString(FeatureUtils.calculSimilar(feature1, feature2)));
       logger.info(
-          "a_1.wav,b_1.wav 相似度： " + Float.toString(FeatureUtils.calculSimilar(feature1, feature3)));
+          "a_1.wav,b_1.wav Similarity： " + Float.toString(FeatureUtils.calculSimilar(feature1, feature3)));
     }
   }
 }

@@ -37,9 +37,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 // https://www.paddlepaddle.org.cn/hubdetail?name=ssd_vgg16_512_coco2017&en_category=ObjectDetection
-
-// /Users/calvin/Desktop/Download/browser/PaddleHub-release-v2.1/modules/image/object_detection/ssd_vgg16_512_coco2017
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public final class CocoDetection {
 
   private static final Logger logger = LoggerFactory.getLogger(CocoDetection.class);

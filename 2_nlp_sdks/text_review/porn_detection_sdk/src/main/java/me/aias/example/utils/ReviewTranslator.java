@@ -20,7 +20,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public final class ReviewTranslator implements Translator<String, float[]> {
   ReviewTranslator() {}
 
@@ -37,11 +42,11 @@ public final class ReviewTranslator implements Translator<String, float[]> {
     try (InputStream is = model.getArtifact("assets/word_dict.txt").openStream()) {
       List<String> words = Utils.readLines(is, true);
       for (int i = 0; i < words.size(); i++) {
-        word2id_dict.put(words.get(i), "" + i); // 文字是key,id是value
+        word2id_dict.put(words.get(i), "" + i); // 文字是key,id是value - Text is the key, ID is the value.
       }
     }
-    unk_id = "" + word2id_dict.get("<UNK>"); // 文字是key,id是value
-    pad_id = "" + word2id_dict.get("<PAD>"); // 文字是key,id是value
+    unk_id = "" + word2id_dict.get("<UNK>"); // 文字是key,id是value - Text is the key, ID is the value.
+    pad_id = "" + word2id_dict.get("<PAD>"); // 文字是key,id是value - Text is the key, ID is the value.
 
     vocabulary =
             DefaultVocabulary.builder()

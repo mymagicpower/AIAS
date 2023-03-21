@@ -19,7 +19,7 @@ import java.util.Arrays;
 
 /**
  * 图片特征提取 （512维特征）
- *
+ * Image feature extraction (512-dimensional features)
  * @author Calvin
  * @date 2021-07-10
  * @email 179209347@qq.com

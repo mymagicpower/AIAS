@@ -8,6 +8,12 @@ import me.aias.example.utils.FFT;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.stream.IntStream;
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 
 public class FFTExample {
 

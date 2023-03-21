@@ -15,6 +15,7 @@ import java.nio.file.Paths;
 
 /**
  * 图片特征提取模型
+ * Image encoder model
  *
  * @author Calvin
  * @date 2021-12-19

@@ -12,17 +12,19 @@ import java.util.Map;
 
 /**
  * 对音频预处理的工具
+ * Tool for pre-processing audio features
  *
  * @author Calvin <179209347@qq.com>
  */
 public class FeatureNormalizer {
-  static float eps = 1e-20f; // 添加到标准值以提供数值稳定性
+  static float eps = 1e-20f; // 添加到标准值以提供数值稳定性 - Added to the standard value for numerical stability
   /**
    * 使用均值和标准值计算音频特征的归一化值
+   * Computes the normalized value of audio features using mean and standard deviation
    *
    * @param manager
-   * @param npzDataPath: 均值和标准值的文件路径
-   * @param features: 需要归一化的音频
+   * @param npzDataPath: 均值和标准值的文件路径 - File path for mean and standard deviation
+   * @param features: 需要归一化的音频 - Audio features to be normalized
    * @return
    * @throws Exception
    */

@@ -23,7 +23,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public final class FaceDetection {
 
   private static final Logger logger = LoggerFactory.getLogger(FaceDetection.class);

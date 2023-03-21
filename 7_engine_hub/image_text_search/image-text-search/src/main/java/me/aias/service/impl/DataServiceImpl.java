@@ -24,6 +24,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 音频文件服务
+ * Audio file service
  *
  * @author Calvin
  * @date 2021-12-12
@@ -62,6 +63,7 @@ public class DataServiceImpl implements DataService {
 
     /**
      * 新增文件
+     * Add new audio file
      */
     public void addData(String id, String audioPath) {
         map.put(id, audioPath);
@@ -70,6 +72,7 @@ public class DataServiceImpl implements DataService {
 
     /**
      * 根据ID查询
+     * find file by id
      */
     public String findById(String id) {
         return map.get(id);
@@ -77,6 +80,7 @@ public class DataServiceImpl implements DataService {
 
     /**
      * 获取清单
+     * gegt list
      */
     public ConcurrentHashMap<String, String> getMap() {
         return map;
@@ -84,6 +88,7 @@ public class DataServiceImpl implements DataService {
 
     /**
      * 保存上传文件列表
+     * save audio list
      */
     private void saveAudioList() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -103,14 +108,17 @@ public class DataServiceImpl implements DataService {
         if (!new File(rootPath).exists()) {
             new File(rootPath).mkdirs();
         }
-        String unZipFilePath = rootPath + UUID; // 以压缩文件名为新目录
+        String unZipFilePath = rootPath + UUID; // 以压缩文件名为新目录 - create new folder
         try {
             // 记录文件集合
+            // record file list
             List<DataInfo> resultList = new ArrayList<>();
             // 解压缩后的文件
+            // file list after unzip
             File[] listFiles = new File(unZipFilePath).listFiles();
 
             // 判断上传文件是否包含音频文件
+            // check if audio file existing
             boolean found = false;
             for (File file : listFiles) {
                 String suffix = FileUtil.getExtensionName(file.getName());
@@ -122,11 +130,11 @@ public class DataServiceImpl implements DataService {
                 }
             }
             if (!found) {
-                // 通用异常
                 throw new BadRequestException(ResEnum.IMAGE_NOT_FOUND.VALUE);
             }
 
             // 保存文件到可访问路径
+            // save file to available path
             for (File file : listFiles) {
                 DataInfo dataInfo = new DataInfo();
                 dataInfo.setPreName(file.getName());
@@ -138,20 +146,22 @@ public class DataServiceImpl implements DataService {
                     byte[] bytes = FileUtil.getByte(file);
                     String uuid = UUIDUtil.getUUID();
                     dataInfo.setUuid(uuid);
-                    String fileName = uuid + "." + suffix; // 待存储的文件名
+                    String fileName = uuid + "." + suffix;
                     String relativePath = FileUtil.generatePath(rootPath);
                     // filePath 完整路径（含uuid文件名）
+                    // full file path
                     String filePath = rootPath + relativePath + fileName;
                     dataInfo.setFullPath(filePath);
                     dataInfo.setRelativePath(relativePath + fileName);
                     // 转成文件保存
+                    // convert into file to save
                     FileUtil.bytesToFile(bytes, filePath);
                     resultList.add(dataInfo);
                 }
             }
             return resultList;
         } finally {
-            // unZipFilePath = rootPath + uuid; // 以压缩文件名为新目录
+            // unZipFilePath = rootPath + uuid;
             FileUtil.delete(unZipFilePath);
 
         }

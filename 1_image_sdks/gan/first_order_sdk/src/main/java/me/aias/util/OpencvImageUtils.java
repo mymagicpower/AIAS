@@ -21,13 +21,14 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * Opencv图像处理
+ * Opencv Utils
  *
  * @author Calvin
  */
 public class OpencvImageUtils {
   /**
    * 将mat转BufferedImage
+   * Convert mat to BufferedImage
    *
    * @param matrix
    */
@@ -63,6 +64,7 @@ public class OpencvImageUtils {
 
   /**
    * 将BufferedImage转mat
+   * Convert BufferedImage to mat
    *
    * @param original
    * @param matType
@@ -75,7 +77,8 @@ public class OpencvImageUtils {
   }
 
   /**
-   * 将BufferedImage类型转换
+   * 转换BufferedImage类型
+   * Convert BufferedImage type
    *
    * @param src
    * @param bufImgType

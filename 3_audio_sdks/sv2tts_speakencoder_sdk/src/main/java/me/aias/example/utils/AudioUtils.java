@@ -14,6 +14,8 @@ public class AudioUtils {
 
     /**
      * 数据补齐到padl长度
+     * Pad data to padl length
+     *
      * @param wav
      * @param padl
      * @param manager
@@ -26,6 +28,7 @@ public class AudioUtils {
     
   /**
    * 从wav提取mel特征值
+   * Extract mel spectrogram from wav
    *
    * @param wav
    * @return
@@ -38,6 +41,7 @@ public class AudioUtils {
   }
 
   // 对音频进行切片
+  // Slice the audio *
   public static Pair compute_partial_slices(
       long n_samples, int partial_utterance_n_frames, float min_pad_coverage, float overlap) {
     int samples_per_frame = (int) (16000 * mel_window_step / 1000);

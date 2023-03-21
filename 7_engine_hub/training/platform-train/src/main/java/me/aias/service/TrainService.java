@@ -19,6 +19,7 @@ public class TrainService {
 
 		Training training=new Training(trainArgument, newModelPath, fileRootPath);
 		// 运行训练程序
+		// run training program
 		training.start();
 	}
 }

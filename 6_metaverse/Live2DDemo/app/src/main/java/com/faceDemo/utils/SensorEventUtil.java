@@ -21,7 +21,6 @@ public class SensorEventUtil implements SensorEventListener {
 	public SensorEventUtil(Context context) {
 		mSensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
 		mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);// TYPE_GRAVITY
-		// 参数三，检测的精准度
 		mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);// SENSOR_DELAY_GAME
 	}
 

@@ -32,7 +32,7 @@ import java.io.File;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@Api(tags = "模型训练管理")
+@Api(tags = "Model Training Management")
 @RequestMapping("/api/train")
 public class TrainController {
 
@@ -47,7 +47,7 @@ public class TrainController {
     @Autowired
     private TrainService trainService;
 
-    @ApiOperation(value = "训练模型")
+    @ApiOperation(value = "Train Model")
     @PostMapping(value = "/trigger")
     public ResultBean extractFeatures(@RequestBody LocalStorage storage, HttpServletRequest request) throws Exception {
 
@@ -59,14 +59,17 @@ public class TrainController {
         }
 
         // 获取上传者操作系统
+        // Get the operating system of the uploader
         UserAgentUtil userAgentGetter = new UserAgentUtil(request);
         String os = userAgentGetter.getOS();
 
         // 解压缩,以压缩文件名为新目录,文件名乱码可能是个问题
+        // Unzip using the compressed file name as the new directory, file name garbled may be a problem
         if (!new File(properties.getPath().getImageRootPath()).exists()) {
             new File(properties.getPath().getImageRootPath()).mkdirs();
         }
         //生成UUID作为解压缩的目录
+        // Generate UUID as the directory for decompression
         String UUID = UUIDUtil.getUUID();
         String unZipFilePath = properties.getPath().getImageRootPath() + UUID;
         if (!new File(unZipFilePath).exists()) {

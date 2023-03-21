@@ -15,6 +15,7 @@ import java.util.Arrays;
 
 /**
  * 自然问题问答
+ * Natural Language Question Answering
  *
  * @author calvin
  * @mail 179209347@qq.com

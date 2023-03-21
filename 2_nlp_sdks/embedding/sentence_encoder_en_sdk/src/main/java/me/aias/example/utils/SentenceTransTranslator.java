@@ -15,7 +15,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public class SentenceTransTranslator implements Translator<String, float[]> {
 
   //  private Vocabulary vocabulary;

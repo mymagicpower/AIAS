@@ -5,7 +5,12 @@ import org.apache.commons.lang3.ArrayUtils;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public final class FeatureComparison {
   private FeatureComparison() {}
 

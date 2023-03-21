@@ -26,9 +26,13 @@ import java.util.List;
 
 /**
  * TTS 基于给定音色将文本转为语音
- * 注意: 为了防止用于非法用途，代码限定音色文件只能使用biaobei-009502.mp3
- * <p>使用特定的音色，结合文字的读音合成音频，使得合成后的音频具有目标说话人的特征。
+ *  Converts text to speech based on a given voice.
  *
+ * 注意: 为了防止用于非法用途，代码限定音色文件只能使用biaobei-009502.mp3
+ * Note: to prevent illegal use, the code limits the voice file to biaobei-009502.mp3
+ *
+ * 使用特定的音色，结合文字的读音合成音频，使得合成后的音频具有目标说话人的特征。
+ * Using a specific voice and combining the pronunciation of the text,the resulting audio has the characteristics of the target speaker.
  * <p>https://github.com/CorentinJ/Real-Time-Voice-Cloning
  *
  * <p>https://arxiv.org/pdf/1806.04558.pdf
@@ -45,13 +49,15 @@ public final class TTSExample {
     }
 
     public static void main(String[] args) throws Exception {
-        // 文本
+        // 文本 - Text
         String text = "基于给定音色将文本转为语音";
-        logger.info("文本: {}", text);
+        logger.info("Text: {}", text);
         // 目标音色保存路径
+        //  Path of the target voice
         Path audioFile = Paths.get("src/test/resources/biaobei-009502.mp3");
-        logger.info("给定音色: {}", "src/test/resources/biaobei-009502.mp3");
+        logger.info("Target voice: {}", "src/test/resources/biaobei-009502.mp3");
         // 语音保存路径
+        // Path of the generated audio file
         File outs = new File(Paths.get("build/output/audio.wav").toString());
 
         NDManager manager = NDManager.newBaseManager(Device.cpu());
@@ -74,15 +80,18 @@ public final class TTSExample {
              Predictor<NDArray, NDArray> denoiserPredictor = denoiserModel.newPredictor()) {
 
             // 文本转为ID列表
+            // Convert text to ID list
             List<Integer> text_data_org = SequenceUtils.text2sequence(text);
             int[] text_dataa = text_data_org.stream().mapToInt(Integer::intValue).toArray();
             NDArray text_data = manager.create(text_dataa);
             text_data.setName("text");
 
             // 目标音色作为Speaker Encoder的输入: 使用ffmpeg 将目标音色mp3文件转为wav格式
+            // Use the target voice as the input of Speaker Encoder: use ffmpeg to convert the target voice mp3 file to wav format
             NDArray audioArray = FfmpegUtils.load_wav_to_torch(audioFile.toString(), 22050);
 
             // 提取这段语音的说话人特征（音色）作为Speaker Embedding
+            // Extract the speaker feature (voice) of this speech as Speaker Embedding
             Pair<LinkedList<LinkedList<Integer>>, LinkedList<LinkedList<Integer>>> slices =
                     AudioUtils.compute_partial_slices(audioArray.size(), partials_n_frames, 0.75f, 0.5f);
             LinkedList<LinkedList<Integer>> wave_slices = slices.getLeft();
@@ -105,25 +114,28 @@ public final class TTSExample {
             NDArray speaker_data = raw_embed.div(((raw_embed.pow(2)).sum()).sqrt());
 
             Shape shape = speaker_data.getShape();
-            logger.info("目标音色特征向量 Shape: {}", Arrays.toString(shape.getShape()));
-            logger.info("目标音色特征向量: {}", Arrays.toString(speaker_data.toFloatArray()));
+            logger.info("Target voice feature vector Shape: {}", Arrays.toString(shape.getShape()));
+            logger.info("Target voice feature vector: {}", Arrays.toString(speaker_data.toFloatArray()));
 
             // 模型数据
+            // Model input data
             NDList input = new NDList();
             input.add(text_data);
             input.add(speaker_data);
 
             // 生成mel频谱数据
+            // Generate mel spectrogram data
             NDArray mels_postnet = tacotron2Predictor.predict(input);
             shape = mels_postnet.getShape();
-            logger.info("梅尔频谱数据 Shape: {}", Arrays.toString(shape.getShape()));
-            logger.info("梅尔频谱数据: {}", Arrays.toString(mels_postnet.toFloatArray()));
+            logger.info("Mel spectrogram data Shape: {}", Arrays.toString(shape.getShape()));
+            logger.info("Mel spectrogram data: {}", Arrays.toString(mels_postnet.toFloatArray()));
 
             // 生成wav数据
+            // Generate wav data
             NDArray wavWithNoise = waveGlowPredictor.predict(mels_postnet);
             NDArray wav = denoiserPredictor.predict(wavWithNoise);
             SoundUtils.saveWavFile(wav.get(0), 1.0f, outs);
-            logger.info("生成wav音频文件: {}", outs.toString());
+            logger.info("Generated wav audio file: {}", outs.toString());
         }
     }
 }

@@ -19,8 +19,13 @@ import java.util.List;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-// https://www.paddlepaddle.org.cn/hubdetail?name=resnet50_vd_dishes&en_category=ImageClassification
+/**
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ */
 public final class DishesClassification {
+// https://www.paddlepaddle.org.cn/hubdetail?name=resnet50_vd_dishes&en_category=ImageClassification
 
   private static final Logger logger = LoggerFactory.getLogger(DishesClassification.class);
 

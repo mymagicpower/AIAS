@@ -6,9 +6,10 @@ import org.slf4j.LoggerFactory;
 
 /**
  * JAVA wav文件合并
+ * JAVA code for merging wav files
+ *
  * @author calvin
  * @mail 179209347@qq.com
- * @website www.aias.top
  */
 public class WavAppenderExample {
     private static final Logger logger = LoggerFactory.getLogger(WavAppenderExample.class);

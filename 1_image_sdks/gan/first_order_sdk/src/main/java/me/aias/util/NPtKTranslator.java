@@ -11,7 +11,11 @@ import ai.djl.translate.TranslatorContext;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * Translator
+ *
+ * @author Calvin
+ */
 public class NPtKTranslator implements Translator<Image, Map> {
 
     public NPtKTranslator() {

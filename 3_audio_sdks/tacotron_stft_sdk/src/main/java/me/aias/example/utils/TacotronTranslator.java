@@ -6,6 +6,12 @@ import ai.djl.translate.Batchifier;
 import ai.djl.translate.Translator;
 import ai.djl.translate.TranslatorContext;
 import sun.net.www.content.audio.wav;
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 
 public class TacotronTranslator implements Translator<NDArray, NDArray> {
 

@@ -44,7 +44,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/textsearch/index'),
         name: 'search',
-        meta: { title: '跨模态搜索-文本搜图', icon: 'el-icon-search' }
+        meta: { title: 'Text Search', icon: 'el-icon-search' }
       }
     ]
   },
@@ -56,7 +56,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/imagesearch/index'),
         name: 'storage',
-        meta: { title: '跨模态搜索-以图搜图', icon: 'el-icon-search' }
+        meta: { title: 'Image Search', icon: 'el-icon-search' }
       }
     ]
   },
@@ -68,7 +68,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/storage/index'),
         name: 'storage',
-        meta: { title: '数据管理', icon: 'el-icon-upload' }
+        meta: { title: 'Data Management', icon: 'el-icon-upload' }
       }
     ]
   },

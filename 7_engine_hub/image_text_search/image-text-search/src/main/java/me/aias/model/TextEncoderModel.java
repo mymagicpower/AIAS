@@ -14,6 +14,7 @@ import java.nio.file.Paths;
 
 /**
  * 文本特征提取模型
+ * Text encoder model
  *
  * @author Calvin
  * @date 2021-12-19

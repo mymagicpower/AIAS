@@ -19,10 +19,12 @@ import java.util.List;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-// https://www.paddlepaddle.org.cn/hubdetail?name=resnet50_vd_animals&en_category=ImageClassification
-//
-// Users/calvin/Desktop/Download/browser/PaddleHub-release-v2.1/modules/image/classification/resnet50_vd_animals
-
+/**
+ * Animals Classification
+ * https://www.paddlepaddle.org.cn/hubdetail?name=resnet50_vd_animals&en_category=ImageClassification
+ * @author Calvin
+ * @email 179209347@qq.com
+ */
 public final class AnimalsClassification {
 
   private static final Logger logger = LoggerFactory.getLogger(AnimalsClassification.class);

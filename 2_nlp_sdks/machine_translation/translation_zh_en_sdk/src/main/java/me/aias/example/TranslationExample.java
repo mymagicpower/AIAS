@@ -15,6 +15,7 @@ import java.util.Arrays;
 
 /**
  * 中文翻译为英文
+ * Translate Chinese to English
  *
  * @author calvin
  * @mail 179209347@qq.com
@@ -29,10 +30,10 @@ public final class TranslationExample {
 
     public static void main(String[] args) throws IOException, TranslateException, ModelException {
 
-        // 分词
+        // 分词 - Split words
         Lac lac = new Lac();
         Criteria<String, String[][]> lacCriteria = lac.criteria();
-        // 翻译
+        // 翻译 - Translation
         Translation senta = new Translation();
         Criteria<String[], String[]> SentaCriteria = senta.criteria();
 
@@ -45,12 +46,12 @@ public final class TranslationExample {
             logger.info("输入句子: {}", input);
 
             String[][] lacResult = lacPredictor.predict(input);
-            // 分词
+            // 分词 - Split words
             logger.info("Words : " + Arrays.toString(lacResult[0]));
-            // 词性
+            // 词性 - tag
             logger.info("Tags : " + Arrays.toString(lacResult[1]));
 
-            // 翻译结果
+            // 翻译结果 - Translation result
             String[] translationResult = sentaPredictor.predict(lacResult[0]);
             for (int i = 0; i < translationResult.length; i++) {
                 logger.info("T" + i + ": " + translationResult[i]);

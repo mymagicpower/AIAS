@@ -19,20 +19,18 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+/**
+ * Image & Text search【English】
+ *
+ * @author calvin
+ * @mail 179209347@qq.com
+ */
 public final class ImageTextSearchExample {
 
   private static final Logger logger = LoggerFactory.getLogger(ImageTextSearchExample.class);
 
   private ImageTextSearchExample() {}
 
-  /**
-   * Image & Text search【English】
-   *
-   * @author calvin
-   * @mail 179209347@qq.com
-   * @website www.aias.top
-   */
   public static void main(String[] args) throws IOException, ModelException, TranslateException {
 
     List<String> texts = new ArrayList<>();

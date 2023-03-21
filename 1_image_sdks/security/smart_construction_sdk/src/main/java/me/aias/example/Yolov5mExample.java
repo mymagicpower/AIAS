@@ -23,8 +23,7 @@ import java.util.List;
 
 /**
  * 安全帽检测例子
- *
- * 目录：http://aias.top/
+ * Helmet Detection
  *
  * @author Calvin
  */

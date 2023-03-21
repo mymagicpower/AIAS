@@ -24,7 +24,13 @@ import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
-
+/**
+ * Image Utils
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public class ImageUtils {
 
   public static Image bufferedImage2DJLImage(BufferedImage img) {
@@ -75,10 +81,9 @@ public class ImageUtils {
   }
 
   public static void saveImage(BufferedImage img, String name, String path) {
-    ai.djl.modality.cv.Image djlImg = ImageFactory.getInstance().fromImage(img); // 支持多种图片格式，自动适配
+    ai.djl.modality.cv.Image djlImg = ImageFactory.getInstance().fromImage(img);
     Path outputDir = Paths.get(path);
     Path imagePath = outputDir.resolve(name);
-    // OpenJDK 不能保存 jpg 图片的 alpha channel
     try {
       djlImg.save(Files.newOutputStream(imagePath), "png");
     } catch (IOException e) {
@@ -89,7 +94,6 @@ public class ImageUtils {
   public static void saveImage(Image img, String name, String path) {
     Path outputDir = Paths.get(path);
     Path imagePath = outputDir.resolve(name);
-    // OpenJDK 不能保存 jpg 图片的 alpha channel
     try {
       img.save(Files.newOutputStream(imagePath), "png");
     } catch (IOException e) {
@@ -103,16 +107,17 @@ public class ImageUtils {
     Path outputDir = Paths.get(path);
     Files.createDirectories(outputDir);
     Path imagePath = outputDir.resolve(name);
-    // OpenJDK can't save jpg with alpha channel
     img.save(Files.newOutputStream(imagePath), "png");
   }
 
   public static void drawImageRect(BufferedImage image, int x, int y, int width, int height) {
     // 将绘制图像转换为Graphics2D
+    // Convert the drawing image to Graphics2D
     Graphics2D g = (Graphics2D) image.getGraphics();
     try {
       g.setColor(new Color(246, 96, 0));
       // 声明画笔属性 ：粗 细（单位像素）末端无修饰 折线处呈尖角
+      // Declare the pen attribute: thick, no decoration at the end, sharp angle at the intersection
       BasicStroke bStroke = new BasicStroke(4, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER);
       g.setStroke(bStroke);
       g.drawRect(x, y, width, height);
@@ -125,10 +130,12 @@ public class ImageUtils {
   public static void drawImageRect(
       BufferedImage image, int x, int y, int width, int height, Color c) {
     // 将绘制图像转换为Graphics2D
+    // Convert the drawing image to Graphics2D
     Graphics2D g = (Graphics2D) image.getGraphics();
     try {
       g.setColor(c);
       // 声明画笔属性 ：粗 细（单位像素）末端无修饰 折线处呈尖角
+      // Declare the pen attribute: thick, no decoration at the end, sharp angle at the intersection
       BasicStroke bStroke = new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER);
       g.setStroke(bStroke);
       g.drawRect(x, y, width, height);
@@ -152,20 +159,28 @@ public class ImageUtils {
     }
   }
 
-  /** 返回外扩人脸 factor = 1, 100%, factor = 0.2, 20% */
+  /** 返回外扩人脸 factor = 1, 100%, factor = 0.2, 20%
+   *  Returns the enlarged face with factor = 1, 100%, factor = 0.2, 20%
+   * @param img
+   * @param box
+   * @param factor
+   * @return
+   */
+
   public static Image getSubImage(Image img, BoundingBox box, float factor) {
     Rectangle rect = box.getBounds();
-    // 左上角坐标
+    // 左上角坐标 - Upper left corner coordinates
     int x1 = (int) (rect.getX() * img.getWidth());
     int y1 = (int) (rect.getY() * img.getHeight());
-    // 宽度，高度
+    // 宽度，高度 - width, height
     int w = (int) (rect.getWidth() * img.getWidth());
     int h = (int) (rect.getHeight() * img.getHeight());
-    // 左上角坐标
+    // 左上角坐标 - Upper right corner coordinates
     int x2 = x1 + w;
     int y2 = y1 + h;
 
     // 外扩大100%，防止对齐后人脸出现黑边
+    // Expand by 100% to prevent black edges after alignment
     int new_x1 = Math.max((int) (x1 + x1 * factor / 2 - x2 * factor / 2), 0);
     int new_x2 = Math.min((int) (x2 + x2 * factor / 2 - x1 * factor / 2), img.getWidth() - 1);
     int new_y1 = Math.max((int) (y1 + y1 * factor / 2 - y2 * factor / 2), 0);
@@ -206,14 +221,14 @@ public class ImageUtils {
 
   public static int getX(Image img, BoundingBox box) {
     Rectangle rect = box.getBounds();
-    // 左上角x坐标
+    // 左上角x坐标 - Upper left corner x coordinate
     int x = (int) (rect.getX() * img.getWidth());
     return x;
   }
 
   public static int getY(Image img, BoundingBox box) {
     Rectangle rect = box.getBounds();
-    // 左上角y坐标
+    // 左上角y坐标 - Upper left corner y coordinate
     int y = (int) (rect.getY() * img.getHeight());
     return y;
   }

@@ -3,8 +3,8 @@
     <div class="head">
       <div class="bts">
         <el-form ref="form" :model="form">
-          <el-input v-model="form.text" placeholder="请输入内容" class="input-with-select">
-            <el-select slot="prepend" v-model="form.topK" style="width:80px;" placeholder="请选择">
+          <el-input v-model="form.text" placeholder="Please input" class="input-with-select">
+            <el-select slot="prepend" v-model="form.topK" style="width:80px;" placeholder="Select">
               <el-option label="Top 5" value="5" />
               <el-option label="Top 10" value="10" />
               <el-option label="Top 20" value="20" />
@@ -12,7 +12,7 @@
               <el-option label="Top 100" value="100" />
               <el-option label="Top 200" value="200" />
             </el-select>
-            <el-button slot="append" icon="el-icon-search" element-loading-text="拼命加载中" @click="onSubmit" />
+            <el-button slot="append" icon="el-icon-search" element-loading-text="loading" @click="onSubmit" />
           </el-input>
         </el-form>
       </div>
@@ -38,9 +38,9 @@
     </template>
     <empty-data
       v-else-if="!imgFile || !imgFile.size"
-      title="请输入查询文本信息"
+      title="Please enter the search text information."
     />
-    <empty-data v-else title="未查询到信息" />
+    <empty-data v-else title="No information found" />
   </div>
 </template>
 

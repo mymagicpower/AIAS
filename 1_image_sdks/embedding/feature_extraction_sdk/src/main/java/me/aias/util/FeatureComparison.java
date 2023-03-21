@@ -3,12 +3,17 @@ package me.aias.util;
 /**
  * 特征相似度计算
  * https://zhuanlan.zhihu.com/p/88117781?utm_source=wechat_session
- */
+ * Feature Similarity Calculation
+ * @author Calvin
+ * @date 2021-07-10
+ * @email 179209347@qq.com
+ **/
 public final class FeatureComparison {
   private FeatureComparison() {}
 
   /**
    * 余弦相似度
+   * Cosine similarity
    * @param feature1
    * @param feature2
    * @return
@@ -29,6 +34,7 @@ public final class FeatureComparison {
 
   /**
    * 欧式距离
+   * Euclidean distance
    * @param feature1
    * @param feature2
    * @return
@@ -44,6 +50,7 @@ public final class FeatureComparison {
 
   /**
    * 内积
+   * Inner product
    * @param feature1
    * @param feature2
    * @return

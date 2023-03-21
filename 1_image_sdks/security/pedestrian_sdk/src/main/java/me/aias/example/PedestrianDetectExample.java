@@ -20,7 +20,8 @@ import java.nio.file.Paths;
 
 /**
  * 行人检测例子
- * https://aias.top/
+ * Pedestrian Detection
+ *
  * @author Calvin
  */
 

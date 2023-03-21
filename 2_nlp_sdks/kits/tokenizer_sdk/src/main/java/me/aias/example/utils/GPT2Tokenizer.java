@@ -19,7 +19,12 @@ import com.google.common.io.Resources;
 
 /**
  * https://github.com/neonbjb/transformers-tokenizer-java
- */
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
+
 public class GPT2Tokenizer extends Tokenizer {
     Map<Integer, String> byte_encoder = new HashMap<>();
     Map<String, Integer> byte_decoder = new HashMap<>();

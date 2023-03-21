@@ -11,6 +11,7 @@ import java.util.List;
 
 /**
  * 获取音频数组
+ * Get audio array
  *
  * @author Calvin
  */
@@ -79,6 +80,7 @@ public class AudioArrayUtils {
 //    }
 
     // 自动处理大小端序问题
+    // Automatically handle endianness issues
     private static ShortBuffer deepCopy(ShortBuffer source, ShortBuffer target) {
 
         int sourceP = source.position();

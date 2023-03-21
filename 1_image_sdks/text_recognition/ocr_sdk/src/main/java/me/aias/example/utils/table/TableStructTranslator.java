@@ -237,7 +237,6 @@ public class TableStructTranslator implements Translator<Image, TableResult> {
   public void saveImage(Image img, String name, String path) {
     Path outputDir = Paths.get(path);
     Path imagePath = outputDir.resolve(name);
-    // OpenJDK 不能保存 jpg 图片的 alpha channel
     try {
       img.save(Files.newOutputStream(imagePath), "png");
     } catch (IOException e) {

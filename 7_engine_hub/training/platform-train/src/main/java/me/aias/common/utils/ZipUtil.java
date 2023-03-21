@@ -12,6 +12,7 @@ import java.util.Enumeration;
 
 /**
  * Zip文件工具
+ * zip file tool
  *
  * @author Calvin
  * @date 2021-06-20
@@ -23,6 +24,7 @@ public class ZipUtil {
 
     /**
      * 解压Zip文件
+     * unzip file
      *
      * @param receivedZipFile
      * @param osName
@@ -72,6 +74,7 @@ public class ZipUtil {
                 }
 
                 // 创建文件
+                // create file
                 file.createNewFile();
                 is = zipFile.getInputStream(entry);
                 fos = new FileOutputStream(file);

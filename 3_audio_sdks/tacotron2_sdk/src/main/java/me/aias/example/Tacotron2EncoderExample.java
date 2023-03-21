@@ -26,16 +26,18 @@ import java.util.List;
 
 /**
  * Tacotron2 提取音频特征
+ * Extract audio features using Tacotron2
  *
  * 选取一段新的目标音色作为Speaker Encoder的输入，并提取其说话人特征，
  * 最终实现输入为一段文本和一段目标音色，模型生成目标音色说出此段文本的语音梅尔频谱图。
+ * Select a new target voice as input to the Speaker Encoder and extract the speaker features,
+ * and finally generate the mel spectrogram of the text spoken by the target voice by inputting a piece of text and a target voice.
  *
  * https://github.com/CorentinJ/Real-Time-Voice-Cloning
  * https://arxiv.org/pdf/1806.04558.pdf
  * 
  * @author calvin
  * @mail 179209347@qq.com
- * @website www.aias.top
  */
 public final class Tacotron2EncoderExample {
   private static int partials_n_frames = 160;
@@ -45,9 +47,9 @@ public final class Tacotron2EncoderExample {
 
   public static void main(String[] args) throws Exception {
     String text = "基于给定音色将文本转为梅尔频谱";
-    logger.info("文本: {}", text);
+    logger.info("text: {}", text);
     Path audioFile = Paths.get("src/test/resources/biaobei-009502.mp3");
-    logger.info("给定音色: {}", "src/test/resources/biaobei-009502.mp3");
+    logger.info("audioFile: {}", "src/test/resources/biaobei-009502.mp3");
     NDManager manager = NDManager.newBaseManager(Device.cpu());
 
 
@@ -59,15 +61,18 @@ public final class Tacotron2EncoderExample {
          Predictor<NDList, NDArray> tacotron2Predictor = tacotron2Model.newPredictor()) {
 
       // 文本转为ID列表
+      // Convert text to ID list
       List<Integer> text_data_org = SequenceUtils.text2sequence(text);
       int[] text_dataa = text_data_org.stream().mapToInt(Integer::intValue).toArray();
       NDArray text_data = manager.create(text_dataa);
       text_data.setName("text");
 
       // 目标音色作为Speaker Encoder的输入: 使用ffmpeg 将目标音色mp3文件转为wav格式
+      // Use ffmpeg to convert the target voice mp3 file to wav format
       NDArray audioArray = FfmpegUtils.load_wav_to_torch(audioFile.toString(), 22050);
 
       // 提取这段语音的说话人特征（音色）作为Speaker Embedding
+      // Extract the speaker features (voice) of this speech as the Speaker Embedding
       Pair<LinkedList<LinkedList<Integer>>, LinkedList<LinkedList<Integer>>> slices =
           AudioUtils.compute_partial_slices(audioArray.size(), partials_n_frames, 0.75f, 0.5f);
       LinkedList<LinkedList<Integer>> wave_slices = slices.getLeft();
@@ -92,18 +97,20 @@ public final class Tacotron2EncoderExample {
       logger.info("Speaker Embedding Shape: {}", Arrays.toString(shape.getShape()));
       logger.info("Speaker Embedding: {}",  Arrays.toString(speaker_data.toFloatArray()));
 
-      //模型中只用了下面两个数据
+      // 模型中只用了下面两个数据
+      // Only the following two data are used in the model
       NDList input = new NDList();
       input.add(text_data);
       //input.add(style_data);
       input.add(speaker_data);
       //input.add(f0_data);
 
-      //生成mel频谱数据
+      // 生成mel频谱数据
+      // Generate mel spectrogram data
       NDArray mels_postnet = tacotron2Predictor.predict(input);
       shape = mels_postnet.getShape();
-      logger.info("mel频谱数据 Shape: {}", Arrays.toString(shape.getShape()));
-      logger.info("mel频谱数据: {}",  Arrays.toString(mels_postnet.toFloatArray()));
+      logger.info("mel spectrogram data Shape: {}", Arrays.toString(shape.getShape()));
+      logger.info("mel spectrogram data: {}",  Arrays.toString(mels_postnet.toFloatArray()));
     }
   }
 }

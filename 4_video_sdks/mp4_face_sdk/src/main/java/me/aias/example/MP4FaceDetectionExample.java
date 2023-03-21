@@ -31,7 +31,7 @@ import static org.bytedeco.opencv.global.opencv_imgproc.*;
 
 /**
  * 本地视频人脸检测
- *
+ * Local video face detection
  * @author Calvin
  */
 public class MP4FaceDetectionExample {
@@ -41,8 +41,9 @@ public class MP4FaceDetectionExample {
 
   /**
    * 人脸检测
+   * Face detection
    *
-   * @param input 视频源
+   * @param input 视频源 - input video source
    */
   public static void faceDetection(String input)
       throws IOException, ModelException, TranslateException {
@@ -51,17 +52,19 @@ public class MP4FaceDetectionExample {
     Criteria<Image, DetectedObjects> criteria = new FaceDetection().criteria(shrink, threshold);
 
     // 读取视频文件或者视频流获取图像（得到的图像为frame类型，需要转换为mat类型进行检测和识别）
+    // Read video file or video stream to get image (the obtained image is of type frame, which needs to be converted to mat type for detection and recognition)
     FFmpegFrameGrabber grabber = new FFmpegFrameGrabber(input);
     grabber.start();
 
     // Frame与Mat转换
+    // Frame to Mat conversion
     OpenCVFrameConverter.ToMat converter = new OpenCVFrameConverter.ToMat();
 
-    CanvasFrame canvas = new CanvasFrame("人脸检测"); // 新建一个预览窗口
+    CanvasFrame canvas = new CanvasFrame("Face Detections");
     canvas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     canvas.setVisible(true);
     canvas.setFocusable(true);
-    // 窗口置顶
+    // 窗口置顶 - Top window
     if (canvas.isAlwaysOnTopSupported()) {
       canvas.setAlwaysOnTop(true);
     }
@@ -70,9 +73,11 @@ public class MP4FaceDetectionExample {
     try (ZooModel model = ModelZoo.loadModel(criteria);
         Predictor<Image, DetectedObjects> predictor = model.newPredictor()) {
       // 获取图像帧
+      // Get image frame
       for (; canvas.isVisible() && (frame = grabber.grabImage()) != null; ) {
 
         // 将获取的frame转化成mat数据类型
+        // Convert the obtained frame to mat data type
         Mat img = converter.convert(frame);
         BufferedImage buffImg = OpenCVImageUtil.mat2BufferedImage(img);
 
@@ -84,6 +89,7 @@ public class MP4FaceDetectionExample {
         List<DetectedObjects.DetectedObject> items = detections.items();
 
         // 遍历人脸
+        // Traverse faces
         for (DetectedObjects.DetectedObject item : items) {
           BoundingBox box = item.getBoundingBox();
           Rectangle rectangle = box.getBounds();
@@ -97,11 +103,13 @@ public class MP4FaceDetectionExample {
                   (int) (rectangle.getHeight() * imageHeight));
 
           // 绘制人脸矩形区域，scalar色彩顺序：BGR(蓝绿红)
+          // Draw face rectangle, scalar color order: BGR (blue, green, red)
           rectangle(img, face, new Scalar(0, 0, 255, 1));
 
           int pos_x = Math.max(face.tl().x() - 10, 0);
           int pos_y = Math.max(face.tl().y() - 10, 0);
           // 在人脸矩形上面绘制文字
+          // Draw text above the face rectangle
           putText(
               img,
               "Face",
@@ -112,6 +120,7 @@ public class MP4FaceDetectionExample {
         }
 
         // 显示视频图像
+        // Display video image
         canvas.showImage(frame);
       }
     }

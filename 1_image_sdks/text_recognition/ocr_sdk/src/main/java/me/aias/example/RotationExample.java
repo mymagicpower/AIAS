@@ -16,7 +16,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * OCR文字检测.                              
+ * 图片旋转
+ * Rotation Example
  *
  * @author Calvin
  * @date 2021-06-28
@@ -33,6 +34,7 @@ public final class RotationExample {
         Path imageFile = Paths.get("src/test/resources/ticket_0.png");
         Image image = ImageFactory.getInstance().fromFile(imageFile);
         // 逆时针旋转
+        // Counterclockwise rotation
         image = rotateImg(image);
 
         saveImage(image, "rotate_result.png", "build/output");
@@ -48,7 +50,6 @@ public final class RotationExample {
     public static void saveImage(Image img, String name, String path) {
         Path outputDir = Paths.get(path);
         Path imagePath = outputDir.resolve(name);
-        // OpenJDK 不能保存 jpg 图片的 alpha channel
         try {
             img.save(Files.newOutputStream(imagePath), "png");
         } catch (IOException e) {

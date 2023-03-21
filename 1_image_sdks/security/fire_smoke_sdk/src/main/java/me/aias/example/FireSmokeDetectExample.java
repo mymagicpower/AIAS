@@ -23,8 +23,7 @@ import java.util.List;
 
 /**
  * 烟火检测例子
- *
- * 目录：http://aias.top/
+ * Fire smoke detection
  *
  * @author Calvin
  */

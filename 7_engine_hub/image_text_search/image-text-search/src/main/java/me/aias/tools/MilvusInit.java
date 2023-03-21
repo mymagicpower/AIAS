@@ -12,6 +12,7 @@ import io.milvus.param.partition.DropPartitionParam;
 
 /**
  * 搜索引擎初始化工具
+ * Search engine initialization tool
  *
  * @author Calvin
  * @date 2021-12-12
@@ -33,6 +34,7 @@ public class MilvusInit {
     public static void main(String[] args) {
         try {
             // 检查 collection 是否存在，不存在会抛异常
+            // Check if the collection exists, an exception will be thrown if it does not exist
             hasCollection();
             releaseCollection();
 //            dropPartition("p1");
@@ -43,10 +45,12 @@ public class MilvusInit {
             e.printStackTrace();
         }
         // 关闭 Milvus 连接
+        // Close Milvus connection
         milvusClient.close();
     }
 
     // 检查是否存在 collection
+    // Check if the collection exists
     private static R<Boolean> hasCollection() {
         System.out.println("========== hasCollection() ==========");
         R<Boolean> response = milvusClient.hasCollection(HasCollectionParam.newBuilder()
@@ -58,6 +62,7 @@ public class MilvusInit {
     }
 
     // 删除 collection
+    // Delete collection
     private static R<RpcStatus> dropCollection() {
         System.out.println("========== dropCollection() ==========");
         R<RpcStatus> response = milvusClient.dropCollection(DropCollectionParam.newBuilder()
@@ -78,6 +83,7 @@ public class MilvusInit {
     }
 
     // 删除 index
+    // Delete index
     private static R<RpcStatus> dropIndex() {
         System.out.println("========== dropIndex() ==========");
         R<RpcStatus> response = milvusClient.dropIndex(DropIndexParam.newBuilder()

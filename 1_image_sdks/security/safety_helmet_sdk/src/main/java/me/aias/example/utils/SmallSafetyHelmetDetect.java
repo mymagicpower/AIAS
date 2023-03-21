@@ -15,10 +15,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * 安全帽检测
  * https://github.com/njvisionpower/Safety-Helmet-Wearing-Dataset
- */
-
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public final class SmallSafetyHelmetDetect {
 
   private static final Logger logger = LoggerFactory.getLogger(SmallSafetyHelmetDetect.class);

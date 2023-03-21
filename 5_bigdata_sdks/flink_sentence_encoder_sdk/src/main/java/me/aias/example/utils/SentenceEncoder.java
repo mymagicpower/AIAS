@@ -5,6 +5,12 @@ import ai.djl.repository.zoo.Criteria;
 import ai.djl.training.util.ProgressBar;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 
 public final class SentenceEncoder {
 

@@ -4,6 +4,7 @@ public class FileNameUtils {
 
     /**
      * 获取文件后缀
+     * get file suffix
      * @param fileName
      * @return
      */
@@ -13,6 +14,7 @@ public class FileNameUtils {
 
     /**
      * 生成新的文件名
+     * generate new file name
      * @param fileOriginName 源文件名
      * @return
      */

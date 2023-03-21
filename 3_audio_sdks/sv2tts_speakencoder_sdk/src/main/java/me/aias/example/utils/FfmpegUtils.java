@@ -25,9 +25,10 @@ import java.util.stream.Stream;
 
 /**
  * 使用ffmpeg 将文件mp3转为wav文件 
- * 
+ * Convert mp3 file to wav file using ffmpeg
+ *
  * 仿python的audioread
- * 
+ * Emulate python's audioread
  */
 public class FfmpegUtils {
 	

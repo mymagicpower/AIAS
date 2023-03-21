@@ -6,7 +6,12 @@ import ai.djl.ndarray.NDList;
 import ai.djl.ndarray.NDManager;
 import ai.djl.ndarray.types.Shape;
 import com.jlibrosa.audio.JLibrosa;
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public class AudioUtils {
     static int mel_window_step = 10;
     static float max_gain_db = 300.0f;
@@ -15,10 +20,10 @@ public class AudioUtils {
 
     /**
      * 创建给定持续时间和采样率的静音音频段
-     *
+     * Create a silent audio segment with given duration and sample rate
      * @param manager
-     * @param duration   : 静音音频段长度，单位 second
-     * @param sampleRate : 采样率
+     * @param duration   : 静音音频段长度，单位 second - Length of the silent audio segment in seconds
+     * @param sampleRate : 采样率 - Sample rate
      * @return
      */
     public static NDArray makeSilence(NDManager manager, long duration, int sampleRate) {
@@ -28,14 +33,15 @@ public class AudioUtils {
 
     /**
      * 在这个音频样本上加一段静音
+     * Add a silent segment to this audio sample
      *
      * @param manager
      * @param wav
      * @param padLength
-     * @param sides     : padding 位置:
-     *                  'beginning' - 增加静音片段到开头
-     *                  'end'       - 增加静音片段到末尾
-     *                  'both'      - 两边都增加静音片段
+     * @param sides     : padding 位置: - Padding position:
+     *                  'beginning' - 增加静音片段到开头 - add silent segment to the beginning
+     *                  'end'       - 增加静音片段到末尾 - add silent segment to the end
+     *                  'both'      - 两边都增加静音片段 - add silent segments to both sides
      * @return
      * @throws Exception
      */
@@ -57,8 +63,9 @@ public class AudioUtils {
 
     /**
      * 将任意数量的语音片段连接在一起
+     * Concatenate any number of speech segments together
      *
-     * @param segments : 要连接的输入语音片段
+     * @param segments : 要连接的输入语音片段 - Input speech segments to concatenate
      * @return
      */
     public static NDArray concatenate(NDList segments) {
@@ -105,6 +112,7 @@ public class AudioUtils {
 
     /**
      * 用快速傅里叶变换计算线性谱图
+     *  Calculate linear spectrogram using fast Fourier transform
      *
      * @param manager
      * @param samples
@@ -135,6 +143,7 @@ public class AudioUtils {
         }
 
         // 快速傅里叶变换
+        // Fast Fourier Transform
         float[] weighting = hanningWindow(windowSize);
 
         for (int row = 0; row < rows; row++) {
@@ -226,6 +235,7 @@ public class AudioUtils {
 
     /**
      * 从wav提取mel频谱特征值
+     * Extract Mel-frequency spectrogram features from wav
      *
      * @param samples
      * @param n_fft   1024

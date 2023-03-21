@@ -24,7 +24,7 @@ import java.util.List;
  * @author Calvin
  * @date Oct 19, 2021
  */
-@Api(tags = "人脸识别")
+@Api(tags = "人脸识别 - Face Recognition")
 @RestController
 @RequestMapping("/face")
 public class FaceController {
@@ -33,7 +33,7 @@ public class FaceController {
     @Autowired
     private FaceService faceService;
 
-    @ApiOperation(value = "人脸检测-URL")
+    @ApiOperation(value = "人脸检测-URL - Face Detection - URL")
     @GetMapping(value = "/faceDetectionForImageUrl")
     public ResultBean generalInfoForImageUrl(@RequestParam(value = "url") String url) throws IOException {
         Image image = ImageFactory.getInstance().fromUrl(url);
@@ -41,7 +41,7 @@ public class FaceController {
         return ResultBean.success().add("result", dataList);
     }
 
-    @ApiOperation(value = "人脸检测-图片")
+    @ApiOperation(value = "人脸检测-图片  - Face Detection - Image")
     @PostMapping("/faceDetectionForImageFile")
     public ResultBean generalInfoForImageFile(@RequestParam(value = "imageFile") MultipartFile imageFile) {
         InputStream fis = null;
@@ -70,7 +70,7 @@ public class FaceController {
         }
     }
 
-    @ApiOperation(value = "人脸特征提取-URL")
+    @ApiOperation(value = "人脸特征提取-URL - Face Feature Extraction - URL")
     @GetMapping(value = "/featureForImageUrl")
     public ResultBean featureForImageUrl(@RequestParam(value = "url") String url) throws IOException {
         Image image = ImageFactory.getInstance().fromUrl(url);
@@ -78,7 +78,7 @@ public class FaceController {
         return ResultBean.success().add("result", feature);
     }
 
-    @ApiOperation(value = "人脸特征提取-图片")
+    @ApiOperation(value = "人脸特征提取-图片 - Face Feature Extraction - Image")
     @PostMapping("/featureForImageFile")
     public ResultBean featureForImageFile(@RequestParam(value = "imageFile") MultipartFile imageFile) {
         InputStream fis = null;
@@ -107,7 +107,7 @@ public class FaceController {
         }
     }
 
-    @ApiOperation(value = "人脸比对(1:1)-URL")
+    @ApiOperation(value = "人脸比对(1:1)-URL - Face Comparison (1:1) - URL")
     @GetMapping(value = "/compareForImageUrls")
     public ResultBean compareForImageUrls(@RequestParam(value = "url1") String url1, @RequestParam(value = "url2") String url2) throws IOException, ModelException, TranslateException {
         Image image1 = ImageFactory.getInstance().fromUrl(url1);
@@ -116,7 +116,7 @@ public class FaceController {
         return ResultBean.success().add("result", result);
     }
 
-    @ApiOperation(value = "人脸比对(1:1)-图片")
+    @ApiOperation(value = "人脸比对(1:1)-图片 - Face Comparison (1:1) - Image")
     @PostMapping("/compareForImageFiles")
     public ResultBean compareForImageFiles(@RequestParam(value = "imageFiles") MultipartFile[] imageFiles) {
         InputStream fis = null;

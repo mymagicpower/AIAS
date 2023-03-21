@@ -31,12 +31,13 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 搜索管理
+ * Search management
  *
  * @author Calvin
  * @date 2021-12-19
  **/
 @Slf4j
-@Api(tags = "搜索管理")
+@Api(tags = "搜索管理 - Search management")
 @RequestMapping("/api/search")
 @RequiredArgsConstructor
 @RestController
@@ -55,7 +56,7 @@ public class SearchController {
     String baseUrl;
 
     @GetMapping("/text")
-    @ApiOperation(value = "搜索", nickname = "search")
+    @ApiOperation(value = "search", nickname = "search")
     public ResponseEntity<Object> searchImage(@RequestParam("text") String text, @RequestParam(value = "topK") String topk) {
         // 生成向量
         Integer topK = Integer.parseInt(topk);
@@ -73,6 +74,7 @@ public class SearchController {
 
         try {
             // 根据向量搜索
+            // Search by vectors
             R<SearchResults> searchResponse = searchService.search(topK, vectorsToSearch);
             SearchResultsWrapper wrapper = new SearchResultsWrapper(searchResponse.getData().getResults());
             List<SearchResultsWrapper.IDScore> scores = wrapper.getIDScore(0);
@@ -80,6 +82,7 @@ public class SearchController {
                 return entity.getLongID();
             });
             // 根据ID获取图片信息
+            // Get image information by ID
             ConcurrentHashMap<String, String> map = imageService.getMap();
             List<DataInfoRes> imageInfoResList = new ArrayList<>();
             for (SearchResultsWrapper.IDScore score : scores) {
@@ -99,13 +102,14 @@ public class SearchController {
     }
 
     @PostMapping(value = "/image")
-    @ApiOperation(value = "搜索图片", nickname = "searchImage")
+    @ApiOperation(value = "searchImage", nickname = "searchImage")
     public ResponseEntity<Object> searchImage(@RequestParam("image") MultipartFile imageFile, @RequestParam(value = "topK") String topk) {
         BufferedImage bufferedImage = ImageUtil.multipartFileToBufImage(imageFile);
         Integer topK = Integer.parseInt(topk);
         List<Float> vectorToSearch;
         try {
             //特征提取
+            // Feature extraction
             Image image = ImageFactory.getInstance().fromImage(bufferedImage);
             vectorToSearch = featureService.imageFeature(image);
         } catch (Exception e) {
@@ -119,11 +123,13 @@ public class SearchController {
 
         try {
             // 根据图片向量搜索
+            // Search by image vectors
             R<SearchResults> searchResponse = searchService.search(topK, vectorsToSearch);
             SearchResultsWrapper wrapper = new SearchResultsWrapper(searchResponse.getData().getResults());
             List<SearchResultsWrapper.IDScore> scores = wrapper.getIDScore(0);
 
             // 根据ID获取图片信息
+            // Get image information by ID
             ConcurrentHashMap<String, String> map = imageService.getMap();
             List<DataInfoRes> imageInfoResList = new ArrayList<>();
             for (SearchResultsWrapper.IDScore score : scores) {

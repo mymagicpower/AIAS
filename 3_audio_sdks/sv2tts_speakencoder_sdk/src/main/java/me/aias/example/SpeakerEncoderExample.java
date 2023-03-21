@@ -23,13 +23,13 @@ import java.util.LinkedList;
 
 /**
  * SpeakerEncoder 提取音频特征
+ * SpeakerEncoder extracts audio features
  *
  * https://github.com/babysor/MockingBird/blob/main/README-CN.md
  * https://arxiv.org/pdf/1806.04558.pdf
  * 
  * @author calvin
  * @mail 179209347@qq.com
- * @website www.aias.top
  */
 public final class SpeakerEncoderExample {
   private static int partials_n_frames = 160;
@@ -42,6 +42,7 @@ public final class SpeakerEncoderExample {
     NDManager manager = NDManager.newBaseManager(Device.cpu());
 
     // 使用ffmpeg 将mp3文件转为wav格式
+    // Use ffmpeg to convert mp3 files to wav format
     NDArray audioArray = FfmpegUtils.load_wav_to_torch(audioFile.toString(), 22050);
     SpeakerEncoder speakerEncoder = new SpeakerEncoder();
 

@@ -1,10 +1,10 @@
 <template>
   <div class="app-container">
     <el-form ref="form" :model="form" label-width="120">
-      <el-form-item label="图片1">
+      <el-form-item label="Image1">
         <el-input v-model="form.url1" />
       </el-form-item>
-      <el-form-item label="图片2">
+      <el-form-item label="Image2">
         <el-input v-model="form.url2" />
       </el-form-item>
       <el-row>
@@ -32,9 +32,9 @@
           v-loading.fullscreen.lock="fullscreenLoading"
           type="primary"
           size="small"
-          element-loading-text="拼命加载中"
+          element-loading-text="loading"
           @click="onSubmit"
-        >人脸比对</el-button>
+        >Compare</el-button>
       </el-form-item>
       <el-form-item>
         <el-divider />
@@ -59,15 +59,15 @@
               ::limit="2"
               :auto-upload="false"
             >
-              <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+              <el-button slot="trigger" size="small" type="primary">Select</el-button>
               <el-button
                 v-loading.fullscreen.lock="fullscreenLoading"
                 style="margin-left: 10px;"
                 type="success"
                 size="small"
-                element-loading-text="拼命加载中"
+                element-loading-text="loading"
                 @click="submitUpload"
-              >上传</el-button>
+              >Upload</el-button>
               <div slot="tip" class="el-upload__tip">Image format: JPG(JPEG), PNG</div>
             </el-upload>
           </el-form-item>
@@ -101,7 +101,7 @@ export default {
     return {
       fullscreenLoading: false,
       file: [],
-      fileList: [], // upload多文件数组
+      fileList: [], // upload file list
       form: {
         url1: 'https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/face_sdk/images/kana1.jpg',
         url2: 'https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/face_sdk/images/kana2.jpg',
@@ -116,7 +116,6 @@ export default {
       return window.g.Base_URL + '/face/compareForImageFiles'
       // return `${process.env.VUE_APP_BASE_API}/inference/infoForImageFile`
     },
-    // 上传文件
     uploadFile(param) {
       this.file.push(param.file)
     },
@@ -124,16 +123,16 @@ export default {
       // this.$refs.upload.submit()
       if (this.fileList.length !== 2) {
         this.$message({
-          message: '请选择且仅选择 2 个图像文件',
+          message: 'Please select 2 images',
           type: 'warning'
         })
       } else {
         this.fullscreenLoading = true
-        const formData = new FormData() // new formData对象
-        this.$refs.upload.submit() // 提交调用uploadFile函数
-        this.file.forEach(function(file) { // 遍历上传多个文件
+        const formData = new FormData() // new formData
+        this.$refs.upload.submit()
+        this.file.forEach(function(file) {
           formData.append('imageFiles', file, file.name)
-          // upData.append('file', this.file); //不要直接使用文件数组进行上传，传给后台的是两个Object
+          // upData.append('file', this.file);
         })
         compareForImageFiles(formData).then(response => {
           this.form.base64Img1 = response.data.base64Img1
@@ -144,21 +143,21 @@ export default {
         })
       }
     },
-    // 移除
+    // 移除 - remove
     handleRemove(file, fileList) {
       this.fileList = fileList
-      // return this.$confirm(`确定移除 ${ file.name }？`);
+      // return this.$confirm(`Confirm remove ${ file.name }？`);
     },
 
-    // 选取文件超过数量提示
+    // 选取文件超过数量提示 - file number
     handleExceed(files, fileList) {
-      this.$message.warning(`当前限制选择 2 个文件`)
+      this.$message.warning(`only 2 files permitted`)
     },
-    // 监控上传文件列表
+    // 监控上传文件列表 - monitor file list
     handleChange(file, fileList) {
       const existFile = fileList.slice(0, fileList.length - 1).find(f => f.name === file.name)
       if (existFile) {
-        this.$message.error('当前文件已经存在!')
+        this.$message.error('file existing!')
         fileList.pop()
       }
       this.fileList = fileList

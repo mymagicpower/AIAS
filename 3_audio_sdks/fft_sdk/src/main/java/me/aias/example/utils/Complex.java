@@ -1,4 +1,10 @@
 package me.aias.example.utils;
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 
 public class Complex {
     private final double re; // the real part

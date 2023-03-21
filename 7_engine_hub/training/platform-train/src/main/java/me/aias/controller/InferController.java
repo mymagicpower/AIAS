@@ -26,7 +26,7 @@ import java.io.InputStream;
  **/
 @RestController
 @RequiredArgsConstructor
-@Api(tags = "在线推理")
+@Api(tags = "Online Inference")
 @RequestMapping("/api/inference")
 public class InferController {
     private Logger logger = LoggerFactory.getLogger(InferController.class);
@@ -36,7 +36,7 @@ public class InferController {
     @Autowired
     private InferService inferService;
 
-    @ApiOperation(value = "图片分类识别-URL")
+    @ApiOperation(value = "Image Classification Recognition-URL")
     @GetMapping(value = "/classInfoForUrl", produces = "application/json;charset=utf-8")
     public ResultBean getClassInfoForUrl(@RequestParam(value = "url") String url) {
 //        properties.getPath().getPath() + type + File.separator
@@ -45,7 +45,7 @@ public class InferController {
         return ResultBean.success().add("result", result);
     }
 
-    @ApiOperation(value = "图片分类识别-图片")
+    @ApiOperation(value = "Image Classification Recognition-Image")
     @PostMapping("/classInfoForImage")
     public ResultBean getClassInfo(@RequestParam(value = "imageFile") MultipartFile imageFile) {
         InputStream fis = null;
@@ -71,7 +71,7 @@ public class InferController {
         }
     }
 
-    @ApiOperation(value = "图片特征提取-URL")
+    @ApiOperation(value = "Image Feature Extraction-URL")
     @GetMapping(value = "/featureForImageUrl")
     public ResultBean featureForImageUrl(@RequestParam(value = "url") String url) throws IOException {
         Image image = ImageFactory.getInstance().fromUrl(url);
@@ -79,7 +79,7 @@ public class InferController {
         return ResultBean.success().add("result", feature);
     }
 
-    @ApiOperation(value = "图片特征提取-图片")
+    @ApiOperation(value = "Image Feature Extraction-Image")
     @PostMapping("/featureForImageFile")
     public ResultBean featureForImageFile(@RequestParam(value = "imageFile") MultipartFile imageFile) {
         InputStream fis = null;
@@ -108,7 +108,7 @@ public class InferController {
         }
     }
 
-    @ApiOperation(value = "图片比对(1:1)-URL")
+    @ApiOperation(value = "Image Comparison (1:1)-URL")
     @GetMapping(value = "/compareForImageUrls")
     public ResultBean compareForImageUrls(@RequestParam(value = "url1") String url1, @RequestParam(value = "url2") String url2) throws IOException, TranslateException, ModelException {
         Image image1 = ImageFactory.getInstance().fromUrl(url1);
@@ -117,7 +117,7 @@ public class InferController {
         return ResultBean.success().add("result", result);
     }
 
-    @ApiOperation(value = "图片比对(1:1)-图片")
+    @ApiOperation(value = "Image Comparison (1:1)-Image")
     @PostMapping("/compareForImageFiles")
     public ResultBean compareForImageFiles(@RequestParam(value = "imageFiles") MultipartFile[] imageFiles) {
         InputStream fis = null;

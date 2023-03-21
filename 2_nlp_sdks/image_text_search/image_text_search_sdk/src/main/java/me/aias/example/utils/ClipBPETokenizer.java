@@ -16,7 +16,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public class ClipBPETokenizer extends SimpleTokenizer {
   private List<Pair<Integer, Character>> byteEncoder;
   private List<Pair<Character, Integer>> byteDecoder = new ArrayList<Pair<Character, Integer>>();

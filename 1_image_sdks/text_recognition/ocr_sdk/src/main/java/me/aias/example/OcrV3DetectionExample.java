@@ -22,6 +22,7 @@ import java.nio.file.Paths;
 
 /**
  * OCR文字检测(V3).
+ * OCR Detection(V3)
  *
  * @author Calvin
  * @date 2022-07-23

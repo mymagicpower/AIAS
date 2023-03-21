@@ -12,7 +12,12 @@ import ai.djl.translate.Batchifier;
 import ai.djl.translate.Pipeline;
 import ai.djl.translate.Translator;
 import ai.djl.translate.TranslatorContext;
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public final class FaceFeatureTranslator implements Translator<Image, float[]> {
 
     public FaceFeatureTranslator() {

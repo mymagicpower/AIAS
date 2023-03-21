@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 预测短语音
+ * Speech Recognition
  *
  * <p>https://github.com/yeyupiaoling/PaddlePaddle-DeepSpeech
  *

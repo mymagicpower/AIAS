@@ -41,6 +41,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 视频管理
+ * Video management
  *
  * @author Calvin
  * @date 2021-12-12
@@ -48,7 +49,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@Api(tags = "数据管理")
+@Api(tags = "数据管理 - Data Management")
 @RequestMapping("/api/data")
 public class DataController {
     private final FileProperties properties;
@@ -65,7 +66,7 @@ public class DataController {
     @Autowired
     private LocalStorageService localStorageService;
 
-    @ApiOperation(value = "提取特征")
+    @ApiOperation(value = "提取特征 - Extract Features")
     @GetMapping("/extractFeatures")
     public ResponseEntity<Object> extractFeatures(@RequestParam(value = "id") String id, HttpServletRequest request) throws IOException {
         LocalStorage localStorage = localStorageService.findById(Integer.parseInt(id));
@@ -75,7 +76,6 @@ public class DataController {
             return new ResponseEntity<>(ResultRes.error(ResEnum.PACKAGE_FILE_FAIL.KEY, ResEnum.PACKAGE_FILE_FAIL.VALUE), HttpStatus.OK);
         }
 
-        // 获取上传者操作系统
         UserAgentUtil userAgentGetter = new UserAgentUtil(request);
         String os = userAgentGetter.getOS();
 
@@ -83,6 +83,7 @@ public class DataController {
             new File(properties.getPath().getRootPath()).mkdirs();
         }
         //生成UUID作为解压缩的目录
+        // Generate UUID as the directory for unzipping
         String UUID = UUIDUtil.getUUID();
         String unZipFilePath = properties.getPath().getRootPath() + UUID;
         if (!new File(unZipFilePath).exists()) {
@@ -91,6 +92,7 @@ public class DataController {
         ZipUtil.unZip(localStorage.getPath(), os, unZipFilePath);
 
         //生成视频文件提取的图片帧目录
+        // Generate the directory for the extracted image frames
         String imagesPath = properties.getPath().getRootPath();
         if (!new File(imagesPath).exists()) {
             new File(imagesPath).mkdirs();
@@ -99,6 +101,7 @@ public class DataController {
         List<DataInfo> dataInfoList = dataService.uploadData(properties.getPath().getRootPath(), UUID);
 
         // 抓取图像画面
+        // Capture the image screen
         try {
             List<Long> vectorIds = new ArrayList<>();
             List<List<Float>> vectors = new ArrayList<>();
@@ -106,7 +109,6 @@ public class DataController {
                 Path imageFile = Paths.get(dataInfo.getFullPath());
                 Image image = ImageFactory.getInstance().fromFile(imageFile);
                 List<Float> feature = featureService.imageFeature(image);
-                // 保存文件信息
                 ConcurrentHashMap<String, String> map = dataService.getMap();
                 int size = map.size();
                 dataService.addData(String.valueOf(size + 1), dataInfo.getRelativePath());
@@ -115,6 +117,7 @@ public class DataController {
             }
 
             // 将向量插入Milvus向量引擎
+            // Insert the vectors into the Milvus vector engine
             try {
                 R<Boolean> response = searchService.hasCollection();
                 if (!response.getData()) {

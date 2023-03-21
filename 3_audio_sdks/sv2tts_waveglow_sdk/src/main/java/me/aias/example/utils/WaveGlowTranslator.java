@@ -5,6 +5,12 @@ import ai.djl.ndarray.NDList;
 import ai.djl.translate.Batchifier;
 import ai.djl.translate.Translator;
 import ai.djl.translate.TranslatorContext;
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 
 public class WaveGlowTranslator implements Translator<NDArray, NDArray> {
 

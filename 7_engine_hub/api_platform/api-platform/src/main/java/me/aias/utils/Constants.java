@@ -1,7 +1,6 @@
 package me.aias.utils;
 
 /**
- * 常用静态常量
  * @author Calvin
  * @date Oct 19, 2021
  */

@@ -8,6 +8,12 @@ import com.jlibrosa.audio.wavFile.WavFileException;
 import org.apache.commons.math3.complex.Complex;
 
 import java.io.IOException;
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 
 public class JLibrasaEx {
   public static float[][] magnitude(NDManager manager, String audioFilePath)
@@ -17,6 +23,7 @@ public class JLibrasaEx {
     JLibrosa jLibrosa = new JLibrosa();
 
     // 读取音频数据
+    // Reading audio data
     float audioFeatureValues[] = jLibrosa.loadAndRead(audioFilePath, 16000, defaultAudioDuration);
 
     float[] reverseArray = new float[audioFeatureValues.length];
@@ -26,6 +33,7 @@ public class JLibrasaEx {
     NDArray reverse = manager.create(reverseArray);
 
     // 数据拼接
+    // Data concatenation
     NDArray extended_wav = manager.create(audioFeatureValues).concat(reverse);
 
     Complex[][] stftComplexValues =
@@ -50,11 +58,14 @@ public class JLibrasaEx {
   }
 
   // 计算全局标准差
+  // Calculating global standard deviation
   public static float[] std(NDArray array, NDArray mean) {
     // 按列减去均值
+    // Subtracting mean by column
     array = array.sub(mean);
 
     // 计算全局标准差
+    // Calculating global standard deviation
     int cols = (int) array.getShape().get(1);
     float[] stds = new float[cols];
     for (int i = 0; i < cols; i++) {
@@ -65,6 +76,7 @@ public class JLibrasaEx {
   }
 
   // 计算全局标准差
+  // Calculating global standard deviation
   public static float std(NDArray array) {
     array = array.square();
     float[] doubleResult = array.toFloatArray();

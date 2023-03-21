@@ -9,6 +9,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 // https://www.paddlepaddle.org.cn/hubdetail?name=emotion_detection_textcnn&en_category=SentimentAnalysis
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 
 public final class SentaTextCnn {
 

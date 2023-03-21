@@ -30,6 +30,7 @@ public class ConfigurerAdapter implements WebMvcConfigurer {
 
     /**
      * 文件配置
+     * file configuration
      */
     private final FileProperties properties;
 
@@ -57,6 +58,7 @@ public class ConfigurerAdapter implements WebMvcConfigurer {
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         // 使用 fastjson 序列化，会导致 @JsonIgnore 失效，可以使用 @JSONField(serialize = false) 替换
+        // When using fastjson serialization, @JsonIgnore will be invalid. You can replace it with @JSONField(serialize = false)
         FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
         List<MediaType> supportMediaTypeList = new ArrayList<>();
         supportMediaTypeList.add(MediaType.APPLICATION_JSON_UTF8);

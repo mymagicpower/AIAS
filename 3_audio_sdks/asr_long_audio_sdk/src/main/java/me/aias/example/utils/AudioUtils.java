@@ -18,10 +18,10 @@ public class AudioUtils {
 
   /**
    * 创建给定持续时间和采样率的静音音频段
-   *
+   * Create a silent audio segment of given duration and sample rate.
    * @param manager
-   * @param duration : 静音音频段长度，单位 second
-   * @param sampleRate : 采样率
+   * @param duration : 静音音频段长度，单位 second - length of silent audio segment, in seconds
+   * @param sampleRate : 采样率 - sample rate
    * @return
    */
   public static NDArray makeSilence(NDManager manager, long duration, int sampleRate) {
@@ -31,11 +31,13 @@ public class AudioUtils {
 
   /**
    * 在这个音频样本上加一段静音
+   * Pad a given audio sample with a segment of silence.
    *
    * @param manager
    * @param wav
    * @param padLength
    * @param sides : padding 位置: 'beginning' - 增加静音片段到开头 'end' - 增加静音片段到末尾 'both' - 两边都增加静音片段
+   * @param sides : padding location: 'beginning' - add silence segment to the front 'end' - add silence segment to the end 'both' - add silence segment on both sides
    * @return
    * @throws Exception
    */
@@ -58,8 +60,9 @@ public class AudioUtils {
 
   /**
    * 将任意数量的语音片段连接在一起
+   * Concatenate any number of audio segments together.
    *
-   * @param segments : 要连接的输入语音片段
+   * @param segments : 要连接的输入语音片段 - the input audio segments to concatenate
    * @return
    */
   public static NDArray concatenate(NDList segments) {
@@ -104,6 +107,7 @@ public class AudioUtils {
 
   /**
    * 用快速傅里叶变换计算线性谱图
+   * Compute linear spectrogram with fast Fourier transform.
    *
    * @param manager
    * @param samples
@@ -136,6 +140,7 @@ public class AudioUtils {
     }
 
     // 快速傅里叶变换
+    // Fast Fourier Transform
     float[] weighting = hanningWindow(windowSize);
 
     for (int row = 0; row < rows; row++) {
@@ -223,6 +228,7 @@ public class AudioUtils {
 
   /**
    * 从wav提取mel频谱特征值
+   * Extract mel-frequency spectrogram features from wav.
    *
    * @param samples
    * @param n_fft 1024
