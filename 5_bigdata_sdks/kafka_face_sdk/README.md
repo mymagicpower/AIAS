@@ -1,41 +1,37 @@
 
-### 下载模型，放置于models目录
-- 链接: https://github.com/mymagicpower/AIAS/releases/download/apps/ultranet.zip
+### Download the model and place it in the models directory
+- Link: https://github.com/mymagicpower/AIAS/releases/download/apps/ultranet.zip
 
-## kafka-人脸检测SDK
-人脸识别技术目前已经广泛应用于包括人脸门禁系统、刷脸支付等各行各业。随着人脸识别技术的提升，
-应用越来越广泛。目前中国的人脸识 别技术已经在世界水平上处于领先地位，在安防行业，
-国内主流安防厂家也都推出了各自的人脸识别产品和解决方案，泛安防行业是人脸识别技术主要应用领域。
-这个例子给出了，人脸识别技术是如何与大数据技术栈协同工作的。
-后续结合人脸特征提取，特征向量保存到向量搜索引擎，形成人像底库，然后就可以实现人像大数据搜索。
- 
-- 人脸检测    
+## Kafka-Face Detection SDK
+
+Face recognition technology is currently widely used in various industries including face access control systems, face payment, etc. With the improvement of face recognition technology, its applications are becoming more and more extensive. At present, China's face recognition technology is leading the world. In the security industry, mainstream security manufacturers in China have also launched their own face recognition products and solutions, and the pan-security industry is the main application field of face recognition technology. This example shows how face recognition technology collaborates with big data technology stack. Combining face feature extraction, feature vectors can be saved to vector search engines to form a portrait database, and then face big data search can be implemented.
+
+- Face detection
 ![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/bigdata_sdks/face_detection.jpeg)
 
-#### 1. 启动 zookeeper:
+#### 1. Start the zookeeper:
 
 `zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties`
 
-#### 2. 启动 kafka:
-启动前先需环境配置kafka的server.properties(添加message.max.bytes=10485760), 支持大消息。
-因为图片转成base64字符串后，会超过kafka的默认消息大小设置。如果不增加配置，kafka不会接收消息。
+#### 2. Start kafka:
+Before starting, you need to configure the kafka server.properties file (add message.max.bytes=10485760) to support large messages. Because after the picture is converted to a base64 string, it will exceed the default message size setting of Kafka. If the configuration is not increased, Kafka will not receive the message.
 `kafka-server-start  /usr/local/etc/kafka/server.properties`
 
-#### 3. 创建 topic:
+#### 3. Create a topic:
 
 `kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic face-data`
 
-#### 4. 查看创建的topic
+#### 4. View the created topic
 
 `kafka-topics --list --zookeeper localhost:2181`
 
-#### 5. 运行例子 - FaceDetectionExample
+#### 5. Run the example- FaceDetectionExample
 
-#### 6. 运行例子 - MyKafkaProducer
-读取图片，转成base64格式发送给kafka。
+#### 6. Run the example- MyKafkaProducer
+Read the picture, convert it to base64 format, and send it to Kafka.
 
-#### 7. 查看 FaceDetectionExample的输出Console
-consumer接受到图片的base64数据, 转换成图片并解析：
+#### 7. View the output console of FaceDetectionExample
+The consumer receives the base64 data of the picture, converts it to a picture, and parses it:
 ```bash
 [
 	class: "Face", probability: 0.99958, bounds: [x=0.485, y=0.198, width=0.122, height=0.230]
@@ -44,35 +40,13 @@ consumer接受到图片的base64数据, 转换成图片并解析：
 ]
 ```
 
-#### Mac环境安装kafka 
+#### Installing Kafka in Mac environment
 ```bash
 brew install kafka
 ```
-#### Mac环境配置kafka，支持大消息 
-编辑/usr/local/etc/kafka/server.properties，增加下面的配置项：
+#### Configure Kafka in Mac environment to support large messages
+
+Edit /usr/local/etc/kafka/server.properties and add the following configuration item:
 ```bash
 message.max.bytes=10485760
 ```
-
-### 帮助 
-引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
-[引擎定制化配置](http://aias.top/engine_cpu.html)
-
-### 官网：
-[官网链接](http://www.aias.top/)
-
-### Git地址：   
-[Github链接](https://github.com/mymagicpower/AIAS)    
-[Gitee链接](https://gitee.com/mymagicpower/AIAS)   
-
-
-#### 帮助文档：
-- http://aias.top/guides.html
-- 1.性能优化常见问题:
-- http://aias.top/AIAS/guides/performance.html
-- 2.引擎配置（包括CPU，GPU在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/engine_config.html
-- 3.模型加载方式（在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/load_model.html
-- 4.Windows环境常见问题:
-- http://aias.top/AIAS/guides/windows.html

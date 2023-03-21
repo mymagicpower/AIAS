@@ -1,31 +1,29 @@
-## DNA工具包
-脱氧核糖核酸（英文DeoxyriboNucleic Acid，缩写为DNA）是生物细胞内含有的四种生物大分子之一核酸的一种。
-DNA携带有合成RNA和蛋白质所必需的遗传信息，是生物体发育和正常运作必不可少的生物大分子。
-DNA序列指使用一串字母（A、T、C、G）表示的真实的或者假设的携带基因信息的DNA分子的一级结构。
-DNA序列测定方法有光学测序和芯片测序两种。
+## DNA Toolkit
+
+Deoxyribonucleic acid (DNA) is one of the four major biomolecules present in biological cells, which carries the genetic information necessary for the synthesis of RNA and proteins, and is an essential biomolecule for the development and normal operation of organisms. DNA sequence refers to the primary structure of a DNA molecule that carries genetic information, represented by a string of letters (A, T, C, G), either real or hypothetical. There are two DNA sequence determination methods: optical sequencing and chip sequencing.
 
 ![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/biology_sdks/dna.jpeg)
 
-### SDK功能
-- 特征提取
-文本(DNA序列)特征提取：将文本数据转化成特征向量的过程，比较常用的文本特征表示法为词袋法。
-词袋法：不考虑词语出现的顺序，每个出现过的词汇单独作为一列特征，这些不重复的特征词汇集合为词表。
-- CountVectorizer是属于常见的特征数值计算类，是一个文本特征提取方法。对于每一个训练文本，它只考虑每种词汇在该训练文本中出现的频率。
-- CountVectorizer会将文本中的词语转换为词频矩阵，它通过fit函数计算各个词语出现的次数。
-- CountVectorizer旨在通过计数来将一个文档转换为向量。当不存在先验字典时，Countvectorizer作为Estimator提取词汇进行训练，
-并生成一个CountVectorizerModel用于存储相应的词汇向量空间。该模型产生文档关于词语的稀疏表示。
-在CountVectorizerModel的训练过程中，CountVectorizer将根据语料库中的词频排序从高到低进行选择，词汇表的最大含量由vocabsize超参数来指定，
-超参数minDF则指定词汇表中的词语至少要在多少个不同文档中出现。
+### SDK Function
 
-Todo list：
-- 向量归一化
-- 向量相似度计算
+- Feature Extraction
+  Text (DNA sequence) feature extraction: the process of converting text data into feature vectors. The most commonly used text feature representation method is the bag-of-words method.
+  Bag-of-words method: regardless of the order in which words appear, each word that appears separately is used as a column feature. The set of these non-repeating feature words is the vocabulary.
+- CountVectorizer is a common feature numerical calculation class and a text feature extraction method. For each training text, it only considers the frequency of each vocabulary appearing in the training text.
+- CountVectorizer will convert the words in the text into a frequency matrix, and it will calculate the number of times each word appears through the fit function.
+- CountVectorizer aims to convert a document into a vector by counting. When there is no prior dictionary, CountVectorizer acts as an estimator to extract vocabulary for training and generates a CountVectorizerModel to store the corresponding vocabulary vector space. This model produces a sparse representation of documents about words. In the training process of CountVectorizerModel, CountVectorizer will select the vocabulary in descending order of word frequency based on the corpus, and the maximum content of the vocabulary table is specified by the hyperparameter vocabsize, while the hyperparameter minDF specifies that the vocabulary table should appear in at least how many different documents.
+
+Todo list:
+
+- Vector normalization
+- Vector similarity calculation
 - ......
 
-### 运行例子 - DNASequennceExample
-运行成功后，命令行应该看到下面的信息:
+### Running Example - DNASequenceExample
+
+After a successful run, the command line should see the following information:
 ```text
-# 显示前5条数据
+# Display the first 5 data
 +-----+--------------------+
 |label|            sequence|
 +-----+--------------------+
@@ -36,7 +34,7 @@ Todo list：
 |    3|[ATGC, TGCA, GCAA...|
 +-----+--------------------+
 
-# 特征向量
+# Feature vector
 
 +-----+--------------------+--------------------+
 |label|            sequence|            features|
@@ -48,14 +46,9 @@ Todo list：
 |    3|[ATGC, TGCA, GCAA...|(336,[0,1,2,3,4,5...|
 +-----+--------------------+--------------------+
 
+
+
 ```
 
-### 参考资料： 
+### Reference:
 http://spark.apache.org/docs/latest/ml-features.html#countvectorizer
-
-### 官网：
-[官网链接](http://www.aias.top/)
-
-### Git地址：   
-[Github链接](https://github.com/mymagicpower/AIAS)    
-[Gitee链接](https://gitee.com/mymagicpower/AIAS)   

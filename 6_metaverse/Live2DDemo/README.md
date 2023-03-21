@@ -1,49 +1,45 @@
-### 官网：
-[官网链接](http://www.aias.top/)
 
-### 2D虚拟人
-最近元宇宙的概念越来越火。虚拟人技术是其中重要的组成部分。
-其原理是通过视频来捕捉人脸，并且将人的面部动作同步到人物身上。人们只需要一个摄像头就可以制造出一个生动活泼的虚拟形象了。
+### 2D Virtual Human
 
-#### 虚拟数字人
-虚拟数字人系统一般情况下由人物形象、语音生成、动画生成、音视频合成显示、交互等5个模块构成：
-- 人物形象根据人物图形资源的维度，可分为 2D 和 3D 两大类，从外形上又可分为卡通、 拟人、写实、超写实等风格; 
-- 语音生成模块和动画生成模块可分别基于文本生成对应的人物语音以及与之相匹配的人 物动画; 
-- 音视频合成显示模块将语音和动画合成视频，再显示给用户；
-- 交互模块使数字人具备交互功能，即通过语音语义识别等智能技术识别用户的意图，并根据用户当前意图决定数字人后续的语音和动作，驱动人物开启下一轮交互。 
+Recently, the concept of the metaverse has become increasingly popular. Virtual human technology is an important component of it.
+The principle is to capture the person's face through video and synchronize the facial movements to the character. People only need a camera to create a vivid and lively virtual image.
+
+### Virtual Digital Human
+
+The virtual digital human system generally consists of 5 modules: character image, speech generation, animation generation, audiovisual synthesis and display, and interaction:
+
+- Depending on the dimension of the character graphics resources, the character image can be divided into 2D and 3D, and can be further divided into cartoon, humanoid, realistic, hyper-realistic, and other styles;
+- The speech generation module and animation generation module can respectively generate the corresponding character speech and matching character animation based on the generated text;
+- The audiovisual synthesis and display module synthesizes the speech and animation into a video, and then displays it to the user;
+- The interaction module enables the digital human to have interactive functions, that is, to recognize the user's intentions through intelligent technology such as speech semantic recognition, and determine the digital human's subsequent speech and actions according to the user's current intentions, driving the character to open the next round of interaction.
+
 <div align="center">
 <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_metaverse/Live2DVirtualHumanDemo/arc.png"  width = "500"/>
 </div>  
 
-#### 交互模块
-交互模块为扩展项，根据其有无，可将数字人分为交互型数字人和非交互型数字人。 
-交互型数字人根据驱动方式的不同可分为智能驱动型和真人驱动型。
+### Interaction Module
+
+The interaction module is an extension item. Depending on its presence or absence, digital humans can be divided into interactive digital humans and non-interactive digital humans.
+Interactive digital humans can be divided into intelligent driving type and real person driving type according to the driving method.
+
 <div align="center">
 <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_metaverse/Live2DVirtualHumanDemo/interaction.png"  width = "500"/>
 </div>  
-- 智能驱动型数字人可通过智能系统自动读取 并解析识别外界输入信息，根据解析结果决策数字人后续的 输出文本，然后驱动人物模型生成相应的语音与动作来使数 字人跟用户互动。智能驱动型数字人可通过文本驱动生成语音和对应动画，业内将此模型称 为TTSA(Text To Speech & Animation)人物模型。
-- 真人驱动型数字人则是通过真人来驱动数字人，主要原理是真人根据视频采集系统传来的用户视频，与用户实时语音，同时通过动作捕捉采集系统将真人的表情、动作呈现在虚拟数字人形 象上，从而与用户进行交互。 
+
+- Intelligent driving digital humans can automatically read and parse external input information through the intelligent system, decide the output text of the digital human based on the parsing result, and then drive the character model to generate corresponding speech and action to interact with the user. The model that generates speech and corresponding animation from text is called the TTSA (Text To Speech & Animation) character model in the industry.
+- The real person driving digital human is driven by a real person. The main principle is that the real person presents the user's real-time video and voice through the video capture system, and presents the real person's expression and action on the virtual digital human image through the motion capture system, thereby interacting with the user.
+
 <div align="center">
 <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_metaverse/Live2DVirtualHumanDemo/interaction2.png"  width = "500"/>
 </div>  
 
-目前app只能支持2D效果，也只能够支持面部表情的跟踪。要想拥有一个完整真实的虚拟形象，还需要3D技术的支持。
-(这个demo使用的是live2d的旧版sdk，建议自行升级适配最新版sdk)
+Currently, the app can only support 2D effects and only track facial expressions. To have a complete and realistic virtual image, 3D technology support is also needed.
+(This demo uses an old version of the Live2D SDK, it is recommended to upgrade and adapt to the latest version of the SDK)
 
-[Demo APP下载](https://github.com/mymagicpower/AIAS/releases/download/apps/2D_vtuber.apk)  
+[Demo App Download](https://github.com/mymagicpower/AIAS/releases/download/apps/2D_vtuber.apk)  
 
-#### 效果图：
+#### Effect Pictures:
 <div align="center">
 <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_metaverse/Live2DVirtualHumanDemo/2D.png"  width = "500"/>
 </div>  
 
-### 官网：
-[官网链接](http://www.aias.top/)
-
-### 2D虚拟偶像参考链接：
-http://www.facerigcn.com/
-https://www.live2dcn.com/
-
-### Git地址：   
-[Github链接](https://github.com/mymagicpower/AIAS)    
-[Gitee链接](https://gitee.com/mymagicpower/AIAS)  

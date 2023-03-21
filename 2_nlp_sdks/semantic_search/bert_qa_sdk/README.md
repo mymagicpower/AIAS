@@ -1,26 +1,28 @@
 
-### 下载模型，放置于models目录
-- 链接: https://github.com/mymagicpower/AIAS/releases/download/apps/static_bert_qa.zip
+### Download the model and place it in the models directory
+- Link: https://github.com/mymagicpower/AIAS/releases/download/apps/static_bert_qa.zip
 
-### Bert问答SDK
-基于BERT QA模型，输入一个问题及包含答案的文本段落（最大长度384），
-模型可以从文本段落中找到最佳的答案。
+### Bert Q&A SDK
+
+Based on the BERT QA model, input a question and a text paragraph containing the answer (maximum length of 384),
+the model can find the best answer from the text paragraph.
 
 ![image](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/bertQA.png)
 
-### 运行例子 - BertQaInferenceExample
-- 问题: 
+### Running Example - BertQaInferenceExample
+
+- Question:
 ```text
 When did Radio International start broadcasting?
 ```
 
-- 包含答案的文本段落（最大长度384）:
+- Paragraph containing the answer (maximum length of 384):
 ```text
 Radio International was a general entertainment Channel.
 Which operated between December 1983 and April 2001.
 ```
 
-运行成功后，命令行应该看到下面的信息:
+After a successful run, the command line should display the following information:
 ```text
 ...
 [INFO ] - Paragraph: Radio International was a general entertainment Channel.
@@ -31,15 +33,3 @@ Which operated between December 1983 and April 2001.
 [INFO ] - Answer: [december, 1983]
 
 ```
-
-
-#### 帮助文档：
-- http://aias.top/guides.html
-- 1.性能优化常见问题:
-- http://aias.top/AIAS/guides/performance.html
-- 2.引擎配置（包括CPU，GPU在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/engine_config.html
-- 3.模型加载方式（在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/load_model.html
-- 4.Windows环境常见问题:
-- http://aias.top/AIAS/guides/windows.html

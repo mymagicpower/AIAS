@@ -1,92 +1,90 @@
-## 目录：
-http://aias.top/
 
-### 下载模型，放置于models目录
-- 链接: https://github.com/mymagicpower/AIAS/releases/download/apps/distiluse-base-multilingual-cased-v1.zip
+### Download the Model and Place It in the Models Directory
+- Link: https://github.com/mymagicpower/AIAS/releases/download/apps/distiluse-base-multilingual-cased-v1.zip
 
-### 文本搜索
-本例子提供了文本搜索，支持上传csv文件，使用句向量模型提取特征，并基于milvus向量引擎进行后续检索。
+### Text Search
+
+This example provides text search, supports uploading CSV files, extracts features using sentence vector models, and performs subsequent searches based on the Milvus vector engine.
 
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/text_search/arc.png)
 
 
-#### 主要特性
-- 底层使用特征向量相似度搜索
-- 单台服务器十亿级数据的毫秒级搜索
-- 近实时搜索，支持分布式部署
-- 随时对数据进行插入、删除、搜索、更新等操作
+### Main Features
 
+- Underlying feature vector similarity search
+  -Millisecond-level search of billions of data on a single server
+  -Near-real-time search, supporting distributed deployment
+  -Insert, delete, search, update data anytime
 
+### Sentence Vector Model [Supports 15 Languages]
 
-### 句向量模型【支持15种语言】
-
-句向量是指将语句映射至固定维度的实数向量。将不定长的句子用定长的向量表示，为NLP下游任务提供服务。
-支持 15 种语言： 
+Sentence vectors refer to real number vectors that map sentences to fixed dimensions. Representing variable-length sentences as fixed-length vectors serves downstream NLP tasks.
+Supports 15 languages:
 Arabic, Chinese, Dutch, English, French, German, Italian, Korean, Polish, Portuguese, Russian, Spanish, Turkish.
 
-- 句向量    
+- Sentence Vector
   ![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/Universal-Sentence-Encoder.png)
 
 
-句向量应用：
+Sentence Vector Applications:
 
-- 语义搜索，通过句向量相似性，检索语料库中与query最匹配的文本
-- 文本聚类，文本转为定长向量，通过聚类模型可无监督聚集相似文本
-- 文本分类，表示成句向量，直接用简单分类器即训练文本分类器
+- Semantic Search, retrieve the most matching text in the corpus with the query through sentence vector similarity
+  -Text Clustering, convert text to fixed-length vectors, and unsupervisedly cluster similar text through a clustering model
+  -Text Classification, represent as sentence vectors, and directly train text classifiers with a simple classifier
 
+### 1. Front-end Deployment
 
-
-### 1. 前端部署
-
-#### 1.1 安装运行：
+### 1.1 Installation and Running:
 ```bash
-# 安装依赖包
+#Install dependencies
 npm install
-# 运行
+#Run
 npm run dev
 ```
 
-#### 1.2 构建dist安装包：
+#### 1.2 Build Dist Installation Package:
 ```bash
 npm run build:prod
 ```
 
-#### 1.3 nginx部署运行(mac环境为例)：
+#### 1.3 Nginx Deployment and Running (Mac Environment):
 ```bash
 cd /usr/local/etc/nginx/
 vi /usr/local/etc/nginx/nginx.conf
-# 编辑nginx.conf
+#Edit nginx.conf
 
-    server {
-        listen       8080;
-        server_name  localhost;
+server {
+listen       8080;
+server_name  localhost;
 
-        location / {
-            root   /Users/calvin/Documents/text_search/dist/;
-            index  index.html index.htm;
+location / {
+root   /Users/calvin/Documents/text_search/dist/;
+index  index.html index.htm;
         }
-     ......
-     
-# 重新加载配置：
-sudo nginx -s reload 
+......
 
-# 部署应用后，重启：
+#Reload Configuration:
+sudo nginx -s reload
+
+#Restart after deploying the application:
 cd /usr/local/Cellar/nginx/1.19.6/bin
 
-# 快速停止
+#Quick Stop
 sudo nginx -s stop
 
-# 启动
-sudo nginx     
+#Start
+sudo nginx
+   
 ```
 
-## 2. 后端jar部署
-#### 2.1 环境要求：
-- 系统JDK 1.8+
+## 2. Backend Jar Deployment
 
-- application.yml       
+### 2.1 Environment Requirements:
+
+- System JDK 1.8+
+- application.yml   
 ```bash
-# 文件存储路径
+#File Storage Path
 file:
   mac:
     path: ~/file/
@@ -94,88 +92,78 @@ file:
     path: /home/aias/file/
   windows:
     path: file:/D:/aias/file/
-  # 文件大小 /M
+  #File Size /M
   maxSize: 3000
     ...
 ```
 
-#### 2.2 运行程序：
+#### 2.2 Running the Program:
 ```bash
-# 运行程序
+# Run the Program
 
 java -jar text-search-0.1.0.jar
 
 ```
 
-## 3. 后端向量引擎部署（Milvus 2.0）
-#### 3.1 环境要求：
-- 需要安装docker运行环境，Mac环境可以使用Docker Desktop
+## 3. Backend Vector Engine Deployment (Milvus 2.0)
 
-#### 3.2 拉取Milvus向量引擎镜像（用于计算特征值向量相似度）
-下载 milvus-standalone-docker-compose.yml 配置文件并保存为 docker-compose.yml        
-[单机版安装文档](https://milvus.io/docs/v2.0.0/install_standalone-docker.md)        
+### 3.1 Environment Requirements:
+
+- Need to install docker runtime environment, Mac environment can use Docker Desktop
+
+### 3.2 Pull Milvus Vector Engine Image (Used for Calculating Feature Value Vector Similarity)
+
+Download the milvus-standalone-docker-compose.yml configuration file and save it as docker-compose.yml    
+[Standalone Installation Documentation](https://milvus.io/docs/v2.0.0/install_standalone-docker.md)        
 ```bash
 wget https://github.com/milvus-io/milvus/releases/download/v2.0.0/milvus-standalone-docker-compose.yml -O docker-compose.yml
 ```
 
-#### 3.3 启动 Docker 容器
+#### 3.3 Start Docker Container
 ```bash
 sudo docker-compose up -d
 ```
 
-#### 3.5 编辑向量引擎连接配置信息
+#### 3.4 Edit Vector Engine Connection Configuration Information
 - application.yml
-- 根据需要编辑向量引擎连接ip地址127.0.0.1为容器所在的主机ip
+- Edit the vector engine connection IP address 127.0.0.1 according to your needs to the IP address of the host where the container is located
 ```bash
-################## 向量引擎 ################
+##################Vector Engine ################
 search:
   host: 127.0.0.1
   port: 19530
 ```
 
-## 4. 打开浏览器
-- 输入地址： http://localhost:8090
+## 4. Open the Browser
 
-- 上传CSV数据文件
-1). 点击上传按钮上传CSV文件.  
-[测试数据](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/text_search/example.csv)
-2). 点击特征提取按钮. 
-等待CSV文件解析，特征提取，特征存入向量引擎。通过console可以看到进度信息。
+- Enter the address: [http://localhost:8090](http://localhost:8090/)
+- Upload CSV Data File
+  1). Click the upload button to upload the CSV file.
+[Test Data](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/text_search/example.csv)
+  2). Click the feature extraction button.
+  Wait for the CSV file to be parsed, feature extraction, and feature storage in the vector engine. Progress information can be seen through the console.
 
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/text_search/storage.png)
 
-- 文本搜索
-  输入文字，点击查询，可以看到返回的清单，根据相似度排序。
+- Text Search
+  Enter text, click query, and see the returned list sorted by similarity.
 
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/text_search/search.png)
 
-## 5. 帮助信息
-- swagger接口文档:  
-http://localhost:8089/swagger-ui.html
-![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/text_search/swagger.png)
+### 5. Help information
 
-- 初始化向量引擎(清空数据): 
+- swagger interface document:
+  http://localhost:8089/swagger-ui.html
+  ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/video_search/swagger.png)
+
+- Initialize the vector engine (clear data):
+
+```bash
 me.aias.tools.MilvusInit.java 
+       ...
+```
 
-- Milvus向量引擎参考链接     
-[Milvus向量引擎官网](https://milvus.io/cn/docs/overview.md)      
-[Milvus向量引擎Github](https://github.com/milvus-io)
+- Milvus vector engine reference link
+  [Milvus vector engine official website](https://milvus.io/)      
+  [Milvus vector engine Github](https://github.com/milvus-io)
 
-### 官网：
-[官网链接](http://www.aias.top/)
-
-### Git地址：   
-[Github链接](https://github.com/mymagicpower/AIAS)    
-[Gitee链接](https://gitee.com/mymagicpower/AIAS)   
-
-
-#### 帮助文档：
-- http://aias.top/guides.html
-- 1.性能优化常见问题:
-- http://aias.top/AIAS/guides/performance.html
-- 2.引擎配置（包括CPU，GPU在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/engine_config.html
-- 3.模型加载方式（在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/load_model.html
-- 4.Windows环境常见问题:
-- http://aias.top/AIAS/guides/windows.html

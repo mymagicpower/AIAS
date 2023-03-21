@@ -1,27 +1,26 @@
-### 目录：
-http://aias.top/
 
-### 分子搜索
-本例子提供了分子搜索，支持上传smi文件文件，使用RDKit提取分子特征，并基于milvus向量引擎进行后续检索。
+### Molecular Search
+
+This example provides molecular search, supporting the upload of smi files, using RDKit to extract molecular features, and performing subsequent retrieval based on Milvus vector engine.
 
 <div align="center">
 <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/6_biomedicine/molecular_search/arc.png"  width = "600"/>
 </div> 
 
-#### 引擎特性
-- 底层使用特征向量相似度搜索
-- 单台服务器十亿级数据的毫秒级搜索
-- 近实时搜索，支持分布式部署
-- 随时对数据进行插入、删除、搜索、更新等操作
+### Engine features
 
-#### 分子背景介绍
-SMILES（Simplified molecular input line entry system），简化分子线性输入规范，是一种用ASCII字符串明确描述分子结构的规范。
-由于SMILES用一串字符来描述一个三维化学结构，它必然要将化学结构转化成一个生成树，此系统采用纵向优先遍历树算法。转化时，先要去掉氢，还要把环打开。表示时，被拆掉的键端的原子要用数字标记，支链写在小括号里。
-SMILES字符串可以被大多数分子编辑软件导入并转换成二维图形或分子的三维模型。
+- Underlying feature vector similarity search
+- Millisecond-level searching for billions of data on a single server
+- Near-real-time search, supporting distributed deployment
+- Inserting, deleting, searching, updating data at any time
 
-#### 分子特征提取
-RDKit是一个用于化学信息学的开源工具包，基于对化合物2D和3D分子操作，利用机器学习方法进行化合物描述符生成，fingerprint生成，化合物结构相似性计算，2D和3D分子展示等。将化学与机器学习联系起来的、非常实用的库。可以在很多种化学文件如mol2，mol，Smiles，sdf等之间互相转化，并能将其展示成2D、3D等形式供开发人员使用。
+### Molecular background introduction
 
+SMILES (Simplified Molecular Input Line Entry System) is a specification for describing the structure of a molecule using an ASCII string. As SMILES uses a string of characters to describe a three-dimensional chemical structure, it must convert the chemical structure into a generation tree. This system uses a vertical-first traversal tree algorithm. When converting, hydrogen must be removed and the ring must be opened. When representing, the atom at the end of the broken bond must be marked with a number, and the side chain must be written in parentheses. SMILES strings can be imported into most molecule editing software and converted into 2D graphics or a three-dimensional model of the molecule.
+
+### Molecular feature extraction
+
+RDKit is an open-source toolkit for cheminformatics. It uses machine learning methods to generate compound descriptors, fingerprints, calculate chemical structure similarity, and display 2D and 3D molecules based on 2D and 3D molecule operations. It is a very practical library that links chemistry with machine learning. It can convert between many types of chemical files, such as mol2, mol, Smiles, sdf, etc., and display them in 2D, 3D, and other forms for developers to use.
 <table>
   <tr>
     <td>
@@ -37,63 +36,65 @@ RDKit是一个用于化学信息学的开源工具包，基于对化合物2D和3
   </tr>
 </table>
 
-#### 向量引擎索引策略
+#### Vector engine indexing strategy
 <div align="center">
 <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/6_biomedicine/molecular_search/milvus.png"  width = "600"/>
 </div> 
 
 
-#### 1. 前端部署
+### 1. Front-end deployment
 
-#### 1.1 安装运行：
+### 1.1 Installation and operation:
 ```bash
-# 安装依赖包
+#Install dependency packages
 npm install
-# 运行
+#Run
 npm run dev
 ```
 
-#### 1.2 构建dist安装包：
+#### 1.2 Build the dist installation package:
 ```bash
 npm run build:prod
 ```
 
-#### 1.3 nginx部署运行(mac环境为例)：
+#### 1.3 Nginx deployment operation (mac environment):
 ```bash
 cd /usr/local/etc/nginx/
 vi /usr/local/etc/nginx/nginx.conf
-# 编辑nginx.conf
+#Edit nginx.conf
 
-    server {
-        listen       8080;
-        server_name  localhost;
+server {
+listen       8080;
+server_name  localhost;
 
-        location / {
-            root   /Users/calvin/Documents/molecular_search/dist/;
-            index  index.html index.htm;
+location / {
+root   /Users/calvin/Documents/molecular_search/dist/;
+index  index.html index.htm;
         }
-     ......
-     
-# 重新加载配置：
-sudo nginx -s reload 
+......
 
-# 部署应用后，重启：
+#Reload configuration:
+sudo nginx -s reload
+
+#After deploying the application, restart it:
 cd /usr/local/Cellar/nginx/1.19.6/bin
 
-# 快速停止
+#Fast stop
 sudo nginx -s stop
 
-# 启动
-sudo nginx     
+#Start
+sudo nginx
 ```
 
-#### 2. 后端jar部署
-#### 2.1 环境要求：
-- 系统JDK 1.8+ (建议1.8, 11)
+### 2. Backend jar deployment
 
-- application.yml       
+### 2.1 Environmental requirements:
+
+- System JDK 1.8+ (recommended 1.8, 11)
+- application.yml
+
 ```bash
-# 文件存储路径
+#File storage path
 file:
   mac:
     path: ~/file/
@@ -101,47 +102,47 @@ file:
     path: /home/aias/file/
   windows:
     path: D:/aias/file/
-  # 文件大小 /M
+  #File size /M
   maxSize: 3000
     ...
 ```
 
-#### 2.2 运行程序：
+#### 2.2 Run the program:
 ```bash
-# 运行程序
-
 java -jar molecular-search-0.1.0.jar
 
 ```
 
-## 3. 后端向量引擎部署（docker）
-#### 3.1 环境要求：
-- 需要安装docker运行环境，Mac环境可以使用Docker Desktop
+## 3. Backend vector engine deployment (docker)
 
-#### 3.2 拉取Milvus（1.1.0版）向量引擎镜像（用于计算特征值向量相似度）
-[安装文档](https://milvus.io/docs/v1.1.0/milvus_docker-cpu.md)
-##### 最新版本请参考官网
-- Milvus向量引擎参考链接     
-[Milvus向量引擎官网](https://milvus.io/cn/docs/overview.md)      
-[Milvus向量引擎Github](https://github.com/milvus-io)
+### 3.1 Environmental requirements:
+
+- Need to install the Docker runtime environment. For Mac environments, you can use Docker Desktop.
+
+### 3.2 Pull Milvus (version 1.1.0) vector engine image (used for calculating feature value vector similarity)
+[Installation document](https://milvus.io/docs/v1.1.0/milvus_docker-cpu.md)
+##### For the latest version, please refer to the official website
+- Milvus vector engine reference link
+  [Milvus vector engine official website](https://milvus.io/)      
+  [Milvus vector engine Github](https://github.com/milvus-io)
 
 ```bash
-# 拉取 向量引擎 镜像
+# Pull the vector engine image
 sudo docker pull milvusdb/milvus:1.1.0-cpu-d050721-5e559c
 ```
 
-#### 3.3 下载配置文件
+#### 3.3 Download configuration file
 ```bash
 mkdir -p /Users/calvin/milvus/conf
 cd /Users/calvin/milvus/conf
 wget https://raw.githubusercontent.com/milvus-io/milvus/v1.1.0/core/conf/demo/server_config.yaml
 
-# 提示：
-# 默认cache_size: 4GB，insert_buffer_size: 1GB
-# 开发机建议改小，如：cache_size: 256MB，insert_buffer_size: 256MB
+#Note:
+#The default cache_size: 4GB, insert_buffer_size: 1GB
+#It is recommended to reduce them for development machines, such as cache_size: 256MB, insert_buffer_size: 256MB
 ```
 
-#### 3.4 启动 Docker 容器
+#### 3.4 Start Docker container
 ```bash
 sudo docker run -d --name milvus_cpu_1.1.0 \
 -p 19530:19530 \
@@ -153,11 +154,13 @@ sudo docker run -d --name milvus_cpu_1.1.0 \
 milvusdb/milvus:1.1.0-cpu-d050721-5e559c
 ```
 
-#### 3.5 编辑向量引擎连接配置信息
+### 3.5 Edit the vector engine connection configuration information
+
 - application.yml
-- 根据需要编辑向量引擎连接ip地址127.0.0.1为容器所在的主机ip
+- Edit the vector engine connection IP address 127.0.0.1 according to your needs to the IP address of the host where the container is located.
+
 ```bash
-################ 向量引擎 ###############
+################ Vector Engine ###############
 search:
   host: 127.0.0.1
   port: 19530
@@ -168,21 +171,24 @@ search:
 
 ```
 
-#### 4. 打开浏览器
-- 输入地址： http://localhost:8090
+### 4. Open the browser
 
-- 上传数据文件
-1). 点击上传按钮上传文件.  
-[测试数据100条](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/6_biomedicine/molecular_search/test_100.smi)         
-[测试数据1万条](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/6_biomedicine/molecular_search/test_1w.smi)
-2). 点击特征提取按钮. 
-等待文件解析，特征提取，特征存入向量引擎。通过console可以看到进度信息。
+- Enter the address: [http://localhost:8090](http://localhost:8090/)
+- Upload data file
+  1). Click the Upload button to upload the file.
+[Test data 100](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/6_biomedicine/molecular_search/test_100.smi)         
+[Test data 10,000](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/6_biomedicine/molecular_search/test_1w.smi)
+
+  2). Click the Feature Extraction button.
+      Wait for the file to be parsed, feature extraction, and feature storage in the vector engine. The progress information can be viewed through the console.
+
 <div align="center">
 <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/6_biomedicine/molecular_search/storage.png"  width = "600"/>
 </div> 
 
-- 分子搜索
-输入分子smiles，点击查询，可以看到返回的清单，根据相似度排序。
+- Molecular search
+  Enter the molecular smiles and click the query to see the returned list sorted by similarity.
+
 ```text
 P(=O)(OC[C@H]1O[C@@H](n2c3ncnc(N)c3nc2)[C@H](O)[C@@H]1F)(O)O
 ```
@@ -190,14 +196,15 @@ P(=O)(OC[C@H]1O[C@@H](n2c3ncnc(N)c3nc2)[C@H](O)[C@@H]1F)(O)O
 <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/6_biomedicine/molecular_search/search.png"  width = "600"/>
 </div> 
 
-## 5. 帮助信息
-- swagger接口文档:  
+## 5. Help information
+
+- swagger interface document:
 http://localhost:8089/swagger-ui.html
 <div align="center">
 <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/6_biomedicine/molecular_search/swagger.png"  width = "500"/>
 </div> 
 
-- 重置向量引擎(清空数据): 
+- Reset the vector engine (clear data):
 me.aias.tools.MilvusInit.java 
 ```bash
         String host = "127.0.0.1";
@@ -213,7 +220,7 @@ me.aias.tools.MilvusInit.java
             e.printStackTrace();
         }
 
-        // 检查 collection 是否存在
+        //Check whether the collection exists
         HasCollectionResponse hasCollection = hasCollection(client, collectionName);
         if (hasCollection.hasCollection()) {
             dropIndex(client, collectionName);
@@ -222,7 +229,7 @@ me.aias.tools.MilvusInit.java
        ...
 
 ```
-- 根据环境修改lib加载路径
+- Modify the lib loading path according to the environment
   >mac:              
     libPath: lib/native/macosx.x86_64/libGraphMolWrap.jnilib                    
   linux:              
@@ -247,10 +254,3 @@ me.aias.tools.MilvusInit.java
     }
 
 ```
-
-### 官网：
-[官网链接](http://www.aias.top/)
-
-### Git地址：   
-[Github链接](https://github.com/mymagicpower/AIAS)    
-[Gitee链接](https://gitee.com/mymagicpower/AIAS)   

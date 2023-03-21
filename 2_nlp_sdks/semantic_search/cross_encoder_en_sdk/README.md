@@ -1,68 +1,76 @@
-### 官网：
-[官网链接](http://www.aias.top/)
 
-### 下载模型，放置于models目录
-- 链接: https://github.com/mymagicpower/AIAS/releases/download/apps/ms-marco-TinyBERT-L-2-v2.zip
+### Download the model and put it in the models directory
+- Link: https://github.com/mymagicpower/AIAS/releases/download/apps/ms-marco-TinyBERT-L-2-v2.zip
 
-### 语义搜索 - 重排序(Re-Rank) SDK【英文】
-对于复杂的搜索任务，通过使用 Retrieve & Re-Rank 的流水线可以显著提高搜索的精度。
+### Semantic Search - Re-Rank SDK [English]
+For complex search tasks, using the Retrieve & Re-Rank pipeline can significantly improve search accuracy.
 
-#### Retrieve & Re-Rank Pipeline
-信息检索 / 问题问答检索的典型流水线：
-给定一个查询语句，我们首先使用一个检索系统获取一个比较大的返回列表，比如：100条相关的数据。
-检索系统可以使用ElasticSearch，也可以使用向量搜索引擎（通过bi-encoder提取特征），如：faiss。
-但是，搜索系统返回的结果可能跟查询语句不是太相关（比如搜索引擎为考虑性能，会牺牲一点精度），
-这时，我们可以在第2阶段，使用一个基于cross-encoder的重排序器(re-ranker)，对返回的结果进行重排序。
-然后将重排序的结果呈现给最终用户。
+### Retrieve & Re-Rank Pipeline
+
+Typical pipeline for information retrieval / question and answer retrieval:
+Given a query statement, we first use a retrieval system to get a relatively large return list, such as: 100 relevant data.
+The retrieval system can use ElasticSearch or a vector search engine (extracting features through bi-encoder), such as faiss.
+However, the results returned by the search system may not be too relevant to the query statement (for example, the search engine does not consider performance and sacrifices some accuracy).
+At this time, we can use a re-ranker based on cross-encoder to re-sort the returned results in the second stage.
+Then present the reordered results to the end user.
 
 ![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/InformationRetrievalReRank.png)
 
 
-#### Retrieval: Bi-Encoder
-语义搜索，通过句向量相似性，检索语料库中与query最匹配的文本。
-模型基于MS MARCO数据集训练，可以用于语义搜索，如：关键字 / 搜索短语 / 问题，模型可以找到跟查询query相关的passages。
-MS MARCO是微软发布了的一套问答组成的数据集，人工智能领域的研究人员可用它来构建能够与真人相媲美的问答系统。
-这套数据集全称：Microsoft MAchine Reading COmprehension，意为“微软机器阅读理解”。
-MS MARCO是目前同类型中最有用的数据集，因为它建立在经过匿名处理的真实世界数据(Bing搜索引擎的搜索查询数据)基础之上。
+### Retrieval: Bi-Encoder
+
+Semantic search retrieves the text in the corpus that best matches the query through sentence vector similarity.
+The model is trained based on the MS MARCO dataset and can be used for semantic search, such as: keywords / search phrases / questions. The model can find passages related to the query query.
+MS MARCO is a dataset composed of questions and answers released by Microsoft. Researchers in the field of artificial intelligence can use it to build question and answer systems that can rival humans.
+The full name of this dataset is Microsoft MAchine Reading COmprehension, which means "Microsoft Machine Reading Comprehension".
+MS MARCO is currently the most useful dataset of its kind because it is based on anonymous processed real-world data (search query data from Bing search engine).
+
 ![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/semantic_search.jpeg)
-Bi-Encoder可以使用下面的模型：
+
+The Bi-Encoder can use the following model:
+
 https://github.com/mymagicpower/AIAS/tree/main/nlp_sdks/qa_retrieval_msmarco_s_sdk
 
-#### Re-Ranker: Cross-Encoder
-搜索引擎对于大量文档的检索效率很高，但是，它可能会返回不相关的候选项。
-这时，基于Cross-Encoder的重排序器的引入，可以进一步优化返回的结果。
-它将查询语句与之前获得的候选项，同时传入一个网络，获取相关度的分数，然后通过这个分数进行重排序。
+### Re-Ranker: Cross-Encoder
+
+Search engines are very efficient in retrieving a large number of documents, but they may return irrelevant candidates.
+At this time, the introduction of a re-ranker based on Cross-Encoder can further optimize the returned results.
+It passes the query statement and the previously obtained candidate items through a network at the same time to obtain a relevance score, and then sorts by this score.
+
 ![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/re_rank.png)
 
-### SDK功能：
--  相似度计算 （max_seq_length 512）
+### SDK functions:
 
-#### 运行例子 - TinyBertCrossEncoderExample
-运行成功后，命令行应该看到下面的信息:
+- Similarity calculation (max_seq_length 512)
+
+### Run the example-TinyBertCrossEncoderExample
+
+After successful operation, the command line should see the following information:
 ```text
 ...
-# 测试QA语句：
+...
+# Test QA statement:
 [INFO ] - input query1: [How many people live in Berlin?, Berlin had a population of 3,520,031 registered inhabitants in an area of 891.82 square kilometers.]
 [INFO ] - input query2: [How many people live in Berlin?, Berlin is well known for its museums.]
 
-
-#计算相似度分数：
+# Calculate similarity score:
 [INFO ] - Score1: 7.1523676
 [INFO ] - Score2: -6.2870417
+
 ```
 
 
-### 开源算法
-#### 1. sdk使用的开源算法
+### Open source algorithm
+#### 1. Open source algorithms used by the SDK
 - [sentence-transformers](https://github.com/UKPLab/sentence-transformers)
-- [预训练模型](https://www.sbert.net/docs/pretrained_models.html)
-- [安装](https://www.sbert.net/docs/installation.html)
+- [Pre-trained models](https://www.sbert.net/docs/pretrained_models.html)
+- [Installation](https://www.sbert.net/docs/installation.html)
 
 
-#### 2. 模型如何导出 ?
+#### 2. How to export the model?
 - [how_to_convert_your_model_to_torchscript](http://docs.djl.ai/docs/pytorch/how_to_convert_your_model_to_torchscript.html)
 
-- 导出CPU模型（pytorch 模型特殊，CPU&GPU模型不通用。所以CPU，GPU需要分别导出）
+- Exporting CPU models (PyTorch models are special, and CPU and GPU models are not interchangeable. Therefore, CPU and GPU models need to be exported separately)
 - device='cpu'
 - device='gpu'
 - export_cross_encoder.py
@@ -96,23 +104,3 @@ traced_script_module = torch.jit.trace(model, input_features)
 
 traced_script_module.save("models/ms-marco-TinyBERT-L-2-v2/ms-marco-TinyBERT-L-2-v2.pt")
 ```
-
-### 其它帮助信息
-http://aias.top/guides.html
-
-
-### Git地址：   
-[Github链接](https://github.com/mymagicpower/AIAS)    
-[Gitee链接](https://gitee.com/mymagicpower/AIAS)   
-
-
-#### 帮助文档：
-- http://aias.top/guides.html
-- 1.性能优化常见问题:
-- http://aias.top/AIAS/guides/performance.html
-- 2.引擎配置（包括CPU，GPU在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/engine_config.html
-- 3.模型加载方式（在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/load_model.html
-- 4.Windows环境常见问题:
-- http://aias.top/AIAS/guides/windows.html

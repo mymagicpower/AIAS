@@ -1,55 +1,52 @@
-### 官网：
-[官网链接](http://www.aias.top/)
 
-### 下载模型，放置于models目录
-- 链接: https://github.com/mymagicpower/AIAS/releases/download/apps/nq-distilbert-base-v1.zip
+### Download the model and place it in the models directory
+- Link: https://github.com/mymagicpower/AIAS/releases/download/apps/nq-distilbert-base-v1.zip
 
-### 自然问题问答 SDK【英文】
-模型基于Google的Natural Questions dataset（100k Google search查询数据，
-及源自Wikipedia的相关passages）训练。
-谷歌发布的大规模训练和评估开放领域问答系统的语料库Natural Questions(NQ),旨在推动人们开发出更有效,更强大的问答系统。
-而在此前,一直没有大量公开的可用于训练和评估问答模型的自然生成问题(如人们寻求信息时提出的问题)及答案。
-NQ是一个大规模训练和评估开放领域问题回答系统的语料库,它第一个复制了人们找到问题答案的端到端流程。
+### Natural Question Answering SDK [English]
+
+The model is trained on Google's Natural Questions dataset (100k Google search query data and relevant passages sourced from Wikipedia). Google's Natural Questions (NQ) is a large-scale corpus for training and evaluating open-domain question answering systems. However, until recently, there were no large-scale publicly available datasets of naturally occurring questions (the kinds of questions people ask to seek information) and answers for training and evaluating question answering models. NQ is a large-scale corpus for training and evaluating open-domain question answering systems, which replicates the end-to-end process of how people find answers to questions.
 
 ![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/qa_natural_questions.jpeg)
 
 
-### SDK功能：
--  query / passage[title, text]向量提取
--  相似度计算
+### SDK Features:
 
-#### 运行例子 - QANaturalQuestionsExample
-运行成功后，命令行应该看到下面的信息:
+- Query / passage [title, text] vector extraction
+- Similarity calculation
+
+### Running Example - QANaturalQuestionsExample
+
+After running successfully, you should see the following information on the command line:
 ```text
 ...
-# 测试语句：
-[INFO ] - query: How many people live in London?
-# passage 是<title，text>构成的一对数据。
-[INFO ] - passage [title, text]: [London, London has 9,787,426 inhabitants at the 2011 census.]
+# Test sentence:
+[INFO] - query: How many people live in London?
+# Passage is a pair of data composed of <title, text>.
+[INFO] - passage [title, text]: [London, London has 9,787,426 inhabitants at the 2011 census.]
 
-# 向量维度：
-[INFO ] - Vector dimension: 768
+# Vector dimension:
+[INFO] - Vector dimension: 768
 
-# 生成向量：
-[INFO ] - query embeddings: [0.04629234, -0.33281654, ..., -0.22015738, -0.06693681]
-[INFO ] - passage[title, text] embeddings: [-0.015913313, -0.10886402, ..., 0.48449898, -0.32266212]
+# Generating vectors:
+[INFO] - query embeddings: [0.04629234, -0.33281654, ..., -0.22015738, -0.06693681]
+[INFO] - passage[title, text] embeddings: [-0.015913313, -0.10886402, ..., 0.48449898, -0.32266212]
 
-#计算相似度：
-[INFO ] - Similarity: 0.650292
+# Calculating similarity:
+[INFO] - Similarity: 0.650292
 
 ```
 
-### 开源算法
-#### 1. sdk使用的开源算法
+### Open source algorithm
+#### 1. Open source algorithms used by the SDK
 - [sentence-transformers](https://github.com/UKPLab/sentence-transformers)
-- [预训练模型](https://www.sbert.net/docs/pretrained_models.html)
-- [安装](https://www.sbert.net/docs/installation.html)
+- [Pre-trained models](https://www.sbert.net/docs/pretrained_models.html)
+- [Installation](https://www.sbert.net/docs/installation.html)
 
 
-#### 2. 模型如何导出 ?
+#### 2. How to export the model?
 - [how_to_convert_your_model_to_torchscript](http://docs.djl.ai/docs/pytorch/how_to_convert_your_model_to_torchscript.html)
 
-- 导出CPU模型（pytorch 模型特殊，CPU&GPU模型不通用。所以CPU，GPU需要分别导出）
+- Exporting CPU models (PyTorch models are special, and CPU and GPU models are not interchangeable. Therefore, CPU and GPU models need to be exported separately)
 - device='cpu'
 - device='gpu'
 - export_model_natural_questions.py
@@ -74,23 +71,3 @@ input_features = {'input_ids': input_ids,'attention_mask': input_mask}
 traced_model = torch.jit.trace(model, example_inputs=input_features,strict=False)
 traced_model.save("models/nq-distilbert-base-v1/nq-distilbert-base-v1.pt")
 ```
-
-### 其它帮助信息
-http://aias.top/guides.html
-
-
-### Git地址：   
-[Github链接](https://github.com/mymagicpower/AIAS)    
-[Gitee链接](https://gitee.com/mymagicpower/AIAS)   
-
-
-#### 帮助文档：
-- http://aias.top/guides.html
-- 1.性能优化常见问题:
-- http://aias.top/AIAS/guides/performance.html
-- 2.引擎配置（包括CPU，GPU在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/engine_config.html
-- 3.模型加载方式（在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/load_model.html
-- 4.Windows环境常见问题:
-- http://aias.top/AIAS/guides/windows.html

@@ -1,25 +1,23 @@
-## 语音处理包Librosa的java实现
-python语音处理库librosa的java实现。
+## Java implementation of Librosa voice processing package
 
-#### 常用功能：
---> 加载音频文件，读取幅值(magnitude)
-- librosa.loadAndRead()
+Java implementation of the Python voice processing library Librosa.
 
---> 梅尔频率倒谱系数
-- librosa.generateMFCCFeatures()
+### Common functions:
 
---> 从wav提取mel(MelSpectrogram)特征值
-- librosa.generateMelSpectroGram()
+- -> Load audio files and read amplitude (magnitude)
+  -librosa.loadAndRead()
+- -> Mel Frequency Cepstral Coefficients
+  -librosa.generateMFCCFeatures()
+- -> Extract mel (MelSpectrogram) feature values from wav
+  -librosa.generateMelSpectroGram()
+- -> Short-time Fourier transform
+  -librosa.generateSTFTFeatures()
+- -> Inverse Short-time Fourier Transform (ISTFT)
+  -librosa.generateInvSTFTFeatures()
 
---> 短时傅里叶变换
-- librosa.generateSTFTFeatures()
+## Running example - JLibrosaExample
 
---> 短时傅立叶逆变换（ISTFT）
-- librosa.generateInvSTFTFeatures()
-
-
-## 运行例子 - JLibrosaExample
-运行成功后，命令行应该看到下面的信息:
+After successful execution, the command line should display the following information:
 ```text
 ...
 Audio Feature Values：
@@ -63,14 +61,3 @@ Real and Imag values of STFT are -0.047981990330747716,0.0
 Real and Imag values of STFT are -0.27254267235230273,0.0
 
 ```
-
-### 官网：
-[官网链接](http://www.aias.top/)
-
-### Git地址：   
-[Github链接](https://github.com/mymagicpower/AIAS)    
-[Gitee链接](https://gitee.com/mymagicpower/AIAS)   
-
-### jlibrosa 地址：
-https://github.com/Subtitle-Synchronizer/jlibrosa
-https://github.com/Subtitle-Synchronizer/jlibrosa/blob/master/binaries/jlibrosa-1.1.8-SNAPSHOT-jar-with-dependencies.jar

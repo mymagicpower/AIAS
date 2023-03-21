@@ -1,158 +1,123 @@
-### 该项目仅用于学习研究使用，项目落地建议使用Python训练框架,如：paddlepaddle, pytorch, tensorflow等等。
+### This project is only for study and research purposes. For project development, it is recommended to use Python training frameworks such as PaddlePaddle, PyTorch, TensorFlow, etc.
 
-### 下载模型，放置于models目录
-- 链接: https://github.com/mymagicpower/AIAS/releases/download/apps/resnet50_v2.zip
+### Download the model and place it in the models directory
+- Link: https://github.com/mymagicpower/AIAS/releases/download/apps/resnet50_v2.zip
 
-### AI 训练平台
-AI训练平台提供分类模型训练能力。并以REST API形式为上层应用提供接口。
-当前版包含功能如下：
--分类模型训练 （imagenet数据集预训练的resnet50模型）
--模型训练可视化
--图片分类推理
--图片特征提取（512维特征）
--图片 1:1 比对
+### AI Training Platform
 
-## 前端部署
+The AI training platform provides classification model training capabilities and provides interfaces to upper-layer applications in the form of REST APIs. The current version includes the following functions:
 
-#### nginx部署运行：
+- Classification model training (resnet50 model pre-trained with Imagenet dataset)
+- Model training visualization
+- Image classification inference
+- Image feature extraction (512-dimensional feature)
+- Image 1:1 comparison
+
+## Front-end deployment
+
+### nginx deployment operation:
 ```bash
 cd /usr/local/etc/nginx/
 vi /usr/local/etc/nginx/nginx.conf
-# 编辑nginx.conf
+#Edit nginx.conf
 
-    server {
-        listen       8080;
-        server_name  localhost;
+server {
+listen       8080;
+server_name  localhost;
 
-        location / {
-            root   /Users/calvin/platform/dist/;
-            index  index.html index.htm;
+location / {
+root   /Users/calvin/platform/dist/;
+index  index.html index.htm;
         }
-     ......
-     
-# 重新加载配置：
-sudo nginx -s reload 
+......
 
-# 部署应用后，重启：
+#Reload configuration:
+sudo nginx -s reload
+
+#After deploying the application, restart:
 cd /usr/local/Cellar/nginx/1.19.6/bin
 
-# 快速停止
+#Fast stop
 sudo nginx -s stop
 
-# 启动
-sudo nginx     
+#Start
+sudo nginx
+
 ```
 
-#### 配置hosts文件：
+#### Configure the hosts file:
 ```bash
-# 客户端(浏览器)机器的hosts文件添加映射< 127.0.0.1	train.aias.me>, 
-# 其中127.0.0.1替换成jar包运行的服务器ip地址
+#Add the mapping <127.0.0.1 train.aias.me> to the hosts file of the client (browser) machine,
+#where 127.0.0.1 is replaced with the IP address of the server where the JAR package is running.
 
-127.0.0.1	train.aias.me
+127.0.0.1  train.aias.me
 ```
 
-## 后端部署
+## Back-end deployment
 ```bash
-# 编译 & 运行程序
+# Compile & run the program
 java -jar aais-platform-train-0.1.0.jar
 
 ```
 
-## 打开浏览器
+## Open the browser
 
-输入地址： http://localhost:8080
+Enter the address: http://localhost:8080
 
 #### 1. 训练数据准备-ZIP格式压缩包:
-压缩包内需包含2个目录（名字需严格一致）：    
--TRAIN ：包含训练数据，每个文件夹对应一个分类（每个分类图片数量尽量保持平衡）    
--VALIDATION ：包含验证数据，每个文件夹对应一个分类
+### 1. Training data preparation-ZIP format compression package:
+
+The compressed package must contain 2 directories (named strictly the same):
+-TRAIN: Contains training data, and each folder corresponds to a classification (try to keep the number of images in each classification as balanced as possible)
+-VALIDATION: Contains validation data, and each folder corresponds to a classification
 
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/train_platform/images/folder.png)
 
--[320张车辆图片测试数据下载](https://github.com/mymagicpower/AIAS/releases/download/apps/Cars_320.zip)   
+-[Download 320 vehicle image test data](https://github.com/mymagicpower/AIAS/releases/download/apps/Cars_320.zip)   
 
-#### 2. 上传数据并开始训练:
--选择zip文件并上传
--点击训练按钮开始训练
+### 2. Upload data and start training:
+
+- Select the zip file and upload it
+- Click the train button to start training
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/train_platform/images/storage.png)
 
-#### 3. 查看训练过程:  
+#### 3. View the training process:
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/train_platform/images/training.png)
   
-#### 4. 图片分类测试:  
+#### 4. Image classification test:
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/train_platform/images/classification.png)
   
-#### 5. 特征提取测试: 
-图片特征提取使用的是新训练的模型。特征来自模型的特征提取层。 
+#### 5. Feature extraction test:
+The image feature extraction uses the newly trained model. The features come from the feature extraction layer of the model.
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/train_platform/images/feature.png)
 
-#### 6. 图片比对测试:  
+#### 6. Image comparison test:
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/train_platform/images/comparision.png)
 
-#### 7. API文档： 
+#### 7. API documentation:
 http://127.0.0.1:8089/swagger-ui.html
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/train_platform/images/swagger.png)
-  
-#### 编辑jar包中的application.yml
-根据需要编辑application.yml中的图片上传路径,模型保存路径
-（windows环境可以使用7-zip直接编辑，无需对jar包解压缩重新压缩）
+
+### Edit the application.yml in the JAR package
+
+Edit the image upload path and model save path in the application.yml as needed
+(Windows environment can use 7-zip to edit directly, no need to decompress and recompress the JAR package)
+
 ```bash
-# 文件存储路径
+#File storage path
 file:
   mac:
     path: ~/file/
-    imageRootPath: ~/file/image_root/ #压缩包解压缩文件夹
-    newModelPath: ~/file/model/ #模型训练好后存放的文件夹
+    imageRootPath: ~/file/image_root/ #Folder for decompressing compressed files
+    newModelPath: ~/file/model/ #Folder for storing models after training
   linux:
     path: /home/aias/file/
-    imageRootPath: /home/aias/file/image_root/ #压缩包解压缩文件夹
-    newModelPath: /home/aias/file//model/ #模型训练好后存放的文件夹
+    imageRootPath: /home/aias/file/image_root/ #Folder for decompressing compressed files
+    newModelPath: /home/aias/file//model/ #Folder for storing models after training
   windows:
-    path: C:\aias\file\
-    imageRootPath: C:\aias\file\image_root\ #压缩包解压缩文件夹
-    newModelPath: C:\aias\file\modelv2\ #模型训练好后存放的文件夹
-  # 文件大小 /M
+    path: C:\\aias\\file\\
+    imageRootPath: C:\\aias\\file\\image_root\\ #Folder for decompressing compressed files
+    newModelPath: C:\\aias\\file\\modelv2\\ #Folder for storing models after training
+  #File size / M
   maxSize: 3000
 ```
-
-### 如何将训练的模型用于图像搜索引擎？
-训练的模型可以用于图像搜索引擎的通用图像搜索，替换已有的模型，提升搜索引擎的精度。     
-图像搜索引擎：    
-https://gitee.com/mymagicpower/AIAS/tree/main/image_search_cpu
-
-#### 1. 找到训练好的模型文件：（newModelPath: ~/file/model/ #模型训练好后存放的文件夹）
--new_resnet_50-0001.params
--synset.txt
-![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/train_platform/images/model.png)
-
-#### 2. 配置搜索引擎参数：
-1). 修改参数 newModel.enabled，更新为true
-```bash
-#是否开启自训练模型
-newModel:
-  enabled: true
-```
-2). 复制训练好的模型文件到搜索引擎的指定目录（newModelPath指定的路径）
-（windows环境可以使用7-zip对jar包里的classes/config/application-dev.yml进行编辑）
-![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/train_platform/images/params.png)
-
-### 官网：
-[官网链接](http://www.aias.top/)
-
-### Git地址：   
-[Github链接](https://github.com/mymagicpower/AIAS)    
-[Gitee链接](https://gitee.com/mymagicpower/AIAS)   
-
-
-
-#### 帮助文档：
-- http://aias.top/guides.html
-- 1.性能优化常见问题:
-- http://aias.top/AIAS/guides/performance.html
-- 2.引擎配置（包括CPU，GPU在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/engine_config.html
-- 3.模型加载方式（在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/load_model.html
-- 4.Windows环境常见问题:
-- http://aias.top/AIAS/guides/windows.html
-

@@ -1,23 +1,24 @@
-### 官网：
-[官网链接](http://www.aias.top/)
 
-### 下载模型，放置于models目录
-- 链接: https://github.com/mymagicpower/AIAS/releases/download/apps/review_detection_lstm.zip
+### Download the model and put it in the models directory
+- Link: https://github.com/mymagicpower/AIAS/releases/download/apps/review_detection_lstm.zip
 
-### 文本 - 文本审核SDK [中文]
-色情检测模型可自动判别文本是否涉黄并给出相应的置信度，对文本中的色情描述、低俗交友、污秽文爱进行识别。
+### Text-Text Review SDK [Chinese]
 
-应用场景举例：
-适用于视频直播弹幕、社区论坛留言等，对用户评论信息进行检测，一旦发现用户提交违规内容，进行自动审核与实时过滤，保证产品良好用户体验。
+The porn detection model can automatically determine whether the text is yellow and give the corresponding confidence level. It can identify pornographic descriptions, vulgar dating, and obscene text.
+
+Application scenarios:
+Applicable to video live broadcast barrage, community forum messages, etc., to detect user comment information. Once illegal content is found, automatic review and real-time filtering are performed to ensure a good user experience.
 
 ![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/text_review.jpeg)
 
 
-### SDK算法：
-采用LSTM网络结构并按字粒度进行切词，具有较高的分类精度。该模型最大句子长度为256字。
+### SDK algorithm:
 
-#### 运行例子 - ReviewExample
-运行成功后，命令行应该看到下面的信息:
+The LSTM network structure is used and the word granularity is used for segmentation, which has high classification accuracy. The maximum sentence length of the model is 256 words.
+
+### Running example- ReviewExample
+
+After successful operation, the command line should see the following information:
 ```text
 ...
 
@@ -32,29 +33,10 @@
 [INFO ] - porn : 1.4011623E-4
 ```
 
-### 开源算法
-#### 1. sdk使用的开源算法
+### Open source algorithm
+
+### 1. Open source algorithm used by the SDK
 - [PaddleNLP](https://github.com/PaddlePaddle/PaddleNLP)
-#### 2. 模型如何导出 ?
+### 2. How to export the model?
 - [how_to_create_paddlepaddle_model](http://docs.djl.ai/docs/paddlepaddle/how_to_create_paddlepaddle_model_zh.html)
 
-
-### 其它帮助信息
-http://aias.top/guides.html
-
-
-### Git地址：   
-[Github链接](https://github.com/mymagicpower/AIAS)    
-[Gitee链接](https://gitee.com/mymagicpower/AIAS)   
-
-
-#### 帮助文档：
-- http://aias.top/guides.html
-- 1.性能优化常见问题:
-- http://aias.top/AIAS/guides/performance.html
-- 2.引擎配置（包括CPU，GPU在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/engine_config.html
-- 3.模型加载方式（在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/load_model.html
-- 4.Windows环境常见问题:
-- http://aias.top/AIAS/guides/windows.html

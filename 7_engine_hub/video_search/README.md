@@ -1,169 +1,159 @@
-### 目录：
-http://aias.top/
 
-### 下载模型，放置于models目录
-- 链接1: https://github.com/mymagicpower/AIAS/releases/download/apps/face_detection.zip
-- 链接2: https://github.com/mymagicpower/AIAS/releases/download/apps/face_feature.zip
+### Download the model and put it in the models directory
+- Link 1: https://github.com/mymagicpower/AIAS/releases/download/apps/face_detection.zip
+- Link 2: https://github.com/mymagicpower/AIAS/releases/download/apps/face_feature.zip
 
-### 视频搜索
-本例子提供了人像搜索，使用了人脸检测算法，人脸特征提取算法。
+### Video Search
+
+This example provides portrait search, which uses face detection algorithm and face feature extraction algorithm.
 
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/video_search/arc.png)
 
 
-#### 主要特性
-- 底层使用特征向量相似度搜索
-- 单台服务器十亿级数据的毫秒级搜索
-- 近实时搜索，支持分布式部署
-- 随时对数据进行插入、删除、搜索、更新等操作
+### Main Features
 
-### 1. 前端部署
+- Low-level feature vector similarity search
+- Millisecond-level search of billions of data on a single server
+- Near real-time search, support for distributed deployment
+- Insert, delete, search, update and other operations on data at any time
 
-#### 1.1 直接运行：
+### 1. Front-end deployment
+
+### 1.1 Run directly:
 ```bash
 npm run dev
 ```
 
-#### 1.2 构建dist安装包：
+#### 1.2 Build dist installation package:
 ```bash
 npm run build:prod
 ```
 
-#### 1.3 nginx部署运行(mac环境为例)：
+#### 1.3 Nginx deployment operation (mac environment):
 ```bash
 cd /usr/local/etc/nginx/
 vi /usr/local/etc/nginx/nginx.conf
-# 编辑nginx.conf
+# Edit nginx.conf
 
-    server {
-        listen       8080;
-        server_name  localhost;
+server {
+listen       8080;
+server_name  localhost;
 
-        location / {
-            root   /Users/calvin/Documents/video_search/dist/;
-            index  index.html index.htm;
+location / {
+root   /Users/calvin/Documents/video_search/dist/;
+index  index.html index.htm;
         }
-     ......
-     
-# 重新加载配置：
-sudo nginx -s reload 
+......
 
-# 部署应用后，重启：
+# Reload configuration:
+sudo nginx -s reload
+
+# After deploying the application, restart:
 cd /usr/local/Cellar/nginx/1.19.6/bin
 
-# 快速停止
+# Quick stop
 sudo nginx -s stop
 
-# 启动
-sudo nginx     
+# Start
+sudo nginx
 ```
 
-## 2. 后端jar部署
-#### 2.1 环境要求：
-- 系统JDK 1.8+
+## 2. Back-end jar deployment
 
-- application.yml   
-1). 根据需要编辑图片上传根路径imageRootPath    
+### 2.1 Environmental requirements:
+
+- System JDK 1.8+
+- application.yml
+  1). Edit the image upload root path imageRootPath as required
 ```bash
-# 文件存储路径
+#File storage path
 file:
   mac:
     ...
-    imageRootPath: ~/file/image_root/ #图片文件根目录
+    imageRootPath: ~/file/image_root/ #Image file root directory
   linux:
     ....
-    imageRootPath: /home/aias/file/image_root/ #图片文件根目录
+    imageRootPath: /home/aias/file/image_root/ #Image file root directory
   windows:
     ...
-    imageRootPath: file:/D:/aias/file/image_root/ ##图片文件根目录
+    imageRootPath: file:/D:/aias/file/image_root/ ##Image file root directory
     ...
 ```
 
-2). 根据需要编辑图片baseurl 
+2). Edit the image baseurl as required
 ```bash
 image:
-  #baseurl是图片的地址前缀
-  baseurl: http://127.0.0.1:8089/images/
+  #baseurl is the prefix of the image address
+baseurl: <http://127.0.0.1:8089/images/>
 ```
 
-#### 2.2 运行程序：
+#### 2.2 Run the program:
 ```bash
-# 运行程序
-
 java -jar video-search-0.1.0.jar
 
 ```
 
-## 3. 后端向量引擎部署（Milvus 2.0）
-#### 3.1 环境要求：
-- 需要安装docker运行环境，Mac环境可以使用Docker Desktop
+## 3. Back-end vector engine deployment (Milvus 2.0)
 
-#### 3.2 拉取Milvus向量引擎镜像（用于计算特征值向量相似度）
-下载 milvus-standalone-docker-compose.yml 配置文件并保存为 docker-compose.yml        
-[单机版安装文档](https://milvus.io/docs/v2.0.0/install_standalone-docker.md)        
+### 3.1 Environmental requirements:
+
+- Need to install docker operating environment, Mac environment can use Docker Desktop
+
+### 3.2 Pull Milvus vector engine image (used to calculate feature value vector similarity)
+
+Download the milvus-standalone-docker-compose.yml configuration file and save it as docker-compose.yml
+
+[Standalone installation document](https://milvus.io/docs/v2.0.0/install_standalone-docker.md)        
 ```bash
 wget https://github.com/milvus-io/milvus/releases/download/v2.0.0/milvus-standalone-docker-compose.yml -O docker-compose.yml
 ```
 
-#### 3.3 启动 Docker 容器
+#### 3.3 Start Docker container
 ```bash
 sudo docker-compose up -d
 ```
 
-#### 3.5 编辑向量引擎连接配置信息
+#### 3.4 Edit vector engine connection configuration information
 - application.yml
-- 根据需要编辑向量引擎连接ip地址127.0.0.1为容器所在的主机ip
+- Edit the vector engine connection IP address 127.0.0.1 to the host IP address of the container as required
 ```bash
-################## 向量引擎 ################
+##################Vector engine ################
 search:
   host: 127.0.0.1
   port: 19530
 ```
 
-## 4. 打开浏览器
-- 输入地址： http://localhost:8090
+## 4. Open the browser
 
-- 视频上传
-1). 点击上传按钮上传视频文件.  
-[测试视频](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/video_search/test.mp4)
-2). 点击提取人脸特征提取按钮. 
-等待图片帧解析，人脸检测，特征提取，特征存入向量引擎。通过console可以看到进度信息。
-imageRootPath目录下，可以看到提取出的图片帧及检测目标图片。
+- Enter the address: [http://localhost:8090](http://localhost:8090/)
+- Video upload
+  1). Click the upload button to upload the video file.
+[Test video](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/video_search/test.mp4)
+  2). Click the button to extract facial features.
+  Wait for image frame parsing, face detection, feature extraction, and feature storage in the vector engine. You can see the progress information through the console.
+  In the imageRootPath directory, you can see the extracted image frames and detected target images.
 
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/video_search/storage.png)
 
-- 视频搜索
-  上传图片，点击查询，可以看到返回的图片清单，根据相似度排序。
+- Video Search
+  Upload pictures, click search, and you can see the list of returned pictures sorted by similarity.
 
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/video_search/search.png)
 
-## 5. 帮助信息
-- swagger接口文档:  
-http://localhost:8089/swagger-ui.html
-![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/video_search/swagger.png)
+### 5. Help information
 
-- 初始化向量引擎(清空数据): 
+- swagger interface document:
+  http://localhost:8089/swagger-ui.html
+  ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/video_search/swagger.png)
+
+- Initialize the vector engine (clear data):
+
+```bash
 me.aias.tools.MilvusInit.java 
+       ...
+```
 
-- Milvus向量引擎参考链接     
-[Milvus向量引擎官网](https://milvus.io/cn/docs/overview.md)      
-[Milvus向量引擎Github](https://github.com/milvus-io)
+- Milvus vector engine reference link
+  [Milvus vector engine official website](https://milvus.io/)      
+  [Milvus vector engine Github](https://github.com/milvus-io)
 
-### 官网：
-[官网链接](http://www.aias.top/)
-
-### Git地址：   
-[Github链接](https://github.com/mymagicpower/AIAS)    
-[Gitee链接](https://gitee.com/mymagicpower/AIAS)   
-
-
-#### 帮助文档：
-- http://aias.top/guides.html
-- 1.性能优化常见问题:
-- http://aias.top/AIAS/guides/performance.html
-- 2.引擎配置（包括CPU，GPU在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/engine_config.html
-- 3.模型加载方式（在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/load_model.html
-- 4.Windows环境常见问题:
-- http://aias.top/AIAS/guides/windows.html

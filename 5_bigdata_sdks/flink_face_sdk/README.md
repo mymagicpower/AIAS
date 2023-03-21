@@ -1,54 +1,49 @@
-### 下载模型，放置于models目录
-- 链接: https://github.com/mymagicpower/AIAS/releases/download/apps/ultranet.zip
 
-## 人工智能技术如何与大数据技术栈协同工作？
-人工智能模型训练很大程度依赖标注的数据。而需要标注数据量大的话，离不开大数据平台提供技术支持。
-训练好的模型，反过来同样可以用于大数据技术栈。
-### 场景1：ToB
-在企业内部的大数据平台中，有两个典型环节可能用到人工智能技术：
-- 数据采集环节 - 非结构化数据解析，如：图片，文本，音频等。
-- 数据挖掘分析服务 - 图片搜索，基于深度学习的推荐，NLP问答，智能客服等。
+### Download the model and put it in the models directory
+- Link: https://github.com/mymagicpower/AIAS/releases/download/apps/ultranet.zip
 
-- 人工智能 & 大数据
-![bigdata](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/bigdata_sdks/bigdata.jpeg)
+## How does AI technology work with big data technology stack?
 
-### 场景2：泛安防
-近几年，人工智能在泛安防领域得到了广泛的应用。
-人脸识别技术目前已经广泛应用于包括人脸门禁系统、刷脸支付等各行各业。随着人脸识别技术的提升，
-应用越来越广泛。目前中国的人脸识 别技术已经在世界水平上处于领先地位，在安防行业，
-国内主流安防厂家也都推出了各自的人脸识别产品和解决方案，泛安防行业是人脸识别技术主要应用领域。
-这个例子给出了人脸识别技术是如何与大数据技术栈协同工作的。
-后续结合人脸特征提取，特征向量保存到向量搜索引擎，形成人像底库，然后就可以实现人像大数据搜索。
-安防领域一个典型的架构，如下图所示。端边侧提取出含人像的大小图后，发送到云端，由云端的更高精度的大模型来继续处理。
+AI model training relies heavily on annotated data. To annotate a large amount of data, a big data platform is necessary to provide technical support. The trained model can also be used for the big data technology stack in reverse.
 
-- 端边云架构
-![dec](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/bigdata_sdks/device_edge_cloud.jpeg)
+### Scenario 1: ToB
+
+In the big data platform within the enterprise, two typical links may use AI technology:
+
+- Data acquisition link - unstructured data parsing, such as images, text, audio, etc.
+- Data mining and analysis services - image search, recommendation based on deep learning, NLP Q&A, intelligent customer service, etc.
+- AI & Big Data
+
+### Scenario 2: General Security
+
+In recent years, AI has been widely used in the field of general security. Face recognition technology has been widely used in various industries including face access control systems, face payment, etc. With the improvement of face recognition technology, its application is becoming more and more extensive. Currently, China's face recognition technology is at the forefront of the world. In the security industry, mainstream security manufacturers have also launched their own face recognition products and solutions. The general security industry is the main application field of face recognition technology. This example shows how face recognition technology works with the big data technology stack. With subsequent face feature extraction, the feature vectors are saved to the vector search engine to form a portrait database, and then a big data search of the portrait can be realized. A typical architecture in the security field is shown in the figure below. After extracting the image containing the portrait on the edge side, it is sent to the cloud for further processing by a higher-precision large model in the cloud.
  
-- 人脸检测    
+- Face Detection
 ![face](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/bigdata_sdks/face_detection.jpeg)
 
-### 图像识别 - kafka,flink,人脸识别
-下面的例子给出了图像识别结合kafka,flink协同工作的流程：
+### Image Recognition - Kafka, Flink, Face Recognition
 
-#### 1. 启动 zookeeper:
+The following example shows the process of combining image recognition with Kafka and Flink:
+
+### 1. Start Zookeeper:
 
 `zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties`
 
-#### 2. 启动 kafka:
-启动前先需环境配置kafka的server.properties(添加message.max.bytes=10485760), 支持大消息。
-因为图片转成base64字符串后，会超过kafka的默认消息大小设置。如果不增加配置，kafka不会接收消息。
+### 2. Start Kafka:
+
+Before starting, you need to configure the environment for Kafka's server.properties (add message.max.bytes=10485760) to support large messages. Because after the image is converted into a base64 string, it will exceed Kafka's default message size setting. If the configuration is not increased, Kafka will not receive messages.
 `kafka-server-start  /usr/local/etc/kafka/server.properties`
 
-#### 3. 创建 topic:
+#### 3. Create a topic:
 
 `kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic face-data`
 
-#### 4. 查看创建的topic
+#### 4. View the created topic
 
 `kafka-topics --list --zookeeper localhost:2181`
 
-#### 5. 运行例子 - FaceDetectionExample
-flink启动，并监听kafka的"face-data"topic。
+#### 5. Run example - FaceDetectionExample
+Flink starts and listens to the "face-data" topic of Kafka.
 
 ```bash
     ...
@@ -67,11 +62,13 @@ flink启动，并监听kafka的"face-data"topic。
    ...         
 ```
 
-#### 6. 运行例子 - MyKafkaProducer
-读取图片，转成base64格式发送给kafka的"face-data"topic。
+### 6. Run example - MyKafkaProducer
 
-#### 7. 查看 FaceDetectionExample的输出Console
-consumer接受到图片的base64数据, 转换成图片并解析：
+Read the image, convert it to base64 format, and send it to the "face-data" topic of Kafka.
+
+### 7. View the output Console of FaceDetectionExample
+
+The consumer receives the base64 data of the image, converts it into an image, and parses it:
 ```bash
 [
 	class: "Face", probability: 0.99958, bounds: [x=0.485, y=0.198, width=0.122, height=0.230]
@@ -80,35 +77,13 @@ consumer接受到图片的base64数据, 转换成图片并解析：
 ]
 ```
 
-#### Mac环境安装kafka 
+#### Installing Kafka on Mac
 ```bash
 brew install kafka
 ```
-#### Mac环境配置kafka，支持大消息 
-编辑/usr/local/etc/kafka/server.properties，增加下面的配置项：
+#### Configuring Kafka on Mac to support large messages
+Edit /usr/local/etc/kafka/server.properties and add the following configuration item:
 ```bash
 message.max.bytes=10485760
 ```
 
-### 帮助 
-引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
-[引擎定制化配置](http://aias.top/engine_cpu.html)
-
-### 官网：
-[官网链接](http://www.aias.top/)
-
-### Git地址：   
-[Github链接](https://github.com/mymagicpower/AIAS)    
-[Gitee链接](https://gitee.com/mymagicpower/AIAS)   
-
-
-#### 帮助文档：
-- http://aias.top/guides.html
-- 1.性能优化常见问题:
-- http://aias.top/AIAS/guides/performance.html
-- 2.引擎配置（包括CPU，GPU在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/engine_config.html
-- 3.模型加载方式（在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/load_model.html
-- 4.Windows环境常见问题:
-- http://aias.top/AIAS/guides/windows.html

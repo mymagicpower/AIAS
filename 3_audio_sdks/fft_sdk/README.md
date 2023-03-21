@@ -1,13 +1,10 @@
-## 快速傅里叶变换(FFT)的java实现
-快速傅里叶变换 (fast Fourier transform), 即利用计算机计算离散傅里叶变换（DFT)的高效、快速计算方法的统称，简称FFT。
-快速傅里叶变换是1965年由J.W.库利和T.W.图基提出的。采用这种算法能使计算机计算离散傅里叶变换所需要的乘法次数大为减少，
-特别是被变换的抽样点数N越多，FFT算法计算量的节省就越显著。
-计算量小的显著的优点，使得FFT在信号处理技术领域获得了广泛应用，结合高速硬件就能实现对信号的实时处理。
-例如，对语音信号的分析和合成，对通信系统中实现全数字化的时分制与频分制(TDM/FDM)的复用转换，在频域对信号滤波以及相关分析，
-通过对雷达、声纳、振动信号的频谱分析以提高对目标的搜索和跟踪的分辨率等等，都要用到FFT。
+## Java Implementation of Fast Fourier Transform (FFT)
 
+Fast Fourier Transform (FFT) is a term used to describe the efficient and fast computation method of discrete Fourier transform (DFT) by utilizing a computer. The algorithm was proposed by J.W. Cooley and T.W. Tukey in 1965. The adoption of this algorithm reduces the number of multiplication operations required for a computer to calculate DFT significantly. This is particularly significant when the number of sampled points N increases, as the savings in computational resources are more pronounced.
 
-## 运行例子 - FFTExample
+The significant advantage of FFT in terms of reduced computational requirements has made it widely used in the field of signal processing. Coupled with high-speed hardware, it can be used to achieve real-time signal processing. FFT can be used for various applications such as analyzing and synthesizing voice signals, achieving full digitalization of time division multiplexing (TDM)/frequency division multiplexing (FDM) in communication systems, filtering signals in the frequency domain, and analyzing the spectrum of radar, sonar, and vibration signals to improve the resolution of target search and tracking.
+
+## Running Example - FFTExample
 ```text
 ...
 	    String audioFilePath = "src/test/resources/audio.wav";
@@ -31,34 +28,11 @@
 ...
 ````
 
-运行成功后，命令行应该看到下面的信息:
+After running the example successfully, the command line should display the following information:
 ```text
-# 复数的实部
+#Real parts of complex numbers
 Real parts: [-1.8461201, -1.1128254, 0.58502156, 2.6774616, -1.7226994, ..., 0.15794027]
-# 复数的虚部
+#Imaginary parts of complex numbers
 Imaginary parts: [0.0, 1.2845019, 2.8104274, -1.3958083, 1.2868061, ..., -0.3447435, 0.0]
 
 ```
-
-### 帮助 
-引擎定制化配置，可以提升首次运行的引擎下载速度，解决外网无法访问或者带宽过低的问题。         
-[引擎定制化配置](http://aias.top/engine_cpu.html)
-
-### 官网：
-[官网链接](http://www.aias.top/)
-
-### Git地址：   
-[Github链接](https://github.com/mymagicpower/AIAS)    
-[Gitee链接](https://gitee.com/mymagicpower/AIAS)   
-
-
-#### 帮助文档：
-- http://aias.top/guides.html
-- 1.性能优化常见问题:
-- http://aias.top/AIAS/guides/performance.html
-- 2.引擎配置（包括CPU，GPU在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/engine_config.html
-- 3.模型加载方式（在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/load_model.html
-- 4.Windows环境常见问题:
-- http://aias.top/AIAS/guides/windows.html

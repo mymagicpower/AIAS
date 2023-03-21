@@ -1,10 +1,11 @@
-## 语音活动检测(Voice Activity Detection,VAD)
-语音活动检测(Voice Activity Detection,VAD)又称语音端点检测,语音边界检测。目的是从声音信号流里识别和消除长时间的静音期，
-静音抑制可以节省宝贵的带宽资源，可以有利于减少用户感觉到的端到端的时延。
+## Voice Activity Detection (VAD)
+Voice Activity Detection (VAD), also known as endpoint detection or boundary detection, is used to identify and remove long periods of silence from an audio signal stream. By suppressing silence, valuable bandwidth resources can be saved and end-to-end delay experienced by the user can be reduced.
 
-### Mac & Linux环境 
-#### 运行例子 - MacAndLinuxVadExample
-运行成功后，命令行应该看到下面的信息:
+### Mac & Linux Environment
+
+### Running Example - MacAndLinuxVadExample
+
+After successful execution, the command line should display the following information:
 ```text
 Mac OS X
 true
@@ -12,39 +13,38 @@ true
 true
 [INFO ] - closing VAD
 ```
-#### 帮助
-- 程序非线程安全。多实例运行需考虑并发问题。
-- 不要忘记close()问题，使用try-with-resources语句处理。
+### Help
 
+- The program is not thread-safe. Multiple instances need to consider concurrency issues.
+  -Do not forget to handle close() problems using try-with-resources statements.
 
-### Winndows 环境 
-#### 运行例子 - WindowsExample
-运行成功后，命令行应该看到下面的信息:
+### Windows Environment
+
+### Running Example - WindowsExample
+
+After successful execution, the command line should display the following information:
 ```text
 ...
 Mac OS X
 Error loading native library: java.lang.Exception: Unsupported OS: Mac OS X
 ```
-#### 帮助
-##### 共享库文件: 
-- linux: vad4j_sdk/lib/linux
-- -libfvad.so
-- -libwebrtcvadwrapper.so
-- windows: vad4j_sdk/lib/windows 
-- -libfvad.dll
-- -libwebrtcvadwrapper.dll
- 
-##### 设置环境变量
-- 共享库文件需添加到 java.library.path 
-- 设置环境变量： LD_LIBRARY_PATH to /path/to/shared/libraries:$LD_LIBRARY_PATH.
+### Help
 
-##### 音频数据
-输入的数据需是16-bit PCM audio数据，详细信息请参考下面的链接：
+### Shared Library Files:
+
+- Linux: vad4j_sdk/lib/linux
+  --libfvad.so
+  --libwebrtcvadwrapper.so
+  -Windows: vad4j_sdk/lib/windows
+  --libfvad.dll
+  --libwebrtcvadwrapper.dll
+
+### Setting Environment Variables
+
+- The shared library files need to be added to java.library.path.
+  -Set the environment variable: LD_LIBRARY_PATH to /path/to/shared/libraries:$LD_LIBRARY_PATH.
+
+### Audio Data
+
+The input data should be 16-bit PCM audio data. For more information, please refer to the following link:
 https://github.com/jitsi/jitsi-webrtc-vad-wrapper/blob/master/readme.md
-
-### 官网：
-[官网链接](http://www.aias.top/)
-
-### Git地址：   
-[Github链接](https://github.com/mymagicpower/AIAS)    
-[Gitee链接](https://gitee.com/mymagicpower/AIAS)   
