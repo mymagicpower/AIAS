@@ -16,6 +16,8 @@ import java.util.Iterator;
 
 /**
  * 图片操作类
+ * Image manipulation class
+ *
  * @author Calvin
  * @date 2021-12-12
  **/
@@ -25,6 +27,7 @@ public class ImageUtil {
 
     /**
      * multipartFile 编码转换为 BufferedImage
+     * Convert multipartFile encoding to BufferedImage
      */
     public static BufferedImage multipartFileToBufImage(MultipartFile imageFile) {
         try {
@@ -40,6 +43,7 @@ public class ImageUtil {
 
     /**
      * MultipartFile对象转字节数组
+     * Convert MultipartFile object to byte array
      */
     public static byte[] multipartFileToBytes(MultipartFile file) {
         InputStream ins = null;
@@ -64,6 +68,7 @@ public class ImageUtil {
 
     /**
      * file 转 byte数组
+     * Convert file to byte array
      */
     public static byte[] file2Byte(File file) throws IOException {
         byte[] buffer = null;
@@ -82,6 +87,7 @@ public class ImageUtil {
 
     /**
      * 根据地址获得数据的字节流
+     * Get byte stream of data according to address
      */
     public static byte[] getImageByUrl(String strUrl) {
         try {
@@ -100,6 +106,7 @@ public class ImageUtil {
 
     /**
      * 从输入流中获取数据
+     * Get data from input stream
      */
     public static byte[] readInputStream(InputStream inStream) throws Exception {
         ByteArrayOutputStream outStream = new ByteArrayOutputStream();
@@ -114,6 +121,7 @@ public class ImageUtil {
 
     /**
      * bytes 编码转换为 BufferedImage
+     * Convert bytes encoding to BufferedImage
      */
     public static BufferedImage bytesToBufferedImage(byte[] bytes) {
         try {
@@ -127,6 +135,7 @@ public class ImageUtil {
 
     /**
      * 保存字节数组图片到指定path
+     * Save byte array image to specified path
      */
     public static void bytesToImageFile(byte[] bs, String filePath) throws IOException {
         FileOutputStream os = new FileOutputStream(filePath);
@@ -136,6 +145,7 @@ public class ImageUtil {
 
     /**
      * 根据日期生成本地图片相对保存路径
+     * Generate local image relative save path based on date
      */
     public static String generatePath(String fileRoot) {
         Date date = new Date();
@@ -152,6 +162,7 @@ public class ImageUtil {
 
     /**
      * 获得图片的后缀，例如：JPEG、GIF等
+     * Get the suffix of the image, such as: JPEG, GIF, etc.
      */
     public static String getImageFormat(Object obj) {
         ImageInputStream iis = null;

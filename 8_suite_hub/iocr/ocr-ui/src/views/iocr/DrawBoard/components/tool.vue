@@ -1,9 +1,9 @@
 <template>
   <div class="tool">
-    <el-tooltip effect="dark" content="锚点框" placement="right">
+    <el-tooltip effect="dark" content="Anchor" placement="right">
       <i class="el-icon-menu" @click="changeTool('anchor')" />
     </el-tooltip>
-    <el-tooltip effect="dark" content="内容框" placement="right">
+    <el-tooltip effect="dark" content="Content" placement="right">
       <i class="el-icon-s-grid" @click="changeTool('rectangle')" />
     </el-tooltip>
   </div>

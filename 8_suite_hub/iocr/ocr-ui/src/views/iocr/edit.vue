@@ -2,8 +2,8 @@
   <div>
     <el-row type="flex" justify="end" :gutter="20">
       <el-col :span="6">
-        <el-input v-model="name" placeholder="请输入模板名称">
-          <template slot="prepend">模板名称</template>
+        <el-input v-model="name" placeholder="Please enter the template name">
+          <template slot="prepend">template name</template>
         </el-input>
       </el-col>
       <el-col :span="10">
@@ -12,14 +12,14 @@
           size="medium"
           round
           @click="onFetchAnchors"
-        >载入标注
+        >Load
         </el-button>
         <el-button
           type="primary"
           size="medium"
           round
           @click="onSubmit"
-        >提交标注</el-button>
+        >Submit</el-button>
       </el-col>
     </el-row>
     <div class="box">
@@ -179,7 +179,7 @@ export default {
         if (element.type === 'rectangle') {
           if (typeof element.field === 'undefined' || element.field === '') {
             pass = false
-            this.$message.error('内容识别字段名称不能为空!')
+            this.$message.error('Field name for content recognition cannot be empty!')
           }
         }
       })
@@ -192,7 +192,7 @@ export default {
             if (element1.type === 'rectangle' && element2.type === 'rectangle') {
               if (element1.field === element2.field) {
                 pass = false
-                this.$message.error('内容识别字段名称不能重名!')
+                this.$message.error('Field name for content recognition cannot be duplicated!')
               }
             }
           }
@@ -201,7 +201,7 @@ export default {
 
       if (this.name === '') {
         pass = false
-        this.$message.error('请输入模板名称!')
+        this.$message.error('Please enter the template name!')
       }
 
       if (pass) {

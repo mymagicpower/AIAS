@@ -14,27 +14,31 @@ import java.util.List;
 
 /**
  * 文件上传工具包
+ * File upload tool package
  */
 public class FileUtils {
     /**
-     * @param file     文件
-     * @param path     文件存放路径
-     * @param fileName 源文件名
+     * @param file     文件 - file
+     * @param path     文件存放路径 - file storage path
+     * @param fileName 源文件名 - source file name
      * @return
      */
     public static boolean upload(MultipartFile file, String path, String fileName) {
         // 生成新的文件名
+        // Generate a new file name
         //String realPath = path + "/" + FileNameUtils.getFileName(fileName);
         Path filePath = Paths.get(path + fileName);
         File dest = filePath.toAbsolutePath().toFile();
 
         //判断文件父目录是否存在
+        // Determine if the parent directory of the file exists
         if (!dest.getParentFile().exists()) {
             dest.getParentFile().mkdir();
         }
 
         try {
             //保存文件
+            // Save the file
             file.transferTo(dest);
             return true;
         } catch (IllegalStateException e) {
@@ -48,6 +52,7 @@ public class FileUtils {
 
     /**
      * 获取文件后缀
+     * Get file suffix
      *
      * @param fileName
      * @return
@@ -58,8 +63,8 @@ public class FileUtils {
 
     /**
      * 生成新的文件名
-     *
-     * @param fileOriginName 源文件名
+     * Generate a new file name
+     * @param fileOriginName 源文件名 - source file name
      * @return
      */
     public static String getFileName(String fileOriginName) {
@@ -68,9 +73,10 @@ public class FileUtils {
 
     /**
      * 读取json文件
+     * Read json file
      *
-     * @param path     文件路径信息
-     * @param fileName 文件名
+     * @param path     文件路径信息 - file path information
+     * @param fileName 文件名 - file name
      * @return
      */
     public static String readFile(String path, String fileName) throws IOException {
@@ -89,10 +95,11 @@ public class FileUtils {
 
     /**
      * 保存json文件
+     * Save json file
      *
-     * @param path     文件路径信息
-     * @param fileName 文件名
-     * @param json     json信息
+     * @param path     文件路径信息 file path information
+     * @param fileName 文件名 file name
+     * @param json     json信息 json information
      * @return
      */
     public static void saveFile(String path, String fileName, String json) throws IOException {
@@ -104,9 +111,10 @@ public class FileUtils {
 
     /**
      * 删除json文件
+     * Delete json file
      *
-     * @param path     文件路径信息
-     * @param fileName 文件名
+     * @param path     文件路径信息 file path information
+     * @param fileName 文件名 file name
      * @return
      */
     public static void removeFile(String path, String fileName) {
@@ -117,7 +125,7 @@ public class FileUtils {
     /**
      * Check & create file path
      *
-     * @param fileRelativePath 文件路径信息
+     * @param fileRelativePath 文件路径信息 - file path information
      * @return
      */
     public static void checkAndCreatePath(String fileRelativePath) {

@@ -8,9 +8,11 @@ import java.util.Date;
 
 /**
  * 信息返回对象
+ * Information Return Object
+ *
  */
 @Data
-@ApiModel(value = "DataInfoRes", description = "信息返回对象")
+@ApiModel(value = "DataInfoRes", description = "信息返回对象 - Information Return Object")
 public class DataInfoRes {
     @ApiModelProperty(value = "id", name = "id")
     private Long id;
@@ -21,12 +23,12 @@ public class DataInfoRes {
     @ApiModelProperty(value = "uuid", name = "uuid")
     private String uuid;
 
-    @ApiModelProperty(value = "原名称", name = "preName")
+    @ApiModelProperty(value = "preName", name = "preName")
     private String preName;
 
     @ApiModelProperty(value = "url", name = "url")
     private String url;
 
-    @ApiModelProperty(value = "创建时间", name = "createTime")
+    @ApiModelProperty(value = "createTime", name = "createTime")
     private Date createTime;
 }

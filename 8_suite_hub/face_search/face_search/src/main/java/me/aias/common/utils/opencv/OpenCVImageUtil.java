@@ -10,6 +10,7 @@ import java.awt.image.DataBufferByte;
 
 /**
  * 图片类型转换
+ * Image type conversion
  *
  * @author Calvin
  */
@@ -17,6 +18,7 @@ public class OpenCVImageUtil {
 
   /**
    * 将 BufferedImage 转 Mat
+   * Convert BufferedImage to Mat
    *
    * @param original
    */
@@ -27,6 +29,7 @@ public class OpenCVImageUtil {
 
   /**
    * 将mat转BufferedImage
+   * Convert Mat to BufferedImage
    *
    * @param matrix
    */
@@ -59,12 +62,16 @@ public class OpenCVImageUtil {
     //    BufferedImage对象中最重要的两个组件为Raster和ColorModel，分别用于存储图像的像素数据与颜色数据。
     //    表示像素矩形数组的类。Raster 封装存储样本值的 DataBuffer，以及描述如何在 DataBuffer 中定位给定样本值的 SampleModel。
     //    由于Raster对象是BufferedImage对象中的像素数据存储对象，因此，BufferedImage支持从Raster对象中获取任意位置（x，y）点的像素值p（x，y）。
+    // The two most important components of the BufferedImage object are Raster and ColorModel, which are used to store pixel data and color data of the image, respectively.
+    // The Raster class represents an array of pixel rectangles. Raster encapsulates the DataBuffer that stores the sample values, and the SampleModel that describes how to locate a given sample value in the DataBuffer.
+    // Since the Raster object is the pixel data storage object in the BufferedImage object, BufferedImage supports getting the pixel value p(x,y) at any position (x,y) from the Raster object.
     image.getRaster().setDataElements(0, 0, cols, rows, data);
     return image;
   }
 
   /**
    * 将bufferImage转Mat
+   * Convert bufferImage to Mat
    *
    * @param original
    * @param matType

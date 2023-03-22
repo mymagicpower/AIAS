@@ -39,6 +39,7 @@ import java.util.List;
 
 /**
  * 目标检测服务
+ * Object detection service
  *
  * @author Calvin
  * @date 2021-12-12
@@ -73,6 +74,7 @@ public class DetectServiceImpl implements DetectService {
                 Rectangle rectangle = box.getBounds();
 
                 // 抠人脸图
+                // extract face image
                 Rectangle subImageRect =
                         FaceUtil.getSubImageRect(
                                 image, rectangle, djlImg.getWidth(), djlImg.getHeight(), 0f);
@@ -83,6 +85,7 @@ public class DetectServiceImpl implements DetectService {
                 BufferedImage subImage = image.getSubimage(x, y, w, h);
                 Image img = DJLImageUtil.bufferedImage2DJLImage(subImage);
                 //获取特征向量
+                // get feature vector
                 List<Float> feature = featureService.faceFeature(img);
 
                 FaceObject faceObject = new FaceObject();
@@ -110,6 +113,8 @@ public class DetectServiceImpl implements DetectService {
 
                 // 抠人脸图
                 // factor = 0.1f, 意思是扩大10%，防止人脸仿射变换后，人脸被部分截掉
+                // extract face image
+                // factor = 0.1f, meaning expand 10%, to prevent the face from being partially cut off after face affine transformation
                 Rectangle subImageRect =
                         FaceUtil.getSubImageRect(
                                 image, rectangle, djlImg.getWidth(), djlImg.getHeight(), 1.0f);
@@ -120,6 +125,7 @@ public class DetectServiceImpl implements DetectService {
                 BufferedImage subImage = image.getSubimage(x, y, w, h);
 
                 // debug使用：保存，抠出的人脸图
+                // for debug: save the extracted face image
                 if (save) {
                     String savePath = properties.getPath().getPath() + "detected/";
                     if (!new File(savePath).exists()) {
@@ -129,10 +135,12 @@ public class DetectServiceImpl implements DetectService {
                 }
 
                 // 计算人脸关键点在子图中的新坐标
+                // calculate the new coordinates of the face keypoints in the sub-image
                 List<Point> points = (List<Point>) box.getPath();
                 double[][] pointsArray = FaceUtil.pointsArray(subImageRect, points);
 
                 // 转 buffered image 图片格式
+                // convert to buffered image format
                 BufferedImage converted3BGRsImg =
                         new BufferedImage(
                                 subImage.getWidth(), subImage.getHeight(), BufferedImage.TYPE_3BYTE_BGR);
@@ -145,17 +153,21 @@ public class DetectServiceImpl implements DetectService {
                     NDArray dstPoints = SVDUtil.point112x112(manager);
 
                     // 定制的5点仿射变换
+                    // customized 5-point affine transformation
                     Mat svdMat = NDArrayUtil.toOpenCVMat(manager, srcPoints, dstPoints);
                     // 换仿射变换矩阵
+                    // replace affine transformation matrix
                     mat = FaceAlignment.get5WarpAffineImg(mat, svdMat);
 
                     // mat转bufferedImage类型
+                    // convert mat to buffered image type
                     BufferedImage mat2BufferedImage = OpenCVImageUtil.mat2BufferedImage(mat);
                     int width = mat2BufferedImage.getWidth() > 112 ? 112 : mat2BufferedImage.getWidth();
                     int height = mat2BufferedImage.getHeight() > 112 ? 112 : mat2BufferedImage.getHeight();
                     mat2BufferedImage = mat2BufferedImage.getSubimage(0, 0, width, height);
 
                     // debug使用：保存，对齐后的人脸图
+                    // for debug: save the aligned face image
                     if (save) {
                         String savePath = properties.getPath().getPath() + "aligned/";
                         if (!new File(savePath).exists()) {
@@ -167,6 +179,7 @@ public class DetectServiceImpl implements DetectService {
 
                     Image img = DJLImageUtil.bufferedImage2DJLImage(mat2BufferedImage);
                     //获取特征向量
+                    // get feature vector
                     List<Float> feature = featureService.faceFeature(img);
 
                     FaceObject faceObject = new FaceObject();

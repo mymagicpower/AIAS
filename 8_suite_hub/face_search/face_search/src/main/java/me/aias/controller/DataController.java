@@ -37,6 +37,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 数据管理
+ * Data management
  *
  * @author Calvin
  * @date 2021-12-12
@@ -44,7 +45,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@Api(tags = "数据管理")
+@Api(tags = "数据管理 -Data management")
 @RequestMapping("/api/data")
 public class DataController {
     private final FileProperties properties;
@@ -61,7 +62,7 @@ public class DataController {
     @Autowired
     private LocalStorageService localStorageService;
 
-    @ApiOperation(value = "提取特征")
+    @ApiOperation(value = "提取特征 - Extract feature values")
     @GetMapping("/extractFeatures")
     public ResponseEntity<Object> extractFeatures(@RequestParam(value = "id") String id, HttpServletRequest request) throws IOException {
         LocalStorage localStorage = localStorageService.findById(Integer.parseInt(id));
@@ -72,6 +73,7 @@ public class DataController {
         }
 
         // 获取上传者操作系统
+        // Get operating system of the uploader
         UserAgentUtil userAgentGetter = new UserAgentUtil(request);
         String os = userAgentGetter.getOS();
 
@@ -79,6 +81,7 @@ public class DataController {
             new File(properties.getPath().getRootPath()).mkdirs();
         }
         //生成UUID作为解压缩的目录
+        // Generate UUID as the directory to be extracted to
         String UUID = UUIDUtil.getUUID();
         String unZipFilePath = properties.getPath().getRootPath() + UUID;
         if (!new File(unZipFilePath).exists()) {
@@ -87,6 +90,7 @@ public class DataController {
         ZipUtil.unZip(localStorage.getPath(), os, unZipFilePath);
 
         //生成视频文件提取的图片帧目录
+        // Generate directory for image frames extracted from video files
         String imagesPath = properties.getPath().getRootPath();
         if (!new File(imagesPath).exists()) {
             new File(imagesPath).mkdirs();
@@ -99,6 +103,7 @@ public class DataController {
             List<List<Float>> vectors = new ArrayList<>();
             for (DataInfo dataInfo : dataInfoList) {
                 // 保存图片信息
+                // save image info
                 ConcurrentHashMap<String, String> map = dataService.getMap();
                 int size = map.size();
                 long imageId = size + 1;
@@ -124,6 +129,7 @@ public class DataController {
             }
 
             // 将向量插入Milvus向量引擎
+            // Insert vectors into Milvus vector engine
             try {
                 R<Boolean> response = searchService.hasCollection();
                 if (!response.getData()) {

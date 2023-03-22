@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
+ * Utility class for calculating distances and IoU.
+ *
  * @author Calvin
  * @date Oct 19, 2021
  */
@@ -14,8 +16,8 @@ public class DistanceUtils {
     /**
      * Calculate L2 distance
      *
-     * @param contentLabels 内容识别区
-     * @param detectedTexts 文本检测区
+     * @param contentLabels 内容识别区 - the list of labels for content recognition area
+     * @param detectedTexts 文本检测区 - the list of labels for text detection area
      * @return
      */
     public static Map<String, String> l2Distance(List<LabelBean> contentLabels, List<LabelBean> detectedTexts) {
@@ -40,8 +42,8 @@ public class DistanceUtils {
     /**
      * Calculate iou
      *
-     * @param contentLabels 内容识别区
-     * @param detectedTexts 文本检测区
+     * @param contentLabels 内容识别区 - the list of labels for content recognition area
+     * @param detectedTexts 文本检测区 - the list of labels for text detection area
      * @return
      */
     public static Map<String, String> iou(List<LabelBean> contentLabels, List<LabelBean> detectedTexts) {

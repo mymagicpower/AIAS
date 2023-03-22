@@ -1,6 +1,6 @@
 <template>
   <el-tabs type="border-card">
-    <el-tab-pane label="参照锚点">
+    <el-tab-pane label="Anchor Point">
       <el-table
         ref="anchorTable"
         :highlight-current-row="true"
@@ -8,14 +8,14 @@
         style="width: 100%"
         @row-click="handleChange"
       >
-        <el-table-column label="请框选参照锚点字段">
+        <el-table-column label="Please select the anchor point field">
           <template slot-scope="scope">
             <el-popconfirm
-              confirm-button-text="确定"
-              cancel-button-text="取消"
+              confirm-button-text="OK"
+              cancel-button-text="Cancel"
               icon="el-icon-info"
               icon-color="red"
-              title="确定删除元素？"
+              title="Are you sure you want to delete this element?"
               @onConfirm="deleteAnchorElement(scope.$index,scope.row)"
             >
               <i
@@ -24,12 +24,12 @@
                 style="margin:0 10px 0 0"
               />
             </el-popconfirm>
-            参照字段: <el-input v-model="scope.row.value" type="text" size="small" style="width:240px" />
+            Reference Field: <el-input v-model="scope.row.value" type="text" size="small" style="width:240px" />
           </template>
         </el-table-column>
       </el-table>
     </el-tab-pane>
-    <el-tab-pane label="内容识别区">
+    <el-tab-pane label="Content Recognition Area">
       <el-table
         ref="contentTable"
         :highlight-current-row="true"
@@ -37,14 +37,14 @@
         style="width: 100%"
         @row-click="handleChange"
       >
-        <el-table-column label="请框选内容识别区">
+        <el-table-column label="Please select the content recognition area">
           <template slot-scope="scope">
             <el-popconfirm
-              confirm-button-text="确定"
-              cancel-button-text="取消"
+              confirm-button-text="OK"
+              cancel-button-text="Cancel"
               icon="el-icon-info"
               icon-color="red"
-              title="确定删除元素？"
+              title="Are you sure you want to delete this element?"
               @onConfirm="deleteContentElement(scope.$index,scope.row)"
             >
               <i
@@ -53,7 +53,7 @@
                 style="margin:0 10px 0 0"
               />
             </el-popconfirm>
-            字段名称: <el-input v-model="scope.row.field" type="text" size="small" style="width:100px" @change="fieldChange" />
+            Field Name: <el-input v-model="scope.row.field" type="text" size="small" style="width:100px" @change="fieldChange" />
             <div>
               {{ scope.row.value }}
             </div>

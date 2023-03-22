@@ -95,6 +95,7 @@ public class TemplateServiceImpl implements TemplateService {
 
     /**
      * 获取模板
+     * Get Template
      *
      * @param uid
      */
@@ -112,6 +113,7 @@ public class TemplateServiceImpl implements TemplateService {
 
     /**
      * 新增模板
+     * Add Template
      *
      * @param templateBean
      */
@@ -123,15 +125,18 @@ public class TemplateServiceImpl implements TemplateService {
         String json = gson.toJson(templateList);
         FileProperties.ElPath path = properties.getPath();
         // 保存模版列表数据
+        // Save template list data
         String fileRelativePath = path.getPath().replace("\\", "/");
         FileUtils.saveFile(fileRelativePath, TEMPLATE_LIST_FILE, json);
         // 保存模版数据
+        // Save template data
         json = gson.toJson(templateBean);
         FileUtils.saveFile(fileRelativePath + "templates/", templateBean.getUid() + ".json", json);
     }
 
     /**
      * 更新模板
+     * Update Template
      *
      * @param templateBean
      */
@@ -149,15 +154,18 @@ public class TemplateServiceImpl implements TemplateService {
         String json = gson.toJson(templateList);
         FileProperties.ElPath path = properties.getPath();
         // 保存模版列表数据
+        // Save template list data
         String fileRelativePath = path.getPath().replace("\\", "/");
         FileUtils.saveFile(fileRelativePath, TEMPLATE_LIST_FILE, json);
         // 保存模版数据
+        // Save template data
         json = gson.toJson(templateBean);
         FileUtils.saveFile(fileRelativePath + "templates/", templateBean.getUid() + ".json", json);
     }
 
     /**
      * 删除模板
+     * Delete Template
      *
      * @param uid
      */
@@ -174,9 +182,11 @@ public class TemplateServiceImpl implements TemplateService {
         String json = gson.toJson(templateList);
         FileProperties.ElPath path = properties.getPath();
         // 保存模版列表数据
+        // Save template data
         String fileRelativePath = path.getPath().replace("\\", "/");
         FileUtils.saveFile(fileRelativePath, TEMPLATE_LIST_FILE, json);
         // 删除模版数据
+        // Delete template data
         FileUtils.removeFile(fileRelativePath + "templates/", uid + ".json");
     }
 

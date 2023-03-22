@@ -26,9 +26,9 @@
           v-loading.fullscreen.lock="fullscreenLoading"
           type="primary"
           size="small"
-          element-loading-text="拼命加载中"
+          element-loading-text="loading"
           @click="onSubmit"
-        >文字识别</el-button>
+        >Submit</el-button>
       </el-form-item>
       <el-form-item>
         <el-divider />
@@ -51,15 +51,15 @@
               :show-file-list="false"
               :auto-upload="false"
             >
-              <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+              <el-button slot="trigger" size="small" type="primary">Select</el-button>
               <el-button
                 v-loading.fullscreen.lock="fullscreenLoading"
                 style="margin-left: 10px;"
                 type="success"
                 size="small"
-                element-loading-text="拼命加载中"
+                element-loading-text="loading"
                 @click="submitUpload"
-              >上传</el-button>
+              >Upload</el-button>
               <div slot="tip" class="el-upload__tip">Image format: JPG(JPEG), PNG</div>
             </el-upload>
           </el-form-item>

@@ -145,8 +145,9 @@ public class AudioServiceImpl implements AudioService {
                     byte[] bytes = FileUtil.getByte(file);
                     String uuid = UUIDUtil.getUUID();
                     audioInfo.setUuid(uuid);
+                    // 待存储的文件名
                     // file name to be stored
-                    String fileName = uuid + "." + ext; // 待存储的文件名
+                    String fileName = uuid + "." + ext;
                     String relativePath = FileUtil.generatePath(rootPath);
                     // filePath 完整路径（含uuid文件名）
                     // filePath complete path (including uuid filename)

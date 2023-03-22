@@ -6,9 +6,15 @@ import org.bytedeco.javacpp.indexer.DoubleRawIndexer;
 import org.bytedeco.opencv.global.opencv_core;
 import org.bytedeco.opencv.opencv_core.Mat;
 import org.bytedeco.opencv.opencv_core.Point2f;
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public class NDArrayUtil {
   // NDArray 转 opencv_core.Mat
+  // NDArray to opencv_core.Mat
   public static Mat toOpenCVMat(NDArray points, int rows, int cols) {
     double[] doubleArray = points.toDoubleArray();
     // CV_32F = FloatRawIndexer
@@ -27,6 +33,7 @@ public class NDArrayUtil {
   }
 
   // NDArray 转 opencv_core.Mat
+  // NDArray to opencv_core.Mat
   public static Mat toOpenCVMat(NDManager manager, NDArray srcPoints, NDArray dstPoints) {
     NDArray svdMat = SVDUtil.transformationFromPoints(manager, srcPoints, dstPoints);
 
@@ -46,6 +53,7 @@ public class NDArrayUtil {
   }
 
   // NDArray 转 opencv_core.Point2f
+  // NDArray to opencv_core.Point2f
   public static Point2f toOpenCVPoint2f(NDArray points, int rows) {
     double[] doubleArray = points.toDoubleArray();
     Point2f points2f = new Point2f(rows);
@@ -58,6 +66,7 @@ public class NDArrayUtil {
   }
 
   // DoubleArray 转 opencv_core.Point2f
+  // DoubleArray to opencv_core.Point2f
   public static Point2f toOpenCVPoint2f(double[] doubleArray, int rows) {
     Point2f points2f = new Point2f(rows);
 

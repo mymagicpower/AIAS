@@ -14,7 +14,12 @@ import ai.djl.translate.TranslatorContext;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public class LayoutDetectionTranslator implements Translator<Image, DetectedObjects> {
 
   private int width;

@@ -4,6 +4,7 @@ import java.util.UUID;
 
 /**
  * 生成文件名
+ * Generate file name
  */
 public class UUIDUtils {
 

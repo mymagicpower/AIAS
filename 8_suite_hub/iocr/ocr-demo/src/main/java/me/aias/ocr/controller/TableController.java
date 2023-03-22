@@ -32,7 +32,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author Calvin
  * @date Oct 19, 2021
  */
-@Api(tags = "表格文字识别")
+@Api(tags = "表格文字识别 - Table Text Recognition")
 @RestController
 @RequestMapping("/table")
 public class TableController {
@@ -50,13 +50,14 @@ public class TableController {
     @Autowired
     private FileProperties properties;
 
-    @ApiOperation(value = "单表格文字识别-URL")
+    @ApiOperation(value = "单表格文字识别-URL - Single Table Text Recognition - URL")
     @GetMapping(value = "/tableInfoForImageUrl")
     public ResultBean tableInfoForImageUrl(@RequestParam(value = "url") String url) {
         try {
             Image image = ImageFactory.getInstance().fromUrl(url);
             String tableHtml = tableInferService.getTableHtml(image);
             // 创建一个Excel文件
+            // Create an Excel file
             tableHtml = tableHtml.replace("<html><body>", "");
             tableHtml = tableHtml.replace("</body></html>", "");
             HSSFWorkbook workbook = ConvertHtml2Excel.table2Excel(tableHtml);
@@ -92,7 +93,7 @@ public class TableController {
         }
     }
 
-    @ApiOperation(value = "单表格文字识别-图片")
+    @ApiOperation(value = "单表格文字识别-图片 -Single Table Text Recognition - Image")
     @PostMapping("/tableInfoForImageFile")
     public ResultBean tableInfoForImageFile(@RequestParam(value = "imageFile") MultipartFile imageFile) {
         try (InputStream inputStream = imageFile.getInputStream()) {
@@ -100,6 +101,7 @@ public class TableController {
             Image image = ImageFactory.getInstance().fromInputStream(inputStream);
             String tableHtml = tableInferService.getTableHtml(image);
             // 创建一个Excel文件
+            // Create an Excel file
             tableHtml = tableHtml.replace("<html><body>", "");
             tableHtml = tableHtml.replace("</body></html>", "");
             HSSFWorkbook workbook = ConvertHtml2Excel.table2Excel(tableHtml);
@@ -138,7 +140,7 @@ public class TableController {
         }
     }
 
-    @ApiOperation(value = "表单表格自动检测文字识别-URL")
+    @ApiOperation(value = "表单表格自动检测文字识别-URL -Auto Table Text Detection and Recognition - URL")
     @GetMapping(value = "/autoTableInfoForImageUrl")
     public ResultBean autoTableInfoForImageUrl(@RequestParam(value = "url") String url) {
         try {
@@ -190,7 +192,7 @@ public class TableController {
         }
     }
 
-    @ApiOperation(value = "表单表格自动检测文字识别-URL")
+    @ApiOperation(value = "表单表格自动检测文字识别-URL -Auto Table Text Detection and Recognition - Image")
     @PostMapping("/autoTableInfoForImageFile")
     public ResultBean autoTableInfoForImageFile(@RequestParam(value = "imageFile") MultipartFile imageFile) {
         try (InputStream inputStream = imageFile.getInputStream()) {

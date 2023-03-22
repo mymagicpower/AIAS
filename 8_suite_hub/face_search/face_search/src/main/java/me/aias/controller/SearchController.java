@@ -34,12 +34,13 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 搜索管理
+ * Search management
  *
  * @author Calvin
  * @date 2021-12-19
  **/
 @Slf4j
-@Api(tags = "搜索管理")
+@Api(tags = "搜索管理 -Search management")
 @RequestMapping("/api/search")
 @RequiredArgsConstructor
 @RestController
@@ -55,7 +56,7 @@ public class SearchController {
     String baseUrl;
 
     @PostMapping(value = "/image")
-    @ApiOperation(value = "搜索图片", nickname = "searchImage")
+    @ApiOperation(value = "搜索图片 - image search", nickname = "searchImage")
     public ResponseEntity<Object> searchImage(@RequestParam("image") MultipartFile imageFile, @RequestParam(value = "topK") String topk) {
         BufferedImage bufferedImage = ImageUtil.multipartFileToBufImage(imageFile);
         Image img = ImageFactory.getInstance().fromImage(bufferedImage);
@@ -63,8 +64,10 @@ public class SearchController {
         List<Float> vectorToSearch;
         try {
             //人脸检测 & 特征提取
+            // Face detection & feature extraction
             List<FaceObject> faceObjects = detectService.faceDetect(imageFile.getName(), img);
             //如何有多个人脸，取第一个（也可以选最大的，或者一起送入搜索引擎搜索）
+            // If there are multiple faces, take the first one (or the largest, or search together with the search engine)
             vectorToSearch = faceObjects.get(0).getFeature();
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,11 +80,13 @@ public class SearchController {
 
         try {
             // 根据图片向量搜索
+            // Search for vectors based on image files
             R<SearchResults> searchResponse = searchService.search(topK, vectorsToSearch);
             SearchResultsWrapper wrapper = new SearchResultsWrapper(searchResponse.getData().getResults());
             List<SearchResultsWrapper.IDScore> scores = wrapper.getIDScore(0);
 
             // 根据ID获取图片信息
+            // Get image information based on ID
             ConcurrentHashMap<String, String> map = imageService.getMap();
             List<DataInfoRes> imageInfoResList = new ArrayList<>();
             for (SearchResultsWrapper.IDScore score : scores) {

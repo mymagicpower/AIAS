@@ -44,7 +44,7 @@ export const constantRoutes = [
         path: '/',
         name: 'list',
         component: () => import('@/views/iocr/list'),
-        meta: { title: '自定义模版', icon: 'el-icon-setting' }
+        meta: { title: 'Custom Template', icon: 'el-icon-setting' }
       }
     ]
   },
@@ -56,14 +56,14 @@ export const constantRoutes = [
         path: 'create',
         component: () => import('@/views/iocr/index'),
         name: 'CreateTemplate',
-        meta: { title: '新增模板', icon: 'el-icon-picture' },
+        meta: { title: 'Create Template', icon: 'el-icon-picture' },
         hidden: true
       },
       {
         path: 'edit',
         component: () => import('@/views/iocr/edit'),
         name: 'EditTemplate',
-        meta: { title: '编辑模板', noCache: true },
+        meta: { title: 'Edit Template', noCache: true },
         hidden: true
       }
     ]
@@ -76,7 +76,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/iocrinfer/index'),
         name: 'inference',
-        meta: { title: '基于模版识别', icon: 'el-icon-document-copy' }
+        meta: { title: 'Template Inference', icon: 'el-icon-document-copy' }
       }
     ]
   },
@@ -88,7 +88,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/general/index'),
         name: 'inference',
-        meta: { title: '通用文本识别', icon: 'el-icon-picture' }
+        meta: { title: 'General Inference', icon: 'el-icon-picture' }
       }
     ]
   },
@@ -100,7 +100,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/table/index'),
         name: 'inference',
-        meta: { title: '表格识别', icon: 'el-icon-s-grid' }
+        meta: { title: 'Table Inference', icon: 'el-icon-s-grid' }
       }
     ]
   },
@@ -112,7 +112,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/autotable/index'),
         name: 'inference',
-        meta: { title: '表格自动检测识别', icon: 'el-icon-s-grid' }
+        meta: { title: 'Auto Table Inference', icon: 'el-icon-s-grid' }
       }
     ]
   },

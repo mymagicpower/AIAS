@@ -27,7 +27,7 @@ import java.util.Map;
  * @author Calvin
  * @date Oct 19, 2021
  */
-@Api(tags = "自定义模版文字识别")
+@Api(tags = "自定义模版文字识别 - Custom Template Text Recognition")
 @RestController
 @Configuration
 @RequestMapping("/template")
@@ -42,11 +42,12 @@ public class TemplateController {
 
     /**
      * 文件配置
+     * File Configuration
      */
     @Autowired
     private FileProperties properties;
 
-    @ApiOperation(value = "获取模版")
+    @ApiOperation(value = "获取模版 Get Template")
     @GetMapping(value = "/getTemplate", produces = "application/json;charset=utf-8")
     public ResultBean getTemplate(@RequestParam(value = "uid") String uid) {
         try {
@@ -58,7 +59,7 @@ public class TemplateController {
         }
     }
 
-    @ApiOperation(value = "获取模版列表")
+    @ApiOperation(value = "获取模版列表 Get Template List")
     @GetMapping(value = "/getTemplates", produces = "application/json;charset=utf-8")
     public ResultBean getTemplatesList() {
         try {
@@ -69,7 +70,7 @@ public class TemplateController {
         }
     }
 
-    @ApiOperation(value = "更新模板信息")
+    @ApiOperation(value = "更新模板信息 Update Template Information")
     @PostMapping(value = "/updateTemplate", consumes = "application/json;charset=utf-8")
     public ResultBean updateTemplate(@RequestBody TemplateBean templateBean) {
         try {
@@ -81,7 +82,7 @@ public class TemplateController {
         }
     }
 
-    @ApiOperation(value = "删除模板")
+    @ApiOperation(value = "删除模板 Remove Template")
     @PostMapping(value = "/removeTemplate", produces = "application/json;charset=utf-8")
     public ResultBean removeTemplate(@RequestParam(value = "uid") String uid) {
         try {
@@ -93,7 +94,7 @@ public class TemplateController {
         }
     }
 
-    @ApiOperation(value = "识别标注字段")
+    @ApiOperation(value = "识别标注字段 Recognize Label Fields")
     @PostMapping(value = "/getLabelData", produces = "application/json;charset=utf-8")
     public ResultBean getLabelData(@RequestBody LabelDTO labelDTO) {
         try {
@@ -107,11 +108,12 @@ public class TemplateController {
         }
     }
 
-    @ApiOperation(value = "创建模板")
+    @ApiOperation(value = "创建模板 Create Template")
     @PostMapping(value = "/addTemplate")
     public ResultBean addTemplate(@RequestParam(value = "name") String name, @RequestParam(value = "imageFile") MultipartFile imageFile) {
         try {
             // 要上传的目标文件存放路径
+            // Target file storage path to be uploaded
             FileProperties.ElPath path = properties.getPath();
             String imagePath = path.getPath().replace("\\", "/") + "images/";
             FileUtils.checkAndCreatePath(imagePath);
@@ -146,7 +148,7 @@ public class TemplateController {
         }
     }
 
-    @ApiOperation(value = "模版文字识别-URL")
+    @ApiOperation(value = "模版文字识别-URL Template Text Recognition-URL")
     @GetMapping(value = "/infoForImageUrl", produces = "application/json;charset=utf-8")
     public ResultBean infoForImageUrl(@RequestParam(value = "uid") String uid, @RequestParam(value = "url") String url) {
         try {
@@ -161,7 +163,7 @@ public class TemplateController {
         }
     }
 
-    @ApiOperation(value = "模版文字识别-图片")
+    @ApiOperation(value = "模版文字识别-图片 - Template Text Recognition-Image")
     @PostMapping(value = "/infoForImageFile", produces = "application/json;charset=utf-8")
     public ResultBean infoForImageFile(@RequestParam(value = "uid") String uid, @RequestParam(value = "imageFile") MultipartFile imageFile) {
         try (InputStream inputStream = imageFile.getInputStream()) {

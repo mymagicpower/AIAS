@@ -28,12 +28,14 @@ public class PerspectiveRecogition {
     public static Map<String, String> recognize(NDManager manager, BufferedImage templateImg, RecognitionModel recognitionModel, Image image, List<LabelBean> anchorlabels, List<LabelBean> contentLabels, String fileRelativePath, String distance, boolean save) throws TranslateException {
 
         // 锚点识别区 - 计算中心点坐标，用于透视变换
+        // Anchor recognition area - calculating the center point coordinates for perspective transformation
         for (int i = 0; i < anchorlabels.size(); i++) {
             List<me.aias.ocr.model.Point> points = anchorlabels.get(i).getPoints();
             anchorlabels.get(i).setCenterPoint(PointUtils.getCenterPoint(points));
         }
 
         // 文本检测区
+        // Text detection area
         List<LabelBean> detectedTexts = new ArrayList<>();
         DetectedObjects textDetections = recognitionModel.predict(image);
         List<DetectedObjects.DetectedObject> dt_boxes = textDetections.items();
@@ -85,23 +87,30 @@ public class PerspectiveRecogition {
             srcPoint2f = NDArrayUtils.toOpenCVPoint2f(srcPoints, 3);
             dstPoint2f = NDArrayUtils.toOpenCVPoint2f(dstPoints, 3);
             //3点仿射变换
+            // 3-point affine transformation
             warp_mat = opencv_imgproc.getAffineTransform(srcPoint2f.position(0), dstPoint2f.position(0));
         } else if (dstPoints.size() >= 4) {
             srcPoint2f = NDArrayUtils.toOpenCVPoint2f(srcPoints, 4);
             dstPoint2f = NDArrayUtils.toOpenCVPoint2f(dstPoints, 4);
             //4点透视变换
+            // 4-point perspective transformation
             warp_mat = opencv_imgproc.getPerspectiveTransform(srcPoint2f.position(0), dstPoint2f.position(0));
         }
 
 
         if (dstPoints.size() >= 3 && save) {
             // 模板图片透视变换，跟上传图片对齐
+            // Template image perspective transformation, aligning with uploaded image
             Mat mat = Java2DFrameUtils.toMat(templateImg);
-            if (dstPoints.size() == 3) { //3点仿射变换
+            if (dstPoints.size() == 3) {
+                //3点仿射变换
+                // 3-point affine transformation
                 mat = OpenCVUtils.affineTransform(mat, srcPoint2f, dstPoint2f);
                 templateImg = Java2DFrameUtils.toBufferedImage(mat);
                 DJLImageUtils.saveImage(templateImg, "affineTransform.png", fileRelativePath);
-            } else if (dstPoints.size() >= 4) { //4点透视变换
+            } else if (dstPoints.size() >= 4) {
+                //4点透视变换
+                // 4-point perspective transformation
                 mat = OpenCVUtils.perspectiveTransform(mat, srcPoint2f, dstPoint2f);
                 templateImg = Java2DFrameUtils.toBufferedImage(mat);
                 DJLImageUtils.saveImage(templateImg, "perspectiveTransform.png", fileRelativePath);
@@ -109,16 +118,20 @@ public class PerspectiveRecogition {
         }
 
         // 内容识别区 - 计算中心点坐标，用于距离计算
+        // Content recognition area - calculating the center point coordinates for distance calculation
         for (int i = 0; i < contentLabels.size(); i++) {
             List<me.aias.ocr.model.Point> points = contentLabels.get(i).getPoints();
 
             //根据变换矩阵，对所有点坐标进行坐标变换
+            // Transform all point coordinates using the transformation matrix
             if (dstPoints.size() >= 3) {
                 points = PointUtils.transformPoints(manager, warp_mat, points);
             }
             ai.djl.modality.cv.output.Point point = PointUtils.getCenterPoint(points);
 
-            if (dstPoints.size() < 3) { //无坐标变换，则将坐标归一化（坐标变为占整张图片的百分比）
+            if (dstPoints.size() < 3) {
+                //无坐标变换，则将坐标归一化（坐标变为占整张图片的百分比）
+                // No coordinate transformation, normalize the coordinates (i.e., convert them to a percentage of the entire image)
                 double x = point.getX() / templateImg.getHeight();
                 double y = point.getY() / templateImg.getWidth();
                 ai.djl.modality.cv.output.Point djlPoint = new ai.djl.modality.cv.output.Point(x, y);
@@ -133,11 +146,14 @@ public class PerspectiveRecogition {
         }
 
         // 文本检测区 - 中心点坐标根据透视变换矩阵进行坐标变换
+        // Text detection area - center point coordinates are transformed based on the perspective transformation matrix
         for (int i = 0; i < detectedTexts.size(); i++) {
             List<me.aias.ocr.model.Point> points = detectedTexts.get(i).getPoints();
             ai.djl.modality.cv.output.Point point = PointUtils.getCenterPoint(points);
 
-            if (dstPoints.size() < 3) { //无坐标变换，则将坐标归一化（坐标变为占整张图片的百分比）
+            if (dstPoints.size() < 3) {
+                //无坐标变换，则将坐标归一化（坐标变为占整张图片的百分比）
+                // No coordinate transformation, normalize the coordinates (i.e., convert them to a percentage of the entire image)
                 double x = point.getX() / image.getHeight();
                 double y = point.getY() / image.getWidth();
                 ai.djl.modality.cv.output.Point djlPoint = new ai.djl.modality.cv.output.Point(x, y);
@@ -161,6 +177,7 @@ public class PerspectiveRecogition {
 
         if (save) {
             // 保存图
+            // Save image
             DJLImageUtils.saveImage((BufferedImage) image.getWrappedImage(), "points_result.png", fileRelativePath);
         }
 

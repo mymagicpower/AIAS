@@ -26,7 +26,10 @@ import java.util.List;
 @EnableWebMvc
 public class ConfigurerAdapter implements WebMvcConfigurer {
 
-    /** 文件配置 */
+    /**
+     * 文件配置
+     * File configuration.
+     * */
     private final FileProperties properties;
 
     public ConfigurerAdapter(FileProperties properties) {
@@ -59,6 +62,7 @@ public class ConfigurerAdapter implements WebMvcConfigurer {
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         // 使用 fastjson 序列化，会导致 @JsonIgnore 失效，可以使用 @JSONField(serialize = false) 替换
+        // Use fastjson serialization, which will cause @JsonIgnore to be invalid, can be replaced with @JSONField (serialize = false)
         FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
         List<MediaType> supportMediaTypeList = new ArrayList<>();
         supportMediaTypeList.add(MediaType.APPLICATION_JSON_UTF8);

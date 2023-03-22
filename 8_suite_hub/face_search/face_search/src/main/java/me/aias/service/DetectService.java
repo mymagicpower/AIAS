@@ -11,6 +11,7 @@ import java.util.List;
 
 /**
  * 目标检测服务接口
+ * Object detection service
  *
  * @author Calvin
  * @date 2021-12-12

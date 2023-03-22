@@ -15,21 +15,25 @@ import java.util.List;
 public interface LocalStorageService {
     /**
      * 保存上传文件列表
+     * save file list
      */
     void saveStorageList();
 
     /**
      * 新增文件
+     * add file
      */
     void addStorageFile(LocalStorage localStorage);
 
     /**
      * 根据ID查询
+     * get file by id
      */
     LocalStorage findById(int id);
 
     /**
      * 删除
+     * delete
      */
     boolean delete(int id);
 

@@ -12,7 +12,12 @@ import java.nio.FloatBuffer;
 import static org.bytedeco.opencv.global.opencv_calib3d.findHomography;
 import static org.bytedeco.opencv.global.opencv_core.cvCreateMat;
 
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public class FaceAlignment {
 
   public static Mat affineTransform(
@@ -81,11 +86,13 @@ public class FaceAlignment {
   }
 
   // 根据目标5点，进行旋转仿射变换
+  // Rotate and transform based on 5 target points
   public static Mat get5WarpAffineImg(Mat src, Mat rot_mat) {
     Mat oral = new Mat();
     src.copyTo(oral);
     Mat rot = new Mat();
     // 进行仿射变换，变换后大小为src的大小
+    // Perform affine transformation, and the size after transformation is the same as src
     opencv_imgproc.warpAffine(src, rot, rot_mat, src.size());
     return rot;
   }

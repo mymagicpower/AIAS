@@ -16,7 +16,7 @@
             ref="view"
             v-loading="loading"
             class="view"
-            element-loading-text="加载中..."
+            element-loading-text="loading..."
             element-loading-spinner="el-icon-loading"
             element-loading-background="rgba(0, 0, 0, 0.8)"
           >
@@ -172,7 +172,7 @@ export default {
     // this.canvas.addEventListener("mousemove", this.drawNavigationLineEvent, false);
     // this.listenScroll()
     this.addRightMouseEvent()
-    const _this = this// 赋值vue的this
+    const _this = this
     window.onresize = () => {
       return (() => {
         _this.refresh()
@@ -185,6 +185,7 @@ export default {
     document.removeEventListener('keydown', this.keydownEvent, false)
     this.observer.disconnect()
     // 由于window.onresize是全局事件，在其他页面改变界面时也会执行，这样可能会出现问题，需要在出这个界面时注销window.onresize事件
+    // Since window.onresize is a global event, it will also be executed when the interface is changed on other pages, which may cause problems. Therefore, it is necessary to cancel the window.onresize event when exiting this interface.
     window.onresize = null
   },
   methods: {
@@ -199,9 +200,9 @@ export default {
     //   document.getElementsByClassName('view')[0].addEventListener('mousewheel', (e) => {
     //     e.preventDefault()
     //     if (w.ctrlDown) {
-    //       if (e.wheelDeltaY > 0) { // 放大
+    //       if (e.wheelDeltaY > 0) {
     //         this.topBarEvent('zoomIn')
-    //       } else { // 缩小
+    //       } else {
     //         this.topBarEvent('zoomOut')
     //       }
     //     }

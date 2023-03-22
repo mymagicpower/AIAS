@@ -51,9 +51,11 @@ public class TableInferServiceImpl implements TableInferService {
         List<DetectedObjects.DetectedObject> boxes = layoutDetections.items();
         for (int i = 0; i < boxes.size(); i++) {
             // TODO 模型需优化, 页面出现多个表不准，但是当前可以用于表单中一个表格自动检测识别
+            // TODO Model needs optimization, multiple tables on the page are not allowed, but currently it can be used to automatically detect and recognize a table in a form
             if (boxes.get(i).getClassName().equals("Table")) {
                 Image subImage = getSubImage(image, boxes.get(i).getBoundingBox());
                 // 表格单元检测
+                // Table cell detection
                 DetectedObjects textDetections = recognitionModel.predict(subImage);
                 String tableHtml = tableDetectionModel.getTableHtml(subImage, textDetections);
                 tableHtmlList.add(tableHtml);

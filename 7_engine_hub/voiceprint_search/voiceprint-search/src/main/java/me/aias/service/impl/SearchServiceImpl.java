@@ -402,7 +402,7 @@ public class SearchServiceImpl implements SearchService {
     }
 
     // 删除向量
-    // Search Vector
+    // Delete Vector
     // String deleteExpr = ID_FIELD + " in " + deleteIds.toString();
     public R<MutationResult> delete(String expr) {
         System.out.println("========== delete() ==========");

@@ -9,7 +9,12 @@ import org.bytedeco.opencv.opencv_core.Mat;
 import org.bytedeco.opencv.opencv_core.Point2f;
 
 import java.util.List;
-
+/**
+ *
+ * @author Calvin
+ *
+ * @email 179209347@qq.com
+ **/
 public class NDArrayUtils {
     // NDArray 转 opencv_core.Mat
     public static Mat toOpenCVMat(NDArray points, int rows, int cols) {
@@ -30,6 +35,7 @@ public class NDArrayUtils {
     }
 
     // NDArray 转 opencv_core.Point2f
+    // NDArray to opencv_core.Point2f
     public static Point2f toOpenCVPoint2f(NDArray points, int rows) {
         double[] doubleArray = points.toDoubleArray();
         Point2f points2f = new Point2f(rows);
@@ -42,6 +48,7 @@ public class NDArrayUtils {
     }
 
     // Double array 转 opencv_core.Point2f
+    // Double array to opencv_core.Point2f
     public static Point2f toOpenCVPoint2f(double[] doubleArray, int rows) {
         Point2f points2f = new Point2f(rows);
 
@@ -53,6 +60,7 @@ public class NDArrayUtils {
     }
 
     // list 转 opencv_core.Point2f
+    // list to opencv_core.Point2f
     public static Point2f toOpenCVPoint2f(List<ai.djl.modality.cv.output.Point> points, int rows) {
         Point2f points2f = new Point2f(points.size());
 

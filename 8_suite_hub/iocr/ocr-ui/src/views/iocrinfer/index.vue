@@ -1,8 +1,8 @@
 <template>
   <div class="app-container">
     <el-form ref="form" :model="form" label-width="120">
-      <el-form-item label="选择模板">
-        <el-select v-model="uid" placeholder="请选择">
+      <el-form-item label="Select">
+        <el-select v-model="uid" placeholder="Select">
           <el-option
             v-for="item in list"
             :key="item.uid"
@@ -11,7 +11,7 @@
           />
         </el-select>
       </el-form-item>
-      <el-form-item label="在线图片">
+      <el-form-item label="Image Url">
         <el-input v-model="form.url" />
       </el-form-item>
       <el-row>
@@ -36,9 +36,9 @@
           v-loading.fullscreen.lock="fullscreenLoading"
           type="primary"
           size="small"
-          element-loading-text="拼命加载中"
+          element-loading-text="loading"
           @click="onSubmit"
-        >文字识别</el-button>
+        >Submit</el-button>
       </el-form-item>
       <el-form-item>
         <el-divider />
@@ -46,7 +46,7 @@
       <el-row>
         <el-col :span="8">
           <div><img :src="form.base64Img" width="400px" class="avatar"></div>
-          <el-form-item label="本地图片">
+          <el-form-item label="Local Image">
             <el-upload
               ref="upload"
               name="imageFile"
@@ -61,15 +61,15 @@
               :show-file-list="false"
               :auto-upload="false"
             >
-              <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+              <el-button slot="trigger" size="small" type="primary">Select</el-button>
               <el-button
                 v-loading.fullscreen.lock="fullscreenLoading"
                 style="margin-left: 10px;"
                 type="success"
                 size="small"
-                element-loading-text="拼命加载中"
+                element-loading-text="loading"
                 @click="submitUpload"
-              >上传</el-button>
+              >Upload</el-button>
               <div slot="tip" class="el-upload__tip">Image format: JPG(JPEG), PNG</div>
             </el-upload>
           </el-form-item>
@@ -121,7 +121,7 @@ export default {
       getTemplates().then(response => {
         this.list = response.data.result
       }).catch(function(response) {
-        console.log(response)// 发生错误时执行的代码
+        console.log(response)
       })
     },
     upload() {
@@ -130,7 +130,7 @@ export default {
     },
     submitUpload() {
       if (this.uid === '') {
-        this.$message.error('请选择模板!')
+        this.$message.error('Please select template!')
       } else {
         this.fullscreenLoading = true
         this.$refs.upload.submit()
@@ -156,14 +156,14 @@ export default {
         this.$message.error('Image format should be JPG(JPEG) or PNG!')
       }
       if (this.uid === '') {
-        this.$message.error('请选择模板!')
+        this.$message.error('Please select template!')
         return false
       }
       return pass
     },
     onSubmit() {
       if (this.uid === '') {
-        this.$message.error('请选择模板!')
+        this.$message.error('Please select template!')
       } else {
         this.fullscreenLoading = true
         infoForImageUrl(this.uid, this.form).then(response => {

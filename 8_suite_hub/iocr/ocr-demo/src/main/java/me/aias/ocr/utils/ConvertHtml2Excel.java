@@ -25,8 +25,9 @@ import java.util.List;
 public class ConvertHtml2Excel {
     /**
      * html表格转excel
+     * Convert HTML table to Excel
      *
-     * @param tableHtml 如
+     * @param tableHtml
      *            <table>
      *            ..
      *            </table>
@@ -40,9 +41,10 @@ public class ConvertHtml2Excel {
         try {
             Document data = DocumentHelper.parseText(tableHtml);
             // 生成表头
+            // generate header
             Element thead = data.getRootElement().element("thead");
             HSSFCellStyle titleStyle = getTitleStyle(wb);
-            int ls=0;//列数
+            int ls=0;//列数 //column number
             if (thead != null) {
                 List<Element> trLs = thead.elements("tr");
                 for (Element trEle : trLs) {
@@ -54,6 +56,7 @@ public class ConvertHtml2Excel {
                 }
             }
             // 生成表体
+            // generate body
             Element tbody = data.getRootElement().element("tbody");
             HSSFCellStyle contentStyle = getContentStyle(wb);
             if (tbody != null) {
@@ -68,12 +71,15 @@ public class ConvertHtml2Excel {
                 }
             }
             // 合并表头
+            // merge header
             for (CrossRangeCellMeta crcm : crossRowEleMetaLs) {
                 sheet.addMergedRegion(new CellRangeAddress(crcm.getFirstRow(), crcm.getLastRow(), crcm.getFirstCol(), crcm.getLastCol()));
                 setRegionStyle(sheet, new CellRangeAddress(crcm.getFirstRow(), crcm.getLastRow(), crcm.getFirstCol(), crcm.getLastCol()),titleStyle);
             }
             for(int i=0;i<sheet.getRow(0).getPhysicalNumberOfCells();i++){
-                sheet.autoSizeColumn(i, true);//设置列宽
+                sheet.autoSizeColumn(i, true);
+                //设置列宽
+                //set column width
                 if(sheet.getColumnWidth(i)<255*256){
                     sheet.setColumnWidth(i, sheet.getColumnWidth(i) < 9000 ? 9000 : sheet.getColumnWidth(i));
                 }else{
@@ -89,16 +95,17 @@ public class ConvertHtml2Excel {
 
     /**
      * 生产行内容
+     * Generate row content
      *
-     * @return 最后一列的cell index
+     * @return 最后一列的cell index - the index of the last cell
      */
     /**
-     * @param tdLs th或者td集合
-     * @param rowIndex 行号
-     * @param row POI行对象
+     * @param tdLs th或者td集合 - th or td list
+     * @param rowIndex 行号 - row number
+     * @param row POI行对象 - POI row object
      * @param startCellIndex
-     * @param cellStyle 样式
-     * @param crossRowEleMetaLs 跨行元数据集合
+     * @param cellStyle 样式 - style
+     * @param crossRowEleMetaLs 跨行元数据集合 - row and column span metadata set
      * @return
      */
     private static int makeRowCell(List<Element> tdLs, int rowIndex, HSSFRow row, int startCellIndex, HSSFCellStyle cellStyle,
@@ -107,7 +114,9 @@ public class ConvertHtml2Excel {
         for (int eleIndex = 0; eleIndex < tdLs.size(); i++, eleIndex++) {
             int captureCellSize = getCaptureCellSize(rowIndex, i, crossRowEleMetaLs);
             while (captureCellSize > 0) {
-                for (int j = 0; j < captureCellSize; j++) {// 当前行跨列处理（补单元格）
+                for (int j = 0; j < captureCellSize; j++) {
+                    // 当前行跨列处理（补单元格）
+                    //handle the current row span (fill in cells)
                     row.createCell(i);
                     i++;
                 }
@@ -131,10 +140,14 @@ public class ConvertHtml2Excel {
             int rowSpan = NumberUtils.toInt(thEle.attributeValue("rowspan"), 1);
             int colSpan = NumberUtils.toInt(thEle.attributeValue("colspan"), 1);
             c.setCellStyle(cellStyle);
-            if (rowSpan > 1 || colSpan > 1) { // 存在跨行或跨列
+            if (rowSpan > 1 || colSpan > 1) {
+                // 存在跨行或跨列
+                //exists row and column span
                 crossRowEleMetaLs.add(new CrossRangeCellMeta(rowIndex, i, rowSpan, colSpan));
             }
-            if (colSpan > 1) {// 当前行跨列处理（补单元格）
+            if (colSpan > 1) {
+                // 当前行跨列处理（补单元格）
+                // handle the current row span (fill in cells)
                 for (int j = 1; j < colSpan; j++) {
                     i++;
                     row.createCell(i);
@@ -146,6 +159,7 @@ public class ConvertHtml2Excel {
 
     /**
      * 设置合并单元格的边框样式
+     * Set the border style of the merged cells
      *
      * @param sheet
      * @param region
@@ -163,11 +177,12 @@ public class ConvertHtml2Excel {
 
     /**
      * 获得因rowSpan占据的单元格
+     * Get the cells occupied by rowSpan
      *
-     * @param rowIndex 行号
-     * @param colIndex 列号
-     * @param crossRowEleMetaLs 跨行列元数据
-     * @return 当前行在某列需要占据单元格
+     * @param rowIndex 行号 - row number
+     * @param colIndex 列号 - column number
+     * @param crossRowEleMetaLs 跨行列元数据 - row and column span metadata
+     * @return 当前行在某列需要占据单元格 - the number of cells to be occupied in a column on the current row
      */
     private static int getCaptureCellSize(int rowIndex, int colIndex, List<CrossRangeCellMeta> crossRowEleMetaLs) {
         int captureCellSize = 0;
@@ -183,6 +198,7 @@ public class ConvertHtml2Excel {
 
     /**
      * 获得标题样式
+     * Get the title style
      *
      * @param workbook
      * @return
@@ -194,12 +210,12 @@ public class ConvertHtml2Excel {
         HSSFCellStyle style = workbook.createCellStyle();
         style.setVerticalAlignment(VerticalAlignment.CENTER);
         style.setAlignment(HorizontalAlignment.CENTER);
-        style.setBorderBottom(BorderStyle.THIN); //下边框
-        style.setBorderLeft(BorderStyle.THIN);//左边框
-        style.setBorderTop(BorderStyle.THIN);//上边框
-        style.setBorderRight(BorderStyle.THIN);//右边框
+        style.setBorderBottom(BorderStyle.THIN); //下边框 bottom border
+        style.setBorderLeft(BorderStyle.THIN);//左边框 left border
+        style.setBorderTop(BorderStyle.THIN);//上边框 top border
+        style.setBorderRight(BorderStyle.THIN);//右边框 right border
         //style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-        //style.setFillForegroundColor(titlebackgroundcolor);// 背景色
+        //style.setFillForegroundColor(titlebackgroundcolor);// 背景色 background color
 
         HSSFFont font = workbook.createFont();
         font.setFontName(fontName);
@@ -211,6 +227,7 @@ public class ConvertHtml2Excel {
 
     /**
      * 获得内容样式
+     * Get the content style
      *
      * @param wb
      * @return
@@ -219,16 +236,16 @@ public class ConvertHtml2Excel {
         short fontSize = 12;
         String fontName = "宋体";
         HSSFCellStyle style = wb.createCellStyle();
-        style.setBorderBottom(BorderStyle.THIN); //下边框
-        style.setBorderLeft(BorderStyle.THIN);//左边框
-        style.setBorderTop(BorderStyle.THIN);//上边框
-        style.setBorderRight(BorderStyle.THIN);//右边框
+        style.setBorderBottom(BorderStyle.THIN); //下边框 bottom border
+        style.setBorderLeft(BorderStyle.THIN);//左边框 left border
+        style.setBorderTop(BorderStyle.THIN);//上边框 top border
+        style.setBorderRight(BorderStyle.THIN);//右边框 right border
         HSSFFont font = wb.createFont();
         font.setFontName(fontName);
         font.setFontHeightInPoints(fontSize);
         style.setFont(font);
-        style.setAlignment(HorizontalAlignment.CENTER);//水平居中
-        style.setVerticalAlignment(VerticalAlignment.CENTER);//垂直居中
+        style.setAlignment(HorizontalAlignment.CENTER);//水平居中 horizontal center
+        style.setVerticalAlignment(VerticalAlignment.CENTER);//垂直居中 vertical center
         style.setWrapText(true);
         return style;
     }

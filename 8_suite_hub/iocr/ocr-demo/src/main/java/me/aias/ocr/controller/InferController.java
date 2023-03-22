@@ -24,7 +24,7 @@ import java.util.List;
  * @author Calvin
  * @date Oct 19, 2021
  */
-@Api(tags = "通用文字识别")
+@Api(tags = "通用文字识别 -General Text Recognition")
 @RestController
 @RequestMapping("/inference")
 public class InferController {
@@ -42,7 +42,7 @@ public class InferController {
     @Autowired
     private FileProperties properties;
 
-    @ApiOperation(value = "通用文字识别-URL")
+    @ApiOperation(value = "通用文字识别-URL -General Text Recognition-URL")
     @GetMapping(value = "/generalInfoForImageUrl", produces = "application/json;charset=utf-8")
     public ResultBean generalInfoForImageUrl(@RequestParam(value = "url") String url) throws IOException {
         try {
@@ -56,7 +56,7 @@ public class InferController {
         }
     }
 
-    @ApiOperation(value = "通用文字识别-图片")
+    @ApiOperation(value = "通用文字识别-图片 -General Text Recognition-Image")
     @PostMapping(value = "/generalInfoForImageFile", produces = "application/json;charset=utf-8")
     public ResultBean generalInfoForImageFile(@RequestParam(value = "imageFile") MultipartFile imageFile) {
         try (InputStream inputStream = imageFile.getInputStream()) {

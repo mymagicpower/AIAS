@@ -13,12 +13,12 @@
           {{ scope.row.uid }}
         </template>
       </el-table-column>
-      <el-table-column label="模版名称" align="center">
+      <el-table-column label="Template Name" align="center">
         <template slot-scope="scope">
           {{ scope.row.name }}
         </template>
       </el-table-column>
-      <el-table-column label="模版图片" align="center">
+      <el-table-column label="Template Image" align="center">
         <template slot-scope="scope">
           <el-image
             style="width: 50px; height: 50px"
@@ -28,19 +28,19 @@
       </el-table-column>
       <el-table-column
         fixed="right"
-        label="操作"
+        label="Operation"
         width="200"
       >
         <template slot="header">
           <router-link :to="{path: '/iocr/create/'}">
-            <el-button size="mini" type="success">新增</el-button>
+            <el-button size="mini" type="success">Add</el-button>
           </router-link>
         </template>
         <template slot-scope="scope">
           <router-link :to="{path: '/iocr/edit/', query: {atemplate: scope.row}}">
-            <el-button size="mini" type="primary">编辑</el-button>
+            <el-button size="mini" type="primary">Edit</el-button>
           </router-link>
-          <el-button size="mini" type="danger" @click="handleDelete(scope.row.uid)">删除</el-button>
+          <el-button size="mini" type="danger" @click="handleDelete(scope.row.uid)">Delete</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -71,24 +71,24 @@ export default {
         this.list = response.data.result
         this.listLoading = false
       }).catch(function(response) {
-        console.log(response)// 发生错误时执行的代码
+        console.log(response)
       })
     },
     handleDelete(row) {
-      this.$confirm('此操作将删除设置项，是否继续?', '删除确认', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
+      this.$confirm('This operation will delete the setting, continue?', 'Delete confirmation', {
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel',
         type: 'warning'
       }).then(() => {
         removeTemplate(row).then(response => {
           this.$message({
             type: 'success',
-            message: '删除成功!'
+            message: 'Deleted successfully!'
           })
           this.fetchData()
         })
       }).catch(() => {
-        console.log('取消成功')
+        console.log('Cancelled successfully')
       })
     }
   }

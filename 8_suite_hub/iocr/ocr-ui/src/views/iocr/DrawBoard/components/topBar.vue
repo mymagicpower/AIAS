@@ -1,19 +1,19 @@
 <template>
   <div class="bar">
-    <el-tooltip effect="dark" content="放大" placement="bottom" class="icon">
+    <el-tooltip effect="dark" content="Zoom In" placement="bottom" class="icon">
       <i class="el-icon-zoom-in" @click="changeEvent('zoomIn')" />
     </el-tooltip>
-    <el-tooltip effect="dark" content="缩小" placement="bottom">
+    <el-tooltip effect="dark" content="Zoom Out" placement="bottom">
       <i class="el-icon-zoom-out" @click="changeEvent('zoomOut')" />
     </el-tooltip>
-    <el-tooltip effect="dark" content="移动" placement="bottom">
+    <el-tooltip effect="dark" content="Move" placement="bottom">
       <i class="el-icon-rank" @click="changeEvent('move')" />
     </el-tooltip>
-    <el-tooltip effect="dark" content="全屏" placement="bottom">
+    <el-tooltip effect="dark" content="Full Screen" placement="bottom">
       <i class="el-icon-full-screen" @click="changeEvent('fullScreen')" />
     </el-tooltip>
     <div class="status">
-      当前状态：{{ currentStatus }}
+      Current Status：{{ currentStatus }}
     </div>
   </div>
 </template>
@@ -29,7 +29,7 @@ export default {
   },
   data() {
     return {
-      // 绘图参数
+      // 绘图参数 Drawing Parameters
       config: {
         path_lineWidth: 1,
         path_strokeStyle: '#409EFF',
