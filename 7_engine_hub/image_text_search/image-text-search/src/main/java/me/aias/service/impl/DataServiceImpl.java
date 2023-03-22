@@ -80,7 +80,7 @@ public class DataServiceImpl implements DataService {
 
     /**
      * 获取清单
-     * gegt list
+     * get file list
      */
     public ConcurrentHashMap<String, String> getMap() {
         return map;

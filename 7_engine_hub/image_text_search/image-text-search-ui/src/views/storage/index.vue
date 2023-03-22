@@ -104,15 +104,6 @@ export default {
     handleError(file) {
       this.fullscreenLoading = false
     },
-    // beforeUpload(file) {
-    //   if (file.type !== 'application/zip') {
-    //     this.fullscreenLoading = false
-    //     this.$message.error('文件应为zip格式压缩包!')
-    //     return false
-    //   } else {
-    //     return true
-    //   }
-    // },
     fetchData() {
       this.listLoading = true
       getStorageList().then(response => {

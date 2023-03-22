@@ -6,8 +6,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * 文件操作常量类
- * File operation constants class
+ * 文件类
+ * File Properties
  *
  * @author Calvin
  * @date 2021-12-12

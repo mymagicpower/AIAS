@@ -60,6 +60,7 @@ public class LocalStorageServiceImpl implements LocalStorageService {
 
     /**
      * 保存上传文件列表
+     * Save Storage List
      */
     public void saveStorageList() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -75,6 +76,7 @@ public class LocalStorageServiceImpl implements LocalStorageService {
 
     /**
      * 新增文件
+     * Add file
      */
     public void addStorageFile(LocalStorage localStorage) {
         localStorage.setId(storageId);
@@ -85,6 +87,7 @@ public class LocalStorageServiceImpl implements LocalStorageService {
 
     /**
      * 根据ID查询
+     * Get file by id
      */
     public LocalStorage findById(int id) {
         for (LocalStorage localStorage : storageList) {
@@ -97,6 +100,7 @@ public class LocalStorageServiceImpl implements LocalStorageService {
 
     /**
      * 删除
+     * Delete
      */
     public boolean delete(int id) {
         for (LocalStorage localStorage : storageList) {
