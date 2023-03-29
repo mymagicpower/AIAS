@@ -95,17 +95,25 @@ java -jar video-search-0.1.0.jar
 
 ## 3. Back-end vector engine deployment (Milvus 2.0)
 
-### 3.1 Environmental requirements:
+## 3. Backend vector engine deployment
+#### 3.1 Environmental requirements:
+-Need to install docker operating environment, Mac environment can use Docker Desktop
 
-- Need to install docker operating environment, Mac environment can use Docker Desktop
+#### 3.2 Pull Milvus vector engine image (used to calculate feature vector similarity)
+Download the milvus-standalone-docker-compose.yml configuration file and save it as docker-compose.yml     
 
-### 3.2 Pull Milvus vector engine image (used to calculate feature value vector similarity)
+[Standalone Installation Document](https://milvus.io/docs/install_standalone-docker.md)   
+[Configure Milvus](https://milvus.io/docs/install_standalone-docker.md)        
 
-Download the milvus-standalone-docker-compose.yml configuration file and save it as docker-compose.yml
 
-[Standalone installation document](https://milvus.io/docs/v2.0.0/install_standalone-docker.md)        
+##### Please refer to the latest version of the official website
+- Milvus vector engine reference link
+  [Milvus vector engine official website](https://milvus.io/)      
+  [Milvus vector engine Github](https://github.com/milvus-io)
+
 ```bash
-wget https://github.com/milvus-io/milvus/releases/download/v2.0.0/milvus-standalone-docker-compose.yml -O docker-compose.yml
+# example - v2.2.4
+wget https://github.com/milvus-io/milvus/releases/download/v2.2.4/milvus-standalone-docker-compose.yml -O docker-compose.yml
 ```
 
 #### 3.3 Start Docker container

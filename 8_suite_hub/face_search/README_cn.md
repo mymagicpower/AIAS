@@ -76,21 +76,20 @@ java -jar face-search-1.0.jar
 
 ```
 
-## 3. 后端向量引擎部署（Milvus 2.0）
+### 3. 后端向量引擎部署
+
 #### 3.1 环境要求：
 - 需要安装docker运行环境，Mac环境可以使用Docker Desktop
 
 #### 3.2 拉取Milvus向量引擎镜像（用于计算特征值向量相似度）
-下载 milvus-standalone-docker-compose.yml 配置文件并保存为 docker-compose.yml        
-[单机版安装文档](https://milvus.io/docs/v2.0.0/install_standalone-docker.md)        
+下载 milvus-standalone-docker-compose.yml 配置文件并保存为 docker-compose.yml     
 
-##### 最新版本请参考官网
-- Milvus向量引擎参考链接     
-[Milvus向量引擎官网](https://milvus.io/cn/docs/overview.md)      
-[Milvus向量引擎Github](https://github.com/milvus-io)
+[单机版安装文档](https://milvus.io/docs/install_standalone-docker.md)       
+[引擎配置文档](https://milvus.io/docs/configure-docker.md)     
 
 ```bash
-wget https://github.com/milvus-io/milvus/releases/download/v2.0.0/milvus-standalone-docker-compose.yml -O docker-compose.yml
+# 例子：v2.2.4，请根据官方文档，选择合适的版本
+wget https://github.com/milvus-io/milvus/releases/download/v2.2.4/milvus-standalone-docker-compose.yml -O docker-compose.yml
 ```
 
 #### 3.3 启动 Docker 容器
