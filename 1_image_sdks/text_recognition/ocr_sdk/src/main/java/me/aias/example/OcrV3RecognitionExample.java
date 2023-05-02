@@ -5,6 +5,7 @@ import ai.djl.inference.Predictor;
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.ImageFactory;
 import ai.djl.ndarray.NDList;
+import ai.djl.ndarray.NDManager;
 import ai.djl.opencv.OpenCVImageFactory;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
@@ -51,10 +52,11 @@ public final class OcrV3RecognitionExample {
         try (ZooModel detectionModel = ModelZoo.loadModel(detection.detectCriteria());
              Predictor<Image, NDList> detector = detectionModel.newPredictor();
              ZooModel recognitionModel = ModelZoo.loadModel(recognition.recognizeCriteria());
-             Predictor<Image, String> recognizer = recognitionModel.newPredictor()) {
+             Predictor<Image, String> recognizer = recognitionModel.newPredictor();
+             NDManager manager = NDManager.newBaseManager()) {
 
             long timeInferStart = System.currentTimeMillis();
-            List<RotatedBox> detections = recognition.predict(image, detector, recognizer);
+            List<RotatedBox> detections = recognition.predict(manager, image, detector, recognizer);
 
 //            for (int i = 0; i < 1000; i++) {
 //                detections = recognition.predict(image, detector, recognizer);

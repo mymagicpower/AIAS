@@ -47,10 +47,13 @@ public final class OcrV3Recognition {
         return criteria;
     }
 
-    public List<RotatedBox> predict(
-            Image image, Predictor<Image, NDList> detector, Predictor<Image, String> recognizer)
+    public List<RotatedBox> predict(NDManager manager,
+                                    Image image, Predictor<Image, NDList> detector, Predictor<Image, String> recognizer)
             throws TranslateException {
         NDList boxes = detector.predict(image);
+        // 交给 NDManager自动管理内存
+        // attach to manager for automatic memory management
+        boxes.attach(manager);
 
         List<RotatedBox> result = new ArrayList<>();
         long timeInferStart = System.currentTimeMillis();
@@ -88,7 +91,7 @@ public final class OcrV3Recognition {
 
             subImg = subImg.getSubImage(0, 0, img_crop_width, img_crop_height);
             if (subImg.getHeight() * 1.0 / subImg.getWidth() > 1.5) {
-                subImg = rotateImg(subImg);
+                subImg = rotateImg(manager, subImg);
             }
 
             String name = recognizer.predict(subImg);
@@ -118,10 +121,8 @@ public final class OcrV3Recognition {
         return dis;
     }
 
-    private Image rotateImg(Image image) {
-        try (NDManager manager = NDManager.newBaseManager()) {
-            NDArray rotated = NDImageUtils.rotate90(image.toNDArray(manager), 1);
-            return ImageFactory.getInstance().fromNDArray(rotated);
-        }
+    private Image rotateImg(NDManager manager, Image image) {
+        NDArray rotated = NDImageUtils.rotate90(image.toNDArray(manager), 1);
+        return ImageFactory.getInstance().fromNDArray(rotated);
     }
 }

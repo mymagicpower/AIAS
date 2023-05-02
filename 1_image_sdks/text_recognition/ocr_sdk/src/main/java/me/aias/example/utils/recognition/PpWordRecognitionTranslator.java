@@ -92,7 +92,8 @@ public class PpWordRecognitionTranslator implements Translator<Image, String> {
             resized_w = (int) (Math.ceil(imgH * ratio));
         }
         img = NDImageUtils.resize(img, resized_w, imgH);
-        img = img.transpose(2, 0, 1).div(255).sub(0.5f).div(0.5f);
+        img = img.transpose(2, 0, 1);
+        img.divi(255).subi(0.5f).divi(0.5f);
         NDArray padding_im = ctx.getNDManager().zeros(new Shape(imgC, imgH, imgW), DataType.FLOAT32);
         padding_im.set(new NDIndex(":,:,0:" + resized_w), img);
 

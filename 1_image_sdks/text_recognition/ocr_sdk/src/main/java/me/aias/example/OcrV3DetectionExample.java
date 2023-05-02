@@ -4,6 +4,7 @@ import ai.djl.ModelException;
 import ai.djl.inference.Predictor;
 import ai.djl.modality.cv.Image;
 import ai.djl.ndarray.NDList;
+import ai.djl.ndarray.NDManager;
 import ai.djl.opencv.OpenCVImageFactory;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
@@ -13,6 +14,7 @@ import me.aias.example.utils.detection.OcrV3Detection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.opencv.core.Mat;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -38,9 +40,13 @@ public final class OcrV3DetectionExample {
 
         OcrV3Detection detection = new OcrV3Detection();
         try (ZooModel detectionModel = ModelZoo.loadModel(detection.detectCriteria());
-             Predictor<Image, NDList> detector = detectionModel.newPredictor()) {
+             Predictor<Image, NDList> detector = detectionModel.newPredictor();
+             NDManager manager = NDManager.newBaseManager();) {
 
             NDList dt_boxes = detector.predict(image);
+            // 交给 NDManager自动管理内存
+            // attach to manager for automatic memory management
+            dt_boxes.attach(manager);
 
             for (int i = 0; i < dt_boxes.size(); i++) {
                 ImageUtils.drawRect((Mat) image.getWrappedImage(), dt_boxes.get(i));

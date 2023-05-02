@@ -5,6 +5,7 @@ import ai.djl.inference.Predictor;
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.ImageFactory;
 import ai.djl.ndarray.NDList;
+import ai.djl.ndarray.NDManager;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
@@ -50,9 +51,10 @@ public final class OcrV3MultiThreadRecExample {
         OcrV3MultiThreadRecognition recognition = new OcrV3MultiThreadRecognition();
         try (ZooModel detectionModel = ModelZoo.loadModel(recognition.detectCriteria());
              Predictor<Image, NDList> detector = detectionModel.newPredictor();
-             ZooModel recognitionModel = ModelZoo.loadModel(recognition.recognizeCriteria())) {
+             ZooModel recognitionModel = ModelZoo.loadModel(recognition.recognizeCriteria());
+             NDManager manager = NDManager.newBaseManager()) {
             long timeInferStart = System.currentTimeMillis();
-            List<RotatedBox> detections = recognition.predict(image, recognitionModel, detector, threadNum);
+            List<RotatedBox> detections = recognition.predict(manager, image, recognitionModel, detector, threadNum);
             long timeInferEnd = System.currentTimeMillis();
             System.out.println("time: " + (timeInferEnd - timeInferStart));
 

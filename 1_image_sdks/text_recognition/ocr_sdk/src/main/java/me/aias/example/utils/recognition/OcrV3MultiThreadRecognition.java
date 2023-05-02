@@ -35,11 +35,12 @@ public final class OcrV3MultiThreadRecognition {
     }
 
     public List<RotatedBox> predict(
-            Image image, ZooModel recognitionModel, Predictor<Image, NDList> detector, int threadNum)
+            NDManager manager, Image image, ZooModel recognitionModel, Predictor<Image, NDList> detector, int threadNum)
             throws TranslateException {
         NDList boxes = detector.predict(image);
-
-        Mat mat = (Mat) image.getWrappedImage();
+        // 交给 NDManager自动管理内存
+        // attach to manager for automatic memory management
+        boxes.attach(manager);
 
         ConcurrentLinkedQueue<ImageInfo> queue = new ConcurrentLinkedQueue<>();
         for (int i = 0; i < boxes.size(); i++) {
@@ -67,14 +68,14 @@ public final class OcrV3MultiThreadRecognition {
             Mat srcPoint2f = NDArrayUtils.toMat(srcPoints);
             Mat dstPoint2f = NDArrayUtils.toMat(dstPoints);
 
-            Mat cvMat = OpenCVUtils.perspectiveTransform(mat, srcPoint2f, dstPoint2f);
+            Mat cvMat = OpenCVUtils.perspectiveTransform((Mat) image.getWrappedImage(), srcPoint2f, dstPoint2f);
 
             Image subImg = OpenCVImageFactory.getInstance().fromImage(cvMat);
 //            ImageUtils.saveImage(subImg, i + ".png", "build/output");
 
             subImg = subImg.getSubImage(0, 0, img_crop_width, img_crop_height);
             if (subImg.getHeight() * 1.0 / subImg.getWidth() > 1.5) {
-                subImg = rotateImg(subImg);
+                subImg = rotateImg(manager, subImg);
             }
 
 
@@ -196,10 +197,8 @@ public final class OcrV3MultiThreadRecognition {
         return dis;
     }
 
-    private Image rotateImg(Image image) {
-        try (NDManager manager = NDManager.newBaseManager()) {
-            NDArray rotated = NDImageUtils.rotate90(image.toNDArray(manager), 1);
-            return ImageFactory.getInstance().fromNDArray(rotated);
-        }
+    private Image rotateImg(NDManager manager, Image image) {
+        NDArray rotated = NDImageUtils.rotate90(image.toNDArray(manager), 1);
+        return ImageFactory.getInstance().fromNDArray(rotated);
     }
 }

@@ -90,13 +90,13 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
          */
         Imgproc.dilate(srcMat, mask, structImage);
 
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < cols; col++) {
-                mask.put(row, col, mask.get(row, col)[0] * 255);
-            }
-        }
+        //destination Matrix
+        Mat newMask = mask.clone();
+        Scalar scalar = new Scalar(255);
+        Core.multiply(mask, scalar, newMask);
 
-        NDArray boxes = boxes_from_bitmap(manager, pred, mask, box_thresh);
+
+        NDArray boxes = boxes_from_bitmap(manager, pred, newMask, box_thresh);
 
         //boxes[:, :, 0] = boxes[:, :, 0] / ratio_w
         NDArray boxes1 = boxes.get(":, :, 0").div(ratio_w);
@@ -113,6 +113,7 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
         srcMat.release();
         mask.release();
         structImage.release();
+        newMask.release();
 
         return dt_boxes;
     }
