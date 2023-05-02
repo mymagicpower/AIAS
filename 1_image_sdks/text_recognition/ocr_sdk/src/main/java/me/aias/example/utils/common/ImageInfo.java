@@ -2,14 +2,15 @@ package me.aias.example.utils.common;
 
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.output.BoundingBox;
+import ai.djl.ndarray.NDArray;
 
 public class ImageInfo {
     private String name;
     private Double prob;
     private Image image;
-    private BoundingBox box;
+    private NDArray box;
 
-    public ImageInfo(Image image, BoundingBox box) {
+    public ImageInfo(Image image, NDArray box) {
         this.image = image;
         this.box = box;
     }
@@ -38,11 +39,11 @@ public class ImageInfo {
         this.image = image;
     }
 
-    public BoundingBox getBox() {
+    public NDArray getBox() {
         return box;
     }
 
-    public void setBox(BoundingBox box) {
+    public void setBox(NDArray box) {
         this.box = box;
     }
 }

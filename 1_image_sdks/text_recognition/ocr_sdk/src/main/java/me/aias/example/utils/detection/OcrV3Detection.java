@@ -21,9 +21,10 @@ public final class OcrV3Detection {
     public Criteria<Image, NDList> detectCriteria() {
         Criteria<Image, NDList> criteria =
                 Criteria.builder()
-                        .optEngine("PaddlePaddle")
+                        .optEngine("OnnxRuntime")
+                        .optModelName("inference")
                         .setTypes(Image.class, NDList.class)
-                        .optModelPath(Paths.get("models/ch_PP-OCRv3_det_infer.zip"))
+                        .optModelPath(Paths.get("models/ch_PP-OCRv3_det_infer_onnx.zip"))
                         .optTranslator(new OCRDetectionTranslator(new ConcurrentHashMap<String, String>()))
                         .optProgress(new ProgressBar())
                         .build();

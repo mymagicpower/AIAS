@@ -9,7 +9,9 @@ import ai.djl.modality.cv.output.DetectedObjects;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
+import ai.djl.util.Pair;
 import me.aias.example.utils.cls.OcrDirectionDetection;
+import me.aias.example.utils.common.DirectionInfo;
 import me.aias.example.utils.common.ImageUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +23,8 @@ import java.util.List;
 
 /**
  * OCR文字方向检测(轻量级模型).
+ *  转ONNX 模型有问题，继续使用paddle格式。
+ *
  * OCR text direction detection (light model)
  *
  * @author Calvin
@@ -34,14 +38,14 @@ public final class OcrDirectionExample {
   private OcrDirectionExample() {}
 
   public static void main(String[] args) throws IOException, ModelException, TranslateException {
-    Path imageFile = Paths.get("src/test/resources/ticket_270.png");
+    Path imageFile = Paths.get("src/test/resources/ticket_90.png");
     Image image = ImageFactory.getInstance().fromFile(imageFile);
 
     OcrDirectionDetection detection = new OcrDirectionDetection();
     try (ZooModel detectionModel = ModelZoo.loadModel(detection.detectCriteria());
          Predictor<Image, DetectedObjects> detector = detectionModel.newPredictor();
          ZooModel rotateModel = ModelZoo.loadModel(detection.clsCriteria());
-         Predictor<Image, Classifications> rotateClassifier = rotateModel.newPredictor()) {
+         Predictor<Image, DirectionInfo> rotateClassifier = rotateModel.newPredictor()) {
 
       DetectedObjects detections = detection.predict(image,detector,rotateClassifier);
 

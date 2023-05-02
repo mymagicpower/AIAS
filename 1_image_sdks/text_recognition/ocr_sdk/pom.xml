@@ -25,13 +25,13 @@
 
     <groupId>aias</groupId>
     <artifactId>ocr-sdk</artifactId>
-    <version>0.17.0</version>
+    <version>0.22.1</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <djl.version>0.17.0</djl.version>
+        <djl.version>0.22.1</djl.version>
     </properties>
 
     <build>
@@ -100,17 +100,14 @@
             <artifactId>model-zoo</artifactId>
             <version>${djl.version}</version>
         </dependency>
-        <!-- MXNet -->
+
+        <!-- Pytorch onnx,padddle 没有自己的ndarry 所以需要引用一个 pytorch 或者 mxnet engine-->
         <dependency>
-            <groupId>ai.djl.mxnet</groupId>
-            <artifactId>mxnet-model-zoo</artifactId>
+            <groupId>ai.djl.pytorch</groupId>
+            <artifactId>pytorch-engine</artifactId>
             <version>${djl.version}</version>
         </dependency>
-        <dependency>
-            <groupId>ai.djl.mxnet</groupId>
-            <artifactId>mxnet-engine</artifactId>
-            <version>${djl.version}</version>
-        </dependency>
+
         <!-- PaddlePaddle -->
         <dependency>
             <groupId>ai.djl.paddlepaddle</groupId>
@@ -122,7 +119,12 @@
             <artifactId>paddlepaddle-model-zoo</artifactId>
             <version>${djl.version}</version>
         </dependency>
-
+        <!-- ONNX -->
+        <dependency>
+            <groupId>ai.djl.onnxruntime</groupId>
+            <artifactId>onnxruntime-engine</artifactId>
+            <version>${djl.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.bytedeco</groupId>
             <artifactId>javacv-platform</artifactId>

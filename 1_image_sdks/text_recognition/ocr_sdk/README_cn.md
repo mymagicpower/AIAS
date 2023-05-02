@@ -2,7 +2,7 @@
 [官网链接](https://www.aias.top/)
 
 ### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1noMIVIThKAmec6D-Ai7TKA?pwd=dc6p
+- 链接: https://pan.baidu.com/s/1AGKdyvVeRONOhAHu-Ot7RA?pwd=3m2f
 
 ## 文字识别（OCR）工具箱
 文字识别（OCR）目前在多个行业中得到了广泛应用，比如金融行业的单据识别输入，餐饮行业中的发票识别，
@@ -27,24 +27,6 @@ OCR（文字识别）是目前常用的一种AI能力。
 
 #### 4. 图片旋转
 
-#### 5. 版面分析（支持5个类别, 用于配合文字识别，表格识别的流水线处理）
-- Text
-- Title
-- List
-- Table
-- Figure
-
-```text
-    # 版面分析 model URI
-    layout: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/ppyolov2_r50vd_dcn_365e_publaynet_infer.zip
-```
-#### 6. 表格识别
-- 生成html表格
-- 生成excel文件
-```text
-    # 表格识别 model URI
-    table-en: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr_models/en_table.zip
-```
 
 ### 运行OCR识别例子
 #### 1.1 文字识别：
@@ -75,82 +57,16 @@ time: 2221
 #### 3 多线程文字识别：
 - 例子代码: OcrV3MultiThreadRecExample.java
 
-#### 4. 版面分析：
-- 运行成功后，命令行应该看到下面的信息:
-```text
-[INFO ] - [
-	class: "Text", probability: 0.98750, bounds: [x=0.081, y=0.620, width=0.388, height=0.183]
-	class: "Text", probability: 0.98698, bounds: [x=0.503, y=0.464, width=0.388, height=0.167]
-	class: "Text", probability: 0.98333, bounds: [x=0.081, y=0.465, width=0.387, height=0.121]
-	class: "Figure", probability: 0.97186, bounds: [x=0.074, y=0.091, width=0.815, height=0.304]
-	class: "Table", probability: 0.96995, bounds: [x=0.506, y=0.712, width=0.382, height=0.143]
-]
-```
-- 输出图片效果如下：
-![layout](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/layout_detect_result.jpeg)
 
-#### 5. 表格识别：
-- 运行成功后，命令行应该看到下面的信息:
-```text
-<html>
- <body>
-  <table>
-   <thead>
-    <tr>
-     <td>Methods</td>
-     <td>R</td>
-     <td>P</td>
-     <td>F</td>
-     <td>FPS</td>
-    </tr>
-   </thead>
-   <tbody>
-    <tr>
-     <td>SegLink[26]</td>
-     <td>70.0</td>
-     <td>86.0</td>
-     <td>770</td>
-     <td>89</td>
-    </tr>
-    <tr>
-     <td>PixelLink[4j</td>
-     <td>73.2</td>
-     <td>83.0</td>
-     <td>77.8</td>
-     <td></td>
-    </tr>
-...
-   </tbody>
-  </table> 
- </body>
-</html>
-```
-
-- 输出图片效果如下：
-![table](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/table.jpeg)
-
-- 生成excel效果如下：
-![excel](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/excel.png)
-
-
-### 参考文章：
-https://blog.csdn.net/dqcfkyqdxym3f8rb0/article/details/89819785#comments
-https://www.jianshu.com/p/9eb9d6f6f837
-https://www.jianshu.com/p/173d329afa3a
-https://blog.csdn.net/zhouguangfei0717/article/details/103026139/
-https://blog.csdn.net/u014133119/article/details/82222656
-https://blog.csdn.net/wsp_1138886114/article/details/83374333
-以上文章供参考，并不一定是最好的，建议根据相关关键字进一步去搜索。
-
+### 更新说明
+1. 表格识别暂时归档至项目 AIAS_Archive  - image_sdks/ocr_sdk
+2. 引擎切换为onnx提升性能
 
 ### 开源算法
-#### 1. sdk使用的开源算法
+#### sdk使用的开源算法
 - [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)
-
-#### 2. 模型如何导出 ?
-(readme.md 里提供了推理模型的下载链接)
-- [export_model](https://github.com/PaddlePaddle/PaddleOCR/blob/release%2F2.5/tools/export_model.py)
-- [how_to_create_paddlepaddle_model](http://docs.djl.ai/docs/paddlepaddle/how_to_create_paddlepaddle_model_zh.html)
+- [PaddleOCR转ONNX](https://github.com/PaddlePaddle/Paddle2ONNX)
+  (方向检测模型转换onnx模型存在问题,所以继续用paddle格式，且其不是性能的瓶颈)
 
 
 ### Git地址：   

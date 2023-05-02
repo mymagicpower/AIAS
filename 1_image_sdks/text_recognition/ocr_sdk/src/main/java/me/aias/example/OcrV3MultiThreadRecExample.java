@@ -1,35 +1,34 @@
 package me.aias.example;
 
-import ai.djl.MalformedModelException;
 import ai.djl.ModelException;
 import ai.djl.inference.Predictor;
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.ImageFactory;
-import ai.djl.modality.cv.output.DetectedObjects;
-import ai.djl.repository.zoo.ModelNotFoundException;
+import ai.djl.ndarray.NDList;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
 import me.aias.example.utils.common.ImageUtils;
+import me.aias.example.utils.common.RotatedBox;
+import me.aias.example.utils.common.RotatedBoxCompX;
+import me.aias.example.utils.opencv.OpenCVUtils;
 import me.aias.example.utils.recognition.OcrV3MultiThreadRecognition;
+import org.opencv.core.Mat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
  * OCR V3模型 多线程文字识别.
  * OCR V3 model multi-threaded text recognition.
- * 由于底层引擎原因，与其它引擎可以共享一个模型不同，paddle多线程需要加载多个模型。
- * Due to engine limitations, unlike other engines that can share a model, paddle multi-threading requires loading multiple models.
- ***************************************************************************
- *   请参考 OcrV3RecognitionExample 更新检测与识别部分，这个例子只是演示多线程的使用 *
- *   Please refer to OcrV3RecognitionExample to update the detection and recognition parts, this example only demonstrates the use of multi-threading *
- ***************************************************************************
+ *
  * @author Calvin
  * @date 2022-07-24
  * @email 179209347@qq.com
@@ -50,43 +49,72 @@ public final class OcrV3MultiThreadRecExample {
 
         OcrV3MultiThreadRecognition recognition = new OcrV3MultiThreadRecognition();
         try (ZooModel detectionModel = ModelZoo.loadModel(recognition.detectCriteria());
-             Predictor<Image, DetectedObjects> detector = detectionModel.newPredictor()) {
-            // 由于底层引擎原因，与其它引擎可以共享一个模型不同，paddle多线程需要每个线程加载一个模型
-            // Due to engine limitations, unlike other engines that can share a model, paddle multi-threading requires each thread to load a model
-            // 可以将paddle模型转换成ONNX，ONNX底层引擎支持的更好
-            // Paddle models can be converted to ONNX, which is better supported by the ONNX engine.
-            List<ZooModel> recModels = new ArrayList<>();
-            try {
-                for (int i = 0; i < threadNum; i++) {
-                    ZooModel recognitionModel = ModelZoo.loadModel(recognition.recognizeCriteria());
-                    recModels.add(recognitionModel);
-                }
+             Predictor<Image, NDList> detector = detectionModel.newPredictor();
+             ZooModel recognitionModel = ModelZoo.loadModel(recognition.recognizeCriteria())) {
+            long timeInferStart = System.currentTimeMillis();
+            List<RotatedBox> detections = recognition.predict(image, recognitionModel, detector, threadNum);
+            long timeInferEnd = System.currentTimeMillis();
+            System.out.println("time: " + (timeInferEnd - timeInferStart));
 
-                long timeInferStart = System.currentTimeMillis();
-                DetectedObjects detections = recognition.predict(image, recModels, detector, threadNum);
-                long timeInferEnd = System.currentTimeMillis();
-                System.out.println("time: " + (timeInferEnd - timeInferStart));
+            // 对检测结果根据坐标位置，根据从上到下，从做到右，重新排序，下面算法对图片倾斜旋转角度较小的情形适用
+            // 如果图片旋转角度较大，则需要自行改进算法，需要根据斜率校正计算位置。
+            // Reorder the detection results based on the coordinate positions, from top to bottom, from left to right. The algorithm below is suitable for situations where the image is slightly tilted or rotated.
+            // If the image rotation angle is large, the algorithm needs to be improved, and the position needs to be calculated based on the slope correction.
+            List<RotatedBox> initList = new ArrayList<>();
+            for (RotatedBox result : detections) {
+                // put low Y value at the head of the queue.
+                initList.add(result);
+            }
+            Collections.sort(initList);
 
-                List<DetectedObjects.DetectedObject> boxes = detections.items();
-                for (DetectedObjects.DetectedObject result : boxes) {
-                    System.out.println(result.getClassName() + " : " + result.getProbability());
-                }
-
-                ImageUtils.saveBoundingBoxImage(image, detections, "ocr_result.png", "build/output");
-                logger.info("{}", detections);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ModelNotFoundException e) {
-                e.printStackTrace();
-            } catch (MalformedModelException e) {
-                e.printStackTrace();
-            } finally {
-                for (ZooModel recognitionModel : recModels) {
-                    recognitionModel.close();
+            List<ArrayList<RotatedBoxCompX>> lines = new ArrayList<>();
+            List<RotatedBoxCompX> line = new ArrayList<>();
+            RotatedBoxCompX firstBox = new RotatedBoxCompX(initList.get(0).getBox(), initList.get(0).getText());
+            line.add(firstBox);
+            lines.add((ArrayList) line);
+            for (int i = 1; i < initList.size(); i++) {
+                RotatedBoxCompX tmpBox = new RotatedBoxCompX(initList.get(i).getBox(), initList.get(i).getText());
+                float y1 = firstBox.getBox().toFloatArray()[1];
+                float y2 = tmpBox.getBox().toFloatArray()[1];
+                float dis = Math.abs(y2 - y1);
+                if (dis < 32) { // 认为是同 1 行  - Considered to be in the same line
+                    line.add(tmpBox);
+                } else { // 换行 - Line break
+                    firstBox = tmpBox;
+                    Collections.sort(line);
+                    line = new ArrayList<>();
+                    line.add(firstBox);
+                    lines.add((ArrayList) line);
                 }
             }
 
+
+            String fullText = "";
+            for (int i = 0; i < lines.size(); i++) {
+                for (int j = 0; j < lines.get(i).size(); j++) {
+                    fullText += lines.get(i).get(j).getText() + "\t";
+                }
+                fullText += '\n';
+            }
+
+            System.out.println(fullText);
+
+
+            // 转 BufferedImage 解决 Imgproc.putText 中文乱码问题
+            Mat wrappedImage = (Mat) image.getWrappedImage();
+            BufferedImage bufferedImage = OpenCVUtils.mat2Image(wrappedImage);
+            for (RotatedBox result : detections) {
+                ImageUtils.drawImageRectWithText(bufferedImage, result.getBox(), result.getText());
+            }
+
+            Mat image2Mat = OpenCVUtils.image2Mat(bufferedImage);
+            image = ImageFactory.getInstance().fromImage(image2Mat);
+            ImageUtils.saveImage(image, "mul_ocr_result.png", "build/output");
+
+            wrappedImage.release();
+            image2Mat.release();
+
+            logger.info("{}", detections);
 
         }
     }

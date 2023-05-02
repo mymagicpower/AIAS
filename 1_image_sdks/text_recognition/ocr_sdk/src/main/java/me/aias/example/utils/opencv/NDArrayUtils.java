@@ -1,64 +1,84 @@
 package me.aias.example.utils.opencv;
 
 import ai.djl.ndarray.NDArray;
-import org.bytedeco.javacpp.indexer.DoubleRawIndexer;
-import org.bytedeco.opencv.global.opencv_core;
-import org.bytedeco.opencv.opencv_core.Mat;
-import org.bytedeco.opencv.opencv_core.Point2f;
+import org.opencv.core.CvType;
+import org.opencv.core.Point;
+import org.opencv.core.Mat;
+import org.opencv.core.MatOfPoint;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NDArrayUtils {
-    // NDArray 转 opencv_core.Mat
-    public static Mat toOpenCVMat(NDArray points, int rows, int cols) {
-        double[] doubleArray = points.toDoubleArray();
-        // CV_32F = FloatRawIndexer
-        // CV_64F = DoubleRawIndexer
-        Mat mat = new Mat(rows, cols, opencv_core.CV_64F);
 
-        DoubleRawIndexer ldIdx = mat.createIndexer();
+    public static MatOfPoint matToMatOfPoint(Mat mat) {
+        int rows = mat.rows();
+        MatOfPoint matOfPoint = new MatOfPoint();
+
+        List<Point> list = new ArrayList<>();
+        for (int i = 0; i < rows; i++) {
+            Point point = new Point((float) mat.get(i, 0)[0], (float) mat.get(i, 1)[0]);
+            list.add(point);
+        }
+        matOfPoint.fromList(list);
+
+        return matOfPoint;
+    }
+
+
+    public static Mat floatNDArrayToMat(NDArray ndArray) {
+        int rows = (int) (ndArray.getShape().get(0));
+        int cols = (int) (ndArray.getShape().get(1));
+        Mat mat = new Mat(rows, cols, CvType.CV_32F);
+
+        float[] arrs = ndArray.toFloatArray();
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                ldIdx.put(i, j, doubleArray[i * cols + j]);
+                mat.put(i, j, arrs[i * cols + j]);
             }
         }
-        ldIdx.release();
-
         return mat;
     }
 
-    // NDArray 转 opencv_core.Point2f
-    public static Point2f toOpenCVPoint2f(NDArray points, int rows) {
-        double[] doubleArray = points.toDoubleArray();
-        Point2f points2f = new Point2f(rows);
+    public static Mat floatNDArrayToMat(NDArray ndArray, int cvType) {
+        int rows = (int) (ndArray.getShape().get(0));
+        int cols = (int) (ndArray.getShape().get(1));
+        Mat mat = new Mat(rows, cols, cvType);
 
+        float[] arrs = ndArray.toFloatArray();
         for (int i = 0; i < rows; i++) {
-            points2f.position(i).x((float) doubleArray[i * 2]).y((float) doubleArray[i * 2 + 1]);
+            for (int j = 0; j < cols; j++) {
+                mat.put(i, j, arrs[i * cols + j]);
+            }
         }
-
-        return points2f;
+        return mat;
     }
 
-    // Double array 转 opencv_core.Point2f
-    public static Point2f toOpenCVPoint2f(double[] doubleArray, int rows) {
-        Point2f points2f = new Point2f(rows);
+    public static Mat uint8NDArrayToMat(NDArray ndArray) {
+        int rows = (int) (ndArray.getShape().get(0));
+        int cols = (int) (ndArray.getShape().get(1));
+        Mat mat = new Mat(rows, cols, CvType.CV_8U);
+
+        byte[] arrs = ndArray.toByteArray();
 
         for (int i = 0; i < rows; i++) {
-            points2f.position(i).x((float) doubleArray[i * 2]).y((float) doubleArray[i * 2 + 1]);
+            for (int j = 0; j < cols; j++) {
+                mat.put(i, j, arrs[i * cols + j]);
+            }
         }
-
-        return points2f;
+        return mat;
     }
 
-    // list 转 opencv_core.Point2f
-    public static Point2f toOpenCVPoint2f(List<ai.djl.modality.cv.output.Point> points, int rows) {
-        Point2f points2f = new Point2f(points.size());
 
-        for (int i = 0; i < rows; i++) {
+    // list 转 Mat
+    public static Mat toMat(List<ai.djl.modality.cv.output.Point> points) {
+        Mat mat = new Mat(points.size(), 2, CvType.CV_32F);
+        for (int i = 0; i < points.size(); i++) {
             ai.djl.modality.cv.output.Point point = points.get(i);
-            points2f.position(i).x((float) point.getX()).y((float) point.getY());
+            mat.put(i, 0, (float) point.getX());
+            mat.put(i, 1, (float) point.getY());
         }
 
-        return points2f;
+        return mat;
     }
 }

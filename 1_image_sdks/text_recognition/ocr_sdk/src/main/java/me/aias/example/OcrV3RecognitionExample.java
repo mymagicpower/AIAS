@@ -4,8 +4,6 @@ import ai.djl.ModelException;
 import ai.djl.inference.Predictor;
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.ImageFactory;
-import ai.djl.modality.cv.output.DetectedObjects;
-import ai.djl.modality.cv.output.Rectangle;
 import ai.djl.ndarray.NDList;
 import ai.djl.opencv.OpenCVImageFactory;
 import ai.djl.repository.zoo.ModelZoo;
@@ -16,8 +14,8 @@ import me.aias.example.utils.common.RotatedBox;
 import me.aias.example.utils.common.RotatedBoxCompX;
 import me.aias.example.utils.detection.OcrV3Detection;
 import me.aias.example.utils.opencv.OpenCVUtils;
-import me.aias.example.utils.recognition.OcrV3AlignedRecognition;
 import me.aias.example.utils.recognition.OcrV3Recognition;
+import org.opencv.core.Mat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -117,13 +115,14 @@ public final class OcrV3RecognitionExample {
             System.out.println(fullText);
 
 
-            org.opencv.core.Mat wrappedImage = (org.opencv.core.Mat) image.getWrappedImage();
+            // 转 BufferedImage 解决 Imgproc.putText 中文乱码问题
+            Mat wrappedImage = (Mat) image.getWrappedImage();
             BufferedImage bufferedImage = OpenCVUtils.mat2Image(wrappedImage);
             for (RotatedBox result : detections) {
                 ImageUtils.drawImageRectWithText(bufferedImage, result.getBox(), result.getText());
             }
 
-            org.opencv.core.Mat image2Mat = OpenCVUtils.image2Mat(bufferedImage);
+            Mat image2Mat = OpenCVUtils.image2Mat(bufferedImage);
             image = ImageFactory.getInstance().fromImage(image2Mat);
             ImageUtils.saveImage(image, "ocr_result.png", "build/output");
 

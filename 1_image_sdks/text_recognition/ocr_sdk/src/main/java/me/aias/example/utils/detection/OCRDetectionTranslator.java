@@ -13,16 +13,21 @@ import ai.djl.ndarray.types.Shape;
 import ai.djl.translate.Batchifier;
 import ai.djl.translate.Translator;
 import ai.djl.translate.TranslatorContext;
-import org.bytedeco.javacpp.indexer.FloatRawIndexer;
-import org.bytedeco.javacpp.indexer.IntRawIndexer;
-import org.bytedeco.javacpp.indexer.UByteRawIndexer;
-import org.bytedeco.opencv.global.opencv_imgproc;
-import org.bytedeco.opencv.opencv_core.*;
+import me.aias.example.utils.opencv.NDArrayUtils;
 import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.core.MatOfPoint;
+import org.opencv.core.MatOfPoint2f;
+import org.opencv.core.Core;
+import org.opencv.core.Point;
+import org.opencv.core.Size;
+import org.opencv.core.RotatedRect;
+import org.opencv.core.Scalar;
+import org.opencv.imgproc.Imgproc;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
-
-import static org.bytedeco.opencv.global.opencv_imgproc.*;
 
 public class OCRDetectionTranslator implements Translator<Image, NDList> {
 
@@ -68,43 +73,28 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
         NDArray segmentation = pred.toType(DataType.UINT8, true).gt(0.3);   // thresh=0.3 .mul(255f)
 
         segmentation = segmentation.toType(DataType.UINT8, true);
-
-        //convert from NDArray to Mat
-        byte[] byteArray = segmentation.toByteArray();
         Shape shape = segmentation.getShape();
         int rows = (int) shape.get(0);
         int cols = (int) shape.get(1);
 
-        Mat srcMat = new Mat(rows, cols, CvType.CV_8U);
-
-        UByteRawIndexer ldIdx = srcMat.createIndexer();
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < cols; col++) {
-                ldIdx.put(row, col, byteArray[row * cols + col]);
-            }
-        }
-        ldIdx.release();
-        ldIdx.close();
+        //convert from NDArray to Mat
+        Mat srcMat = NDArrayUtils.uint8NDArrayToMat(segmentation);
 
         Mat mask = new Mat();
         // size 越小，腐蚀的单位越小，图片越接近原图
-        Mat structImage =
-                opencv_imgproc.getStructuringElement(opencv_imgproc.MORPH_RECT, new Size(2, 2));
+        Mat structImage = Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(2, 2));
 
         /**
          * 膨胀 膨胀说明： 图像的一部分区域与指定的核进行卷积， 求核的最`大`值并赋值给指定区域。 膨胀可以理解为图像中`高亮区域`的'领域扩大'。
          * 意思是高亮部分会侵蚀不是高亮的部分，使高亮部分越来越多。
          */
-        opencv_imgproc.dilate(srcMat, mask, structImage);
+        Imgproc.dilate(srcMat, mask, structImage);
 
-        ldIdx = mask.createIndexer();
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
-                ldIdx.put(row, col, ldIdx.get(row, col) * 255);
+                mask.put(row, col, mask.get(row, col)[0] * 255);
             }
         }
-        ldIdx.release();
-        ldIdx.close();
 
         NDArray boxes = boxes_from_bitmap(manager, pred, mask, box_thresh);
 
@@ -121,11 +111,8 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
 
         // release Mat
         srcMat.release();
-        srcMat.close();
         mask.release();
-        mask.close();
         structImage.release();
-        structImage.close();
 
         return dt_boxes;
     }
@@ -219,15 +206,15 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
         int height = mask.rows();
         int width = mask.cols();
 
-        MatVector contours = new MatVector();
+        List<MatOfPoint> contours = new ArrayList<>();
         Mat hierarchy = new Mat();
         // 寻找轮廓
-        findContours(
+        Imgproc.findContours(
                 mask,
                 contours,
                 hierarchy,
-                opencv_imgproc.RETR_LIST,
-                opencv_imgproc.CHAIN_APPROX_SIMPLE,
+                Imgproc.RETR_LIST,
+                Imgproc.CHAIN_APPROX_SIMPLE,
                 new Point(0, 0));
 
         int num_contours = Math.min((int) contours.size(), max_candidates);
@@ -237,9 +224,10 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
 
         int count = 0;
         for (int index = 0; index < num_contours; index++) {
-            Mat contour = contours.get(index);
+            MatOfPoint contour = contours.get(index);
+            MatOfPoint2f newContour = new MatOfPoint2f(contour.toArray());
             float[][] pointsArr = new float[4][2];
-            int sside = get_mini_boxes(contour, pointsArr);
+            int sside = get_mini_boxes(newContour, pointsArr);
             if (sside < this.min_size)
                 continue;
             NDArray points = manager.create(pointsArr);
@@ -248,7 +236,6 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
                 continue;
 
             NDArray box = unclip(manager, points); // TODO get_mini_boxes(box)
-
 
             // box[:, 0] = np.clip(np.round(box[:, 0] / width * dest_width), 0, dest_width)
             NDArray boxes1 = box.get(":,0").div(width).mul(dest_width).round().clip(0, dest_width);
@@ -266,7 +253,7 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
 
             // release memory
             contour.release();
-            contour.close();
+            newContour.release();
         }
 //        if (count < num_contours) {
 //            NDArray newBoxes = manager.zeros(new Shape(count, 4, 2), DataType.FLOAT32);
@@ -277,9 +264,6 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
 
         // release
         hierarchy.release();
-        hierarchy.close();
-        contours.releaseReference();
-        contours.close();
 
         return boxes;
     }
@@ -378,21 +362,18 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
      * @param pointsArr The predicted box.
      * @return smaller side of box
      */
-    private int get_mini_boxes(Mat contour, float[][] pointsArr) {
+    private int get_mini_boxes(MatOfPoint2f contour, float[][] pointsArr) {
         // https://blog.csdn.net/qq_37385726/article/details/82313558
         // bounding_box[1] - rect 返回矩形的长和宽
-        RotatedRect rect = minAreaRect(contour);
+        RotatedRect rect = Imgproc.minAreaRect(contour);
         Mat points = new Mat();
-        boxPoints(rect, points);
+        Imgproc.boxPoints(rect, points);
 
-        FloatRawIndexer ldIdx = points.createIndexer();
         float[][] fourPoints = new float[4][2];
         for (int row = 0; row < 4; row++) {
-            fourPoints[row][0] = ldIdx.get(row, 0);
-            fourPoints[row][1] = ldIdx.get(row, 1);
+            fourPoints[row][0] = (float) points.get(row, 0)[0];
+            fourPoints[row][1] = (float) points.get(row, 1)[0];
         }
-        ldIdx.release();
-        ldIdx.close();
 
         float[] tmpPoint = new float[2];
         for (int i = 0; i < 4; i++) {
@@ -434,16 +415,12 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
         pointsArr[2] = fourPoints[index_3];
         pointsArr[3] = fourPoints[index_4];
 
-        int height = rect.boundingRect().height();
-        int width = rect.boundingRect().width();
+        int height = rect.boundingRect().height;
+        int width = rect.boundingRect().width;
         int sside = Math.min(height, width);
-
 
         // release
         points.release();
-        points.close();
-        rect.releaseReference();
-        rect.close();
 
         return sside;
     }
@@ -471,63 +448,27 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
         box.set(new NDIndex(":, 1"), box.get(":, 1").sub(ymin));
 
         //mask - convert from NDArray to Mat
-        byte[] maskArray = mask.toByteArray();
-        int rows = (int) mask.getShape().get(0);
-        int cols = (int) mask.getShape().get(1);
-        Mat maskMat = new Mat(rows, cols, CvType.CV_8U);
-        UByteRawIndexer ldIdx = maskMat.createIndexer();
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < cols; col++) {
-                ldIdx.put(row, col, maskArray[row * cols + col]);
-            }
-        }
-        ldIdx.release();
-        ldIdx.close();
+        Mat maskMat = NDArrayUtils.uint8NDArrayToMat(mask);
 
-        //mask - convert from NDArray to Mat
-        float[] boxArray = box.toFloatArray();
-        Mat boxMat = new Mat(4, 2, CvType.CV_32S);
-        IntRawIndexer intRawIndexer = boxMat.createIndexer();
-        for (int row = 0; row < 4; row++) {
-            intRawIndexer.put(row, 0, (int) boxArray[row * 2]);
-            intRawIndexer.put(row, 1, (int) boxArray[row * 2 + 1]);
-        }
-        intRawIndexer.release();
-        intRawIndexer.close();
+        //mask - convert from NDArray to Mat - 4 rows, 2 cols
+        Mat boxMat = NDArrayUtils.floatNDArrayToMat(box, CvType.CV_32S);
 
 //        boxMat.reshape(1, new int[]{1, 4, 2});
-        MatVector matVector = new MatVector();
-        matVector.put(boxMat);
-        fillPoly(maskMat, matVector, new Scalar(1));
+        List<MatOfPoint> pts = new ArrayList<>();
+        MatOfPoint matOfPoint = NDArrayUtils.matToMatOfPoint(boxMat); // new MatOfPoint(boxMat);
+        pts.add(matOfPoint);
+        Imgproc.fillPoly(maskMat, pts, new Scalar(1));
 
 
         NDArray subBitMap = bitmap.get(ymin + ":" + (ymax + 1) + "," + xmin + ":" + (xmax + 1));
-        float[] subBitMapArr = subBitMap.toFloatArray();
-        rows = (int) subBitMap.getShape().get(0);
-        cols = (int) subBitMap.getShape().get(1);
-        Mat bitMapMat = new Mat(rows, cols, CvType.CV_32F);
-        FloatRawIndexer floatRawIndexer = bitMapMat.createIndexer();
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < cols; col++) {
-                floatRawIndexer.put(row, col, subBitMapArr[row * cols + col]);
-            }
-        }
-        floatRawIndexer.release();
-        floatRawIndexer.close();
+        Mat bitMapMat = NDArrayUtils.floatNDArrayToMat(subBitMap);
 
-        Scalar score = org.bytedeco.opencv.global.opencv_core.mean(bitMapMat, maskMat);
-        float scoreValue = (float) score.get();
+        Scalar score = Core.mean(bitMapMat, maskMat);
+        float scoreValue = (float) score.val[0];
         // release
         maskMat.release();
-        maskMat.close();
         boxMat.release();
-        boxMat.close();
         bitMapMat.release();
-        bitMapMat.close();
-        matVector.releaseReference();
-        matVector.close();
-        score.releaseReference();
-        score.close();
 
         return scoreValue;
     }

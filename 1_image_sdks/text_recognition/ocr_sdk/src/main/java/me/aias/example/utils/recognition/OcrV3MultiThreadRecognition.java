@@ -3,18 +3,22 @@ package me.aias.example.utils.recognition;
 import ai.djl.inference.Predictor;
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.ImageFactory;
-import ai.djl.modality.cv.output.BoundingBox;
-import ai.djl.modality.cv.output.DetectedObjects;
-import ai.djl.modality.cv.output.Rectangle;
+import ai.djl.modality.cv.output.Point;
 import ai.djl.modality.cv.util.NDImageUtils;
 import ai.djl.ndarray.NDArray;
+import ai.djl.ndarray.NDList;
 import ai.djl.ndarray.NDManager;
-import ai.djl.paddlepaddle.zoo.cv.objectdetection.PpWordDetectionTranslator;
+import ai.djl.opencv.OpenCVImageFactory;
 import ai.djl.repository.zoo.Criteria;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.training.util.ProgressBar;
 import ai.djl.translate.TranslateException;
 import me.aias.example.utils.common.ImageInfo;
+import me.aias.example.utils.common.RotatedBox;
+import me.aias.example.utils.detection.OCRDetectionTranslator;
+import me.aias.example.utils.opencv.NDArrayUtils;
+import me.aias.example.utils.opencv.OpenCVUtils;
+import org.opencv.core.Mat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,27 +34,57 @@ public final class OcrV3MultiThreadRecognition {
     public OcrV3MultiThreadRecognition() {
     }
 
-    public DetectedObjects predict(
-            Image image, List<ZooModel> recModels, Predictor<Image, DetectedObjects> detector, int threadNum)
+    public List<RotatedBox> predict(
+            Image image, ZooModel recognitionModel, Predictor<Image, NDList> detector, int threadNum)
             throws TranslateException {
-        DetectedObjects detections = detector.predict(image);
+        NDList boxes = detector.predict(image);
 
-        List<DetectedObjects.DetectedObject> boxes = detections.items();
+        Mat mat = (Mat) image.getWrappedImage();
 
         ConcurrentLinkedQueue<ImageInfo> queue = new ConcurrentLinkedQueue<>();
         for (int i = 0; i < boxes.size(); i++) {
-            BoundingBox box = boxes.get(i).getBoundingBox();
-            Image subImg = getSubImage(image, box);
+
+            NDArray box = boxes.get(i);
+
+            float[] pointsArr = box.toFloatArray();
+            float[] lt = java.util.Arrays.copyOfRange(pointsArr, 0, 2);
+            float[] rt = java.util.Arrays.copyOfRange(pointsArr, 2, 4);
+            float[] rb = java.util.Arrays.copyOfRange(pointsArr, 4, 6);
+            float[] lb = java.util.Arrays.copyOfRange(pointsArr, 6, 8);
+            int img_crop_width = (int) Math.max(distance(lt, rt), distance(rb, lb));
+            int img_crop_height = (int) Math.max(distance(lt, lb), distance(rt, rb));
+            List<Point> srcPoints = new ArrayList<>();
+            srcPoints.add(new Point(lt[0], lt[1]));
+            srcPoints.add(new Point(rt[0], rt[1]));
+            srcPoints.add(new Point(rb[0], rb[1]));
+            srcPoints.add(new Point(lb[0], lb[1]));
+            List<Point> dstPoints = new ArrayList<>();
+            dstPoints.add(new Point(0, 0));
+            dstPoints.add(new Point(img_crop_width, 0));
+            dstPoints.add(new Point(img_crop_width, img_crop_height));
+            dstPoints.add(new Point(0, img_crop_height));
+
+            Mat srcPoint2f = NDArrayUtils.toMat(srcPoints);
+            Mat dstPoint2f = NDArrayUtils.toMat(dstPoints);
+
+            Mat cvMat = OpenCVUtils.perspectiveTransform(mat, srcPoint2f, dstPoint2f);
+
+            Image subImg = OpenCVImageFactory.getInstance().fromImage(cvMat);
+//            ImageUtils.saveImage(subImg, i + ".png", "build/output");
+
+            subImg = subImg.getSubImage(0, 0, img_crop_width, img_crop_height);
             if (subImg.getHeight() * 1.0 / subImg.getWidth() > 1.5) {
                 subImg = rotateImg(subImg);
             }
+
+
             ImageInfo imageInfo = new ImageInfo(subImg, box);
             queue.add(imageInfo);
         }
 
         List<InferCallable> callables = new ArrayList<>(threadNum);
         for (int i = 0; i < threadNum; i++) {
-            callables.add(new InferCallable(recModels.get(i), queue));
+            callables.add(new InferCallable(recognitionModel, queue));
         }
 
         ExecutorService es = Executors.newFixedThreadPool(threadNum);
@@ -81,26 +115,27 @@ public final class OcrV3MultiThreadRecognition {
             es.shutdown();
         }
 
-        List<String> names = new ArrayList<>();
-        List<Double> prob = new ArrayList<>();
-        List<BoundingBox> rect = new ArrayList<>();
+        List<RotatedBox> rotatedBoxes = new ArrayList<>();
         for (ImageInfo imageInfo : resultList) {
-            names.add(imageInfo.getName());
-            prob.add(imageInfo.getProb());
-            rect.add(imageInfo.getBox());
-        }
-        DetectedObjects detectedObjects = new DetectedObjects(names, prob, rect);
+            RotatedBox rotatedBox = new RotatedBox(imageInfo.getBox(), imageInfo.getName());
+            rotatedBoxes.add(rotatedBox);
 
-        return detectedObjects;
+            // 不确定是否需要主动释放，nice to have ...
+            Mat wrappedImage = (Mat) imageInfo.getImage().getWrappedImage();
+            wrappedImage.release();
+        }
+
+        return rotatedBoxes;
     }
 
-    public Criteria<Image, DetectedObjects> detectCriteria() {
-        Criteria<Image, DetectedObjects> criteria =
+    public Criteria<Image, NDList> detectCriteria() {
+        Criteria<Image, NDList> criteria =
                 Criteria.builder()
-                        .optEngine("PaddlePaddle")
-                        .setTypes(Image.class, DetectedObjects.class)
-                        .optModelPath(Paths.get("models/ch_PP-OCRv3_det_infer.zip"))
-                        .optTranslator(new PpWordDetectionTranslator(new ConcurrentHashMap<String, String>()))
+                        .optEngine("OnnxRuntime")
+                        .optModelName("inference")
+                        .setTypes(Image.class, NDList.class)
+                        .optModelPath(Paths.get("models/ch_PP-OCRv3_det_infer_onnx.zip"))
+                        .optTranslator(new OCRDetectionTranslator(new ConcurrentHashMap<String, String>()))
                         .optProgress(new ProgressBar())
                         .build();
 
@@ -108,13 +143,16 @@ public final class OcrV3MultiThreadRecognition {
     }
 
     public Criteria<Image, String> recognizeCriteria() {
+        ConcurrentHashMap<String, String> hashMap = new ConcurrentHashMap<>();
+
         Criteria<Image, String> criteria =
                 Criteria.builder()
-                        .optEngine("PaddlePaddle")
+                        .optEngine("OnnxRuntime")
+                        .optModelName("inference")
                         .setTypes(Image.class, String.class)
-                        .optModelPath(Paths.get("models/ch_PP-OCRv3_rec_infer.zip"))
+                        .optModelPath(Paths.get("models/ch_PP-OCRv3_rec_infer_onnx.zip"))
                         .optProgress(new ProgressBar())
-                        .optTranslator(new PpWordRecognitionTranslator((new ConcurrentHashMap<String, String>())))
+                        .optTranslator(new PpWordRecognitionTranslator(hashMap))
                         .build();
 
         return criteria;
@@ -125,14 +163,14 @@ public final class OcrV3MultiThreadRecognition {
         private ConcurrentLinkedQueue<ImageInfo> queue;
         private List<ImageInfo> resultList = new ArrayList<>();
 
-        public InferCallable(ZooModel recognitionModel, ConcurrentLinkedQueue<ImageInfo> queue){
+        public InferCallable(ZooModel recognitionModel, ConcurrentLinkedQueue<ImageInfo> queue) {
             recognizer = recognitionModel.newPredictor();
             this.queue = queue;
         }
 
         public List<ImageInfo> call() {
+            ImageInfo imageInfo = queue.poll();
             try {
-                ImageInfo imageInfo = queue.poll();
                 while (imageInfo != null) {
                     String name = recognizer.predict(imageInfo.getImage());
                     imageInfo.setName(name);
@@ -151,35 +189,11 @@ public final class OcrV3MultiThreadRecognition {
         }
     }
 
-    private Image getSubImage(Image img, BoundingBox box) {
-        Rectangle rect = box.getBounds();
-        double[] extended = extendRect(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
-        int width = img.getWidth();
-        int height = img.getHeight();
-        int[] recovered = {
-                (int) (extended[0] * width),
-                (int) (extended[1] * height),
-                (int) (extended[2] * width),
-                (int) (extended[3] * height)
-        };
-        return img.getSubImage(recovered[0], recovered[1], recovered[2], recovered[3]);
-    }
-
-    private double[] extendRect(double xmin, double ymin, double width, double height) {
-        double centerx = xmin + width / 2;
-        double centery = ymin + height / 2;
-        if (width > height) {
-            width += height * 2.0;
-            height *= 3.0;
-        } else {
-            height += width * 2.0;
-            width *= 3.0;
-        }
-        double newX = centerx - width / 2 < 0 ? 0 : centerx - width / 2;
-        double newY = centery - height / 2 < 0 ? 0 : centery - height / 2;
-        double newWidth = newX + width > 1 ? 1 - newX : width;
-        double newHeight = newY + height > 1 ? 1 - newY : height;
-        return new double[]{newX, newY, newWidth, newHeight};
+    private float distance(float[] point1, float[] point2) {
+        float disX = point1[0] - point2[0];
+        float disY = point1[1] - point2[1];
+        float dis = (float) Math.sqrt(disX * disX + disY * disY);
+        return dis;
     }
 
     private Image rotateImg(Image image) {
