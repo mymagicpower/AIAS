@@ -88,10 +88,10 @@ public final class OcrDirectionDetection {
 
         Criteria<Image, DirectionInfo> criteria =
                 Criteria.builder()
-                        .optEngine("PaddlePaddle")
+                        .optEngine("OnnxRuntime")
                         .optModelName("inference")
                         .setTypes(Image.class, DirectionInfo.class)
-                        .optModelPath(Paths.get("models/ch_ppocr_mobile_v2.0_cls_infer.zip"))
+                        .optModelPath(Paths.get("models/ch_ppocr_mobile_v2.0_cls_onnx.zip"))
                         .optTranslator(new PpWordRotateTranslator())
                         .optProgress(new ProgressBar())
                         .build();

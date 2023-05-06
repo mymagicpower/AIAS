@@ -101,30 +101,26 @@
             <version>${djl.version}</version>
         </dependency>
 
-        <!-- Pytorch onnx,padddle 没有自己的ndarry 所以需要引用一个 pytorch 或者 mxnet engine-->
+        <!-- onnx 没有自己的 ndarry 所以需要引用一个 pytorch 或者 mxnet engine-->
+<!--        <dependency>-->
+<!--            <groupId>ai.djl.pytorch</groupId>-->
+<!--            <artifactId>pytorch-engine</artifactId>-->
+<!--            <version>${djl.version}</version>-->
+<!--        </dependency>-->
+
         <dependency>
-            <groupId>ai.djl.pytorch</groupId>
-            <artifactId>pytorch-engine</artifactId>
+            <groupId>ai.djl.mxnet</groupId>
+            <artifactId>mxnet-engine</artifactId>
             <version>${djl.version}</version>
         </dependency>
 
-        <!-- PaddlePaddle -->
-        <dependency>
-            <groupId>ai.djl.paddlepaddle</groupId>
-            <artifactId>paddlepaddle-engine</artifactId>
-            <version>${djl.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>ai.djl.paddlepaddle</groupId>
-            <artifactId>paddlepaddle-model-zoo</artifactId>
-            <version>${djl.version}</version>
-        </dependency>
         <!-- ONNX -->
         <dependency>
             <groupId>ai.djl.onnxruntime</groupId>
             <artifactId>onnxruntime-engine</artifactId>
             <version>${djl.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.bytedeco</groupId>
             <artifactId>javacv-platform</artifactId>

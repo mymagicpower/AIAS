@@ -2,14 +2,12 @@ package me.aias.example;
 
 import ai.djl.ModelException;
 import ai.djl.inference.Predictor;
-import ai.djl.modality.Classifications;
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.ImageFactory;
 import ai.djl.modality.cv.output.DetectedObjects;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
-import ai.djl.util.Pair;
 import me.aias.example.utils.cls.OcrDirectionDetection;
 import me.aias.example.utils.common.DirectionInfo;
 import me.aias.example.utils.common.ImageUtils;
@@ -23,7 +21,6 @@ import java.util.List;
 
 /**
  * OCR文字方向检测(轻量级模型).
- *  转ONNX 模型有问题，继续使用paddle格式。
  *
  * OCR text direction detection (light model)
  *
