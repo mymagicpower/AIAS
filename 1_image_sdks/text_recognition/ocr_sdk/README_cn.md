@@ -104,7 +104,7 @@ https://github.com/PaddlePaddle/Paddle2ONNX/blob/develop/tools/paddle/README.md
 python paddle_infer_shape.py --model_dir /Users/calvin/Downloads/paddle_ocr/ch_ppocr_mobile_v2.0_cls_infer --model_filename inference.pdmodel --params_filename inference.pdiparams --save_dir /Users/calvin/Downloads/paddle_ocr/ch_ppocr_mobile_v2.0_cls_infer/new_model --input_shape_dict="{'x':[-1,3,-1,-1]}"
 
 2). 然后再转onnx模型（这样可以解锁输入数据的大小限制）：
-paddle2onnx --model_dir /Users/calvin/Downloads/paddle_ocr/ch_ppocr_mobile_v2.0_cls_infer \
+paddle2onnx --model_dir /Users/calvin/Downloads/paddle_ocr/ch_ppocr_mobile_v2.0_cls_infer/new_model \
             --model_filename inference.pdmodel \
             --params_filename inference.pdiparams \
             --save_file inference.onnx \
