@@ -66,7 +66,51 @@ time: 2221
 #### sdk使用的开源算法
 - [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)
 - [PaddleOCR转ONNX](https://github.com/PaddlePaddle/Paddle2ONNX)
-  (方向检测模型转换onnx模型存在问题,所以继续用paddle格式，且其不是性能的瓶颈)
+
+```text
+Paddle模型转onnx:
+https://github.com/PaddlePaddle/Paddle2ONNX
+
+转换例子：
+1. OCRv3 文字检测
+paddle2onnx --model_dir /Users/calvin/Downloads/paddle_ocr/ch_PP-OCRv3_det_infer \
+            --model_filename inference.pdmodel \
+            --params_filename inference.pdiparams \
+            --save_file inference.onnx \
+            --enable_dev_version True \
+            --enable_onnx_checker True
+
+2. OCRv3 文字识别
+paddle2onnx --model_dir /Users/calvin/Downloads/paddle_ocr/ch_PP-OCRv3_rec_infer \
+            --model_filename inference.pdmodel \
+            --params_filename inference.pdiparams \
+            --save_file inference.onnx \
+            --enable_dev_version True \
+            --enable_onnx_checker True
+
+3. OCRv2 文字检测
+paddle2onnx --model_dir /Users/calvin/Downloads/paddle_ocr/ch_PP-OCRv2_det_infer \
+            --model_filename inference.pdmodel \
+            --params_filename inference.pdiparams \
+            --save_file inference.onnx \
+            --enable_dev_version True \
+            --enable_onnx_checker True
+
+4. 方向检测
+方向检测这个模型有点问题，需要先修改 Paddle 模型输入 Shape：
+https://github.com/PaddlePaddle/Paddle2ONNX/blob/develop/tools/paddle/README.md
+
+1). 修改 Paddle 模型输入 Shape
+python paddle_infer_shape.py --model_dir /Users/calvin/Downloads/paddle_ocr/ch_ppocr_mobile_v2.0_cls_infer --model_filename inference.pdmodel --params_filename inference.pdiparams --save_dir /Users/calvin/Downloads/paddle_ocr/ch_ppocr_mobile_v2.0_cls_infer/new_model --input_shape_dict="{'x':[-1,3,-1,-1]}"
+
+2). 然后再转onnx模型（这样可以解锁输入数据的大小限制）：
+paddle2onnx --model_dir /Users/calvin/Downloads/paddle_ocr/ch_ppocr_mobile_v2.0_cls_infer \
+            --model_filename inference.pdmodel \
+            --params_filename inference.pdiparams \
+            --save_file inference.onnx \
+            --enable_dev_version True \
+            --enable_onnx_checker True
+```
 
 
 ### Git地址：   
