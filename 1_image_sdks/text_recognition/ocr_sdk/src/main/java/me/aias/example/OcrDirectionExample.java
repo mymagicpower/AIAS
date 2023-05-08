@@ -8,9 +8,9 @@ import ai.djl.modality.cv.output.DetectedObjects;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
-import me.aias.example.utils.cls.OcrDirectionDetection;
-import me.aias.example.utils.common.DirectionInfo;
-import me.aias.example.utils.common.ImageUtils;
+import me.aias.example.cls.OcrDirectionDetection;
+import me.aias.example.common.DirectionInfo;
+import me.aias.example.common.ImageUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

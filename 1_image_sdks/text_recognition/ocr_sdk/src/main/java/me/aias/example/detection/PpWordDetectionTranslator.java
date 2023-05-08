@@ -1,4 +1,4 @@
-package me.aias.example.utils.detection;
+package me.aias.example.detection;
 
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.output.BoundingBox;

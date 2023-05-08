@@ -1,4 +1,4 @@
-package me.aias.example.utils.common;
+package me.aias.example.common;
 
 public class DirectionInfo {
     private String name;

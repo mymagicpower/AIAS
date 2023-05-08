@@ -1,4 +1,4 @@
-package me.aias.example.utils.cls;
+package me.aias.example.cls;
 
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.util.NDImageUtils;
@@ -9,7 +9,7 @@ import ai.djl.ndarray.types.Shape;
 import ai.djl.translate.Batchifier;
 import ai.djl.translate.Translator;
 import ai.djl.translate.TranslatorContext;
-import me.aias.example.utils.common.DirectionInfo;
+import me.aias.example.common.DirectionInfo;
 
 import java.util.Arrays;
 import java.util.List;

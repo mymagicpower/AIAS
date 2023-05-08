@@ -1,13 +1,9 @@
-package me.aias.example.utils.common;
+package me.aias.example.common;
 
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.ImageFactory;
-import ai.djl.modality.cv.output.BoundingBox;
 import ai.djl.modality.cv.output.DetectedObjects;
-import ai.djl.modality.cv.output.Rectangle;
 import ai.djl.ndarray.NDArray;
-import org.bytedeco.opencv.global.opencv_imgproc;
-import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
@@ -15,7 +11,6 @@ import org.opencv.imgproc.Imgproc;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;

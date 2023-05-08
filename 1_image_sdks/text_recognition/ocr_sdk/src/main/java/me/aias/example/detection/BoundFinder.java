@@ -10,7 +10,7 @@
  * OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
  * and limitations under the License.
  */
-package me.aias.example.utils.detection;
+package me.aias.example.detection;
 
 import ai.djl.modality.cv.output.BoundingBox;
 import ai.djl.modality.cv.output.Point;

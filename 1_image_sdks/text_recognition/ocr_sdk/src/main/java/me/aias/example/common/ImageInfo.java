@@ -1,7 +1,6 @@
-package me.aias.example.utils.common;
+package me.aias.example.common;
 
 import ai.djl.modality.cv.Image;
-import ai.djl.modality.cv.output.BoundingBox;
 import ai.djl.ndarray.NDArray;
 
 public class ImageInfo {

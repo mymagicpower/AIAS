@@ -1,4 +1,4 @@
-package me.aias.example.utils.detection;
+package me.aias.example.detection;
 
 import ai.djl.modality.cv.BufferedImageFactory;
 import ai.djl.modality.cv.Image;
@@ -13,7 +13,7 @@ import ai.djl.ndarray.types.Shape;
 import ai.djl.translate.Batchifier;
 import ai.djl.translate.Translator;
 import ai.djl.translate.TranslatorContext;
-import me.aias.example.utils.opencv.NDArrayUtils;
+import me.aias.example.opencv.NDArrayUtils;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;

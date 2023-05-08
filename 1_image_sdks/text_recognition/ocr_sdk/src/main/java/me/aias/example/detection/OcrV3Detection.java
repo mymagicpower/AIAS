@@ -1,4 +1,4 @@
-package me.aias.example.utils.detection;
+package me.aias.example.detection;
 
 import ai.djl.modality.cv.Image;
 import ai.djl.ndarray.NDList;
@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ConcurrentHashMap;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public final class OcrV3Detection {

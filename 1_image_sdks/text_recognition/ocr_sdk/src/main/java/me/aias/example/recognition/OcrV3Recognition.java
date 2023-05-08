@@ -1,4 +1,4 @@
-package me.aias.example.utils.recognition;
+package me.aias.example.recognition;
 
 import ai.djl.inference.Predictor;
 import ai.djl.modality.cv.Image;
@@ -12,9 +12,9 @@ import ai.djl.opencv.OpenCVImageFactory;
 import ai.djl.repository.zoo.Criteria;
 import ai.djl.training.util.ProgressBar;
 import ai.djl.translate.TranslateException;
-import me.aias.example.utils.common.RotatedBox;
-import me.aias.example.utils.opencv.NDArrayUtils;
-import me.aias.example.utils.opencv.OpenCVUtils;
+import me.aias.example.common.RotatedBox;
+import me.aias.example.opencv.NDArrayUtils;
+import me.aias.example.opencv.OpenCVUtils;
 import org.opencv.core.Mat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

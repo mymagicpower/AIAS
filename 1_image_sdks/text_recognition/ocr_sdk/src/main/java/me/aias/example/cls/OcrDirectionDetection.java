@@ -1,4 +1,4 @@
-package me.aias.example.utils.cls;
+package me.aias.example.cls;
 
 import ai.djl.inference.Predictor;
 import ai.djl.modality.cv.Image;
@@ -12,8 +12,8 @@ import ai.djl.ndarray.NDManager;
 import ai.djl.repository.zoo.Criteria;
 import ai.djl.training.util.ProgressBar;
 import ai.djl.translate.TranslateException;
-import me.aias.example.utils.common.DirectionInfo;
-import me.aias.example.utils.detection.PpWordDetectionTranslator;
+import me.aias.example.common.DirectionInfo;
+import me.aias.example.detection.PpWordDetectionTranslator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

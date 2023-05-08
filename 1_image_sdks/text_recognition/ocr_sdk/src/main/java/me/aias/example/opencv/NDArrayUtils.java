@@ -1,4 +1,4 @@
-package me.aias.example.utils.opencv;
+package me.aias.example.opencv;
 
 import ai.djl.ndarray.NDArray;
 import org.opencv.core.CvType;
