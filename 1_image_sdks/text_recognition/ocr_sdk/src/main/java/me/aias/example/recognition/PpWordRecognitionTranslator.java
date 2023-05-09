@@ -27,7 +27,7 @@ public class PpWordRecognitionTranslator implements Translator<Image, String> {
         use_space_char =
                 arguments.containsKey("use_space_char")
                         ? Boolean.parseBoolean(arguments.get("use_space_char").toString())
-                        : false;
+                        : true;
     }
 
     @Override
@@ -78,12 +78,11 @@ public class PpWordRecognitionTranslator implements Translator<Image, String> {
         NDArray img = input.toNDArray(ctx.getNDManager(), Image.Flag.COLOR);
         int imgC = 3;
         int imgH = 48;
-        int imgW = 320;//192 320
+        int imgW = 320;
 
         int h = input.getHeight();
         int w = input.getWidth();
         float ratio = (float) w / (float) h;
-        imgW = (int)(imgH * ratio);
 
         int resized_w;
         if (Math.ceil(imgH * ratio) > imgW) {
@@ -97,6 +96,7 @@ public class PpWordRecognitionTranslator implements Translator<Image, String> {
         NDArray padding_im = ctx.getNDManager().zeros(new Shape(imgC, imgH, imgW), DataType.FLOAT32);
         padding_im.set(new NDIndex(":,:,0:" + resized_w), img);
 
+        padding_im = padding_im.flip(0);
         padding_im = padding_im.expandDims(0);
         return new NDList(padding_im);
     }
