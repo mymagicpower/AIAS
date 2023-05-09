@@ -30,9 +30,13 @@ import java.util.List;
 import java.util.Map;
 
 public class OCRDetectionTranslator implements Translator<Image, NDList> {
+    // det_algorithm == "DB"
+    private final float thresh = 0.3f;
+    private final boolean use_dilation = false;
+    private final String score_mode = "fast";
+    private final String box_type = "quad";
 
-    private Image image;
-    private final int max_side_len;
+    private final int limit_side_len;
     private final int max_candidates;
     private final int min_size;
     private final float box_thresh;
@@ -43,9 +47,9 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
     private int img_width;
 
     public OCRDetectionTranslator(Map<String, ?> arguments) {
-        max_side_len =
-                arguments.containsKey("max_side_len")
-                        ? Integer.parseInt(arguments.get("max_side_len").toString())
+        limit_side_len =
+                arguments.containsKey("limit_side_len")
+                        ? Integer.parseInt(arguments.get("limit_side_len").toString())
                         : 960;
         max_candidates =
                 arguments.containsKey("max_candidates")
@@ -58,7 +62,7 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
         box_thresh =
                 arguments.containsKey("box_thresh")
                         ? Float.parseFloat(arguments.get("box_thresh").toString())
-                        : 0.5f;
+                        : 0.6f; // 0.5f
         unclip_ratio =
                 arguments.containsKey("unclip_ratio")
                         ? Float.parseFloat(arguments.get("unclip_ratio").toString())
@@ -70,33 +74,43 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
         NDManager manager = ctx.getNDManager();
         NDArray pred = list.singletonOrThrow();
         pred = pred.squeeze();
-        NDArray segmentation = pred.toType(DataType.UINT8, true).gt(0.3);   // thresh=0.3 .mul(255f)
+        NDArray segmentation = pred.gt(thresh);   // thresh=0.3 .mul(255f)
 
         segmentation = segmentation.toType(DataType.UINT8, true);
         Shape shape = segmentation.getShape();
         int rows = (int) shape.get(0);
         int cols = (int) shape.get(1);
 
-        //convert from NDArray to Mat
-        Mat srcMat = NDArrayUtils.uint8NDArrayToMat(segmentation);
+        Mat newMask = new Mat();
+        if (this.use_dilation) {
+            Mat mask = new Mat();
+            //convert from NDArray to Mat
+            Mat srcMat = NDArrayUtils.uint8NDArrayToMat(segmentation);
+            // size 越小，腐蚀的单位越小，图片越接近原图
+            // Mat dilation_kernel = Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(2, 2));
+            Mat dilation_kernel = NDArrayUtils.uint8ArrayToMat(new byte[][]{{1, 1}, {1, 1}});
+            /**
+             * 膨胀说明： 图像的一部分区域与指定的核进行卷积， 求核的最`大`值并赋值给指定区域。 膨胀可以理解为图像中`高亮区域`的'领域扩大'。
+             * 意思是高亮部分会侵蚀不是高亮的部分，使高亮部分越来越多。
+             */
+            Imgproc.dilate(srcMat, mask, dilation_kernel);
+            //destination Matrix
+            Scalar scalar = new Scalar(255);
+            Core.multiply(mask, scalar, newMask);
+            // release Mat
+            mask.release();
+            srcMat.release();
+            dilation_kernel.release();
+        } else {
+            Mat srcMat = NDArrayUtils.uint8NDArrayToMat(segmentation);
+            //destination Matrix
+            Scalar scalar = new Scalar(255);
+            Core.multiply(srcMat, scalar, newMask);
+            // release Mat
+            srcMat.release();
+        }
 
-        Mat mask = new Mat();
-        // size 越小，腐蚀的单位越小，图片越接近原图
-        Mat structImage = Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(2, 2));
-
-        /**
-         * 膨胀 膨胀说明： 图像的一部分区域与指定的核进行卷积， 求核的最`大`值并赋值给指定区域。 膨胀可以理解为图像中`高亮区域`的'领域扩大'。
-         * 意思是高亮部分会侵蚀不是高亮的部分，使高亮部分越来越多。
-         */
-        Imgproc.dilate(srcMat, mask, structImage);
-
-        //destination Matrix
-        Mat newMask = mask.clone();
-        Scalar scalar = new Scalar(255);
-        Core.multiply(mask, scalar, newMask);
-
-
-        NDArray boxes = boxes_from_bitmap(manager, pred, newMask, box_thresh);
+        NDArray boxes = boxes_from_bitmap(manager, pred, newMask);
 
         //boxes[:, :, 0] = boxes[:, :, 0] / ratio_w
         NDArray boxes1 = boxes.get(":, :, 0").div(ratio_w);
@@ -110,9 +124,6 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
         dt_boxes.detach();
 
         // release Mat
-        srcMat.release();
-        mask.release();
-        structImage.release();
         newMask.release();
 
         return dt_boxes;
@@ -199,31 +210,28 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
      *
      * @param manager
      * @param pred    the binarized image predicted by DB.
-     * @param mask    new 'pred' after threshold filtering.
+     * @param bitmap  new 'pred' after threshold filtering.
      */
-    private NDArray boxes_from_bitmap(NDManager manager, NDArray pred, Mat mask, float box_thresh) {
+    private NDArray boxes_from_bitmap(NDManager manager, NDArray pred, Mat bitmap) {
         int dest_height = (int) pred.getShape().get(0);
         int dest_width = (int) pred.getShape().get(1);
-        int height = mask.rows();
-        int width = mask.cols();
+        int height = bitmap.rows();
+        int width = bitmap.cols();
 
         List<MatOfPoint> contours = new ArrayList<>();
         Mat hierarchy = new Mat();
         // 寻找轮廓
         Imgproc.findContours(
-                mask,
+                bitmap,
                 contours,
                 hierarchy,
                 Imgproc.RETR_LIST,
-                Imgproc.CHAIN_APPROX_SIMPLE,
-                new Point(0, 0));
+                Imgproc.CHAIN_APPROX_SIMPLE);
 
-        int num_contours = Math.min((int) contours.size(), max_candidates);
+        int num_contours = Math.min(contours.size(), max_candidates);
         NDList boxList = new NDList();
-//        NDArray boxes = manager.zeros(new Shape(num_contours, 4, 2), DataType.FLOAT32);
         float[] scores = new float[num_contours];
 
-        int count = 0;
         for (int index = 0; index < num_contours; index++) {
             MatOfPoint contour = contours.get(index);
             MatOfPoint2f newContour = new MatOfPoint2f(contour.toArray());
@@ -245,22 +253,14 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
             NDArray boxes2 = box.get(":,1").div(height).mul(dest_height).round().clip(0, dest_height);
             box.set(new NDIndex(":, 1"), boxes2);
 
-            if (score > box_thresh) {
-                boxList.add(box);
-//                boxes.set(new NDIndex(count + ",:,:"), box);
-                scores[index] = score;
-                count++;
-            }
+            boxList.add(box);
+            scores[index] = score;
 
             // release memory
             contour.release();
             newContour.release();
         }
-//        if (count < num_contours) {
-//            NDArray newBoxes = manager.zeros(new Shape(count, 4, 2), DataType.FLOAT32);
-//            newBoxes.set(new NDIndex("0,0,0"), boxes.get(":" + count + ",:,:"));
-//            boxes = newBoxes;
-//        }
+
         NDArray boxes = NDArrays.stack(boxList);
 
         // release
@@ -477,54 +477,42 @@ public class OCRDetectionTranslator implements Translator<Image, NDList> {
     @Override
     public NDList processInput(TranslatorContext ctx, Image input) {
         NDArray img = input.toNDArray(ctx.getNDManager());
-        image = BufferedImageFactory.getInstance().fromNDArray(img);
         int h = input.getHeight();
         int w = input.getWidth();
         img_height = h;
         img_width = w;
-        int resize_w = w;
-        int resize_h = h;
 
         // limit the max side
         float ratio = 1.0f;
-        if (Math.max(resize_h, resize_w) > max_side_len) {
-            if (resize_h > resize_w) {
-                ratio = (float) max_side_len / (float) resize_h;
+        if (Math.max(h, w) > limit_side_len) {
+            if (h > w) {
+                ratio = (float) limit_side_len / (float) h;
             } else {
-                ratio = (float) max_side_len / (float) resize_w;
+                ratio = (float) limit_side_len / (float) w;
             }
         }
 
-        resize_h = (int) (resize_h * ratio);
-        resize_w = (int) (resize_w * ratio);
+        int resize_h = (int) (h * ratio);
+        int resize_w = (int) (w * ratio);
 
-        if (resize_h % 32 == 0) {
-            resize_h = resize_h;
-        } else if (Math.floor((float) resize_h / 32f) <= 1) {
-            resize_h = 32;
-        } else {
-            resize_h = (int) Math.floor((float) resize_h / 32f) * 32;
-        }
-
-        if (resize_w % 32 == 0) {
-            resize_w = resize_w;
-        } else if (Math.floor((float) resize_w / 32f) <= 1) {
-            resize_w = 32;
-        } else {
-            resize_w = (int) Math.floor((float) resize_w / 32f) * 32;
-        }
+        resize_h = Math.round((float) resize_h / 32f) * 32;
+        resize_w = Math.round((float) resize_w / 32f) * 32;
 
         ratio_h = resize_h / (float) h;
         ratio_w = resize_w / (float) w;
 
         img = NDImageUtils.resize(img, resize_w, resize_h);
+
         img = NDImageUtils.toTensor(img);
+
         img =
                 NDImageUtils.normalize(
                         img,
                         new float[]{0.485f, 0.456f, 0.406f},
                         new float[]{0.229f, 0.224f, 0.225f});
+
         img = img.expandDims(0);
+
         return new NDList(img);
     }
 

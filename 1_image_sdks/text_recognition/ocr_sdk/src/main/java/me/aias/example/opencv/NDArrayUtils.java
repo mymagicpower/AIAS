@@ -69,6 +69,19 @@ public class NDArrayUtils {
         return mat;
     }
 
+    public static org.opencv.core.Mat uint8ArrayToMat(byte[][] arr) {
+        int rows = arr.length;
+        int cols = arr[0].length;
+        org.opencv.core.Mat mat = new Mat(rows, cols, CvType.CV_8U);
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                mat.put(i, j, arr[i][j]);
+            }
+        }
+
+        return mat;
+    }
 
     // list 转 Mat
     public static Mat toMat(List<ai.djl.modality.cv.output.Point> points) {
