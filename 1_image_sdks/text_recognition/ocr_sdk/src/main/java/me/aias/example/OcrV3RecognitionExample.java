@@ -94,7 +94,7 @@ public final class OcrV3RecognitionExample {
                 float y1 = firstBox.getBox().toFloatArray()[1];
                 float y2 = tmpBox.getBox().toFloatArray()[1];
                 float dis = Math.abs(y2 - y1);
-                if (dis < 32) { // 认为是同 1 行  - Considered to be in the same line
+                if (dis < 20) { // 根据文档调整，判断是否是同 1 行  - Considered to be in the same line
                     line.add(tmpBox);
                 } else { // 换行 - Line break
                     firstBox = tmpBox;
