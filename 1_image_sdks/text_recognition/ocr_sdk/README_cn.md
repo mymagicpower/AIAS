@@ -113,6 +113,39 @@ paddle2onnx --model_dir /Users/calvin/Downloads/paddle_ocr/ch_ppocr_mobile_v2.0_
 ```
 
 
+### 常见问题：
+#### java.lang.UnsupportedOperationException: This NDArray implementation does not currently support this operation
+```
+    // 明确指定 ndarray 引擎，有时系统不能自动处理
+    public DetectedObjects processOutput(TranslatorContext ctx, NDList list) {
+        // NDManager manager = ctx.getNDManager();
+        try (NDManager manager = NDManager.newBaseManager(ctx.getNDManager().getDevice(), "PyTorch")) {
+             
+             ......
+        }
+    }
+
+    如果返回结果是 NDArray 类型，由于离开try(){}会自动调用close方法，自动回收内存，ndarray的内存会释放。
+    所以，需要对NDArray 类型数据，调用其 detach方法，解除 ndarray manager的自动管理，如：
+    img.detach();
+    但是，要注意，后续这个NDArray对象，要attach到另一个 ndarray manager 上，由其自动管理内存回收释放。
+    否则，会导致内存泄漏，如 OcrV3DetectionExample 中的处理：
+    
+    
+        try (ZooModel detectionModel = ModelZoo.loadModel(detection.detectCriteria());
+         Predictor<Image, NDList> detector = detectionModel.newPredictor();
+         NDManager manager = NDManager.newBaseManager();) {
+
+        NDList dt_boxes = detector.predict(image);
+        // 交给 NDManager自动管理内存
+        // attach to manager for automatic memory management
+        dt_boxes.attach(manager);
+        ....
+        
+    
+```
+
+
 ### Git地址：   
 [Github链接](https://github.com/mymagicpower/AIAS)    
 [Gitee链接](https://gitee.com/mymagicpower/AIAS)   

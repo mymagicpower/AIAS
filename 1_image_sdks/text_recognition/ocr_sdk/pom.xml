@@ -101,18 +101,18 @@
             <version>${djl.version}</version>
         </dependency>
 
-        <!-- onnx 没有自己的 ndarry 所以需要引用一个 pytorch 或者 mxnet engine-->
-<!--        <dependency>-->
-<!--            <groupId>ai.djl.pytorch</groupId>-->
-<!--            <artifactId>pytorch-engine</artifactId>-->
-<!--            <version>${djl.version}</version>-->
-<!--        </dependency>-->
-
+        <!-- onnx 没有自己的 ndarry 所以需要引用一个 pytorch 或者 mxnet engine, pytorch 实践发现算子支持的更好-->
         <dependency>
-            <groupId>ai.djl.mxnet</groupId>
-            <artifactId>mxnet-engine</artifactId>
+            <groupId>ai.djl.pytorch</groupId>
+            <artifactId>pytorch-engine</artifactId>
             <version>${djl.version}</version>
         </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>ai.djl.mxnet</groupId>-->
+<!--            <artifactId>mxnet-engine</artifactId>-->
+<!--            <version>${djl.version}</version>-->
+<!--        </dependency>-->
 
         <!-- ONNX -->
         <dependency>
