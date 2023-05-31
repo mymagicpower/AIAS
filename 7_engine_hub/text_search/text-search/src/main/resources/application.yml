@@ -1,0 +1,55 @@
+server:
+  port: 8089
+
+#是否开启 swagger-ui
+swagger:
+  enabled: true
+
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 3000MB
+      max-request-size: 3000MB
+
+# 文件存储路径
+file:
+  mac:
+    path: ~/file/
+  linux:
+    path: /home/aias/file/
+  windows:
+    path: D:/aias/file/
+  # 文件大小 /M
+  maxSize: 3000
+
+#Sentence
+nlp:
+  # 特征提取模型
+  feature: models/distiluse-base-multilingual-cased-v1.zip
+
+# Vector Engine - Milvus
+search:
+  host: 127.0.0.1
+  port: 19530
+  # https://milvus.io/cn/docs/v2.0.0/build_index.md
+  # https://milvus.io/cn/docs/v2.0.0/metric.md#floating
+  # For floating point vectors:
+  #  IVF_FLAT
+  #  IVF_SQ8
+  #  IVF_PQ
+  #  HNSW
+  #  ANNOY
+  #  RHNSW_FLAT
+  #  RHNSW_PQ
+  #  RHNSW_SQ
+  # For binary vectors:
+  #  BIN_IVF_FLAT
+  indexType: IVF_FLAT
+  metricType: L2
+
+  nprobe: 256
+  nlist: 16384
+  dimension: 512 # dimension of each vector
+  collectionName: texts #collection name
+  partitionName: p1
