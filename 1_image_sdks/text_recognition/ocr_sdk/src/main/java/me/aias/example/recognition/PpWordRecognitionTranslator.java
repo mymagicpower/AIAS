@@ -5,6 +5,7 @@ import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.util.NDImageUtils;
 import ai.djl.ndarray.NDArray;
 import ai.djl.ndarray.NDList;
+import ai.djl.ndarray.NDManager;
 import ai.djl.ndarray.index.NDIndex;
 import ai.djl.ndarray.types.DataType;
 import ai.djl.ndarray.types.Shape;
@@ -75,30 +76,32 @@ public class PpWordRecognitionTranslator implements Translator<Image, String> {
 
     @Override
     public NDList processInput(TranslatorContext ctx, Image input) {
-        NDArray img = input.toNDArray(ctx.getNDManager(), Image.Flag.COLOR);
-        int imgC = 3;
-        int imgH = 48;
-        int imgW = 320;
+        try(NDManager manager = NDManager.newBaseManager(ctx.getNDManager().getDevice(),"PyTorch")){
+            NDArray img = input.toNDArray(manager, Image.Flag.COLOR);
+            int imgC = 3;
+            int imgH = 48;
+            int imgW = 320;
 
-        int h = input.getHeight();
-        int w = input.getWidth();
-        float ratio = (float) w / (float) h;
+            int h = input.getHeight();
+            int w = input.getWidth();
+            float ratio = (float) w / (float) h;
 
-        int resized_w;
-        if (Math.ceil(imgH * ratio) > imgW) {
-            resized_w = imgW;
-        } else {
-            resized_w = (int) (Math.ceil(imgH * ratio));
+            int resized_w;
+            if (Math.ceil(imgH * ratio) > imgW) {
+                resized_w = imgW;
+            } else {
+                resized_w = (int) (Math.ceil(imgH * ratio));
+            }
+            img = NDImageUtils.resize(img, resized_w, imgH);
+            img = img.transpose(2, 0, 1).toType(DataType.FLOAT32,false);
+            img.divi(255f).subi(0.5f).divi(0.5f);
+            NDArray padding_im = ctx.getNDManager().zeros(new Shape(imgC, imgH, imgW), DataType.FLOAT32);
+            padding_im.set(new NDIndex(":,:,0:" + resized_w), img);
+
+            padding_im = padding_im.flip(0);
+            padding_im = padding_im.expandDims(0);
+            return new NDList(padding_im);
         }
-        img = NDImageUtils.resize(img, resized_w, imgH);
-        img = img.transpose(2, 0, 1).toType(DataType.FLOAT32,false);
-        img.divi(255f).subi(0.5f).divi(0.5f);
-        NDArray padding_im = ctx.getNDManager().zeros(new Shape(imgC, imgH, imgW), DataType.FLOAT32);
-        padding_im.set(new NDIndex(":,:,0:" + resized_w), img);
-
-        padding_im = padding_im.flip(0);
-        padding_im = padding_im.expandDims(0);
-        return new NDList(padding_im);
     }
 
     @Override
