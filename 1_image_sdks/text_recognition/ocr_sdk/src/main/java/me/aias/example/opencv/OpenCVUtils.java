@@ -9,16 +9,6 @@ import java.awt.image.DataBufferByte;
 
 
 public class OpenCVUtils {
-
-    public static Mat perspectiveTransform(Mat src, Mat srcPoints, Mat dstPoints) {
-        Mat dst = src.clone();
-        Mat warp_mat = Imgproc.getPerspectiveTransform(srcPoints, dstPoints);
-        Imgproc.warpPerspective(src, dst, warp_mat, dst.size());
-        warp_mat.release();
-
-        return dst;
-    }
-
     /**
      * Mat to BufferedImage
      *

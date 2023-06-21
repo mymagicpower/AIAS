@@ -22,10 +22,8 @@ OCR（文字识别）是目前常用的一种AI能力。
 #### 2. 图片旋转
 - RotationExample
 
-#### 3. 文字识别 (原生支持倾斜文本, 1 & 2 需要时可以作为辅助)
+#### 3. 文字识别 (1 & 2 需要时可以作为辅助)
 - OcrV3RecognitionExample
-
-#### 4. 图片旋转
 
 
 ### 运行OCR识别例子
@@ -33,17 +31,29 @@ OCR（文字识别）是目前常用的一种AI能力。
 - 例子代码: OcrV3RecognitionExample.java    
 - 运行成功后，命令行应该看到下面的信息:
 ```text
-time: 766
-time: 2221
-烦恼！
-无数个
-吃饱了就有
-烦恼
-没有吃饱只有一个
+检票：B1
+Z31C014941
+九江站
+南昌站
+D6262
+Nanchang
+Jiujiang
+03车02A号
+2019年06月07日06：56开
+二等座
+网折
+￥39.5元
+折
+限乘当日当次车
+3604211990****2417
+买票请到12306发货请到95306
+中国铁路祝您旅途愉快
+32270300310607C014941上海南售
+time: 790
 ```
 
 - 输出图片效果如下：
-![text_with_angle](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/text_with_angle.png)
+![texts](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/texts_result.png)
 
 
 #### 2. 图片旋转：
@@ -53,97 +63,6 @@ time: 2221
 ![ticket_0](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/ticket_0.png)
 - 旋转后图片效果如下：
 ![rotate_result](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/rotate_result.png)
-
-#### 3 多线程文字识别：
-- 例子代码: OcrV3MultiThreadRecExample.java
-
-
-### 更新说明
-1. 表格识别暂时归档至项目 AIAS_Archive  - image_sdks/ocr_sdk
-2. 引擎切换为onnx提升性能
-
-### 开源算法
-#### sdk使用的开源算法
-- [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)
-- [PaddleOCR转ONNX](https://github.com/PaddlePaddle/Paddle2ONNX)
-
-```text
-Paddle模型转onnx:
-https://github.com/PaddlePaddle/Paddle2ONNX
-
-转换例子：
-1. OCRv3 文字检测
-paddle2onnx --model_dir /Users/calvin/Downloads/paddle_ocr/ch_PP-OCRv3_det_infer \
-            --model_filename inference.pdmodel \
-            --params_filename inference.pdiparams \
-            --save_file inference.onnx \
-            --enable_dev_version True \
-            --enable_onnx_checker True
-
-2. OCRv3 文字识别
-paddle2onnx --model_dir /Users/calvin/Downloads/paddle_ocr/ch_PP-OCRv3_rec_infer \
-            --model_filename inference.pdmodel \
-            --params_filename inference.pdiparams \
-            --save_file inference.onnx \
-            --enable_dev_version True \
-            --enable_onnx_checker True
-
-3. OCRv2 文字检测
-paddle2onnx --model_dir /Users/calvin/Downloads/paddle_ocr/ch_PP-OCRv2_det_infer \
-            --model_filename inference.pdmodel \
-            --params_filename inference.pdiparams \
-            --save_file inference.onnx \
-            --enable_dev_version True \
-            --enable_onnx_checker True
-
-4. 方向检测
-方向检测这个模型有点问题，需要先修改 Paddle 模型输入 Shape：
-https://github.com/PaddlePaddle/Paddle2ONNX/blob/develop/tools/paddle/README.md
-
-1). 修改 Paddle 模型输入 Shape
-python paddle_infer_shape.py --model_dir /Users/calvin/Downloads/paddle_ocr/ch_ppocr_mobile_v2.0_cls_infer --model_filename inference.pdmodel --params_filename inference.pdiparams --save_dir /Users/calvin/Downloads/paddle_ocr/ch_ppocr_mobile_v2.0_cls_infer/new_model --input_shape_dict="{'x':[-1,3,-1,-1]}"
-
-2). 然后再转onnx模型（这样可以解锁输入数据的大小限制）：
-paddle2onnx --model_dir /Users/calvin/Downloads/paddle_ocr/ch_ppocr_mobile_v2.0_cls_infer/new_model \
-            --model_filename inference.pdmodel \
-            --params_filename inference.pdiparams \
-            --save_file inference.onnx \
-            --enable_dev_version True \
-            --enable_onnx_checker True
-```
-
-
-### 常见问题：
-#### java.lang.UnsupportedOperationException: This NDArray implementation does not currently support this operation
-```
-    // 明确指定 ndarray 引擎，有时系统不能自动处理
-    public DetectedObjects processOutput(TranslatorContext ctx, NDList list) {
-        // NDManager manager = ctx.getNDManager();
-        try (NDManager manager = NDManager.newBaseManager(ctx.getNDManager().getDevice(), "PyTorch")) {
-             
-             ......
-        }
-    }
-
-    如果返回结果是 NDArray 类型，由于离开try(){}会自动调用close方法，自动回收内存，ndarray的内存会释放。
-    所以，需要对NDArray 类型数据，调用其 detach方法，解除 ndarray manager的自动管理，如：
-    img.detach();
-    但是，要注意，后续这个NDArray对象，要attach到另一个 ndarray manager 上，由其自动管理内存回收释放。
-    否则，会导致内存泄漏，如 OcrV3DetectionExample 中的处理：
-    
-    
-        try (ZooModel detectionModel = ModelZoo.loadModel(detection.detectCriteria());
-         Predictor<Image, NDList> detector = detectionModel.newPredictor();
-         NDManager manager = NDManager.newBaseManager();) {
-
-        NDList dt_boxes = detector.predict(image);
-        // 交给 NDManager自动管理内存
-        // attach to manager for automatic memory management
-        dt_boxes.attach(manager);
-        ....
-        
-    
-```
 
 
 ### Git地址：   

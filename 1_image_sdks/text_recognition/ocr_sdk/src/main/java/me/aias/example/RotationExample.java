@@ -30,7 +30,7 @@ public final class RotationExample {
     private RotationExample() {
     }
 
-    public static void main(String[] args) throws IOException, ModelException, TranslateException {
+    public static void main(String[] args) throws IOException{
         Path imageFile = Paths.get("src/test/resources/ticket_0.png");
         Image image = ImageFactory.getInstance().fromFile(imageFile);
         // 逆时针旋转
