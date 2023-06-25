@@ -96,7 +96,7 @@
         <dependency>
             <groupId>ai.djl.sentencepiece</groupId>
             <artifactId>sentencepiece</artifactId>
-            <version>0.12.0</version>
+            <version>0.22.1</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
