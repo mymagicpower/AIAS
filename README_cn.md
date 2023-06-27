@@ -4,22 +4,9 @@
 </div>
 
 [![star](https://gitee.com/mymagicpower/AIAS/badge/star.svg?theme=gvp)](https://gitee.com/mymagicpower/AIAS/stargazers)   [![fork](https://gitee.com/mymagicpower/AIAS/badge/fork.svg?theme=gvp)](https://gitee.com/mymagicpower/AIAS/members)
-- 官网: https://www.aias.top/
+
 - Gitee:  https://gitee.com/mymagicpower/AIAS
 - GitHub: https://github.com/mymagicpower/AIAS
-
-#### 帮助文档：
-- https://aias.top/guides.html
-- 1.性能优化常见问题:
-- https://aias.top/AIAS/guides/performance.html
-- 2.引擎配置（包括CPU，GPU在线自动加载，及本地配置）:
-- https://aias.top/AIAS/guides/engine_config.html
-- 3.模型在线/离线加载方式（在线自动加载，及离线加载配置）:
-- https://aias.top/AIAS/guides/load_model.html
-- 4.Windows环境常见问题:
-- https://aias.top/AIAS/guides/windows.html
-
-
 
 
 
@@ -92,7 +79,7 @@
 
 #### 项目清单:
 
-- 1. image_sdks - [图像识别 SDK](https://aias.top/cv_sdk.html)
+- 1. image_sdks - [图像识别 SDK]
 ```text
   1). 工具箱系列：图像处理工具箱（静态图像）
   2). 目标检测：目标检测、目标跟踪、人脸检测&识别
@@ -103,7 +90,7 @@
       ...
 ```
 
-- 2. nlp_sdks - [自然语言 SDK](https://aias.top/nlp_sdk.html)
+- 2. nlp_sdks - [自然语言 SDK]
 ```text
   1). 工具箱系列：Tokenizer，sentencepiece，fastText，npy/npz文件处理等。
   2). 文本生成
@@ -117,7 +104,7 @@
       ...
 ```
 
-- 3. audio_sdks - [语音处理 SDK](https://aias.top/voice_sdk.html)
+- 3. audio_sdks - [语音处理 SDK]
 ```text
   1). 工具箱系列：音素工具箱，librosa，java sound，javacv ffmpeg, fft, vad工具箱等。
   2). 声音克隆
@@ -127,7 +114,7 @@
       ...
 ```
 
-- 4. engine_hub - [平台引擎](https://aias.top/platform.html)
+- 4. engine_hub - [平台引擎]
 ```text
   1). 训练引擎
   2). 搜索引擎
@@ -136,7 +123,7 @@
       ...
 ```
 
-- 5. suite_hub - [场景套件](https://aias.top/suite.html)
+- 5. suite_hub - [场景套件]
 ```text
   1). ToB: 问答系统等
   2). 生物医药  

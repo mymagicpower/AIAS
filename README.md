@@ -4,10 +4,6 @@
 </div>
 
 
-Author: Calvin
-Mail: 179209347@qq.com
-
-
 #### AIAS (AI Accelerator Suite)
 - AIAS provides capabilities:
 ```bash
