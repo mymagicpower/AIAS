@@ -129,10 +129,4 @@
 
 - GitHub: https://github.com/mymagicpower/bio-computing
 
-#### 3. AI desktop Apps
-<div align="left">
-<img src="https://aiart.oss-cn-shanghai.aliyuncs.com/images/logo.png"  width = "200"  />
-</div>
-
-- GitHub: https://github.com/mymagicpower/easy_AI_apps  
 

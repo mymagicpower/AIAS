@@ -4,10 +4,20 @@
 </div>
 
 [![star](https://gitee.com/mymagicpower/AIAS/badge/star.svg?theme=gvp)](https://gitee.com/mymagicpower/AIAS/stargazers)   [![fork](https://gitee.com/mymagicpower/AIAS/badge/fork.svg?theme=gvp)](https://gitee.com/mymagicpower/AIAS/members)
-
+- 官网: https://www.aias.top/
 - Gitee:  https://gitee.com/mymagicpower/AIAS
 - GitHub: https://github.com/mymagicpower/AIAS
 
+#### 帮助文档：
+- https://aias.top/guides.html
+- 1.性能优化常见问题:
+- https://aias.top/AIAS/guides/performance.html
+- 2.引擎配置（包括CPU，GPU在线自动加载，及本地配置）:
+- https://aias.top/AIAS/guides/engine_config.html
+- 3.模型在线/离线加载方式（在线自动加载，及离线加载配置）:
+- https://aias.top/AIAS/guides/load_model.html
+- 4.Windows环境常见问题:
+- https://aias.top/AIAS/guides/windows.html
 
 
 #### AIAS (AI Acceleration Suite - AI算法落地加速器套件)
@@ -131,11 +141,6 @@
   4). AI 内容生成 （图像生成：stable diffusion）
       ...
 ```
-
-#### 项目归档:
-不再维护的项目移至下面的repo：
-- Gitee:  https://gitee.com/mymagicpower/AIAS_Archive
-- GitHub: https://github.com/mymagicpower/AIAS_Archive
 
 
 
