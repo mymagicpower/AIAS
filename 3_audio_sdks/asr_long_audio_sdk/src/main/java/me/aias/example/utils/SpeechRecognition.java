@@ -24,7 +24,6 @@ public class SpeechRecognition {
             .optModelPath(Paths.get("models/deep_speech.zip"))
             .optTranslator(new AudioTranslator())
             .optEngine("PaddlePaddle") // Use PaddlePaddle engine
-            
             .optProgress(new ProgressBar())
             .build();
 

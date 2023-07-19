@@ -1,6 +1,7 @@
 package me.aias.example.utils;
 
 import com.orctom.vad4j.VAD;
+
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -13,7 +14,7 @@ import java.util.Queue;
  *
  * @author Calvin <179209347@qq.com>
  */
-public class AudioVadUtils {
+public class AudioVadUtils_bak {
   /** Filters out non-voiced audio frames. */
   public static Queue<byte[]> cropAudioVad(
       Path path, int padding_duration_ms, int frame_duration_ms) throws Exception {

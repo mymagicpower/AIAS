@@ -25,13 +25,13 @@
 
     <groupId>aias</groupId>
     <artifactId>asr-long-audio-sdk</artifactId>
-    <version>0.17.0</version>
+    <version>0.23.0</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <djl.version>0.17.0</djl.version>
+        <djl.version>0.22.1</djl.version>
     </properties>
 
     <build>
@@ -93,7 +93,6 @@
             <artifactId>paddlepaddle-model-zoo</artifactId>
             <version>${djl.version}</version>
         </dependency>
-
         <!-- Pytorch -->
         <dependency>
             <groupId>ai.djl.pytorch</groupId>
@@ -103,6 +102,13 @@
         <dependency>
             <groupId>ai.djl.pytorch</groupId>
             <artifactId>pytorch-engine</artifactId>
+            <version>${djl.version}</version>
+        </dependency>
+
+        <!-- ONNX -->
+        <dependency>
+            <groupId>ai.djl.onnxruntime</groupId>
+            <artifactId>onnxruntime-engine</artifactId>
             <version>${djl.version}</version>
         </dependency>
 
@@ -134,7 +140,13 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/jlibrosa-1.1.8-SNAPSHOT.jar</systemPath>
         </dependency>
-
+        <dependency>
+            <groupId>org.jitsi</groupId>
+            <artifactId>TarsosDSP-bin</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/jitsi-webrtcvadwrapper-1.0-SNAPSHOT.jar</systemPath>
+        </dependency>
         <dependency>
             <groupId>com.googlecode.soundlibs</groupId>
             <artifactId>tritonus-share</artifactId>

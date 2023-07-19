@@ -26,20 +26,20 @@ import java.util.Queue;
  * @author calvin
  * @mail 179209347@qq.com
  */
-public class SpeechRecognitionExampleL {
-  private static final Logger logger = LoggerFactory.getLogger(SpeechRecognitionExampleL.class);
+public class SpeechRecognitionExampleLWin {
+  private static final Logger logger = LoggerFactory.getLogger(SpeechRecognitionExampleLWin.class);
 
   public static void main(String[] args) throws Exception {
     String os = System.getProperty("os.name");
-    if (os.contains("Windows")) {
+    if (!os.contains("Windows")) {
       System.out.println(
-          "Only support Linux & Mac");
+          "Only support Windows");
     }
 
     Path path = Paths.get("src/test/resources/test.wav");
 
     NDManager manager = NDManager.newBaseManager(Device.cpu());
-    Queue<byte[]> segments = AudioVadUtils.cropAudioVad(path, 300, 30);
+    Queue<byte[]> segments = AudioVadUtils.cropAudioVad(path, 300, 64);
 
     SpeechRecognition speakerEncoder = new SpeechRecognition();
     Criteria<NDArray, Pair> criteria = speakerEncoder.criteria();
@@ -54,12 +54,10 @@ public class SpeechRecognitionExampleL {
         NDArray audioFeature = AudioProcess.processUtterance(manager, array);
         Pair result = predictor.predict(audioFeature);
         texts = texts + "," + result.getRight();
-        logger.info("Segmented audio {} with score: {}, recognition result: {}", index++, result.getLeft(), result.getRight());
         logger.info("第{}个分割音频, 得分: {}, 识别结果: {}", index++, result.getLeft(), result.getRight());
       }
 
       logger.info("最终识别结果:" + texts);
-      logger.info("Final recognition result: " + texts);
     }
   }
 }

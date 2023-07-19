@@ -27,7 +27,7 @@ public class AudioFeaturizer {
     float rmsDb = AudioUtils.rmsDb(samples);
     // 返回以分贝为单位的音频均方根能量
     // Returns the root mean square energy of the audio in decibels
-    System.out.println("Root Mean Square energy of audio:  " + rmsDb);
+//    System.out.println("Root Mean Square energy of audio:  " + rmsDb);
 
     // 提取特征前将音频归一化至-20 dB(以分贝为单位)
     // Normalize audio to -20 dB (in decibels) before feature extraction

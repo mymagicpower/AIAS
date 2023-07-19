@@ -33,7 +33,7 @@ public class SpeechRecognitionExampleL {
     String os = System.getProperty("os.name");
     if (os.contains("Windows")) {
       System.out.println(
-          "To support windows, please refer to https://github.com/mymagicpower/AIAS/tree/main/speech_sdks/vad4j_sdk");
+          "Only support Linux & Mac");
     }
 
     Path path = Paths.get("src/test/resources/test.wav");
