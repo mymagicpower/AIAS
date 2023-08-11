@@ -2,9 +2,13 @@ package me.aias.example.common;
 
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.output.DetectedObjects;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -79,5 +83,36 @@ public class ImageUtils {
         } finally {
             graphics.dispose();
         }
+    }
+    /**
+     * Mat to BufferedImage
+     *
+     * @param mat
+     * @return
+     */
+    public static BufferedImage mat2Image(Mat mat) {
+        int width = mat.width();
+        int height = mat.height();
+        byte[] data = new byte[width * height * (int) mat.elemSize()];
+        Imgproc.cvtColor(mat, mat, 4);
+        mat.get(0, 0, data);
+        BufferedImage ret = new BufferedImage(width, height, 5);
+        ret.getRaster().setDataElements(0, 0, width, height, data);
+        return ret;
+    }
+
+    /**
+     * BufferedImage to Mat
+     *
+     * @param img
+     * @return
+     */
+    public static Mat image2Mat(BufferedImage img) {
+        int width = img.getWidth();
+        int height = img.getHeight();
+        byte[] data = ((DataBufferByte) img.getRaster().getDataBuffer()).getData();
+        Mat mat = new Mat(height, width, CvType.CV_8UC3);
+        mat.put(0, 0, data);
+        return mat;
     }
 }

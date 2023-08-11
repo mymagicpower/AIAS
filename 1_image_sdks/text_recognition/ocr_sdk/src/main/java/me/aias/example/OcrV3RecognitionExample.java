@@ -3,7 +3,6 @@ package me.aias.example;
 import ai.djl.ModelException;
 import ai.djl.inference.Predictor;
 import ai.djl.modality.cv.Image;
-import ai.djl.modality.cv.output.BoundingBox;
 import ai.djl.modality.cv.output.DetectedObjects;
 import ai.djl.modality.cv.output.Rectangle;
 import ai.djl.opencv.OpenCVImageFactory;
@@ -12,18 +11,15 @@ import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
 import me.aias.example.common.ImageUtils;
 import me.aias.example.detection.OcrV3Detection;
-import me.aias.example.opencv.OpenCVUtils;
 import me.aias.example.recognition.OcrV3Recognition;
 import org.opencv.core.Mat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -62,7 +58,7 @@ public final class OcrV3RecognitionExample {
 
             // 转 BufferedImage 解决中文乱码问题
             Mat wrappedImage = (Mat) image.getWrappedImage();
-            BufferedImage bufferedImage = OpenCVUtils.mat2Image(wrappedImage);
+            BufferedImage bufferedImage = ImageUtils.mat2Image(wrappedImage);
             for (DetectedObjects.DetectedObject item : items) {
                 Rectangle rectangle = item.getBoundingBox().getBounds();
                 int x = (int) (rectangle.getX() * image.getWidth());
@@ -74,7 +70,7 @@ public final class OcrV3RecognitionExample {
                 ImageUtils.drawImageText(bufferedImage, item.getClassName(), x, y);
             }
 
-            Mat image2Mat = OpenCVUtils.image2Mat(bufferedImage);
+            Mat image2Mat = ImageUtils.image2Mat(bufferedImage);
             image = OpenCVImageFactory.getInstance().fromImage(image2Mat);
             ImageUtils.saveImage(image, "ocr_result.png", "build/output");
 
