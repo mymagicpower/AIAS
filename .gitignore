@@ -6,3 +6,5 @@
 1_image_sdks/text_recognition/.idea/
 1_image_sdks/security/pedestrian_sdk/.idea/
 .idea/
+1_image_sdks/ocr_v4_sdk/models/
+1_image_sdks/ocr_v4_sdk/target/
