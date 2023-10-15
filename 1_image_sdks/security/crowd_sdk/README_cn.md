@@ -14,7 +14,7 @@ CrowdNet模型主要有深层卷积神经网络和浅层卷积神经组成，通
 ![model](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/network.png)
 
 ### sdk功能：
-- 计算人数
+- 统计人数
 - 计算密度图
 
 ### 运行例子 - CrowdDetectExample
