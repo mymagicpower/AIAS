@@ -24,21 +24,6 @@
 
 
 
-#### AIAS (AI Acceleration Suite - AI算法落地加速器套件)
-- AIAS提供的参考能力:
-```bash
-1. SDK：包含了对各Model Hub，以及GitHub优选模型的支持。
-2. 平台引擎：包含了API平台引擎，搜索引擎，训练引擎，边缘计算引擎等。
-3. 场景套件：包含了面向ToB，ToC，ToG各场景的套件，比如：生物医药套件。
-```
-
-- AIAS的目标:
-```bash
-1. 加速算法落地
-2. 为集成商赋能
-3. 为企业内部项目赋能
-```
-
 <div align="center">
 <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/roadmap.jpg"  width = "600"  />
 </div>
@@ -51,18 +36,6 @@
   <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/aias_scope.png"  width = "600"  />
 
   <table>
-    <tr>
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/aias_edge.png"  width = "250"  />
-        </div>
-      </td>
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/aias_edge_cloud.png"  width = "250"  />
-        </div>
-      </td>
-    </tr>
     <tr>
       <td>
         <div align="center">
@@ -401,19 +374,6 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>huggingface分词 - kits/tokenizer_sdk</p>
-          huggingface Tokenizer。     
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/tokenizer_map.jpeg"  width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td style="width:220px">
-        <div align="left">
           <p>jieba分词 - lexical_analysis/jieba_sdk</p>
           jieba分词java版本的简化实现。     
         </div>
@@ -737,28 +697,13 @@
 
 - 5. 5_bigdata_sdks - [大数据SDK]
 ```text
-  1). 摄像头人脸检测 - flink_face_sdk
-  2). 摄像头口罩检测 - flink_sentence_encoder_sdk
-  3). MP4检测人脸 - flink_sentiment_analysis_sdk
-  4). MP4检测口罩 - kafka_face_sdk
+  1). flink-情感倾向分析【英文】- flink_sentence_encoder_sdk
+  2). kafka-情感倾向分析【英文】- kafka_sentiment_analysis_sdk
       ...
 ```
 
 <div align="center">
   <table>
-    <tr>
-      <td>
-        <div align="left">
-          <p>kafka,flink,人脸识别 - flink_face_sdk</p>   
-           图像识别结合kafka,flink协同工作检测人脸。
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/bigdata_sdks/face_detection.jpeg" width = "400px"/>
-        </div>
-      </td>
-    </tr> 
     <tr>
       <td style="width:220px">
         <div align="left">
@@ -773,19 +718,6 @@
         </div>
       </td>
     </tr> 
-    <tr>
-      <td style="width:220px">
-        <div align="left">
-          <p>kafka-人脸检测SDK - kafka_face_sdk</p>
-          读取图片，转成base64格式发送给kafka。consumer接受到图片的base64数据, 转换成图片并解析。
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/bigdata_sdks/face_detection.jpeg"  width = "400px"/>
-        </div>
-      </td>
-    </tr>
     <tr>
       <td style="width:220px">
         <div align="left">
@@ -877,7 +809,6 @@
 </div>
 
 
-- 9. archive_sdks - [归档不再维护的项目]
 
 
 
