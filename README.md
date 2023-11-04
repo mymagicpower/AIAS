@@ -160,7 +160,7 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>人群密度检测 - security/crowd_sdk</p>
+          <p>人群密度检测 - crowd_sdk</p>
           统计人数，计算密度图。     
         </div>
       </td>     
@@ -578,28 +578,13 @@
 
 - 4. 4_video_sdks - [视频解析SDK]
 ```text
-  1). 摄像头人脸检测 - camera_face_sdk
-  2). 摄像头口罩检测 - camera_facemask_sdk
-  3). MP4检测人脸 - mp4_face_sdk
-  4). MP4检测口罩 - mp4_facemask_sdk
-      ...
+  1). 摄像头口罩检测 - camera_facemask_sdk
+  2). MP4检测口罩 - mp4_facemask_sdk
+  3). rtsp取流检测口罩 - rtsp_facemask_sdk
 ```
 
 <div align="center">
   <table>
-    <tr>
-      <td>
-        <div align="left">
-          <p>摄像头人脸检测 - camera_face_sdk</p>   
-           读取本地摄像头，实时（需要有显卡的台式机，否则会比较卡顿）检测人脸。
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/face_sdk/images/faces.jpg" width = "400px"/>
-        </div>
-      </td>
-    </tr> 
     <tr>
       <td style="width:220px">
         <div align="left">
@@ -616,19 +601,6 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>MP4检测人脸 - mp4_face_sdk</p>
-          读取本地MP4文件，实时（需要有显卡的台式机，否则会比较卡顿）检测人脸。
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/face_sdk/images/faces.jpg"  width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td style="width:220px">
-        <div align="left">
           <p>MP4检测口罩 - mp4_facemask_sdk</p>
            读取本地MP4文件，实时（需要有显卡的台式机，否则会比较卡顿）检测口罩。
         </div>
@@ -636,19 +608,6 @@
       <td>
         <div align="center">
         <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/mask_sdk/face-masks.png"  width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td style="width:220px">
-        <div align="left">
-          <p>rtsp取流检测人脸 - rtsp_face_sdk</p>
-          通过rtsp取流，实时（需要有显卡的台式机，否则会比较卡顿）检测人脸。
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/face_sdk/images/faces.jpg"  width = "400px"/>
         </div>
       </td>
     </tr>
