@@ -24,17 +24,13 @@
 
 
 
-<div align="center">
-<img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/roadmap.jpg"  width = "600"  />
-</div>
+
 <div align="center">
 <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/AIAS.png"  width = "600"  />
 </div>
 
 
 <div align="center">
-  <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/aias_scope.png"  width = "600"  />
-
   <table>
     <tr>
       <td>
