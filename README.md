@@ -70,10 +70,10 @@
 ```text
   1). 工具箱系列：图像处理工具箱（静态图像）
   2). 目标检测：目标检测、目标跟踪、人脸检测&识别
-  3). 图像分割：图像分割、遥感图像、医疗影像
+  3). 图像分割：图像分割、医疗影像
   4). 行为分析：行为识别、姿态估计
   5). GAN：    超分辨率、动作驱动、风格迁移、图像生成
-  6). 其它类别：OCR、SLAM、深度估计、自动驾驶、强化学习、视频理解、图像融合、图像检索
+  6). 其它类别：OCR、深度估计、视频理解、图像检索
       ...
 ```
 
@@ -173,33 +173,7 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>人脸关键点 - security/face_landmark_sdk</p>
-          识别输入图片中的所有人脸关键点，每张人脸检测出68个关键点。     
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/face_landmark_sdk/face-landmarks.png"  width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td style="width:220px">
-        <div align="left">
-          <p>人脸检测 - security/face_sdk</p>
-          识别输入图片中的所有人脸，给出检测框。    
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/face_sdk/images/faces_detected.png"  width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td style="width:220px">
-        <div align="left">
-          <p>烟火检测 - security/fire_smoke_sdk</p>
+          <p>烟火检测 - fire_smoke_sdk</p>
           烟火检测，给出检测框和置信度。     
         </div>
       </td>     
@@ -212,7 +186,7 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>口罩检测 - security/mask_sdk</p>
+          <p>口罩检测 - mask_sdk</p>
           口罩检测，给出检测框。     
         </div>
       </td>     
@@ -225,7 +199,7 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>行人检测 - security/pedestrian_sdk</p>
+          <p>行人检测 - pedestrian_sdk</p>
           行人检测，给出检测框和置信度。     
         </div>
       </td>     
@@ -238,7 +212,7 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>反光衣检测 - security/reflective_vest_sdk</p>
+          <p>反光衣检测 - reflective_vest_sdk</p>
           实现施工区域或者危险区域人员穿戴检测。     
         </div>
       </td>     
@@ -251,7 +225,7 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>智慧工地检测 - security/smart_construction_sdk</p>
+          <p>智慧工地检测 - smart_construction_sdk</p>
           支持检测的类别：人体，安全帽。
         </div>
       </td>     
@@ -264,7 +238,7 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>车辆检测 - security/vehicle_sdk</p>
+          <p>车辆检测 - vehicle_sdk</p>
           车辆检测，给出检测框和置信度。
         </div>
       </td>     
@@ -279,7 +253,7 @@
 
 - 2. 2_nlp_sdks - [自然语言 SDK]
 ```text
-  1). 工具箱系列：Tokenizer，sentencepiece，fastText，npy/npz文件处理等。
+  1). 工具箱系列：sentencepiece，fastText，npy/npz文件处理等。
   2). 文本生成
   3). 词向量
   4). 机器翻译
