@@ -24,14 +24,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>aias</groupId>
-    <artifactId>pedestrian-sdk</artifactId>
+    <artifactId>silero_vad_sdk</artifactId>
     <version>0.23.0</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <djl.version>0.17.0</djl.version>
+        <djl.version>0.23.0</djl.version>
     </properties>
 
     <build>
@@ -64,6 +64,7 @@
             <artifactId>log4j-slf4j-impl</artifactId>
             <version>2.17.2</version>
         </dependency>
+
         <!-- 服务器端推理引擎 -->
         <dependency>
             <groupId>ai.djl</groupId>
@@ -83,20 +84,30 @@
         <!-- Pytorch -->
         <dependency>
             <groupId>ai.djl.pytorch</groupId>
+            <artifactId>pytorch-model-zoo</artifactId>
+            <version>${djl.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ai.djl.pytorch</groupId>
             <artifactId>pytorch-engine</artifactId>
             <version>${djl.version}</version>
         </dependency>
-        <!-- PaddlePaddle -->
+        <!-- ONNX -->
         <dependency>
-            <groupId>ai.djl.paddlepaddle</groupId>
-            <artifactId>paddlepaddle-engine</artifactId>
+            <groupId>ai.djl.onnxruntime</groupId>
+            <artifactId>onnxruntime-engine</artifactId>
             <version>${djl.version}</version>
-            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>ai.djl.audio</groupId>
+            <artifactId>audio</artifactId>
+            <version>${djl.version}</version>
         </dependency>
         <dependency>
-            <groupId>ai.djl.paddlepaddle</groupId>
-            <artifactId>paddlepaddle-model-zoo</artifactId>
-            <version>${djl.version}</version>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.4</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
