@@ -279,19 +279,6 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>词向量SDK【中文】- embedding/word_encoder_cn_sdk</p> 
-          词向量/词嵌入（Word embedding）是自然语言处理（NLP）中语言模型与表征学习技术的统称。
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/word_vector.jpeg"  width = "400px"/>
-        </div>
-      </td>
-    </tr> 
-    <tr>
-      <td style="width:220px">
-        <div align="left">
           <p>词向量SDK【英文】- embedding/word_encoder_en_sdk</p>
           每个单词或词组被映射为实数域上的向量。
         </div>
