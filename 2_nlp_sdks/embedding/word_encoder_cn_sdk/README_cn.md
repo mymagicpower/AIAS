@@ -3,7 +3,7 @@
 
 
 ### 下载相应的模型特征数据
-- 链接: https://pan.baidu.com/s/1DOzp8AJ7Rjpf8C8i6alEaA?pwd=y6z3
+- 链接：https://pan.baidu.com/s/1niydyg1gbSI-SSO0FgWwWQ?pwd=10kk 
   添加到 src/test/resources/ 路径下。
 
 ### 词向量SDK【中文】
