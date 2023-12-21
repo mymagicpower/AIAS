@@ -14,7 +14,7 @@
 
 
 
-#### [模型下载](https://pan.baidu.com/s/1mVaxSQ9lVsDVE36CeGNrSw?pwd=ewhg)
+#### [模型下载](https://drive.google.com/file/d/1FdDCcGsytSHdKMYLMuNIGwdnzF_kF2tJ/view?usp=sharing)
 - cpu模型保存位置：stable_diffusion/pytorch_cpu
 - gpu模型保存位置：stable_diffusion/pytorch_gpu
 
