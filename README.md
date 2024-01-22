@@ -13,17 +13,17 @@
         <a href="https://github.com/mymagicpower/AIAS/blob/main/README_EN.md">English</a>
     <p>
 </h4>
+<h4 align="center">
+    <p>
+        <b>官网</b> |
+        <a href="https://www.aias.top/">https://www.aias.top/</a>
+    <p>
+</h4>
 </div>
 
-#### 官网: 
-- https://www.aias.top/
-#### 联系方式：
-- Mail: 179209347@qq.com
-
-
-
-
-
+<br>
+<hr>
+<br>
 
 <div align="center">
 <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/AIAS.png"  width = "600"  />
