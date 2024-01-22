@@ -10,3 +10,9 @@
 1_image_sdks/ocr_v4_sdk/target/
 1_image_sdks/pedestrian_sdk/target/
 1_image_sdks/pedestrian_sdk/models/pedestrian.zip
+1_image_sdks/ocr_sdks/ocr_layout_sdk/models/
+1_image_sdks/ocr_sdks/ocr_led_sdk/models/
+1_image_sdks/ocr_sdks/ocr_table_sdk/models/
+1_image_sdks/ocr_sdks/ocr_v4_sdk/models/
+1_image_sdks/ocr_sdks/ocr_v3_sdk/models/
+1_image_sdks/ocr_sdks/ocr_direction_det_sdk/models/

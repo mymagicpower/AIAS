@@ -75,6 +75,105 @@
 
 <div align="center">
   <table>
+      <tr>
+      <td style="width:220px">
+        <div align="left">
+          <p>OCR工具箱 1：OCR方向检测与旋转 - ocr_sdks/ocr_direction_det_sdk</p>
+          OCR图像预处理。     
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/RotationExample.jpeg"  width = "400px"/>
+        </div>
+      </td>
+    </tr>
+      <tr>
+      <td style="width:220px">
+        <div align="left">
+          <p>OCR工具箱 2：OCR文字识别 - ocr_sdks/ocr_v3_sdk</p>
+            1.  V3 文本检测: <br>
+            - 中文文本检测<br>
+            - 英文文本检测<br>
+            - 多语言文本检测<br> 
+            2.  V3 文本识别:<br> 
+            - 中文简体<br> 
+            - 中文繁体<br> 
+            - 英文<br> 
+            - 韩语<br> 
+            - 日语<br> 
+            - 阿拉伯<br> 
+            - 梵文<br> 
+            - 泰米尔语<br> 
+            - 泰卢固语<br> 
+            - 卡纳达文<br> 
+            - 斯拉夫<br> 
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/OcrV3RecExample2.jpeg"  width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <tr>
+      <td style="width:220px">
+        <div align="left">
+          <p>OCR工具箱 3：OCR文字识别 - ocr_sdks/ocr_v4_sdk</p>
+          原生支持旋转倾斜文本文字识别。     
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/OcrV3RecExample2.jpeg"  width = "400px"/>
+        </div>
+      </td>
+    </tr>
+      <tr>
+      <td style="width:220px">
+        <div align="left">
+          <p>OCR工具箱 4：版面分析 - ocr_sdks/ocr_layout_sdk</p>
+               可以用于配合文字识别，表格识别的流水线处理使用。   <br>
+               1.  中文版面分析<br>
+               2.  英文版面分析<br>
+               3.  中英文文档 - 表格区域检测<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/LayoutCNDetExample.jpeg"  width = "400px"/>
+        </div>
+      </td>
+    </tr>    
+    <tr>
+      <tr>
+      <td style="width:220px">
+        <div align="left">
+          <p>OCR工具箱 5： 表格识别 - ocr_sdks/ocr_table_sdk</p>
+               中英文表格识别。  
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/TableENRecExample.jpeg"  width = "400px"/>
+        </div>
+      </td>
+    </tr>    
+    <tr>
+      <tr>
+      <td style="width:220px">
+        <div align="left">
+          <p>OCR工具箱 6： led文字识别 - ocr_sdks/ocr_led_sdk</p>
+               led表盘文字识别。
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/led_rec_result.png"  width = "400px"/>
+        </div>
+      </td>
+    </tr>     
     <tr>
       <td>
         <div align="left">
@@ -137,19 +236,6 @@
       <td>
         <div align="center">
         <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/Instance_segmentation_sdk/result.jpeg"  width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td style="width:220px">
-        <div align="left">
-          <p>OCR文字识别 - ocr_v4_sdk</p>
-          原生支持旋转倾斜文本文字识别。     
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/OcrV3RecExample2.jpeg"  width = "400px"/>
         </div>
       </td>
     </tr>
