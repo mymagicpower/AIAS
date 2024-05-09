@@ -1,4 +1,4 @@
-package me.aias.example.utils;
+package me.aias.util;
 
 import ai.djl.engine.Engine;
 import ai.djl.modality.cv.Image;
@@ -81,7 +81,7 @@ public class ImageUtils {
   }
 
   public static void saveImage(BufferedImage img, String name, String path) {
-    ai.djl.modality.cv.Image djlImg = ImageFactory.getInstance().fromImage(img);
+    Image djlImg = ImageFactory.getInstance().fromImage(img);
     Path outputDir = Paths.get(path);
     Path imagePath = outputDir.resolve(name);
     try {
