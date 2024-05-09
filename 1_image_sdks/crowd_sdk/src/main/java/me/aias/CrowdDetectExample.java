@@ -6,13 +6,13 @@ import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.ImageFactory;
 import ai.djl.ndarray.NDArray;
 import ai.djl.ndarray.NDList;
-import ai.djl.ndarray.types.DataType;
 import ai.djl.repository.zoo.Criteria;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
 import me.aias.util.CrowdDetect;
-import me.aias.util.ImageUtils;
+import me.aias.util.ImagePlotter;
+import me.aias.util.NDArrayUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,8 +52,13 @@ public final class CrowdDetectExample {
       // density 为密度图
       NDArray densityArray = list.get(0);
       densityArray = densityArray.squeeze(0);
+      densityArray = densityArray.squeeze(0);
+      densityArray = densityArray.transpose();
+
       logger.info("密度图 density: {}", densityArray.toDebugString(1000000000, 1000, 1000, 1000));
 
+      float[][] densityArr = NDArrayUtils.floatNDArrayToArray(densityArray);
+      ImagePlotter.plotDensity(densityArr);
     }
   }
 }
