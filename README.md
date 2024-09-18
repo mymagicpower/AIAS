@@ -173,7 +173,76 @@
         <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/led_rec_result.png"  width = "400px"/>
         </div>
       </td>
-    </tr>     
+    </tr>
+      <tr>
+      <td style="width:220px">
+        <div align="left">
+          <p>人脸工具箱 1：人脸检测(含5个人脸关键点) - face_sdks/face_detection_sdk</p>
+          人脸检测(含5个人脸关键点)提供了两个模型的实现。     
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/face_sdk/images/retinaface_detected.png"  width = "400px"/>
+        </div>
+      </td>
+    </tr>
+      <tr>
+      <td style="width:220px">
+        <div align="left">
+          <p>人脸工具箱 2：人脸对齐- face_sdks/face_alignment_sdk</p>
+          根据人脸关键点对齐人脸。     
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/face_sdk/images/face_align.png"  width = "400px"/>
+        </div>
+      </td>
+    </tr>
+      <tr>
+      <td style="width:220px">
+        <div align="left">
+          <p>人脸工具箱 3：人脸特征提取与比对- face_sdks/face_feature_sdk</p>
+          人脸识别完整的pipeline：人脸检测(含人脸关键点) --> 人脸对齐 --> 人脸特征提取 --> 人脸比对
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/face_sdk/images/face_feature.png"  width = "400px"/>
+        </div>
+      </td>
+    </tr>
+      <tr>
+      <td style="width:220px">
+        <div align="left">
+          <p>人脸工具箱 4：人脸分辨率提升- face_sdks/face_sr_sdk</p>
+          包含两个功能：<br>
+          1.单张人脸图片超分辨。<br>
+          2.自动检测人脸，然后对齐人脸后提升分辨率。     
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/face_sdk/images/single_face_sr.png"  width = "400px"/>
+        </div>
+      </td>
+    </tr>
+      <tr>
+      <td style="width:220px">
+        <div align="left">
+          <p>人脸工具箱 5：图片人脸修复- face_sdks/face_restoration_sdk</p>
+            - 自动检测人脸及关键地，然后抠图，然后根据人脸关键点转正对齐。<br>
+            - 对所有转正对齐的人脸提升分辨率。<br>
+            - 使用分割模型提取人脸，逆向变换后贴回原图。   
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/face_sdk/images/face_res.png"  width = "400px"/>
+        </div>
+      </td>
+    </tr>              
     <tr>
       <td>
         <div align="left">

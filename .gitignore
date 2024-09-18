@@ -21,3 +21,9 @@
 1_image_sdks/crowd_sdk/build/output/
 1_image_sdks/ocr_sdks/ocr_v4_sdk/target/
 1_image_sdks/ocr_sdks/ocr_v3_sdk/target/
+1_image_sdks/face_sdks/face_alignment_sdk/models/
+1_image_sdks/face_sdks/face_detection_sdk/models/
+1_image_sdks/face_sdks/face_feature_ir101_sdk/models/
+1_image_sdks/face_sdks/face_feature_sdk/models/
+1_image_sdks/face_sdks/face_restoration_sdk/models/
+1_image_sdks/face_sdks/face_sr_sdk/models/
