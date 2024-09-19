@@ -879,31 +879,37 @@
   </table>
 </div>
 
-#### 帮助文档：
-- https://aias.top/guides.html
+#### 1. 官网: 
+- 网址：http://www.aias.top/
+- 帮助：https://aias.top/guides.html
 
+#### 2. 开源地址: 
 
-#### 人工智能算法：
+- Gitee:  https://gitee.com/mymagicpower/AIAS
+- Gitcode:  https://gitcode.com/mymagicpower/AIAS/
+- GitHub: https://github.com/mymagicpower/AIAS
+
+#### 3. 人工智能算法：
 - https://zhuanlan.zhihu.com/p/693738275
 
 
-#### 其它研究专题:
+#### 4. 其它研究专题:
 
-#### 1. AI + 量子计算
+#### 1). AI + 量子计算
 <div align="left">
 <img src="https://qubits.oss-cn-shanghai.aliyuncs.com/images/logo.png"  width = "150"  />
 </div>
 
-- 官网: https://www.qubits.top/
+- 官网: http://www.qubits.top/
 - Gitee:  https://gitee.com/mymagicpower/qubits
 - GitHub: https://github.com/mymagicpower/qubits
 
-#### 2. AI + 生物医药
+#### 2). AI + 生物医药
 <div align="left">
 <img src="https://bio-computing.oss-cn-shanghai.aliyuncs.com/images/logo.png"  width = "200"  />
 </div>
 
-- 官网: https://www.biocomputing.top/
+- 官网: http://www.biocomputing.top/
 - Gitee:  https://gitee.com/mymagicpower/bio-computing
 - GitHub: https://github.com/mymagicpower/bio-computing
 
