@@ -886,7 +886,6 @@
 #### 2. 开源地址: 
 
 - Gitee:  https://gitee.com/mymagicpower/AIAS
-- Gitcode:  https://gitcode.com/mymagicpower/AIAS/
 - GitHub: https://github.com/mymagicpower/AIAS
 
 #### 3. 人工智能算法：
