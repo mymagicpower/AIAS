@@ -91,3 +91,42 @@ cd /Users/calvin/aias_projects/llama.cpp/
 ./build/bin/main -m /Users/calvin/Downloads/llama2_7b_q4_0.bin -i
 
 ```
+
+
+#### windows环境参考命令配置
+```text
+    // let jar_path =  process.env.PY_SCRIPT;
+    let jar_path = "D:\\easy_AI_apps\\3_ocr\\backends_ocr\\ocr_sdk\\target\\ocr-sdk-0.20.0.jar";
+
+    if(jar_path && (fs.existsSync(jar_path))){
+        proc = require('child_process').spawn('java' , ['-Dfile.encoding=utf-8', '-jar' , jar_path , '-i' , input_path , '-o' , out_path ]);
+    }
+    else{
+        const path = require('path');
+        let java_path =  path.join(path.dirname(__dirname), 'core','jdk-11.0.16.1','bin','java.exe');
+        let jar_path =  path.join(path.dirname(__dirname), 'core' , 'ocr-sdk-0.20.0.jar' );
+        // let proc = require('child_process').spawn( bin_path  , ['-i' , input_path , '-o' , out_path ]);
+        proc = require('child_process').spawn(java_path, ['-Dfile.encoding=utf-8', '-jar' , jar_path , '-i' , input_path , '-o' , out_path ]);
+    }
+ 
+```
+
+
+#### windows环境进程无法正常关闭问题
+```text
+app.on('window-all-closed', () => {
+    require('child_process').exec('taskkill /F /IM electron.exe /T')
+    require('child_process').exec('taskkill /F /IM 文字识别.exe /T')
+    // console.log('window-all-closed')
+    // if(java_process){
+    //     console.log('kill java process')
+    //     is_app_closing = true;
+    //     java_process.kill('SIGKILL')
+    //     // process.exit(java_process.pid)
+    //     app.quit()
+    //     // app.exit();
+    // }
+
+})
+ 
+```
