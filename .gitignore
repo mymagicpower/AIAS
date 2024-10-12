@@ -27,3 +27,5 @@
 1_image_sdks/face_sdks/face_feature_sdk/models/
 1_image_sdks/face_sdks/face_restoration_sdk/models/
 1_image_sdks/face_sdks/face_sr_sdk/models/
+3_audio_sdks/asr_whisper_long_sdk/models/whisper/
+3_audio_sdks/asr_whisper_sdk/models/whisper/

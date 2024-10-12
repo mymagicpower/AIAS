@@ -16,7 +16,7 @@
 <h4 align="center">
     <p>
         <b>官网</b> |
-        <a href="https://www.aias.top/">https://www.aias.top/</a>
+        <a href="http://www.aias.top/">http://www.aias.top/</a>
     <p>
 </h4>
 </div>
@@ -607,7 +607,20 @@
     <tr>
       <td>
         <div align="left">
-          <p>语音识别（ASR）【短语音】 - asr_sdk</p>   
+          <p>语音识别（ASR）【短语音】 - asr_whisper_sdk</p>   
+           中文语音识别。     
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/voice_sdks/asr.jpeg" width = "400px"/>
+        </div>
+      </td>
+    </tr> 
+    <tr>
+      <td>
+        <div align="left">
+          <p>语音识别（ASR）【长语音】 - asr_whisper_long_sdk</p>   
            中文语音识别。     
         </div>
       </td>     
@@ -633,59 +646,6 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>音素相关的文本处理- ph_sdk</p>
-          音素相关的文本处理工具箱。适用于中文、英文和中英混合的音素，其中汉字拼音采用清华大学的音素，
-          英文字符分字母和英文。
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/voice_sdks/phoneme.jpeg"  width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td style="width:220px">
-        <div align="left">
-          <p>音特征编码器提取特征向量 - sv2tts_speakencoder_sdk</p>
-           声音特征编码器。     
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/voice_sdks/embedding.jpeg"  width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td style="width:220px">
-        <div align="left">
-          <p>提取mel(梅尔)频谱 - tacotron_stft_sdk</p>
-          TacotronSTFT 提取mel(梅尔)频谱。     
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/voice_sdks/mel_spec.jpeg"  width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td style="width:220px">
-        <div align="left">
-          <p>基于目标音色的梅尔频谱图 - tacotron2_sdk</p>
-          模型生成文本基于目标音色的梅尔频谱图。     
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/voice_sdks/tacotron2.jpeg"  width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td style="width:220px">
-        <div align="left">
           <p>TTS 文本转为语音 - tts_sdk</p>
           TTS 文本转为语音。     
         </div>
@@ -695,20 +655,7 @@
         <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/voice_sdks/SV2TTS.png"  width = "400px"/>
         </div>
       </td>
-    </tr>
-    <tr>
-      <td style="width:220px">
-        <div align="left">
-          <p>声纹识别 - voiceprint_sdk</p>
-          声纹特征向量提取，声纹相似度计算。     
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/voice_sdks/voiceprint1.jpeg"  width = "400px"/>
-        </div>
-      </td>
-    </tr>                                                    
+    </tr>                                                
   </table>
 </div>
 
