@@ -1,6 +1,17 @@
-# OCR Electron App
+# OCR 文字识别桌面app
+## 介绍
+使用Electron构建UI界面，ocr识别使用paddle开源ocr模型，模型推理框架使用amazon djl推理引擎。
 
-## 1. OCR SDK
+### 功能清单
+- 图片文字识别
+- 支持windows, linux, mac 一键安装
+<div align="center">
+<img src="https://aiart.oss-cn-shanghai.aliyuncs.com/assets/ocr.jpeg"  width = "500"/>
+</div> 
+
+
+## 项目配置
+### 1. OCR SDK
 ### 1.1. 更新模型路径（替换成你的本地路径，或者参考其它的模型加载方式）
 ```
         String detModelUri ="E:\\desktop_app\\ocr\\models\\ch_PP-OCRv3_det_infer_onnx.zip";
@@ -31,7 +42,7 @@ http://aias.top/AIAS/guides/load_model.html
 ```
 
 
-## 2. OCR Electron 前端App 
+### 2. OCR Electron 前端App 
 
 ### 2.1. 项目初始化
 ```
