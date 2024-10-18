@@ -101,6 +101,9 @@ async function createWindow() {
 		}
 	});
 
+
+
+
 	nativeTheme.themeSource = 'system';
 
 	if (process.env.WEBPACK_DEV_SERVER_URL) {
@@ -140,12 +143,11 @@ app.on('ready', async () => {
 
 	console.log(win);
 	// bind_window_bridge(win);
-
-	// did-finish-load 事件,无论加载成功或者失败都会调用
-	win.webContents.on('did-finish-load', function() {
-
-		bind_window_native_functions(win);
-	});
+	bind_window_native_functions(win);
+	// win.webContents.on('did-finish-load', function() {
+	//
+	// 	bind_window_native_functions(win);
+	// });
 
 })
 
@@ -158,6 +160,9 @@ app.setAboutPanelOptions({
 	copyright: "Copyright © 2022 " + require('../package.json').name,
 	website: require('../package.json').website
 });
+
+
+
 
 
 // Exit cleanly on request from parent process in development mode.

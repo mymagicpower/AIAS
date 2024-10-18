@@ -102,7 +102,7 @@ native_functions.js:
     }
 ```
 
-### 5. vue.config.js 如何配置？
+### 2.6. vue.config.js 如何配置？
 ```
 1. mac, linux 环境配置: // "from": "../backends/ocr/"
 2. windows环境配置:  "from": "E:\\ocr\\"
@@ -126,4 +126,18 @@ E:\ocr 的目录
                         "**/*"
                     ]
                 }],
+```
+
+### 2.7. 如何启用web开发者工具？- background.js
+```
+	if (process.env.WEBPACK_DEV_SERVER_URL) {
+		// Load the url of the dev server if in development mode
+		await win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
+		
+        // 打开下面这行的注释
+		// if (!process.env.IS_TEST) win.webContents.openDevTools()
+	} else {
+		createProtocol('app')
+		// Load the index.html when not in development
+		win.loadURL('app://./index.html')
 ```
