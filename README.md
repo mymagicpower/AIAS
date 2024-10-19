@@ -242,6 +242,19 @@
         <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/face_sdk/images/face_res.png"  width = "400px"/>
         </div>
       </td>
+    </tr>
+    <tr>
+      <td style="width:220px">
+        <div align="left">
+          <p>人脸工具箱 6：口罩检测 - face_sdks/mask_sdk</p>
+          口罩检测，给出检测框。     
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/mask_sdk/face-masks.png"  width = "400px"/>
+        </div>
+      </td>
     </tr>              
     <tr>
       <td>
@@ -311,19 +324,6 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>人群密度检测 - crowd_sdk</p>
-          统计人数，计算密度图。     
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/density.png"  width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td style="width:220px">
-        <div align="left">
           <p>烟火检测 - fire_smoke_sdk</p>
           烟火检测，给出检测框和置信度。     
         </div>
@@ -331,19 +331,6 @@
       <td>
         <div align="center">
         <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/sec_sdks/images/fire_detect_result.png"  width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td style="width:220px">
-        <div align="left">
-          <p>口罩检测 - mask_sdk</p>
-          口罩检测，给出检测框。     
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/mask_sdk/face-masks.png"  width = "400px"/>
         </div>
       </td>
     </tr>
