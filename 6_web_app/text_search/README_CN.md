@@ -2,10 +2,10 @@
 http://aias.top/
 
 
-### 图像&文本的跨模态相似性比对检索【支持40种语言】
-- 包含两个项目，满足不同场景的需要
+### 文本向量搜索
+本例子提供了文本搜索，支持上传csv文件，使用句向量模型提取特征，用于后续检索。
 
-![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/7_engine_hub/image_text_search/arc.png)
+![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/text_search/arc.png)
 
 #### 文本句向量搜索应用：
 - 语义搜索，通过句向量相似性，检索语料库中与query最匹配的文本
