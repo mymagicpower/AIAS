@@ -809,7 +809,7 @@
   </table>
 </div>
 
-- 6. 6_web_app - [Web应用]
+- 6. 6_web_app - [Web应用，前端VUE，后端Springboot]
 ```text
   1). 训练引擎
       ...
@@ -850,6 +850,20 @@
       <td>
         <div align="center">
         <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/data/images/code_search_arc.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>202种语言互相翻译 Web 应用 - text_translation</p>   
+          - 支持202种语言互相翻译。<br>
+          - 支持 CPU / GPU<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/assets/nllb.png" width = "400px"/>
         </div>
       </td>
     </tr>                                                
