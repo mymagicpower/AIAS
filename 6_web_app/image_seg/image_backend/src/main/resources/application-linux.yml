@@ -1,0 +1,30 @@
+# Server Port
+server:
+  port: 8089
+  tomcat:
+    uri-encoding: UTF-8
+  baseUri: http://47.99.116.123:${server.port}
+
+
+# Model URI
+model:
+  # 设备类型 cpu gpu
+  device: cpu
+  # 最大设置为 CPU 核心数 (Core Number)
+  poolSize: 1
+  # 遮罩层
+  mask: false
+  # 模型路径
+  modelPath: /home/image_portal/models/
+  # 通用分割模型
+  bigModelName: u2net.onnx
+  middleModelName: silueta.onnx
+  smallModelName: u2netp.onnx
+  # 人体分割模型
+  humanModelName: human.onnx
+  # 动漫分割模型
+  animeModelName: anime.onnx
+  # 衣服分割模型
+  clothModelName: cloth.onnx
+
+

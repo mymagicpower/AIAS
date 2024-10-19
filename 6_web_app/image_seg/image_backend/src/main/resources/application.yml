@@ -1,0 +1,34 @@
+
+spring:
+  profiles:
+    active: linux
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 30MB
+      max-request-size: 30MB
+  http:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+  messages:
+    encoding: UTF-8
+
+# Swagger-ui
+swagger:
+  enabled: true
+
+# File path
+file:
+  mac:
+    path: file/
+  linux:
+    path: file/
+  windows:
+    path: C:\\image_portal\\file\\
+  # File max size - MB
+  maxSize: 100
+
+
+
