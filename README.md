@@ -829,7 +829,30 @@
         <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/train_platform/images/training.png" width = "400px"/>
         </div>
       </td>
-    </tr>                                               
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>代码语义搜索 - code_search</p>  
+            用于软件开发过程中的，代码搜代码，语义搜代码。 
+            1. 代码语义搜索【无向量引擎版】 - simple_code_search<br>
+            主要特性<br>
+            - 支持100万以内的数据量<br>
+            - 随时对数据进行插入、删除、搜索、更新等操作<br>
+            2. 代码语义搜索【向量引擎版】 - code_search<br>
+            主要特性<br>
+            - 底层使用特征向量相似度搜索<br>
+            - 单台服务器十亿级数据的毫秒级搜索<br>
+            - 近实时搜索，支持分布式部署<br>
+            - 随时对数据进行插入、删除、搜索、更新等操作
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/data/images/code_search_arc.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>                                                
   </table>
 </div>
 
