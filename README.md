@@ -882,7 +882,66 @@
         <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/assets/seg_all.png" width = "400px"/>
         </div>
       </td>
-    </tr>                                                 
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>图片一键高清- image_gan</p>   
+          当前版本包含了下面功能：<br>
+          - 图片一键高清: 提升图片4倍分辨率。<br>
+          - 头像一键高清<br>
+          - 人脸一键修复<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/assets/imageSr.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>图像&文本的跨模态相似性比对检索【支持40种语言】- image_text_search</p>   
+          - 包含两个项目，满足不同场景的需要<br>
+          - 1. 图像&文本的跨模态相似性比对检索【无向量引擎版】 <br>
+          - simple_image_text_search<br>
+          - 支持100万以内的数据量<br>
+          - 随时对数据进行插入、删除、搜索、更新等操作<br>
+          - 2. 图像&文本的跨模态相似性比对检索【向量引擎版】 <br>
+          - image_text_search<br>
+          - 以图搜图：上传图片搜索<br>
+          - 以文搜图：输入文本搜索<br>
+          - 数据管理：提供图像压缩包(zip格式)上传，图片特征提取
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/7_engine_hub/image_text_search/search3.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>文本向量搜索 - text_search</p>   
+          - 包含两个项目，满足不同场景的需要<br>
+          - 1. 文本向量搜索【无向量引擎版】 <br>
+          - simple_text_search <br>
+          - 2. 文本向量搜索【向量引擎版】 <br>
+          - image_text_search<br>
+          - 语义搜索，通过句向量相似性，检索语料库中与query最匹配的文本 <br>
+          - 文本聚类，文本转为定长向量，通过聚类模型可无监督聚集相似文本 <br>
+          - 文本分类，表示成句向量，直接用简单分类器即训练文本分类器 <br>
+          - RAG 用于大模型搜索增强生成
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/text_search/search.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>                                                   
   </table>
 </div>
 
