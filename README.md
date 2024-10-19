@@ -285,19 +285,6 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>单目深度估计 - depth_estimation_sdk</p>
-          MiDaS_Small实现单目深度估计，模型可通过输入图像估计其中的深度信息。    
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/depth_estimation_sdk/depth.png"  width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td style="width:220px">
-        <div align="left">
           <p>烟火检测 - fire_smoke_sdk</p>
           烟火检测，给出检测框和置信度。     
         </div>
@@ -438,7 +425,33 @@
         <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/lac_network.png"  width = "400px"/>
         </div>
       </td>
-    </tr>                                                     
+    </tr>
+    <tr>
+      <td style="width:220px">
+        <div align="left">
+          <p>202种语言互相翻译 - translation/trans_nllb_sdk</p>
+          支持202种语言互相翻译,支持 CPU / GPU。    
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/translation.jpeg"  width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td style="width:220px">
+        <div align="left">
+          <p>中英互相翻译 - translation/translation_sdk</p>
+          可以进行英语和中文之间的翻译,支持 CPU / GPU。    
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/translation.jpeg"  width = "400px"/>
+        </div>
+      </td>
+    </tr>                                                       
   </table>
 </div>
 
