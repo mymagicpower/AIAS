@@ -298,32 +298,6 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>动作驱动 - first_order_sdk</p>
-          sdk以一段动作视频去驱动一张图片运动。可以驱动任意类型的运动。     
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/gan_sdks/result.gif"  width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td style="width:220px">
-        <div align="left">
-          <p>实例分割 - instance_segmentation_sdk</p>
-          支持对图片中80个分类的目标进行实例分割。     
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/Instance_segmentation_sdk/result.jpeg"  width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td style="width:220px">
-        <div align="left">
           <p>烟火检测 - fire_smoke_sdk</p>
           烟火检测，给出检测框和置信度。     
         </div>
@@ -392,45 +366,14 @@
 - 2. 2_nlp_sdks - [自然语言 SDK]
 ```text
   1). 工具箱系列：sentencepiece，fastText，npy/npz文件处理等。
-  2). 文本生成
+  2). 大模型
   3). 词向量
   4). 机器翻译
-  5). 语义模型
-  6). 情感分析
-  7). 句法分析
-  8). 词法分析
-  9). 文本审核
       ...
 ```
 
 <div align="center">
   <table>
-    <tr>
-      <td>
-        <div align="left">
-          <p>轻量句向量SDK【英文】 - embedding/sentence_encoder_en_sdk</p>   
-           句向量是指将语句映射至固定维度的实数向量。     
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/Universal-Sentence-Encoder.png" width = "400px"/>
-        </div>
-      </td>
-    </tr> 
-    <tr>
-      <td style="width:220px">
-        <div align="left">
-          <p>词向量SDK【英文】- embedding/word_encoder_en_sdk</p>
-          每个单词或词组被映射为实数域上的向量。
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/word_vector_en.png"  width = "400px"/>
-        </div>
-      </td>
-    </tr>
     <tr>
       <td style="width:220px">
         <div align="left">
@@ -495,86 +438,7 @@
         <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/lac_network.png"  width = "400px"/>
         </div>
       </td>
-    </tr>
-    <tr>
-      <td style="width:220px">
-        <div align="left">
-          <p>短文本相似度SDK [中文] - semantic_simnet_bow_sdk</p>
-          计算两个句子的cosin相似度。     
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/Universal-Sentence-Encoder.png"  width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td style="width:220px">
-        <div align="left">
-          <p>情感分析SDK [中文]- sentiment_analysis/senta_bilstm_sdk</p>
-          判断该文本的情感极性类别并给出相应的置信度。     
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/sentiment_analysis.jpeg"  width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td style="width:220px">
-        <div align="left">
-          <p>对话情绪识别SDK [中文] - sentiment_analysis/senta_textcnn_sdk</p>
-          对话情绪识别（Emotion Detection）专注于识别智能对话场景中用户的情绪，
-          针对智能对话场景中的用户文本，自动判断该文本的情绪类别并给出相应的置信度。    
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/sentiment_analysis.jpeg"  width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td style="width:220px">
-        <div align="left">
-          <p>情感倾向分析SDK - sentiment_analysis/sentiment_analysis_sdk</p>
-          情感倾向分析（Sentiment Classification）针对带有主观描述的中文文本，可自动判断该文本的情感极性类别并给出相应的置信度。     
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/sentiment_analysis.jpeg"  width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td style="width:220px">
-        <div align="left">
-          <p>文本审核SDK [中文] - porn_detection_sdk</p>
-          色情检测模型可自动判别文本是否涉黄并给出相应的置信度，对文本中的色情描述、低俗交友、污秽文爱进行识别。
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/text_review.jpeg"  width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td style="width:220px">
-        <div align="left">
-          <p>中文翻译为英文 - translation_zh_en_sdk</p>
-          中文翻译为英文SDK。
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/translation.jpeg"  width = "400px"/>
-        </div>
-      </td>
-    </tr>                                                       
+    </tr>                                                     
   </table>
 </div>
 
