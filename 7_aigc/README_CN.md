@@ -1,168 +1,395 @@
-### 官网：
-[官网链接](https://www.aias.top/)
 
-### 下载模型，放置于各自项目的models目录
-- 链接: https://pan.baidu.com/s/1sQu1mVR6pPqyBL8nil89tg?pwd=g287
 
-#### 图像生成提示词参考
-- https://arthub.ai/
+#### 项目清单:
+- 7_aigc - [图像生成]
 
-#### 作品欣赏
+```text
+  1). 图像生成预处理工具箱 controlnet_sdks
+  2). 图像生成SD工具箱 stable_diffusion_sdks
+      ...
+```
+
+- 7.1  图像生成预处理工具箱 controlnet_sdks
 <div align="center">
-<img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/stable_diffusion/sample.png"  width = "600"/>
-</div> 
+  <table>
+    <tr>
+      <td>
+        <div align="left">
+          <p>1. Canny 边缘检测</p>   
+          - canny_sdk<br>
+          - Canny 边缘检测预处理器可很好识别出<br>   图像内各对象的边缘轮廓，常用于生成线稿。<br>
+          - 对应ControlNet模型： control_canny<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/canny.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>2. MLSD 线条检测</p>   
+            - mlsd_sdk<br>
+            - MLSD 线条检测用于生成房间、<br>   直线条的建筑场景效果比较好。<br>
+            - 对应ControlNet模型： control_mlsd<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/mlsd.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>3. Scribble 涂鸦</p>   
+          - scribble_hed_sdk<br>
+          - scribble_pidinet_sdk<br>
+          - 图片自动生成类似涂鸦效果的草图线条。<br>
+          - 对应ControlNet模型： control_mlsd<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/scribble.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>4. SoftEdge 边缘检测</p>   
+          - softedge_hed_sdk<br>
+          - HED - HedScribbleExample<br>
+          - HED Safe - HedScribbleExample<br>
+          - softedge_pidinet_sdk<br>
+          - PidiNet - PidiNetGPUExample<br>
+          - PidiNet Safe - PidiNetGPUExample<br>
+          - SoftEdge 边缘检测可保留更多柔和的边缘细节，<br>   类似手绘效果。<br>
+          - 对应ControlNet模型： control_softedge。<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/softedge.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>5. OpenPose 姿态检测</p>   
+          - pose_sdk<br>
+        - OpenPose 姿态检测可生成图像中角色动作<br>姿态的骨架图(含脸部特征以及手部骨架检测)<br>，这个骨架图可用于控制生成角色的姿态动作。<br>
+        - 对应ControlNet模型： control_openpose。<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/openpose.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>6. Segmentation 语义分割</p>   
+          - seg_upernet_sdk<br>
+        - 语义分割可多通道应用，<br>原理是用颜色把不同类型的对象分割开，<br>让AI能正确识别对象类型和需求生成的区界。<br>
+        - 对应ControlNet模型： control_seg。
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/seg.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>7. Depth 深度检测</p>   
+          - depth_estimation_midas_sdk<br>
+          - Midas - MidasDepthEstimationExample<br>
+          - depth_estimation_dpt_sdks<br>
+          - DPT - DptDepthEstimationExample<br>
+          - 通过提取原始图片中的深度信息，<br>生成具有原图同样深度结构的深度图，<br>越白的越靠前，越黑的越靠后。<br>
+          - 对应ControlNet模型： control_depth。
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/depth.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>8. Normal Map 法线贴图</p>   
+          - normal_bae_sdk<br>
+          - NormalBaeExample<br>
+          - 根据图片生成法线贴图，适合CG或游戏美术师。<br>法线贴图能根据原始素材生成<br>一张记录凹凸信息的法线贴图，<br>便于AI给图片内容进行更好的光影处理，<br>它比深度模型对于细节的保留更加的精确。<br>法线贴图在游戏制作领域用的较多，<br>常用于贴在低模上模拟高模的复杂光影效果。<br>
+          - 对应ControlNet模型： control_normal。
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/normal.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>9. Lineart 生成线稿</p>   
+          - lineart_sdk<br>
+          - lineart_coarse_sdk<br>
+          - Lineart 边缘检测预处理器可很好识别出<br>图像内各对象的边缘轮廓，用于生成线稿。
+          - 对应ControlNet模型： control_lineart。
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/lineart.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>10. Lineart Anime 生成线稿</p>   
+          - lineart_anime_sdk<br>
+          - LineArtAnimeExample<br>
+          - Lineart Anime 边缘检测预处理器<br>可很好识别出卡通图像内<br>各对象的边缘轮廓，用于生成线稿。<br>
+          - 对应ControlNet模型： control_lineart_anime。
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/lineart_anime.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>11. Content Shuffle</p>   
+          - content_shuffle_sdk<br>
+          - ContentShuffleExample<br>
+          - Content Shuffle 图片内容变换位置，<br>打乱次序，配合模型 <br>control_v11e_sd15_shuffle 使用。<br>
+          - 对应ControlNet模型： control_shuffle。
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/shuffle.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>                                                  
+  </table>
+</div>
 
-#### 测试环境和数据
-- 显卡CUDA：11.7版本
-- 参考测试数据：分辨率 512*512 25步 CPU(i5处理器) 5分钟。 3060显卡20秒。
-
-#### 1. 文生图：输入提示词（仅支持英文），生成图片（仅支持英文）
-- GPU版本 StableDiffusionGPU.java
-- CPU版本 StableDiffusionCPU.java
-#### 文生图测试
-- 提示词 prompt： a photo of an astronaut riding a horse on mars
-- 生成图片效果：
+- 7.2  图像生成SD工具箱 stable_diffusion_sdks
 <div align="center">
-<img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/stable_diffusion/astronaut.png"  width = "400"/>
-</div> 
+  <table>
+    <tr>
+      <td>
+        <div align="left">
+          <p>1. 文生图：输入提示词（仅支持英文），<br>生成图片（仅支持英文）</p>
+            - txt2image_sdk<br> 
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/stable_diffusion/astronaut.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>2. 图生图：根据图片及提示词<br>（仅支持英文）生成图片</p>
+            - image2image_sdk<br> 
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/stable_diffusion/astronaut.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>3. Lora 文生图</p>
+            - lora_sdk<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/stable_diffusion/astronaut.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>4. Controlnet 图像生成-4.1. Canny 边缘检测</p>
+            - controlnet_canny_sdk<br>  
+            - Canny 边缘检测预处理器可<br>很好识别出图像内各对象<br>的边缘轮廓，常用于生成线稿。<br>  
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/canny_sd.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>4. Controlnet 图像生成-4.2. MLSD 线条检测</p>
+            - controlnet_mlsd_sdk<br>
+            - MLSD 线条检测用于生成房间、<br>直线条的建筑场景效果比较好。<br> 
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/mlsd_sd.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>4. Controlnet 图像生成-4.3. Scribble 涂鸦</p>
+            - controlnet_scribble_sdk<br>    
+            - 图片自动生成类似涂鸦效果的草图线条。<br> 
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/scribble_sd.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>4. Controlnet 图像生成-4.4. SoftEdge 边缘检测</p>
+            - controlnet_softedge_sdk<br>   
+            - SoftEdge 边缘检测可保留更多<br>柔和的边缘细节，类似手绘效果。<br> 
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/softedge_sd.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>4. Controlnet 图像生成-4.5. OpenPose 姿态检测</p>
+            - controlnet_pose_sdk<br>   
+            - OpenPose 姿态检测可生成图像<br>中角色动作姿态的骨架图<br>(含脸部特征以及手部骨架检测)<br>，这个骨架图可用于控制生成角色的姿态动作。
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/openpose_sd.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>4. Controlnet 图像生成-4.6. Segmentation 语义分割</p>
+            - controlnet_seg_sdk<br>   
+            - 语义分割可多通道应用，<br>原理是用颜色把不同类型的对象分割开，<br>让AI能正确识别对象类型和需求生成的区界。
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/seg_sd.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>4. Controlnet 图像生成-4.7. Depth 深度检测</p>
+            - controlnet_depth_sdk<br>   
+            - 通过提取原始图片中的深度信息，<br>生成具有原图同样深度结构的深度图，<br>越白的越靠前，越黑的越靠后。
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/depth_sd.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>4. Controlnet 图像生成-4.8. Normal Map 法线贴图</p>
+            - controlnet_normal_sdk<br>   
+            - 根据图片生成法线贴图，<br>适合CG或游戏美术师。<br>法线贴图能根据原始素材生成一张记录凹凸信息的法线贴图，<br>便于AI给图片内容进行更好的光影处理，<br>它比深度模型对于细节的保留更加的精确。<br>法线贴图在游戏制作领域用的较多，<br>常用于贴在低模上模拟高模的复杂光影效果。
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/normal_sd.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>4. Controlnet 图像生成-4.9. Lineart 生成线稿</p>
+            - controlnet_lineart_sdk<br>   
+            - controlnet_lineart_coarse_sdk<br>   
+            - Lineart 边缘检测预处理器可很好识别出<br>图像内各对象的边缘轮廓，用于生成线稿。
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/lineart_sd.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>4. Controlnet 图像生成-4.10. Lineart Anime 生成线稿</p>
+            - controlnet_lineart_anime_sdk<br>   
+            - Lineart Anime <br>边缘检测预处理器可很好<br>识别出卡通图像内各对象的边缘轮廓，<br>用于生成线稿。
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/lineart_anime_sd.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>4. Controlnet 图像生成-4.11. Content Shuffle</p>
+            - controlnet_shuffle_sdk<br>   
+            - Content Shuffle 图片内容变换位置，<br>打乱次序，配合模型 <br>control_v11e_sd15_shuffle 使用。
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/shuffle_sd.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>                                              
+  </table>
+</div>
 
-### 2. 图生图：根据图片及提示词（仅支持英文）生成图片
-- CPU版本 Image2ImageCpu.java
-- GPU版本 Image2ImageGpu.java
-
-### 3. Lora 文生图
-- CPU版本 LoraTxt2ImageCpu.java
-
-### 4. Controlnet 图像生成
-- 显卡CUDA：11.7版本
-- 参考测试数据：分辨率 512*512 25步 CPU(i5处理器) 5分钟。 3060显卡20秒。
-
-#### 4.1. Canny 边缘检测
-- CPU版本 ControlNetCannyCpu.java
-- GPU版本 ControlNetCannyGpu.java
-- Canny 边缘检测预处理器可很好识别出图像内各对象的边缘轮廓，常用于生成线稿。
-- 对应ControlNet模型： control_canny
-
-<div align="center">
-<img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/canny_sd.png"  width = "600"/>
-</div> 
-
-#### 4.2. MLSD 线条检测
-- CPU版本 ControlNetMlsdCpu.java
-- GPU版本 ControlNetMlsdGpu.java
-- MLSD 线条检测用于生成房间、直线条的建筑场景效果比较好。
-- 对应ControlNet模型： control_mlsd
-
-<div align="center">
-<img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/mlsd_sd.png"  width = "600"/>
-</div> 
-
-#### 4.3. Scribble 涂鸦
-- CPU版本 ControlNetScribbleHedCpu.java，ControlNetScribblePidiNetCpu.java
-- GPU版本 ControlNetScribbleHedGpu.java，ControlNetScribblePidiNetGpu.java
-- 不用自己画，图片自动生成类似涂鸦效果的草图线条。
-- 对应ControlNet模型： control_scribble
-
-<div align="center">
-<img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/scribble_sd.png"  width = "600"/>
-</div> 
-
-#### 4.4. SoftEdge 边缘检测
-- HED Safe
-- PidiNet
-- PidiNet Safe
-- CPU版本 ControlNetSoftEdgeCpu
-- GPU版本 ControlNetSoftEdgeGpu
-- SoftEdge 边缘检测可保留更多柔和的边缘细节，类似手绘效果。
-- 对应ControlNet模型： control_softedge。
-
-<div align="center">
-<img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/softedge_sd.png"  width = "600"/>
-</div> 
-
-#### 4.5. OpenPose 姿态检测
-- CPU版本 ControlNetPoseCpu.java
-- GPU版本 ControlNetPoseGpu.java
-- OpenPose 姿态检测可生成图像中角色动作姿态的骨架图(含脸部特征以及手部骨架检测)，这个骨架图可用于控制生成角色的姿态动作。
-- 对应ControlNet模型： control_openpose。
-
-<div align="center">
-<img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/openpose_sd.png"  width = "600"/>
-</div> 
-
-#### 4.6. Segmentation 语义分割
-- CPU版本 ControlNetSegCpu.java
-- GPU版本 ControlNetSegGpu.java
-- 语义分割可多通道应用，原理是用颜色把不同类型的对象分割开，让AI能正确识别对象类型和需求生成的区界。
-- 对应ControlNet模型： control_seg。
-
-<div align="center">
-<img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/seg_sd.png"  width = "600"/>
-</div> 
-
-#### 4.7. Depth 深度检测
-- Midas
-- CPU版本 ControlNetDepthDptCpu.java
-- GPU版本 ControlNetDepthDptGpu.java
-- DPT
-- CPU版本 ControlNetDepthMidasCpu.java
-- GPU版本 ControlNetDepthMidasGpu.java
-- 通过提取原始图片中的深度信息，生成具有原图同样深度结构的深度图，越白的越靠前，越黑的越靠后。
-- 对应ControlNet模型： control_depth。
-
-<div align="center">
-<img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/depth_sd.png"  width = "600"/>
-</div> 
-
-#### 4.8. Normal Map 法线贴图
-- CPU版本 ControlNetNormalbaeCpu.java
-- GPU版本 ControlNetNormalbaeGpu.java
-- 根据图片生成法线贴图，适合CG或游戏美术师。法线贴图能根据原始素材生成一张记录凹凸信息的法线贴图，便于AI给图片内容进行更好的光影处理，它比深度模型对于细节的保留更加的精确。法线贴图在游戏制作领域用的较多，常用于贴在低模上模拟高模的复杂光影效果。
-- 对应ControlNet模型： control_normal。
-
-<div align="center">
-<img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/normal_sd.png"  width = "600"/>
-</div> 
-
-#### 4.9. Lineart 生成线稿
-- CPU版本 ControlNetLineArtCpu.java
-- GPU版本 ControlNetLineArtGpu.java
-- Lineart 边缘检测预处理器可很好识别出图像内各对象的边缘轮廓，用于生成线稿。
-- 对应ControlNet模型： control_lineart。
-
-<div align="center">
-<img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/lineart_sd.png"  width = "600"/>
-</div> 
-
-#### 4.10. Lineart Anime 生成线稿
-- CPU版本 ControlNetLineArtAnimeCpu.java
-- GPU版本 ControlNetLineArtAnimeGpu.java
-- Lineart Anime 边缘检测预处理器可很好识别出卡通图像内各对象的边缘轮廓，用于生成线稿。
-- 对应ControlNet模型： control_lineart_anime。
-
-<div align="center">
-<img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/lineart_anime_sd.png"  width = "600"/>
-</div> 
-
-#### 4.11. Content Shuffle
-- CPU版本 ControlNetShuffleCpu.java
-- GPU版本 ControlNetShuffleGpu.java
-- Content Shuffle 图片内容变换位置，打乱次序，配合模型 control_v11e_sd15_shuffle 使用。
-- 对应ControlNet模型： control_shuffle。
-
-<div align="center">
-<img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/shuffle_sd.png"  width = "600"/>
-</div> 
-
-
-
-#### 帮助文档：
-- https://aias.top/guides.html
-- 1.性能优化常见问题:
-- https://aias.top/AIAS/guides/performance.html
-- 2.引擎配置（包括CPU，GPU在线自动加载，及本地配置）:
-- https://aias.top/AIAS/guides/engine_config.html
-- 3.模型加载方式（在线自动加载，及本地配置）:
-- https://aias.top/AIAS/guides/load_model.html
-- 4.Windows环境常见问题:
-- https://aias.top/AIAS/guides/windows.html

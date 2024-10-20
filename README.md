@@ -23,6 +23,18 @@
 
 <br>
 <hr>
+
+#### 1. 官网: 
+- 网址：http://www.aias.top/
+- 帮助：https://aias.top/guides.html
+
+#### 2. 开源地址: 
+
+- Gitee:  https://gitee.com/mymagicpower/AIAS
+- GitHub: https://github.com/mymagicpower/AIAS
+
+#### 3. 人工智能算法：
+- https://zhuanlan.zhihu.com/p/693738275
 <br>
 
 <div align="center">
@@ -821,7 +833,8 @@
       <td>
         <div align="left">
           <p>AI 训练平台 - training</p>   
-          AI训练平台提供分类模型训练能力。并以REST API形式为上层应用提供接口。
+          AI训练平台提供分类模型训练能力。<br>
+          并以REST API形式为上层应用提供接口。<br>
         </div>
       </td>     
       <td>
@@ -834,8 +847,9 @@
       <td>
         <div align="left">
           <p>代码语义搜索 - code_search</p>  
-            用于软件开发过程中的，代码搜代码，语义搜代码。 
-            1. 代码语义搜索【无向量引擎版】 - simple_code_search<br>
+            用于软件开发过程中的，代码搜代码，语义搜代码。<br>s 
+            1. 代码语义搜索【无向量引擎版】 <br>
+            - simple_code_search<br>
             主要特性<br>
             - 支持100万以内的数据量<br>
             - 随时对数据进行插入、删除、搜索、更新等操作<br>
@@ -902,17 +916,20 @@
     <tr>
       <td>
         <div align="left">
-          <p>图像&文本的跨模态相似性比对检索【支持40种语言】- image_text_search</p>   
+          <p>图像&文本的跨模态相似性比对检索【支持40种语言】<br>
+          - image_text_search</p>   
           - 包含两个项目，满足不同场景的需要<br>
-          - 1. 图像&文本的跨模态相似性比对检索【无向量引擎版】 <br>
+          - 1. 图像&文本的跨模态相似性比对检索<br>
+          【无向量引擎版】 <br>
           - simple_image_text_search<br>
           - 支持100万以内的数据量<br>
           - 随时对数据进行插入、删除、搜索、更新等操作<br>
-          - 2. 图像&文本的跨模态相似性比对检索【向量引擎版】 <br>
+          - 2. 图像&文本的跨模态相似性比对检索<br>
+          【向量引擎版】 <br>
           - image_text_search<br>
           - 以图搜图：上传图片搜索<br>
           - 以文搜图：输入文本搜索<br>
-          - 数据管理：提供图像压缩包(zip格式)上传，图片特征提取
+          - 数据管理：提供图像压缩包(zip格式)上传<br>
         </div>
       </td>     
       <td>
@@ -930,9 +947,9 @@
           - simple_text_search <br>
           - 2. 文本向量搜索【向量引擎版】 <br>
           - text_search<br>
-          - 语义搜索，通过句向量相似性，检索语料库中与query最匹配的文本 <br>
-          - 文本聚类，文本转为定长向量，通过聚类模型可无监督聚集相似文本 <br>
-          - 文本分类，表示成句向量，直接用简单分类器即训练文本分类器 <br>
+          - 语义搜索，通过句向量相似性，<br>检索语料库中与query最匹配的文本 <br>
+          - 文本聚类，文本转为定长向量，<br>通过聚类模型可无监督聚集相似文本 <br>
+          - 文本分类，表示成句向量，<br>直接用简单分类器即训练文本分类器 <br>
           - RAG 用于大模型搜索增强生成
         </div>
       </td>     
@@ -951,17 +968,17 @@
           - simple_face_search <br>
           - 2. 人像搜索【完整版】<br>
           - face_search<br>
-          - 搜索管理：提供通用图像搜索，人像搜索，图像信息查看<br>
-          - 存储管理：提供图像压缩包(zip格式)上传，人像特征提取，通用特征提取<br>
-          - 用户管理：提供用户的相关配置，新增用户后，默认密码为123456<br>
-          - 角色管理：对权限与菜单进行分配，可根据部门设置角色的数据权限<br>
-          - 菜单管理：已实现菜单动态路由，后端可配置化，支持多级菜单<br>
-          - 部门管理：可配置系统组织架构，树形表格展示<br>
+          - 搜索管理：提供通用图像搜索，<br>人像搜索，图像信息查看<br>
+          - 存储管理：提供图像压缩包(zip格式)上传，<br>人像特征提取，通用特征提取<br>
+          - 用户管理：提供用户的相关配置，<br>新增用户后，默认密码为123456<br>
+          - 角色管理：对权限与菜单进行分配，<br>可根据部门设置角色的数据权限<br>
+          - 菜单管理：已实现菜单动态路由，<br>后端可配置化，支持多级菜单<br>
+          - 部门管理：可配置系统组织架构，<br>树形表格展示<br>
           - 岗位管理：配置各个部门的职位<br>
-          - 字典管理：可维护常用一些固定的数据，如：状态，性别等<br>
-          - 系统日志：记录用户操作日志与异常日志，方便开发人员定位排错<br>
-          - SQL监控：采用druid 监控数据库访问性能，默认用户名admin，密码123456<br>
-          - 定时任务：整合Quartz做定时任务，加入任务日志，任务运行情况一目了然<br>
+          - 字典管理：可维护常用一些固定的数据，<br>如：状态，性别等<br>
+          - 系统日志：记录用户操作日志与异常日志，<br>方便开发人员定位排错<br>
+          - SQL监控：采用druid 监控数据库访问性能，<br>默认用户名admin，密码123456<br>
+          - 定时任务：整合Quartz做定时任务，<br>加入任务日志，任务运行情况一目了然<br>
           - 服务监控：监控服务器的负载情况
         </div>
       </td>     
@@ -975,7 +992,7 @@
       <td>
         <div align="left">
           <p>语音识别Web 应用 - asr</p>   
-          - 本例子提供了英文语音识别，中文语音识别。
+          - 本例子提供了英文语音识别，<br>中文语音识别。
         </div>
       </td>     
       <td>
@@ -1002,7 +1019,7 @@
         <div align="left">
           <p>1. Canny 边缘检测</p>   
           - canny_sdk<br>
-          - Canny 边缘检测预处理器可很好识别出图像内各对象的边缘轮廓，常用于生成线稿。<br>
+          - Canny 边缘检测预处理器可很好识别出<br>   图像内各对象的边缘轮廓，常用于生成线稿。<br>
           - 对应ControlNet模型： control_canny<br>
         </div>
       </td>     
@@ -1017,7 +1034,7 @@
         <div align="left">
           <p>2. MLSD 线条检测</p>   
             - mlsd_sdk<br>
-            - MLSD 线条检测用于生成房间、直线条的建筑场景效果比较好。<br>
+            - MLSD 线条检测用于生成房间、<br>   直线条的建筑场景效果比较好。<br>
             - 对应ControlNet模型： control_mlsd<br>
         </div>
       </td>     
@@ -1033,7 +1050,7 @@
           <p>3. Scribble 涂鸦</p>   
           - scribble_hed_sdk<br>
           - scribble_pidinet_sdk<br>
-          - 不用自己画，图片自动生成类似涂鸦效果的草图线条。<br>
+          - 图片自动生成类似涂鸦效果的草图线条。<br>
           - 对应ControlNet模型： control_mlsd<br>
         </div>
       </td>     
@@ -1053,7 +1070,7 @@
           - softedge_pidinet_sdk<br>
           - PidiNet - PidiNetGPUExample<br>
           - PidiNet Safe - PidiNetGPUExample<br>
-          - SoftEdge 边缘检测可保留更多柔和的边缘细节，类似手绘效果。<br>
+          - SoftEdge 边缘检测可保留更多柔和的边缘细节，<br>   类似手绘效果。<br>
           - 对应ControlNet模型： control_softedge。<br>
         </div>
       </td>     
@@ -1068,7 +1085,7 @@
         <div align="left">
           <p>5. OpenPose 姿态检测</p>   
           - pose_sdk<br>
-        - OpenPose 姿态检测可生成图像中角色动作姿态的骨架图(含脸部特征以及手部骨架检测)，这个骨架图可用于控制生成角色的姿态动作。<br>
+        - OpenPose 姿态检测可生成图像中角色动作<br>姿态的骨架图(含脸部特征以及手部骨架检测)<br>，这个骨架图可用于控制生成角色的姿态动作。<br>
         - 对应ControlNet模型： control_openpose。<br>
         </div>
       </td>     
@@ -1083,7 +1100,7 @@
         <div align="left">
           <p>6. Segmentation 语义分割</p>   
           - seg_upernet_sdk<br>
-        - 语义分割可多通道应用，原理是用颜色把不同类型的对象分割开，让AI能正确识别对象类型和需求生成的区界。<br>
+        - 语义分割可多通道应用，<br>原理是用颜色把不同类型的对象分割开，<br>让AI能正确识别对象类型和需求生成的区界。<br>
         - 对应ControlNet模型： control_seg。
         </div>
       </td>     
@@ -1101,7 +1118,7 @@
           - Midas - MidasDepthEstimationExample<br>
           - depth_estimation_dpt_sdks<br>
           - DPT - DptDepthEstimationExample<br>
-          - 通过提取原始图片中的深度信息，生成具有原图同样深度结构的深度图，越白的越靠前，越黑的越靠后。<br>
+          - 通过提取原始图片中的深度信息，<br>生成具有原图同样深度结构的深度图，<br>越白的越靠前，越黑的越靠后。<br>
           - 对应ControlNet模型： control_depth。
         </div>
       </td>     
@@ -1117,7 +1134,7 @@
           <p>8. Normal Map 法线贴图</p>   
           - normal_bae_sdk<br>
           - NormalBaeExample<br>
-          - 根据图片生成法线贴图，适合CG或游戏美术师。法线贴图能根据原始素材生成一张记录凹凸信息的法线贴图，便于AI给图片内容进行更好的光影处理，它比深度模型对于细节的保留更加的精确。法线贴图在游戏制作领域用的较多，常用于贴在低模上模拟高模的复杂光影效果。<br>
+          - 根据图片生成法线贴图，适合CG或游戏美术师。<br>法线贴图能根据原始素材生成<br>一张记录凹凸信息的法线贴图，<br>便于AI给图片内容进行更好的光影处理，<br>它比深度模型对于细节的保留更加的精确。<br>法线贴图在游戏制作领域用的较多，<br>常用于贴在低模上模拟高模的复杂光影效果。<br>
           - 对应ControlNet模型： control_normal。
         </div>
       </td>     
@@ -1133,7 +1150,7 @@
           <p>9. Lineart 生成线稿</p>   
           - lineart_sdk<br>
           - lineart_coarse_sdk<br>
-          - Lineart 边缘检测预处理器可很好识别出图像内各对象的边缘轮廓，用于生成线稿。
+          - Lineart 边缘检测预处理器可很好识别出<br>图像内各对象的边缘轮廓，用于生成线稿。<br>
           - 对应ControlNet模型： control_lineart。
         </div>
       </td>     
@@ -1149,7 +1166,7 @@
           <p>10. Lineart Anime 生成线稿</p>   
           - lineart_anime_sdk<br>
           - LineArtAnimeExample<br>
-          - Lineart Anime 边缘检测预处理器可很好识别出卡通图像内各对象的边缘轮廓，用于生成线稿。<br>
+          - Lineart Anime 边缘检测预处理器<br>可很好识别出卡通图像内<br>各对象的边缘轮廓，用于生成线稿。<br>
           - 对应ControlNet模型： control_lineart_anime。
         </div>
       </td>     
@@ -1165,7 +1182,7 @@
           <p>11. Content Shuffle</p>   
           - content_shuffle_sdk<br>
           - ContentShuffleExample<br>
-          - Content Shuffle 图片内容变换位置，打乱次序，配合模型 control_v11e_sd15_shuffle 使用。<br>
+          - Content Shuffle 图片内容变换位置，<br>打乱次序，配合模型 <br>control_v11e_sd15_shuffle 使用。<br>
           - 对应ControlNet模型： control_shuffle。
         </div>
       </td>     
@@ -1184,7 +1201,7 @@
     <tr>
       <td>
         <div align="left">
-          <p>1. 文生图：输入提示词（仅支持英文），生成图片（仅支持英文）</p>
+          <p>1. 文生图：输入提示词（仅支持英文），<br>生成图片（仅支持英文）</p>
             - txt2image_sdk<br> 
         </div>
       </td>     
@@ -1197,7 +1214,7 @@
     <tr>
       <td>
         <div align="left">
-          <p>2. 图生图：根据图片及提示词（仅支持英文）生成图片</p>
+          <p>2. 图生图：根据图片及提示词<br>（仅支持英文）生成图片</p>
             - image2image_sdk<br> 
         </div>
       </td>     
@@ -1223,9 +1240,9 @@
     <tr>
       <td>
         <div align="left">
-          <p>4. Controlnet 图像生成-4.1. Canny 边缘检测</p>
+          <p>4. Controlnet 图像生成<br>-4.1. Canny 边缘检测</p>
             - controlnet_canny_sdk<br>  
-            - Canny 边缘检测预处理器可很好识别出图像内各对象的边缘轮廓，常用于生成线稿。<br>  
+            - Canny 边缘检测预处理器可<br>很好识别出图像内各对象<br>的边缘轮廓，常用于生成线稿。<br>  
         </div>
       </td>     
       <td>
@@ -1237,9 +1254,9 @@
     <tr>
       <td>
         <div align="left">
-          <p>4. Controlnet 图像生成-4.2. MLSD 线条检测</p>
+          <p>4. Controlnet 图像生成<br>-4.2. MLSD 线条检测</p>
             - controlnet_mlsd_sdk<br>
-            - MLSD 线条检测用于生成房间、直线条的建筑场景效果比较好。<br> 
+            - MLSD 线条检测用于生成房间、<br>直线条的建筑场景效果比较好。<br> 
         </div>
       </td>     
       <td>
@@ -1251,23 +1268,23 @@
     <tr>
       <td>
         <div align="left">
-          <p>4. Controlnet 图像生成-4.3. Scribble 涂鸦</p>
+          <p>4. Controlnet 图像生成<br>-4.3. Scribble 涂鸦</p>
             - controlnet_scribble_sdk<br>    
-            - 不用自己画，图片自动生成类似涂鸦效果的草图线条。<br> 
+            - 图片自动生成类似涂鸦效果的草图线条。<br> 
         </div>
       </td>     
       <td>
         <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/scribble_sd.pngs" width = "400px"/>
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/scribble_sd.png" width = "400px"/>
         </div>
       </td>
     </tr>
     <tr>
       <td>
         <div align="left">
-          <p>4. Controlnet 图像生成-4.4. SoftEdge 边缘检测</p>
+          <p>4. Controlnet 图像生成<br>-4.4. SoftEdge 边缘检测</p>
             - controlnet_softedge_sdk<br>   
-            - SoftEdge 边缘检测可保留更多柔和的边缘细节，类似手绘效果。<br> 
+            - SoftEdge 边缘检测可保留更多<br>柔和的边缘细节，类似手绘效果。<br> 
         </div>
       </td>     
       <td>
@@ -1279,9 +1296,9 @@
     <tr>
       <td>
         <div align="left">
-          <p>4. Controlnet 图像生成-4.5. OpenPose 姿态检测</p>
+          <p>4. Controlnet 图像生成<br>-4.5. OpenPose 姿态检测</p>
             - controlnet_pose_sdk<br>   
-            - OpenPose 姿态检测可生成图像中角色动作姿态的骨架图(含脸部特征以及手部骨架检测)，这个骨架图可用于控制生成角色的姿态动作。
+            - OpenPose 姿态检测可生成图像<br>中角色动作姿态的骨架图<br>(含脸部特征以及手部骨架检测)<br>，这个骨架图可用于控制生成角色的姿态动作。
         </div>
       </td>     
       <td>
@@ -1293,9 +1310,9 @@
     <tr>
       <td>
         <div align="left">
-          <p>4. Controlnet 图像生成-4.6. Segmentation 语义分割</p>
+          <p>4. Controlnet 图像生成<br>-4.6. Segmentation 语义分割</p>
             - controlnet_seg_sdk<br>   
-            - 语义分割可多通道应用，原理是用颜色把不同类型的对象分割开，让AI能正确识别对象类型和需求生成的区界。
+            - 语义分割可多通道应用，<br>原理是用颜色把不同类型的对象分割开，<br>让AI能正确识别对象类型和需求生成的区界。
         </div>
       </td>     
       <td>
@@ -1307,9 +1324,9 @@
     <tr>
       <td>
         <div align="left">
-          <p>4. Controlnet 图像生成-4.7. Depth 深度检测</p>
+          <p>4. Controlnet 图像生成<br>-4.7. Depth 深度检测</p>
             - controlnet_depth_sdk<br>   
-            - 通过提取原始图片中的深度信息，生成具有原图同样深度结构的深度图，越白的越靠前，越黑的越靠后。
+            - 通过提取原始图片中的深度信息，<br>生成具有原图同样深度结构的深度图，<br>越白的越靠前，越黑的越靠后。
         </div>
       </td>     
       <td>
@@ -1321,9 +1338,9 @@
     <tr>
       <td>
         <div align="left">
-          <p>4. Controlnet 图像生成-4.8. Normal Map 法线贴图</p>
+          <p>4. Controlnet 图像生成<br>-4.8. Normal Map 法线贴图</p>
             - controlnet_normal_sdk<br>   
-            - 根据图片生成法线贴图，适合CG或游戏美术师。法线贴图能根据原始素材生成一张记录凹凸信息的法线贴图，便于AI给图片内容进行更好的光影处理，它比深度模型对于细节的保留更加的精确。法线贴图在游戏制作领域用的较多，常用于贴在低模上模拟高模的复杂光影效果。
+            - 根据图片生成法线贴图，<br>适合CG或游戏美术师。<br>法线贴图能根据原始素材生成<br>一张记录凹凸信息的法线贴图，<br>便于AI给图片内容进行更好的光影处理，<br>它比深度模型对于细节的保留更加的精确。<br>法线贴图在游戏制作领域用的较多，<br>常用于贴在低模上模拟高模的复杂光影效果。
         </div>
       </td>     
       <td>
@@ -1335,10 +1352,10 @@
     <tr>
       <td>
         <div align="left">
-          <p>4. Controlnet 图像生成-4.9. Lineart 生成线稿</p>
+          <p>4. Controlnet 图像生成<br>-4.9. Lineart 生成线稿</p>
             - controlnet_lineart_sdk<br>   
             - controlnet_lineart_coarse_sdk<br>   
-            - Lineart 边缘检测预处理器可很好识别出图像内各对象的边缘轮廓，用于生成线稿。
+            - Lineart 边缘检测预处理器可很好识别出<br>图像内各对象的边缘轮廓，用于生成线稿。
         </div>
       </td>     
       <td>
@@ -1350,23 +1367,23 @@
     <tr>
       <td>
         <div align="left">
-          <p>4. Controlnet 图像生成-4.10. Lineart Anime 生成线稿</p>
+          <p>4. Controlnet 图像生成<br>-4.10. Lineart Anime 生成线稿</p>
             - controlnet_lineart_anime_sdk<br>   
-            - 通过提取原始图片中的深度信息，生成具有原图同样深度结构的深度图，越白的越靠前，越黑的越靠后。
+            - Lineart Anime <br>边缘检测预处理器可很好<br>识别出卡通图像内各对象的边缘轮廓，<br>用于生成线稿。
         </div>
       </td>     
       <td>
         <div align="center">
-        <img src="Lineart Anime 边缘检测预处理器可很好识别出卡通图像内各对象的边缘轮廓，用于生成线稿。" width = "400px"/>
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/lineart_anime_sd.png" width = "400px"/>
         </div>
       </td>
     </tr>
     <tr>
       <td>
         <div align="left">
-          <p>4. Controlnet 图像生成-4.11. Content Shuffle</p>
+          <p>4. Controlnet 图像生成<br>-4.11. Content Shuffle</p>
             - controlnet_shuffle_sdk<br>   
-            - Content Shuffle 图片内容变换位置，打乱次序，配合模型 control_v11e_sd15_shuffle 使用。
+            - Content Shuffle 图片内容变换位置，<br>打乱次序，配合模型 <br>control_v11e_sd15_shuffle 使用。
         </div>
       </td>     
       <td>
@@ -1377,6 +1394,7 @@
     </tr>                                              
   </table>
 </div>
+
 
 - 8 8_desktop_app - [桌面App]
 ```text
@@ -1436,23 +1454,13 @@
   </table>
 </div>
 
-#### archive - [废弃不再维护的项目]
+- 9 archive - [废弃不再维护的项目]
 
 
-#### 1. 官网: 
-- 网址：http://www.aias.top/
-- 帮助：https://aias.top/guides.html
-
-#### 2. 开源地址: 
-
-- Gitee:  https://gitee.com/mymagicpower/AIAS
-- GitHub: https://github.com/mymagicpower/AIAS
-
-#### 3. 人工智能算法：
-- https://zhuanlan.zhihu.com/p/693738275
 
 
-#### 4. 其它研究专题:
+
+### 其它研究专题:
 
 #### 1). AI + 量子计算
 <div align="left">
