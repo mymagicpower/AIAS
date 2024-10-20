@@ -193,7 +193,7 @@
     <tr>
       <td>
         <div align="left">
-          <p>动物分类识别 - classification/animal_sdk</p>   
+          <p>动物分类识别 <br>- classification/animal_sdk</p>   
            动物识别sdk，支持7978种动物的分类识别。     
         </div>
       </td>     
@@ -206,7 +206,7 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>菜品分类识别 - classification/dish_sdk</p> 
+          <p>菜品分类识别 <br>- classification/dish_sdk</p> 
           菜品识别sdk，支持8416种菜品的分类识别。   
         </div>
       </td>     
@@ -219,7 +219,7 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>烟火检测 - fire_smoke_sdk</p>
+          <p>烟火检测 <br>- fire_smoke_sdk</p>
           烟火检测，给出检测框和置信度。     
         </div>
       </td>     
@@ -232,7 +232,7 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>行人检测 - pedestrian_sdk</p>
+          <p>行人检测 <br>- pedestrian_sdk</p>
           行人检测，给出检测框和置信度。     
         </div>
       </td>     
@@ -245,7 +245,7 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>智慧工地检测 - smart_construction_sdk</p>
+          <p>智慧工地检测 <br>- smart_construction_sdk</p>
           支持检测的类别：人体，安全帽。
         </div>
       </td>     
@@ -258,7 +258,7 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>车辆检测 - vehicle_sdk</p>
+          <p>车辆检测 <br>- vehicle_sdk</p>
           车辆检测，给出检测框和置信度。
         </div>
       </td>     
@@ -271,8 +271,8 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>图片特征提取(512维)SDK - feature_extraction_sdk</p>
-          提取图片512维特征值，并支持图片1:1特征比对，给出置信度。
+          <p>图片特征提取(512维)SDK <br>- feature_extraction_sdk</p>
+          提取图片512维特征值，<br>并支持图片1:1特征比对，<br>给出置信度。
         </div>
       </td>     
       <td>
@@ -284,7 +284,8 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>图像&文本的跨模态相似性比对检索 SDK【支持40种语言】 - image_text_40_sdk</p>
+          <p>图像&文本的跨模态检索<br>- image_text_40_sdk</p>
+          - 支持40种语言<br>
           -图像&文本特征向量提取<br>
           -相似度计算<br>
           -softmax计算置信度
@@ -299,7 +300,7 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>图像矫正 - image_alignment_sdk</p>
+          <p>图像矫正 <br>- image_alignment_sdk</p>
           -自动检测边缘，透视变换转正<br>
         </div>
       </td>     
@@ -312,7 +313,7 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>文本图像超分辨 - image_text_sr_sdk</p>
+          <p>文本图像超分辨 <br>- image_text_sr_sdk</p>
           -可以用于提升电影字幕清晰度。<br>
         </div>
       </td>     
@@ -325,7 +326,7 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>图像超分辨(4倍)- super_resolution_sdk</p>
+          <p>图像超分辨(4倍)<br>- super_resolution_sdk</p>
           -提升图片4倍分辨率。<br>
         </div>
       </td>     
@@ -338,8 +339,8 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>黑白图片上色 - image_colorization_sdk</p>
-          -应用到黑白图像中，从而实现黑白照片的上色。<br>
+          <p>黑白图片上色 <br>- image_colorization_sdk</p>
+          -应用到黑白图像中<br>从而实现黑白照片的上色。<br>
         </div>
       </td>     
       <td>
@@ -351,7 +352,7 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>一键抠图工具箱 - 1. 通用一键抠图</p>
+          <p>一键抠图工具箱 <br>- 1. 通用一键抠图</p>
           - seg_unet_sdk <br>
           -包括三个模型：满足不同精度，速度的要求。<br>
         </div>
@@ -365,9 +366,9 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>一键抠图工具箱 - 2. 动漫一键抠图</p>
+          <p>一键抠图工具箱 <br>- 2. 动漫一键抠图</p>
           - seg_unet_sdk <br>
-          无需手动绘制边界，大大提高了抠图的效率和精准度。应用场景如：<br>
+          无需手动绘制边界，<br>大大提高了抠图的效率和精准度。<br>应用场景如：<br>
           - 广告设计<br>
           - 影视后期制作<br>
           - 动漫创作等<br>
@@ -382,9 +383,9 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>一键抠图工具箱 - 3. 衣服一键抠图</p>
+          <p>一键抠图工具箱 <br>- 3. 衣服一键抠图</p>
           - seg_unet_sdk <br>
-          衣服一键抠图应用场景可以在很多方面发挥作用，以下是一些简要介绍： <br>
+          应用场景： <br>
           - 电子商务 <br>
           - 社交媒体 <br>
           - 广告设计 <br>
@@ -401,9 +402,9 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>一键抠图工具箱 - 4. 人体一键抠图</p>
+          <p>一键抠图工具箱 <br>- 4. 人体一键抠图</p>
           - seg_unet_sdk <br>
-          -人体一键抠图可以将人体从背景中抠出，形成一个透明背景的人体图像。<br>
+          - 将人体从背景中抠出，<br>形成一个透明背景的人体图像。<br>
         </div>
       </td>     
       <td>
@@ -429,7 +430,7 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>Sentencepiece分词 - kits/sentencepiece_sdk</p>
+          <p>Sentencepiece分词 <br>- kits/sentencepiece_sdk</p>
           Sentencepiece分词的Java实现。     
         </div>
       </td>     
@@ -442,7 +443,7 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>jieba分词 - lexical_analysis/jieba_sdk</p>
+          <p>jieba分词 <br>- lexical_analysis/jieba_sdk</p>
           jieba分词java版本的简化实现。     
         </div>
       </td>     
@@ -481,11 +482,11 @@
             1).m3e_cn_sdk<br>
             2).text2vec_base_chinese_sdk<br>
             3).text2vec_base_chinese_sentence_sdk<br>
-            4).text2vec_base_chinese_paraphrase_sdk
+            4).text2vec_base_chinese_paraphrase_sdk<br>
             -2. 3个多语言SDK：<br>
             1).sentence_encoder_15_sdk<br>（支持 15 种语言）<br>
             2).sentence_encoder_100_sdk<br>（支持100种语言）<br>
-            3).text2vec_base_multilingual_sdk<br>（支持50+种语言）
+            3).text2vec_base_multilingual_sdk<br>（支持50+种语言）<br>
             -3. 3个代码语义SDK：<br>
             1).code2vec_sdk<br>
             2).codet5p_110m_sdk<br>
