@@ -1,0 +1,71 @@
+server:
+  port: 8089
+
+# swagger-ui
+swagger:
+  enabled: true
+
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 3000MB
+      max-request-size: 3000MB
+
+# File storage path
+file:
+  mac:
+    path: ~/file/
+    # folder for unzip files
+    rootPath: ~/file/data_root/
+  linux:
+    path: /home/aias/file/
+    rootPath: /home/aias/file/data_root/
+  windows:
+    path: file:/D:/aias/file/
+    rootPath: file:/D:/aias/file/data_root/
+  # 文件大小 /M
+  maxSize: 3000
+
+image:
+  #  path: /Users/calvin/Documents/data_root/
+  baseUrl: http://127.0.0.1:8089/images/
+
+#Face
+face:
+  saveDetectedFace: true
+  # 高精度大模型 retinaface detection model URI
+  retinaface: /Users/calvin/ai_projects/face_search_bak/simple_face_search/face_search/models/retinaface.onnx
+  # 速度快小模型，精度低于大模型 mobilenet face detection model URI
+  mobilenet: /Users/calvin/ai_projects/face_search_bak/simple_face_search/face_search/models/mobilenet.onnx
+  # face feature model URI
+  feature: /Users/calvin/ai_projects/face_search_bak/simple_face_search/face_search/models/face_feature.onnx
+
+model:
+  # 设置为 CPU 核心数 (Core Number)
+  poolSize: 4
+
+# Vector Engine - Milvus
+search:
+  host: 127.0.0.1
+  port: 19530
+
+  nprobe: 256
+  nlist: 16384
+  dimension: 128 # dimension of each vector
+  collectionName: face_search #collection name
+  partitionName: p1
+  indexName: featureIndex
+  # For floating point vectors:
+  #  IVF_FLAT
+  #  IVF_SQ8
+  #  IVF_PQ
+  #  HNSW
+  #  ANNOY
+  #  RHNSW_FLAT
+  #  RHNSW_PQ
+  #  RHNSW_SQ
+  # For binary vectors:
+  #  BIN_IVF_FLAT
+  indexType: IVF_FLAT
+  metricType: L2

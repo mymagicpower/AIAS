@@ -929,7 +929,7 @@
           - 1. 文本向量搜索【无向量引擎版】 <br>
           - simple_text_search <br>
           - 2. 文本向量搜索【向量引擎版】 <br>
-          - image_text_search<br>
+          - text_search<br>
           - 语义搜索，通过句向量相似性，检索语料库中与query最匹配的文本 <br>
           - 文本聚类，文本转为定长向量，通过聚类模型可无监督聚集相似文本 <br>
           - 文本分类，表示成句向量，直接用简单分类器即训练文本分类器 <br>
@@ -939,6 +939,35 @@
       <td>
         <div align="center">
         <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/text_search/search.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>人像搜索 - face_search</p>   
+          - 包含两个项目，满足不同场景的需要<br>
+          - 1. 人像搜索【精简版】 <br>
+          - simple_face_search <br>
+          - 2. 人像搜索【完整版】<br>
+          - face_search<br>
+          - 搜索管理：提供通用图像搜索，人像搜索，图像信息查看<br>
+          - 存储管理：提供图像压缩包(zip格式)上传，人像特征提取，通用特征提取<br>
+          - 用户管理：提供用户的相关配置，新增用户后，默认密码为123456<br>
+          - 角色管理：对权限与菜单进行分配，可根据部门设置角色的数据权限<br>
+          - 菜单管理：已实现菜单动态路由，后端可配置化，支持多级菜单<br>
+          - 部门管理：可配置系统组织架构，树形表格展示<br>
+          - 岗位管理：配置各个部门的职位<br>
+          - 字典管理：可维护常用一些固定的数据，如：状态，性别等<br>
+          - 系统日志：记录用户操作日志与异常日志，方便开发人员定位排错<br>
+          - SQL监控：采用druid 监控数据库访问性能，默认用户名admin，密码123456<br>
+          - 定时任务：整合Quartz做定时任务，加入任务日志，任务运行情况一目了然<br>
+          - 服务监控：监控服务器的负载情况
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/face_search/images/search.png" width = "400px"/>
         </div>
       </td>
     </tr>                                                   
