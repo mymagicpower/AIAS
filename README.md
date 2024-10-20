@@ -970,7 +970,20 @@
         <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/face_search/images/search.png" width = "400px"/>
         </div>
       </td>
-    </tr>                                                   
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>语音识别Web 应用 - asr</p>   
+          - 本例子提供了英文语音识别，中文语音识别。
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/audio/images/asr_zh.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>                                                    
   </table>
 </div>
 

@@ -1,0 +1,56 @@
+# Server Port
+server:
+  port: 8089
+  tomcat:
+    uri-encoding: UTF-8
+  baseUri: http://127.0.0.1:${server.port}
+
+# Swagger-ui
+swagger:
+  enabled: true
+
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 30MB
+      max-request-size: 30MB
+  http:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+  messages:
+    encoding: UTF-8
+
+# File path
+file:
+  mac:
+    path: file/
+  linux:
+    path: file/
+  windows:
+    path: C:\ocr\file\
+  # File max size - MB
+  maxSize: 100
+
+model:
+  # 如果是CPU推理，最高设置为 CPU 核心数 (Core Number)
+  poolSize: 2
+  # tiny, base, small
+  type: base
+  uri:
+    # tiny 模型
+    tiny: D:\\ai_projects\\asr\\asr_backend\\models\\traced_whisper_tiny.pt
+    # base 模型
+    base: D:\\ai_projects\\asr\\asr_backend\\models\\traced_whisper_base.pt
+    # small 模型
+    small: D:\\ai_projects\\asr\\asr_backend\\models\\traced_whisper_small.pt
+
+
+# Verify image transformation result
+image:
+  debug: true
+
+
+
