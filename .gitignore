@@ -33,3 +33,4 @@
 9_desktop_app/desktop_app_ocr/electron_app_ocr/node_modules/
 9_desktop_app/desktop_app_upscale/realesrgan_ncnn/realesrgan_ncnn_macos/
 9_desktop_app/desktop_app_upscale/realesrgan_ncnn/realsr-ncnn-vulkan-windows/
+9_desktop_app/desktop_app_upscale/electron_app_upscale/node_modules/
