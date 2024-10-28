@@ -34,3 +34,8 @@
 9_desktop_app/desktop_app_upscale/realesrgan_ncnn/realesrgan_ncnn_macos/
 9_desktop_app/desktop_app_upscale/realesrgan_ncnn/realsr-ncnn-vulkan-windows/
 9_desktop_app/desktop_app_upscale/electron_app_upscale/node_modules/
+1_image_sdks/seg_sam2_sdk/models/sam2-hiera-large.pt
+1_image_sdks/seg_sam2_sdk/models/sam2-hiera-tiny.pt
+1_image_sdks/seg_sam2_sdk/models/sam2-hiera-large.pt.baiduyun.uploading.cfg
+1_image_sdks/seg_sam2_sdk/target/
+1_image_sdks/seg_unet_sdk/target/

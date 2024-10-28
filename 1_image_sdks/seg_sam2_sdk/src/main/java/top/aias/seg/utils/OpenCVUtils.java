@@ -1,11 +1,12 @@
 package top.aias.seg.utils;
 
+import ai.djl.modality.cv.output.Rectangle;
 import ai.djl.ndarray.NDArray;
 import org.opencv.core.*;
 import org.opencv.imgproc.Imgproc;
+import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.core.Mat;
-
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.util.ArrayList;
@@ -19,6 +20,26 @@ import java.util.List;
  * @website www.aias.top
  */
 public class OpenCVUtils {
+    /**
+     * Draws a rectangle on the image.
+     *
+     * @param rectangle the rectangle to draw
+     * @param rgb the color
+     * @param stroke the thickness
+     */
+    public static void drawRectangle(Mat image, Rectangle rectangle, int rgb, int stroke) {
+        Rect rect =
+                new Rect(
+                        (int) rectangle.getX(),
+                        (int) rectangle.getY(),
+                        (int) rectangle.getWidth(),
+                        (int) rectangle.getHeight());
+        int r = (rgb & 0xff0000) >> 16;
+        int g = (rgb & 0x00ff00) >> 8;
+        int b = rgb & 0x0000ff;
+        Scalar color = new Scalar(b, g, r);
+        Imgproc.rectangle(image, rect.tl(), rect.br(), color, stroke);
+    }
     /**
      * Mat to BufferedImage
      *
@@ -129,7 +150,6 @@ public class OpenCVUtils {
 
     /**
      * 调整图片大小
-     *
      * @param srcMat
      * @param width
      * @param height
@@ -137,7 +157,7 @@ public class OpenCVUtils {
      */
     public static Mat resize(Mat srcMat, int width, int height, int interpolation) {
         org.opencv.core.Mat dstMat = srcMat.clone();
-        Imgproc.resize(srcMat, dstMat, new Size(width, height), 1.0f, 1.0f, interpolation);
+        Imgproc.resize(srcMat, dstMat,new Size(width, height),1.0f,1.0f,interpolation);
         return dstMat;
     }
 }
