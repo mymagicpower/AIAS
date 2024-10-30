@@ -39,3 +39,12 @@
 1_image_sdks/seg_sam2_sdk/models/sam2-hiera-large.pt.baiduyun.uploading.cfg
 1_image_sdks/seg_sam2_sdk/target/
 1_image_sdks/seg_unet_sdk/target/
+7_aigc/java_stable_diffusion_sdks/txt2image_sdk/target/
+7_aigc/java_stable_diffusion_sdks/txt2image_sdk/models/pytorch_gpu/
+2_nlp_sdks/translation/trans_nllb_sdk/target/
+2_nlp_sdks/translation/trans_nllb_sdk/models/tokenizer.json
+2_nlp_sdks/translation/trans_nllb_sdk/models/traced_translation_cpu.pt
+1_image_sdks/seg_sam2_sdk/models/sam2-hiera-tiny-gpu.pt
+2_nlp_sdks/translation/trans_nllb_sdk/models/traced_translation_gpu.pt
+7_aigc/java_stable_diffusion_sdks/txt2image_sdk/models/pytorch/Download and put model here.md
+7_aigc/java_stable_diffusion_sdks/txt2image_sdk/models/pytorch_cpu/Download and put model here.md

@@ -2,7 +2,7 @@
 [官网链接](https://www.aias.top/)
 
 ### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1gFYlESlMulZo-PRrpE_c2g?pwd=kctk
+- 链接: https://pan.baidu.com/s/1P3hfmGMHL56ENYLpGShYNg?pwd=wf6s
 
 ### 超分辨(4倍)SDK
 提升图片4倍分辨率。
