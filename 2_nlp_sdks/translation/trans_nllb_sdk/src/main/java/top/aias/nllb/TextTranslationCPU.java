@@ -2,20 +2,13 @@ package top.aias.nllb;
 
 import ai.djl.Device;
 import ai.djl.ModelException;
-import ai.djl.huggingface.tokenizers.Encoding;
-import ai.djl.huggingface.tokenizers.HuggingFaceTokenizer;
-import ai.djl.ndarray.NDArray;
 import ai.djl.translate.TranslateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import top.aias.nllb.model.NllbModel;
-import top.aias.nllb.tokenizer.TokenUtils;
 import top.aias.nllb.generate.SearchConfig;
 
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
 
 /**
  * 文本翻译，支持202种语言互译
@@ -24,11 +17,11 @@ import java.util.Arrays;
  * @mail 179209347@qq.com
  * @website www.aias.top
  */
-public final class TextTranslation {
+public final class TextTranslationCPU {
 
-    private static final Logger logger = LoggerFactory.getLogger(TextTranslation.class);
+    private static final Logger logger = LoggerFactory.getLogger(TextTranslationCPU.class);
 
-    private TextTranslation() {
+    private TextTranslationCPU() {
     }
 
     public static void main(String[] args) throws ModelException, IOException,
