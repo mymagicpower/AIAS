@@ -1210,10 +1210,14 @@
 - 9 archive - [废弃不再维护的项目]
 
 
+#### 联系方式:
+- 微信号入群：aiastop
+- 如果对您有帮助的话，请作者喝杯咖啡吧：
+ <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/money_wechat.jpeg" width = "300px"/>
+</div>
 
-
-
-### 其它研究专题:
+#### 其它研究专题:
 
 #### 1). AI + 量子计算
 <div align="left">
