@@ -62,13 +62,13 @@ public class Sam2Translator implements NoBatchifyTranslator<Sam2Translator.Sam2I
     private String encodeMethod;
 
     /** Constructs a {@code Sam2Translator} instance. */
-    public Sam2Translator() {
+    public Sam2Translator(String encode) {
         pipeline = new Pipeline();
         pipeline.add(new Resize(1024, 1024));
         pipeline.add(new ToTensor());
         pipeline.add(new Normalize(MEAN, STD));
 //        this.encoderPath = builder.encoderPath;
-        this.encodeMethod = "encode";
+        this.encodeMethod = encode;
     }
 
     /** {@inheritDoc} */

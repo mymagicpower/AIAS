@@ -48,3 +48,13 @@
 2_nlp_sdks/translation/trans_nllb_sdk/models/traced_translation_gpu.pt
 7_aigc/java_stable_diffusion_sdks/txt2image_sdk/models/pytorch/Download and put model here.md
 7_aigc/java_stable_diffusion_sdks/txt2image_sdk/models/pytorch_cpu/Download and put model here.md
+1_image_sdks/fire_smoke_sdk/target/
+1_image_sdks/seg_sam2_sdk/models/sam2-hiera-large-gpu.pt
+1_image_sdks/fire_smoke_sdk/models/fire_smoke.zip
+4_video_sdks/camera_sdk/models/fire_smoke.zip
+4_video_sdks/camera_sdk/target/
+4_video_sdks/mp4_sdk/models/fire_smoke.zip
+4_video_sdks/mp4_sdk/target/
+archive/4_video_sdks/mp4_facemask_sdk/models/face_detection.zip
+archive/4_video_sdks/mp4_facemask_sdk/models/face_mask.zip
+archive/4_video_sdks/mp4_facemask_sdk/target/

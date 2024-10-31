@@ -1,5 +1,6 @@
 package top.aias.seg.model;
 
+import ai.djl.Device;
 import ai.djl.MalformedModelException;
 import ai.djl.ModelException;
 import ai.djl.inference.Predictor;
@@ -26,12 +27,12 @@ public final class Sam2Model implements AutoCloseable {
     private ZooModel<Sam2Translator.Sam2Input, DetectedObjects> model;
     private SegPool segPool;
 
-    public Sam2Model(String modelPath, String modelName, int poolSize) throws ModelException, IOException {
-        init(modelPath, modelName, poolSize);
+    public Sam2Model(String modelPath, String modelName, int poolSize, Device device) throws ModelException, IOException {
+        init(modelPath, modelName, poolSize, device);
     }
 
-    public void init(String modelPath, String modelName, int poolSize) throws MalformedModelException, ModelNotFoundException, IOException {
-        this.model = criteria(modelPath, modelName).loadModel();
+    public void init(String modelPath, String modelName, int poolSize, Device device) throws MalformedModelException, ModelNotFoundException, IOException {
+        this.model = criteria(modelPath, modelName, device).loadModel();
         this.segPool = new SegPool(model, poolSize);
     }
 
@@ -47,15 +48,21 @@ public final class Sam2Model implements AutoCloseable {
         this.segPool.close();
     }
 
-    private Criteria<Sam2Translator.Sam2Input, DetectedObjects> criteria(String modelPath, String modelName) {
+    private Criteria<Sam2Translator.Sam2Input, DetectedObjects> criteria(String modelPath, String modelName, Device device) {
+        String encode = null;
+        if(!device.isGpu())
+            encode = "encode";
+
         Criteria<Sam2Translator.Sam2Input, DetectedObjects> criteria =
                 Criteria.builder()
                         .setTypes(Sam2Translator.Sam2Input.class, DetectedObjects.class)
                         // sam2-hiera-tiny
                         // sam2-hiera-large
+                        .optDevice(device)
                         .optModelPath(Paths.get(modelPath + modelName))
                         .optEngine("PyTorch")
-                        .optTranslator(new Sam2Translator())
+//                        .optOption("mapLocation","true")
+                        .optTranslator(new Sam2Translator(encode))
                         .optProgress(new ProgressBar())
                         .build();
         return criteria;
