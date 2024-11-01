@@ -1,0 +1,27 @@
+# Server Port
+server:
+  port: 8089
+  tomcat:
+    uri-encoding: UTF-8
+  baseUri: http://127.0.0.1:${server.port}
+
+model:
+  # 设置为 CPU 核心数 (Core Number)
+  poolSize: 4
+  table:
+    # 表格数据集训练的版面分析模型，支持中英文文档表格区域的检测
+    layout: D:\\ai_projects\\AIAS\\6_web_app\\ocr_web_app\\ocr_backend\\models\\picodet_lcnet_x1_0_fgd_layout_table_infer_onnx.zip
+    # 英文表格识别
+    rec: D:\\ai_projects\\AIAS\\6_web_app\\ocr_web_app\\ocr_backend\\models\\en_ppstructure_mobile_v2.0_SLANet_infer.zip
+    # 中文表格识别
+    # D:\\ai_projects\\AIAS\\6_web_app\\ocr_web_app\\ocr_backend\\models\\ch_ppstructure_mobile_v2.0_SLANet_infer.zip
+  ocrv4:
+    # server detection model URI
+    det: D:\\ai_projects\\AIAS\\6_web_app\\ocr_web_app\\ocr_backend\\models\\ch_PP-OCRv4_det_infer.zip
+    # server recognition model URI
+    rec: D:\\ai_projects\\AIAS\\6_web_app\\ocr_web_app\\ocr_backend\\models\\ch_PP-OCRv4_rec_infer.zip
+  mlsd:
+    # mlsd model URI
+    model: D:\\ai_projects\\AIAS\\6_web_app\\ocr_web_app\\ocr_backend\\models\\mlsd_traced_model_onnx.zip
+
+
