@@ -1,0 +1,39 @@
+server:
+  port: 8089
+
+# swagger-ui
+swagger:
+  enabled: true
+
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 3000MB
+      max-request-size: 3000MB
+
+# File storage path
+file:
+  mac:
+    path: ~/file/
+    # folder for unzip files
+    rootPath: ~/file/data_root/
+  linux:
+    path: /home/aias/file/
+    rootPath: /home/aias/file/data_root/
+  windows:
+    path: file:/D:/aias/file/
+    rootPath: file:/D:/aias/file/data_root/
+  # 文件大小 /M
+  maxSize: 3000
+
+image:
+  #  path: /Users/calvin/Documents/data_root/
+  baseUrl: http://127.0.0.1:8089/files/
+
+# Model URI
+model:
+  # Embedding Model
+  imageModel: /Users/calvin/products/4_apps/simple_image_search/image_search/models/CLIP-ViT-B-32-IMAGE.pt
+  # 设置为 CPU 核心数 (Core Number)
+  poolSize: 4
