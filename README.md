@@ -35,6 +35,8 @@
 
 #### 3. 人工智能算法：
 - https://zhuanlan.zhihu.com/p/693738275
+- ppt文件位置：deep_learning
+
 <br>
 
 <div align="center">
@@ -622,6 +624,7 @@
   7). 文本向量搜索，可配合大模型使用
   8). 人像搜索
   9). 语音识别
+  10). 以图搜图
       ...
 ```
 
@@ -773,6 +776,30 @@
       <td>
         <div align="center">
         <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/audio/images/asr_zh.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>以图搜图<br>- image_search</p>   
+          - 搜索管理<br>
+          - 存储管理<br>
+          - 用户管理<br>
+          - 角色管理<br>
+          - 菜单管理<br>
+          - 部门管理<br>
+          - 岗位管理<br>
+          - 字典管理<br>
+          - 系统日志<br>
+          - SQL监控<br>
+          - 定时任务<br>
+          - 服务监控
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/image_search/images/search.png" width = "400px"/>
         </div>
       </td>
     </tr>                                                    
