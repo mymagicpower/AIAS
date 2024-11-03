@@ -625,6 +625,8 @@
   8). 人像搜索
   9). 语音识别
   10). 以图搜图
+  11). OCR Web应用
+  12). OCR 自定义模板识别（IOCR）
       ...
 ```
 
@@ -800,6 +802,38 @@
       <td>
         <div align="center">
         <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/image_search/images/search.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>OCR Web 应用 <br>- ocr_web_app</p>   
+          - 自由文本识别（支持旋转、倾斜的图片）<br>
+          - 文本图片转正 （一般情况下不需要，因为ocr 原生支持旋转、倾斜的图片 ）<br>
+          - 表格文本识别（图片需是剪切好的单表格图片）<br>
+          - 表格自动检测文本识别（支持表格文字混编，自动检测表格识别文字，支持多表格）<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/table.jpg" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>OCR 自定义模板识别 <br>- iocr</p>   
+          - 模板自定义<br>
+          - 基于模板识别（支持旋转、倾斜的图片）<br>
+          - 自由文本识别<br>
+          - 文本转正<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/ocr_anchor.jpeg" width = "400px"/>
         </div>
       </td>
     </tr>                                                    
