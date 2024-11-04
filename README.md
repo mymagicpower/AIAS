@@ -29,9 +29,11 @@
 - 帮助：https://aias.top/guides.html
 
 #### 2. 开源地址: 
-
 - Gitee:  https://gitee.com/mymagicpower/AIAS
 - GitHub: https://github.com/mymagicpower/AIAS
+- QQ群：309241702
+- 邮箱：179209347@qq.com
+
 
 #### 3. 人工智能算法：
 - https://zhuanlan.zhihu.com/p/693738275
@@ -1272,7 +1274,8 @@
 
 
 #### 联系方式:
-- 微信号入群：aiastop
+- QQ群：309241702
+- 邮箱：179209347@qq.com
 - 如果对您有帮助的话，请作者喝杯咖啡吧：
  <div align="center">
         <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/money_wechat.jpeg" width = "300px"/>
