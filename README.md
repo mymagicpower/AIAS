@@ -10,7 +10,7 @@
 <h4 align="center">
     <p>
         <b>中文</b> |
-        <a href="https://github.com/mymagicpower/AIAS/blob/main/README_EN.md">English</a>
+        <a href="README_EN.md">English</a>
     <p>
 </h4>
 <h4 align="center">
