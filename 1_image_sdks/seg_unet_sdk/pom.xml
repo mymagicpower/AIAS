@@ -89,7 +89,6 @@
             <artifactId>pytorch-model-zoo</artifactId>
             <version>${djl.version}</version>
         </dependency>
-
         <!-- ONNX -->
         <dependency>
             <groupId>ai.djl.onnxruntime</groupId>
