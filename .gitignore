@@ -69,3 +69,10 @@ archive/4_video_sdks/mp4_facemask_sdk/target/
 archive/1_image_sdks/seg_sam2_sdk/models/sam2-hiera-large.pt
 archive/1_image_sdks/seg_sam2_sdk/models/sam2-hiera-tiny.pt
 archive/1_image_sdks/seg_sam2_sdk/target/
+0_tutorials/python/sam2_export/sam2-hiera-large-decoder.onnx
+0_tutorials/python/sam2_export/sam2-hiera-large-encoder.onnx
+0_tutorials/python/sam2_export/sam2-hiera-large/sam2-hiera-large.pt
+0_tutorials/python/sam2_export/sam2-hiera-large/serving.properties
+0_tutorials/python/sam2_export/sam2-hiera-tiny/sam2-hiera-tiny.pt
+0_tutorials/python/sam2_export/sam2-hiera-tiny/sam2-hiera-tiny_all.pt
+0_tutorials/python/sam2_export/sam2-hiera-tiny/serving.properties
