@@ -62,3 +62,10 @@ archive/4_video_sdks/mp4_facemask_sdk/target/
 1_image_sdks/smart_construction_sdk/models/helmet_head_person_s.zip
 6_web_app/ocr_web_app/ocr_backend/models/
 6_web_app/ocr_web_app/ocr_ui/node_modules/
+1_image_sdks/seg_sam2_sdk/models/sam2-hiera-large-decoder.onnx
+1_image_sdks/seg_sam2_sdk/models/sam2-hiera-large-encoder.onnx
+1_image_sdks/seg_sam2_sdk/models/sam2-hiera-tiny-decoder.onnx
+1_image_sdks/seg_sam2_sdk/models/sam2-hiera-tiny-encoder.onnx
+archive/1_image_sdks/seg_sam2_sdk/models/sam2-hiera-large.pt
+archive/1_image_sdks/seg_sam2_sdk/models/sam2-hiera-tiny.pt
+archive/1_image_sdks/seg_sam2_sdk/target/

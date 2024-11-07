@@ -21,7 +21,7 @@ import java.nio.file.Paths;
 
 /**
  * Sam2图像分割
- * 提供2个模型，只支持CPU, GPU 存在底层库依赖问题，修复中......
+ * pytorch 提供2个模型，只支持CPU
  * sam2-hiera-large.pt
  * sam2-hiera-tiny.pt
  *
@@ -29,11 +29,11 @@ import java.nio.file.Paths;
  * @mail 179209347@qq.com
  * @website www.aias.top
  */
-public final class Sam2ExampleGPU {
+public final class Sam2CPU {
 
-    private static final Logger logger = LoggerFactory.getLogger(Sam2ExampleGPU.class);
+    private static final Logger logger = LoggerFactory.getLogger(Sam2CPU.class);
 
-    private Sam2ExampleGPU() {
+    private Sam2CPU() {
     }
 
     public static void main(String[] args) throws IOException, ModelException, TranslateException {
@@ -43,7 +43,7 @@ public final class Sam2ExampleGPU {
         Sam2Translator.Sam2Input input =
                 Sam2Translator.Sam2Input.builder(image).addPoint(575, 750).addBox(425, 600, 700, 875).build();
 
-        try (Sam2Model sam2Model = new Sam2Model("models/", "sam2-hiera-large-gpu.pt", 1, Device.gpu())) {
+        try (Sam2Model sam2Model = new Sam2Model("models/", "sam2-hiera-tiny.pt", 1, Device.cpu())) {
             DetectedObjects detection = sam2Model.predict(input);
             showMask(input, detection);
             logger.info("{}", detection);

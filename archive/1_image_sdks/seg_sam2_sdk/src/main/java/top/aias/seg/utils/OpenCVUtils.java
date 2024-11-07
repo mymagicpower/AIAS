@@ -2,7 +2,6 @@ package top.aias.seg.utils;
 
 import ai.djl.modality.cv.output.Rectangle;
 import ai.djl.ndarray.NDArray;
-import ai.djl.ndarray.NDManager;
 import org.opencv.core.*;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.core.Rect;
@@ -21,33 +20,6 @@ import java.util.List;
  * @website www.aias.top
  */
 public class OpenCVUtils {
-    /**
-     * 高斯滤波器(GaussianFilter)对图像进行平滑处理
-     * @param manager
-     * @param ndArray
-     * @return
-     */
-    public static NDArray gaussianBlur(NDManager manager, NDArray ndArray) {
-        org.opencv.core.Mat src = NDArrayUtils.floatNDArrayToMat(ndArray);
-        org.opencv.core.Mat morphMat = src.clone();
-        org.opencv.core.Mat gaussMat = src.clone();
-        org.opencv.core.Mat kernel = Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(3, 3));
-
-        // 形态学操作函数: 它可以对图像进行膨胀、腐蚀、开运算、闭运算等操作,从而得到更好的效果。
-        Imgproc.morphologyEx(src, morphMat, Imgproc.MORPH_OPEN, kernel);
-        // 高斯滤波器(GaussianFilter)对图像进行平滑处理
-        Imgproc.GaussianBlur(morphMat, gaussMat, new Size(5, 5), 2.0f, 2.0f);
-        float[][] gaussArr = NDArrayUtils.matToFloatArray(gaussMat);
-        NDArray gaussNDArray = manager.create(gaussArr);
-
-        // release mat
-        src.release();
-        morphMat.release();
-        gaussMat.release();
-        kernel.release();
-
-        return gaussNDArray;
-    }
     /**
      * Draws a rectangle on the image.
      *
