@@ -22,6 +22,34 @@ SAM2模型的主要特点是其通用性和灵活性，它能够处理各种复�
 #### 开源项目地址
 - https://github.com/facebookresearch/sam2
 
+
+#### 模型导出
+#### 1. 环境配置
+```text
+GPU 环境配置：
+1. 创建虚拟环境
+   conda create -n nv118 python=3.10.11 -y
+   conda activate nv118
+
+2. 安装pytorch
+   conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
+
+3. 安装Sam2
+   pip install opencv-python matplotlib
+   pip install git+https://github.com/facebookresearch/sam2.git
+
+4.安装huggingface_hub
+pip install huggingface_hub
+
+5. 安装 onnx
+   pip install onnx
+```
+
+
+#### 2. 模型导出脚本位置
+- 0_tutorials\python\sam2_export
+
+
 #### 帮助文档：
 - https://aias.top/guides.html
 - 1.性能优化常见问题:
