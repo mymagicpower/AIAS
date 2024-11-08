@@ -1,9 +1,8 @@
 ### 官网：
 [官网链接](https://www.aias.top/)
 
-### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1m4NAiKTDdhcTWROdkwofFg?pwd=in39
-- 
+### 下载模型
+- 链接:  https://pan.baidu.com/s/1cY_b4Pvz0nLCJogTscyy-A?pwd=8ed9
 
 ###  框选一键抠图
 一键抠图是一种图像处理技术，旨在自动将图像中的前景对象从背景中分离出来。它可以帮助用户快速、准确地实现抠图效果，无需手动绘制边界或进行复杂的图像编辑操作。
