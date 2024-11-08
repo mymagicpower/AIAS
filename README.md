@@ -694,6 +694,22 @@
       </td>
     </tr>
     <tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>框选一键抠图 Web 应用<br>- image_seg_sam2</p>   
+          当前版本包含了下面功能：<br>
+          - 1. 支持框选一键抠图<br>
+          - 2. 支持sam2算法<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/image_seg_sam2/sam2_seg1.jpg" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
       <td>
         <div align="left">
           <p>图片一键高清<br>- image_gan</p>   
