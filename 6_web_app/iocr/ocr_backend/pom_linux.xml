@@ -107,7 +107,11 @@
             <artifactId>onnxruntime-engine</artifactId>
             <version>${djl.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>ai.djl.opencv</groupId>
+            <artifactId>opencv</artifactId>
+            <version>${djl.version}</version>
+        </dependency>
         <!-- java cv -->
 <!--        <dependency>-->
 <!--            <groupId>org.bytedeco</groupId>-->
