@@ -76,3 +76,4 @@ archive/1_image_sdks/seg_sam2_sdk/target/
 0_tutorials/python/sam2_export/sam2-hiera-tiny/sam2-hiera-tiny.pt
 0_tutorials/python/sam2_export/sam2-hiera-tiny/sam2-hiera-tiny_all.pt
 0_tutorials/python/sam2_export/sam2-hiera-tiny/serving.properties
+6_web_app/image_seg_sam2/ocr_backend/target/
