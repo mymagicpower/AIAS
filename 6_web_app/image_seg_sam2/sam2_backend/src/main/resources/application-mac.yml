@@ -1,0 +1,17 @@
+# Server Port
+server:
+  port: 8089
+  tomcat:
+    uri-encoding: UTF-8
+  baseUri: http://127.0.0.1:${server.port}
+
+model:
+  # 设置为 CPU 核心数 (Core Number)
+  poolSize: 4
+  sam2:
+    # encoder model URI
+    # sam2-hiera-large-encoder.onnx
+    encoder: /Users/calvin/AIAS/6_web_app/image_seg_sam2/sam2_backend/models/sam2-hiera-tiny-encoder.onnx
+    # decoder model URI
+    # sam2-hiera-large-decoder.onnx
+    decoder: /Users/calvin/AIAS/6_web_app/image_seg_sam2/sam2_backend/models/sam2-hiera-tiny-decoder.onnx
