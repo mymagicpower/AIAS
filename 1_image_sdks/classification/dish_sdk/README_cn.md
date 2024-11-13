@@ -1,8 +1,14 @@
 ### 官网：
 [官网链接](https://www.aias.top/)
 
-### 下载模型，放置于models目录
+### 下载模型
 - 链接: https://pan.baidu.com/s/1No67j8xhXlDfx676P14yQw?pwd=gtdq
+
+### 模型使用方法：
+- 1. 用模型的名字搜索代码，找到模型的加载位置
+- 2. 然后更新模型路径（代码里默认加载路径是：项目/models 文件夹）
+- 3. 具体模型加载方法
+- http://aias.top/AIAS/guides/load_model.html
 
 ### 菜品分类识别SDK
 菜品识别sdk，支持8416种菜品的分类识别。

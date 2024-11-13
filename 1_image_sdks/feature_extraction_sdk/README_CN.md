@@ -4,6 +4,13 @@
 ### 下载模型，放置于models目录
 - 链接: https://pan.baidu.com/s/1xjKfXLMmTs0iWwJ0NpDmKg?pwd=zpwa
 
+### 模型使用方法：
+- 1. 用模型的名字搜索代码，找到模型的加载位置
+- 2. 然后更新模型路径（代码里默认加载路径是：项目/models 文件夹）
+- 3. 具体模型加载方法
+- http://aias.top/AIAS/guides/load_model.html
+
+
 ### 图片特征提取(512维)SDK
 提取图片512维特征值，并支持图片1:1特征比对，给出置信度。
 

@@ -2,8 +2,30 @@
 http://aias.top/
 
 ### 下载模型，放置于models目录
-- 链接：https://pan.baidu.com/s/1eKaVbBwGOcx0IFeYTG0Gjg?pwd=5c0x 
+- 链接：https://pan.baidu.com/s/1eKaVbBwGOcx0IFeYTG0Gjg?pwd=5c0x
 
+
+### 更新yaml配置文件的模型路径
+```bash
+# Model URI
+model:
+  # 模型路径,注意路径最后要有分隔符
+  # /Users/calvin/products/4_apps/simple_text_search/text-search/models/m100/
+  # D:\\ai_projects\\products\\2_nlp_sdks\\embedding\\code2vec_sdk\\models\\
+  # D:\\ai_projects\\products\\2_nlp_sdks\\embedding\\codet5p_110m_sdk\\models\\
+  # D:\\ai_projects\\products\\2_nlp_sdks\\embedding\\mpnet_base_v2_sdk\\models\\
+  modelPath: D:\\ai_projects\\products\\2_nlp_sdks\\embedding\\codet5p_110m_sdk\\models\\
+  # 模型名字
+  # all-MiniLM-L12-v2.pt
+  # all-MiniLM-L6-v2.pt
+  # codet5p-110m.pt
+  # all-mpnet-base-v2.pt
+  modelName: codet5p-110m.pt
+  # 设置为 CPU 核心数 (Core Number)
+  poolSize: 4
+  # 最大代码字符长度
+  maxLength: 1024
+```
 
 ### 代码语义搜索【无向量引擎版】 - simple_code_search
 #### 主要特性
@@ -72,11 +94,11 @@ java -jar code-search-0.1.0.jar
 - 输入地址： http://localhost:8090
 
 - 上传CSV数据文件
-1). 点击上传按钮上传jsonl文件.  
-[测试数据](https://aias-home.oss-cn-beijing.aliyuncs.com/data/testData.jsonl)
-2). 点击特征提取按钮. 
-等待文件解析，特征提取。通过console可以看到进度信息。
-![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/text_search/storage.png)
+  1). 点击上传按钮上传jsonl文件.  
+  [测试数据](https://aias-home.oss-cn-beijing.aliyuncs.com/data/testData.jsonl)
+  2). 点击特征提取按钮.
+  等待文件解析，特征提取。通过console可以看到进度信息。
+  ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/text_search/storage.png)
 
 - 相似代码搜索
   输入代码片段，点击查询，可以看到返回的清单，根据相似度排序。
@@ -85,6 +107,6 @@ java -jar code-search-0.1.0.jar
 
 ## 5. 帮助信息
 - swagger接口文档:  
-http://localhost:8089/swagger-ui.html
-![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/text_search/swagger.png)
+  http://localhost:8089/swagger-ui.html
+  ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/text_search/swagger.png)
 

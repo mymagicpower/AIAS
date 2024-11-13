@@ -1,8 +1,21 @@
 ## 目录：
 http://aias.top/
 
-### 下载模型
+### 下载模型, 更新配置yml文件 text-translation\src\main\resources\application-xxx.yml
 - 链接: https://pan.baidu.com/s/1KRrr0zQE601fqHZhf4oG4Q?pwd=e4lq 
+- 
+```bash
+# Model URI
+model:
+  # 模型路径,注意路径最后要有分隔符
+  # /Users/calvin/products/4_apps/trans_nllb_sdk/text-translation/models/
+  modelPath: D:\\ai_projects\\products\\2_nlp_sdks\\trans_nllb_sdk\\models\\
+  # 模型名字
+  modelName: traced_translation.pt
+  # 设置为 CPU 核心数 (Core Number)
+  poolSize: 4
+
+```
 
 ### 202种语言互相翻译 Web 应用
 

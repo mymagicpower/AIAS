@@ -5,6 +5,13 @@
 ### 下载模型，放置于models目录
 - 链接: https://pan.baidu.com/s/1KRrr0zQE601fqHZhf4oG4Q?pwd=e4lq 
 
+### 模型使用方法：
+- 1. 用模型的名字搜索代码，找到模型的加载位置
+- 2. 然后更新模型路径（代码里默认加载路径是：项目/models 文件夹）
+- 3. 具体模型加载方法
+- http://aias.top/AIAS/guides/load_model.html
+
+
 ## 202种语言互相翻译 SDK
 
 ### SDK功能：

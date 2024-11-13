@@ -4,6 +4,13 @@
 ### 下载模型，放置于models目录
 - 链接: https://pan.baidu.com/s/1jM5vy82-60V9-qmeyHrDZg?pwd=xqiu
 
+### 模型使用方法：
+- 1. 用模型的名字搜索代码，找到模型的加载位置
+- 2. 然后更新模型路径（代码里默认加载路径是：项目/models 文件夹）
+- 3. 具体模型加载方法
+- http://aias.top/AIAS/guides/load_model.html
+
+
 ### 文本 - 词法分析SDK [中文]
 词法分析模型能整体性地完成中文分词、词性标注、专名识别任务。
 

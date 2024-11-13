@@ -4,6 +4,13 @@
 ### 下载模型，放置于models目录
 - 链接：https://pan.baidu.com/s/1Hg4eF1IntXlkOVCy1SEsyg?pwd=3rs3
 
+### 模型使用方法：
+- 1. 用模型的名字搜索代码，找到模型的加载位置
+- 2. 然后更新模型路径（代码里默认加载路径是：项目/models 文件夹）
+- 3. 具体模型加载方法
+- http://aias.top/AIAS/guides/load_model.html
+
+
 ### 句向量SDK【支持中文】
 是用CoSENT方法训练，基于sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
 用人工挑选后的多语言STS数据集训练得到， 并在中英文测试集评估相对于原模型效果有提升。

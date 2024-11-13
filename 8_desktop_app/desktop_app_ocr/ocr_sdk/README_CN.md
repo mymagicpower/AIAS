@@ -3,7 +3,12 @@
 
 #### 下载模型，放置于models目录
 - 链接：https://pan.baidu.com/s/1GSdLe3jxPzzn-5GzUfze9A?pwd=2g6f
-
+- 
+### 模型使用方法：
+- 1. 用模型的名字搜索代码，找到模型的加载位置
+- 2. 然后更新模型路径（代码里默认加载路径是：项目/models 文件夹）
+- 3. 具体模型加载方法
+- http://aias.top/AIAS/guides/load_model.html
 
 ## 文字识别（OCR）工具箱
 文字识别（OCR）目前在多个行业中得到了广泛应用，比如金融行业的单据识别输入，餐饮行业中的发票识别，

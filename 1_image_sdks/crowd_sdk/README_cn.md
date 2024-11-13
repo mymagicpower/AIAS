@@ -1,8 +1,14 @@
 ### 官网：
 [官网链接](http://www.aias.top/)
 
-### 下载模型，放置于models目录
+### 下载模型
 - 链接: https://pan.baidu.com/s/1aFIcYOE2uzlmQFWEJopBoQ?pwd=svvt
+
+### 模型使用方法：
+- 1. 用模型的名字搜索代码，找到模型的加载位置
+- 2. 然后更新模型路径（代码里默认加载路径是：项目/models 文件夹）
+- 3. 具体模型加载方法
+- http://aias.top/AIAS/guides/load_model.html
 
 ### 人群密度检测 SDK
 CrowdNet模型是2016年提出的人流密度估计模型，论文为《CrowdNet: A Deep Convolutional Network for DenseCrowd Counting》，

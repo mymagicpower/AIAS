@@ -4,6 +4,13 @@
 ### 下载模型，放置于models目录
 - 链接: https://pan.baidu.com/s/1P3hfmGMHL56ENYLpGShYNg?pwd=wf6s
 
+### 模型使用方法：
+- 1. 用模型的名字搜索代码，找到模型的加载位置
+- 2. 然后更新模型路径（代码里默认加载路径是：项目/models 文件夹）
+- 3. 具体模型加载方法
+- http://aias.top/AIAS/guides/load_model.html
+
+
 ### 超分辨(4倍)SDK
 提升图片4倍分辨率。
 

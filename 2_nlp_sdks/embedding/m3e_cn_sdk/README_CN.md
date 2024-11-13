@@ -4,6 +4,13 @@
 ### 下载模型，放置于models目录
 - 链接：https://pan.baidu.com/s/1CX7mHfcHXSvywK44ENjDCg?pwd=1b2q
 
+### 模型使用方法：
+- 1. 用模型的名字搜索代码，找到模型的加载位置
+- 2. 然后更新模型路径（代码里默认加载路径是：项目/models 文件夹）
+- 3. 具体模型加载方法
+- http://aias.top/AIAS/guides/load_model.html
+
+
 ### 句向量SDK【支持中文】
 使用场景主要是中文，少量英文的情况。
 - 模型通过千万级 (2200w+) 的中文句对数据集进行训练

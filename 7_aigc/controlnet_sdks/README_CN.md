@@ -4,6 +4,12 @@
 ### 下载模型，放置于各自项目的models目录
 - 链接: https://pan.baidu.com/s/1BUnSYila9LQ_7hREZzY-3Q?pwd=h5fv
 
+### 模型使用方法：
+- 1. 用模型的名字搜索代码，找到模型的加载位置
+- 2. 然后更新模型路径（代码里默认加载路径是：项目/models 文件夹）
+- 3. 具体模型加载方法
+- http://aias.top/AIAS/guides/load_model.html
+
 ### 图像生成预处理
 - 显卡CUDA：11.7版本
 - 参考测试数据：分辨率 512*512 25步 CPU(i5处理器) 5分钟。 3060显卡20秒。

@@ -2,6 +2,13 @@
 ### 下载模型，放置于models目录
 - 链接: https://pan.baidu.com/s/1u6zGdB7GW83H9Kg64OB_Sw?pwd=c73c
 
+### 模型使用方法：
+- 1. 用模型的名字搜索代码，找到模型的加载位置
+- 2. 然后更新模型路径（代码里默认加载路径是：项目/models 文件夹）
+- 3. 具体模型加载方法
+- http://aias.top/AIAS/guides/load_model.html
+
+
 ### kafka-情感倾向分析【英文】SDK
 情感倾向分析（Sentiment Classification）
 针对带有主观描述的文本，可自动判断该文本的情感极性类别并给出相应的置信度，

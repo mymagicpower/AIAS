@@ -3,7 +3,14 @@
 
 ### 下载模型，放置于models目录
 - 链接: https://pan.baidu.com/s/1m4NAiKTDdhcTWROdkwofFg?pwd=in39
--
+
+### 模型使用方法：
+- 1. 用模型的名字搜索代码，找到模型的加载位置
+- 2. 然后更新模型路径（代码里默认加载路径是：项目/models 文件夹）
+- 3. 具体模型加载方法
+- http://aias.top/AIAS/guides/load_model.html
+
+
 ### SAM2抠图 SDK
 SAM2（‌Segment Anything Model 2）是由‌Meta公司发布的先进图像和视频分割模型。‌它是Segment Anything Model（SAM）的升级版本，
 SAM是Meta的‌FAIR实验室之前发布的一款用于图像分割的基础模型，能够在给定提示的情况下生成高质量的对象掩模。‌

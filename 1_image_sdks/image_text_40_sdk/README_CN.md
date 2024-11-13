@@ -4,6 +4,13 @@
 ### 下载模型，放置于models目录
 - 链接: https://pan.baidu.com/s/1xjKfXLMmTs0iWwJ0NpDmKg?pwd=zpwa
 
+### 模型使用方法：
+- 1. 用模型的名字搜索代码，找到模型的加载位置
+- 2. 然后更新模型路径（代码里默认加载路径是：项目/models 文件夹）
+- 3. 具体模型加载方法
+- http://aias.top/AIAS/guides/load_model.html
+
+
 ### 图像&文本的跨模态相似性比对检索 SDK【支持40种语言】
 
 #### 背景介绍

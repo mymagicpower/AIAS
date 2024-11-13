@@ -1,9 +1,32 @@
 ## 目录：
 http://aias.top/
 
-### 下载模型，放置于models目录
+### 下载模型
 - 链接：https://pan.baidu.com/s/1eKaVbBwGOcx0IFeYTG0Gjg?pwd=5c0x 
 
+### 更新yaml配置文件的模型路径
+```bash
+# Model URI
+model:
+  # 模型路径,注意路径最后要有分隔符
+  # /Users/calvin/products/4_apps/simple_text_search/text-search/models/m100/
+  # D:\\ai_projects\\products\\2_nlp_sdks\\embedding\\code2vec_sdk\\models\\
+  # D:\\ai_projects\\products\\2_nlp_sdks\\embedding\\codet5p_110m_sdk\\models\\
+  # D:\\ai_projects\\products\\2_nlp_sdks\\embedding\\mpnet_base_v2_sdk\\models\\
+  vecModelPath: D:\\ai_projects\\products\\2_nlp_sdks\\embedding\\code2vec_sdk\\models\\
+  # 模型名字
+  # all-MiniLM-L12-v2.pt
+  # all-MiniLM-L6-v2.pt
+  # codet5p-110m.pt
+  # all-mpnet-base-v2.pt
+  vecModelName: all-MiniLM-L12-v2.pt
+  # 设置为 CPU 核心数 (Core Number)
+  poolSize: 4
+  # 最大代码字符长度
+  maxLength: 1024
+  # 翻译模型路径,注意路径最后要有分隔符
+  transModelPath: D:\\ai_projects\\products\\4_apps\\code_search\\code-search\\models\\opus-mt-zh-en\\
+```
 
 ### 代码语义搜索
 本例子提供了代码语义搜索，支持上传csv文件，使用句向量模型提取特征，并基于milvus向量引擎进行后续检索。

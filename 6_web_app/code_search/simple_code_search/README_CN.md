@@ -5,6 +5,28 @@ http://aias.top/
 - 链接：https://pan.baidu.com/s/1eKaVbBwGOcx0IFeYTG0Gjg?pwd=5c0x 
 
 
+### 更新yaml配置文件的模型路径
+```bash
+# Model URI
+model:
+  # 模型路径,注意路径最后要有分隔符
+  # /Users/calvin/products/4_apps/simple_text_search/text-search/models/m100/
+  # D:\\ai_projects\\products\\2_nlp_sdks\\embedding\\code2vec_sdk\\models\\
+  # D:\\ai_projects\\products\\2_nlp_sdks\\embedding\\codet5p_110m_sdk\\models\\
+  # D:\\ai_projects\\products\\2_nlp_sdks\\embedding\\mpnet_base_v2_sdk\\models\\
+  modelPath: D:\\ai_projects\\products\\2_nlp_sdks\\embedding\\codet5p_110m_sdk\\models\\
+  # 模型名字
+  # all-MiniLM-L12-v2.pt
+  # all-MiniLM-L6-v2.pt
+  # codet5p-110m.pt
+  # all-mpnet-base-v2.pt
+  modelName: codet5p-110m.pt
+  # 设置为 CPU 核心数 (Core Number)
+  poolSize: 4
+  # 最大代码字符长度
+  maxLength: 1024
+```
+
 ### 代码语义搜索【无向量引擎版】 - simple_code_search
 #### 主要特性
 - 支持100万以内的数据量

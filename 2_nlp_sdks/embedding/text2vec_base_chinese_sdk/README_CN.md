@@ -4,6 +4,13 @@
 ### 下载模型，放置于models目录
 - 链接：https://pan.baidu.com/s/1tUAXk-xx4s-ehcXjclplFQ?pwd=dakb
 
+### 模型使用方法：
+- 1. 用模型的名字搜索代码，找到模型的加载位置
+- 2. 然后更新模型路径（代码里默认加载路径是：项目/models 文件夹）
+- 3. 具体模型加载方法
+- http://aias.top/AIAS/guides/load_model.html
+
+
 ### 句向量SDK【中文】
 用CoSENT方法训练，基于hfl/chinese-macbert-base在中文STS-B数据训练得到，并在中文STS-B测试集评估达到较好效果，
 中文通用语义匹配任务推荐使用。

@@ -4,6 +4,13 @@
 ### 下载模型，放置于models目录
 - 链接: https://pan.baidu.com/s/144DQ7G-cCXOSox-I7WMp8g?pwd=sgve
 
+### 模型使用方法：
+- 1. 用模型的名字搜索代码，找到模型的加载位置
+- 2. 然后更新模型路径（代码里默认加载路径是：项目/models 文件夹）
+- 3. 具体模型加载方法
+- http://aias.top/AIAS/guides/load_model.html
+
+
 ### 车辆检测SDK
 车辆检测是城市交通监控中非常重要并且具有挑战性的任务，该任务的难度在于对复杂场景中相对较小的车辆进行精准地定位和分类。
 支持car (汽车)，truck (卡车)，bus (公交车)，motorbike (摩托车)，tricycle (三轮车)等车型的识别。

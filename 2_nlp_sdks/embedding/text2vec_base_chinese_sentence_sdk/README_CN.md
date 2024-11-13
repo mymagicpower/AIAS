@@ -4,6 +4,13 @@
 ### 下载模型，放置于models目录
 - 链接：https://pan.baidu.com/s/1Cg39GHycfjoghwsihHblYA?pwd=iap1
 
+### 模型使用方法：
+- 1. 用模型的名字搜索代码，找到模型的加载位置
+- 2. 然后更新模型路径（代码里默认加载路径是：项目/models 文件夹）
+- 3. 具体模型加载方法
+- http://aias.top/AIAS/guides/load_model.html
+
+
 ### 句向量SDK【支持中文】
 用CoSENT方法训练，基于nghuyong/ernie-3.0-base-zh，用人工挑选后的中文STS数据集：
 shibing624/nli-zh-all/text2vec-base-chinese-sentence-dataset训练得到。

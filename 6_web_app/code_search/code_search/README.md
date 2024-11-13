@@ -1,9 +1,32 @@
 ## 目录：
 http://aias.top/
 
-### 下载模型，放置于models目录
-- 链接：https://pan.baidu.com/s/1eKaVbBwGOcx0IFeYTG0Gjg?pwd=5c0x 
+### 下载模型
+- 链接：https://pan.baidu.com/s/1eKaVbBwGOcx0IFeYTG0Gjg?pwd=5c0x
 
+### 更新yaml配置文件的模型路径
+```bash
+# Model URI
+model:
+  # 模型路径,注意路径最后要有分隔符
+  # /Users/calvin/products/4_apps/simple_text_search/text-search/models/m100/
+  # D:\\ai_projects\\products\\2_nlp_sdks\\embedding\\code2vec_sdk\\models\\
+  # D:\\ai_projects\\products\\2_nlp_sdks\\embedding\\codet5p_110m_sdk\\models\\
+  # D:\\ai_projects\\products\\2_nlp_sdks\\embedding\\mpnet_base_v2_sdk\\models\\
+  vecModelPath: D:\\ai_projects\\products\\2_nlp_sdks\\embedding\\code2vec_sdk\\models\\
+  # 模型名字
+  # all-MiniLM-L12-v2.pt
+  # all-MiniLM-L6-v2.pt
+  # codet5p-110m.pt
+  # all-mpnet-base-v2.pt
+  vecModelName: all-MiniLM-L12-v2.pt
+  # 设置为 CPU 核心数 (Core Number)
+  poolSize: 4
+  # 最大代码字符长度
+  maxLength: 1024
+  # 翻译模型路径,注意路径最后要有分隔符
+  transModelPath: D:\\ai_projects\\products\\4_apps\\code_search\\code-search\\models\\opus-mt-zh-en\\
+```
 
 ### 代码语义搜索
 本例子提供了代码语义搜索，支持上传csv文件，使用句向量模型提取特征，并基于milvus向量引擎进行后续检索。
@@ -99,7 +122,7 @@ java -jar code-search-0.1.0.jar
 
 #### 3.2 拉取Milvus向量引擎镜像（用于计算特征值向量相似度）
 下载 milvus-standalone-docker-compose.yml 配置文件并保存为 docker-compose.yml        
-[单机版安装文档](https://milvus.io/docs/v2.2.x)        
+[单机版安装文档](https://milvus.io/docs/v2.2.x)
 ```bash
 wget $ wget https://github.com/milvus-io/milvus/releases/download/v2.2.8/milvus-standalone-docker-compose.yml -O docker-compose.yml
 ```
@@ -123,10 +146,10 @@ search:
 - 输入地址： http://localhost:8090
 
 - 上传CSV数据文件
-1). 点击上传按钮上传jsonl文件.  
-[测试数据](https://aias-home.oss-cn-beijing.aliyuncs.com/data/testData.jsonl)
-2). 点击特征提取按钮. 
-等待文件解析，特征提取，特征存入向量引擎。通过console可以看到进度信息。
+  1). 点击上传按钮上传jsonl文件.  
+  [测试数据](https://aias-home.oss-cn-beijing.aliyuncs.com/data/testData.jsonl)
+  2). 点击特征提取按钮.
+  等待文件解析，特征提取，特征存入向量引擎。通过console可以看到进度信息。
 
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/text_search/storage.png)
 
@@ -137,12 +160,12 @@ search:
 
 ## 5. 帮助信息
 - swagger接口文档:  
-http://localhost:8089/swagger-ui.html
-![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/text_search/swagger.png)
+  http://localhost:8089/swagger-ui.html
+  ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/text_search/swagger.png)
 
-- 初始化向量引擎(清空数据): 
-me.aias.tools.MilvusInit.java 
+- 初始化向量引擎(清空数据):
+  me.aias.tools.MilvusInit.java
 
 - Milvus向量引擎参考链接     
-[Milvus向量引擎官网](https://milvus.io/cn/docs/overview.md)      
-[Milvus向量引擎Github](https://github.com/milvus-io)
+  [Milvus向量引擎官网](https://milvus.io/cn/docs/overview.md)      
+  [Milvus向量引擎Github](https://github.com/milvus-io)

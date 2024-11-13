@@ -5,6 +5,18 @@
 ### 下载模型
 - 链接: https://pan.baidu.com/s/1QKUSP7IaIY3U3pK6cqvdCg?pwd=g75s
 
+
+### 更新 image-search/aiplatform-system/src/main/resources/config/ yaml配置文件的模型路径
+```bash
+# Model URI
+model:
+  # P:/aias/models/CLIP-ViT-B-32-IMAGE.pt
+  # /Users/calvin/products/4_apps/image_search/image-search/models/CLIP-ViT-B-32-IMAGE.pt
+  imageModel: P:/aias/models/CLIP-ViT-B-32-IMAGE.pt
+  poolSize: 64
+  transModelPath: D:\\ai_projects\\products\\4_apps\\code_search\\code-search\\models\\opus-mt-zh-en\\
+```
+
 ### 以图搜图产品
 <div align="center">
 <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/image_search/images/arc.png"  width = "600"/>

@@ -1,8 +1,22 @@
 ### 目录：
 https://www.aias.top/
 
-### 模型下载：
+### 载模型, 更新配置yml文件 ocr_backend\src\main\resources\application-xxx.yml
 - 链接：https://pan.baidu.com/s/1-OEOcYHjSeqbfu7XD3ASgw?pwd=f43t
+
+```bash
+model:
+  # 设置为 CPU 核心数 (Core Number)
+  poolSize: 4
+  ocrv4:
+    # server detection model URI
+    det: D:\\ai_projects\\products\\4_apps\\iocr\\ocr_backend\\models\\ch_PP-OCRv4_det_infer.zip
+    # server recognition model URI
+    rec: D:\\ai_projects\\products\\4_apps\\iocr\\ocr_backend\\models\\ch_PP-OCRv4_rec_infer.zip
+  mlsd:
+    # mlsd model URI
+    model: D:\\ai_projects\\AIAS\\6_web_app\\ocr_web_app\\ocr_backend\\models\\mlsd_traced_model_onnx.zip
+```
 
 ### OCR 自定义模板识别
 

@@ -4,6 +4,13 @@
 ### 下载模型，放置于models目录
 - 链接: https://pan.baidu.com/s/1jFs6RzsWohumXYERvpGKrw?pwd=m7at
 
+### 模型使用方法：
+- 1. 用模型的名字搜索代码，找到模型的加载位置
+- 2. 然后更新模型路径（代码里默认加载路径是：项目/models 文件夹）
+- 3. 具体模型加载方法
+- http://aias.top/AIAS/guides/load_model.html
+
+
 ### 句向量SDK【支持15种语言】
 句向量是指将语句映射至固定维度的实数向量。
 将不定长的句子用定长的向量表示，为NLP下游任务提供服务。

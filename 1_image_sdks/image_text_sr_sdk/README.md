@@ -4,6 +4,11 @@
 ### 下载模型，放置于models目录
 - 链接: https://pan.baidu.com/s/1cAh-o8CTeaSH-QSCGtfMgw?pwd=32ty
 
+### 模型使用方法：
+- 1. 用模型的名字搜索代码，找到模型的加载位置
+- 2. 然后更新模型路径（代码里默认加载路径是：项目/models 文件夹）
+- 3. 具体模型加载方法
+- http://aias.top/AIAS/guides/load_model.html
 
 ##### 文本图像超分辨 - image_text_sr_sdk
 提供了两个模型，根据需要使用。

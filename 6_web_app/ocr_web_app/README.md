@@ -1,9 +1,30 @@
 ### 目录：
 https://www.aias.top/
 
-### 模型下载：
+### 下载模型, 更新配置yml文件 ocr_backend\src\main\resources\application-xxx.yml
 - 链接：https://pan.baidu.com/s/1-OEOcYHjSeqbfu7XD3ASgw?pwd=f43t
 
+```bash
+model:
+  # 设置为 CPU 核心数 (Core Number)
+  poolSize: 4
+  table:
+    # 表格数据集训练的版面分析模型，支持中英文文档表格区域的检测
+    layout: D:\\ai_projects\\AIAS\\6_web_app\\ocr_web_app\\ocr_backend\\models\\picodet_lcnet_x1_0_fgd_layout_table_infer_onnx.zip
+    # 英文表格识别
+    rec: D:\\ai_projects\\AIAS\\6_web_app\\ocr_web_app\\ocr_backend\\models\\en_ppstructure_mobile_v2.0_SLANet_infer.zip
+    # 中文表格识别
+    # D:\\ai_projects\\AIAS\\6_web_app\\ocr_web_app\\ocr_backend\\models\\ch_ppstructure_mobile_v2.0_SLANet_infer.zip
+  ocrv4:
+    # server detection model URI
+    det: D:\\ai_projects\\AIAS\\6_web_app\\ocr_web_app\\ocr_backend\\models\\ch_PP-OCRv4_det_infer.zip
+    # server recognition model URI
+    rec: D:\\ai_projects\\AIAS\\6_web_app\\ocr_web_app\\ocr_backend\\models\\ch_PP-OCRv4_rec_infer.zip
+  mlsd:
+    # mlsd model URI
+    model: D:\\ai_projects\\AIAS\\6_web_app\\ocr_web_app\\ocr_backend\\models\\mlsd_traced_model_onnx.zip
+
+```
 ### OCR Web应用
 文字识别（OCR）目前在多个行业中得到了广泛应用，比如金融行业的单据识别输入，餐饮行业中的发票识别，
 交通领域的车票识别，企业中各种表单识别，以及日常工作生活中常用的身份证，驾驶证，护照识别等等。

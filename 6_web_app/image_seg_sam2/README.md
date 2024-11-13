@@ -1,8 +1,21 @@
 ### 官网：
 [官网链接](https://www.aias.top/)
 
-### 下载模型
+### 下载模型,配置yml文件 sam2_backend\src\main\resources\application-xxx.yml
 - 链接:  https://pan.baidu.com/s/1cY_b4Pvz0nLCJogTscyy-A?pwd=8ed9
+
+```bash
+model:
+  # 设置为 CPU 核心数 (Core Number)
+  poolSize: 4
+  sam2:
+    # encoder model URI
+    # sam2-hiera-large-encoder.onnx
+    encoder: D:\\ai_projects\\AIAS\\1_image_sdks\\seg_sam2_sdk\\models\\sam2-hiera-tiny-encoder.onnx
+    # decoder model URI
+    # sam2-hiera-large-decoder.onnx
+    decoder: D:\\ai_projects\\AIAS\\1_image_sdks\\seg_sam2_sdk\\models\\sam2-hiera-tiny-decoder.onnx
+```
 
 ###  框选一键抠图
 一键抠图是一种图像处理技术，旨在自动将图像中的前景对象从背景中分离出来。它可以帮助用户快速、准确地实现抠图效果，无需手动绘制边界或进行复杂的图像编辑操作。

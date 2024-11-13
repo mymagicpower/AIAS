@@ -1,6 +1,13 @@
 ### 下载模型，放置于models目录
 - 链接: https://pan.baidu.com/s/1dy134zJKWoXKWdsKPSLqrg?pwd=ejtb
 
+### 模型使用方法：
+- 1. 用模型的名字搜索代码，找到模型的加载位置
+- 2. 然后更新模型路径（代码里默认加载路径是：项目/models 文件夹）
+- 3. 具体模型加载方法
+- http://aias.top/AIAS/guides/load_model.html
+
+
 # 中英文语音识别（ASR）【短语音】
 语音识别（Automatic Speech Recognition）是以语音为研究对象，通过语音信号处理和模式识别让机器自动识别和理解人类口述的语。
 语音识别技术就是让机器通过识别和理解过程把语音信号转变为相应的文本或命令的高技术。

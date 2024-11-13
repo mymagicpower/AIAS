@@ -1,8 +1,22 @@
 ### 目录：
 https://www.aias.top/
 
-### 模型下载：
+### 载模型, 更新配置yml文件 ocr_backend\src\main\resources\application-xxx.yml
 - 链接：https://pan.baidu.com/s/1-OEOcYHjSeqbfu7XD3ASgw?pwd=f43t
+
+```bash
+model:
+  # 设置为 CPU 核心数 (Core Number)
+  poolSize: 4
+  ocrv4:
+    # server detection model URI
+    det: D:\\ai_projects\\products\\4_apps\\iocr\\ocr_backend\\models\\ch_PP-OCRv4_det_infer.zip
+    # server recognition model URI
+    rec: D:\\ai_projects\\products\\4_apps\\iocr\\ocr_backend\\models\\ch_PP-OCRv4_rec_infer.zip
+  mlsd:
+    # mlsd model URI
+    model: D:\\ai_projects\\AIAS\\6_web_app\\ocr_web_app\\ocr_backend\\models\\mlsd_traced_model_onnx.zip
+```
 
 ### OCR 自定义模板识别
 
@@ -17,9 +31,9 @@ OCR（文字识别）是目前常用的一种AI能力。
 当前版本包含了下面功能：
 1. 模板自定义
 2. 基于模板识别（支持旋转、倾斜的图片）
-3. 自由文本识别（用于调试）
-4. 文本转正（用于调试）
-  
+3. 自由文本识别
+4. 文本转正
+
 
 
 ### 1. 前端部署
@@ -86,9 +100,9 @@ nohup java -Dfile.encoding=utf-8 -jar xxxxx.jar > log.txt 2>&1 &
 #### 3. 基于模板文字识别
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/ocr_rec.jpeg)
 
-#### 4. 通用文本识别  
+#### 4. 通用文本识别
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/ocr_freetxt.jpeg)
- 
+
 #### 5. 文本转正
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/ocrweb_mlsd.jpg)
 

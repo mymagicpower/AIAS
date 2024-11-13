@@ -4,6 +4,17 @@ http://aias.top/
 ### 下载模型
 - 链接: https://pan.baidu.com/s/1QKUSP7IaIY3U3pK6cqvdCg?pwd=g75s
 
+### 更新 image_search/src/main/resources/ yaml配置文件的模型路径
+```bash
+# Model URI
+model:
+  # Embedding Model
+  imageModel: /Users/calvin/products/4_apps/simple_image_search/image_search/models/CLIP-ViT-B-32-IMAGE.pt
+  # 设置为 CPU 核心数 (Core Number)
+  poolSize: 4
+
+```
+
 ### 以图搜图【无向量引擎版】
 #### 主要特性
 - 支持100万以内的数据量
