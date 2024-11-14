@@ -684,23 +684,8 @@
           当前版本包含了下面功能：<br>
           - 1. 通用一键抠图<br>
           - 2. 人体一键抠图<br>
-          - 3. 动漫一键抠图
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/assets/seg_all.png" width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-    <tr>
-      <td>
-        <div align="left">
-          <p>框选一键抠图 Web 应用<br>- image_seg_sam2</p>   
-          当前版本包含了下面功能：<br>
-          - 1. 支持框选一键抠图<br>
-          - 2. 支持sam2算法<br>
+          - 3. 动漫一键抠图<br>
+          - 4. 框选一键抠图<br>
         </div>
       </td>     
       <td>
@@ -709,6 +694,7 @@
         </div>
       </td>
     </tr>
+    <tr>
     <tr>
       <td>
         <div align="left">
