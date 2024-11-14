@@ -1,4 +1,4 @@
-### 该项目仅用于学习研究使用，项目落地建议使用Python训练框架,如：paddlepaddle, pytorch, tensorflow等等。
+### 该项目建议用于学习研究使用，项目落地建议使用Python训练框架,如：pytorch。
 
 ### 下载模型，放置于models目录
 - 链接: https://pan.baidu.com/s/1pGHMzUH5Kyc_LhTDRc-laA?pwd=amfh

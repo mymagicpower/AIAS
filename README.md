@@ -74,8 +74,236 @@
 </div>
 
 #### 项目清单:
+- 6_web_app - [Web应用，前端VUE，后端Springboot]
+```text
+  1). 训练引擎
+  2). 代码语义搜索
+  3). 机器翻译
+  4). 一键抠图 
+  5). 图像分辨率增强
+  6). 图像&文本的跨模态相似性比对检索【支持40种语言】
+  7). 文本向量搜索，可配合大模型使用
+  8). 人像搜索
+  9). 语音识别
+  10). 以图搜图
+  11). OCR Web应用
+  12). OCR 自定义模板识别（IOCR）
+      ...
+```
 
-- 1. 1_image_sdks - [图像识别 SDK]
+<div align="center">
+  <table>
+    <tr>
+      <td>
+        <div align="left">
+          <p>AI 训练平台 <br>- training</p>   
+          AI训练平台提供分类模型训练能力。<br>
+          并以REST API形式为上层应用提供接口。<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/train_platform/images/training.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>代码语义搜索 <br>- code_search</p>  
+            用于软件开发过程中的，<br>代码搜代码，语义搜代码。<br>
+            主要特性：<br>
+            - 底层使用特征向量相似度搜索<br>
+            - 单台服务器十亿级数据的毫秒级搜索<br>
+            - 近实时搜索，支持分布式部署<br>
+            - 随时对数据进行插入、<br>删除、搜索、更新等操作
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/data/images/codesearch.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>机器翻译<br>- text_translation</p>   
+          - 支持202种语言互相翻译。<br>
+          - 支持 CPU / GPU<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/assets/nllb.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>一键抠图 Web 应用<br>- image_seg</p>   
+          当前版本包含了下面功能：<br>
+          - 1. 通用一键抠图<br>
+          - 2. 人体一键抠图<br>
+          - 3. 动漫一键抠图<br>
+          - 4. 框选一键抠图<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/image_seg_sam2/sam2_seg1.jpg" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>图片一键高清<br>- image_gan</p>   
+          当前版本包含了下面功能：<br>
+          - 图片一键高清: 提升图片4倍分辨率。<br>
+          - 头像一键高清<br>
+          - 人脸一键修复<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/assets/imageSr.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>图像&文本的跨模态检索<br>
+          - image_text_search</p>  
+          - 支持40种语言<br>
+          - 以图搜图：上传图片搜索<br>
+          - 以文搜图：输入文本搜索<br>
+          - 数据管理：提供图像压缩包(zip格式)上传<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/7_engine_hub/image_text_search/search3.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>文本向量搜索 <br>- text_search</p>   
+          - 语义搜索，通过句向量相似性，<br>检索语料库中与query最匹配的文本 <br>
+          - 文本聚类，文本转为定长向量，<br>通过聚类模型可无监督聚集相似文本 <br>
+          - 文本分类，表示成句向量，<br>直接用简单分类器即训练文本分类器 <br>
+          - RAG，用于大模型搜索增强生成
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/text_search/search.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>人像搜索 <br>- face_search</p>   
+          - 搜索管理<br>
+          - 存储管理<br>
+          - 用户管理<br>
+          - 角色管理<br>
+          - 菜单管理<br>
+          - 部门管理<br>
+          - 岗位管理<br>
+          - 字典管理<br>
+          - 系统日志<br>
+          - SQL监控<br>
+          - 定时任务<br>
+          - 服务监控
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/face_search/images/search.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>语音识别Web 应用 <br>- asr</p>   
+          - 英文语音识别，<br>
+          - 中文语音识别。
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/audio/images/asr_zh.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>以图搜图<br>- image_search</p>   
+          - 搜索管理<br>
+          - 存储管理<br>
+          - 用户管理<br>
+          - 角色管理<br>
+          - 菜单管理<br>
+          - 部门管理<br>
+          - 岗位管理<br>
+          - 字典管理<br>
+          - 系统日志<br>
+          - SQL监控<br>
+          - 定时任务<br>
+          - 服务监控
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/image_search/images/search.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>OCR Web 应用 <br>- ocr_web_app</p>   
+          - 自由文本识别（支持旋转、倾斜的图片）<br>
+          - 文本图片转正 （一般情况下不需要，因为ocr 原生支持旋转、倾斜的图片 ）<br>
+          - 表格文本识别（图片需是剪切好的单表格图片）<br>
+          - 表格自动检测文本识别（支持表格文字混编，自动检测表格识别文字，支持多表格）<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/table.jpg" width = "400px"/>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>OCR 自定义模板识别 <br>- iocr</p>   
+          - 模板自定义<br>
+          - 基于模板识别（支持旋转、倾斜的图片）<br>
+          - 自由文本识别<br>
+          - 文本转正<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/ocr_anchor.jpeg" width = "400px"/>
+        </div>
+      </td>
+    </tr>                                                    
+  </table>
+</div>
+
+- 1_image_sdks - [图像识别 SDK]
 ```text
   1). 工具箱系列：图像处理工具箱（静态图像）
   2). 目标检测
@@ -417,7 +645,7 @@
   </table>
 </div>
 
-- 2. 2_nlp_sdks - [自然语言 SDK]
+- 2_nlp_sdks - [自然语言 SDK]
 ```text
   1). 工具箱系列：sentencepiece，fastText，npy/npz文件处理等。
   2). 大模型
@@ -504,7 +732,7 @@
 </div>
 
 
-- 3. 3_audio_sdks - [语音处理 SDK]
+- 3_audio_sdks - [语音处理 SDK]
 ```text
   1). 工具箱系列：音素工具箱，librosa，java sound，javacv ffmpeg, fft, vad工具箱等。
   2). 声音克隆
@@ -551,7 +779,7 @@
 
 
 
-- 4. 4_video_sdks - [视频解析SDK]
+- 4_video_sdks - [视频解析SDK]
 ```text
   1). 摄像头口罩检测 - camera_facemask_sdk
   2). MP4检测口罩 - mp4_facemask_sdk
@@ -582,7 +810,7 @@
 </div>
 
 
-- 5. 5_bigdata_sdks - [大数据SDK]
+- 5_bigdata_sdks - [大数据SDK]
 ```text
   1). flink-情感倾向分析【英文】- flink_sentence_encoder_sdk
   2). kafka-情感倾向分析【英文】- kafka_sentiment_analysis_sdk
@@ -612,236 +840,8 @@
   </table>
 </div>
 
-- 6. 6_web_app - [Web应用，前端VUE，后端Springboot]
-```text
-  1). 训练引擎
-  2). 代码语义搜索
-  3). 机器翻译
-  4). 一键抠图 
-  5). 图像分辨率增强
-  6). 图像&文本的跨模态相似性比对检索【支持40种语言】
-  7). 文本向量搜索，可配合大模型使用
-  8). 人像搜索
-  9). 语音识别
-  10). 以图搜图
-  11). OCR Web应用
-  12). OCR 自定义模板识别（IOCR）
-      ...
-```
 
-<div align="center">
-  <table>
-    <tr>
-      <td>
-        <div align="left">
-          <p>AI 训练平台 <br>- training</p>   
-          AI训练平台提供分类模型训练能力。<br>
-          并以REST API形式为上层应用提供接口。<br>
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/train_platform/images/training.png" width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div align="left">
-          <p>代码语义搜索 <br>- code_search</p>  
-            用于软件开发过程中的，<br>代码搜代码，语义搜代码。<br>
-            主要特性：<br>
-            - 底层使用特征向量相似度搜索<br>
-            - 单台服务器十亿级数据的毫秒级搜索<br>
-            - 近实时搜索，支持分布式部署<br>
-            - 随时对数据进行插入、<br>删除、搜索、更新等操作
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/data/images/codesearch.png" width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div align="left">
-          <p>机器翻译<br>- text_translation</p>   
-          - 支持202种语言互相翻译。<br>
-          - 支持 CPU / GPU<br>
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/assets/nllb.png" width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div align="left">
-          <p>一键抠图 Web 应用<br>- image_seg</p>   
-          当前版本包含了下面功能：<br>
-          - 1. 通用一键抠图<br>
-          - 2. 人体一键抠图<br>
-          - 3. 动漫一键抠图<br>
-          - 4. 框选一键抠图<br>
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/image_seg_sam2/sam2_seg1.jpg" width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-    <tr>
-      <td>
-        <div align="left">
-          <p>图片一键高清<br>- image_gan</p>   
-          当前版本包含了下面功能：<br>
-          - 图片一键高清: 提升图片4倍分辨率。<br>
-          - 头像一键高清<br>
-          - 人脸一键修复<br>
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/assets/imageSr.png" width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div align="left">
-          <p>图像&文本的跨模态检索<br>
-          - image_text_search</p>  
-          - 支持40种语言<br>
-          - 以图搜图：上传图片搜索<br>
-          - 以文搜图：输入文本搜索<br>
-          - 数据管理：提供图像压缩包(zip格式)上传<br>
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/7_engine_hub/image_text_search/search3.png" width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div align="left">
-          <p>文本向量搜索 <br>- text_search</p>   
-          - 语义搜索，通过句向量相似性，<br>检索语料库中与query最匹配的文本 <br>
-          - 文本聚类，文本转为定长向量，<br>通过聚类模型可无监督聚集相似文本 <br>
-          - 文本分类，表示成句向量，<br>直接用简单分类器即训练文本分类器 <br>
-          - RAG，用于大模型搜索增强生成
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/text_search/search.png" width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div align="left">
-          <p>人像搜索 <br>- face_search</p>   
-          - 搜索管理<br>
-          - 存储管理<br>
-          - 用户管理<br>
-          - 角色管理<br>
-          - 菜单管理<br>
-          - 部门管理<br>
-          - 岗位管理<br>
-          - 字典管理<br>
-          - 系统日志<br>
-          - SQL监控<br>
-          - 定时任务<br>
-          - 服务监控
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/face_search/images/search.png" width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div align="left">
-          <p>语音识别Web 应用 <br>- asr</p>   
-          - 英文语音识别，<br>
-          - 中文语音识别。
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/audio/images/asr_zh.png" width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div align="left">
-          <p>以图搜图<br>- image_search</p>   
-          - 搜索管理<br>
-          - 存储管理<br>
-          - 用户管理<br>
-          - 角色管理<br>
-          - 菜单管理<br>
-          - 部门管理<br>
-          - 岗位管理<br>
-          - 字典管理<br>
-          - 系统日志<br>
-          - SQL监控<br>
-          - 定时任务<br>
-          - 服务监控
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/image_search/images/search.png" width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div align="left">
-          <p>OCR Web 应用 <br>- ocr_web_app</p>   
-          - 自由文本识别（支持旋转、倾斜的图片）<br>
-          - 文本图片转正 （一般情况下不需要，因为ocr 原生支持旋转、倾斜的图片 ）<br>
-          - 表格文本识别（图片需是剪切好的单表格图片）<br>
-          - 表格自动检测文本识别（支持表格文字混编，自动检测表格识别文字，支持多表格）<br>
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/table.jpg" width = "400px"/>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div align="left">
-          <p>OCR 自定义模板识别 <br>- iocr</p>   
-          - 模板自定义<br>
-          - 基于模板识别（支持旋转、倾斜的图片）<br>
-          - 自由文本识别<br>
-          - 文本转正<br>
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/ocr_anchor.jpeg" width = "400px"/>
-        </div>
-      </td>
-    </tr>                                                    
-  </table>
-</div>
-
-- 7. 7_aigc - [图像生成]
+- 7_aigc - [图像生成]
 ```text
   1). 图像生成预处理工具箱 controlnet_sdks
   2). 图像生成SD工具箱 stable_diffusion_sdks
@@ -1211,7 +1211,7 @@
 </div>
 
 
-- 8 8_desktop_app - [桌面App]
+- 8_desktop_app - [桌面App]
 ```text
   1). 大模型离线桌面App
   2). OCR文字识别桌面App
