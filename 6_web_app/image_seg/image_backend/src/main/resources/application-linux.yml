@@ -26,5 +26,12 @@ model:
   animeModelName: anime.onnx
   # 衣服分割模型
   clothModelName: cloth.onnx
-
+  # Sam2 手工框选模型
+  sam2:
+    # encoder model URI
+    # sam2-hiera-large-encoder.onnx
+    encoder: sam2-hiera-tiny-encoder.onnx
+    # decoder model URI
+    # sam2-hiera-large-decoder.onnx
+    decoder: sam2-hiera-tiny-decoder.onnx
 

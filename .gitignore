@@ -80,3 +80,6 @@ archive/1_image_sdks/seg_sam2_sdk/target/
 6_web_app/image_seg_sam2/sam2_backend/target/
 6_web_app/image_seg_sam2/sam2_ui/node_modules/
 6_web_app/iocr/ocr_backend/target/
+6_web_app/image_seg/image_backend/target/
+6_web_app/image_seg/image_ui/node_modules/
+6_web_app/image_seg/image_backend/models/

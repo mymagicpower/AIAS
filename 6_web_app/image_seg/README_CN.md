@@ -2,7 +2,8 @@
 https://www.aias.top/
 
 ### 下载模型,配置yml文件 image_backend\src\main\resources\application-xxx.yml
-- 链接: https://pan.baidu.com/s/1zm8tN94p2UgUS3HN0NTHRA?pwd=uzfy
+- 链接: https://pan.baidu.com/s/1hbRILqfaD-BQ7Nb3buEmbw?pwd=ave9 
+
 ```bash
 model:
   # 设备类型 cpu gpu
@@ -23,6 +24,13 @@ model:
   animeModelName: anime.onnx
   # 衣服分割模型
   clothModelName: cloth.onnx
+    sam2:
+    # encoder model URI
+    # sam2-hiera-large-encoder.onnx
+    encoder: D:\\ai_projects\\AIAS\\1_image_sdks\\seg_sam2_sdk\\models\\sam2-hiera-tiny-encoder.onnx
+    # decoder model URI
+    # sam2-hiera-large-decoder.onnx
+    decoder: D:\\ai_projects\\AIAS\\1_image_sdks\\seg_sam2_sdk\\models\\sam2-hiera-tiny-decoder.onnx
 ```
 
 ### 一键抠图
@@ -110,7 +118,10 @@ nohup java -Dfile.encoding=utf-8 -jar xxxxx.jar > log.txt 2>&1 &
 #### 3. 动漫一键抠图
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/assets/seg_anime.jpg)
 
+#### 4. 框选一键抠图
+![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/products/image_seg_sam2/sam2_seg1.jpg)
 
+![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/products/image_seg_sam2/sam2_seg2.jpg)
 
 #### 帮助文档：
 - https://aias.top/guides.html

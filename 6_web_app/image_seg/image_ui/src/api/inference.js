@@ -60,12 +60,33 @@ export function clothSegForImageUrl(data) {
   })
 }
 
+export function getLabelData(data) {
+  return request({
+    url: '/seg/getLabelData',
+    method: 'post',
+    data
+  })
+}
+
+export function uploadImage(name, imageFile) {
+  return request({
+    url: '/seg/uploadImage',
+    method: 'post',
+    params: {
+      name: name,
+      imageFile: imageFile
+    }
+  })
+}
+
 export default {
   generalSegBigForImageUrl,
   generalSegMidForImageUrl,
   generalSegSmallForImageUrl,
   humanSegForImageUrl,
   animeSegForImageUrl,
-  clothSegForImageUrl
+  clothSegForImageUrl,
+  uploadImage,
+  getLabelData
 }
 

@@ -1,7 +1,7 @@
 
 spring:
   profiles:
-    active: linux
+    active: win
   servlet:
     multipart:
       enabled: true
@@ -26,7 +26,7 @@ file:
   linux:
     path: file/
   windows:
-    path: C:\\image_portal\\file\\
+    path: C:file\\
   # File max size - MB
   maxSize: 100
 

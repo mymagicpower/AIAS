@@ -108,6 +108,18 @@ export const constantRoutes = [
       }
     ]
   },
+  {
+    path: '/manualSeg',
+    component: Layout,
+    children: [
+      {
+        path: '/manualSeg',
+        component: () => import('@/views/manualSeg/index'),
+        name: 'manualSeg',
+        meta: { title: '框选一键抠图', icon: 'el-icon-picture-outline-round' }
+      }
+    ]
+  },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
