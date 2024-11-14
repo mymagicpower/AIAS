@@ -69,7 +69,7 @@ public class PipelineLoraTxt2Img implements AutoCloseable {
                         .optModelPath(Paths.get(root + "text_encoder.pt"))
                         .optEngine("PyTorch")
                         .optProgress(new ProgressBar())
-                        .optTranslator(new TextEncoder())
+                        .optTranslator(new TextEncoder(root))
                         .optDevice(device)
                         .build();
         this.textEncoderModel = textEncoderCriteria.loadModel();

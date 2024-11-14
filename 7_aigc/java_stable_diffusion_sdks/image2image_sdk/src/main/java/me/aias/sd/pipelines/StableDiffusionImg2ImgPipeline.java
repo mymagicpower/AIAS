@@ -86,7 +86,7 @@ public class StableDiffusionImg2ImgPipeline implements AutoCloseable {
                         .optEngine("PyTorch")
                         .optDevice(device)
                         .optProgress(new ProgressBar())
-                        .optTranslator(new TextEncoder())
+                        .optTranslator(new TextEncoder(root))
                         .build();
         this.textEncoderModel = textEncoderCriteria.loadModel();
         this.textEncoderPredictor = this.textEncoderModel.newPredictor();

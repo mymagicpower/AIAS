@@ -9,7 +9,9 @@ import ai.djl.ndarray.types.Shape;
 import ai.djl.translate.NoBatchifyTranslator;
 import ai.djl.translate.TranslatorContext;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.Arrays;
 
 public class TextEncoder implements NoBatchifyTranslator<String, NDList> {
@@ -18,6 +20,12 @@ public class TextEncoder implements NoBatchifyTranslator<String, NDList> {
 
     HuggingFaceTokenizer tokenizer;
 
+    String rootPath;
+
+    public TextEncoder(String rootPath) {
+        this.rootPath = rootPath;
+    }
+
     @Override
     public void prepare(TranslatorContext ctx) throws IOException {
         // sentence-transformers/msmarco-distilbert-dot-v5
@@ -25,13 +33,23 @@ public class TextEncoder implements NoBatchifyTranslator<String, NDList> {
         // openai/clip-vit-base-patch32
         // https://huggingface.co/sentence-transformers/msmarco-distilbert-dot-v5
         // https://huggingface.co/runwayml/stable-diffusion-v1-5/blob/main/tokenizer/tokenizer_config.json
+//        tokenizer =
+//                HuggingFaceTokenizer.builder()
+//                        .optPadding(true)
+//                        .optPadToMaxLength()
+//                        .optMaxLength(MAX_LENGTH)
+//                        .optTruncation(true)
+//                        .optTokenizerName("openai/clip-vit-large-patch14")
+//                        .build();
+
+        String modelPath = rootPath + "clip-vit-large-patch14";
         tokenizer =
                 HuggingFaceTokenizer.builder()
                         .optPadding(true)
-                        .optPadToMaxLength()
+                    .optPadToMaxLength()
                         .optMaxLength(MAX_LENGTH)
+                        .optTokenizerPath(Paths.get(modelPath))
                         .optTruncation(true)
-                        .optTokenizerName("openai/clip-vit-large-patch14")
                         .build();
     }
 
