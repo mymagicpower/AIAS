@@ -1,0 +1,38 @@
+server:
+  port: 8089
+
+spring:
+  profiles:
+    active: linux
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 3000MB
+      max-request-size: 3000MB
+  http:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+  messages:
+    encoding: UTF-8
+
+# swagger-ui
+swagger:
+  enabled: true
+
+
+# File storage path
+file:
+  mac:
+    path: ~/file/
+    # folder for unzip files
+    rootPath: ~/file/data_root/
+  linux:
+    path: /home/aias/file/
+    rootPath: /home/aias/file/data_root/
+  windows:
+    path: D:\\image_search\\file\\
+    rootPath: D:\\image_search\\file\\data_root\\
+  # 文件大小 /M
+  maxSize: 3000

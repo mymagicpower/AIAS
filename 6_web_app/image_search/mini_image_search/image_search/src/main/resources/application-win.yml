@@ -1,0 +1,17 @@
+# Server Port
+server:
+  port: 8089
+  tomcat:
+    uri-encoding: UTF-8
+  baseUri: http://127.0.0.1:${server.port}
+
+image:
+  #  path: /Users/calvin/Documents/data_root/
+  baseUrl: http://127.0.0.1:${server.port}/files/
+
+# Model URI
+model:
+  # Embedding Model
+  imageModel: D:\\ai_projects\\products\\4_apps\\simple_image_search\\image_search\\models\\CLIP-ViT-B-32-IMAGE.pt
+  # 设置为 CPU 核心数 (Core Number)
+  poolSize: 4

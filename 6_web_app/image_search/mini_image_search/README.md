@@ -4,13 +4,21 @@ http://aias.top/
 ### 下载模型
 - 链接: https://pan.baidu.com/s/1QKUSP7IaIY3U3pK6cqvdCg?pwd=g75s
 
-### 以图搜图【向量引擎精简版】
+### 更新 image_search/src/main/resources/ yaml配置文件的模型路径
+```bash
+# Model URI
+model:
+  # Embedding Model
+  imageModel: /Users/calvin/products/4_apps/simple_image_search/image_search/models/CLIP-ViT-B-32-IMAGE.pt
+  # 设置为 CPU 核心数 (Core Number)
+  poolSize: 4
+
+```
+
+### 以图搜图【无向量引擎版】
 #### 主要特性
-- 底层使用特征向量相似度搜索
-- 单台服务器十亿级数据的毫秒级搜索
-- 近实时搜索，支持分布式部署
+- 支持100万以内的数据量
 - 随时对数据进行插入、删除、搜索、更新等操作
-- 支持在线用户管理与服务器性能监控，支持限制单用户登录
 
 #### 功能介绍
 - 以图搜图：上传图片搜索
@@ -105,61 +113,21 @@ java -jar image-search-0.1.0.jar
 
 ```
 
-### 3. 后端向量引擎部署
-
-#### 3.1 环境要求：
-- 需要安装docker运行环境，Mac环境可以使用Docker Desktop
-
-#### 3.2 拉取Milvus向量引擎镜像（用于计算特征值向量相似度）
-下载 milvus-standalone-docker-compose.yml 配置文件并保存为 docker-compose.yml     
-
-[单机版安装文档](https://milvus.io/docs/install_standalone-docker.md)       
-[引擎配置文档](https://milvus.io/docs/configure-docker.md)   
-[milvus-sdk-java](https://github.com/milvus-io/milvus-sdk-java)  
-
-
-```bash
-# 例子：v2.2.8，请根据官方文档，选择合适的版本
-wget https://github.com/milvus-io/milvus/releases/download/v2.2.8/milvus-standalone-docker-compose.yml -O docker-compose.yml
-```
-
-#### 3.3 启动 Docker 容器
-```bash
-sudo docker-compose up -d
-```
-
-#### 3.4 编辑向量引擎连接配置信息
-- aiplatform-system\src\main\resources\application-dev.yml
-- 根据需要编辑向量引擎连接ip地址127.0.0.1为容器所在的主机ip
-```bash
-##################### 向量引擎 ###############################
-search:
-  host: 127.0.0.1
-  port: 19530
-  indexFileSize: 1024 # maximum size (in MB) of each index file
-  nprobe: 256
-  nlist: 16384
-  dimension: 512 #dimension of each vector
-  collectionName: arts #collection name
-
-```
-
-
-### 4. 功能使用
+### 3. 功能使用
 打开浏览器
 - 输入地址： http://localhost:8090
 
-#### 4.1 图片上传
+#### 3.1 图片上传
 1). 点击上传按钮上传文件.  
 [测试图片数据](https://pan.baidu.com/s/1QtF6syNUKS5qkf4OKAcuLA?pwd=wfd8)
 2). 点击特征提取按钮. 
 等待图片特征提取，特征存入json文件。
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/7_engine_hub/image_text_search/mini_search_3.png)
 
-#### 4.2 以图搜图
+#### 3.3 以图搜图
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/7_engine_hub/image_text_search/mini_search_2.png)
 
-### 5. 帮助信息
+### 4. 帮助信息
 - swagger接口文档:  
 http://localhost:8089/swagger-ui.html
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/video_search/swagger.png)
