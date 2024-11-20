@@ -49,7 +49,7 @@ public final class FaceFeatureModel implements AutoCloseable {
                         .optTranslator(new FaceFeatureTranslator())
                         .optProgress(new ProgressBar())
                         .optEngine("OnnxRuntime")
-//            .optDevice(Device.cpu())
+                        .optDevice(Device.cpu())
                         .build();
 
         return criteria;

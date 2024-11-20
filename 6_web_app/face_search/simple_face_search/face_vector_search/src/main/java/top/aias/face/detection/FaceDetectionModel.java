@@ -54,6 +54,7 @@ public final class FaceDetectionModel implements AutoCloseable {
                         .optModelPath(Paths.get(modelUri))
                         .optTranslator(new FaceDetTranslator())
                         .optProgress(new ProgressBar())
+                        .optDevice(Device.cpu())
                         .optEngine("OnnxRuntime") // Use ONNX engine
                         .build();
 
@@ -72,6 +73,7 @@ public final class FaceDetectionModel implements AutoCloseable {
                         .optModelPath(Paths.get(modelUri))
                         .optTranslator(new MobileFaceDetTranslator())
                         .optProgress(new ProgressBar())
+                        .optDevice(Device.cpu())
                         .optEngine("OnnxRuntime") // Use ONNX engine
                         .build();
 
