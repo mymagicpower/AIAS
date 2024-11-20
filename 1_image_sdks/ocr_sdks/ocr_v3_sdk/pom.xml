@@ -107,12 +107,6 @@
             <artifactId>model-zoo</artifactId>
             <version>${djl.version}</version>
         </dependency>
-<!--        &lt;!&ndash; MXNet &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>ai.djl.mxnet</groupId>-->
-<!--            <artifactId>mxnet-engine</artifactId>-->
-<!--            <version>${djl.version}</version>-->
-<!--        </dependency>-->
 
         <dependency>
             <groupId>ai.djl.pytorch</groupId>

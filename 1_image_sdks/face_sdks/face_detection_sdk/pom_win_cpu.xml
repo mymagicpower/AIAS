@@ -24,7 +24,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>aias</groupId>
-    <artifactId>ocr-sdk</artifactId>
+    <artifactId>face_detection_sdk</artifactId>
     <version>0.23.0</version>
 
     <properties>
@@ -108,6 +108,12 @@
             <version>${djl.version}</version>
         </dependency>
 
+        <!-- Pytorch 自动配置 -->
+        <!--        <dependency>-->
+        <!--            <groupId>ai.djl.pytorch</groupId>-->
+        <!--            <artifactId>pytorch-engine</artifactId>-->
+        <!--            <version>${djl.version}</version>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>ai.djl.pytorch</groupId>
             <artifactId>pytorch-model-zoo</artifactId>
@@ -130,20 +136,6 @@
         <dependency>
             <groupId>ai.djl.onnxruntime</groupId>
             <artifactId>onnxruntime-engine</artifactId>
-            <version>${djl.version}</version>
-        </dependency>
-
-        <!-- PaddlePaddle 表格识别，不支持onnx转换，所以仍然使用 paddle格式-->
-        <dependency>
-            <groupId>ai.djl.paddlepaddle</groupId>
-            <artifactId>paddlepaddle-native-cpu</artifactId>
-            <classifier>win-x86_64</classifier>
-            <version>2.2.2</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>ai.djl.paddlepaddle</groupId>
-            <artifactId>paddlepaddle-model-zoo</artifactId>
             <version>${djl.version}</version>
         </dependency>
 
@@ -214,7 +206,7 @@
             <artifactId>poi</artifactId>
             <version>4.0.0</version>
         </dependency>
-        <dependency>                                
+        <dependency>
             <groupId>dom4j</groupId>
             <artifactId>dom4j</artifactId>
             <version>1.6.1</version>

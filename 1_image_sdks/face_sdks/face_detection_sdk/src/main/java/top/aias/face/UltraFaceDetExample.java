@@ -28,7 +28,7 @@ public final class UltraFaceDetExample {
   private UltraFaceDetExample() {}
 
   public static void main(String[] args) throws IOException, ModelException, TranslateException {
-    Path facePath = Paths.get("src/test/resources/ljm01.jpg");
+    Path facePath = Paths.get("src/test/resources/beauty.jpg");
     Image img = OpenCVImageFactory.getInstance().fromFile(facePath);
 
     try (UltraLightFaceDetection predictor = new UltraLightFaceDetection();) {
