@@ -28,9 +28,9 @@
 - 网址：http://www.aias.top/
 - 帮助：https://aias.top/guides.html
 
-#### 2. 开源地址: 
-- Gitee:  https://gitee.com/mymagicpower/AIAS
-- GitHub: https://github.com/mymagicpower/AIAS
+#### 2. 视频培训课程: 
+- 制作中......
+
 
 
 <br>
@@ -451,11 +451,16 @@
 
 
 
+### 1. 官网: 
+- 网址：http://www.aias.top/
+- 帮助：https://aias.top/guides.html
 
-
-
-#### 联系方式:
+####1.1 联系方式:
 - 邮箱：179209347@qq.com
+
+####1.2 开源地址: 
+- Gitee:  https://gitee.com/mymagicpower/AIAS
+- GitHub: https://github.com/mymagicpower/AIAS
 
 
 #### 其它研究专题:
