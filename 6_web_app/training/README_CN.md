@@ -1,4 +1,3 @@
-### 该项目建议用于学习研究使用，项目落地建议使用Python训练框架,如：pytorch。
 
 ### 下载模型，放置于models目录
 - 链接: https://pan.baidu.com/s/1pGHMzUH5Kyc_LhTDRc-laA?pwd=amfh
@@ -115,26 +114,6 @@ file:
   maxSize: 3000
 ```
 
-### 如何将训练的模型用于图像搜索引擎？
-训练的模型可以用于图像搜索引擎的通用图像搜索，替换已有的模型，提升搜索引擎的精度。     
-图像搜索引擎：    
-https://gitee.com/mymagicpower/AIAS/tree/main/image_search_cpu
-
-#### 1. 找到训练好的模型文件：（newModelPath: ~/file/model/ #模型训练好后存放的文件夹）
--new_resnet_50-0001.params
--synset.txt
-![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/train_platform/images/model.png)
-
-#### 2. 配置搜索引擎参数：
-1). 修改参数 newModel.enabled，更新为true
-```bash
-#是否开启自训练模型
-newModel:
-  enabled: true
-```
-2). 复制训练好的模型文件到搜索引擎的指定目录（newModelPath指定的路径）
-（windows环境可以使用7-zip对jar包里的classes/config/application-dev.yml进行编辑）
-![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/train_platform/images/params.png)
 
 ### 官网：
 [官网链接](http://www.aias.top/)
