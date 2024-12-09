@@ -13,12 +13,6 @@
         <a href="README_EN.md">English</a>
     <p>
 </h4>
-<h4 align="center">
-    <p>
-        <b>官网</b> |
-        <a href="http://www.aias.top/">http://www.aias.top/</a>
-    <p>
-</h4>
 </div>
 
 <br>
@@ -496,17 +490,6 @@
 </div>
 
 
-
-### 1. 官网: 
-- 网址：http://www.aias.top/
-- 帮助：https://aias.top/guides.html
-
-####1.1 联系方式:
-- 邮箱：179209347@qq.com
-
-####1.2 开源地址: 
-- Gitee:  https://gitee.com/mymagicpower/AIAS
-- GitHub: https://github.com/mymagicpower/AIAS
 
 
 #### 其它研究专题:
