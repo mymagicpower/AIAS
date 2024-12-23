@@ -41,8 +41,8 @@
     <tr>
       <td style="width:220px">
         <div align="left">
-          <p>语音处理包Librosa- librosa_sdk</p> 
-          python语音处理库librosa的java实现。
+          <p>声纹识别- voiceprint_sdk</p> 
+          声纹特征向量提取，声纹相似度计算。
         </div>
       </td>     
       <td>

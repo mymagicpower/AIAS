@@ -164,7 +164,21 @@
         <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/table.jpg" width = "400px"/>
         </div>
       </td>
-    </tr>                                         
+    </tr>
+    <tr>
+      <td>
+        <div align="left">
+          <p>202种语言互相翻译 Web 应用 <br>-text_translation</p>   
+          - 支持202种语言互相翻译<br>
+          - 支持 CPU / GPU<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/assets/nllb.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>                                            
   </table>
 </div>
 
