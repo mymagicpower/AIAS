@@ -21,13 +21,13 @@ public final class No4BroadcastExample {
             NDArray x = manager.create(new int[]{1, 2, 3, 4});
             NDArray y = manager.create(new int[]{10, 20, 30, 40});
             NDArray z = x.mul(y);
-            System.out.println(z.toDebugString(100, 10, 100, 100));
+            System.out.println(z.toDebugString(100, 10, 100, 100, true));
 
             // 2. Broadcasting mechanism is automatically triggered when the shapes of the two arrays in an operation are different.
             x = manager.create(new int[][]{{0, 0, 0}, {10, 10, 10}, {20, 20, 20}, {30, 30, 30}});
             y = manager.create(new int[]{1, 2, 3});
             z = x.add(y);
-            System.out.println(z.toDebugString(100, 10, 100, 100));
+            System.out.println(z.toDebugString(100, 10, 100, 100, true));
         }
 
     }

@@ -34,7 +34,7 @@ public final class No10IOExample {
             byte[] data = readFile("outfile.npy");
             NDList decoded = NDList.decode(manager, data);
             NDArray array = decoded.get(0);
-            System.out.println(array.toDebugString(100, 10, 100, 100));
+            System.out.println(array.toDebugString(100, 10, 100, 100,true));
 
             // 3. Save several arrays into a single file in uncompressed .npz format.
             a = manager.create(new int[][]{{1, 2, 3}, {4, 5, 6}});
@@ -49,8 +49,8 @@ public final class No10IOExample {
             decoded = NDList.decode(manager, data);
             a = decoded.get(0);
             b = decoded.get(1);
-            System.out.println(a.toDebugString(100, 10, 100, 100));
-            System.out.println(b.toDebugString(100, 10, 100, 100));
+            System.out.println(a.toDebugString(100, 10, 100, 100,true));
+            System.out.println(b.toDebugString(100, 10, 100, 100,true));
         }
     }
 
