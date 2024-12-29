@@ -23,9 +23,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>aias</groupId>
-    <artifactId>ndarray_lessons</artifactId>
-    <version>0.23.0</version>
+    <groupId>top.aias</groupId>
+    <artifactId>djl-ndarray-examples</artifactId>
+    <version>1.0.0</version>
+    <name>DJL Examples operating on ndarrays</name>
+    <description>Working with NDArrays</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -81,11 +83,11 @@
             <version>${djl.version}</version>
         </dependency>
         <!-- Pytorch -->
-<!--        <dependency>-->
-<!--            <groupId>ai.djl.pytorch</groupId>-->
-<!--            <artifactId>pytorch-engine</artifactId>-->
-<!--            <version>${djl.version}</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>ai.djl.pytorch</groupId>
+            <artifactId>pytorch-engine</artifactId>
+            <version>${djl.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
