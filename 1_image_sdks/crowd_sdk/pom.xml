@@ -80,10 +80,15 @@
             <artifactId>model-zoo</artifactId>
             <version>${djl.version}</version>
         </dependency>
-        <!-- MXNet -->
+        <!-- Pytorch -->
         <dependency>
-            <groupId>ai.djl.mxnet</groupId>
-            <artifactId>mxnet-engine</artifactId>
+            <groupId>ai.djl.pytorch</groupId>
+            <artifactId>pytorch-engine</artifactId>
+            <version>${djl.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ai.djl.pytorch</groupId>
+            <artifactId>pytorch-model-zoo</artifactId>
             <version>${djl.version}</version>
         </dependency>
         <!-- PaddlePaddle -->
