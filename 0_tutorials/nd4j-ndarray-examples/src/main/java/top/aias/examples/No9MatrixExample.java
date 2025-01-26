@@ -82,12 +82,51 @@ public final class No9MatrixExample {
         System.out.println(c);
 
         // 7. Matrix multiplication - mmul()
-        // 7. 矩阵乘法 - mmul()
+        // 7.1 二维矩阵乘法 - mmul()
         a = Nd4j.create(new int[][]{{1, 0}, {0, 1}});
         b = Nd4j.create(new int[][]{{4, 1}, {2, 2}});
         c = a.mmul(b);
         System.out.println("Matrix multiplication result:");
         // 矩阵乘法结果：
         System.out.println(c);
+
+        // 7.2 Three-dimensional matrix multiplication - mmul()
+        // 7.2 三维矩阵乘法 - mmul()
+        // Define two 3D arrays A and B
+        // 定义两个三维数组 A 和 B
+        INDArray A = Nd4j.create(new double[][][]{
+                {
+                        {1, 2, 3},  // 第一个批次矩阵 1 (2x3)
+                        {4, 5, 6}   // First batch matrix 1 (2x3)
+                },
+                {
+                        {2, 3, 4},  // 第二个批次矩阵 2 (2x3)
+                        {5, 6, 7}   // Second batch matrix 2 (2x3)
+                }
+        });
+
+        INDArray B = Nd4j.create(new double[][][]{
+                {
+                        {1, 2},  // 第一个批次矩阵 1 (3x2)
+                        {3, 4},  // First batch matrix 1 (3x2)
+                        {5, 6}
+                },
+                {
+                        {2, 3},  // 第二个批次矩阵 2 (3x2)
+                        {4, 5},  // Second batch matrix 2 (3x2)
+                        {6, 7}
+                }
+        });
+
+        // Perform matrix multiplication
+        // 执行矩阵乘法
+        INDArray C = Nd4j.matmul(A, B);
+
+        // Print the shapes and results
+        // 输出形状和结果
+        System.out.println("Shape of A: " + A.shapeInfoToString());  // (2, 2, 3)
+        System.out.println("Shape of B: " + B.shapeInfoToString());  // (2, 3, 2)
+        System.out.println("Shape of C: " + C.shapeInfoToString());  // (2, 2, 2)
+        System.out.println("Result C:\n" + C);
     }
 }
