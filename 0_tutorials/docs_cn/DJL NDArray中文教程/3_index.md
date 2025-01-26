@@ -238,6 +238,73 @@ ND: (6) cpu() int32
 [ 6,  7,  8,  9, 10, 11]
 ```
 
+#### 5. 索引赋值
+我们可以通过索引来获取符合指定条件的元素的数组，并进行赋值：
+
+- Python
+```text
+import numpy as np
+
+# 第一部分: 将第3列（索引2）设置为零
+a = np.array([[1, 2, 3], [3, 4, 5], [4, 5, 6]])
+zeros_column = np.zeros(3)  # 创建一个包含3个零的数组
+a[:, 2] = zeros_column  # 将第3列设置为零
+print("\nAfter setting operation:")
+print(a)
+[[ 1,  2,  0],
+ [ 3,  4,  0],
+ [ 4,  5,  0],
+]
+
+# 第二部分: 将第2和第3列（索引1,2）设置为零
+a = np.array([[1, 2, 3], [3, 4, 5], [4, 5, 6]])
+zeros_columns = np.zeros((3, 2))  # 创建一个3x2的零矩阵
+a[:, 1:3] = zeros_columns  # 将第2和第3列设置为零
+print("\nAfter setting operation:")
+print(a)
+[[ 1,  0,  0],
+ [ 3,  0,  0],
+ [ 4,  0,  0],
+]
+```
+
+- Java
+```text
+a = manager.create(new int[][]{{1, 2, 3}, {3, 4, 5}, {4, 5, 6}});
+NDArray zerosColumn = manager.zeros(new Shape(3));
+// 将第3列（索引2）设置为零：
+a.set(new NDIndex(":,2"), zerosColumn);
+System.out.println("\nAfter setting operation:");
+// 设置操作后：
+System.out.println(a.toDebugString(100, 10, 100, 100, true));
+
+// 将第2,3列（索引1,2）设置为零：
+a = manager.create(new int[][]{{1, 2, 3}, {3, 4, 5}, {4, 5, 6}});
+NDArray zerosColumns = manager.zeros(new Shape(3, 2));
+a.set(new NDIndex(":,1:3"), zerosColumns);
+System.out.println("\nAfter setting operation:");
+// 设置操作后：
+System.out.println(a.toDebugString(100, 10, 100, 100, true));
+
+
+# 输出结果如下：
+我们的数组是：
+After setting operation:
+ND: (3, 3) cpu() int32
+[[ 1,  2,  0],
+ [ 3,  4,  0],
+ [ 4,  5,  0],
+]
+
+
+After setting operation:
+ND: (3, 3) cpu() int32
+[[ 1,  0,  0],
+ [ 3,  0,  0],
+ [ 4,  0,  0],
+]
+```
+
 ### 代码下载地址：    
 [Github链接](https://github.com/mymagicpower/AIAS/blob/main/0_tutorials/ndarray_lessons/src/main/java/me/aias/example/No3IndexExample.java)    
 
