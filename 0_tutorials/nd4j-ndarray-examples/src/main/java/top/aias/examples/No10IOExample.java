@@ -1,5 +1,6 @@
 package top.aias.examples;
 
+import org.nd4j.linalg.api.buffer.DataType;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
 
@@ -27,7 +28,7 @@ public final class No10IOExample {
 
         // 1. Save an array to a binary file in NumPy .npy format.
         // 1. 将数组保存为NumPy .npy格式的二进制文件。
-        INDArray a = Nd4j.create(new int[]{1, 2, 3, 4, 5});
+        INDArray a = Nd4j.create(new int[]{1, 2, 3, 4, 5}, new long[]{1, 5}, DataType.INT32);
         File file = new File(npyDataPath);
         Nd4j.writeAsNumpy(a, file);
 

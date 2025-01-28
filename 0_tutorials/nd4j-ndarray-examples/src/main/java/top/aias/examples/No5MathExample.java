@@ -5,8 +5,8 @@ import org.nd4j.linalg.factory.Nd4j;
 import org.nd4j.linalg.ops.transforms.Transforms;
 
 /**
- * NDarray Mathematical Functions
- * NDarray 数学函数
+ * INDArray Mathematical Functions
+ * INDArray 数学函数
  *
  * @author Calvin
  * Mail: 179209347@qq.com

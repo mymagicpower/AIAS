@@ -18,7 +18,7 @@ public class No1BasicExample {
         // 1. Create Data Object - Vector
         // 1. 创建数据对象 - 向量
         int[] vector = new int[]{1, 2, 3};
-        INDArray nd = Nd4j.create(vector);
+        INDArray nd = Nd4j.create(vector, new long[]{1, 3}, DataType.INT32);
         System.out.println(nd);
 
         // 2.1 Create Data Object - Matrix

@@ -8,7 +8,7 @@ import top.aias.examples.utils.Nd4jUtil;
 import java.util.Arrays;
 
 /**
- * NDarray Operations
+ * INDArray Operations
  *
  * @author Calvin
  * Mail: 179209347@qq.com

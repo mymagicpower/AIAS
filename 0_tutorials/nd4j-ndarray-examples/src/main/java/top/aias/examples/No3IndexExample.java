@@ -7,8 +7,8 @@ import org.nd4j.linalg.indexing.INDArrayIndex;
 import org.nd4j.linalg.indexing.NDArrayIndex;
 
 /**
- * NDarray Indexing and Slicing
- * NDarray 索引和切片
+ * INDArray Indexing and Slicing
+ * INDArray 索引和切片
  *
  * @author Calvin
  * Mail: 179209347@qq.com

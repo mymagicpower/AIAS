@@ -5,7 +5,7 @@ import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
 
 /**
- * NDarray Broadcast
+ * INDArray Broadcast
  *
  * @author Calvin
  * Mail: 179209347@qq.com
