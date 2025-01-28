@@ -1,0 +1,19 @@
+# Server Port
+server:
+  port: 8089
+  tomcat:
+    uri-encoding: UTF-8
+  baseUri: http://127.0.0.1:${server.port}
+
+model:
+  # 设置为 CPU 核心数 (Core Number)
+  poolSize: 4
+  ocrv4:
+    # server detection model URI
+    det: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr/ch_PP-OCRv4_det_infer.zip
+    # server recognition model URI
+    rec: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr/ch_PP-OCRv4_rec_infer.zip
+  mlsd:
+    # mlsd model URI
+    model: https://aias-home.oss-cn-beijing.aliyuncs.com/models/ocr/mlsd_traced_model_onnx.zip
+

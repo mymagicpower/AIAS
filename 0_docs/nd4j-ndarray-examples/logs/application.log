@@ -1,0 +1,740 @@
+2025-01-12 12:51:53,654 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in main
+                
+Loaded [CpuBackend] backend
+
+2025-01-12 12:51:54,676 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in main
+                
+Number of threads used for linear algebra: 1
+
+2025-01-12 12:51:54,679 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory in main
+                
+Binary level Generic x86 optimization level AVX/AVX2
+
+2025-01-12 12:51:54,752 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in main
+                
+Number of threads used for OpenMP BLAS: 1
+
+2025-01-12 12:51:54,801 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Backend used: [CPU]; OS: [Mac OS X]
+
+2025-01-12 12:51:54,801 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Cores: [8]; Memory: [2.0GB];
+
+2025-01-12 12:51:54,801 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Blas vendor: [OPENBLAS]
+
+2025-01-12 12:51:54,807 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuBackend in main
+                
+Backend build information:
+ Clang: "12.0.0 (clang-1200.0.32.29)"
+STD version: 201103L
+DEFAULT_ENGINE: samediff::ENGINE_CPU
+HAVE_FLATBUFFERS
+HAVE_OPENBLAS
+
+2025-01-12 12:57:30,117 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in main
+                
+Loaded [CpuBackend] backend
+
+2025-01-12 12:57:30,880 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in main
+                
+Number of threads used for linear algebra: 1
+
+2025-01-12 12:57:30,883 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory in main
+                
+Binary level Generic x86 optimization level AVX/AVX2
+
+2025-01-12 12:57:30,952 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in main
+                
+Number of threads used for OpenMP BLAS: 1
+
+2025-01-12 12:57:30,999 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Backend used: [CPU]; OS: [Mac OS X]
+
+2025-01-12 12:57:30,999 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Cores: [8]; Memory: [2.0GB];
+
+2025-01-12 12:57:30,999 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Blas vendor: [OPENBLAS]
+
+2025-01-12 12:57:31,004 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuBackend in main
+                
+Backend build information:
+ Clang: "12.0.0 (clang-1200.0.32.29)"
+STD version: 201103L
+DEFAULT_ENGINE: samediff::ENGINE_CPU
+HAVE_FLATBUFFERS
+HAVE_OPENBLAS
+
+2025-01-12 12:59:03,999 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in main
+                
+Loaded [CpuBackend] backend
+
+2025-01-12 12:59:04,753 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in main
+                
+Number of threads used for linear algebra: 1
+
+2025-01-12 12:59:04,757 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory in main
+                
+Binary level Generic x86 optimization level AVX/AVX2
+
+2025-01-12 12:59:04,824 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in main
+                
+Number of threads used for OpenMP BLAS: 1
+
+2025-01-12 12:59:04,871 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Backend used: [CPU]; OS: [Mac OS X]
+
+2025-01-12 12:59:04,871 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Cores: [8]; Memory: [2.0GB];
+
+2025-01-12 12:59:04,871 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Blas vendor: [OPENBLAS]
+
+2025-01-12 12:59:04,876 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuBackend in main
+                
+Backend build information:
+ Clang: "12.0.0 (clang-1200.0.32.29)"
+STD version: 201103L
+DEFAULT_ENGINE: samediff::ENGINE_CPU
+HAVE_FLATBUFFERS
+HAVE_OPENBLAS
+
+2025-01-12 13:04:39,582 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in main
+                
+Loaded [CpuBackend] backend
+
+2025-01-12 13:04:40,382 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in main
+                
+Number of threads used for linear algebra: 1
+
+2025-01-12 13:04:40,385 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory in main
+                
+Binary level Generic x86 optimization level AVX/AVX2
+
+2025-01-12 13:04:40,453 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in main
+                
+Number of threads used for OpenMP BLAS: 1
+
+2025-01-12 13:04:40,501 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Backend used: [CPU]; OS: [Mac OS X]
+
+2025-01-12 13:04:40,501 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Cores: [8]; Memory: [2.0GB];
+
+2025-01-12 13:04:40,501 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Blas vendor: [OPENBLAS]
+
+2025-01-12 13:04:40,506 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuBackend in main
+                
+Backend build information:
+ Clang: "12.0.0 (clang-1200.0.32.29)"
+STD version: 201103L
+DEFAULT_ENGINE: samediff::ENGINE_CPU
+HAVE_FLATBUFFERS
+HAVE_OPENBLAS
+
+2025-01-12 13:28:47,518 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in main
+                
+Loaded [CpuBackend] backend
+
+2025-01-12 13:28:48,282 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in main
+                
+Number of threads used for linear algebra: 1
+
+2025-01-12 13:28:48,284 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory in main
+                
+Binary level Generic x86 optimization level AVX/AVX2
+
+2025-01-12 13:28:48,353 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in main
+                
+Number of threads used for OpenMP BLAS: 1
+
+2025-01-12 13:28:48,402 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Backend used: [CPU]; OS: [Mac OS X]
+
+2025-01-12 13:28:48,402 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Cores: [8]; Memory: [2.0GB];
+
+2025-01-12 13:28:48,402 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Blas vendor: [OPENBLAS]
+
+2025-01-12 13:28:48,407 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuBackend in main
+                
+Backend build information:
+ Clang: "12.0.0 (clang-1200.0.32.29)"
+STD version: 201103L
+DEFAULT_ENGINE: samediff::ENGINE_CPU
+HAVE_FLATBUFFERS
+HAVE_OPENBLAS
+
+2025-01-12 13:38:48,320 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in main
+                
+Loaded [CpuBackend] backend
+
+2025-01-12 13:38:49,422 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in main
+                
+Number of threads used for linear algebra: 1
+
+2025-01-12 13:38:49,425 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory in main
+                
+Binary level Generic x86 optimization level AVX/AVX2
+
+2025-01-12 13:38:49,505 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in main
+                
+Number of threads used for OpenMP BLAS: 1
+
+2025-01-12 13:38:49,559 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Backend used: [CPU]; OS: [Mac OS X]
+
+2025-01-12 13:38:49,559 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Cores: [8]; Memory: [2.0GB];
+
+2025-01-12 13:38:49,559 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Blas vendor: [OPENBLAS]
+
+2025-01-12 13:38:49,564 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuBackend in main
+                
+Backend build information:
+ Clang: "12.0.0 (clang-1200.0.32.29)"
+STD version: 201103L
+DEFAULT_ENGINE: samediff::ENGINE_CPU
+HAVE_FLATBUFFERS
+HAVE_OPENBLAS
+
+2025-01-12 13:39:40,020 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in main
+                
+Loaded [CpuBackend] backend
+
+2025-01-12 13:39:40,821 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in main
+                
+Number of threads used for linear algebra: 1
+
+2025-01-12 13:39:40,823 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory in main
+                
+Binary level Generic x86 optimization level AVX/AVX2
+
+2025-01-12 13:39:40,895 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in main
+                
+Number of threads used for OpenMP BLAS: 1
+
+2025-01-12 13:39:40,942 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Backend used: [CPU]; OS: [Mac OS X]
+
+2025-01-12 13:39:40,942 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Cores: [8]; Memory: [2.0GB];
+
+2025-01-12 13:39:40,943 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Blas vendor: [OPENBLAS]
+
+2025-01-12 13:39:40,947 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuBackend in main
+                
+Backend build information:
+ Clang: "12.0.0 (clang-1200.0.32.29)"
+STD version: 201103L
+DEFAULT_ENGINE: samediff::ENGINE_CPU
+HAVE_FLATBUFFERS
+HAVE_OPENBLAS
+
+2025-01-12 13:43:58,760 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in main
+                
+Loaded [CpuBackend] backend
+
+2025-01-12 13:43:59,595 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in main
+                
+Number of threads used for linear algebra: 1
+
+2025-01-12 13:43:59,598 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory in main
+                
+Binary level Generic x86 optimization level AVX/AVX2
+
+2025-01-12 13:43:59,680 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in main
+                
+Number of threads used for OpenMP BLAS: 1
+
+2025-01-12 13:43:59,740 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Backend used: [CPU]; OS: [Mac OS X]
+
+2025-01-12 13:43:59,740 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Cores: [8]; Memory: [2.0GB];
+
+2025-01-12 13:43:59,740 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Blas vendor: [OPENBLAS]
+
+2025-01-12 13:43:59,747 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuBackend in main
+                
+Backend build information:
+ Clang: "12.0.0 (clang-1200.0.32.29)"
+STD version: 201103L
+DEFAULT_ENGINE: samediff::ENGINE_CPU
+HAVE_FLATBUFFERS
+HAVE_OPENBLAS
+
+2025-01-12 13:46:15,179 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in main
+                
+Loaded [CpuBackend] backend
+
+2025-01-12 13:46:16,005 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in main
+                
+Number of threads used for linear algebra: 1
+
+2025-01-12 13:46:16,007 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory in main
+                
+Binary level Generic x86 optimization level AVX/AVX2
+
+2025-01-12 13:46:16,075 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in main
+                
+Number of threads used for OpenMP BLAS: 1
+
+2025-01-12 13:46:16,124 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Backend used: [CPU]; OS: [Mac OS X]
+
+2025-01-12 13:46:16,124 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Cores: [8]; Memory: [2.0GB];
+
+2025-01-12 13:46:16,124 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Blas vendor: [OPENBLAS]
+
+2025-01-12 13:46:16,129 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuBackend in main
+                
+Backend build information:
+ Clang: "12.0.0 (clang-1200.0.32.29)"
+STD version: 201103L
+DEFAULT_ENGINE: samediff::ENGINE_CPU
+HAVE_FLATBUFFERS
+HAVE_OPENBLAS
+
+2025-01-12 13:48:55,664 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in main
+                
+Loaded [CpuBackend] backend
+
+2025-01-12 13:48:56,442 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in main
+                
+Number of threads used for linear algebra: 1
+
+2025-01-12 13:48:56,444 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory in main
+                
+Binary level Generic x86 optimization level AVX/AVX2
+
+2025-01-12 13:48:56,512 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in main
+                
+Number of threads used for OpenMP BLAS: 1
+
+2025-01-12 13:48:56,558 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Backend used: [CPU]; OS: [Mac OS X]
+
+2025-01-12 13:48:56,559 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Cores: [8]; Memory: [2.0GB];
+
+2025-01-12 13:48:56,559 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Blas vendor: [OPENBLAS]
+
+2025-01-12 13:48:56,563 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuBackend in main
+                
+Backend build information:
+ Clang: "12.0.0 (clang-1200.0.32.29)"
+STD version: 201103L
+DEFAULT_ENGINE: samediff::ENGINE_CPU
+HAVE_FLATBUFFERS
+HAVE_OPENBLAS
+
+2025-01-12 14:05:16,519 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in main
+                
+Loaded [CpuBackend] backend
+
+2025-01-12 14:05:17,306 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in main
+                
+Number of threads used for linear algebra: 1
+
+2025-01-12 14:05:17,309 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory in main
+                
+Binary level Generic x86 optimization level AVX/AVX2
+
+2025-01-12 14:05:17,379 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in main
+                
+Number of threads used for OpenMP BLAS: 1
+
+2025-01-12 14:05:17,426 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Backend used: [CPU]; OS: [Mac OS X]
+
+2025-01-12 14:05:17,426 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Cores: [8]; Memory: [2.0GB];
+
+2025-01-12 14:05:17,426 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Blas vendor: [OPENBLAS]
+
+2025-01-12 14:05:17,431 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuBackend in main
+                
+Backend build information:
+ Clang: "12.0.0 (clang-1200.0.32.29)"
+STD version: 201103L
+DEFAULT_ENGINE: samediff::ENGINE_CPU
+HAVE_FLATBUFFERS
+HAVE_OPENBLAS
+
+2025-01-12 14:07:24,365 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in main
+                
+Loaded [CpuBackend] backend
+
+2025-01-12 14:07:25,294 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in main
+                
+Number of threads used for linear algebra: 1
+
+2025-01-12 14:07:25,297 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory in main
+                
+Binary level Generic x86 optimization level AVX/AVX2
+
+2025-01-12 14:07:25,374 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in main
+                
+Number of threads used for OpenMP BLAS: 1
+
+2025-01-12 14:07:25,423 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Backend used: [CPU]; OS: [Mac OS X]
+
+2025-01-12 14:07:25,423 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Cores: [8]; Memory: [2.0GB];
+
+2025-01-12 14:07:25,423 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Blas vendor: [OPENBLAS]
+
+2025-01-12 14:07:25,428 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuBackend in main
+                
+Backend build information:
+ Clang: "12.0.0 (clang-1200.0.32.29)"
+STD version: 201103L
+DEFAULT_ENGINE: samediff::ENGINE_CPU
+HAVE_FLATBUFFERS
+HAVE_OPENBLAS
+
+2025-01-12 14:07:34,247 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in main
+                
+Loaded [CpuBackend] backend
+
+2025-01-12 14:07:35,015 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in main
+                
+Number of threads used for linear algebra: 1
+
+2025-01-12 14:07:35,017 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory in main
+                
+Binary level Generic x86 optimization level AVX/AVX2
+
+2025-01-12 14:07:35,084 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in main
+                
+Number of threads used for OpenMP BLAS: 1
+
+2025-01-12 14:07:35,131 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Backend used: [CPU]; OS: [Mac OS X]
+
+2025-01-12 14:07:35,131 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Cores: [8]; Memory: [2.0GB];
+
+2025-01-12 14:07:35,131 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Blas vendor: [OPENBLAS]
+
+2025-01-12 14:07:35,134 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuBackend in main
+                
+Backend build information:
+ Clang: "12.0.0 (clang-1200.0.32.29)"
+STD version: 201103L
+DEFAULT_ENGINE: samediff::ENGINE_CPU
+HAVE_FLATBUFFERS
+HAVE_OPENBLAS
+
+2025-01-12 14:12:23,231 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in main
+                
+Loaded [CpuBackend] backend
+
+2025-01-12 14:12:23,984 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in main
+                
+Number of threads used for linear algebra: 1
+
+2025-01-12 14:12:23,987 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory in main
+                
+Binary level Generic x86 optimization level AVX/AVX2
+
+2025-01-12 14:12:24,069 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in main
+                
+Number of threads used for OpenMP BLAS: 1
+
+2025-01-12 14:12:24,117 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Backend used: [CPU]; OS: [Mac OS X]
+
+2025-01-12 14:12:24,117 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Cores: [8]; Memory: [2.0GB];
+
+2025-01-12 14:12:24,117 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Blas vendor: [OPENBLAS]
+
+2025-01-12 14:12:24,120 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuBackend in main
+                
+Backend build information:
+ Clang: "12.0.0 (clang-1200.0.32.29)"
+STD version: 201103L
+DEFAULT_ENGINE: samediff::ENGINE_CPU
+HAVE_FLATBUFFERS
+HAVE_OPENBLAS
+
+2025-01-12 14:12:38,086 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in main
+                
+Loaded [CpuBackend] backend
+
+2025-01-12 14:12:38,834 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in main
+                
+Number of threads used for linear algebra: 1
+
+2025-01-12 14:12:38,836 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory in main
+                
+Binary level Generic x86 optimization level AVX/AVX2
+
+2025-01-12 14:12:38,906 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in main
+                
+Number of threads used for OpenMP BLAS: 1
+
+2025-01-12 14:12:38,951 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Backend used: [CPU]; OS: [Mac OS X]
+
+2025-01-12 14:12:38,951 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Cores: [8]; Memory: [2.0GB];
+
+2025-01-12 14:12:38,952 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Blas vendor: [OPENBLAS]
+
+2025-01-12 14:12:38,954 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuBackend in main
+                
+Backend build information:
+ Clang: "12.0.0 (clang-1200.0.32.29)"
+STD version: 201103L
+DEFAULT_ENGINE: samediff::ENGINE_CPU
+HAVE_FLATBUFFERS
+HAVE_OPENBLAS
+
+2025-01-12 14:15:08,975 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in main
+                
+Loaded [CpuBackend] backend
+
+2025-01-12 14:15:09,752 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in main
+                
+Number of threads used for linear algebra: 1
+
+2025-01-12 14:15:09,754 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory in main
+                
+Binary level Generic x86 optimization level AVX/AVX2
+
+2025-01-12 14:15:09,824 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in main
+                
+Number of threads used for OpenMP BLAS: 1
+
+2025-01-12 14:15:09,869 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Backend used: [CPU]; OS: [Mac OS X]
+
+2025-01-12 14:15:09,869 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Cores: [8]; Memory: [2.0GB];
+
+2025-01-12 14:15:09,869 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Blas vendor: [OPENBLAS]
+
+2025-01-12 14:15:09,872 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuBackend in main
+                
+Backend build information:
+ Clang: "12.0.0 (clang-1200.0.32.29)"
+STD version: 201103L
+DEFAULT_ENGINE: samediff::ENGINE_CPU
+HAVE_FLATBUFFERS
+HAVE_OPENBLAS
+
+2025-01-12 14:16:33,229 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in main
+                
+Loaded [CpuBackend] backend
+
+2025-01-12 14:16:33,913 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in main
+                
+Number of threads used for linear algebra: 1
+
+2025-01-12 14:16:33,916 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory in main
+                
+Binary level Generic x86 optimization level AVX/AVX2
+
+2025-01-12 14:16:33,987 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in main
+                
+Number of threads used for OpenMP BLAS: 1
+
+2025-01-12 14:16:34,032 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Backend used: [CPU]; OS: [Mac OS X]
+
+2025-01-12 14:16:34,033 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Cores: [8]; Memory: [2.0GB];
+
+2025-01-12 14:16:34,033 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Blas vendor: [OPENBLAS]
+
+2025-01-12 14:16:34,035 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuBackend in main
+                
+Backend build information:
+ Clang: "12.0.0 (clang-1200.0.32.29)"
+STD version: 201103L
+DEFAULT_ENGINE: samediff::ENGINE_CPU
+HAVE_FLATBUFFERS
+HAVE_OPENBLAS
+
+2025-01-12 14:19:58,893 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in main
+                
+Loaded [CpuBackend] backend
+
+2025-01-12 14:19:59,669 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in main
+                
+Number of threads used for linear algebra: 1
+
+2025-01-12 14:19:59,671 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory in main
+                
+Binary level Generic x86 optimization level AVX/AVX2
+
+2025-01-12 14:19:59,754 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in main
+                
+Number of threads used for OpenMP BLAS: 1
+
+2025-01-12 14:19:59,805 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Backend used: [CPU]; OS: [Mac OS X]
+
+2025-01-12 14:19:59,805 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Cores: [8]; Memory: [2.0GB];
+
+2025-01-12 14:19:59,805 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Blas vendor: [OPENBLAS]
+
+2025-01-12 14:19:59,810 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuBackend in main
+                
+Backend build information:
+ Clang: "12.0.0 (clang-1200.0.32.29)"
+STD version: 201103L
+DEFAULT_ENGINE: samediff::ENGINE_CPU
+HAVE_FLATBUFFERS
+HAVE_OPENBLAS
+
+2025-01-12 14:22:39,925 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in main
+                
+Loaded [CpuBackend] backend
+
+2025-01-12 14:22:40,816 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in main
+                
+Number of threads used for linear algebra: 1
+
+2025-01-12 14:22:40,819 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory in main
+                
+Binary level Generic x86 optimization level AVX/AVX2
+
+2025-01-12 14:22:40,898 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in main
+                
+Number of threads used for OpenMP BLAS: 1
+
+2025-01-12 14:22:40,951 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Backend used: [CPU]; OS: [Mac OS X]
+
+2025-01-12 14:22:40,951 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Cores: [8]; Memory: [2.0GB];
+
+2025-01-12 14:22:40,951 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Blas vendor: [OPENBLAS]
+
+2025-01-12 14:22:40,956 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuBackend in main
+                
+Backend build information:
+ Clang: "12.0.0 (clang-1200.0.32.29)"
+STD version: 201103L
+DEFAULT_ENGINE: samediff::ENGINE_CPU
+HAVE_FLATBUFFERS
+HAVE_OPENBLAS
+
+2025-01-12 14:23:53,578 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in main
+                
+Loaded [CpuBackend] backend
+
+2025-01-12 14:23:54,223 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in main
+                
+Number of threads used for linear algebra: 1
+
+2025-01-12 14:23:54,225 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory in main
+                
+Binary level Generic x86 optimization level AVX/AVX2
+
+2025-01-12 14:23:54,293 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in main
+                
+Number of threads used for OpenMP BLAS: 1
+
+2025-01-12 14:23:54,339 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Backend used: [CPU]; OS: [Mac OS X]
+
+2025-01-12 14:23:54,339 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Cores: [8]; Memory: [2.0GB];
+
+2025-01-12 14:23:54,339 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in main
+                
+Blas vendor: [OPENBLAS]
+
+2025-01-12 14:23:54,344 - [INFO] - from org.nd4j.linalg.cpu.nativecpu.CpuBackend in main
+                
+Backend build information:
+ Clang: "12.0.0 (clang-1200.0.32.29)"
+STD version: 201103L
+DEFAULT_ENGINE: samediff::ENGINE_CPU
+HAVE_FLATBUFFERS
+HAVE_OPENBLAS
+

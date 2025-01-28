@@ -1,0 +1,43 @@
+# Server Port
+server:
+  port: 8089
+  tomcat:
+    uri-encoding: UTF-8
+  baseUri: http://127.0.0.1:${server.port}
+
+model:
+  # 如果是 CPU 推理，最高设置为 CPU 核心数 (Core Number)
+  poolSize: 4
+  # ocr 文字识别
+  ocrv4:
+    # server detection model URI
+    det: /Users/calvin/AIAS/3_api_platform/api_platform/models/ocr/ch_PP-OCRv4_det_infer.zip
+    # server recognition model URI
+    rec: /Users/calvin/AIAS/3_api_platform/api_platform/models/ocr/ch_PP-OCRv4_rec_infer.zip
+
+  # 图片转正
+  mlsd:
+    # mlsd model URI
+    model: /Users/calvin/AIAS/3_api_platform/api_platform/models/ocr/mlsd_traced_model_onnx.zip
+
+  # whisper 语音识别，模型三个 tiny 231M, base 397M, small 1.13G
+  asr:
+    type: base
+    # tiny 模型
+    tiny: /Users/calvin/AIAS/3_api_platform/api_platform/models/asr/traced_whisper_tiny.pt
+    # base 模型
+    base: /Users/calvin/AIAS/3_api_platform/api_platform/models/asr/traced_whisper_base.pt
+    # small 模型
+    small: /Users/calvin/AIAS/3_api_platform/api_platform/models/asr/traced_whisper_small.pt
+
+  # 模型路径,注意路径最后要有分隔符
+  translation:
+    # /Users/calvin/products/4_apps/trans_nllb_sdk/text-translation/models/
+    modelPath: /Users/calvin/AIAS/3_api_platform/api_platform/models/trans/
+    # 模型名字
+    modelName: traced_translation_cpu.pt
+
+# 参数配置
+config:
+  # 输出文字最大长度
+  maxLength: 128
