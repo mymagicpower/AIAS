@@ -11,6 +11,6 @@ import top.aias.training.domain.TrainArgument;
  * @website www.aias.top
  */
 public interface TrainService {
-	public void train(UIServerInstance uiServer, TrainArgument trainArgument, String modelPath, String savePath, String dataRootPath) throws Exception;
+	public void train(UIServerInstance uiServer, TrainArgumentService trainArgumentService, String modelPath, String savePath, String dataRootPath) throws Exception;
 
 }

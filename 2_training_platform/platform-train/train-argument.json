@@ -1,4 +1,6 @@
 {
-  "epoch": 10,
-  "batchSize": 32
+  "epoch": 1,
+  "batchSize": 2,
+  "nClasses": 10,
+  "classLabels": "[丰田, 别克, 大众, 奔驰, 奥迪, 宝马, 日产, 本田, 福特, 红旗]"
 }

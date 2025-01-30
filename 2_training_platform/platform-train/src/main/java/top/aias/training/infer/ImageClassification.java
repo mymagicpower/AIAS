@@ -34,19 +34,20 @@ public final class ImageClassification {
     }
 
     public static void main(String[] args) throws IOException, ModelException, TranslateException {
-        String newModelPath = "/Users/calvin/Documents/build/training/modelv2/";
+        String newModelPath = "/Users/calvin/AIAS/2_training_platform/platform-train/models/NewResNet50.zip";
         String imageUrl = "https://car2.autoimg.cn/cardfs/product/g26/M0A/5D/33/1024x0_1_q95_autohomecar__ChsEe15-6YKAULPgAAYVp-IEjZA085.jpg";
         Image img = ImageFactory.getInstance().fromUrl(imageUrl);
+        List<String> labels = Arrays.asList(new String[]{"bear", "deer", "duck", "trutle"});
 
-        ClassPrediction classifications = predict(newModelPath, img);
+        ClassPrediction classifications = predict(newModelPath, img, labels);
         logger.info("Predict result: {}", classifications);
     }
 
-    public static ClassPrediction predict(String newModelPath, Image img) throws IOException {
+    public static ClassPrediction predict(String newModelPath, Image img, List<String> labels) throws IOException {
 
         ResNet50Model model = new ResNet50Model();
-        // 标签：模型输出分类
-        List<String> labels = Arrays.asList(new String[]{"bear", "deer", "duck", "trutle"});
+//        // 标签：模型输出分类
+//        List<String> labels = Arrays.asList(new String[]{"bear", "deer", "duck", "trutle"});
         model.setLabels(labels);
 
         if (new File(newModelPath).exists()) {

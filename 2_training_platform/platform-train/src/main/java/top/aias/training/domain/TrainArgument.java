@@ -25,6 +25,12 @@ public class TrainArgument implements Serializable {
     //分类数量
     private Integer nClasses;
 
+    //图像分类标签
+    private String classLabels;
+
+    //目标检测分类标签
+    private String detLabels;
+
     public void copy(TrainArgument source){
         BeanUtil.copyProperties(source,this, CopyOptions.create().setIgnoreNullValue(true));
     }

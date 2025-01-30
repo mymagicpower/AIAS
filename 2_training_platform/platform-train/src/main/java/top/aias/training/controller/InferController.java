@@ -7,6 +7,7 @@ import ai.djl.translate.TranslateException;
 import lombok.RequiredArgsConstructor;
 import top.aias.training.config.FileProperties;
 import top.aias.training.domain.ResultBean;
+import top.aias.training.domain.TrainArgument;
 import top.aias.training.service.InferService;
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
@@ -14,9 +15,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import top.aias.training.service.TrainArgumentService;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 推理服务
@@ -32,24 +37,41 @@ public class InferController {
     private Logger logger = LoggerFactory.getLogger(InferController.class);
 
     private final FileProperties properties;
-    
+
     @Autowired
     private InferService inferService;
+    @Autowired
+    private TrainArgumentService trainArgumentService;
 
     @GetMapping(value = "/classInfoForUrl", produces = "application/json;charset=utf-8")
     public ResultBean getClassInfoForUrl(@RequestParam(value = "url") String url) {
 //        properties.getPath().getPath() + type + File.separator
+        TrainArgument trainArgument = trainArgumentService.getTrainArgument();
+        String labels = trainArgument.getClassLabels();
+        // 还原回 List<String>
+        List<String> labelsList = Arrays.stream(labels.substring(1, labels.length() - 1) // 去除方括号
+                        .split(", ")) // 以 ", " 分割
+                .map(String::trim) // 去除多余空格
+                .collect(Collectors.toList());
 
-        String result = inferService.getClassificationInfoForUrl(properties.getPath().getSavePath(), url);
+        String result = inferService.getClassificationInfoForUrl(properties.getPath().getSavePath(), url, labelsList);
         return ResultBean.success().add("result", result);
     }
 
     @PostMapping("/classInfoForImage")
     public ResultBean getClassInfo(@RequestParam(value = "imageFile") MultipartFile imageFile) {
+        TrainArgument trainArgument = trainArgumentService.getTrainArgument();
+        String labels = trainArgument.getClassLabels();
+        // 还原回 List<String>
+        List<String> labelsList = Arrays.stream(labels.substring(1, labels.length() - 1) // 去除方括号
+                        .split(", ")) // 以 ", " 分割
+                .map(String::trim) // 去除多余空格
+                .collect(Collectors.toList());
+
         InputStream fis = null;
         try {
             InputStream ins = imageFile.getInputStream();
-            String result = inferService.getClassificationInfo(properties.getPath().getSavePath(), ins);
+            String result = inferService.getClassificationInfo(properties.getPath().getSavePath(), ins, labelsList);
             String base64Img = Base64.encodeBase64String(imageFile.getBytes());
             return ResultBean.success().add("result", result)
                     .add("base64Img", "data:image/jpeg;base64," + base64Img);

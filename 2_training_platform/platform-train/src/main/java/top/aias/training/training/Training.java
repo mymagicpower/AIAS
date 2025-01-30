@@ -4,6 +4,7 @@ import ai.djl.ModelException;
 import ai.djl.translate.TranslateException;
 import top.aias.training.config.UIServerInstance;
 import top.aias.training.domain.TrainArgument;
+import top.aias.training.service.TrainArgumentService;
 
 import java.io.IOException;
 
@@ -16,14 +17,14 @@ import java.io.IOException;
  */
 public class Training extends Thread {
 
-    TrainArgument trainArgument;
+    TrainArgumentService trainArgumentService;
     private String modelPath;
     private String savePath;
     private String dataRootPath;
     private UIServerInstance uiServer;
 
-    public Training(UIServerInstance uiServer, TrainArgument trainArgument, String modelPath, String savePath, String dataRootPath) {
-        this.trainArgument = trainArgument;
+    public Training(UIServerInstance uiServer, TrainArgumentService trainArgumentService, String modelPath, String savePath, String dataRootPath) {
+        this.trainArgumentService = trainArgumentService;
         this.modelPath = modelPath;
         this.savePath = savePath;
         this.dataRootPath = dataRootPath;
@@ -33,7 +34,7 @@ public class Training extends Thread {
     @Override
     public void run() {
         try {
-            TrainResNet50.train(uiServer, trainArgument, modelPath, savePath, dataRootPath);
+            TrainResNet50.train(uiServer, trainArgumentService, modelPath, savePath, dataRootPath);
 
         } catch (IOException e) {
             e.printStackTrace();

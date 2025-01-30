@@ -51,6 +51,7 @@ public class TrainController {
     @Autowired
     private UIServerInstance uiServer;
 
+
     /**
      * 训练模型
      * @param storage
@@ -96,7 +97,7 @@ public class TrainController {
         TrainArgument trainArgument = trainArgumentService.getTrainArgument();
         String modelPath = properties.getPath().getModelPath();
         String savePath = properties.getPath().getSavePath();
-        trainService.train(uiServer, trainArgument, modelPath, savePath, fileRootPath);
+        trainService.train(uiServer, trainArgumentService, modelPath, savePath, fileRootPath);
 
 //        FileUtil.delete(unZipFilePath);
         return ResultBean.success();

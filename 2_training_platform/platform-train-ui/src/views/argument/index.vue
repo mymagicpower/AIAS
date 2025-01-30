@@ -1,14 +1,17 @@
 <template>
   <div class="app-container">
     <el-form ref="form" :model="form" label-width="120">
-      <el-form-item label="Epoch  ">
-        <el-input v-model="form.epoch" size="small" style="width:240px"/>
+      <el-form-item label="训练批次">
+        <el-input v-model="form.epoch" size="small" style="width:380px"/>
       </el-form-item>
-      <el-form-item label="BatchSize">
-        <el-input v-model="form.batchSize" size="small" style="width:240px"/>
+      <el-form-item label="批次大小">
+        <el-input v-model="form.batchSize" size="small" style="width:380px"/>
       </el-form-item>
-      <el-form-item label="GPU Num">
-        <el-input v-model="form.maxGpus" size="small" style="width:240px"/> （Maximum number of GPUs used）
+      <el-form-item label="分类数量">
+        <el-input v-model="form.nClasses" size="small" style="width:380px"/>
+      </el-form-item>
+      <el-form-item label="分类标签">
+        <el-input v-model="form.classLabels" size="small" style="width:380px" disabled/>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">保存</el-button>
@@ -28,7 +31,7 @@ export default {
       form: {
         epoch: '',
         batchSize: '',
-        maxGpus: ''
+        nClasses: ''
       }
     }
   },
@@ -40,7 +43,8 @@ export default {
       getTrainArgument().then(response => {
         this.form.epoch = response.data.result.epoch
         this.form.batchSize = response.data.result.batchSize
-        this.form.maxGpus = response.data.result.maxGpus
+        this.form.nClasses = response.data.result.nClasses
+        this.form.classLabels = response.data.result.classLabels
       }).catch(function(response) {
         console.log(response)
       })
@@ -48,21 +52,21 @@ export default {
     onSubmit() {
       if (isEmpty(this.form.epoch)) {
         this.$message({
-          message: 'Iteration cycle is empty!',
+          message: '训练批次为空!',
           type: 'error'
         })
         return
       }
       if (isEmpty(this.form.batchSize)) {
         this.$message({
-          message: 'Batch size is empty!'',
+          message: '批次大小为空!',
           type: 'error'
         })
         return
       }
-      if (isEmpty(this.form.maxGpus)) {
+      if (isEmpty(this.form.nClasses)) {
         this.$message({
-          message: 'Maximum number of GPUs is empty!'',
+          message: '分类数量为空!',
           type: 'error'
         })
         return
@@ -71,7 +75,7 @@ export default {
       update(this.form).then(response => {
         this.$message({
           type: 'success',
-          message: 'Update successful!'
+          message: '更新成功!'
         })
       })
     }

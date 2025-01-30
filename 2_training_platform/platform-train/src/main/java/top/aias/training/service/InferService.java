@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * 推理服务接口
@@ -22,9 +23,9 @@ import java.io.InputStream;
  * @website www.aias.top
  */
 public interface InferService {
-	public String getClassificationInfo(String newModelPath, InputStream inputStream);
+	public String getClassificationInfo(String newModelPath, InputStream inputStream, List<String> labels);
 	
-	public String getClassificationInfoForUrl(String newModelPath, String imageUrl);
+	public String getClassificationInfoForUrl(String newModelPath, String imageUrl, List<String> labels);
 
 	public float[] feature(String newModelPath,Image image);
 

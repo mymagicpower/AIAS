@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import top.aias.training.config.UIServerInstance;
 import top.aias.training.domain.TrainArgument;
+import top.aias.training.service.TrainArgumentService;
 import top.aias.training.training.models.ResNet50Model;
 
 import java.io.File;
@@ -42,14 +43,16 @@ public final class TrainResNet50 {
 
         UIServerInstance uiServer = new UIServerInstance();
 
-        TrainResNet50.train(uiServer, trainArgument, modelPath, savePath, dataRootPath);
+//        TrainResNet50.train(uiServer, trainArgument, modelPath, savePath, dataRootPath);
         Path path = Paths.get(savePath);
     }
 
-    public static void train(UIServerInstance uiServer, TrainArgument trainArgument, String modelPath, String savePath, String dataRootPath)
+    public static void train(UIServerInstance uiServer, TrainArgumentService trainArgumentService, String modelPath, String savePath, String dataRootPath)
             throws IOException, ModelException, TranslateException {
 //        String dataPath = dataRootPath + File.separator + "train";
 //        String testPath = dataRootPath + File.separator + "test";
+
+        TrainArgument trainArgument = trainArgumentService.getTrainArgument();
 
         // 模型超参数
         int nEpochs = trainArgument.getEpoch();
@@ -68,8 +71,12 @@ public final class TrainResNet50 {
         RecordReaderDataSetIterator trainIter = model.getTrainIter();
         RecordReaderDataSetIterator testIter = model.getTestIter();
 
-        List<String> labels = model.getLabels();
-        System.out.println(Arrays.toString(labels.toArray()));
+        List<String> labelsList = model.getLabels();
+        String labels = Arrays.toString(labelsList.toArray());
+        System.out.println(labels);
+        // 保存类别标签
+        trainArgument.setClassLabels(labels);
+        trainArgumentService.update(trainArgument);
 
         double bestScore = 0.0;
         // 1. 构建模型
@@ -110,7 +117,7 @@ public final class TrainResNet50 {
                 System.out.println("保存模型...");
                 bestScore = tempScore;
                 System.out.println("最新最好的 F1 score: " + bestScore);
-                ModelSerializer.writeModel(computationGraph, savePath + "ResNet50_Animals_" + i + ".zip", true);
+                ModelSerializer.writeModel(computationGraph, savePath, true);
             }
         }
 

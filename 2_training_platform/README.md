@@ -1,6 +1,6 @@
 
-### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1pGHMzUH5Kyc_LhTDRc-laA?pwd=amfh
+### 数据与预训练模型下载
+- 链接: https://pan.baidu.com/s/1Y-Yeam-opZx0dM5hcLzgJg?pwd=s3j3
 
 ### AI 训练平台
 AI训练平台提供分类模型训练能力。并以REST API形式为上层应用提供接口。
@@ -53,13 +53,13 @@ sudo nginx
 ## 后端部署
 ```bash
 # 编译 & 运行程序
-java -jar aais-platform-train-0.1.0.jar
+nohup java -Dfile.encoding=utf-8 -jar xxxxx.jar > log.txt 2>&1 &
 
 ```
 
 ## 打开浏览器
 
-输入地址： http://localhost:8080
+输入地址： http://localhost:8090
 
 #### 1. 训练数据准备-ZIP格式压缩包:
 压缩包内需包含2个目录（名字需严格一致）：    
@@ -68,7 +68,7 @@ java -jar aais-platform-train-0.1.0.jar
 
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/train_platform/images/folder.png)
 
--[320张车辆图片测试数据下载](https://pan.baidu.com/s/1Mcj3r097M0m7VnZWfpEm3g?pwd=7vpq)   
+-[320张cars.zip车辆图片测试数据下载](https://pan.baidu.com/s/1Y-Yeam-opZx0dM5hcLzgJg?pwd=s3j3)   
 
 #### 2. 上传数据并开始训练:
 -选择zip文件并上传
@@ -100,16 +100,19 @@ http://127.0.0.1:8089/swagger-ui.html
 file:
   mac:
     path: ~/file/
-    imageRootPath: ~/file/image_root/ #压缩包解压缩文件夹
-    newModelPath: ~/file/model/ #模型训练好后存放的文件夹
+    modelPath: /Users/calvin/AIAS/2_training_platform/platform-train/models/resnet50_dl4j_inference.v3.zip
+    dataRootPath: /Users/calvin/AIAS/2_training_platform/platform-train/data/ #压缩包解压缩文件夹
+    savePath: /Users/calvin/AIAS/2_training_platform/platform-train/models/NewResNet50.zip #模型训练好后存放的路径
   linux:
     path: /home/aias/file/
-    imageRootPath: /home/aias/file/image_root/ #压缩包解压缩文件夹
-    newModelPath: /home/aias/file//model/ #模型训练好后存放的文件夹
+    modelPath: /home/aias/file/resnet50_dl4j_inference.v3.zip
+    dataRootPath: /home/aias/file/image_root/ #压缩包解压缩文件夹
+    savePath: /home/aias/file//model/NewResNet50.zip #模型训练好后存放的路径
   windows:
-    path: C:\aias\file\
-    imageRootPath: C:\aias\file\image_root\ #压缩包解压缩文件夹
-    newModelPath: C:\aias\file\modelv2\ #模型训练好后存放的文件夹
+    path: C:\\aias\\file\\
+    modelPath: C:\\aias\\file\\resnet50_dl4j_inference.v3.zip
+    dataRootPath: C:\\aias\\file\\image_root\\ #压缩包解压缩文件夹
+    savePath: C:\\aias\\file\\modelv2\\NewResNet50.zip #模型训练好后存放的路径
   # 文件大小 /M
   maxSize: 3000
 ```
@@ -123,15 +126,4 @@ file:
 [Gitee链接](https://gitee.com/mymagicpower/AIAS)   
 
 
-
-#### 帮助文档：
-- http://aias.top/guides.html
-- 1.性能优化常见问题:
-- http://aias.top/AIAS/guides/performance.html
-- 2.引擎配置（包括CPU，GPU在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/engine_config.html
-- 3.模型加载方式（在线自动加载，及本地配置）:
-- http://aias.top/AIAS/guides/load_model.html
-- 4.Windows环境常见问题:
-- http://aias.top/AIAS/guides/windows.html
 

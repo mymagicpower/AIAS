@@ -17,8 +17,8 @@ file:
   mac:
     path: ~/file/
     modelPath: /Users/calvin/AIAS/2_training_platform/platform-train/models/resnet50_dl4j_inference.v3.zip
-    dataRootPath: ~/file/image_root/ #压缩包解压缩文件夹
-    savePath: ~/file/model/ #模型训练好后存放的文件夹
+    dataRootPath: /Users/calvin/AIAS/2_training_platform/platform-train/data/ #压缩包解压缩文件夹
+    savePath: /Users/calvin/AIAS/2_training_platform/platform-train/models/NewResNet50.zip #模型训练好后存放的路径
   linux:
     path: /home/aias/file/
     modelPath: /home/aias/file/resnet50_dl4j_inference.v3.zip

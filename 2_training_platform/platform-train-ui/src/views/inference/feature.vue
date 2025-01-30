@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <el-form ref="form" :model="form" label-width="120">
-      <el-form-item label="Online Image">
+      <el-form-item label="在线图片">
         <el-input v-model="form.url" />
       </el-form-item>
       <el-row>
@@ -28,7 +28,7 @@
           size="small"
           element-loading-text="loading"
           @click="onSubmit"
-        >Submit</el-button>
+        >提交</el-button>
       </el-form-item>
       <el-form-item>
         <el-divider />
@@ -36,7 +36,7 @@
       <el-row>
         <el-col :span="8">
           <div><img :src="form.base64Img" width="400px" class="avatar"></div>
-          <el-form-item label="Local Image">
+          <el-form-item label="本地图片">
             <el-upload
               ref="upload"
               name="imageFile"
@@ -51,7 +51,7 @@
               :show-file-list="false"
               :auto-upload="false"
             >
-              <el-button slot="trigger" size="small" type="primary">Select</el-button>
+              <el-button slot="trigger" size="small" type="primary">选择图片</el-button>
               <el-button
                 v-loading.fullscreen.lock="fullscreenLoading"
                 style="margin-left: 10px;"
@@ -59,8 +59,8 @@
                 size="small"
                 element-loading-text="loading"
                 @click="submitUpload"
-              >Upload</el-button>
-              <div slot="tip" class="el-upload__tip">Image format: JPG(JPEG), PNG</div>
+              >上传</el-button>
+              <div slot="tip" class="el-upload__tip">图片格式: JPG(JPEG), PNG</div>
             </el-upload>
           </el-form-item>
         </el-col>
@@ -125,7 +125,7 @@ export default {
     beforeUpload(file) {
       const pass = file.type === 'image/jpg' || 'image/jpeg' || 'image/png'
       if (!pass) {
-        this.$message.error('Image format should be JPG(JPEG) or PNG!')
+        this.$message.error('图片格式应为 JPG(JPEG) 或者 PNG!')
       }
       return pass
     },

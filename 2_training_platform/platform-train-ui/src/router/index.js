@@ -39,43 +39,8 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
-    children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Training Visualization', icon: 'el-icon-data-line' }
-    }]
-  },
-  {
-    path: '/inference',
-    component: Layout,
-    name: 'inference',
-    meta: { title: 'Online Inference', icon: 'el-icon-picture' },
-    children: [
-      {
-        path: 'classification',
-        component: () => import('@/views/inference/classification'),
-        name: 'classification',
-        meta: { title: 'Classification', icon: 'el-icon-s-grid' }
-      },
-      {
-        path: 'feature',
-        component: () => import('@/views/inference/feature'),
-        name: 'feature',
-        meta: { title: 'Feature', icon: 'el-icon-view' }
-      },
-      {
-        path: 'comparison',
-        component: () => import('@/views/inference/comparison'),
-        name: 'comparison',
-        meta: { title: 'Comparison', icon: 'el-icon-copy-document' }
-      }
-    ]
-  },
-  {
-    path: '/storage',
-    component: Layout,
+    redirect: '/storage',
+    name: 'storage',
     children: [
       {
         path: 'index',
@@ -94,6 +59,44 @@ export const constantRoutes = [
         component: () => import('@/views/argument/index'),
         name: 'argument',
         meta: { title: '超参数设置', icon: 'el-icon-setting' }
+      }
+    ]
+  },
+  {
+    path: '/dashboard',
+    component: Layout,
+    // redirect: '/dashboard',
+    name: 'dashboard',
+    children: [{
+      path: 'dashboard',
+      name: 'Dashboard',
+      component: () => import('@/views/dashboard/index'),
+      meta: { title: '可视化训练看板', icon: 'el-icon-data-line' }
+    }]
+  },
+  {
+    path: '/inference',
+    component: Layout,
+    name: 'inference',
+    meta: { title: '在线推理', icon: 'el-icon-picture' },
+    children: [
+      {
+        path: 'classification',
+        component: () => import('@/views/inference/classification'),
+        name: 'classification',
+        meta: { title: '图片分类', icon: 'el-icon-s-grid' }
+      },
+      {
+        path: 'feature',
+        component: () => import('@/views/inference/feature'),
+        name: 'feature',
+        meta: { title: '特征提取', icon: 'el-icon-view' }
+      },
+      {
+        path: 'comparison',
+        component: () => import('@/views/inference/comparison'),
+        name: 'comparison',
+        meta: { title: '图片1:1', icon: 'el-icon-copy-document' }
       }
     ]
   },

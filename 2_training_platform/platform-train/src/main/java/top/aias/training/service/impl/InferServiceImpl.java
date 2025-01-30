@@ -15,6 +15,7 @@ import top.aias.training.training.models.ClassPrediction;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * 推理服务
@@ -28,10 +29,10 @@ public class InferServiceImpl implements InferService {
 
     private Logger logger = LoggerFactory.getLogger(InferServiceImpl.class);
     
-	public String getClassificationInfo(String newModelPath, InputStream inputStream) {
+	public String getClassificationInfo(String newModelPath, InputStream inputStream, List<String> labels) {
 		try {
 			Image img = ImageFactory.getInstance().fromInputStream(inputStream);
-			ClassPrediction classifications = ImageClassification.predict(newModelPath, img);
+			ClassPrediction classifications = ImageClassification.predict(newModelPath, img, labels);
 			return classifications.toString();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
@@ -40,10 +41,10 @@ public class InferServiceImpl implements InferService {
 		}
 	}
 	
-	public String getClassificationInfoForUrl(String newModelPath, String imageUrl) {
+	public String getClassificationInfoForUrl(String newModelPath, String imageUrl, List<String> labels) {
 		try {
 			Image img = ImageFactory.getInstance().fromUrl(imageUrl);
-			ClassPrediction classifications = ImageClassification.predict(newModelPath, img);
+			ClassPrediction classifications = ImageClassification.predict(newModelPath, img, labels);
 			return classifications.toString();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
@@ -63,7 +64,7 @@ public class InferServiceImpl implements InferService {
 		}
 	}
 
-	public String compare(String newModelPath,Image img1, Image img2) throws ModelException, TranslateException, IOException {
+	public String compare(String newModelPath,Image img1, Image img2) throws IOException {
 		float[] feature1 = FeatureExtraction.predict(newModelPath,img1);
 		float[] feature2 = FeatureExtraction.predict(newModelPath,img2);
 		return Float.toString(calculSimilar(feature1, feature2));

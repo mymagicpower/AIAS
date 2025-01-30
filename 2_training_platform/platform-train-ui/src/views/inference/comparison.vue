@@ -1,10 +1,10 @@
 <template>
   <div class="app-container">
     <el-form ref="form" :model="form" label-width="120">
-      <el-form-item label="Image1">
+      <el-form-item label="图片1">
         <el-input v-model="form.url1" />
       </el-form-item>
-      <el-form-item label="Image2">
+      <el-form-item label="图片2">
         <el-input v-model="form.url2" />
       </el-form-item>
       <el-row>
@@ -34,7 +34,7 @@
           size="small"
           element-loading-text="loading"
           @click="onSubmit"
-        >Submit</el-button>
+        >提交</el-button>
       </el-form-item>
       <el-form-item>
         <el-divider />
@@ -43,7 +43,7 @@
         <el-col :span="8">
           <div><img :src="form.base64Img1" width="200px" class="avatar"></div>
           <div><img :src="form.base64Img2" width="200px" class="avatar"></div>
-          <el-form-item label="Local Image">
+          <el-form-item label="本地图片">
             <el-upload
               ref="upload"
               multiple
@@ -59,7 +59,7 @@
               ::limit="2"
               :auto-upload="false"
             >
-              <el-button slot="trigger" size="small" type="primary">Select</el-button>
+              <el-button slot="trigger" size="small" type="primary">选择图片</el-button>
               <el-button
                 v-loading.fullscreen.lock="fullscreenLoading"
                 style="margin-left: 10px;"
@@ -67,8 +67,8 @@
                 size="small"
                 element-loading-text="loading"
                 @click="submitUpload"
-              >Upload</el-button>
-              <div slot="tip" class="el-upload__tip">Image format: JPG(JPEG), PNG</div>
+              >上传</el-button>
+              <div slot="tip" class="el-upload__tip">图片格式: JPG(JPEG), PNG</div>
             </el-upload>
           </el-form-item>
         </el-col>
@@ -123,7 +123,7 @@ export default {
       // this.$refs.upload.submit()
       if (this.fileList.length !== 2) {
         this.$message({
-          message: 'Please select and only select 2 image files',
+          message: '请选择两张图片',
           type: 'warning'
         })
       } else {
@@ -154,14 +154,14 @@ export default {
     // 选取文件超过数量提示
     // Selecting files exceeds the limit warning
     handleExceed(files, fileList) {
-      this.$message.warning(`Currently limited to selecting 2 files`)
+      this.$message.warning(`最多选取两个文件`)
     },
     // 监控上传文件列表
     // Monitor the uploaded file list
     handleChange(file, fileList) {
       const existFile = fileList.slice(0, fileList.length - 1).find(f => f.name === file.name)
       if (existFile) {
-        this.$message.error('The current file already exists!')
+        this.$message.error('当前文件已存在!')
         fileList.pop()
       }
       this.fileList = fileList
@@ -172,7 +172,7 @@ export default {
     beforeUpload(file) {
       const pass = file.type === 'image/jpg' || 'image/jpeg' || 'image/png'
       if (!pass) {
-        this.$message.error('Image format should be JPG(JPEG) or PNG!')
+        this.$message.error('图片格式应该为JPG(JPEG) 或者 PNG!')
       }
       return pass
     },

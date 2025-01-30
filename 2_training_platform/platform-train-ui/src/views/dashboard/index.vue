@@ -1,28 +1,34 @@
 <template>
-  <div class="dashboard-editor-container">
-    <line-chart />
+  <div class="iframe-container">
+    <iframe :src="iframeUrl" frameborder="0"></iframe>
   </div>
 </template>
 
 <script>
-import LineChart from './components/LineChart'
 
 export default {
   name: 'DashboardAdmin',
-  components: {
-    LineChart
+  data() {
+    return {
+      // ${process.env.TRAINING_BASE_API}
+      iframeUrl: `http://127.0.0.1:9000/train/overview?/setlang/zh`
+    }
   }
 }
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-.dashboard-editor-container {
-  padding: 32px;
-  background-color: rgb(240, 242, 245);
-  .chart-wrapper {
-    background: #fff;
-    padding: 16px 16px 0;
-    margin-bottom: 32px;
-  }
+/* 整个页面布局 */
+.iframe-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* 让整个页面充满窗口 */
+}
+
+/* iframe 样式 */
+iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
 }
 </style>

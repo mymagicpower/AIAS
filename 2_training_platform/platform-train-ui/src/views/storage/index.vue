@@ -15,7 +15,7 @@
         :show-file-list="false"
         :auto-upload="false"
       >
-        <el-button slot="trigger" size="small" type="primary">Select</el-button>
+        <el-button slot="trigger" size="small" type="primary">选择文件</el-button>
         <el-button
           v-loading.fullscreen.lock="fullscreenLoading"
           style="margin-left: 10px;"
@@ -23,8 +23,8 @@
           size="small"
           element-loading-text="loading"
           @click="submitUpload"
-        >Upload</el-button>
-        <div slot="tip" class="el-upload__tip">File Type: zip</div>
+        >上传</el-button>
+        <div slot="tip" class="el-upload__tip">文件类型: zip</div>
       </el-upload>
     </el-row>
 
@@ -41,25 +41,25 @@
           {{ scope.row.id }}
         </template>
       </el-table-column>
-      <el-table-column label="Name" align="center">
+      <el-table-column label="名称" align="center">
         <template slot-scope="scope">
           {{ scope.row.name }}
         </template>
       </el-table-column>
-      <el-table-column label="Type" align="center">
+      <el-table-column label="类型" align="center">
         <template slot-scope="scope">
           {{ scope.row.suffix }}
         </template>
       </el-table-column>
-      <el-table-column label="Size" align="center">
+      <el-table-column label="大小" align="center">
         <template slot-scope="scope">
           {{ scope.row.size }}
         </template>
       </el-table-column>
-      <el-table-column label="Action" align="center">
+      <el-table-column label="操作" align="center">
         <template slot-scope="scope">
-          <el-button size="mini" type="primary" @click="doTrain(scope.row)">Train</el-button>
-          <el-button size="mini" type="danger" @click="handleDelete(scope.row)">Delete</el-button>
+          <el-button size="mini" type="primary" @click="doTrain(scope.row)">训练</el-button>
+          <el-button size="mini" type="danger" @click="handleDelete(scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -115,21 +115,21 @@ export default {
       })
     },
     handleDelete(row) {
-      this.$confirm('This operation will delete the setting item. Do you want to continue?', 'Delete confirmation', {
-        confirmButtonText: 'OK',
-        cancelButtonText: 'Cancel',
+      this.$confirm('确认删除吗？', '删除', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
         const id = row.id
         del(id).then(response => {
           this.$message({
             type: 'success',
-            message: 'Deleted successfully!'
+            message: '删除成功!'
           })
           this.fetchData()
         })
       }).catch(() => {
-        console.log('Cancelled successfully')
+        console.log('取消成功')
       })
     },
     doTrain(row) {
@@ -137,7 +137,7 @@ export default {
       train(id).then(response => {
         this.$message({
           type: 'success',
-          message: 'Training has started, please go to the training visualization page to view the real-time training process!'
+          message: '训练已开始，请点击数据看板查看训练过程!'
         })
       })
     }
