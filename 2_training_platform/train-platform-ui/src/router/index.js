@@ -40,10 +40,9 @@ export const constantRoutes = [
     path: '/',
     component: Layout,
     redirect: '/storage',
-    name: 'storage',
     children: [
       {
-        path: 'index',
+        path: 'storage',
         component: () => import('@/views/storage/index'),
         name: 'storage',
         meta: { title: '数据管理', icon: 'el-icon-upload' }
