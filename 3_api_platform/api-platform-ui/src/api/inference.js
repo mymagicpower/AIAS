@@ -51,5 +51,45 @@ export function zhAsrForAudioUrl(data) {
     }
   })
 }
-export default { generalInfoForImageUrl, mlsdForImageUrl, translate, enAsrForAudioUrl, zhAsrForAudioUrl }
+
+export function imageSrForImageUrl(data) {
+  return request({
+    url: 'api/img/imageSrForImageUrl',
+    method: 'get',
+    params: {
+      url: data.url
+    }
+  })
+}
+
+export function faceResForImageUrl(data) {
+  return request({
+    url: 'api/img/faceResForImageUrl',
+    method: 'get',
+    params: {
+      url: data.url
+    }
+  })
+}
+
+export function faceGanForImageUrl(data) {
+  return request({
+    url: 'api/img/faceGanForImageUrl',
+    method: 'get',
+    params: {
+      url: data.url
+    }
+  })
+}
+
+export default {
+  generalInfoForImageUrl,
+  mlsdForImageUrl,
+  translate,
+  enAsrForAudioUrl,
+  zhAsrForAudioUrl,
+  imageSrForImageUrl,
+  faceResForImageUrl,
+  faceGanForImageUrl
+}
 

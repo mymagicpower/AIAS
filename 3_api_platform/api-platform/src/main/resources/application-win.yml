@@ -6,15 +6,53 @@ server:
   baseUri: http://127.0.0.1:${server.port}
 
 model:
-  # 设置为 CPU 核心数 (Core Number)
+  # 设备类型 cpu gpu
+  device: cpu
+  # 如果是 CPU 推理，最高设置为 CPU 核心数 (Core Number)
   poolSize: 4
+  # ocr 文字识别
   ocrv4:
     # server detection model URI
-    det: D:\\ai_projects\\models\\ch_PP-OCRv4_det_infer.zip
+    det: D:\\ai_projects\\models\\ocr\\ch_PP-OCRv4_det_infer.zip
     # server recognition model URI
-    rec: D:\\ai_projects\\models\\ch_PP-OCRv4_rec_infer.zip
+    rec: D:\\ai_projects\\models\\ocr\\ch_PP-OCRv4_rec_infer.zip
+
+  # 图片转正
   mlsd:
     # mlsd model URI
-    model: D:\\ai_projects\\models\\mlsd_traced_model_onnx.zip
+    model: D:\\ai_projects\\models\\ocr\\mlsd_traced_model_onnx.zip
+
+  # whisper 语音识别，模型三个 tiny 231M, base 397M, small 1.13G
+  asr:
+    type: base
+    # tiny 模型
+    tiny: D:\\ai_projects\\models\\models\\asr/traced_whisper_tiny.pt
+    # base 模型
+    base: D:\\ai_projects\\models\\asr\\traced_whisper_base.pt
+    # small 模型
+    small: D:\\ai_projects\\models\\models\\asr/traced_whisper_small.pt
+
+  # 模型路径,注意路径最后要有分隔符
+  translation:
+    modelPath: D:\\ai_projects\\models\\models\\trans\\
+    # 模型名字
+    modelName: traced_translation_cpu.pt
+
+  # 图像高清
+  sr:
+    # 模型路径
+    modelPath: D:\\ai_projects\\models\\models\\sr\\
+    # 人脸检测模型
+    faceModelName: retinaface_traced_model.pt
+    # 人像分割模型
+    faceSegModelName: parsenet_traced_model.pt
+    # 人脸修复模型
+    faceGanModelName: gfpgan_traced_model.pt
+    # 图像超分模型
+    srModelName: realsr_traced_model.pt
 
 
+# 参数配置
+config:
+  # 输出文字最大长度
+  maxLength: 128

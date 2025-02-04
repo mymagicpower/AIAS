@@ -96,6 +96,42 @@ export const constantRoutes = [
       }
     ]
   },
+  {
+    path: '/imageSr',
+    component: Layout,
+    children: [
+      {
+        path: '/imageSr',
+        component: () => import('@/views/imageSr/index'),
+        name: 'imageSr',
+        meta: { title: '图片一键高清', icon: 'el-icon-picture-outline-round' }
+      }
+    ]
+  },
+  {
+    path: '/faceGan',
+    component: Layout,
+    children: [
+      {
+        path: '/faceGan',
+        component: () => import('@/views/faceGan/index'),
+        name: 'faceGan',
+        meta: { title: '头像一键高清', icon: 'el-icon-picture-outline-round' }
+      }
+    ]
+  },
+  {
+    path: '/faceRes',
+    component: Layout,
+    children: [
+      {
+        path: '/faceRes',
+        component: () => import('@/views/faceRes/index'),
+        name: 'faceRes',
+        meta: { title: '人脸一键修复', icon: 'el-icon-picture-outline-round' }
+      }
+    ]
+  },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]

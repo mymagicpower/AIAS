@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import top.aias.platform.model.WhisperModel;
+import top.aias.platform.model.asr.WhisperModel;
 import top.aias.platform.service.AsrService;
 
 /**

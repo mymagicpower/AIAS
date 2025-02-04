@@ -1,6 +1,7 @@
 package top.aias.platform.utils;
 
 import ai.djl.ndarray.NDArray;
+import ai.djl.ndarray.NDManager;
 import top.aias.platform.bean.Point;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
@@ -21,6 +22,64 @@ import java.util.List;
  * @website www.aias.top
  */
 public class OpenCVUtils {
+    /**
+     * 画线
+     *
+     * @param mat
+     * @param point1
+     * @param point2
+     */
+    public static void line(Mat mat, org.opencv.core.Point point1, org.opencv.core.Point point2) {
+        Imgproc.line(mat, point1, point2, new Scalar(255, 255, 255), 1);
+    }
+
+    /**
+     * NDArray to opencv_core.Mat
+     *
+     * @param manager
+     * @param srcPoints
+     * @param dstPoints
+     * @return
+     */
+    public static Mat toOpenCVMat(NDManager manager, NDArray srcPoints, NDArray dstPoints) {
+        NDArray svdMat = SVDUtils.transformationFromPoints(manager, srcPoints, dstPoints);
+        double[] doubleArray = svdMat.toDoubleArray();
+        Mat newSvdMat = new Mat(2, 3, CvType.CV_64F);
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 3; j++) {
+                newSvdMat.put(i, j, doubleArray[i * 3 + j]);
+            }
+        }
+        return newSvdMat;
+    }
+
+    /**
+     * double[][] points array to Mat
+     * @param points
+     * @return
+     */
+    public static Mat toOpenCVMat(double[][] points) {
+        Mat mat = new Mat(5, 2, CvType.CV_64F);
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 2; j++) {
+                mat.put(i, j, points[i * 5 + j]);
+            }
+        }
+        return mat;
+    }
+
+    /**
+     * 变换矩阵的逆矩阵
+     *
+     * @param src
+     * @return
+     */
+    public static Mat invertAffineTransform(Mat src) {
+        Mat dst = src.clone();
+        Imgproc.invertAffineTransform(src, dst);
+        return dst;
+    }
+
     /**
      * Mat to BufferedImage
      *
