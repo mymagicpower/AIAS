@@ -132,6 +132,90 @@ export const constantRoutes = [
       }
     ]
   },
+  {
+    path: '/generalBig',
+    component: Layout,
+    children: [
+      {
+        path: '/generalBig',
+        component: () => import('@/views/generalBig/index'),
+        name: 'generalBig',
+        meta: { title: '通用一键抠图【大模型】', icon: 'el-icon-picture-outline-round' }
+      }
+    ]
+  },
+  {
+    path: '/generalMid',
+    component: Layout,
+    children: [
+      {
+        path: '/generalMid',
+        component: () => import('@/views/generalMid/index'),
+        name: 'generalMid',
+        meta: { title: '通用一键抠图【中模型】', icon: 'el-icon-picture-outline-round' }
+      }
+    ]
+  },
+  {
+    path: '/generalSmall',
+    component: Layout,
+    children: [
+      {
+        path: '/generalSmall',
+        component: () => import('@/views/generalSmall/index'),
+        name: 'generalSmall',
+        meta: { title: '通用一键抠图【小模型】', icon: 'el-icon-picture-outline-round' }
+      }
+    ]
+  },
+  {
+    path: '/humanSeg',
+    component: Layout,
+    children: [
+      {
+        path: '/humanSeg',
+        component: () => import('@/views/humanSeg/index'),
+        name: 'humanSeg',
+        meta: { title: '人体一键抠图', icon: 'el-icon-picture-outline-round' }
+      }
+    ]
+  },
+  {
+    path: '/clothSeg',
+    component: Layout,
+    children: [
+      {
+        path: '/clothSeg',
+        component: () => import('@/views/clothSeg/index'),
+        name: 'clothSeg',
+        meta: { title: '衣服一键抠图', icon: 'el-icon-picture-outline-round' }
+      }
+    ]
+  },
+  {
+    path: '/animeSeg',
+    component: Layout,
+    children: [
+      {
+        path: '/animeSeg',
+        component: () => import('@/views/animeSeg/index'),
+        name: 'animeSeg',
+        meta: { title: '动漫一键抠图', icon: 'el-icon-picture-outline-round' }
+      }
+    ]
+  },
+  {
+    path: '/manualSeg',
+    component: Layout,
+    children: [
+      {
+        path: '/manualSeg',
+        component: () => import('@/views/manualSeg/index'),
+        name: 'manualSeg',
+        meta: { title: '框选一键抠图', icon: 'el-icon-picture-outline-round' }
+      }
+    ]
+  },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]

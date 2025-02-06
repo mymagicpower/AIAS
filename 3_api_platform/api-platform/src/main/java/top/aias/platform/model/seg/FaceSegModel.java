@@ -11,6 +11,8 @@ import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.training.util.ProgressBar;
 import ai.djl.translate.TranslateException;
+import top.aias.platform.model.seg.pool.FaceSegPool;
+import top.aias.platform.model.seg.translator.FaceSegTranslator;
 
 import java.io.IOException;
 import java.nio.file.Paths;

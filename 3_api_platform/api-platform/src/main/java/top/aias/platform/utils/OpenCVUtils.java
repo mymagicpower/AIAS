@@ -1,12 +1,10 @@
 package top.aias.platform.utils;
 
+import ai.djl.modality.cv.output.Rectangle;
 import ai.djl.ndarray.NDArray;
 import ai.djl.ndarray.NDManager;
+import org.opencv.core.*;
 import top.aias.platform.bean.Point;
-import org.opencv.core.CvType;
-import org.opencv.core.Mat;
-import org.opencv.core.MatOfPoint;
-import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
 import java.awt.image.BufferedImage;
@@ -22,6 +20,34 @@ import java.util.List;
  * @website www.aias.top
  */
 public class OpenCVUtils {
+    /**
+     * 高斯滤波器(GaussianFilter)对图像进行平滑处理
+     * @param manager
+     * @param ndArray
+     * @return
+     */
+    public static NDArray gaussianBlur(NDManager manager, NDArray ndArray) {
+        org.opencv.core.Mat src = NDArrayUtils.floatNDArrayToMat(ndArray);
+        org.opencv.core.Mat morphMat = src.clone();
+        org.opencv.core.Mat gaussMat = src.clone();
+        org.opencv.core.Mat kernel = Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(3, 3));
+
+        // 形态学操作函数: 它可以对图像进行膨胀、腐蚀、开运算、闭运算等操作,从而得到更好的效果。
+        Imgproc.morphologyEx(src, morphMat, Imgproc.MORPH_OPEN, kernel);
+        // 高斯滤波器(GaussianFilter)对图像进行平滑处理
+        Imgproc.GaussianBlur(morphMat, gaussMat, new Size(5, 5), 2.0f, 2.0f);
+        float[][] gaussArr = NDArrayUtils.matToFloatArray(gaussMat);
+        NDArray gaussNDArray = manager.create(gaussArr);
+
+        // release mat
+        src.release();
+        morphMat.release();
+        gaussMat.release();
+        kernel.release();
+
+        return gaussNDArray;
+    }
+
     /**
      * 画线
      *
@@ -302,5 +328,26 @@ public class OpenCVUtils {
             matOfPoint.fromList(pointList);
             Imgproc.polylines(mat, matOfPoints, true, new Scalar(200, 200, 0), 5);
         }
+    }
+
+    /**
+     * Draws a rectangle on the image.
+     *
+     * @param rectangle the rectangle to draw
+     * @param rgb the color
+     * @param stroke the thickness
+     */
+    public static void drawRectangle(Mat image, Rectangle rectangle, int rgb, int stroke) {
+        Rect rect =
+                new Rect(
+                        (int) rectangle.getX(),
+                        (int) rectangle.getY(),
+                        (int) rectangle.getWidth(),
+                        (int) rectangle.getHeight());
+        int r = (rgb & 0xff0000) >> 16;
+        int g = (rgb & 0x00ff00) >> 8;
+        int b = rgb & 0x0000ff;
+        Scalar color = new Scalar(b, g, r);
+        Imgproc.rectangle(image, rect.tl(), rect.br(), color, stroke);
     }
 }

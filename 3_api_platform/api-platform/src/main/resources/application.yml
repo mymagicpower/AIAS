@@ -1,7 +1,11 @@
 
 spring:
   profiles:
-    active: mac
+    # win - windows 环境
+    # mac - Mac 环境
+    # linux - Linux 环境
+    # online - 模型在线加载
+    active: win
   servlet:
     multipart:
       enabled: true

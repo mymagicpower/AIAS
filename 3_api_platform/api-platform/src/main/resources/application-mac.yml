@@ -5,6 +5,11 @@ server:
     uri-encoding: UTF-8
   baseUri: http://127.0.0.1:${server.port}
 
+# 参数配置
+config:
+  # 输出文字最大长度
+  maxLength: 128
+
 model:
   # 设备类型 cpu gpu
   device: cpu
@@ -52,8 +57,27 @@ model:
     # 图像超分模型
     srModelName: realsr_traced_model.pt
 
+  seg:
+    # 遮罩层
+    mask: false
+    # 模型路径
+    modelPath: /Users/calvin/AIAS/3_api_platform/api-platform/models/seg/
+    # 通用分割模型
+    bigModelName: u2net.onnx
+    middleModelName: silueta.onnx
+    smallModelName: u2netp.onnx
+    # 人体分割模型
+    humanModelName: human.onnx
+    # 动漫分割模型
+    animeModelName: anime.onnx
+    # 衣服分割模型
+    clothModelName: cloth.onnx
+    # Sam2 手工框选模型
+    sam2:
+      # encoder model URI
+      # sam2-hiera-large-encoder.onnx
+      encoder: sam2-hiera-tiny-encoder.onnx
+      # decoder model URI
+      # sam2-hiera-large-decoder.onnx
+      decoder: sam2-hiera-tiny-decoder.onnx
 
-# 参数配置
-config:
-  # 输出文字最大长度
-  maxLength: 128

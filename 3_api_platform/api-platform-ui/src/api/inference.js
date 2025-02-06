@@ -82,6 +82,85 @@ export function faceGanForImageUrl(data) {
   })
 }
 
+export function generalSegBigForImageUrl(data) {
+  return request({
+    url: 'api/seg/generalSegBigForImageUrl',
+    method: 'get',
+    params: {
+      url: data.url
+    }
+  })
+}
+
+export function generalSegMidForImageUrl(data) {
+  return request({
+    url: 'api/seg/generalSegMidForImageUrl',
+    method: 'get',
+    params: {
+      url: data.url
+    }
+  })
+}
+
+export function generalSegSmallForImageUrl(data) {
+  return request({
+    url: 'api/seg/generalSegSmallForImageUrl',
+    method: 'get',
+    params: {
+      url: data.url
+    }
+  })
+}
+
+export function humanSegForImageUrl(data) {
+  return request({
+    url: 'api/seg/humanSegForImageUrl',
+    method: 'get',
+    params: {
+      url: data.url
+    }
+  })
+}
+
+export function animeSegForImageUrl(data) {
+  return request({
+    url: 'api/seg/animeSegForImageUrl',
+    method: 'get',
+    params: {
+      url: data.url
+    }
+  })
+}
+
+export function clothSegForImageUrl(data) {
+  return request({
+    url: 'api/seg/clothSegForImageUrl',
+    method: 'get',
+    params: {
+      url: data.url
+    }
+  })
+}
+
+export function getLabelData(data) {
+  return request({
+    url: 'api/seg/getLabelData',
+    method: 'post',
+    data
+  })
+}
+
+export function uploadImage(name, imageFile) {
+  return request({
+    url: 'api/seg/uploadImage',
+    method: 'post',
+    params: {
+      name: name,
+      imageFile: imageFile
+    }
+  })
+}
+
 export default {
   generalInfoForImageUrl,
   mlsdForImageUrl,
@@ -90,6 +169,14 @@ export default {
   zhAsrForAudioUrl,
   imageSrForImageUrl,
   faceResForImageUrl,
-  faceGanForImageUrl
+  faceGanForImageUrl,
+  generalSegBigForImageUrl,
+  generalSegMidForImageUrl,
+  generalSegSmallForImageUrl,
+  humanSegForImageUrl,
+  animeSegForImageUrl,
+  clothSegForImageUrl,
+  uploadImage,
+  getLabelData
 }
 

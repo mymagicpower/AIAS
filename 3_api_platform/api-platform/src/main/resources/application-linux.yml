@@ -5,6 +5,11 @@ server:
     uri-encoding: UTF-8
   baseUri: http://127.0.0.1:${server.port}
 
+# 参数配置
+config:
+  # 输出文字最大长度
+  maxLength: 128
+
 model:
   # 设备类型 cpu gpu
   device: cpu
@@ -50,9 +55,3 @@ model:
     faceGanModelName: gfpgan_traced_model.pt
     # 图像超分模型
     srModelName: realsr_traced_model.pt
-
-
-# 参数配置
-config:
-  # 输出文字最大长度
-  maxLength: 128
