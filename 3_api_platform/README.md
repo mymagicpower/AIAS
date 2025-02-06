@@ -5,11 +5,17 @@ https://www.aias.top/
 ### API 能力平台
 提供开箱即用的人工智能能力平台。
 
-####  当前版本包含了下面功能：
-1. 自由文本识别（支持旋转、倾斜的图片）
-2. 文本图片转正 （一般情况下不需要，因为ocr 原生支持旋转、倾斜的图片 ）
-3. 机器翻译
-4. 语音识别
+- Web应用，前端VUE，后端Springboot
+- 可以直接部署使用，使用UI或者调用API集成到现有的系统中。
+- 支持的能力清单：
+```text
+  1). OCR文字识别
+  2). 机器翻译
+  3). 语音识别
+  4). 一键高清
+  5). 一键抠图
+      ...
+```
 
 <div align="center">
   <table>
@@ -17,13 +23,13 @@ https://www.aias.top/
       <td>
         <div align="left">
           <p>OCR文字识别</p>   
-          - 自由文本识别（支持旋转、倾斜的图片）<br>
-          - 文本图片转正 （一般情况下不需要，因为ocr 原生支持旋转、倾斜的图片 ）<br>
+          - 自由文本识别<br>支持旋转、倾斜的图片<br>
+          - 文本图片转正 <br>
         </div>
       </td>     
       <td>
         <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/table.jpg" width = "400px"/>
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/free.jpg" width = "400px"/>
         </div>
       </td>
     </tr>
@@ -31,8 +37,8 @@ https://www.aias.top/
       <td>
         <div align="left">
           <p>语音识别</p>   
-          - 英文语音识别，<br>
-          - 中文语音识别。
+          - 英文语音识别<br>
+          - 中文语音识别
         </div>
       </td>     
       <td>
@@ -53,9 +59,100 @@ https://www.aias.top/
         <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/assets/nllb.png" width = "400px"/>
         </div>
       </td>
-    </tr>                                            
+    </tr>       
+    <tr>
+      <td>
+        <div align="left">
+          <p>图像增强</p>    
+          - 图片一键高清: <br>提升图片4倍分辨率<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/assets/imageSr.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>      
+    <tr>
+      <td>
+        <div align="left">
+          <p>图像增强</p>    
+          - 头像一键高清<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/assets/faceGan.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>      
+    <tr>
+      <td>
+        <div align="left">
+          <p>图像增强</p>    
+          - 人脸一键修复: <br>自动修复图中人脸<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/assets/faceSr.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>      
+    <tr>
+      <td>
+        <div align="left">
+          <p>通用一键抠图</p>    
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/assets/seg_general.jpg" width = "400px"/>
+        </div>
+      </td>
+    </tr>      
+    <tr>
+      <td>
+        <div align="left">
+          <p>人体一键抠图</p>    
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/assets/seg_human.jpg" width = "400px"/>
+        </div>
+      </td>
+    </tr>      
+    <tr>
+      <td>
+        <div align="left">
+          <p>动漫一键抠图</p>    
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/assets/seg_anime.jpg" width = "400px"/>
+        </div>
+      </td>
+    </tr>      
+    <tr>
+      <td>
+        <div align="left">
+          <p>框选一键抠图</p>    
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/image_seg_sam2/sam2_seg1.jpg" width = "400px"/>
+        </div>
+      </td>
+    </tr>                                                    
   </table>
 </div>
+
+<br/>
+<hr>
+<br/>
 
 
 

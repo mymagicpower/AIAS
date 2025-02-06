@@ -19,59 +19,7 @@
 <hr>
 
 
-### 视频培训课程:   制作中......
-- 相关源码
-- 技术答疑
 
-#### 培训课程系列1. 基础篇
-- 1. JavaCV - java版的OpenCV实现传统图像处理（提供常用代码例子）
-- 2. NDArray - java版的numpy，用于高性能处理矩阵（提供常用代码例子）
-
-#### 培训课程系列2. 算法篇
-- 1. 深度学习算法基础
-    - 基础知识：前馈神经网络，卷积神经网络，循环神经网络
-    - 图像识别：图像分类，图像分割，目标检测
-- 2. java版的模型开发与训练
-- 3. pytorch 模型开发与训练
-
-#### 培训课程系列3. 应用篇 - JavaAI实战系列
-- 1. 图像处理_SDK（培训常用图像处理，并提供可商用的源码）
-    - 人脸工具箱
-    - 人脸高清修复
-    - 图文高清_黑白上色
-
-- 2. NLP_SDK（培训常用自然语言处理，并提供可商用的源码）
-    - 代码特征向量提取
-    - 中文特征向量提取 
-    - 多语言文本特征向量提取
-    - 机器翻译
-
-- 3. Web应用（培训如何开发web类应用，并提供可商用的源码）
-    - OCR，OCR自定义模版
-    - 人脸搜索
-    - 以图搜图
-    - 图像文本跨模态搜索
-    - 文本搜索
-    - 代码语义搜索
-    - 一键抠图
-    - 图像高清
-    - 机器翻译
-
-- 4. AIGC 图像生成（培训如何开发图像生成类应用，并提供可商用的源码）
-    - AIGC提示词如何撰写
-    - 图像生成预处理
-    - 图像生成SD工具箱
-    - 模型微调（LoRA）
-	
-- 5. AI桌面应用开发（培训如何开发桌面应用，并提供可商用的源码）
-    - 大模型桌面应用
-    - OCR桌面应用
-    - 图像高清放大
-	
-- 6. 大模型
-    - 大模型算法原理（transformer，训练，微调，推理优化）
-    - 知识库，RAG增强生成等
-    - 提示词工程 
 
 <br>
 
@@ -110,8 +58,11 @@
 
 </div>
 
-### 1: 训练平台 - 2_training_platform [更新中]
-- 支持图像分类，目标检测
+### 1: 训练平台【模型定制】
+- 项目位置：AIAS/2_training_platform
+- 面向java程序员，满足图像识别分类定制化需求。
+- 支持图像分类模型训练
+- 支持图像1:1
 <div align="center">
   <table>
     <tr>
@@ -132,13 +83,21 @@
 </div>
 
 
+<br/>
+<hr>
+<br/>
 
-### 2: API平台 - 3_api_platform [Web应用，前端VUE，后端Springboot]
-- 支持的能力清单
+### 2: API平台【开箱即用】
+- 项目位置：AIAS/3_api_platform 
+- Web应用，前端VUE，后端Springboot
+- 可以直接部署使用，使用UI或者调用API集成到现有的系统中。
+- 支持的能力清单：
 ```text
   1). OCR文字识别
   2). 机器翻译
   3). 语音识别
+  4). 一键高清
+  5). 一键抠图
       ...
 ```
 
@@ -148,13 +107,13 @@
       <td>
         <div align="left">
           <p>OCR文字识别</p>   
-          - 自由文本识别（支持旋转、倾斜的图片）<br>
-          - 文本图片转正 （一般情况下不需要，因为ocr 原生支持旋转、倾斜的图片 ）<br>
+          - 自由文本识别<br>支持旋转、倾斜的图片<br>
+          - 文本图片转正 <br>
         </div>
       </td>     
       <td>
         <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/table.jpg" width = "400px"/>
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/free.jpg" width = "400px"/>
         </div>
       </td>
     </tr>
@@ -162,8 +121,8 @@
       <td>
         <div align="left">
           <p>语音识别</p>   
-          - 英文语音识别，<br>
-          - 中文语音识别。
+          - 英文语音识别<br>
+          - 中文语音识别
         </div>
       </td>     
       <td>
@@ -184,12 +143,102 @@
         <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/assets/nllb.png" width = "400px"/>
         </div>
       </td>
-    </tr>                                            
+    </tr>       
+    <tr>
+      <td>
+        <div align="left">
+          <p>图像增强</p>    
+          - 图片一键高清: <br>提升图片4倍分辨率<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/assets/imageSr.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>      
+    <tr>
+      <td>
+        <div align="left">
+          <p>图像增强</p>    
+          - 头像一键高清<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/assets/faceGan.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>      
+    <tr>
+      <td>
+        <div align="left">
+          <p>图像增强</p>    
+          - 人脸一键修复: <br>自动修复图中人脸<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/assets/faceSr.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>      
+    <tr>
+      <td>
+        <div align="left">
+          <p>通用一键抠图</p>    
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/assets/seg_general.jpg" width = "400px"/>
+        </div>
+      </td>
+    </tr>      
+    <tr>
+      <td>
+        <div align="left">
+          <p>人体一键抠图</p>    
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/assets/seg_human.jpg" width = "400px"/>
+        </div>
+      </td>
+    </tr>      
+    <tr>
+      <td>
+        <div align="left">
+          <p>动漫一键抠图</p>    
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/assets/seg_anime.jpg" width = "400px"/>
+        </div>
+      </td>
+    </tr>      
+    <tr>
+      <td>
+        <div align="left">
+          <p>框选一键抠图</p>    
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/image_seg_sam2/sam2_seg1.jpg" width = "400px"/>
+        </div>
+      </td>
+    </tr>                                                    
   </table>
 </div>
 
+<br/>
+<hr>
+<br/>
 
-### 3: 人工智能sdk
+### 3: 人工智能 sdk
 - 1_image_sdks - [图像识别 SDK]
 ```text
   1). 工具箱系列：图像处理工具箱（静态图像）
@@ -511,8 +560,67 @@
   </table>
 </div>
 
+<br/>
+<hr>
+<br/>
 
+### 视频培训课程:   制作中......
+- 相关源码
+- 技术答疑
 
+#### 培训课程系列1. 基础篇
+- 1. JavaCV - java版的OpenCV实现传统图像处理（提供常用代码例子）
+- 2. NDArray - java版的numpy，用于高性能处理矩阵（提供常用代码例子）
+
+#### 培训课程系列2. 算法篇
+- 1. 深度学习算法基础
+    - 基础知识：前馈神经网络，卷积神经网络，循环神经网络
+    - 图像识别：图像分类，图像分割，目标检测
+- 2. java版的模型开发与训练
+- 3. pytorch 模型开发与训练
+
+#### 培训课程系列3. 应用篇 - JavaAI实战系列
+- 1. 图像处理_SDK（培训常用图像处理，并提供可商用的源码）
+    - 人脸工具箱
+    - 人脸高清修复
+    - 图文高清_黑白上色
+
+- 2. NLP_SDK（培训常用自然语言处理，并提供可商用的源码）
+    - 代码特征向量提取
+    - 中文特征向量提取 
+    - 多语言文本特征向量提取
+    - 机器翻译
+
+- 3. Web应用（培训如何开发web类应用，并提供可商用的源码）
+    - OCR，OCR自定义模版
+    - 人脸搜索
+    - 以图搜图
+    - 图像文本跨模态搜索
+    - 文本搜索
+    - 代码语义搜索
+    - 一键抠图
+    - 图像高清
+    - 机器翻译
+
+- 4. AIGC 图像生成（培训如何开发图像生成类应用，并提供可商用的源码）
+    - AIGC提示词如何撰写
+    - 图像生成预处理
+    - 图像生成SD工具箱
+    - 模型微调（LoRA）
+	
+- 5. AI桌面应用开发（培训如何开发桌面应用，并提供可商用的源码）
+    - 大模型桌面应用
+    - OCR桌面应用
+    - 图像高清放大
+	
+- 6. 大模型
+    - 大模型算法原理（transformer，训练，微调，推理优化）
+    - 知识库，RAG增强生成等
+    - 提示词工程 
+
+<br/>
+<hr>
+<br/>
 
 #### 其它研究专题:
 
