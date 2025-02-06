@@ -207,9 +207,9 @@ public class ModelConfiguration {
     public BigUNetModel bigUNetModel() throws IOException, ModelException {
         BigUNetModel bigUNetModel = new BigUNetModel();
         if(device.equalsIgnoreCase("cpu")){
-            bigUNetModel.init(modelPath, bigModelName, poolSize, mask, Device.cpu());
+            bigUNetModel.init(segModelPath, bigModelName, poolSize, mask, Device.cpu());
         }else {
-            bigUNetModel.init(modelPath, bigModelName, poolSize, mask, Device.gpu());
+            bigUNetModel.init(segModelPath, bigModelName, poolSize, mask, Device.gpu());
         }
         return bigUNetModel;
     }
@@ -218,9 +218,9 @@ public class ModelConfiguration {
     public MidUNetModel midUNetModel() throws IOException, ModelException {
         MidUNetModel midUNetModel = new MidUNetModel();
         if(device.equalsIgnoreCase("cpu")){
-            midUNetModel.init(modelPath, middleModelName, poolSize, mask, Device.cpu());
+            midUNetModel.init(segModelPath, middleModelName, poolSize, mask, Device.cpu());
         }else {
-            midUNetModel.init(modelPath, middleModelName, poolSize, mask, Device.gpu());
+            midUNetModel.init(segModelPath, middleModelName, poolSize, mask, Device.gpu());
         }
         return midUNetModel;
     }
@@ -229,9 +229,9 @@ public class ModelConfiguration {
     public SmallUNetModel smallUNetModel() throws IOException, ModelException {
         SmallUNetModel smallUNetModel = new SmallUNetModel();
         if(device.equalsIgnoreCase("cpu")){
-            smallUNetModel.init(modelPath, smallModelName, poolSize, mask, Device.cpu());
+            smallUNetModel.init(segModelPath, smallModelName, poolSize, mask, Device.cpu());
         }else {
-            smallUNetModel.init(modelPath, smallModelName, poolSize, mask, Device.gpu());
+            smallUNetModel.init(segModelPath, smallModelName, poolSize, mask, Device.gpu());
         }
         return smallUNetModel;
     }
@@ -240,9 +240,9 @@ public class ModelConfiguration {
     public UNetHumanSegModel uNetHumanSegModel() throws IOException, ModelException {
         UNetHumanSegModel uNetHumanSegModel = new UNetHumanSegModel();
         if(device.equalsIgnoreCase("cpu")){
-            uNetHumanSegModel.init(modelPath, humanModelName, poolSize, mask, Device.cpu());
+            uNetHumanSegModel.init(segModelPath, humanModelName, poolSize, mask, Device.cpu());
         }else {
-            uNetHumanSegModel.init(modelPath, humanModelName, poolSize, mask, Device.gpu());
+            uNetHumanSegModel.init(segModelPath, humanModelName, poolSize, mask, Device.gpu());
         }
         return uNetHumanSegModel;
     }
@@ -251,9 +251,9 @@ public class ModelConfiguration {
     public IsNetModel isNetModel() throws IOException, ModelException {
         IsNetModel isNetModel = new IsNetModel();
         if(device.equalsIgnoreCase("cpu")){
-            isNetModel.init(modelPath, animeModelName, poolSize, mask, Device.cpu());
+            isNetModel.init(segModelPath, animeModelName, poolSize, mask, Device.cpu());
         }else {
-            isNetModel.init(modelPath, animeModelName, poolSize, mask, Device.gpu());
+            isNetModel.init(segModelPath, animeModelName, poolSize, mask, Device.gpu());
         }
         return isNetModel;
     }
@@ -262,9 +262,9 @@ public class ModelConfiguration {
         UNetClothSegModel uNetClothSegModel = new UNetClothSegModel();
         if(device.equalsIgnoreCase("cpu")){
             // clothCategory 4个值: 1,2,3,4  (1 上半身， 2 下半身, 3 连体衣, 4 所有）
-            uNetClothSegModel.init(modelPath, clothModelName,4, poolSize, Device.cpu());
+            uNetClothSegModel.init(segModelPath, clothModelName,4, poolSize, Device.cpu());
         }else {
-            uNetClothSegModel.init(modelPath, clothModelName, 4, poolSize, Device.gpu());
+            uNetClothSegModel.init(segModelPath, clothModelName, 4, poolSize, Device.gpu());
         }
         return uNetClothSegModel;
     }
@@ -272,9 +272,9 @@ public class ModelConfiguration {
     public Sam2EncoderModel sam2EncoderModel() throws IOException, ModelNotFoundException, MalformedModelException {
         Sam2EncoderModel sam2EncoderModel = new Sam2EncoderModel();
         if(device.equalsIgnoreCase("cpu")){
-            sam2EncoderModel.init(modelPath, encoder, poolSize, Device.cpu());
+            sam2EncoderModel.init(segModelPath, encoder, poolSize, Device.cpu());
         }else {
-            sam2EncoderModel.init(modelPath, encoder, poolSize, Device.gpu());
+            sam2EncoderModel.init(segModelPath, encoder, poolSize, Device.gpu());
         }
         return sam2EncoderModel;
     }
@@ -283,9 +283,9 @@ public class ModelConfiguration {
     public Sam2DecoderModel sam2DecoderModel() throws IOException, ModelNotFoundException, MalformedModelException {
         Sam2DecoderModel sam2DecoderModel = new Sam2DecoderModel();
         if(device.equalsIgnoreCase("cpu")){
-            sam2DecoderModel.init(modelPath, decoder, poolSize, Device.cpu());
+            sam2DecoderModel.init(segModelPath, decoder, poolSize, Device.cpu());
         }else {
-            sam2DecoderModel.init(modelPath, decoder, poolSize, Device.gpu());
+            sam2DecoderModel.init(segModelPath, decoder, poolSize, Device.gpu());
         }
         return sam2DecoderModel;
     }

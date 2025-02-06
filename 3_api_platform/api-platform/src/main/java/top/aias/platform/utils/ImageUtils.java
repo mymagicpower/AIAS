@@ -254,7 +254,7 @@ public class ImageUtils {
      */
     public static String toBase64(BufferedImage image, String type) throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ImageIO.write(image, "jpg", baos);
+        ImageIO.write(image, type, baos);
         byte[] bytes = baos.toByteArray();
         return Base64.getEncoder().encodeToString(bytes);
     }

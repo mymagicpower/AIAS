@@ -75,19 +75,14 @@ export const constantRoutes = [
   {
     path: '/enasr',
     component: Layout,
+    meta: { title: '语音识别', icon: 'el-icon-picture' },
     children: [
       {
         path: '/enasr',
         component: () => import('@/views/english/index'),
         name: 'enasr',
         meta: { title: '英文语音识别', icon: 'el-icon-mic' }
-      }
-    ]
-  },
-  {
-    path: '/zhasr',
-    component: Layout,
-    children: [
+      },
       {
         path: '/zhasr',
         component: () => import('@/views/chinese/index'),
@@ -99,120 +94,75 @@ export const constantRoutes = [
   {
     path: '/imageSr',
     component: Layout,
+    meta: { title: '一键高清', icon: 'el-icon-picture' },
     children: [
       {
         path: '/imageSr',
         component: () => import('@/views/imageSr/index'),
         name: 'imageSr',
-        meta: { title: '图片一键高清', icon: 'el-icon-picture-outline-round' }
-      }
-    ]
-  },
-  {
-    path: '/faceGan',
-    component: Layout,
-    children: [
+        meta: { title: '图片一键高清', icon: 'el-icon-picture' }
+      },
       {
         path: '/faceGan',
         component: () => import('@/views/faceGan/index'),
         name: 'faceGan',
-        meta: { title: '头像一键高清', icon: 'el-icon-picture-outline-round' }
-      }
-    ]
-  },
-  {
-    path: '/faceRes',
-    component: Layout,
-    children: [
+        meta: { title: '头像一键高清', icon: 'el-icon-picture' }
+      },
       {
         path: '/faceRes',
         component: () => import('@/views/faceRes/index'),
         name: 'faceRes',
-        meta: { title: '人脸一键修复', icon: 'el-icon-picture-outline-round' }
+        meta: { title: '人脸一键修复', icon: 'el-icon-picture' }
       }
     ]
   },
   {
-    path: '/generalBig',
+    path: '/seg',
     component: Layout,
+    name: 'seg',
+    meta: { title: '一键抠图', icon: 'el-icon-picture' },
     children: [
       {
         path: '/generalBig',
         component: () => import('@/views/generalBig/index'),
         name: 'generalBig',
-        meta: { title: '通用一键抠图【大模型】', icon: 'el-icon-picture-outline-round' }
-      }
-    ]
-  },
-  {
-    path: '/generalMid',
-    component: Layout,
-    children: [
+        meta: { title: '通用一键抠图【大】', icon: 'el-icon-picture' }
+      },
       {
         path: '/generalMid',
         component: () => import('@/views/generalMid/index'),
         name: 'generalMid',
-        meta: { title: '通用一键抠图【中模型】', icon: 'el-icon-picture-outline-round' }
-      }
-    ]
-  },
-  {
-    path: '/generalSmall',
-    component: Layout,
-    children: [
+        meta: { title: '通用一键抠图【中】', icon: 'el-icon-picture' }
+      },
       {
         path: '/generalSmall',
         component: () => import('@/views/generalSmall/index'),
         name: 'generalSmall',
-        meta: { title: '通用一键抠图【小模型】', icon: 'el-icon-picture-outline-round' }
-      }
-    ]
-  },
-  {
-    path: '/humanSeg',
-    component: Layout,
-    children: [
+        meta: { title: '通用一键抠图【小】', icon: 'el-icon-picture' }
+      },
       {
         path: '/humanSeg',
         component: () => import('@/views/humanSeg/index'),
         name: 'humanSeg',
-        meta: { title: '人体一键抠图', icon: 'el-icon-picture-outline-round' }
-      }
-    ]
-  },
-  {
-    path: '/clothSeg',
-    component: Layout,
-    children: [
+        meta: { title: '人体一键抠图', icon: 'el-icon-picture' }
+      },
       {
         path: '/clothSeg',
         component: () => import('@/views/clothSeg/index'),
         name: 'clothSeg',
-        meta: { title: '衣服一键抠图', icon: 'el-icon-picture-outline-round' }
-      }
-    ]
-  },
-  {
-    path: '/animeSeg',
-    component: Layout,
-    children: [
+        meta: { title: '衣服一键抠图', icon: 'el-icon-picture' }
+      },
       {
         path: '/animeSeg',
         component: () => import('@/views/animeSeg/index'),
         name: 'animeSeg',
-        meta: { title: '动漫一键抠图', icon: 'el-icon-picture-outline-round' }
-      }
-    ]
-  },
-  {
-    path: '/manualSeg',
-    component: Layout,
-    children: [
+        meta: { title: '动漫一键抠图', icon: 'el-icon-picture' }
+      },
       {
         path: '/manualSeg',
         component: () => import('@/views/manualSeg/index'),
         name: 'manualSeg',
-        meta: { title: '框选一键抠图', icon: 'el-icon-picture-outline-round' }
+        meta: { title: '框选一键抠图', icon: 'el-icon-picture' }
       }
     ]
   },
