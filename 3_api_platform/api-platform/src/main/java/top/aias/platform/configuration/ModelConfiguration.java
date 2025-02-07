@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import top.aias.platform.generate.TransConfig;
 import top.aias.platform.model.asr.WhisperModel;
+import top.aias.platform.model.color.DdcolorModel;
 import top.aias.platform.model.det.FaceDetModel;
 import top.aias.platform.model.gan.FaceGanModel;
 import top.aias.platform.model.mlsd.MlsdSquareModel;
@@ -105,6 +106,12 @@ public class ModelConfiguration {
     private String decoder;
     @Value("${model.seg.mask}")
     private boolean mask;
+
+    // 黑白照片上色
+    @Value("${model.color.modelPath}")
+    private String colorModelPath;
+    @Value("${model.color.modelName}")
+    private String colorModelName;
 
     @Bean
     public RecognitionModel recognitionModel() throws IOException, ModelNotFoundException, MalformedModelException {
@@ -294,5 +301,12 @@ public class ModelConfiguration {
             sam2DecoderModel.init(segModelPath, decoder, poolSize, Device.gpu());
         }
         return sam2DecoderModel;
+    }
+
+    @Bean
+    public DdcolorModel ddcolorModel() throws IOException, ModelException {
+        DdcolorModel ddcolorModel = new DdcolorModel();
+        ddcolorModel.init(colorModelPath, colorModelName, poolSize, Device.cpu());
+        return ddcolorModel;
     }
 }

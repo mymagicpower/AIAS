@@ -14,6 +14,7 @@ https://www.aias.top/
   3). 语音识别
   4). 一键高清
   5). 一键抠图
+  5). 黑白照片上色
       ...
 ```
 
@@ -146,7 +147,19 @@ https://www.aias.top/
         <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/image_seg_sam2/sam2_seg1.jpg" width = "400px"/>
         </div>
       </td>
-    </tr>                                                    
+    </tr>      
+    <tr>
+      <td>
+        <div align="left">
+          <p>黑白照片上色</p>    
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/ap-images/ddcolor.jpg" width = "400px"/>
+        </div>
+      </td>
+    </tr>                                                      
   </table>
 </div>
 

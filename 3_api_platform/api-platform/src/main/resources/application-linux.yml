@@ -55,3 +55,9 @@ model:
     faceGanModelName: gfpgan_traced_model.pt
     # 图像超分模型
     srModelName: realsr_traced_model.pt
+
+  # 黑白照片山色
+  color:
+    modelPath: /home/models/color/
+    # 模型名字
+    modelName: traced_ddcolor_cpu.pt

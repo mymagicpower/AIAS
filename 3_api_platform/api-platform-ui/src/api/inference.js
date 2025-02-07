@@ -161,6 +161,16 @@ export function uploadImage(name, imageFile) {
   })
 }
 
+export function imageColorForImageUrl(data) {
+  return request({
+    url: 'api/color/imageColorForImageUrl',
+    method: 'get',
+    params: {
+      url: data.url
+    }
+  })
+}
+
 export default {
   generalInfoForImageUrl,
   mlsdForImageUrl,
@@ -177,6 +187,7 @@ export default {
   animeSegForImageUrl,
   clothSegForImageUrl,
   uploadImage,
-  getLabelData
+  getLabelData,
+  imageColorForImageUrl
 }
 

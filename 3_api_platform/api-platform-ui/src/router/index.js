@@ -166,6 +166,18 @@ export const constantRoutes = [
       }
     ]
   },
+  {
+    path: '/ddcolor',
+    component: Layout,
+    children: [
+      {
+        path: '/ddcolor',
+        component: () => import('@/views/ddcolor/index'),
+        name: 'ddcolor',
+        meta: { title: '黑白照片上色', icon: 'el-icon-picture' }
+      }
+    ]
+  },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]

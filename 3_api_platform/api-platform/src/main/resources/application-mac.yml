@@ -81,3 +81,8 @@ model:
       # sam2-hiera-large-decoder.onnx
       decoder: sam2-hiera-tiny-decoder.onnx
 
+  # 黑白照片山色
+  color:
+    modelPath: /Users/calvin/AIAS/3_api_platform/api-platform/models/color/
+    # 模型名字
+    modelName: traced_ddcolor_cpu.pt
