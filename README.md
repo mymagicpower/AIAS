@@ -7,12 +7,6 @@
 </div>
 
 [![star](https://gitee.com/mymagicpower/AIAS/badge/star.svg?theme=gvp)](https://gitee.com/mymagicpower/AIAS/stargazers)   [![fork](https://gitee.com/mymagicpower/AIAS/badge/fork.svg?theme=gvp)](https://gitee.com/mymagicpower/AIAS/members)
-<h4 align="center">
-    <p>
-        <b>中文</b> |
-        <a href="README_EN.md">English</a>
-    <p>
-</h4>
 </div>
 
 <br>
@@ -25,11 +19,7 @@
 
 <div align="center">
 <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/AIAS.png"  width = "600"  />
-</div>
 
-<hr>
-
-<div align="center">
   <table>
     <tr>
       <td>
@@ -63,7 +53,7 @@
 <hr>
 <br/>
 
-### 1: 训练平台【模型定制】
+### 1: 面向 Java 程序员的 AI 训练平台【模型定制】
 - 项目位置：AIAS/2_training_platform
 - 面向java程序员，满足图像识别分类定制化需求。
 - 支持图像分类模型训练
@@ -87,14 +77,29 @@
   </table>
 </div>
   
-- 使用说明：
+#### 1.1 使用说明：
 - https://zhuanlan.zhihu.com/p/21746563748
 
+#### 1.2 Java 模型训练培训教程
+- [1_简介](https://zhuanlan.zhihu.com/p/21970343809)
+- [2_模型库](https://zhuanlan.zhihu.com/p/21971423493)
+- [3_计算图](https://zhuanlan.zhihu.com/p/21972965668)
+- [4_数据集迭代器](https://zhuanlan.zhihu.com/p/21973590418)
+- [5_模型监听器](https://zhuanlan.zhihu.com/p/21974185659)
+- [6_保存和加载模型](https://zhuanlan.zhihu.com/p/21974854322)
+- [7_模型推理](https://zhuanlan.zhihu.com/p/21975384175)
+- [8_训练UI界面](https://zhuanlan.zhihu.com/p/21975767565)
+- [9_MLP网络](https://zhuanlan.zhihu.com/p/21976108949)
+- [10_Vgg16实现图片分类](https://zhuanlan.zhihu.com/p/21977082859)
+- [11_ResNet50 实现图片分类](https://zhuanlan.zhihu.com/p/21978360806)
+- [12_ResNet50-图像1:1比对](https://zhuanlan.zhihu.com/p/21979539629)
+- [13_yolo-目标检测](https://zhuanlan.zhihu.com/p/21981802325)
+- 
 <br/>
 <hr>
 <br/>
 
-### 2: API平台【开箱即用】
+### 2: AI 能力平台【开箱即用】
 - 项目位置：AIAS/3_api_platform 
 - Web应用，前端VUE，后端Springboot
 - 可以直接部署使用，使用UI或者调用API集成到现有的系统中。
@@ -108,8 +113,10 @@
   6). 黑白照片上色
       ...
 ```
-- 使用说明：
+#### 使用说明：
 - https://zhuanlan.zhihu.com/p/21873070647
+
+
 <br/>
 
 
