@@ -119,7 +119,7 @@
       </td>     
       <td>
         <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/free.jpg" width = "400px"/>
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/ap-images/ocr.jpg" width = "400px"/>
         </div>
       </td>
     </tr>
@@ -133,7 +133,7 @@
       </td>     
       <td>
         <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/audio/images/asr_zh.png" width = "400px"/>
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/ap-images/asr.jpg" width = "400px"/>
         </div>
       </td>
     </tr>
@@ -146,7 +146,7 @@
       </td>     
       <td>
         <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/assets/nllb.png" width = "400px"/>
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/ap-images/translation.jpg" width = "400px"/>
         </div>
       </td>
     </tr>       
@@ -159,7 +159,7 @@
       </td>     
       <td>
         <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/assets/imageSr.png" width = "400px"/>
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/ap-images/sr.jpg" width = "400px"/>
         </div>
       </td>
     </tr>      
@@ -172,7 +172,7 @@
       </td>     
       <td>
         <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/assets/faceGan.png" width = "400px"/>
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/ap-images/facegan.jpg" width = "400px"/>
         </div>
       </td>
     </tr>      
@@ -185,7 +185,7 @@
       </td>     
       <td>
         <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/assets/faceSr.png" width = "400px"/>
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/ap-images/faceres.jpg" width = "400px"/>
         </div>
       </td>
     </tr>      
@@ -197,7 +197,7 @@
       </td>     
       <td>
         <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/assets/seg_general.jpg" width = "400px"/>
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/ap-images/seggeneral.jpg" width = "400px"/>
         </div>
       </td>
     </tr>      
@@ -209,7 +209,7 @@
       </td>     
       <td>
         <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/assets/seg_human.jpg" width = "400px"/>
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/ap-images/seghuman.jpg" width = "400px"/>
         </div>
       </td>
     </tr>      
@@ -221,7 +221,7 @@
       </td>     
       <td>
         <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/assets/seg_anime.jpg" width = "400px"/>
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/ap-images/seganime.jpg" width = "400px"/>
         </div>
       </td>
     </tr>      
@@ -233,7 +233,7 @@
       </td>     
       <td>
         <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/image_seg_sam2/sam2_seg1.jpg" width = "400px"/>
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/ap-images/segsam2.jpg" width = "400px"/>
         </div>
       </td>
     </tr>                                                    

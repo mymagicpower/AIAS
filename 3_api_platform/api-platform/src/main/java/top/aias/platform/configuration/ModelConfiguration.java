@@ -152,10 +152,16 @@ public class ModelConfiguration {
     public NllbModel textEncoderModel() throws IOException, ModelNotFoundException, MalformedModelException {
         TransConfig config = new TransConfig();
         config.setMaxSeqLength(maxLength);
-        config.setGpu(false);
-
         NllbModel textEncoderModel = new NllbModel();
-        textEncoderModel.init(config, modelPath, modelName, poolSize, Device.cpu());
+
+        if(device.equalsIgnoreCase("cpu")){
+            config.setGpu(false);
+            textEncoderModel.init(config, modelPath, modelName, poolSize, Device.cpu());
+        }else {
+            config.setGpu(true);
+            textEncoderModel.init(config, modelPath, modelName, poolSize, Device.gpu());
+        }
+
         return textEncoderModel;
     }
 
