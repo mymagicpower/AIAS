@@ -106,6 +106,10 @@
   5). 一键抠图
       ...
 ```
+- 使用说明：
+- https://zhuanlan.zhihu.com/p/21873070647
+<br/>
+
 
 <div align="center">
   <table>
