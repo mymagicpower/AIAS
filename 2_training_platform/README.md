@@ -42,13 +42,6 @@ sudo nginx -s stop
 sudo nginx     
 ```
 
-#### 配置hosts文件：
-```bash
-# 客户端(浏览器)机器的hosts文件添加映射< 127.0.0.1	train.aias.me>, 
-# 其中127.0.0.1替换成jar包运行的服务器ip地址
-
-127.0.0.1	train.aias.me
-```
 
 ## 后端部署
 ```bash
@@ -61,14 +54,8 @@ nohup java -Dfile.encoding=utf-8 -jar xxxxx.jar > log.txt 2>&1 &
 
 输入地址： http://localhost:8090
 
-#### 1. 训练数据准备-ZIP格式压缩包:
-压缩包内需包含2个目录（名字需严格一致）：    
--TRAIN ：包含训练数据，每个文件夹对应一个分类（每个分类图片数量尽量保持平衡）    
--VALIDATION ：包含验证数据，每个文件夹对应一个分类
+#### 1. 训练数据准备-ZIP格式压缩包
 
-![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/train_platform/images/folder.png)
-
--[320张cars.zip车辆图片测试数据下载](https://pan.baidu.com/s/1Y-Yeam-opZx0dM5hcLzgJg?pwd=s3j3)   
 
 #### 2. 上传数据并开始训练:
 -选择zip文件并上传
@@ -88,9 +75,7 @@ nohup java -Dfile.encoding=utf-8 -jar xxxxx.jar > log.txt 2>&1 &
 #### 6. 图片比对测试:  
 ![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/train_platform/images/comparision.png)
 
-#### 7. API文档： 
-http://127.0.0.1:8089/swagger-ui.html
-![Screenshot](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/train_platform/images/swagger.png)
+
   
 #### 编辑jar包中的application.yml
 根据需要编辑application.yml中的图片上传路径,模型保存路径
