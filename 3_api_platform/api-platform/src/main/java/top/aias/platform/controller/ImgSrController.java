@@ -46,7 +46,7 @@ public class ImgSrController {
     @Autowired
     private ImgSrService imgService;
 
-    @ApiOperation(value = "图像高清-URL")
+    @ApiOperation(value = "图像高清4倍放大-默认最大4096x4096-URL")
     @GetMapping(value = "/imageSrForImageUrl", produces = "application/json;charset=utf-8")
     public ResultBean imageSrForImageUrl(@RequestParam(value = "url") String url) {
         try {
@@ -66,7 +66,7 @@ public class ImgSrController {
         }
     }
 
-    @ApiOperation(value = "图像高清-图片")
+    @ApiOperation(value = "图像高清4倍放大-默认最大4096x4096-图片")
     @PostMapping(value = "/imageSrForImageFile", produces = "application/json;charset=utf-8")
     public ResultBean imageSrForImageFile(@RequestParam(value = "imageFile") MultipartFile imageFile) {
         try (InputStream inputStream = imageFile.getInputStream()) {
@@ -74,6 +74,47 @@ public class ImgSrController {
             Image image = OpenCVImageFactory.getInstance().fromInputStream(inputStream);
             // 图像分割
             Image segImg = imgService.imageSr(image);
+            Mat wrappedImage = (Mat) segImg.getWrappedImage();
+            BufferedImage bufferedImage = OpenCVUtils.mat2Image(wrappedImage);
+            // 转 base64格式
+            String base64Img = ImageUtils.toBase64(bufferedImage, "png");
+            wrappedImage.release();
+            return ResultBean.success().add("base64Img", "data:image/png;base64," + base64Img);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            e.printStackTrace();
+            return ResultBean.failure().add("message", e.getMessage());
+        }
+    }
+
+    @ApiOperation(value = "图像高清【高宽不变】-URL")
+    @GetMapping(value = "/imageHdForImageUrl", produces = "application/json;charset=utf-8")
+    public ResultBean imageHdForImageUrl(@RequestParam(value = "url") String url) {
+        try {
+            Image image = OpenCVImageFactory.getInstance().fromUrl(url);
+            // 图像分割
+            Image img = imgService.imageHd(image);
+            Mat wrappedImage = (Mat) img.getWrappedImage();
+            BufferedImage bufferedImage = OpenCVUtils.mat2Image(wrappedImage);
+            // 转 base64格式
+            String base64Img = ImageUtils.toBase64(bufferedImage, "png");
+            wrappedImage.release();
+            return ResultBean.success().add("base64Img", "data:image/png;base64," + base64Img);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            e.printStackTrace();
+            return ResultBean.failure().add("message", e.getMessage());
+        }
+    }
+
+    @ApiOperation(value = "图像高清【高宽不变】-图片")
+    @PostMapping(value = "/imageHdForImageFile", produces = "application/json;charset=utf-8")
+    public ResultBean imageHdForImageFile(@RequestParam(value = "imageFile") MultipartFile imageFile) {
+        try (InputStream inputStream = imageFile.getInputStream()) {
+//            String base64Img = Base64.encodeBase64String(imageFile.getBytes());
+            Image image = OpenCVImageFactory.getInstance().fromInputStream(inputStream);
+            // 图像分割
+            Image segImg = imgService.imageHd(image);
             Mat wrappedImage = (Mat) segImg.getWrappedImage();
             BufferedImage bufferedImage = OpenCVUtils.mat2Image(wrappedImage);
             // 转 base64格式

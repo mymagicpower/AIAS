@@ -30,6 +30,8 @@ model:
   # whisper 语音识别，模型三个 tiny 231M, base 397M, small 1.13G
   asr:
     type: base
+    # 静音检测模型
+    vad: D:\\ai_projects\\AIAS\\3_api_platform\\api-platform\\models\\asr\\silero_vad.onnx
     # tiny 模型
     tiny: D:\\ai_projects\\AIAS\\3_api_platform\\api-platform\\models\\asr\\traced_whisper_tiny.pt
     # base 模型

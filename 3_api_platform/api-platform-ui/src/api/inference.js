@@ -52,9 +52,39 @@ export function zhAsrForAudioUrl(data) {
   })
 }
 
+export function enAsrForLongAudioUrl(data) {
+  return request({
+    url: 'api/asr/enAsrForLongAudioUrl',
+    method: 'get',
+    params: {
+      url: data.url
+    }
+  })
+}
+
+export function zhAsrForLongAudioUrl(data) {
+  return request({
+    url: 'api/asr/zhAsrForLongAudioUrl',
+    method: 'get',
+    params: {
+      url: data.url
+    }
+  })
+}
+
 export function imageSrForImageUrl(data) {
   return request({
     url: 'api/img/imageSrForImageUrl',
+    method: 'get',
+    params: {
+      url: data.url
+    }
+  })
+}
+
+export function imageHdForImageUrl(data) {
+  return request({
+    url: 'api/img/imageHdForImageUrl',
     method: 'get',
     params: {
       url: data.url
@@ -177,7 +207,10 @@ export default {
   translate,
   enAsrForAudioUrl,
   zhAsrForAudioUrl,
+  enAsrForLongAudioUrl,
+  zhAsrForLongAudioUrl,
   imageSrForImageUrl,
+  imageHdForImageUrl,
   faceResForImageUrl,
   faceGanForImageUrl,
   generalSegBigForImageUrl,

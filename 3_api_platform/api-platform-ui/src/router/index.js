@@ -81,13 +81,25 @@ export const constantRoutes = [
         path: '/enasr',
         component: () => import('@/views/english/index'),
         name: 'enasr',
-        meta: { title: '英文语音识别', icon: 'el-icon-mic' }
+        meta: { title: '英文识别【30秒】', icon: 'el-icon-mic' }
+      },
+      {
+        path: '/longenasr',
+        component: () => import('@/views/english/long'),
+        name: 'longenasr',
+        meta: { title: '英文识别【长语音】', icon: 'el-icon-mic' }
       },
       {
         path: '/zhasr',
         component: () => import('@/views/chinese/index'),
         name: 'zhasr',
-        meta: { title: '中文语音识别', icon: 'el-icon-mic' }
+        meta: { title: '中文识别【30秒】', icon: 'el-icon-mic' }
+      },
+      {
+        path: '/longzhasr',
+        component: () => import('@/views/chinese/long'),
+        name: 'longzhasr',
+        meta: { title: '中文识别【长语音】', icon: 'el-icon-mic' }
       }
     ]
   },
@@ -100,7 +112,13 @@ export const constantRoutes = [
         path: '/imageSr',
         component: () => import('@/views/imageSr/index'),
         name: 'imageSr',
-        meta: { title: '图片一键高清', icon: 'el-icon-picture' }
+        meta: { title: '高清放大【放大四倍】', icon: 'el-icon-picture' }
+      },
+      {
+        path: '/imageHd',
+        component: () => import('@/views/imageSr/hd'),
+        name: 'imageHd',
+        meta: { title: '一键高清【宽高不变】', icon: 'el-icon-picture' }
       },
       {
         path: '/faceGan',

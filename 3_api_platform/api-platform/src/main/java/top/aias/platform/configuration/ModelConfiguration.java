@@ -3,13 +3,17 @@ package top.aias.platform.configuration;
 import ai.djl.Device;
 import ai.djl.MalformedModelException;
 import ai.djl.ModelException;
+import ai.djl.ndarray.NDManager;
 import ai.djl.repository.zoo.ModelNotFoundException;
+import ai.onnxruntime.OrtException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import top.aias.platform.generate.TransConfig;
 import top.aias.platform.model.asr.WhisperModel;
+import top.aias.platform.model.asr.vad.SileroVadDetector;
+import top.aias.platform.model.asr.vad.SileroVadOnnxModel;
 import top.aias.platform.model.color.DdcolorModel;
 import top.aias.platform.model.det.FaceDetModel;
 import top.aias.platform.model.gan.FaceGanModel;
@@ -30,6 +34,13 @@ import java.io.IOException;
  */
 @Component
 public class ModelConfiguration {
+    private static final int SAMPLE_RATE = 16000;
+    private static final float THRESHOLD = 0.5f;
+    private static final int MIN_SPEECH_DURATION_MS = 250;
+    private static final float MAX_SPEECH_DURATION_SECONDS = Float.POSITIVE_INFINITY;
+    private static final int MIN_SILENCE_DURATION_MS = 100;
+    private static final int SPEECH_PAD_MS = 30;
+
     // 设备类型 cpu gpu
     @Value("${model.device}")
     private String device;
@@ -47,6 +58,8 @@ public class ModelConfiguration {
     // 语音识别
     @Value("${model.asr.type}")
     private String type;
+    @Value("${model.asr.vad}")
+    private String vadModel;
     @Value("${model.asr.tiny}")
     private String tinyModel;
     @Value("${model.asr.base}")
@@ -121,6 +134,23 @@ public class ModelConfiguration {
     }
 
     @Bean
+    public SileroVadDetector sileroVadDetector() throws OrtException {
+        SileroVadDetector vadDetector;
+
+        try {
+            SileroVadOnnxModel model = new SileroVadOnnxModel(vadModel);
+            vadDetector = new SileroVadDetector(model, THRESHOLD, SAMPLE_RATE,
+                    MIN_SPEECH_DURATION_MS, MAX_SPEECH_DURATION_SECONDS, MIN_SILENCE_DURATION_MS, SPEECH_PAD_MS);
+
+            return vadDetector;
+        } catch (OrtException | ModelNotFoundException | MalformedModelException | IOException e) {
+            System.err.println("Error initializing the VAD detector: " + e.getMessage());
+        }
+
+        return null;
+    }
+
+    @Bean
     public MlsdSquareModel mlsdSquareModel() throws IOException, ModelNotFoundException, MalformedModelException {
         MlsdSquareModel mlsdSquareModel = new MlsdSquareModel();
         mlsdSquareModel.init(mlsd, poolSize);
@@ -161,10 +191,10 @@ public class ModelConfiguration {
         config.setMaxSeqLength(maxLength);
         NllbModel textEncoderModel = new NllbModel();
 
-        if(device.equalsIgnoreCase("cpu")){
+        if (device.equalsIgnoreCase("cpu")) {
             config.setGpu(false);
             textEncoderModel.init(config, modelPath, modelName, poolSize, Device.cpu());
-        }else {
+        } else {
             config.setGpu(true);
             textEncoderModel.init(config, modelPath, modelName, poolSize, Device.gpu());
         }
@@ -175,9 +205,9 @@ public class ModelConfiguration {
     @Bean
     public FaceDetModel faceDetModel() throws IOException, ModelException {
         FaceDetModel faceDetModel = new FaceDetModel();
-        if(device.equalsIgnoreCase("cpu")){
+        if (device.equalsIgnoreCase("cpu")) {
             faceDetModel.init(srModelPath, faceModelName, poolSize, Device.cpu());
-        }else {
+        } else {
             faceDetModel.init(srModelPath, faceModelName, poolSize, Device.gpu());
         }
         return faceDetModel;
@@ -186,9 +216,9 @@ public class ModelConfiguration {
     @Bean
     public FaceSegModel faceSegModel() throws IOException, ModelException {
         FaceSegModel faceSegModel = new FaceSegModel();
-        if(device.equalsIgnoreCase("cpu")){
+        if (device.equalsIgnoreCase("cpu")) {
             faceSegModel.init(srModelPath, faceSegModelName, poolSize, Device.cpu());
-        }else {
+        } else {
             faceSegModel.init(srModelPath, faceSegModelName, poolSize, Device.gpu());
         }
         return faceSegModel;
@@ -197,9 +227,9 @@ public class ModelConfiguration {
     @Bean
     public FaceGanModel faceGanModel() throws IOException, ModelException {
         FaceGanModel faceGanModel = new FaceGanModel();
-        if(device.equalsIgnoreCase("cpu")){
+        if (device.equalsIgnoreCase("cpu")) {
             faceGanModel.init(srModelPath, faceGanModelName, poolSize, Device.cpu());
-        }else {
+        } else {
             faceGanModel.init(srModelPath, faceGanModelName, poolSize, Device.gpu());
         }
         return faceGanModel;
@@ -208,9 +238,9 @@ public class ModelConfiguration {
     @Bean
     public SrModel srModel() throws IOException, ModelException {
         SrModel srModel = new SrModel();
-        if(device.equalsIgnoreCase("cpu")){
+        if (device.equalsIgnoreCase("cpu")) {
             srModel.init(srModelPath, srModelName, poolSize, Device.cpu());
-        }else {
+        } else {
             srModel.init(srModelPath, srModelName, poolSize, Device.gpu());
         }
         return srModel;
@@ -219,9 +249,9 @@ public class ModelConfiguration {
     @Bean
     public BigUNetModel bigUNetModel() throws IOException, ModelException {
         BigUNetModel bigUNetModel = new BigUNetModel();
-        if(device.equalsIgnoreCase("cpu")){
+        if (device.equalsIgnoreCase("cpu")) {
             bigUNetModel.init(segModelPath, bigModelName, poolSize, mask, Device.cpu());
-        }else {
+        } else {
             bigUNetModel.init(segModelPath, bigModelName, poolSize, mask, Device.gpu());
         }
         return bigUNetModel;
@@ -230,9 +260,9 @@ public class ModelConfiguration {
     @Bean
     public MidUNetModel midUNetModel() throws IOException, ModelException {
         MidUNetModel midUNetModel = new MidUNetModel();
-        if(device.equalsIgnoreCase("cpu")){
+        if (device.equalsIgnoreCase("cpu")) {
             midUNetModel.init(segModelPath, middleModelName, poolSize, mask, Device.cpu());
-        }else {
+        } else {
             midUNetModel.init(segModelPath, middleModelName, poolSize, mask, Device.gpu());
         }
         return midUNetModel;
@@ -241,9 +271,9 @@ public class ModelConfiguration {
     @Bean
     public SmallUNetModel smallUNetModel() throws IOException, ModelException {
         SmallUNetModel smallUNetModel = new SmallUNetModel();
-        if(device.equalsIgnoreCase("cpu")){
+        if (device.equalsIgnoreCase("cpu")) {
             smallUNetModel.init(segModelPath, smallModelName, poolSize, mask, Device.cpu());
-        }else {
+        } else {
             smallUNetModel.init(segModelPath, smallModelName, poolSize, mask, Device.gpu());
         }
         return smallUNetModel;
@@ -252,9 +282,9 @@ public class ModelConfiguration {
     @Bean
     public UNetHumanSegModel uNetHumanSegModel() throws IOException, ModelException {
         UNetHumanSegModel uNetHumanSegModel = new UNetHumanSegModel();
-        if(device.equalsIgnoreCase("cpu")){
+        if (device.equalsIgnoreCase("cpu")) {
             uNetHumanSegModel.init(segModelPath, humanModelName, poolSize, mask, Device.cpu());
-        }else {
+        } else {
             uNetHumanSegModel.init(segModelPath, humanModelName, poolSize, mask, Device.gpu());
         }
         return uNetHumanSegModel;
@@ -263,30 +293,32 @@ public class ModelConfiguration {
     @Bean
     public IsNetModel isNetModel() throws IOException, ModelException {
         IsNetModel isNetModel = new IsNetModel();
-        if(device.equalsIgnoreCase("cpu")){
+        if (device.equalsIgnoreCase("cpu")) {
             isNetModel.init(segModelPath, animeModelName, poolSize, mask, Device.cpu());
-        }else {
+        } else {
             isNetModel.init(segModelPath, animeModelName, poolSize, mask, Device.gpu());
         }
         return isNetModel;
     }
+
     @Bean
     public UNetClothSegModel uNetClothSegModel() throws IOException, ModelException {
         UNetClothSegModel uNetClothSegModel = new UNetClothSegModel();
-        if(device.equalsIgnoreCase("cpu")){
+        if (device.equalsIgnoreCase("cpu")) {
             // clothCategory 4个值: 1,2,3,4  (1 上半身， 2 下半身, 3 连体衣, 4 所有）
-            uNetClothSegModel.init(segModelPath, clothModelName,4, poolSize, Device.cpu());
-        }else {
+            uNetClothSegModel.init(segModelPath, clothModelName, 4, poolSize, Device.cpu());
+        } else {
             uNetClothSegModel.init(segModelPath, clothModelName, 4, poolSize, Device.gpu());
         }
         return uNetClothSegModel;
     }
+
     @Bean
     public Sam2EncoderModel sam2EncoderModel() throws IOException, ModelNotFoundException, MalformedModelException {
         Sam2EncoderModel sam2EncoderModel = new Sam2EncoderModel();
-        if(device.equalsIgnoreCase("cpu")){
+        if (device.equalsIgnoreCase("cpu")) {
             sam2EncoderModel.init(segModelPath, encoder, poolSize, Device.cpu());
-        }else {
+        } else {
             sam2EncoderModel.init(segModelPath, encoder, poolSize, Device.gpu());
         }
         return sam2EncoderModel;
@@ -295,9 +327,9 @@ public class ModelConfiguration {
     @Bean
     public Sam2DecoderModel sam2DecoderModel() throws IOException, ModelNotFoundException, MalformedModelException {
         Sam2DecoderModel sam2DecoderModel = new Sam2DecoderModel();
-        if(device.equalsIgnoreCase("cpu")){
+        if (device.equalsIgnoreCase("cpu")) {
             sam2DecoderModel.init(segModelPath, decoder, poolSize, Device.cpu());
-        }else {
+        } else {
             sam2DecoderModel.init(segModelPath, decoder, poolSize, Device.gpu());
         }
         return sam2DecoderModel;

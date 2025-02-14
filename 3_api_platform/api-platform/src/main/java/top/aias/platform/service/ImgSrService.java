@@ -16,4 +16,5 @@ public interface ImgSrService {
     Image faceGan(Image image) throws TranslateException;
     Image faceSeg(Image image) throws TranslateException;
     Image imageSr(Image image) throws TranslateException;
+    Image imageHd(Image image) throws TranslateException;
 }

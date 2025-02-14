@@ -34,8 +34,17 @@ public final class SuperResolutionExample {
         Image image = OpenCVImageFactory.getInstance().fromFile(imageFile);
 
         try (SrModel srModel = new SrModel("models/", "realsr_traced_model.pt", 1, Device.cpu())) {
-            Image img = srModel.predict(image);
-            ImageUtils.saveImage(img, "Real-ESRGAN.png", "build/output");
+            // 如果宽或高大于 1080，先缩小，再高清放大
+            // 否则，直接放大4倍
+            // 可以调高，最大支持多少，自己试验【取决于显存，内存，算法本身】。
+            if(image.getHeight()> 1080 || image.getHeight() > 1080){
+                image = image.resize(image.getWidth() / 4, image.getHeight() / 4, true);
+                Image img = srModel.predict(image);
+                ImageUtils.saveImage(img, "Real-ESRGAN.png", "build/output");
+            }else {
+                Image img = srModel.predict(image);
+                ImageUtils.saveImage(img, "Real-ESRGAN.png", "build/output");
+            }
         }
     }
 }
