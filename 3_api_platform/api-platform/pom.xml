@@ -8,7 +8,7 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.1.9.RELEASE</version>
     </parent>
-    <groupId>aias</groupId>
+    <groupId>top.aias</groupId>
     <artifactId>api-platform</artifactId>
     <version>0.30.0</version>
     <name>api-platform</name>

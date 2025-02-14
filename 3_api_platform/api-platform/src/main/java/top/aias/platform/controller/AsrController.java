@@ -139,7 +139,7 @@ public class AsrController {
                             .setChannels(1)
                             .fromUrl(url);
             // 计算音频数据的大小
-            long audioFileLength = audioNoSampleRate.getData().length / 2;
+            long audioFileLength = audioNoSampleRate.getData().length;
 
             Audio audio =
                     AudioFactory.newInstance()
@@ -244,7 +244,7 @@ public class AsrController {
                             .setChannels(1)
                             .fromInputStream(inputStream);
             // 计算音频数据的大小
-            long audioFileLength = audioNoSampleRate.getData().length / 2;
+            long audioFileLength = audioNoSampleRate.getData().length;
 
             Audio audio =
                     AudioFactory.newInstance()
@@ -296,7 +296,7 @@ public class AsrController {
                             .setChannels(1)
                             .fromInputStream(inputStream);
             // 计算音频数据的大小
-            long audioFileLength = audioNoSampleRate.getData().length / 2;
+            long audioFileLength = audioNoSampleRate.getData().length;
 
             Audio audio =
                     AudioFactory.newInstance()

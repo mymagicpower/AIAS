@@ -8,11 +8,11 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.1.9.RELEASE</version>
     </parent>
-    <groupId>aias</groupId>
-    <artifactId>ocr_backend</artifactId>
+    <groupId>top.aias</groupId>
+    <artifactId>api_platorm</artifactId>
     <version>0.23.0</version>
-    <name>ocr_backend</name>
-    <description>AIAS OCR Project</description>
+    <name>api platorm</name>
+    <description>api platorm project</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

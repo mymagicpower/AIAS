@@ -1,7 +1,36 @@
 <template>
   <div class="app-container">
-    <div slot="tip" class="el-upload__tip">>>>>>>>>>>>>>>>>>>>>开发中<<<<<<<<<<<<<<<<<<<<<<<</div>
     <el-form ref="form" :model="form" label-width="120">
+      <el-form-item label="音频文件链接">
+        <el-input v-model="form.url" />
+      </el-form-item>
+      <el-row>
+        <el-col :span="9">
+          <el-form-item>
+            <el-button
+              v-loading.fullscreen.lock="fullscreenLoading"
+              type="primary"
+              size="small"
+              element-loading-text="拼命加载中"
+              @click="onSubmit"
+            >语音识别</el-button>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="">
+            <json-viewer
+              :value="form.result1"
+              :expand-depth="3"
+              copyable
+              width="400px"
+            />
+          </el-form-item>
+        </el-col>
+      </el-row>
+
+      <el-form-item>
+        <el-divider />
+      </el-form-item>
       <el-row>
         <el-col :span="9">
           <el-form-item label="本地音频文件">
@@ -61,7 +90,7 @@ export default {
     return {
       fullscreenLoading: false,
       form: {
-        url: 'https://aias-home.oss-cn-beijing.aliyuncs.com/products/audio/jfk.flac',
+        url: 'https://aias-home.oss-cn-beijing.aliyuncs.com/products/audio/english.wav',
         result1: '',
         result2: ''
       }
