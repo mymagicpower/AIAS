@@ -19,7 +19,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -133,7 +132,7 @@ public class WhisperModel implements AutoCloseable {
         result = result.replaceAll("<\\|notimestamps\\|>", "");
         result = result.replaceAll("<\\|endoftext\\|>", "");
 
-        System.out.println(Arrays.toString(pastOutputIds.toLongArray()));
+//        System.out.println(Arrays.toString(pastOutputIds.toLongArray()));
 
         return result;
     }
