@@ -238,19 +238,7 @@
         <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/ap-images/seganime.jpg" width = "400px"/>
         </div>
       </td>
-    </tr>      
-    <tr>
-      <td>
-        <div align="left">
-          <p>框选一键抠图</p>    
-        </div>
-      </td>     
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/ap-images/segsam2.jpg" width = "400px"/>
-        </div>
-      </td>
-    </tr>      
+    </tr>          
     <tr>
       <td>
         <div align="left">
