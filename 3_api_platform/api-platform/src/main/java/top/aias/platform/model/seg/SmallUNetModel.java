@@ -2,7 +2,6 @@ package top.aias.platform.model.seg;
 
 import ai.djl.Device;
 import ai.djl.MalformedModelException;
-import ai.djl.ModelException;
 import ai.djl.inference.Predictor;
 import ai.djl.modality.cv.Image;
 import ai.djl.repository.zoo.Criteria;
@@ -16,6 +15,7 @@ import top.aias.platform.model.seg.translator.UNetTranslator;
 
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * u2netp：u2net的轻量级版本。
@@ -27,19 +27,42 @@ import java.nio.file.Paths;
 public final class SmallUNetModel implements AutoCloseable {
     private ZooModel<Image, Image> model;
     private SegPool segPool;
+    private String modelPath;
+    private String modelName;
+    private int poolSize;
+    private boolean mask;
+    private Device device;
+    private final AtomicBoolean initialized = new AtomicBoolean(false);
+
 
     public SmallUNetModel(){}
 
-    public SmallUNetModel(String modelPath, String modelName, int poolSize, boolean mask, Device device) throws ModelException, IOException {
-        init(modelPath, modelName, poolSize, mask, device);
+    public SmallUNetModel(String modelPath, String modelName, int poolSize, boolean mask, Device device) {
+        this.modelPath = modelPath;
+        this.modelName = modelName;
+        this.poolSize = poolSize;
+        this.mask = mask;
+        this.device = device;
     }
 
-    public void init(String modelPath, String modelName, int poolSize, boolean mask, Device device) throws MalformedModelException, ModelNotFoundException, IOException {
-        this.model = ModelZoo.loadModel(criteria(modelPath, modelName, mask, device));
-        this.segPool = new SegPool(model, poolSize);
+    public synchronized void ensureInitialized() {
+        if (!initialized.get()) {
+            try {
+                this.model = ModelZoo.loadModel(criteria(modelPath, modelName, mask, device));
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ModelNotFoundException e) {
+                e.printStackTrace();
+            } catch (MalformedModelException e) {
+                e.printStackTrace();
+            }
+            this.segPool = new SegPool(model, poolSize);
+            initialized.set(true);
+        }
     }
 
     public Image predict(Image img) throws TranslateException {
+        ensureInitialized();
         Predictor<Image, Image> predictor = segPool.getPredictor();
         Image segImg = predictor.predict(img);
         segPool.releasePredictor(predictor);
@@ -47,8 +70,10 @@ public final class SmallUNetModel implements AutoCloseable {
     }
 
     public void close() {
-        this.model.close();
-        this.segPool.close();
+        if (initialized.get()) {
+            this.model.close();
+            this.segPool.close();
+        }
     }
 
     private Criteria<Image, Image> criteria(String modelPath, String modelName, boolean mask, Device device) {

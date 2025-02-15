@@ -1,5 +1,6 @@
 package top.aias.platform.service.impl;
 
+import ai.djl.ModelException;
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.output.DetectedObjects;
 import ai.djl.translate.TranslateException;
@@ -12,7 +13,8 @@ import top.aias.platform.model.gan.FaceGanModel;
 import top.aias.platform.model.seg.FaceSegModel;
 import top.aias.platform.model.sr.SrModel;
 import top.aias.platform.service.ImgSrService;
-import top.aias.platform.utils.ImageUtils;
+
+import java.io.IOException;
 
 /**
  * 图像分割服务
@@ -58,7 +60,7 @@ public class ImgSrServiceImpl implements ImgSrService {
      * @return
      * @throws TranslateException
      */
-    public Image imageHd(Image image) throws TranslateException {
+    public Image imageHd(Image image) throws TranslateException, ModelException, IOException {
         if(image.getHeight()> 512 && image.getHeight() > 512){
             image = image.resize(image.getWidth() / 4, image.getHeight() / 4, true);
             Image img = srModel.predict(image);
@@ -80,7 +82,7 @@ public class ImgSrServiceImpl implements ImgSrService {
      * @return
      * @throws TranslateException
      */
-    public Image imageSr(Image image) throws TranslateException {
+    public Image imageSr(Image image) throws TranslateException, ModelException, IOException {
         if(image.getHeight()> 1080 || image.getHeight() > 1080){
             image = image.resize(image.getWidth() / 4, image.getHeight() / 4, true);
             Image img = srModel.predict(image);

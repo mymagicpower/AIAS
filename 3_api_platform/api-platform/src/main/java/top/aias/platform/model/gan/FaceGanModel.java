@@ -2,7 +2,6 @@ package top.aias.platform.model.gan;
 
 import ai.djl.Device;
 import ai.djl.MalformedModelException;
-import ai.djl.ModelException;
 import ai.djl.inference.Predictor;
 import ai.djl.modality.cv.Image;
 import ai.djl.repository.zoo.Criteria;
@@ -14,6 +13,7 @@ import ai.djl.translate.TranslateException;
 
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * 人脸修复
@@ -25,19 +25,40 @@ import java.nio.file.Paths;
 public final class FaceGanModel implements AutoCloseable {
     private ZooModel<Image, Image> model;
     private FaceGanPool srPool;
+    private String modelPath;
+    private String modelName;
+    private int poolSize;
+    private Device device;
+    private final AtomicBoolean initialized = new AtomicBoolean(false);
+
 
     public FaceGanModel(){}
 
-    public FaceGanModel(String modelPath, String modelName, int poolSize, Device device) throws ModelException, IOException {
-        init(modelPath, modelName, poolSize, device);
+    public FaceGanModel(String modelPath, String modelName, int poolSize, Device device) {
+        this.modelPath = modelPath;
+        this.modelName = modelName;
+        this.poolSize = poolSize;
+        this.device = device;
     }
 
-    public void init(String modelPath, String modelName, int poolSize, Device device) throws MalformedModelException, ModelNotFoundException, IOException {
-        this.model = ModelZoo.loadModel(criteria(modelPath, modelName, device));
-        this.srPool = new FaceGanPool(model, poolSize);
+    public synchronized void ensureInitialized() {
+        if (!initialized.get()) {
+            try {
+                this.model = ModelZoo.loadModel(criteria(modelPath, modelName, device));
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ModelNotFoundException e) {
+                e.printStackTrace();
+            } catch (MalformedModelException e) {
+                e.printStackTrace();
+            }
+            this.srPool = new FaceGanPool(model, poolSize);
+            initialized.set(true);
+        }
     }
 
     public Image predict(Image img) throws TranslateException {
+        ensureInitialized();
         Predictor<Image, Image> predictor = srPool.getPredictor();
         Image segImg = predictor.predict(img);
         srPool.releasePredictor(predictor);
@@ -45,8 +66,10 @@ public final class FaceGanModel implements AutoCloseable {
     }
 
     public void close() {
-        this.model.close();
-        this.srPool.close();
+        if (initialized.get()) {
+            model.close();
+            srPool.close();
+        }
     }
 
     private Criteria<Image, Image> criteria(String modelPath, String modelName, Device device) {

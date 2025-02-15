@@ -38,3 +38,9 @@ file:
 # Verify image transformation result
 image:
   debug: true
+
+model:
+  # 控制模型加载方式
+  # eager - 启动时候加载模型
+  # lazy - 首次调用的时候加载模型
+  loadMode: lazy

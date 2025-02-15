@@ -16,14 +16,15 @@ import ai.djl.translate.NoopTranslator;
 import ai.djl.translate.TranslateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import top.aias.platform.generate.LMOutput;
 import top.aias.platform.generate.GreedyBatchTensorList;
+import top.aias.platform.generate.LMOutput;
 import top.aias.platform.generate.TransConfig;
 import top.aias.platform.utils.TokenUtils;
 
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * 文本翻译模型，支持202种语言互译
@@ -41,56 +42,85 @@ public final class NllbModel implements AutoCloseable {
     private TextDecoder2Pool decoder2Pool;
     private NDManager manager;
     private HuggingFaceTokenizer tokenizer;
-    public void init(TransConfig config, String modelPath, String modelName, int poolSize, Device device) throws MalformedModelException, ModelNotFoundException, IOException {
-        this.config = config;
-        Criteria<NDList, NDList> criteria =
-                Criteria.builder()
-                        .setTypes(NDList.class, NDList.class)
-                        .optModelPath(Paths.get(modelPath + modelName))
-                        .optEngine("PyTorch")
-                        .optDevice(device)
-                        .optTranslator(new NoopTranslator())
-                        .build();
+    private String modelPath;
+    private String modelName;
+    private int poolSize;
+    private Device device;
+    private final AtomicBoolean initialized = new AtomicBoolean(false);
 
-        this.model = criteria.loadModel();
-        manager = NDManager.newBaseManager(device);
-        tokenizer = HuggingFaceTokenizer.newInstance(Paths.get(modelPath + "tokenizer.json"));
-        this.encoderPool = new TextEncoderPool(model, poolSize);
-        this.decoderPool = new TextDecoderPool(model, poolSize);
-        this.decoder2Pool = new TextDecoder2Pool(model, poolSize);
+    public NllbModel(TransConfig config, String modelPath, String modelName, int poolSize, Device device) {
+        this.config = config;
+        this.modelPath = modelPath;
+        this.modelName = modelName;
+        this.poolSize = poolSize;
+        this.device = device;
     }
 
-    public NDArray encoder(long[] ids) throws TranslateException {
+    public synchronized void ensureInitialized() {
+        if (!initialized.get()) {
+            Criteria<NDList, NDList> criteria =
+                    Criteria.builder()
+                            .setTypes(NDList.class, NDList.class)
+                            .optModelPath(Paths.get(modelPath + modelName))
+                            .optEngine("PyTorch")
+                            .optDevice(device)
+                            .optTranslator(new NoopTranslator())
+                            .build();
+
+            try {
+                this.model = criteria.loadModel();
+                manager = NDManager.newBaseManager(device);
+                tokenizer = HuggingFaceTokenizer.newInstance(Paths.get(modelPath + "tokenizer.json"));
+                this.encoderPool = new TextEncoderPool(model, poolSize);
+                this.decoderPool = new TextDecoderPool(model, poolSize);
+                this.decoder2Pool = new TextDecoder2Pool(model, poolSize);
+                initialized.set(true);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ModelNotFoundException e) {
+                e.printStackTrace();
+            } catch (MalformedModelException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private NDArray encoder(long[] ids) throws TranslateException {
         Predictor<long[], NDArray> predictor = encoderPool.getPredictor();
         NDArray result = predictor.predict(ids);
         encoderPool.releasePredictor(predictor);
         return result;
     }
 
-    public LMOutput decoder(NDList input) throws TranslateException {
+    private LMOutput decoder(NDList input) throws TranslateException {
         Predictor<NDList, LMOutput> predictor = decoderPool.getPredictor();
         LMOutput result = predictor.predict(input);
         decoderPool.releasePredictor(predictor);
         return result;
     }
 
-    public LMOutput decoder2(NDList input) throws TranslateException {
+    private LMOutput decoder2(NDList input) throws TranslateException {
         Predictor<NDList, LMOutput> predictor = decoder2Pool.getPredictor();
         LMOutput result = predictor.predict(input);
         decoder2Pool.releasePredictor(predictor);
         return result;
     }
 
-    public void close(){
-        this.model.close();
-        this.encoderPool.close();
-        this.decoderPool.close();
-        this.decoder2Pool.close();
-        manager.close();
-        tokenizer.close();
+    public void close() {
+        if (initialized.get()) {
+            this.model.close();
+            this.encoderPool.close();
+            this.decoderPool.close();
+            this.decoder2Pool.close();
+            manager.close();
+            tokenizer.close();
+        }
     }
 
     public String translate(String input, long srcLangId, long targetLangId) throws TranslateException {
+        ensureInitialized();
+
         // 源语言：如中文 "zho_Hans": 256200
         config.setSrcLangId(srcLangId);
         // 目标语言：如英文 "eng_Latn": 256047
@@ -167,7 +197,7 @@ public final class NllbModel implements AutoCloseable {
         }
     }
 
-    public NDArray greedyStepGen(TransConfig config, NDArray pastOutputIds, NDArray next_token_scores) {
+    private NDArray greedyStepGen(TransConfig config, NDArray pastOutputIds, NDArray next_token_scores) {
         next_token_scores = next_token_scores.get(":, -1, :");
 
         NDArray new_next_token_scores = manager.create(next_token_scores.getShape(), next_token_scores.getDataType());

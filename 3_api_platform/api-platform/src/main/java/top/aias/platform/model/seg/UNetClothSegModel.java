@@ -2,7 +2,6 @@ package top.aias.platform.model.seg;
 
 import ai.djl.Device;
 import ai.djl.MalformedModelException;
-import ai.djl.ModelException;
 import ai.djl.inference.Predictor;
 import ai.djl.modality.cv.Image;
 import ai.djl.repository.zoo.Criteria;
@@ -16,6 +15,7 @@ import top.aias.platform.model.seg.translator.ClothSegTranslator;
 
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * u2net_cloth_seg：专门从人像上抠衣服的预训练模型，它会把衣服分成三部分：上半身、下半身和全身。
@@ -27,18 +27,41 @@ import java.nio.file.Paths;
 public final class UNetClothSegModel implements AutoCloseable {
     ZooModel model;
     private SegPool segPool;
+    private String modelPath;
+    private String modelName;
+    private int clothCategory;
+    private int poolSize;
+    private Device device;
+    private final AtomicBoolean initialized = new AtomicBoolean(false);
 
     public UNetClothSegModel(){}
-    public UNetClothSegModel(String modelPath, String modelName, int clothCategory, int poolSize, Device device) throws ModelException, IOException {
-        init(modelPath, modelName, clothCategory, poolSize, device);
+
+    public UNetClothSegModel(String modelPath, String modelName, int clothCategory, int poolSize, Device device) {
+        this.modelPath = modelPath;
+        this.modelName = modelName;
+        this.clothCategory = clothCategory;
+        this.poolSize = poolSize;
+        this.device = device;
     }
 
-    public void init(String modelPath, String modelName, int clothCategory, int poolSize, Device device) throws MalformedModelException, ModelNotFoundException, IOException {
-        this.model = ModelZoo.loadModel(criteria(modelPath, modelName, clothCategory, device));
-        this.segPool = new SegPool(model, poolSize);
+    public synchronized void ensureInitialized() {
+        if (!initialized.get()) {
+            try {
+                this.model = ModelZoo.loadModel(criteria(modelPath, modelName, clothCategory, device));
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ModelNotFoundException e) {
+                e.printStackTrace();
+            } catch (MalformedModelException e) {
+                e.printStackTrace();
+            }
+            this.segPool = new SegPool(model, poolSize);
+            initialized.set(true);
+        }
     }
 
     public Image predict(Image img) throws TranslateException {
+        ensureInitialized();
         Predictor<Image, Image> predictor = segPool.getPredictor();
         Image segImg = predictor.predict(img);
         segPool.releasePredictor(predictor);
@@ -46,8 +69,10 @@ public final class UNetClothSegModel implements AutoCloseable {
     }
 
     public void close() {
-        this.model.close();
-        this.segPool.close();
+        if (initialized.get()) {
+            model.close();
+            segPool.close();
+        }
     }
 
     private Criteria<Image, Image> criteria(String modelPath, String modelName, int clothCategory, Device device) {

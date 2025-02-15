@@ -1,5 +1,6 @@
 package top.aias.platform.service.impl;
 
+import ai.djl.ModelException;
 import ai.djl.modality.audio.Audio;
 import ai.djl.modality.audio.AudioFactory;
 import ai.djl.translate.TranslateException;
@@ -47,12 +48,12 @@ public class AsrServiceImpl implements AsrService {
     private SileroVadModel sileroVadModel;
 
 
-    public String speechToText(Audio audio, Boolean isChinese) throws TranslateException {
+    public String speechToText(Audio audio, Boolean isChinese) throws TranslateException, ModelException, IOException {
         String output = whisperModel.asr(audio, isChinese);
         return output;
     }
 
-    public String longSpeechToText(Path tempAudioFilePath, Boolean isChinese) throws TranslateException, IOException, OrtException {
+    public String longSpeechToText(Path tempAudioFilePath, Boolean isChinese) throws TranslateException, IOException, OrtException, ModelException {
 
         Audio audio =
                 AudioFactory.newInstance()

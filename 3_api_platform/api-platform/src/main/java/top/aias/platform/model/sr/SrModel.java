@@ -14,6 +14,7 @@ import ai.djl.translate.TranslateException;
 
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * 超分辨- 提升分辨率
@@ -26,19 +27,39 @@ import java.nio.file.Paths;
 public final class SrModel implements AutoCloseable {
     private ZooModel<Image, Image> model;
     private SrPool srPool;
+    private String modelPath;
+    private String modelName;
+    private int poolSize;
+    private Device device;
+    private final AtomicBoolean initialized = new AtomicBoolean(false);
 
     public SrModel(){}
 
-    public SrModel(String modelPath, String modelName, int poolSize, Device device) throws ModelException, IOException {
-        init(modelPath, modelName, poolSize, device);
+    public SrModel(String modelPath, String modelName, int poolSize, Device device) {
+        this.modelPath = modelPath;
+        this.modelName = modelName;
+        this.poolSize = poolSize;
+        this.device = device;
     }
 
-    public void init(String modelPath, String modelName, int poolSize, Device device) throws MalformedModelException, ModelNotFoundException, IOException {
-        this.model = ModelZoo.loadModel(criteria(modelPath, modelName, device));
-        this.srPool = new SrPool(model, poolSize);
+    public synchronized void ensureInitialized() {
+        if (!initialized.get()) {
+            try {
+                this.model = ModelZoo.loadModel(criteria(modelPath, modelName, device));
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ModelNotFoundException e) {
+                e.printStackTrace();
+            } catch (MalformedModelException e) {
+                e.printStackTrace();
+            }
+            this.srPool = new SrPool(model, poolSize);
+            initialized.set(true);
+        }
     }
 
-    public Image predict(Image img) throws TranslateException {
+    public Image predict(Image img) throws TranslateException, ModelException, IOException {
+        ensureInitialized();
         Predictor<Image, Image> predictor = srPool.getPredictor();
         Image segImg = predictor.predict(img);
         srPool.releasePredictor(predictor);
@@ -46,8 +67,10 @@ public final class SrModel implements AutoCloseable {
     }
 
     public void close() {
-        this.model.close();
-        this.srPool.close();
+        if (initialized.get()) {
+            model.close();
+            srPool.close();
+        }
     }
 
     private Criteria<Image, Image> criteria(String modelPath, String modelName, Device device) {

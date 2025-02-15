@@ -1,15 +1,11 @@
 package top.aias.platform.configuration;
 
 import ai.djl.Device;
-import ai.djl.MalformedModelException;
-import ai.djl.ModelException;
-import ai.djl.repository.zoo.ModelNotFoundException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import top.aias.platform.generate.TransConfig;
 import top.aias.platform.model.asr.WhisperModel;
-import top.aias.platform.model.vad.SileroVadModel;
 import top.aias.platform.model.color.DdcolorModel;
 import top.aias.platform.model.det.FaceDetModel;
 import top.aias.platform.model.gan.FaceGanModel;
@@ -18,8 +14,7 @@ import top.aias.platform.model.ocr.RecognitionModel;
 import top.aias.platform.model.seg.*;
 import top.aias.platform.model.sr.SrModel;
 import top.aias.platform.model.trans.NllbModel;
-
-import java.io.IOException;
+import top.aias.platform.model.vad.SileroVadModel;
 
 /**
  * 模型配置
@@ -30,9 +25,12 @@ import java.io.IOException;
  */
 @Component
 public class ModelConfiguration {
+    @Value("${model.loadMode}")
+    private String loadMode;
+
     // 设备类型 cpu gpu
     @Value("${model.device}")
-    private String device;
+    private String deviceType;
 
     // ocr model
     @Value("${model.ocrv4.det}")
@@ -111,190 +109,290 @@ public class ModelConfiguration {
     private String colorModelName;
 
     @Bean
-    public RecognitionModel recognitionModel() throws IOException, ModelNotFoundException, MalformedModelException {
-        RecognitionModel recognitionModel = new RecognitionModel();
-        recognitionModel.init(ocrDet, ocrRec, poolSize);
+    public RecognitionModel recognitionModel() {
+        RecognitionModel recognitionModel = new RecognitionModel(ocrDet, ocrRec, poolSize);
         return recognitionModel;
     }
 
     @Bean
-    public SileroVadModel sileroVadModel() throws ModelNotFoundException, MalformedModelException, IOException {
-        SileroVadModel sileroVadModel = new SileroVadModel();
-        if (device.equalsIgnoreCase("cpu")) {
-            sileroVadModel.init(vadModelPath, poolSize, Device.cpu());
+    public SileroVadModel sileroVadModel() {
+        Device device;
+        if (deviceType.equalsIgnoreCase("cpu")) {
+            device = Device.cpu();
         } else {
-            sileroVadModel.init(vadModelPath, poolSize, Device.gpu());
+            device = Device.gpu();
         }
+
+        SileroVadModel sileroVadModel = new SileroVadModel(vadModelPath, poolSize, device);
+
+        if (loadMode.equalsIgnoreCase("eager")) {
+            sileroVadModel.ensureInitialized();
+        }
+
         return sileroVadModel;
     }
 
     @Bean
-    public MlsdSquareModel mlsdSquareModel() throws IOException, ModelNotFoundException, MalformedModelException {
-        MlsdSquareModel mlsdSquareModel = new MlsdSquareModel();
-        mlsdSquareModel.init(mlsd, poolSize);
+    public MlsdSquareModel mlsdSquareModel() {
+        MlsdSquareModel mlsdSquareModel = new MlsdSquareModel(mlsd, poolSize);
+
+        if (loadMode.equalsIgnoreCase("eager")) {
+            mlsdSquareModel.ensureInitialized();
+        }
         return mlsdSquareModel;
     }
 
     @Bean
-    public WhisperModel whisperModel() throws IOException, ModelNotFoundException, MalformedModelException {
-        WhisperModel whisperModel = new WhisperModel();
+    public WhisperModel whisperModel() {
+        Device device;
+        if (deviceType.equalsIgnoreCase("cpu")) {
+            device = Device.cpu();
+        } else {
+            device = Device.gpu();
+        }
 
-        int kvLength = 0;
-        int encoderIndex = 0;
+        int kvLength = 24;
+        int encoderIndex = 32;
+
+        String model = baseModel;
 
         switch (type) {
             case "tiny":
                 kvLength = 16;
                 encoderIndex = 22;
-                whisperModel.init(tinyModel, poolSize, kvLength, encoderIndex);
+                model = tinyModel;
                 break;
             case "base":
                 kvLength = 24;
                 encoderIndex = 32;
-                whisperModel.init(baseModel, poolSize, kvLength, encoderIndex);
+                model = baseModel;
                 break;
             case "small":
                 kvLength = 48;
                 encoderIndex = 62;
-                whisperModel.init(smallModel, poolSize, kvLength, encoderIndex);
+                model = smallModel;
                 break;
+        }
+
+        WhisperModel whisperModel = new WhisperModel(model, poolSize, device, kvLength, encoderIndex);
+
+        if (loadMode.equalsIgnoreCase("eager")) {
+            whisperModel.ensureInitialized();
         }
 
         return whisperModel;
     }
 
     @Bean
-    public NllbModel textEncoderModel() throws IOException, ModelNotFoundException, MalformedModelException {
+    public NllbModel textEncoderModel() {
         TransConfig config = new TransConfig();
         config.setMaxSeqLength(maxLength);
-        NllbModel textEncoderModel = new NllbModel();
 
-        if (device.equalsIgnoreCase("cpu")) {
-            config.setGpu(false);
-            textEncoderModel.init(config, modelPath, modelName, poolSize, Device.cpu());
+        Device device;
+        if (deviceType.equalsIgnoreCase("cpu")) {
+            device = Device.cpu();
         } else {
-            config.setGpu(true);
-            textEncoderModel.init(config, modelPath, modelName, poolSize, Device.gpu());
+            device = Device.gpu();
+        }
+
+        NllbModel textEncoderModel = new NllbModel(config, modelPath, modelName, poolSize, device);
+
+        if (loadMode.equalsIgnoreCase("eager")) {
+            textEncoderModel.ensureInitialized();
         }
 
         return textEncoderModel;
     }
 
     @Bean
-    public FaceDetModel faceDetModel() throws IOException, ModelException {
-        FaceDetModel faceDetModel = new FaceDetModel();
-        if (device.equalsIgnoreCase("cpu")) {
-            faceDetModel.init(srModelPath, faceModelName, poolSize, Device.cpu());
+    public FaceDetModel faceDetModel() {
+        Device device;
+        if (deviceType.equalsIgnoreCase("cpu")) {
+            device = Device.cpu();
         } else {
-            faceDetModel.init(srModelPath, faceModelName, poolSize, Device.gpu());
+            device = Device.gpu();
         }
+
+        FaceDetModel faceDetModel = new FaceDetModel(srModelPath, faceModelName, poolSize, device);
+
+        if (loadMode.equalsIgnoreCase("eager")) {
+            faceDetModel.ensureInitialized();
+        }
+
         return faceDetModel;
     }
 
     @Bean
-    public FaceSegModel faceSegModel() throws IOException, ModelException {
-        FaceSegModel faceSegModel = new FaceSegModel();
-        if (device.equalsIgnoreCase("cpu")) {
-            faceSegModel.init(srModelPath, faceSegModelName, poolSize, Device.cpu());
+    public FaceSegModel faceSegModel() {
+        Device device;
+        if (deviceType.equalsIgnoreCase("cpu")) {
+            device = Device.cpu();
         } else {
-            faceSegModel.init(srModelPath, faceSegModelName, poolSize, Device.gpu());
+            device = Device.gpu();
         }
+
+        FaceSegModel faceSegModel = new FaceSegModel(srModelPath, faceSegModelName, poolSize, device);
+
+        if (loadMode.equalsIgnoreCase("eager")) {
+            faceSegModel.ensureInitialized();
+        }
+
         return faceSegModel;
     }
 
     @Bean
-    public FaceGanModel faceGanModel() throws IOException, ModelException {
-        FaceGanModel faceGanModel = new FaceGanModel();
-        if (device.equalsIgnoreCase("cpu")) {
-            faceGanModel.init(srModelPath, faceGanModelName, poolSize, Device.cpu());
+    public FaceGanModel faceGanModel() {
+        Device device;
+        if (deviceType.equalsIgnoreCase("cpu")) {
+            device = Device.cpu();
         } else {
-            faceGanModel.init(srModelPath, faceGanModelName, poolSize, Device.gpu());
+            device = Device.gpu();
         }
+
+        FaceGanModel faceGanModel = new FaceGanModel(srModelPath, faceGanModelName, poolSize, device);
+
+        if (loadMode.equalsIgnoreCase("eager")) {
+            faceGanModel.ensureInitialized();
+        }
+
         return faceGanModel;
     }
 
     @Bean
-    public SrModel srModel() throws IOException, ModelException {
-        SrModel srModel = new SrModel();
-        if (device.equalsIgnoreCase("cpu")) {
-            srModel.init(srModelPath, srModelName, poolSize, Device.cpu());
+    public SrModel srModel() {
+        Device device;
+        if (deviceType.equalsIgnoreCase("cpu")) {
+            device = Device.cpu();
         } else {
-            srModel.init(srModelPath, srModelName, poolSize, Device.gpu());
+            device = Device.gpu();
         }
+
+        SrModel srModel = new SrModel(srModelPath, srModelName, poolSize, device);
+
+        if (loadMode.equalsIgnoreCase("eager")) {
+            srModel.ensureInitialized();
+        }
+
         return srModel;
     }
 
     @Bean
-    public BigUNetModel bigUNetModel() throws IOException, ModelException {
-        BigUNetModel bigUNetModel = new BigUNetModel();
-        if (device.equalsIgnoreCase("cpu")) {
-            bigUNetModel.init(segModelPath, bigModelName, poolSize, mask, Device.cpu());
+    public BigUNetModel bigUNetModel() {
+        Device device;
+        if (deviceType.equalsIgnoreCase("cpu")) {
+            device = Device.cpu();
         } else {
-            bigUNetModel.init(segModelPath, bigModelName, poolSize, mask, Device.gpu());
+            device = Device.gpu();
         }
+
+        BigUNetModel bigUNetModel = new BigUNetModel(segModelPath, bigModelName, poolSize, mask, device);
+
+        if (loadMode.equalsIgnoreCase("eager")) {
+            bigUNetModel.ensureInitialized();
+        }
+
         return bigUNetModel;
     }
 
     @Bean
-    public MidUNetModel midUNetModel() throws IOException, ModelException {
-        MidUNetModel midUNetModel = new MidUNetModel();
-        if (device.equalsIgnoreCase("cpu")) {
-            midUNetModel.init(segModelPath, middleModelName, poolSize, mask, Device.cpu());
+    public MidUNetModel midUNetModel() {
+        Device device;
+        if (deviceType.equalsIgnoreCase("cpu")) {
+            device = Device.cpu();
         } else {
-            midUNetModel.init(segModelPath, middleModelName, poolSize, mask, Device.gpu());
+            device = Device.gpu();
         }
+
+        MidUNetModel midUNetModel = new MidUNetModel(segModelPath, middleModelName, poolSize, mask, device);
+
+        if (loadMode.equalsIgnoreCase("eager")) {
+            midUNetModel.ensureInitialized();
+        }
+
         return midUNetModel;
     }
 
     @Bean
-    public SmallUNetModel smallUNetModel() throws IOException, ModelException {
-        SmallUNetModel smallUNetModel = new SmallUNetModel();
-        if (device.equalsIgnoreCase("cpu")) {
-            smallUNetModel.init(segModelPath, smallModelName, poolSize, mask, Device.cpu());
+    public SmallUNetModel smallUNetModel() {
+        Device device;
+        if (deviceType.equalsIgnoreCase("cpu")) {
+            device = Device.cpu();
         } else {
-            smallUNetModel.init(segModelPath, smallModelName, poolSize, mask, Device.gpu());
+            device = Device.gpu();
         }
+
+        SmallUNetModel smallUNetModel = new SmallUNetModel(segModelPath, smallModelName, poolSize, mask, device);
+
+        if (loadMode.equalsIgnoreCase("eager")) {
+            smallUNetModel.ensureInitialized();
+        }
+
         return smallUNetModel;
     }
 
     @Bean
-    public UNetHumanSegModel uNetHumanSegModel() throws IOException, ModelException {
-        UNetHumanSegModel uNetHumanSegModel = new UNetHumanSegModel();
-        if (device.equalsIgnoreCase("cpu")) {
-            uNetHumanSegModel.init(segModelPath, humanModelName, poolSize, mask, Device.cpu());
+    public UNetHumanSegModel uNetHumanSegModel() {
+        Device device;
+        if (deviceType.equalsIgnoreCase("cpu")) {
+            device = Device.cpu();
         } else {
-            uNetHumanSegModel.init(segModelPath, humanModelName, poolSize, mask, Device.gpu());
+            device = Device.gpu();
         }
+
+        UNetHumanSegModel uNetHumanSegModel = new UNetHumanSegModel(segModelPath, humanModelName, poolSize, mask, device);
+
+        if (loadMode.equalsIgnoreCase("eager")) {
+            uNetHumanSegModel.ensureInitialized();
+        }
+
         return uNetHumanSegModel;
     }
 
     @Bean
-    public IsNetModel isNetModel() throws IOException, ModelException {
-        IsNetModel isNetModel = new IsNetModel();
-        if (device.equalsIgnoreCase("cpu")) {
-            isNetModel.init(segModelPath, animeModelName, poolSize, mask, Device.cpu());
+    public IsNetModel isNetModel() {
+        Device device;
+        if (deviceType.equalsIgnoreCase("cpu")) {
+            device = Device.cpu();
         } else {
-            isNetModel.init(segModelPath, animeModelName, poolSize, mask, Device.gpu());
+            device = Device.gpu();
         }
+
+        IsNetModel isNetModel = new IsNetModel(segModelPath, animeModelName, poolSize, mask, device);
+
+        if (loadMode.equalsIgnoreCase("eager")) {
+            isNetModel.ensureInitialized();
+        }
+
         return isNetModel;
     }
 
     @Bean
-    public UNetClothSegModel uNetClothSegModel() throws IOException, ModelException {
-        UNetClothSegModel uNetClothSegModel = new UNetClothSegModel();
-        if (device.equalsIgnoreCase("cpu")) {
-            // clothCategory 4个值: 1,2,3,4  (1 上半身， 2 下半身, 3 连体衣, 4 所有）
-            uNetClothSegModel.init(segModelPath, clothModelName, 4, poolSize, Device.cpu());
+    public UNetClothSegModel uNetClothSegModel() {
+        Device device;
+        if (deviceType.equalsIgnoreCase("cpu")) {
+            device = Device.cpu();
         } else {
-            uNetClothSegModel.init(segModelPath, clothModelName, 4, poolSize, Device.gpu());
+            device = Device.gpu();
         }
+
+        // clothCategory 4个值: 1,2,3,4  (1 上半身， 2 下半身, 3 连体衣, 4 所有）
+        UNetClothSegModel uNetClothSegModel = new UNetClothSegModel(segModelPath, clothModelName, 4, poolSize, device);
+
+        if (loadMode.equalsIgnoreCase("eager")) {
+            uNetClothSegModel.ensureInitialized();
+        }
+
         return uNetClothSegModel;
     }
 
     @Bean
-    public DdcolorModel ddcolorModel() throws IOException, ModelException {
-        DdcolorModel ddcolorModel = new DdcolorModel();
-        ddcolorModel.init(colorModelPath, colorModelName, poolSize, Device.cpu());
+    public DdcolorModel ddcolorModel() {
+        DdcolorModel ddcolorModel = new DdcolorModel(colorModelPath, colorModelName, poolSize, Device.cpu());
+
+        if (loadMode.equalsIgnoreCase("eager")) {
+            ddcolorModel.ensureInitialized();
+        }
+
         return ddcolorModel;
     }
 }

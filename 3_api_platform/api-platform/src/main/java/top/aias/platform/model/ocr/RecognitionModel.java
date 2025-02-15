@@ -4,7 +4,6 @@ import ai.djl.MalformedModelException;
 import ai.djl.inference.Predictor;
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.output.BoundingBox;
-import ai.djl.modality.cv.output.DetectedObjects;
 import ai.djl.modality.cv.output.Rectangle;
 import ai.djl.modality.cv.util.NDImageUtils;
 import ai.djl.ndarray.NDArray;
@@ -17,16 +16,17 @@ import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.training.util.ProgressBar;
 import ai.djl.translate.TranslateException;
+import org.opencv.core.Mat;
 import top.aias.platform.bean.Point;
 import top.aias.platform.bean.RotatedBox;
 import top.aias.platform.utils.OpenCVUtils;
-import org.opencv.core.Mat;
 
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * 文字识别模型
@@ -38,28 +38,51 @@ import java.util.concurrent.ConcurrentHashMap;
 public final class RecognitionModel implements AutoCloseable {
     private ZooModel<Image, NDList> detectionModel;
     private ZooModel<Image, String> recognitionModel;
-
     private DetectorPool detectorPool;
-    private HorizontalDetectorPool horizontalDetectorPool;
     private RecognizerPool recognizerPool;
+    private String detModelPath;
+    private String recModelPath;
+    private int poolSize;
+    private final AtomicBoolean initialized = new AtomicBoolean(false);
 
-    public void init(String detModel, String recModel, int poolSize) throws MalformedModelException, ModelNotFoundException, IOException {
-        this.recognitionModel = ModelZoo.loadModel(recognizeCriteria(recModel));
-        this.detectionModel = ModelZoo.loadModel(detectCriteria(detModel));
+    public RecognitionModel(){}
 
-        this.detectorPool = new DetectorPool(poolSize, detectionModel);
-        this.recognizerPool = new RecognizerPool(poolSize, recognitionModel);
-
+    public RecognitionModel(String detModelPath, String recModelPath, int poolSize) {
+        this.detModelPath = detModelPath;
+        this.recModelPath = recModelPath;
+        this.poolSize = poolSize;
     }
+
+
+    public synchronized void ensureInitialized() {
+        if (!initialized.get()) {
+            try {
+                this.recognitionModel = ModelZoo.loadModel(recognizeCriteria(recModelPath));
+                this.detectionModel = ModelZoo.loadModel(detectCriteria(detModelPath));
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ModelNotFoundException e) {
+                e.printStackTrace();
+            } catch (MalformedModelException e) {
+                e.printStackTrace();
+            }
+
+            this.detectorPool = new DetectorPool(poolSize, detectionModel);
+            this.recognizerPool = new RecognizerPool(poolSize, recognitionModel);
+            initialized.set(true);
+        }
+    }
+
     /**
      * 释放资源
      */
     public void close() {
-        this.recognitionModel.close();
-        this.detectionModel.close();
-        this.detectorPool.close();
-        this.horizontalDetectorPool.close();
-        this.recognizerPool.close();
+        if (initialized.get()) {
+            this.recognitionModel.close();
+            this.detectionModel.close();
+            this.detectorPool.close();
+            this.recognizerPool.close();
+        }
     }
 
     /**
@@ -105,6 +128,7 @@ public final class RecognitionModel implements AutoCloseable {
     // 多线程环境，每个线程一个predictor，共享一个model, 资源池（CPU Core 核心数）达到上限则等待
     public String predictSingleLineText(Image image)
             throws TranslateException {
+        ensureInitialized();
         Predictor<Image, String> recognizer = recognizerPool.getRecognizer();
         String text = recognizer.predict(image);
         // 释放资源
@@ -113,40 +137,9 @@ public final class RecognitionModel implements AutoCloseable {
     }
 
     // 多线程环境，每个线程一个predictor，共享一个model, 资源池（CPU Core 核心数）达到上限则等待
-    public DetectedObjects predict(Image image)
-            throws TranslateException {
-        Predictor<Image, DetectedObjects> horizontalDetector = horizontalDetectorPool.getDetector();
-        DetectedObjects detections = horizontalDetector.predict(image);
-        horizontalDetectorPool.releaseDetector(horizontalDetector);
-
-        List<DetectedObjects.DetectedObject> boxes = detections.items();
-        List<String> names = new ArrayList<>();
-        List<Double> prob = new ArrayList<>();
-        List<BoundingBox> rect = new ArrayList<>();
-
-        Predictor<Image, String> recognizer = recognizerPool.getRecognizer();
-        for (int i = 0; i < boxes.size(); i++) {
-            Image subImg = getSubImage(image, boxes.get(i).getBoundingBox());
-            if (subImg.getHeight() * 1.0 / subImg.getWidth() > 1.5) {
-                subImg = rotateImg(subImg);
-            }
-            String name = recognizer.predict(subImg);
-            System.out.println(name);
-            names.add(name);
-            prob.add(-1.0);
-            rect.add(boxes.get(i).getBoundingBox());
-        }
-        // 释放资源
-        recognizerPool.releaseRecognizer(recognizer);
-
-        DetectedObjects detectedObjects = new DetectedObjects(names, prob, rect);
-        return detectedObjects;
-    }
-
-    // 多线程环境，每个线程一个predictor，共享一个model, 资源池（CPU Core 核心数）达到上限则等待
     public List<RotatedBox> predict(NDManager manager, Image image)
             throws TranslateException {
-
+        ensureInitialized();
         Predictor<Image, NDList> detector = detectorPool.getDetector();
         NDList boxes = detector.predict(image);
         // 释放资源

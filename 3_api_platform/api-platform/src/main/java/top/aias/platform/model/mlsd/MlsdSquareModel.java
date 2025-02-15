@@ -22,13 +22,14 @@ import ai.djl.translate.Batchifier;
 import ai.djl.translate.TranslateException;
 import ai.djl.translate.Translator;
 import ai.djl.translate.TranslatorContext;
+import org.opencv.core.Mat;
 import top.aias.platform.utils.NDArrayUtils;
 import top.aias.platform.utils.OpenCVUtils;
-import org.opencv.core.Mat;
 
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * 图像转正模型
@@ -40,23 +41,47 @@ import java.util.ArrayList;
 public final class MlsdSquareModel implements AutoCloseable {
     private ZooModel<Image, Image> model;
     private MlsdPool mlsdPool;
+    private String modelPath;
+    private int poolSize;
+    private Device device;
+    private final AtomicBoolean initialized = new AtomicBoolean(false);
+
 
     private float thr_v = 0.1f;
     private float thr_d = 0.1f;
     private int detect_resolution = 512;
 
-    public void init(String modelUri, int poolSize) throws MalformedModelException, ModelNotFoundException, IOException {
-        this.model = ModelZoo.loadModel(onnxCriteria(modelUri));
-        this.mlsdPool = new MlsdPool(poolSize, model);
+    public MlsdSquareModel(String modelPath, int poolSize) {
+        this.modelPath = modelPath;
+        this.poolSize = poolSize;
+    }
+
+    public synchronized void ensureInitialized() {
+        if (!initialized.get()) {
+            try {
+                this.model = ModelZoo.loadModel(onnxCriteria(modelPath));
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ModelNotFoundException e) {
+                e.printStackTrace();
+            } catch (MalformedModelException e) {
+                e.printStackTrace();
+            }
+            this.mlsdPool = new MlsdPool(poolSize, model);
+            initialized.set(true);
+        }
     }
 
     public void close() {
-        this.model.close();
-        this.mlsdPool.close();
+        if (initialized.get()) {
+            this.model.close();
+            this.mlsdPool.close();
+        }
     }
 
     // 多线程环境，每个线程一个predictor，共享一个model, 资源池（CPU Core 核心数）达到上限则等待
     public Image predict(Image image) throws TranslateException {
+        ensureInitialized();
         Predictor<Image, Image> predictor = mlsdPool.getPredictor();
         Image cropImg = predictor.predict(image);
         // 释放资源
@@ -65,14 +90,14 @@ public final class MlsdSquareModel implements AutoCloseable {
         return cropImg;
     }
 
-    private Criteria<Image, Image> onnxCriteria(String modelUri) {
+    private Criteria<Image, Image> onnxCriteria(String modelPath) {
 
         Criteria<Image, Image> criteria =
                 Criteria.builder()
                         .optEngine("OnnxRuntime")
                         .setTypes(Image.class, Image.class)
                         .optModelName("mlsd_traced_model")
-                        .optModelPath(Paths.get(modelUri))
+                        .optModelPath(Paths.get(modelPath))
                         .optDevice(Device.cpu())
 //                      .optDevice(Device.gpu())
                         .optTranslator(new FeatureTranslator())
@@ -779,7 +804,7 @@ public final class MlsdSquareModel implements AutoCloseable {
                 Image img = ImageFactory.getInstance().fromNDArray(imgArray);
                 Mat mat = (Mat) img.getWrappedImage();
 
-                if(squares.getShape().get(0) == 0)
+                if (squares.getShape().get(0) == 0)
                     return null;
                 NDArray maxSquare = squares.get(0);
                 float[] points = maxSquare.toFloatArray();
@@ -789,7 +814,7 @@ public final class MlsdSquareModel implements AutoCloseable {
 
                 img = ImageFactory.getInstance().fromImage(dst);
 //                return img;
-                return img.getSubImage(0,0,wh[0],wh[1]);
+                return img.getSubImage(0, 0, wh[0], wh[1]);
             }
         }
 

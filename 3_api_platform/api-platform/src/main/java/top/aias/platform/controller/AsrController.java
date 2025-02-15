@@ -1,5 +1,6 @@
 package top.aias.platform.controller;
 
+import ai.djl.ModelException;
 import ai.djl.modality.audio.Audio;
 import ai.djl.modality.audio.AudioFactory;
 import ai.djl.translate.TranslateException;
@@ -165,6 +166,10 @@ public class AsrController {
         } catch (OrtException e) {
             logger.error(e.getMessage(), e);
             return ResultBean.failure().add("message", "语音识别失败: " + e.getMessage());
+        } catch (ModelException e) {
+            logger.error(e.getMessage(), e);
+            e.printStackTrace();
+            return ResultBean.failure().add("message", e.getMessage());
         } finally {
             // 删除临时文件
             if (tempAudioFilePath != null) {
@@ -213,6 +218,10 @@ public class AsrController {
         } catch (OrtException e) {
             logger.error(e.getMessage(), e);
             return ResultBean.failure().add("message", "语音识别失败: " + e.getMessage());
+        } catch (ModelException e) {
+            logger.error(e.getMessage(), e);
+            e.printStackTrace();
+            return ResultBean.failure().add("message", e.getMessage());
         } finally {
             // 删除临时文件
             if (tempAudioFilePath != null) {
@@ -260,7 +269,12 @@ public class AsrController {
             return ResultBean.failure().add("message", e.getMessage());
         } catch (OrtException e) {
             logger.error(e.getMessage(), e);
-            return ResultBean.failure().add("message", "语音识别失败: " + e.getMessage());
+            e.printStackTrace();
+            return ResultBean.failure().add("message", e.getMessage());
+        } catch (ModelException e) {
+            logger.error(e.getMessage(), e);
+            e.printStackTrace();
+            return ResultBean.failure().add("message", e.getMessage());
         } finally {
             // 确保文件最终被删除
             if (tempAudioFilePath != null) {
@@ -308,7 +322,12 @@ public class AsrController {
             return ResultBean.failure().add("message", e.getMessage());
         } catch (OrtException e) {
             logger.error(e.getMessage(), e);
-            return ResultBean.failure().add("message", "语音识别失败: " + e.getMessage());
+            e.printStackTrace();
+            return ResultBean.failure().add("message", e.getMessage());
+        } catch (ModelException e) {
+            logger.error(e.getMessage(), e);
+            e.printStackTrace();
+            return ResultBean.failure().add("message", e.getMessage());
         } finally {
             // 确保文件最终被删除
             if (tempAudioFilePath != null) {

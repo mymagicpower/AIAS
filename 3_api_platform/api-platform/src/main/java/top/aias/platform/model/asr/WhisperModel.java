@@ -1,6 +1,8 @@
 package top.aias.platform.model.asr;
 
+import ai.djl.Device;
 import ai.djl.MalformedModelException;
+import ai.djl.ModelException;
 import ai.djl.inference.Predictor;
 import ai.djl.modality.audio.Audio;
 import ai.djl.modality.audio.AudioFactory;
@@ -25,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * 语音识别模型
@@ -38,6 +41,11 @@ public final class WhisperModel implements AutoCloseable {
     private ZooModel<NDList, NDList> model;
     private EncoderPool encoderPool;
     private DecoderPool decoderPool;
+
+    private String modelPath;
+    private int poolSize;
+    private Device device;
+
     private int kvLength = 0;
     private int encoderIndex = 0;
 
@@ -46,14 +54,36 @@ public final class WhisperModel implements AutoCloseable {
     //force_token_map {1: 50260, 2: 50359, 3: 50363}
     private long[] forced_decoder_ids = new long[]{50260, 50359, 50363};
 
-    public void init(String modelUri, int poolSize, int kvLength, int encoderIndex) throws MalformedModelException, ModelNotFoundException, IOException {
+    private final AtomicBoolean initialized = new AtomicBoolean(false);
+
+    public WhisperModel() {
+    }
+
+    public WhisperModel(String modelPath, int poolSize, Device device, int kvLength, int encoderIndex) {
+        this.modelPath = modelPath;
+        this.poolSize = poolSize;
+        this.device = device;
         this.kvLength = kvLength;
         this.encoderIndex = encoderIndex;
-        this.model = ModelZoo.loadModel(criteria(modelUri));
-        this.encoderPool = new EncoderPool(poolSize, model, kvLength, encoderIndex);
-        this.decoderPool = new DecoderPool(poolSize, model, kvLength);
         // 此类模型图优化占时过长，关闭
         System.setProperty("ai.djl.pytorch.graph_optimizer", "false");
+    }
+
+    public synchronized void ensureInitialized() {
+        if (!initialized.get()) {
+            try {
+                this.model = ModelZoo.loadModel(criteria(modelPath));
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ModelNotFoundException e) {
+                e.printStackTrace();
+            } catch (MalformedModelException e) {
+                e.printStackTrace();
+            }
+            this.encoderPool = new EncoderPool(poolSize, model, kvLength, encoderIndex);
+            this.decoderPool = new DecoderPool(poolSize, model, kvLength);
+            initialized.set(true);
+        }
     }
 
     private Criteria<NDList, NDList> criteria(String model) {
@@ -62,7 +92,7 @@ public final class WhisperModel implements AutoCloseable {
                         .setTypes(NDList.class, NDList.class)
                         .optModelPath(Paths.get(model))
                         .optEngine("PyTorch")
-//                        .optDevice(Device.cpu())
+                        .optDevice(device)
                         .optTranslator(new NoopTranslator())
                         .build();
 
@@ -70,13 +100,15 @@ public final class WhisperModel implements AutoCloseable {
     }
 
     public void close() {
-        this.model.close();
-        this.encoderPool.close();
-        this.decoderPool.close();
-        System.clearProperty("ai.djl.pytorch.graph_optimizer");
+        if (initialized.get()) {
+            this.model.close();
+            this.encoderPool.close();
+            this.decoderPool.close();
+            System.clearProperty("ai.djl.pytorch.graph_optimizer");
+        }
     }
 
-    public String asr(Path file, boolean isChinese) throws IOException, TranslateException {
+    public String asr(Path file, boolean isChinese) throws IOException, TranslateException, ModelException {
         Audio audio =
                 AudioFactory.newInstance()
                         .setChannels(1)
@@ -87,7 +119,8 @@ public final class WhisperModel implements AutoCloseable {
         return asr(audio, isChinese);
     }
 
-    public String asr(Audio audio, boolean isChinese) throws TranslateException {
+    public String asr(Audio audio, boolean isChinese) throws TranslateException, ModelException, IOException {
+        ensureInitialized();
         NDList inputs = encoder(audio);
         NDList encoder_outputs = inputs.subNDList(kvLength, kvLength + 2);
         NDArray pastOutputIds = inputs.get(kvLength + 2);
