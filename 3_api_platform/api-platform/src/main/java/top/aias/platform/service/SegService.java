@@ -22,11 +22,4 @@ public interface SegService {
     Image humanSeg(Image image) throws TranslateException;
     Image animeSeg(Image image) throws TranslateException;
     Image clothSeg(Image image) throws TranslateException;
-    List<ImageBean> getDataList();
-
-    ImageBean getImageInfo(String uid) throws IOException;
-
-    void addImageInfo(ImageBean templateBean) throws IOException;
-
-    String getLabelData(String uid, LabelBean labelData) throws IOException, TranslateException;
 }

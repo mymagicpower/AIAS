@@ -3,17 +3,13 @@ package top.aias.platform.configuration;
 import ai.djl.Device;
 import ai.djl.MalformedModelException;
 import ai.djl.ModelException;
-import ai.djl.ndarray.NDManager;
 import ai.djl.repository.zoo.ModelNotFoundException;
-import ai.onnxruntime.OrtException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import top.aias.platform.generate.TransConfig;
 import top.aias.platform.model.asr.WhisperModel;
-import top.aias.platform.model.asr.vad.SileroVadDetector;
-import top.aias.platform.model.asr.vad.SileroVadOnnxModel;
+import top.aias.platform.model.vad.SileroVadModel;
 import top.aias.platform.model.color.DdcolorModel;
 import top.aias.platform.model.det.FaceDetModel;
 import top.aias.platform.model.gan.FaceGanModel;
@@ -34,13 +30,6 @@ import java.io.IOException;
  */
 @Component
 public class ModelConfiguration {
-    private static final int SAMPLE_RATE = 16000;
-    private static final float THRESHOLD = 0.5f;
-    private static final int MIN_SPEECH_DURATION_MS = 250;
-    private static final float MAX_SPEECH_DURATION_SECONDS = Float.POSITIVE_INFINITY;
-    private static final int MIN_SILENCE_DURATION_MS = 100;
-    private static final int SPEECH_PAD_MS = 30;
-
     // 设备类型 cpu gpu
     @Value("${model.device}")
     private String device;
@@ -59,7 +48,7 @@ public class ModelConfiguration {
     @Value("${model.asr.type}")
     private String type;
     @Value("${model.asr.vad}")
-    private String vadModel;
+    private String vadModelPath;
     @Value("${model.asr.tiny}")
     private String tinyModel;
     @Value("${model.asr.base}")
@@ -112,11 +101,6 @@ public class ModelConfiguration {
     // 衣服分割模型
     @Value("${model.seg.clothModelName}")
     private String clothModelName;
-    // Sam2分割模型
-    @Value("${model.seg.sam2.encoder}")
-    private String encoder;
-    @Value("${model.seg.sam2.decoder}")
-    private String decoder;
     @Value("${model.seg.mask}")
     private boolean mask;
 
@@ -134,20 +118,14 @@ public class ModelConfiguration {
     }
 
     @Bean
-    public SileroVadDetector sileroVadDetector() throws OrtException {
-        SileroVadDetector vadDetector;
-
-        try {
-            SileroVadOnnxModel model = new SileroVadOnnxModel(vadModel);
-            vadDetector = new SileroVadDetector(model, THRESHOLD, SAMPLE_RATE,
-                    MIN_SPEECH_DURATION_MS, MAX_SPEECH_DURATION_SECONDS, MIN_SILENCE_DURATION_MS, SPEECH_PAD_MS);
-
-            return vadDetector;
-        } catch (OrtException | ModelNotFoundException | MalformedModelException | IOException e) {
-            System.err.println("Error initializing the VAD detector: " + e.getMessage());
+    public SileroVadModel sileroVadModel() throws ModelNotFoundException, MalformedModelException, IOException {
+        SileroVadModel sileroVadModel = new SileroVadModel();
+        if (device.equalsIgnoreCase("cpu")) {
+            sileroVadModel.init(vadModelPath, poolSize, Device.cpu());
+        } else {
+            sileroVadModel.init(vadModelPath, poolSize, Device.gpu());
         }
-
-        return null;
+        return sileroVadModel;
     }
 
     @Bean
@@ -311,28 +289,6 @@ public class ModelConfiguration {
             uNetClothSegModel.init(segModelPath, clothModelName, 4, poolSize, Device.gpu());
         }
         return uNetClothSegModel;
-    }
-
-    @Bean
-    public Sam2EncoderModel sam2EncoderModel() throws IOException, ModelNotFoundException, MalformedModelException {
-        Sam2EncoderModel sam2EncoderModel = new Sam2EncoderModel();
-        if (device.equalsIgnoreCase("cpu")) {
-            sam2EncoderModel.init(segModelPath, encoder, poolSize, Device.cpu());
-        } else {
-            sam2EncoderModel.init(segModelPath, encoder, poolSize, Device.gpu());
-        }
-        return sam2EncoderModel;
-    }
-
-    @Bean
-    public Sam2DecoderModel sam2DecoderModel() throws IOException, ModelNotFoundException, MalformedModelException {
-        Sam2DecoderModel sam2DecoderModel = new Sam2DecoderModel();
-        if (device.equalsIgnoreCase("cpu")) {
-            sam2DecoderModel.init(segModelPath, decoder, poolSize, Device.cpu());
-        } else {
-            sam2DecoderModel.init(segModelPath, decoder, poolSize, Device.gpu());
-        }
-        return sam2DecoderModel;
     }
 
     @Bean

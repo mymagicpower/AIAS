@@ -172,25 +172,6 @@ export function clothSegForImageUrl(data) {
   })
 }
 
-export function getLabelData(data) {
-  return request({
-    url: 'api/seg/getLabelData',
-    method: 'post',
-    data
-  })
-}
-
-export function uploadImage(name, imageFile) {
-  return request({
-    url: 'api/seg/uploadImage',
-    method: 'post',
-    params: {
-      name: name,
-      imageFile: imageFile
-    }
-  })
-}
-
 export function imageColorForImageUrl(data) {
   return request({
     url: 'api/color/imageColorForImageUrl',
@@ -219,8 +200,6 @@ export default {
   humanSegForImageUrl,
   animeSegForImageUrl,
   clothSegForImageUrl,
-  uploadImage,
-  getLabelData,
   imageColorForImageUrl
 }
 

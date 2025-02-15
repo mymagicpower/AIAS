@@ -58,6 +58,22 @@ model:
     # 图像超分模型
     srModelName: realsr_traced_model.pt
 
+  seg:
+    # 遮罩层
+    mask: false
+    # 模型路径
+    modelPath: /Users/calvin/AIAS/3_api_platform/api-platform/models/seg/
+    # 通用分割模型
+    bigModelName: u2net.onnx
+    middleModelName: silueta.onnx
+    smallModelName: u2netp.onnx
+    # 人体分割模型
+    humanModelName: human.onnx
+    # 动漫分割模型
+    animeModelName: anime.onnx
+    # 衣服分割模型
+    clothModelName: cloth.onnx
+
   # 黑白照片山色
   color:
     modelPath: /home/models/color/

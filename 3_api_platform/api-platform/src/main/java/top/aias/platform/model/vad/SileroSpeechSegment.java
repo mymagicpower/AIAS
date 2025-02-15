@@ -1,4 +1,4 @@
-package top.aias.platform.model.asr.vad;
+package top.aias.platform.model.vad;
 
 public class SileroSpeechSegment {
     private Integer startOffset;

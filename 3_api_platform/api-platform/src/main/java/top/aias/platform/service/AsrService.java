@@ -2,6 +2,10 @@ package top.aias.platform.service;
 
 import ai.djl.modality.audio.Audio;
 import ai.djl.translate.TranslateException;
+import ai.onnxruntime.OrtException;
+
+import java.io.IOException;
+import java.nio.file.Path;
 
 /**
  * 语音识别接口
@@ -11,7 +15,7 @@ import ai.djl.translate.TranslateException;
  * @website www.aias.top
  */
 public interface AsrService {
-    String enSpeechToText(Audio audio) throws TranslateException;
+    String speechToText(Audio audio, Boolean isChinese) throws TranslateException;
 
-    String zhSpeechToText(Audio audio) throws TranslateException;
+    String longSpeechToText(Path audioFilePath, Boolean isChinese) throws TranslateException, IOException, OrtException;
 }

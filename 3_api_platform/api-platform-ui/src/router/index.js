@@ -175,12 +175,6 @@ export const constantRoutes = [
         component: () => import('@/views/animeSeg/index'),
         name: 'animeSeg',
         meta: { title: '动漫一键抠图', icon: 'el-icon-picture' }
-      },
-      {
-        path: '/manualSeg',
-        component: () => import('@/views/manualSeg/index'),
-        name: 'manualSeg',
-        meta: { title: '框选一键抠图', icon: 'el-icon-picture' }
       }
     ]
   },

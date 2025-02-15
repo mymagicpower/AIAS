@@ -136,4 +136,17 @@ public class FileUtils {
             file.mkdirs();
         }
     }
+
+    /**
+     * 获取文件扩展名
+     *
+     * @param fileName
+     * @return
+     */
+    public static String getFileExtension(String fileName) {
+        if (fileName != null && fileName.contains(".")) {
+            return fileName.substring(fileName.lastIndexOf(".") + 1);
+        }
+        return "";
+    }
 }

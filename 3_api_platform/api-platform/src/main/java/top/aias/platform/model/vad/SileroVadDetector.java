@@ -1,5 +1,12 @@
-package top.aias.platform.model.asr.vad;
+package top.aias.platform.model.vad;
 
+import ai.djl.Device;
+import ai.djl.ndarray.NDArray;
+import ai.djl.ndarray.NDList;
+import ai.djl.ndarray.NDManager;
+import ai.djl.ndarray.types.DataType;
+import ai.djl.ndarray.types.Shape;
+import ai.djl.translate.TranslateException;
 import ai.onnxruntime.OrtException;
 
 import javax.sound.sampled.AudioInputStream;
@@ -8,11 +15,12 @@ import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-public class SileroVadDetector {
-    private final SileroVadOnnxModel model;
+public class SileroVadDetector implements AutoCloseable{
+    private final SileroVadModel model;
     private final float threshold;
     private final float negThreshold;
     private final int samplingRate;
@@ -27,6 +35,17 @@ public class SileroVadDetector {
     private static final Integer SAMPLING_RATE_8K = 8000;
     private static final Integer SAMPLING_RATE_16K = 16000;
 
+    // Define private variable Session
+    private float[][] context;
+    // Define the last sample rate
+    private int lastSr = 0;
+    // Define the last batch size
+    private int lastBatchSize = 0;
+    // Define a list of supported sample rates
+    private static final List<Integer> SAMPLE_RATES = Arrays.asList(8000, 16000);
+    private NDArray stateArray;
+    private NDManager manager;
+
     /**
      * Constructor
      * @param model silero-vad onnx model
@@ -38,7 +57,7 @@ public class SileroVadDetector {
      * @param speechPadMs Additional pad millis for speech start and end
      * @throws OrtException
      */
-    public SileroVadDetector(SileroVadOnnxModel model, float threshold, int samplingRate,
+    public SileroVadDetector(SileroVadModel model, float threshold, int samplingRate,
                              int minSpeechDurationMs, float maxSpeechDurationSeconds,
                              int minSilenceDurationMs, int speechPadMs) throws OrtException {
         if (samplingRate != SAMPLING_RATE_8K && samplingRate != SAMPLING_RATE_16K) {
@@ -58,14 +77,53 @@ public class SileroVadDetector {
         this.maxSpeechSamples = samplingRate * maxSpeechDurationSeconds - windowSizeSample - 2 * speechPadSamples;
         this.minSilenceSamples = samplingRate * minSilenceDurationMs / 1000f;
         this.minSilenceSamplesAtMaxSpeech = samplingRate * 98 / 1000f;
+        this.manager = NDManager.newBaseManager(Device.cpu(), "PyTorch");
+
         this.reset();
+    }
+
+    /**
+     * Get speech segment list by given wav-format file
+     * @param wavFile wav file
+     * @return list of speech segment
+     */
+    public List<SileroSpeechSegment> getSpeechSegmentList(File wavFile) {
+        reset();
+        try (AudioInputStream audioInputStream =  AudioSystem.getAudioInputStream(wavFile)){
+            List<Float> speechProbList = new ArrayList<>();
+            this.audioLengthSamples = audioInputStream.available() / 2;
+            byte[] data = new byte[this.windowSizeSample * 2];
+            int numBytesRead = 0;
+
+            while ((numBytesRead = audioInputStream.read(data)) != -1) {
+                if (numBytesRead <= 0) {
+                    break;
+                }
+                // Convert the byte array to a float array
+                float[] audioData = new float[data.length / 2];
+                for (int i = 0; i < audioData.length; i++) {
+                    audioData[i] = ((data[i * 2] & 0xff) | (data[i * 2 + 1] << 8)) / 32767.0f;
+                }
+
+                float speechProb = 0;
+                try {
+                    speechProb = this.call(new float[][]{audioData}, samplingRate)[0];
+                    speechProbList.add(speechProb);
+                } catch (OrtException e) {
+                    throw e;
+                }
+            }
+            return calculateProb(speechProbList);
+        } catch (Exception e) {
+            throw new RuntimeException("SileroVadDetector getSpeechTimeList with error", e);
+        }
     }
 
     /**
      * Method to reset the state
      */
     public void reset() {
-        model.resetStates();
+        resetStates();
     }
 
     /**
@@ -93,7 +151,7 @@ public class SileroVadDetector {
 
                 float speechProb = 0;
                 try {
-                    speechProb = model.call(new float[][]{audioData}, samplingRate)[0];
+                    speechProb = this.call(new float[][]{audioData}, samplingRate)[0];
                     speechProbList.add(speechProb);
                 } catch (OrtException e) {
                     throw e;
@@ -130,7 +188,7 @@ public class SileroVadDetector {
 
                 float speechProb = 0;
                 try {
-                    speechProb = model.call(new float[][]{audioData}, samplingRate)[0];
+                    speechProb = this.call(new float[][]{audioData}, samplingRate)[0];
                     speechProbList.add(speechProb);
                 } catch (OrtException e) {
                     throw e;
@@ -279,4 +337,182 @@ public class SileroVadDetector {
         float secondValue = offset * 1.0f / samplingRate;
         return (float) Math.floor(secondValue * 1000.0f) / 1000.0f;
     }
+
+    /**
+     * 调用模型
+     *
+     * @param x
+     * @param sr
+     * @return
+     * @throws OrtException
+     */
+    public float[] call(float[][] x, int sr) throws OrtException {
+        ValidationResult result = validateInput(x, sr);
+        x = result.x;
+        sr = result.sr;
+        int numberSamples = 256;
+        if (sr == 16000) {
+            numberSamples = 512;
+        }
+
+        if (x[0].length != numberSamples) {
+            throw new IllegalArgumentException("Provided number of samples is " + x[0].length + " (Supported values: 256 for 8000 sample rate, 512 for 16000)");
+        }
+
+        int batchSize = x.length;
+
+        int contextSize = 32;
+        if (sr == 16000) {
+            contextSize = 64;
+        }
+
+        if (lastBatchSize == 0) {
+            resetStates();
+        }
+        if (lastSr != 0 && lastSr != sr) {
+            resetStates();
+        }
+        if (lastBatchSize != 0 && lastBatchSize != batchSize) {
+            resetStates();
+        }
+
+        if (context.length == 0) {
+            context = new float[batchSize][contextSize];
+        }
+
+        x = concatenate(context, x);
+
+        try {
+            NDArray audioFeature = manager.create(x).toType(DataType.FLOAT32, true);
+            audioFeature.setName("input");
+            NDArray sampling_rate = manager.create(new long[]{16000}).toType(DataType.INT64, true);
+            sampling_rate.setName("sr");
+            stateArray.setName("state");
+            NDList list = new NDList(audioFeature, sampling_rate, stateArray);
+
+            NDList predictResult = model.predict(list);
+
+            NDArray output = predictResult.get(0);
+            float[] outputArr = output.toFloatArray();
+
+            stateArray  = predictResult.get(1);
+
+            context = getLastColumns(x, contextSize);
+            lastSr = sr;
+            lastBatchSize = batchSize;
+            return outputArr;
+
+        } catch (TranslateException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * 重置状态
+     */
+    public void resetStates() {
+        stateArray = manager.zeros(new Shape(2, 1, 128), DataType.FLOAT32);
+        context = new float[0][];
+        lastSr = 0;
+        lastBatchSize = 0;
+    }
+
+    public void close(){
+        model.close();
+        manager.close();
+    }
+
+    public static class ValidationResult {
+        public final float[][] x;
+        public final int sr;
+
+        // Constructor
+        public ValidationResult(float[][] x, int sr) {
+            this.x = x;
+            this.sr = sr;
+        }
+    }
+
+    /**
+     * Function to validate input data
+     */
+    private ValidationResult validateInput(float[][] x, int sr) {
+        // Process the input data with dimension 1
+        if (x.length == 1) {
+            x = new float[][]{x[0]};
+        }
+        // Throw an exception when the input data dimension is greater than 2
+        if (x.length > 2) {
+            throw new IllegalArgumentException("Incorrect audio data dimension: " + x[0].length);
+        }
+
+        // Process the input data when the sample rate is not equal to 16000 and is a multiple of 16000
+        if (sr != 16000 && (sr % 16000 == 0)) {
+            int step = sr / 16000;
+            float[][] reducedX = new float[x.length][];
+
+            for (int i = 0; i < x.length; i++) {
+                float[] current = x[i];
+                float[] newArr = new float[(current.length + step - 1) / step];
+
+                for (int j = 0, index = 0; j < current.length; j += step, index++) {
+                    newArr[index] = current[j];
+                }
+
+                reducedX[i] = newArr;
+            }
+
+            x = reducedX;
+            sr = 16000;
+        }
+
+        // If the sample rate is not in the list of supported sample rates, throw an exception
+        if (!SAMPLE_RATES.contains(sr)) {
+            throw new IllegalArgumentException("Only supports sample rates " + SAMPLE_RATES + " (or multiples of 16000)");
+        }
+
+        // If the input audio block is too short, throw an exception
+        if (((float) sr) / x[0].length > 31.25) {
+            throw new IllegalArgumentException("Input audio is too short");
+        }
+
+        // Return the validated result
+        return new ValidationResult(x, sr);
+    }
+
+    private static float[][] concatenate(float[][] a, float[][] b) {
+        if (a.length != b.length) {
+            throw new IllegalArgumentException("The number of rows in both arrays must be the same.");
+        }
+
+        int rows = a.length;
+        int colsA = a[0].length;
+        int colsB = b[0].length;
+        float[][] result = new float[rows][colsA + colsB];
+
+        for (int i = 0; i < rows; i++) {
+            System.arraycopy(a[i], 0, result[i], 0, colsA);
+            System.arraycopy(b[i], 0, result[i], colsA, colsB);
+        }
+
+        return result;
+    }
+
+    private static float[][] getLastColumns(float[][] array, int contextSize) {
+        int rows = array.length;
+        int cols = array[0].length;
+
+        if (contextSize > cols) {
+            throw new IllegalArgumentException("contextSize cannot be greater than the number of columns in the array.");
+        }
+
+        float[][] result = new float[rows][contextSize];
+
+        for (int i = 0; i < rows; i++) {
+            System.arraycopy(array[i], cols - contextSize, result[i], 0, contextSize);
+        }
+
+        return result;
+    }
+
 }

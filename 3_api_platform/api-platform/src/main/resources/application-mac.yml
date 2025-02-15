@@ -31,7 +31,7 @@ model:
   asr:
     type: base
     # 静音检测模型
-    vad: /home/models/asr/silero_vad.onnx
+    vad: /Users/calvin/AIAS/3_api_platform/api-platform/models/asr/silero_vad.onnx
     # tiny 模型
     tiny: /Users/calvin/AIAS/3_api_platform/api-platform/models/asr/traced_whisper_tiny.pt
     # base 模型
@@ -74,14 +74,6 @@ model:
     animeModelName: anime.onnx
     # 衣服分割模型
     clothModelName: cloth.onnx
-    # Sam2 手工框选模型
-    sam2:
-      # encoder model URI
-      # sam2-hiera-large-encoder.onnx
-      encoder: sam2-hiera-tiny-encoder.onnx
-      # decoder model URI
-      # sam2-hiera-large-decoder.onnx
-      decoder: sam2-hiera-tiny-decoder.onnx
 
   # 黑白照片山色
   color:
