@@ -79,3 +79,20 @@ model:
     modelPath: D:\\ai_projects\\AIAS\\3_api_platform\\api-platform\\models\\color\\
     # 模型名字
     modelName: traced_ddcolor_cpu.pt
+
+  # 图片预处理工具箱
+  preprocess:
+    dptDepthModelPath: D:\\ai_projects\\AIAS\\3_api_platform\\api-platform\\models\\controlnet\\dpt_depth.pt
+    midasDepthModelPath: D:\\ai_projects\\AIAS\\3_api_platform\\api-platform\\models\\controlnet\\midas_depth.pt
+    bodyModelPath: D:\\ai_projects\\AIAS\\3_api_platform\\api-platform\\models\\controlnet\\body.pt
+    faceModelPath: D:\\ai_projects\\AIAS\\3_api_platform\\api-platform\\models\\controlnet\\face.pt
+    handModelPath: D:\\ai_projects\\AIAS\\3_api_platform\\api-platform\\models\\controlnet\\hand.pt
+    hedModelPath: D:\\ai_projects\\AIAS\\3_api_platform\\api-platform\\models\\controlnet\\hed.pt
+    pidiCpuModelPath: D:\\ai_projects\\AIAS\\3_api_platform\\api-platform\\models\\controlnet\\pidi_cpu.pt
+    pidiGpuModelPath: D:\\ai_projects\\AIAS\\3_api_platform\\api-platform\\models\\controlnet\\pidi_gpu.pt
+    lineartModelPath: D:\\ai_projects\\AIAS\\3_api_platform\\api-platform\\models\\controlnet\\lineart.pt
+    lineartAnimeModelPath: D:\\ai_projects\\AIAS\\3_api_platform\\api-platform\\models\\controlnet\\lineart_anime.pt
+    lineartCoarseModelPath: D:\\ai_projects\\AIAS\\3_api_platform\\api-platform\\models\\controlnet\\lineart_coarse.pt
+    mlsdModelPath: D:\\ai_projects\\AIAS\\3_api_platform\\api-platform\\models\\controlnet\\mlsd.pt
+    normalbaeModelPath: D:\\ai_projects\\AIAS\\3_api_platform\\api-platform\\models\\controlnet\\normalbae.pt
+    upernetModelPath: D:\\ai_projects\\AIAS\\3_api_platform\\api-platform\\models\\controlnet\\upernet.pt

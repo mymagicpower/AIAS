@@ -250,6 +250,162 @@
         <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/ap-images/ddcolor.jpg" width = "400px"/>
         </div>
       </td>
+    </tr>          
+    <tr>
+      <td>
+        <div align="left">
+          <p>图像预处理系列</p>    
+          - 1. Canny 边缘检测 <br>
+          - 常用于生成线稿<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/canny.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>          
+    <tr>
+      <td>
+        <div align="left">
+          <p>图像预处理系列</p>    
+          - 2. MLSD 线条检测 <br>
+          - 线条检测用于生成房间、直线条的建筑场景<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/mlsd.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>          
+    <tr>
+      <td>
+        <div align="left">
+          <p>图像预处理系列</p>    
+          - 3. Scribble 涂鸦 <br>
+          - 自动生成类似涂鸦效果的草图线条<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/scribble.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>          
+    <tr>
+      <td>
+        <div align="left">
+          <p>图像预处理系列</p>    
+          - 4. SoftEdge 边缘检测 <br>
+          - 边缘检测可保留更多柔和的边缘细节，类似手绘效果 <br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/softedge.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>          
+    <tr>
+      <td>
+        <div align="left">
+          <p>图像预处理系列</p>    
+          - 5. OpenPose 姿态检测 <br>
+          - 可生成图像中角色动作姿态的骨架图 <br>
+          - 含脸部特征以及手部骨架检测
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/openpose.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>          
+    <tr>
+      <td>
+        <div align="left">
+          <p>图像预处理系列</p>    
+          - 6. 语义分割 <br>
+          - 用颜色把不同类型的对象分割开 <br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/seg.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>          
+    <tr>
+      <td>
+        <div align="left">
+          <p>图像预处理系列</p>    
+          - 7. Depth 深度估计<br>
+          - 生成具有原图同样深度结构的深度图 <br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/depth.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>          
+    <tr>
+      <td>
+        <div align="left">
+          <p>图像预处理系列</p>    
+          - 8. 法线贴图<br>
+          - 生成凹凸信息的法线贴图 <br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/normal.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>          
+    <tr>
+      <td>
+        <div align="left">
+          <p>图像预处理系列</p>    
+          - 9. Lineart生成线稿 <br>
+          - 识别出图像内各对象的边缘轮廓<br>
+          - 用于生成线稿 
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/lineart.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>          
+    <tr>
+      <td>
+        <div align="left">
+          <p>图像预处理系列</p>    
+          - 10. 生成卡通图线稿 <br>
+          - 识别出卡通图像内各对象的边缘轮廓<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/lineart_anime.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>          
+    <tr>
+      <td>
+        <div align="left">
+          <p>图像预处理系列</p>    
+          - 11. 内容重洗 <br>
+          - 图片内容变换位置，打乱次序<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/shuffle.png" width = "400px"/>
+        </div>
+      </td>
     </tr>                                                      
   </table>
 </div>

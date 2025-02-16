@@ -78,19 +78,20 @@ public class NDArrayUtils {
         return arr;
     }
 
-    public static org.opencv.core.Mat floatNDArrayToMat(NDArray ndArray,int C) {
-        int rows = (int) (ndArray.getShape().get(0));
-        int cols = (int) (ndArray.getShape().get(1));
-        org.opencv.core.Mat mat = new Mat(rows, cols, CvType.CV_32FC(C));
+    public static org.opencv.core.Mat floatNDArrayToMat(NDArray ndArray, int cvType) {
+        int rows = (int) ndArray.getShape().get(0);
+        int cols = (int) ndArray.getShape().get(1);
 
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                mat.put(i, j, ndArray.get(i, j).toFloatArray()); // 性能差，待优化
-            }
-        }
+        // 直接创建 Mat
+        org.opencv.core.Mat mat = new Mat(rows, cols, CvType.CV_32FC(cvType));
+
+        // 一次性获取数据
+        float[] data = ndArray.toFloatArray();
+
+        // 直接填充 Mat
+        mat.put(0, 0, data);
 
         return mat;
-
     }
 
 

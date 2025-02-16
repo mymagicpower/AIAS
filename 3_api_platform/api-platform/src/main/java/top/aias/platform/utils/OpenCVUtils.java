@@ -125,6 +125,35 @@ public class OpenCVUtils {
         return ret;
     }
 
+    public static BufferedImage mat2ImageForSingleChannel(Mat mat) {
+        int width = mat.width();
+        int height = mat.height();
+
+        // 检查是否是单通道图像
+        boolean isSingleChannel = mat.channels() == 1;
+
+        byte[] data = new byte[width * height * (int) mat.elemSize()];
+
+        // 如果是单通道图像，不需要做颜色转换
+        if (!isSingleChannel) {
+            Imgproc.cvtColor(mat, mat, Imgproc.COLOR_BGR2GRAY); // 如果需要将图像转换为灰度图
+        }
+
+        mat.get(0, 0, data);
+
+        // 创建 BufferedImage 对象
+        BufferedImage ret;
+        if (isSingleChannel) {
+            ret = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_GRAY); // 单通道图像类型
+        } else {
+            ret = new BufferedImage(width, height, BufferedImage.TYPE_3BYTE_BGR); // 多通道图像类型
+        }
+
+        ret.getRaster().setDataElements(0, 0, width, height, data);
+        return ret;
+    }
+
+
     /**
      * BufferedImage to Mat
      *
@@ -381,5 +410,31 @@ public class OpenCVUtils {
         ndArray.set(data);
 
         return ndArray;
+    }
+
+    /**
+     * canny算法，边缘检测
+     *
+     * @param src
+     * @return
+     */
+    public static org.opencv.core.Mat canny(org.opencv.core.Mat src) {
+        org.opencv.core.Mat mat = src.clone();
+        Imgproc.Canny(src, mat, 100, 200);
+        return mat;
+    }
+
+    public static org.opencv.core.Mat sobel(org.opencv.core.Mat src, int dx, int dy) {
+        org.opencv.core.Mat mat = src.clone();
+        Imgproc.Sobel(src, mat, CvType.CV_32F, dx, dy, 3);//CvType.CV_32F  CV_64F scale：默认1 delta：默认0
+//        org.opencv.core.Mat dst = mat.clone();
+//        Core.convertScaleAbs(mat, dst);
+        return mat;
+    }
+
+    public static org.opencv.core.Mat remap(org.opencv.core.Mat src, org.opencv.core.Mat map1, org.opencv.core.Mat map2) {
+        org.opencv.core.Mat dst = src.clone();
+        Imgproc.remap(src, dst, map1, map2, Imgproc.INTER_LINEAR);
+        return dst;
     }
 }

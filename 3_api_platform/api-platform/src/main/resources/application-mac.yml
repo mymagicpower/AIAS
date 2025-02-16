@@ -80,3 +80,20 @@ model:
     modelPath: /Users/calvin/AIAS/3_api_platform/api-platform/models/color/
     # 模型名字
     modelName: traced_ddcolor_cpu.pt
+
+  # 图片预处理工具箱
+  preprocess:
+    dptDepthModelPath: /Users/calvin/AIAS/3_api_platform/api-platform/models/controlnet/dpt_depth.pt
+    midasDepthModelPath: /Users/calvin/AIAS/3_api_platform/api-platform/models/controlnet/midas_depth.pt
+    bodyModelPath: /Users/calvin/AIAS/3_api_platform/api-platform/models/controlnet/body.pt
+    faceModelPath: /Users/calvin/AIAS/3_api_platform/api-platform/models/controlnet/face.pt
+    handModelPath: /Users/calvin/AIAS/3_api_platform/api-platform/models/controlnet/hand.pt
+    hedModelPath: /Users/calvin/AIAS/3_api_platform/api-platform/models/controlnet/hed.pt
+    pidiCpuModelPath: /Users/calvin/AIAS/3_api_platform/api-platform/models/controlnet/pidi_cpu.pt
+    pidiGpuModelPath: /Users/calvin/AIAS/3_api_platform/api-platform/models/controlnet/pidi_gpu.pt
+    lineartModelPath: /Users/calvin/AIAS/3_api_platform/api-platform/models/controlnet/lineart.pt
+    lineartAnimeModelPath: /Users/calvin/AIAS/3_api_platform/api-platform/models/controlnet/lineart_anime.pt
+    lineartCoarseModelPath: /Users/calvin/AIAS/3_api_platform/api-platform/models/controlnet/lineart_coarse.pt
+    mlsdModelPath: /Users/calvin/AIAS/3_api_platform/api-platform/models/controlnet/mlsd.pt
+    normalbaeModelPath: /Users/calvin/AIAS/3_api_platform/api-platform/models/controlnet/normalbae.pt
+    upernetModelPath: /Users/calvin/AIAS/3_api_platform/api-platform/models/controlnet/upernet.pt

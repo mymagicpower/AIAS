@@ -39,11 +39,102 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
+    meta: { title: '图像预处理', icon: 'el-icon-picture' },
     children: [
       {
         path: '/',
+        component: () => import('@/views/preprocess/canny'),
+        name: 'canny',
+        meta: { title: 'Canny 边缘检测', icon: 'el-icon-full-screen' }
+      },
+      {
+        path: '/ocr',
+        component: () => import('@/views/preprocess/mlsd'),
+        name: 'ocr',
+        meta: { title: 'MLSD 线条检测', icon: 'el-icon-full-screen' }
+      },
+      {
+        path: '/scribbleHed',
+        component: () => import('@/views/preprocess/scribbleHed'),
+        name: 'scribbleHed',
+        meta: { title: '涂鸦-Hed模型', icon: 'el-icon-full-screen' }
+      },
+      {
+        path: '/scribblePidiNet',
+        component: () => import('@/views/preprocess/scribblePidiNet'),
+        name: 'scribblePidiNet',
+        meta: { title: '涂鸦-PidiNet模型', icon: 'el-icon-full-screen' }
+      },
+      {
+        path: '/softEdgeHed',
+        component: () => import('@/views/preprocess/softEdgeHed'),
+        name: 'softEdgeHed',
+        meta: { title: '边缘检测-Hed模型', icon: 'el-icon-full-screen' }
+      },
+      {
+        path: '/softEdgePidiNet',
+        component: () => import('@/views/preprocess/softEdgePidiNet'),
+        name: 'softEdgePidiNet',
+        meta: { title: '边缘检测-PidiNet模型', icon: 'el-icon-full-screen' }
+      },
+      {
+        path: '/openPose',
+        component: () => import('@/views/preprocess/openPose'),
+        name: 'openPose',
+        meta: { title: '姿态检测', icon: 'el-icon-full-screen' }
+      },
+      {
+        path: '/segUperNet',
+        component: () => import('@/views/preprocess/segUperNet'),
+        name: 'segUperNet',
+        meta: { title: '语义分割', icon: 'el-icon-full-screen' }
+      },
+      {
+        path: '/depthDpt',
+        component: () => import('@/views/preprocess/depthDpt'),
+        name: 'depthDpt',
+        meta: { title: '深度估计-DPT模型', icon: 'el-icon-full-screen' }
+      },
+      {
+        path: '/depthMidas',
+        component: () => import('@/views/preprocess/depthMidas'),
+        name: 'depthMidas',
+        meta: { title: '深度估计-Midas模型', icon: 'el-icon-full-screen' }
+      },
+      {
+        path: '/normalBae',
+        component: () => import('@/views/preprocess/normalBae'),
+        name: 'normalBae',
+        meta: { title: '法线贴图', icon: 'el-icon-full-screen' }
+      },
+      {
+        path: '/lineart',
+        component: () => import('@/views/preprocess/lineart'),
+        name: 'lineart',
+        meta: { title: '生成线稿', icon: 'el-icon-full-screen' }
+      },
+      {
+        path: '/lineartAnime',
+        component: () => import('@/views/preprocess/lineartAnime'),
+        name: 'lineartAnime',
+        meta: { title: '卡通图像线稿', icon: 'el-icon-full-screen' }
+      },
+      {
+        path: '/shuffle',
+        component: () => import('@/views/preprocess/shuffle'),
+        name: 'shuffle',
+        meta: { title: '内容重洗', icon: 'el-icon-full-screen' }
+      }
+    ]
+  },
+  {
+    path: '/ocr',
+    component: Layout,
+    children: [
+      {
+        path: '/ocr',
         component: () => import('@/views/general/index'),
-        name: 'inference',
+        name: 'ocr',
         meta: { title: '通用文字识别', icon: 'el-icon-full-screen' }
       }
     ]
@@ -55,7 +146,7 @@ export const constantRoutes = [
       {
         path: '/mlsd',
         component: () => import('@/views/mlsd/index'),
-        name: 'inference',
+        name: 'mlsd',
         meta: { title: '文本转正', icon: 'el-icon-c-scale-to-original' }
       }
     ]
@@ -67,13 +158,13 @@ export const constantRoutes = [
       {
         path: '/trans',
         component: () => import('@/views/translate/index'),
-        name: 'inference',
+        name: 'trans',
         meta: { title: '文本翻译', icon: 'el-icon-c-scale-to-original' }
       }
     ]
   },
   {
-    path: '/enasr',
+    path: '/asr',
     component: Layout,
     meta: { title: '语音识别', icon: 'el-icon-picture' },
     children: [
@@ -104,7 +195,7 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '/imageSr',
+    path: '/imageGan',
     component: Layout,
     meta: { title: '一键高清', icon: 'el-icon-picture' },
     children: [

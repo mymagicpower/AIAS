@@ -62,7 +62,7 @@ model:
     # 遮罩层
     mask: false
     # 模型路径
-    modelPath: /Users/calvin/AIAS/3_api_platform/api-platform/models/seg/
+    modelPath: /home/models/seg/
     # 通用分割模型
     bigModelName: u2net.onnx
     middleModelName: silueta.onnx
@@ -79,3 +79,20 @@ model:
     modelPath: /home/models/color/
     # 模型名字
     modelName: traced_ddcolor_cpu.pt
+  
+  # 图片预处理工具箱
+  preprocess:
+    dptDepthModelPath: /home/models/controlnet/dpt_depth.pt
+    midasDepthModelPath: /home/models/controlnet/midas_depth.pt
+    bodyModelPath: /home/models/controlnet/body.pt
+    faceModelPath: /home/models/controlnet/face.pt
+    handModelPath: /home/models/controlnet/hand.pt
+    hedModelPath: /home/models/controlnet/hed.pt
+    pidiCpuModelPath: /home/models/controlnet/pidi_cpu.pt
+    pidiGpuModelPath: /home/models/controlnet/pidi_gpu.pt
+    lineartModelPath: /home/models/controlnet/lineart.pt
+    lineartAnimeModelPath: /home/models/controlnet/lineart_anime.pt
+    lineartCoarseModelPath: /home/models/controlnet/lineart_coarse.pt
+    mlsdModelPath: /home/models/controlnet/mlsd.pt
+    normalbaeModelPath: /home/models/controlnet/normalbae.pt
+    upernetModelPath: /home/models/controlnet/upernet.pt  

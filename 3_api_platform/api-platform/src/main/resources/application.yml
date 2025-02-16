@@ -5,7 +5,7 @@ spring:
     # mac - Mac 环境
     # linux - Linux 环境
     # online - 模型在线加载
-    active: mac
+    active: win
   servlet:
     multipart:
       enabled: true
