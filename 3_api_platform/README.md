@@ -1,6 +1,11 @@
 ### 目录：
 https://www.aias.top/
 
+### 非图像生成类模型下载【8.2G】：
+- 链接: https://pan.baidu.com/s/1Or8i1aOpsl8pZM66i2RNVQ?pwd=uh12
+
+### 图像生成类模型下载【62G】：
+- -链接: https://pan.baidu.com/s/1Agt84-DdykIO25hkWzvwRg?pwd=9g5r
 
 ### API 能力平台
 提供开箱即用的人工智能能力平台。
