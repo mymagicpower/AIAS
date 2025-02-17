@@ -38,7 +38,7 @@ public class ModelConfigTrans {
     private int maxLength;
 
     @Bean
-    public NllbModel textEncoderModel() {
+    public NllbModel nllbModel() {
         TransConfig config = new TransConfig();
         config.setMaxSeqLength(maxLength);
 
@@ -49,12 +49,12 @@ public class ModelConfigTrans {
             device = Device.gpu();
         }
 
-        NllbModel textEncoderModel = new NllbModel(config, modelPath, modelName, poolSize, device);
+        NllbModel nllbModel = new NllbModel(config, modelPath, modelName, poolSize, device);
 
         if (loadMode.equalsIgnoreCase("eager")) {
-            textEncoderModel.ensureInitialized();
+            nllbModel.ensureInitialized();
         }
 
-        return textEncoderModel;
+        return nllbModel;
     }
 }

@@ -108,7 +108,7 @@
 - DPT
 - CPU版本 ControlNetDepthMidasCpu.java
 - GPU版本 ControlNetDepthMidasGpu.java
-- 通过提取原始图片中的深度信息，生成具有原图同样深度结构的深度图，越白的越靠前，越黑的越靠后。
+- 通过提取原始图片中的深度信息，生成具有原图同样深度结构的图，越白的越靠前，越黑的越靠后。
 - 对应ControlNet模型： control_depth。
 
 <div align="center">

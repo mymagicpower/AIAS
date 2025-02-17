@@ -14,7 +14,7 @@ model:
   # 设备类型 cpu gpu
   device: cpu
   # 如果是 CPU 推理，最高设置为 CPU 核心数 (Core Number)
-  poolSize: 4
+  poolSize: 2
   # ocr 文字识别
   ocrv4:
     # server detection model URI
@@ -95,4 +95,31 @@ model:
     lineartCoarseModelPath: /home/models/controlnet/lineart_coarse.pt
     mlsdModelPath: /home/models/controlnet/mlsd.pt
     normalbaeModelPath: /home/models/controlnet/normalbae.pt
-    upernetModelPath: /home/models/controlnet/upernet.pt  
+    upernetModelPath: /home/models/controlnet/upernet.pt
+
+  sd:
+    # 调用完ControlNet 模型，自动关闭，节省显存【显存充足（至少24G显存）可以设置为false】
+    autoClose: false
+    # 模型路径
+    cpuModelPath: /home/models/aigc/sd_cpu/
+    gpuModelPath: /home/models/aigc/sd_gpu/
+    # encoder, decoder 模型
+    textEncoder: text_encoder.pt
+    vaeDecoder: vae_decoder.pt
+    vaeEncoder: vae_encoder.pt
+    # Unet 模型
+    unet: unet.pt
+    controlnetUnet: controlnet_unet.pt
+    # ControlNet 模型名称
+    canny: controlnet_canny.pt
+    depth: controlnet_depth.pt
+    ip2p: controlnet_ip2p.pt
+    lineart: controlnet_lineart.pt
+    lineartAnime: controlnet_lineart_anime.pt
+    mlsd: controlnet_mlsd.pt
+    normalbae: controlnet_normalbae.pt
+    openpose: controlnet_openpose.pt
+    scribble: controlnet_scribble.pt
+    seg: controlnet_seg.pt
+    shuffle: controlnet_shuffle.pt
+    softedge: controlnet_softedge.pt

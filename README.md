@@ -276,7 +276,8 @@
         <div align="left">
           <p>图像预处理系列</p>    
           - 2. MLSD 线条检测 <br>
-          - 线条检测用于生成房间、直线条的建筑场景<br>
+          - 线条检测用于生成房间、<br>
+          - 直线条的建筑场景<br>
         </div>
       </td>     
       <td>
@@ -304,7 +305,8 @@
         <div align="left">
           <p>图像预处理系列</p>    
           - 4. SoftEdge 边缘检测 <br>
-          - 边缘检测可保留更多柔和的边缘细节，类似手绘效果 <br>
+          - 边缘检测可保留更多柔和的边缘细节，<br>
+          - 类似手绘效果 <br>
         </div>
       </td>     
       <td>
@@ -412,7 +414,179 @@
         <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/shuffle.png" width = "400px"/>
         </div>
       </td>
-    </tr>                                                      
+    </tr>          
+    <tr>
+      <td>
+        <div align="left">
+          <p>图像生成系列</p>    
+          - 1. Canny 辅助生成 <br>
+          - Canny 边缘检测预处理器，<br>
+          - 可很好识别出图像内各对象的边缘轮廓，<br>
+          - 常用于生成线稿。<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/canny_sd.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>          
+    <tr>
+      <td>
+        <div align="left">
+          <p>图像生成系列</p>    
+          - 2. Mlsd 辅助生成 <br>
+          - MLSD 线条检测用于生成房间、<br>
+          - 直线条的建筑场景效果比较好。<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/mlsd_sd.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>          
+    <tr>
+      <td>
+        <div align="left">
+          <p>图像生成系列</p>    
+          - 3. Scribble 涂鸦辅助生成 <br>
+          - 不用自己画，<br>
+          - 图片自动生成类似涂鸦效果的草图线条。<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/scribble_sd.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>          
+    <tr>
+      <td>
+        <div align="left">
+          <p>图像生成系列</p>    
+          - 4. SoftEdge 辅助生成 <br>
+          - SoftEdge 边缘检测，<br>
+          - 可保留更多柔和的边缘细节，<br>
+          - 类似手绘效果。 <br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/softedge_sd.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>          
+    <tr>
+      <td>
+        <div align="left">
+          <p>图像生成系列</p>    
+          - 5. OpenPose 辅助生成 <br>
+          -姿态检测可生成图像中角色动作姿态的骨架图<br>
+          - (含脸部特征以及手部骨架检测)，<br>
+          - 这个骨架图可用于控制生成角色的姿态动作。 <br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/openpose_sd.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>          
+    <tr>
+      <td>
+        <div align="left">
+          <p>图像生成系列</p>    
+          - 6. 语义分割辅助生成 <br>
+          - 语义分割可多通道应用，<br>
+          - 原理是用颜色把不同类型的对象分割开，<br>
+          - 让AI能正确识别对象类型和需求生成的区界。 <br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/seg_sd.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>          
+    <tr>
+      <td>
+        <div align="left">
+          <p>图像生成系列</p>    
+          - 7. 深度估计辅助生成<br>
+          - 通过提取原始图片中的深度信息， <br>
+          - 生成具有原图同样深度结构的图 <br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/depth_sd.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>          
+    <tr>
+      <td>
+        <div align="left">
+          <p>图像生成系列</p>    
+          - 8. 法线贴图辅助生成<br>
+          - 根据图片生成法线贴图， <br>
+          - 然后根据法向贴图生成新图。 <br>
+          - 适合CG或游戏美术师。 <br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/normal_sd.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>          
+    <tr>
+      <td>
+        <div align="left">
+          <p>图像生成系列</p>    
+          - 9. 线稿提取辅助生成 <br>
+          - Lineart 边缘检测预处理器，<br>
+          - 可很好识别出图像内各对象的边缘轮廓，<br>
+          - 用于生成线稿。<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/lineart_sd_new.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>          
+    <tr>
+      <td>
+        <div align="left">
+          <p>图像生成系列</p>    
+          - 10. 卡通线稿辅助生成 <br>
+          - 卡通边缘检测预处理器，<br>
+          - 可很好识别出卡通图像内各对象的边缘轮廓，<br>
+          - 用于生成线稿。<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/lineart_anime_sd_new.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>          
+    <tr>
+      <td>
+        <div align="left">
+          <p>图像生成系列</p>    
+          - 11. 内容重洗辅助生成<br>
+          - 图片内容变换位置，<br>
+          - 打乱次序生成新图<br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/shuffle_sd.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>                                                        
   </table>
 </div>
 
