@@ -2,7 +2,6 @@ package top.aias.sd.pipelines;
 
 import ai.djl.Device;
 import ai.djl.ModelException;
-import ai.djl.inference.Predictor;
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.util.NDImageUtils;
 import ai.djl.ndarray.NDArray;
@@ -10,98 +9,38 @@ import ai.djl.ndarray.NDList;
 import ai.djl.ndarray.NDManager;
 import ai.djl.ndarray.types.DataType;
 import ai.djl.ndarray.types.Shape;
-import ai.djl.repository.zoo.Criteria;
-import ai.djl.repository.zoo.ZooModel;
 import ai.djl.training.util.ProgressBar;
-import ai.djl.translate.NoopTranslator;
 import ai.djl.translate.TranslateException;
 import top.aias.sd.scheduler.PNDMScheduler;
-import top.aias.sd.translator.ImageDecoder;
-import top.aias.sd.translator.TextEncoder;
 import top.aias.sd.utils.NDArrayUtils;
 
 import java.io.IOException;
-import java.nio.file.Paths;
 
 public class StableDiffusionControlNetPipeline implements AutoCloseable {
-
     private static final int HEIGHT = 512;
     private static final int WIDTH = 512;
     private static final int OFFSET = 1;
     private static final float GUIDANCE_SCALE = 7.5f;
     private static final float STRENGTH = 0.75f;
-    ZooModel controlNetModel;
-    private Predictor<NDList, NDList> controlNetPredictor;
-    ZooModel unetModel;
-    private Predictor<NDList, NDList> unetPredictor;
-    ZooModel vaeDecoderModel;
-    private Predictor<NDArray, Image> vaeDecoderPredictor;
-    ZooModel textEncoderModel;
-    private Predictor<String, NDList> textEncoderPredictor;
-
+    ControlNetModel controlNetModel;
+    UNetForControlModel unetModel;
+    VaeDecoderModel vaeDecoderModel;
+    TextEncoderModel textEncoderModel;
     private Device device;
 
     public StableDiffusionControlNetPipeline(String root, String model, Device device) throws ModelException, IOException {
         this.device = device;
-
-        Criteria<NDList, NDList> ctrlNetCriteria =
-                Criteria.builder()
-                        .setTypes(NDList.class, NDList.class)
-                        .optModelPath(Paths.get(root + model))
-                        .optEngine("PyTorch")
-                        .optProgress(new ProgressBar())
-                        .optTranslator(new NoopTranslator())
-                        .optDevice(device)
-                        .build();
-        this.controlNetModel = ctrlNetCriteria.loadModel();
-        this.controlNetPredictor = this.controlNetModel.newPredictor();
-
-        Criteria<NDList, NDList> unetCriteria =
-                Criteria.builder()
-                        .setTypes(NDList.class, NDList.class)
-                        .optModelPath(Paths.get(root + "controlnet_unet.pt"))
-                        .optEngine("PyTorch")
-                        .optProgress(new ProgressBar())
-                        .optTranslator(new NoopTranslator())
-                        .optDevice(device)
-                        .build();
-        this.unetModel = unetCriteria.loadModel();
-        this.unetPredictor = this.unetModel.newPredictor();
-
-        Criteria<NDArray, Image> vaeDecoderCriteria =
-                Criteria.builder()
-                        .setTypes(NDArray.class, Image.class)
-                        .optModelPath(Paths.get(root + "vae_decoder.pt"))
-                        .optEngine("PyTorch")
-                        .optTranslator(new ImageDecoder(HEIGHT, WIDTH))
-                        .optProgress(new ProgressBar())
-                        .optDevice(device)
-                        .build();
-        this.vaeDecoderModel = vaeDecoderCriteria.loadModel();
-        this.vaeDecoderPredictor = this.vaeDecoderModel.newPredictor();
-
-        Criteria<String, NDList> textEncoderCriteria =
-                Criteria.builder()
-                        .setTypes(String.class, NDList.class)
-                        .optModelPath(Paths.get(root + "text_encoder.pt"))
-                        .optEngine("PyTorch")
-                        .optProgress(new ProgressBar())
-                        .optTranslator(new TextEncoder(root))
-                        .optDevice(device)
-                        .build();
-        this.textEncoderModel = textEncoderCriteria.loadModel();
-        this.textEncoderPredictor = this.textEncoderModel.newPredictor();
+        this.controlNetModel = new ControlNetModel(root, model, 1, device);
+        this.unetModel = new UNetForControlModel(root, 1, device);
+        this.vaeDecoderModel = new VaeDecoderModel(root, 1, device);
+        this.textEncoderModel = new TextEncoderModel(root, 1, device);
     }
 
     public void close(){
         this.controlNetModel.close();
-        this.controlNetPredictor.close();
         this.unetModel.close();
-        this.unetPredictor.close();
         this.vaeDecoderModel.close();
-        this.vaeDecoderPredictor.close();
         this.textEncoderModel.close();
-        this.textEncoderPredictor.close();
     }
 
     public Image generateImage(Image image, String prompt, String negative_prompt, int steps)
@@ -109,8 +48,8 @@ public class StableDiffusionControlNetPipeline implements AutoCloseable {
         // TODO: implement this part
         try (NDManager manager = NDManager.newBaseManager(device, "PyTorch")) {
             // 1. Encode input prompt
-            NDList textEncoding = textEncoderPredictor.predict(prompt);
-            NDList uncondEncoding = textEncoderPredictor.predict(negative_prompt);
+            NDList textEncoding = textEncoderModel.predict(prompt);
+            NDList uncondEncoding = textEncoderModel.predict(negative_prompt);
             textEncoding.attach(manager);
             uncondEncoding.attach(manager);
             NDArray textEncodingArray = textEncoding.get(1);
@@ -136,12 +75,12 @@ public class StableDiffusionControlNetPipeline implements AutoCloseable {
                 // expand the latents if we are doing classifier free guidance
                 NDArray latentModelInput = latent.concat(latent);
 
-                NDList ndList = controlNetPredictor.predict(buildControlNetInput(embeddings, t, latentModelInput, imageArray));
+                NDList ndList = controlNetModel.predict(buildControlNetInput(embeddings, t, latentModelInput, imageArray));
                 NDArray mid_block_res_sample = ndList.get(12);
                 ndList.remove(12);
                 NDList down_block_res_samples = ndList;
 
-                NDArray noisePred = unetPredictor.predict(buildUnetInput(embeddings, t, latentModelInput, down_block_res_samples, mid_block_res_sample)).get(0);
+                NDArray noisePred = unetModel.predict(buildUnetInput(embeddings, t, latentModelInput, down_block_res_samples, mid_block_res_sample)).get(0);
 
                 NDList splitNoisePred = noisePred.split(2);
                 NDArray noisePredUncond = splitNoisePred.get(0);
@@ -156,7 +95,7 @@ public class StableDiffusionControlNetPipeline implements AutoCloseable {
             pb.end();
 
             // 5. Post-processing
-            return vaeDecoderPredictor.predict(latent);
+            return vaeDecoderModel.predict(latent);
         }
     }
 
@@ -165,8 +104,8 @@ public class StableDiffusionControlNetPipeline implements AutoCloseable {
         // TODO: implement this part
         try (NDManager manager = NDManager.newBaseManager(device, "PyTorch")) {
             // 1. Encode input prompt
-            NDList textEncoding = textEncoderPredictor.predict(prompt);
-            NDList uncondEncoding = textEncoderPredictor.predict(negative_prompt);
+            NDList textEncoding = textEncoderModel.predict(prompt);
+            NDList uncondEncoding = textEncoderModel.predict(negative_prompt);
             textEncoding.attach(manager);
             uncondEncoding.attach(manager);
             NDArray textEncodingArray = textEncoding.get(1);
@@ -192,12 +131,12 @@ public class StableDiffusionControlNetPipeline implements AutoCloseable {
                 // expand the latents if we are doing classifier free guidance
                 NDArray latentModelInput = latent.concat(latent);
 
-                NDList ndList = controlNetPredictor.predict(buildControlNetInput(embeddings, t, latentModelInput, control_image));
+                NDList ndList = controlNetModel.predict(buildControlNetInput(embeddings, t, latentModelInput, control_image));
                 NDArray mid_block_res_sample = ndList.get(12);
                 ndList.remove(12);
                 NDList down_block_res_samples = ndList;
 
-                NDArray noisePred = unetPredictor.predict(buildUnetInput(embeddings, t, latentModelInput, down_block_res_samples, mid_block_res_sample)).get(0);
+                NDArray noisePred = unetModel.predict(buildUnetInput(embeddings, t, latentModelInput, down_block_res_samples, mid_block_res_sample)).get(0);
 
                 NDList splitNoisePred = noisePred.split(2);
                 NDArray noisePredUncond = splitNoisePred.get(0);
@@ -212,7 +151,7 @@ public class StableDiffusionControlNetPipeline implements AutoCloseable {
             pb.end();
 
             // 5. Post-processing
-            return vaeDecoderPredictor.predict(latent);
+            return vaeDecoderModel.predict(latent);
         }
     }
 

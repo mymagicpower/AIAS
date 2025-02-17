@@ -1,8 +1,9 @@
 ### 官网：
 [官网链接](https://www.aias.top/)
 
-### 下载模型，放置于各自项目的models目录
-- 链接: https://pan.baidu.com/s/1sQu1mVR6pPqyBL8nil89tg?pwd=g287
+#### 图像生成类模型下载【62G】：
+- 链接: https://pan.baidu.com/s/1Agt84-DdykIO25hkWzvwRg?pwd=9g5r
+- 请修改代码中模型的路径
 
 #### 图像生成提示词参考
 - https://arthub.ai/

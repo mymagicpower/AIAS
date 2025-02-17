@@ -14,12 +14,11 @@ public final class Txt2ImageCpu {
     private Txt2ImageCpu() {}
 
     public static void main(String[] args) throws ModelException, IOException, TranslateException {
+        String prompt = "Photograph of an astronaut riding a horse in desert";
 
         try(StableDiffusionTxt2ImgPipeline model = new StableDiffusionTxt2ImgPipeline("H:\\models\\aigc\\sd_cpu\\", Device.cpu());){
             long start = System.currentTimeMillis();
-
-            Image result = model.generateImage("Photograph of an astronaut riding a horse in desert", 25);
-
+            Image result = model.generateImage(prompt, "",25);
             long end = System.currentTimeMillis();
             System.out.println("Time: " + (end - start)/1000f/60f);
 
