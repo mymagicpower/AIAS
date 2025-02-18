@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import top.aias.platform.bean.ResultBean;
 import top.aias.platform.service.AsrService;
+import top.aias.platform.utils.AudioUtils;
 import top.aias.platform.utils.FileUtils;
 
 import java.io.IOException;
@@ -22,6 +23,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.UUID;
 
@@ -133,17 +135,14 @@ public class AsrController {
     @GetMapping(value = "/enAsrForLongAudioUrl", produces = "application/json;charset=utf-8")
     public ResultBean enAsrForLongAudioUrl(@RequestParam(value = "url") String url) {
         Path tempAudioFilePath = null;
-
+        Path tempConvertedAudioFilePath = null;
         try {
             // 解析文件扩展名
             String fileExtension = FileUtils.getFileExtension(url);
-//            if (!"wav".equalsIgnoreCase(fileExtension) && !"mp3".equalsIgnoreCase(fileExtension)) {
-//                return ResultBean.failure().add("message", "仅支持 WAV, MP3 格式");
-//            }
 
             // 下载音频文件
-            String fileName = UUID.randomUUID() + "." + fileExtension;
-            tempAudioFilePath = Files.createTempFile("audio_", fileName);
+            String tempFileName = UUID.randomUUID() + "." + fileExtension;
+            tempAudioFilePath = Files.createTempFile("audio_", tempFileName);
 
             try (InputStream inputStream = new URL(url).openStream()) {
                 Files.copy(inputStream, tempAudioFilePath, StandardCopyOption.REPLACE_EXISTING);
@@ -151,8 +150,16 @@ public class AsrController {
 
             System.out.println("File saved at: " + tempAudioFilePath);
 
+            if (!"wav".equalsIgnoreCase(fileExtension)) {
+                tempFileName = UUID.randomUUID() + ".wav";
+                tempConvertedAudioFilePath = Files.createTempFile("audio_", tempFileName);
+                AudioUtils.convert(tempAudioFilePath.toString(), tempConvertedAudioFilePath.toString());
+            } else {
+                tempConvertedAudioFilePath = Paths.get(tempAudioFilePath.toString());
+            }
+
             // 进行音频转录操作
-            String texts = asrService.longSpeechToText(tempAudioFilePath, false);
+            String texts = asrService.longSpeechToText(tempConvertedAudioFilePath, false);
 
             return ResultBean.success().add("result", texts);
 
@@ -175,6 +182,14 @@ public class AsrController {
                     logger.warn("无法删除临时文件: " + tempAudioFilePath, e);
                 }
             }
+            // 删除临时文件
+            if (tempConvertedAudioFilePath != null) {
+                try {
+                    Files.deleteIfExists(tempConvertedAudioFilePath);
+                } catch (IOException e) {
+                    logger.warn("无法删除临时文件: " + tempConvertedAudioFilePath, e);
+                }
+            }
         }
     }
 
@@ -182,17 +197,14 @@ public class AsrController {
     @GetMapping(value = "/zhAsrForLongAudioUrl", produces = "application/json;charset=utf-8")
     public ResultBean zhAsrForLongAudioUrl(@RequestParam(value = "url") String url) {
         Path tempAudioFilePath = null;
-
+        Path tempConvertedAudioFilePath = null;
         try {
             // 解析文件扩展名
             String fileExtension = FileUtils.getFileExtension(url);
-//            if (!"wav".equalsIgnoreCase(fileExtension) && !"mp3".equalsIgnoreCase(fileExtension)) {
-//                return ResultBean.failure().add("message", "仅支持 WAV, MP3 格式");
-//            }
 
             // 下载音频文件
-            String fileName = UUID.randomUUID() + "." + fileExtension;
-            tempAudioFilePath = Files.createTempFile("audio_", fileName);
+            String tempFileName = UUID.randomUUID() + "." + fileExtension;
+            tempAudioFilePath = Files.createTempFile("audio_", tempFileName);
 
             try (InputStream inputStream = new URL(url).openStream()) {
                 Files.copy(inputStream, tempAudioFilePath, StandardCopyOption.REPLACE_EXISTING);
@@ -200,8 +212,16 @@ public class AsrController {
 
             System.out.println("File saved at: " + tempAudioFilePath);
 
+            if (!"wav".equalsIgnoreCase(fileExtension)) {
+                tempFileName = UUID.randomUUID() + ".wav";
+                tempConvertedAudioFilePath = Files.createTempFile("audio_", tempFileName);
+                AudioUtils.convert(tempAudioFilePath.toString(), tempConvertedAudioFilePath.toString());
+            } else {
+                tempConvertedAudioFilePath = Paths.get(tempAudioFilePath.toString());
+            }
+
             // 进行音频转录操作
-            String texts = asrService.longSpeechToText(tempAudioFilePath, true);
+            String texts = asrService.longSpeechToText(tempConvertedAudioFilePath, true);
 
             return ResultBean.success().add("result", texts);
 
@@ -222,6 +242,14 @@ public class AsrController {
                     Files.deleteIfExists(tempAudioFilePath);
                 } catch (IOException e) {
                     logger.warn("无法删除临时文件: " + tempAudioFilePath, e);
+                }
+            }
+            // 删除临时文件
+            if (tempConvertedAudioFilePath != null) {
+                try {
+                    Files.deleteIfExists(tempConvertedAudioFilePath);
+                } catch (IOException e) {
+                    logger.warn("无法删除临时文件: " + tempConvertedAudioFilePath, e);
                 }
             }
         }
@@ -236,19 +264,27 @@ public class AsrController {
 //            return ResultBean.failure().add("message", "仅支持 WAV, mp3 格式");
 //        }
 
-        String fileName = UUID.randomUUID() + fileExtension; // ".wav"
         Path tempAudioFilePath = null;
-
+        Path tempConvertedAudioFilePath = null;
         try {
-            tempAudioFilePath = Files.createTempFile("audio_", fileName);
+            String tempFileName = UUID.randomUUID() + fileExtension; // ".wav"
+            tempAudioFilePath = Files.createTempFile("audio_", tempFileName);
             try (InputStream inputStream = audioFile.getInputStream()) {
                 Files.copy(inputStream, tempAudioFilePath, StandardCopyOption.REPLACE_EXISTING);
             }
 
             System.out.println("File saved at: " + tempAudioFilePath);
 
+            if (!"wav".equalsIgnoreCase(fileExtension)) {
+                tempFileName = UUID.randomUUID() + ".wav";
+                tempConvertedAudioFilePath = Files.createTempFile("audio_", tempFileName);
+                AudioUtils.convert(tempAudioFilePath.toString(), tempConvertedAudioFilePath.toString());
+            } else {
+                tempConvertedAudioFilePath = Paths.get(tempAudioFilePath.toString());
+            }
+
             // 这里可以进行音频处理或转录操作
-            String texts = asrService.longSpeechToText(tempAudioFilePath, false);
+            String texts = asrService.longSpeechToText(tempConvertedAudioFilePath, false);
 
             return ResultBean.success().add("result", texts);
 
@@ -273,6 +309,14 @@ public class AsrController {
                     e.printStackTrace();
                 }
             }
+            // 删除临时文件
+            if (tempConvertedAudioFilePath != null) {
+                try {
+                    Files.deleteIfExists(tempConvertedAudioFilePath);
+                } catch (IOException e) {
+                    logger.warn("无法删除临时文件: " + tempConvertedAudioFilePath, e);
+                }
+            }
         }
     }
 
@@ -285,19 +329,28 @@ public class AsrController {
 //            return ResultBean.failure().add("message", "仅支持 WAV, mp3 格式");
 //        }
 
-        String fileName = UUID.randomUUID() + fileExtension; // ".wav"
-        Path tempAudioFilePath = null;
 
+        Path tempAudioFilePath = null;
+        Path tempConvertedAudioFilePath = null;
         try {
-            tempAudioFilePath = Files.createTempFile("audio_", fileName);
+            String tempFileName = UUID.randomUUID() + fileExtension; // ".wav"
+            tempAudioFilePath = Files.createTempFile("audio_", tempFileName);
             try (InputStream inputStream = audioFile.getInputStream()) {
                 Files.copy(inputStream, tempAudioFilePath, StandardCopyOption.REPLACE_EXISTING);
             }
 
             System.out.println("File saved at: " + tempAudioFilePath);
 
+            if (!"wav".equalsIgnoreCase(fileExtension)) {
+                tempFileName = UUID.randomUUID() + ".wav";
+                tempConvertedAudioFilePath = Files.createTempFile("audio_", tempFileName);
+                AudioUtils.convert(tempAudioFilePath.toString(), tempConvertedAudioFilePath.toString());
+            } else {
+                tempConvertedAudioFilePath = Paths.get(tempAudioFilePath.toString());
+            }
+
             // 这里可以进行音频处理或转录操作
-            String texts = asrService.longSpeechToText(tempAudioFilePath, true);
+            String texts = asrService.longSpeechToText(tempConvertedAudioFilePath, true);
 
             return ResultBean.success().add("result", texts);
 
@@ -320,6 +373,14 @@ public class AsrController {
                     Files.deleteIfExists(tempAudioFilePath);
                 } catch (IOException e) {
                     e.printStackTrace();
+                }
+            }
+            // 删除临时文件
+            if (tempConvertedAudioFilePath != null) {
+                try {
+                    Files.deleteIfExists(tempConvertedAudioFilePath);
+                } catch (IOException e) {
+                    logger.warn("无法删除临时文件: " + tempConvertedAudioFilePath, e);
                 }
             }
         }

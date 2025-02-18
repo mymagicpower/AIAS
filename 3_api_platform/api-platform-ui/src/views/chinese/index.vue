@@ -57,7 +57,7 @@
                 element-loading-text="拼命加载中"
                 @click="submitUpload"
               >上传</el-button>
-              <div slot="tip" class="el-upload__tip">音频格式: wav, flac, mp3</div>
+              <div slot="tip" class="el-upload__tip">音频格式: wav, mp3, flac, mp4 等</div>
             </el-upload>
           </el-form-item>
         </el-col>
