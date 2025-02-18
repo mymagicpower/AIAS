@@ -83,6 +83,7 @@ public final class SmallUNetModel implements AutoCloseable {
                         .optEngine("OnnxRuntime")
                         .setTypes(Image.class, Image.class)
                         .optModelPath(Paths.get(modelPath + modelName))
+                        .optModelName("u2netp")
                         .optDevice(device)
                         .optTranslator(new UNetTranslator(mask))
                         .optProgress(new ProgressBar())

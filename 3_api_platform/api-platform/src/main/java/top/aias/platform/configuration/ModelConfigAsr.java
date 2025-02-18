@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 import top.aias.platform.model.asr.WhisperModel;
 import top.aias.platform.model.vad.SileroVadModel;
 
+import java.io.File;
+
 /**
  * ASR 语音识别 - 模型配置
  *
@@ -30,26 +32,25 @@ public class ModelConfigAsr {
     // 语音识别
     @Value("${model.asr.type}")
     private String type;
-    @Value("${model.asr.vad}")
-    private String vadModelPath;
-    @Value("${model.asr.tiny}")
-    private String tinyModel;
-    @Value("${model.asr.base}")
-    private String baseModel;
-    @Value("${model.asr.small}")
-    private String smallModel;
+    // 模型根路径
+    @Value("${model.modelPath}")
+    private String modelPath;
 
 
     @Bean
     public SileroVadModel sileroVadModel() {
-        Device device;
-        if (deviceType.equalsIgnoreCase("cpu")) {
-            device = Device.cpu();
-        } else {
-            device = Device.gpu();
-        }
+//        Device device;
+//        if (deviceType.equalsIgnoreCase("cpu")) {
+//            device = Device.cpu();
+//        } else {
+//            device = Device.gpu();
+//        }
 
-        SileroVadModel sileroVadModel = new SileroVadModel(vadModelPath, poolSize, device);
+        // 拼接路径
+        String fullModelPath = modelPath + "asr" + File.separator + "silero_vad.onnx";
+
+        // TODO 需要导出支持GPU 的模型， 目前只支持 CPU
+        SileroVadModel sileroVadModel = new SileroVadModel(fullModelPath, poolSize, Device.cpu());
 
         if (loadMode.equalsIgnoreCase("eager")) {
             sileroVadModel.ensureInitialized();
@@ -60,37 +61,41 @@ public class ModelConfigAsr {
 
     @Bean
     public WhisperModel whisperModel() {
-        Device device;
-        if (deviceType.equalsIgnoreCase("cpu")) {
-            device = Device.cpu();
-        } else {
-            device = Device.gpu();
-        }
+//        Device device;
+//        if (deviceType.equalsIgnoreCase("cpu")) {
+//            device = Device.cpu();
+//        } else {
+//            device = Device.gpu();
+//        }
 
         int kvLength = 24;
         int encoderIndex = 32;
 
-        String model = baseModel;
+        String modelName = "traced_whisper_base.pt";
 
         switch (type) {
             case "tiny":
                 kvLength = 16;
                 encoderIndex = 22;
-                model = tinyModel;
+                modelName = "traced_whisper_tiny.pt";
                 break;
             case "base":
                 kvLength = 24;
                 encoderIndex = 32;
-                model = baseModel;
+                modelName = "traced_whisper_base.pt";
                 break;
             case "small":
                 kvLength = 48;
                 encoderIndex = 62;
-                model = smallModel;
+                modelName = "traced_whisper_tiny.pt";
                 break;
         }
 
-        WhisperModel whisperModel = new WhisperModel(model, poolSize, device, kvLength, encoderIndex);
+        // 拼接路径
+        String fullModelPath = modelPath + "asr" + File.separator + modelName;
+
+        // TODO 需要导出支持GPU 的模型， 目前只支持 CPU
+        WhisperModel whisperModel = new WhisperModel(fullModelPath, poolSize, Device.cpu(), kvLength, encoderIndex);
 
         if (loadMode.equalsIgnoreCase("eager")) {
             whisperModel.ensureInitialized();

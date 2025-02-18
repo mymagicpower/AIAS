@@ -13,7 +13,7 @@ import top.aias.ocr.utils.common.ImageUtils;
 import top.aias.ocr.utils.common.RotatedBox;
 import top.aias.ocr.utils.common.RotatedBoxCompX;
 import top.aias.ocr.utils.detection.OcrV4Detection;
-import top.aias.ocr.utils.opencv.OpenCVUtils;
+import top.aias.ocr.utils.opencv.OcrOpenCVUtils;
 import top.aias.ocr.utils.recognition.OcrV4Recognition;
 import org.opencv.core.Mat;
 import org.slf4j.Logger;
@@ -117,12 +117,12 @@ public final class OcrV4RecExample {
 
             // 转 BufferedImage 解决 Imgproc.putText 中文乱码问题
             Mat wrappedImage = (Mat) image.getWrappedImage();
-            BufferedImage bufferedImage = OpenCVUtils.mat2Image(wrappedImage);
+            BufferedImage bufferedImage = OcrOpenCVUtils.mat2Image(wrappedImage);
             for (RotatedBox result : detections) {
                 ImageUtils.drawImageRectWithText(bufferedImage, result.getBox(), result.getText());
             }
 
-            Mat image2Mat = OpenCVUtils.image2Mat(bufferedImage);
+            Mat image2Mat = OcrOpenCVUtils.image2Mat(bufferedImage);
             image = OpenCVImageFactory.getInstance().fromImage(image2Mat);
             ImageUtils.saveImage(image, "ocr_result.png", "build/output");
 

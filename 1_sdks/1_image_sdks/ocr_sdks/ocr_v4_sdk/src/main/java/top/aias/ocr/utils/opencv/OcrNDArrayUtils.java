@@ -15,7 +15,7 @@ import java.util.List;
  * @mail 179209347@qq.com
  * @website www.aias.top
  */
-public class NDArrayUtils {
+public class OcrNDArrayUtils {
     /**
      * Mat To MatOfPoint
      * @param mat

@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import top.aias.platform.model.mlsd.MlsdSquareModel;
 import top.aias.platform.model.preprocess.depth.DptDepthModel;
 import top.aias.platform.model.preprocess.depth.MidasDepthModel;
 import top.aias.platform.model.preprocess.edge.HedModel;

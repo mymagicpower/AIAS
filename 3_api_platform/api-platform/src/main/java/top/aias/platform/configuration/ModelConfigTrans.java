@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 import top.aias.platform.generate.TransConfig;
 import top.aias.platform.model.trans.NllbModel;
 
+import java.io.File;
+
 /**
  * 模型配置
  *
@@ -29,10 +31,10 @@ public class ModelConfigTrans {
 
 
     // 翻译
-    @Value("${model.translation.modelPath}")
+    // 模型根路径
+    @Value("${model.modelPath}")
     private String modelPath;
-    @Value("${model.translation.modelName}")
-    private String modelName;
+
     // 输出文字最大长度
     @Value("${config.maxLength}")
     private int maxLength;
@@ -43,13 +45,20 @@ public class ModelConfigTrans {
         config.setMaxSeqLength(maxLength);
 
         Device device;
+        String modelName;
+
         if (deviceType.equalsIgnoreCase("cpu")) {
             device = Device.cpu();
+            modelName = "traced_translation_cpu.pt";
         } else {
             device = Device.gpu();
+            modelName = "traced_translation_gpu.pt";
         }
 
-        NllbModel nllbModel = new NllbModel(config, modelPath, modelName, poolSize, device);
+        // 拼接路径
+        String fullModelPath = modelPath + "trans" + File.separator;
+
+        NllbModel nllbModel = new NllbModel(config, fullModelPath, modelName, poolSize, device);
 
         if (loadMode.equalsIgnoreCase("eager")) {
             nllbModel.ensureInitialized();

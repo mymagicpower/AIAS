@@ -91,17 +91,17 @@
             <version>${djl.version}</version>
         </dependency>
         <!-- Pytorch GPU 配置 -->
-<!--        <dependency>-->
-<!--            <groupId>ai.djl.pytorch</groupId>-->
-<!--            <artifactId>pytorch-native-cu117</artifactId>-->
-<!--            <classifier>win-x86_64</classifier>-->
-<!--            <version>1.13.1</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>ai.djl.pytorch</groupId>-->
-<!--            <artifactId>pytorch-jni</artifactId>-->
-<!--            <version>1.13.1-0.23.0</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>ai.djl.pytorch</groupId>-->
+        <!--            <artifactId>pytorch-native-cu117</artifactId>-->
+        <!--            <classifier>win-x86_64</classifier>-->
+        <!--            <version>1.13.1</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>ai.djl.pytorch</groupId>-->
+        <!--            <artifactId>pytorch-jni</artifactId>-->
+        <!--            <version>1.13.1-0.23.0</version>-->
+        <!--        </dependency>-->
 
         <dependency>
             <groupId>org.projectlombok</groupId>

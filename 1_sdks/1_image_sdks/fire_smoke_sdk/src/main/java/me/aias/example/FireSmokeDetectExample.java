@@ -34,7 +34,7 @@ public final class FireSmokeDetectExample {
   private FireSmokeDetectExample() {}
 
   public static void main(String[] args) throws IOException, ModelException, TranslateException {
-    Path imageFile = Paths.get("src/test/resources/fire_smoke.png");
+    Path imageFile = Paths.get("src/test/resources/000043.jpg");
     Image image = ImageFactory.getInstance().fromFile(imageFile);
 
     Criteria<Image, DetectedObjects> criteria = new FireSmokeDetect().criteria();

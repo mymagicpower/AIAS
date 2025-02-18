@@ -1,12 +1,78 @@
 ### 目录：
 https://www.aias.top/
 
-### 非图像生成类模型下载【8.2G】：
+### 1. 非图像生成类模型下载【8.2G】：
 - 链接: https://pan.baidu.com/s/1Or8i1aOpsl8pZM66i2RNVQ?pwd=uh12
+```bash
+# 假设系统为 windows , 假设下载后的路径如下：
+D:\ai_projects\AIAS\3_api_platform\api-platform\models>:
 
-### 图像生成类模型下载【62G】：
+2025/02/17  19:25    <DIR>          .
+2025/02/18  17:18    <DIR>          ..
+2025/02/18  13:27    <DIR>          asr
+2025/02/08  15:20    <DIR>          color
+2025/02/17  19:25    <DIR>          controlnet
+2025/02/18  13:30    <DIR>          ocr
+2025/02/06  13:51    <DIR>          seg
+2025/02/06  12:13    <DIR>          sr
+2025/02/18  13:21    <DIR>          trans
+```
+
+#### 1.1 更新配置文件 application.yml 的 active 属性，windows环境选择，win：
+- 路径：api_platform\src\main\resources\application.yml
+```bash
+spring:
+  profiles:
+    # win - windows 环境
+    # mac - Mac 环境
+    # linux - Linux 环境
+    # online - 模型在线加载
+    active: win
+```
+#### 1.2 更新非生成类模型路径，以 windows 为例：application-win.yml
+```bash
+model:
+  # 模型路径
+  modelPath: D:\\ai_projects\\AIAS\\3_api_platform\\api-platform\\models\\
+```
+
+### 2. 图像生成类模型下载【可选】：总大小约 62G，需要再下载
 - 模型默认是延迟加载【首次调用的时候加载模型，也就是说，不下载模型，不影响其它功能使用】
-- -链接: https://pan.baidu.com/s/1Agt84-DdykIO25hkWzvwRg?pwd=9g5r
+- 生成类模型很大，全部模型加载需要至少24G的显存
+- 每次只使用一个图像生成功能，至少需要 4 G 显存
+- 建议显存不大的情况下，一次不要点击多个图像生成的功能
+
+- 链接: https://pan.baidu.com/s/1Agt84-DdykIO25hkWzvwRg?pwd=9g5r
+```bash
+# 假设系统为 windows , 假设下载后的路径如下：
+H:\models\aigc>:
+
+2023/08/30  16:36    <DIR>          .
+2023/08/30  16:36    <DIR>          ..
+2023/06/21  15:22    <DIR>          sd_cpu
+2023/06/21  19:10    <DIR>          sd_gpu
+```
+#### 2.1 更新生成类模型路径，以 windows 为例：application-win.yml
+```bash
+model:
+  sd:
+    # 模型路径
+    cpuModelPath: H:\\models\\aigc\\sd_cpu\\
+    gpuModelPath: H:\\models\\aigc\\sd_gpu\\
+```
+
+#### 2.2 显卡配置
+- 图像生成对显卡强依赖，CPU运行需要几分钟的时间才能生成一张图片
+- 显卡CUDA版本：推荐 11.x 12.x 版本
+- 参考测试数据：分辨率 512*512 25步 CPU(i5处理器) 5分钟。 3060显卡20秒。
+- 开关参数路径：api_platform\src\main\resources\application.yml
+```bash
+model:
+  # 设备类型 cpu gpu
+  device: gpu
+```
+
+
 
 ### API 能力平台
 提供开箱即用的人工智能能力平台。
@@ -220,37 +286,6 @@ sudo nginx
 ### 2. 后端部署
 #### 2.1 环境要求：
 - 系统JDK 1.8+，建议11
-
-#### 2.2 下载模型：
-```bash
-### 模型下载地址：
-链接: https://pan.baidu.com/s/1YosO46RhK11kKO8rK0q6SA?pwd=4ih8
-
-### 假设系统为linux,假设路径如下：
-/home/models/
-
-```
-
-#### 2.3 更新模型地址：
-```bash
-### 1. 设置配置yml文件：
-api_platform\src\main\resources\application.yml
-spring:
-  profiles:
-    active: mac
-
-
-### 2. 选择系统配置文件，替换成实际的模型路径，以linux为例：application-linux.yml
-model:
-  ......
-  ocrv4:
-    # server detection model URI
-    det: /home/models/ocr/ch_PP-OCRv4_det_infer.zip
-    # server recognition model URI
-    rec: /home/models/ocr/ch_PP-OCRv4_rec_infer.zip
-
-```
-
 
 ### 3. 运行程序：
 运行编译后的jar：

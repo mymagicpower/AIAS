@@ -4,7 +4,6 @@ import ai.djl.ModelException;
 import ai.djl.modality.audio.Audio;
 import ai.djl.modality.audio.AudioFactory;
 import ai.djl.translate.TranslateException;
-import ai.onnxruntime.OrtException;
 import com.hankcs.hanlp.HanLP;
 import org.bytedeco.ffmpeg.global.avutil;
 import org.slf4j.Logger;
@@ -53,7 +52,7 @@ public class AsrServiceImpl implements AsrService {
         return output;
     }
 
-    public String longSpeechToText(Path tempAudioFilePath, Boolean isChinese) throws TranslateException, IOException, OrtException, ModelException {
+    public String longSpeechToText(Path tempAudioFilePath, Boolean isChinese) throws TranslateException, IOException, ModelException {
 
         Audio audio =
                 AudioFactory.newInstance()

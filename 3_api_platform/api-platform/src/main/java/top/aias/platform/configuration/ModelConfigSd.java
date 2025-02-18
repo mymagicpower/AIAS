@@ -38,46 +38,6 @@ public class ModelConfigSd {
     @Value("${model.sd.gpuModelPath}")
     private String gpuModelPath;
 
-    // encoder, decoder 模型
-    @Value("${model.sd.textEncoder}")
-    private String textEncoder;
-    @Value("${model.sd.vaeEncoder}")
-    private String vaeEncoder;
-    @Value("${model.sd.vaeDecoder}")
-    private String vaeDecoder;
-
-    // Unet 模型
-    @Value("${model.sd.unet}")
-    private String unet;
-    @Value("${model.sd.controlnetUnet}")
-    private String controlnetUnet;
-
-    // ControlNet 模型名称
-    @Value("${model.sd.canny}")
-    private String canny;
-    @Value("${model.sd.depth}")
-    private String depth;
-    @Value("${model.sd.ip2p}")
-    private String ip2p;
-    @Value("${model.sd.lineart}")
-    private String lineart;
-    @Value("${model.sd.lineartAnime}")
-    private String lineartAnime;
-    @Value("${model.sd.mlsd}")
-    private String mlsd;
-    @Value("${model.sd.normalbae}")
-    private String normalbae;
-    @Value("${model.sd.openpose}")
-    private String openpose;
-    @Value("${model.sd.scribble}")
-    private String scribble;
-    @Value("${model.sd.seg}")
-    private String seg;
-    @Value("${model.sd.shuffle}")
-    private String shuffle;
-    @Value("${model.sd.softedge}")
-    private String softedge;
-
     @Bean
     public TextEncoderModel textEncoderModel() {
         Device device;
@@ -195,7 +155,7 @@ public class ModelConfigSd {
             modelRootPath = gpuModelPath;
         }
 
-        SdCannyModel model = new SdCannyModel(modelRootPath, canny, poolSize, device);
+        SdCannyModel model = new SdCannyModel(modelRootPath, "controlnet_canny.pt", poolSize, device);
 
 //        if (loadMode.equalsIgnoreCase("eager")) {
 //            ddcolorModel.ensureInitialized();
@@ -216,7 +176,7 @@ public class ModelConfigSd {
             modelRootPath = gpuModelPath;
         }
 
-        SdDepthModel model = new SdDepthModel(modelRootPath, depth, poolSize, device);
+        SdDepthModel model = new SdDepthModel(modelRootPath, "controlnet_depth.pt", poolSize, device);
 
 //        if (loadMode.equalsIgnoreCase("eager")) {
 //            ddcolorModel.ensureInitialized();
@@ -237,7 +197,7 @@ public class ModelConfigSd {
             modelRootPath = gpuModelPath;
         }
 
-        SdLineartAnimeModel model = new SdLineartAnimeModel(modelRootPath, lineartAnime, poolSize, device);
+        SdLineartAnimeModel model = new SdLineartAnimeModel(modelRootPath, "controlnet_lineart_anime.pt", poolSize, device);
 
 //        if (loadMode.equalsIgnoreCase("eager")) {
 //            ddcolorModel.ensureInitialized();
@@ -258,7 +218,7 @@ public class ModelConfigSd {
             modelRootPath = gpuModelPath;
         }
 
-        SdLineartModel model = new SdLineartModel(modelRootPath, lineart, poolSize, device);
+        SdLineartModel model = new SdLineartModel(modelRootPath, "controlnet_lineart.pt", poolSize, device);
 
 //        if (loadMode.equalsIgnoreCase("eager")) {
 //            ddcolorModel.ensureInitialized();
@@ -279,7 +239,7 @@ public class ModelConfigSd {
             modelRootPath = gpuModelPath;
         }
 
-        SdMlsdModel model = new SdMlsdModel(modelRootPath, mlsd, poolSize, device);
+        SdMlsdModel model = new SdMlsdModel(modelRootPath, "controlnet_mlsd.pt", poolSize, device);
 
 //        if (loadMode.equalsIgnoreCase("eager")) {
 //            ddcolorModel.ensureInitialized();
@@ -300,7 +260,7 @@ public class ModelConfigSd {
             modelRootPath = gpuModelPath;
         }
 
-        SdNormalBaeModel model = new SdNormalBaeModel(modelRootPath, normalbae, poolSize, device);
+        SdNormalBaeModel model = new SdNormalBaeModel(modelRootPath, "controlnet_normalbae.pt", poolSize, device);
 
 //        if (loadMode.equalsIgnoreCase("eager")) {
 //            ddcolorModel.ensureInitialized();
@@ -321,7 +281,7 @@ public class ModelConfigSd {
             modelRootPath = gpuModelPath;
         }
 
-        SdOpenPoseModel model = new SdOpenPoseModel(modelRootPath, openpose, poolSize, device);
+        SdOpenPoseModel model = new SdOpenPoseModel(modelRootPath, "controlnet_openpose.pt", poolSize, device);
 
 //        if (loadMode.equalsIgnoreCase("eager")) {
 //            ddcolorModel.ensureInitialized();
@@ -342,7 +302,7 @@ public class ModelConfigSd {
             modelRootPath = gpuModelPath;
         }
 
-        SdP2PModel model = new SdP2PModel(modelRootPath, ip2p, poolSize, device);
+        SdP2PModel model = new SdP2PModel(modelRootPath, "controlnet_ip2p.pt", poolSize, device);
 
 //        if (loadMode.equalsIgnoreCase("eager")) {
 //            ddcolorModel.ensureInitialized();
@@ -363,7 +323,7 @@ public class ModelConfigSd {
             modelRootPath = gpuModelPath;
         }
 
-        SdScribbleModel model = new SdScribbleModel(modelRootPath, scribble, poolSize, device);
+        SdScribbleModel model = new SdScribbleModel(modelRootPath, "controlnet_scribble.pt", poolSize, device);
 
 //        if (loadMode.equalsIgnoreCase("eager")) {
 //            ddcolorModel.ensureInitialized();
@@ -384,7 +344,7 @@ public class ModelConfigSd {
             modelRootPath = gpuModelPath;
         }
 
-        SdSegModel model = new SdSegModel(modelRootPath, seg, poolSize, device);
+        SdSegModel model = new SdSegModel(modelRootPath, "controlnet_seg.pt", poolSize, device);
 
 //        if (loadMode.equalsIgnoreCase("eager")) {
 //            ddcolorModel.ensureInitialized();
@@ -405,7 +365,7 @@ public class ModelConfigSd {
             modelRootPath = gpuModelPath;
         }
 
-        SdShuffleModel model = new SdShuffleModel(modelRootPath, shuffle, poolSize, device);
+        SdShuffleModel model = new SdShuffleModel(modelRootPath, "controlnet_shuffle.pt", poolSize, device);
 
 //        if (loadMode.equalsIgnoreCase("eager")) {
 //            ddcolorModel.ensureInitialized();
@@ -426,7 +386,7 @@ public class ModelConfigSd {
             modelRootPath = gpuModelPath;
         }
 
-        SdSoftEdgeModel model = new SdSoftEdgeModel(modelRootPath, softedge, poolSize, device);
+        SdSoftEdgeModel model = new SdSoftEdgeModel(modelRootPath, "controlnet_softedge.pt", poolSize, device);
 
 //        if (loadMode.equalsIgnoreCase("eager")) {
 //            ddcolorModel.ensureInitialized();

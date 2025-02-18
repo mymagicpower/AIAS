@@ -1,9 +1,12 @@
 package top.aias.platform.model.ocr;
 
+import ai.djl.Device;
 import ai.djl.MalformedModelException;
 import ai.djl.inference.Predictor;
 import ai.djl.modality.cv.Image;
+import ai.djl.modality.cv.ImageFactory;
 import ai.djl.modality.cv.output.BoundingBox;
+import ai.djl.modality.cv.output.Point;
 import ai.djl.modality.cv.output.Rectangle;
 import ai.djl.modality.cv.util.NDImageUtils;
 import ai.djl.ndarray.NDArray;
@@ -17,8 +20,8 @@ import ai.djl.repository.zoo.ZooModel;
 import ai.djl.training.util.ProgressBar;
 import ai.djl.translate.TranslateException;
 import org.opencv.core.Mat;
-import top.aias.platform.bean.Point;
 import top.aias.platform.bean.RotatedBox;
+import top.aias.platform.utils.NDArrayUtils;
 import top.aias.platform.utils.OpenCVUtils;
 
 import java.io.IOException;
@@ -43,14 +46,16 @@ public final class RecognitionModel implements AutoCloseable {
     private String detModelPath;
     private String recModelPath;
     private int poolSize;
+    private Device device;
     private final AtomicBoolean initialized = new AtomicBoolean(false);
 
     public RecognitionModel(){}
 
-    public RecognitionModel(String detModelPath, String recModelPath, int poolSize) {
+    public RecognitionModel(String detModelPath, String recModelPath, int poolSize, Device device) {
         this.detModelPath = detModelPath;
         this.recModelPath = recModelPath;
         this.poolSize = poolSize;
+        this.device = device;
     }
 
 
@@ -97,8 +102,8 @@ public final class RecognitionModel implements AutoCloseable {
                         .optModelName("inference")
                         .setTypes(Image.class, NDList.class)
                         .optModelPath(Paths.get(detUri))
-//                        .optModelUrls(detUri)
-                        .optTranslator(new OcrDetectionTranslator(new ConcurrentHashMap<String, String>()))
+                        .optDevice(device)
+                        .optTranslator(new OCRDetectionTranslator(new ConcurrentHashMap<String, String>()))
                         .optProgress(new ProgressBar())
                         .build();
 
@@ -117,23 +122,12 @@ public final class RecognitionModel implements AutoCloseable {
                         .optModelName("inference")
                         .setTypes(Image.class, String.class)
                         .optModelPath(Paths.get(recUri))
-//                        .optModelUrls(recUri)
+                        .optDevice(device)
                         .optProgress(new ProgressBar())
-                        .optTranslator(new PpWordRecognitionTranslator((new ConcurrentHashMap<String, String>())))
+                        .optTranslator(new PpWordRecTranslator((new ConcurrentHashMap<String, String>())))
                         .build();
 
         return criteria;
-    }
-
-    // 多线程环境，每个线程一个predictor，共享一个model, 资源池（CPU Core 核心数）达到上限则等待
-    public String predictSingleLineText(Image image)
-            throws TranslateException {
-        ensureInitialized();
-        Predictor<Image, String> recognizer = recognizerPool.getRecognizer();
-        String text = recognizer.predict(image);
-        // 释放资源
-        recognizerPool.releaseRecognizer(recognizer);
-        return text;
     }
 
     // 多线程环境，每个线程一个predictor，共享一个model, 资源池（CPU Core 核心数）达到上限则等待
@@ -150,9 +144,11 @@ public final class RecognitionModel implements AutoCloseable {
         boxes.attach(manager);
 
         List<RotatedBox> result = new ArrayList<>();
+
         Mat mat = (Mat) image.getWrappedImage();
 
         Predictor<Image, String> recognizer = recognizerPool.getRecognizer();
+
         for (int i = 0; i < boxes.size(); i++) {
             NDArray box = boxes.get(i);
 
@@ -163,19 +159,19 @@ public final class RecognitionModel implements AutoCloseable {
             float[] lb = java.util.Arrays.copyOfRange(pointsArr, 6, 8);
             int img_crop_width = (int) Math.max(distance(lt, rt), distance(rb, lb));
             int img_crop_height = (int) Math.max(distance(lt, lb), distance(rt, rb));
-            List<Point> srcPoints = new ArrayList<>();
-            srcPoints.add(new Point((int) lt[0], (int) lt[1]));
-            srcPoints.add(new Point((int) rt[0], (int) rt[1]));
-            srcPoints.add(new Point((int) rb[0], (int) rb[1]));
-            srcPoints.add(new Point((int) lb[0], (int) lb[1]));
-            List<Point> dstPoints = new ArrayList<>();
-            dstPoints.add(new Point(0, 0));
-            dstPoints.add(new Point(img_crop_width, 0));
-            dstPoints.add(new Point(img_crop_width, img_crop_height));
+            List<ai.djl.modality.cv.output.Point> srcPoints = new ArrayList<>();
+            srcPoints.add(new ai.djl.modality.cv.output.Point(lt[0], lt[1]));
+            srcPoints.add(new ai.djl.modality.cv.output.Point(rt[0], rt[1]));
+            srcPoints.add(new ai.djl.modality.cv.output.Point(rb[0], rb[1]));
+            srcPoints.add(new ai.djl.modality.cv.output.Point(lb[0], lb[1]));
+            List<ai.djl.modality.cv.output.Point> dstPoints = new ArrayList<>();
+            dstPoints.add(new ai.djl.modality.cv.output.Point(0, 0));
+            dstPoints.add(new ai.djl.modality.cv.output.Point(img_crop_width, 0));
+            dstPoints.add(new ai.djl.modality.cv.output.Point(img_crop_width, img_crop_height));
             dstPoints.add(new Point(0, img_crop_height));
 
-            Mat srcPoint2f = OpenCVUtils.toMat(srcPoints);
-            Mat dstPoint2f = OpenCVUtils.toMat(dstPoints);
+            Mat srcPoint2f = NDArrayUtils.toMat(srcPoints);
+            Mat dstPoint2f = NDArrayUtils.toMat(dstPoints);
 
             Mat cvMat = OpenCVUtils.perspectiveTransform(mat, srcPoint2f, dstPoint2f);
 
@@ -202,37 +198,13 @@ public final class RecognitionModel implements AutoCloseable {
         return result;
     }
 
-    private Image getSubImage(Image img, BoundingBox box) {
-        Rectangle rect = box.getBounds();
-        double[] extended = extendRect(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
-        int width = img.getWidth();
-        int height = img.getHeight();
-        int[] recovered = {
-                (int) (extended[0] * width),
-                (int) (extended[1] * height),
-                (int) (extended[2] * width),
-                (int) (extended[3] * height)
-        };
-        return img.getSubImage(recovered[0], recovered[1], recovered[2], recovered[3]);
-    }
-
-    private double[] extendRect(double xmin, double ymin, double width, double height) {
-        double centerx = xmin + width / 2;
-        double centery = ymin + height / 2;
-        if (width > height) {
-            width += height * 2.0;
-            height *= 3.0;
-        } else {
-            height += width * 2.0;
-            width *= 3.0;
-        }
-        double newX = centerx - width / 2 < 0 ? 0 : centerx - width / 2;
-        double newY = centery - height / 2 < 0 ? 0 : centery - height / 2;
-        double newWidth = newX + width > 1 ? 1 - newX : width;
-        double newHeight = newY + height > 1 ? 1 - newY : height;
-        return new double[]{newX, newY, newWidth, newHeight};
-    }
-
+    /**
+     * 欧式距离计算
+     *
+     * @param point1
+     * @param point2
+     * @return
+     */
     private float distance(float[] point1, float[] point2) {
         float disX = point1[0] - point2[0];
         float disY = point1[1] - point2[1];
@@ -240,15 +212,15 @@ public final class RecognitionModel implements AutoCloseable {
         return dis;
     }
 
-    private Image rotateImg(Image image) {
-        try (NDManager manager = NDManager.newBaseManager()) {
-            NDArray rotated = NDImageUtils.rotate90(image.toNDArray(manager), 1);
-            return OpenCVImageFactory.getInstance().fromNDArray(rotated);
-        }
-    }
-
+    /**
+     * 图片旋转
+     *
+     * @param manager
+     * @param image
+     * @return
+     */
     private Image rotateImg(NDManager manager, Image image) {
         NDArray rotated = NDImageUtils.rotate90(image.toNDArray(manager), 1);
-        return OpenCVImageFactory.getInstance().fromNDArray(rotated);
+        return ImageFactory.getInstance().fromNDArray(rotated);
     }
 }

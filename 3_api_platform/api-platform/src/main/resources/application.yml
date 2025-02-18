@@ -1,3 +1,9 @@
+# Server Port
+server:
+  port: 8089
+  tomcat:
+    uri-encoding: UTF-8
+  baseUri: http://127.0.0.1:${server.port}
 
 spring:
   profiles:
@@ -34,13 +40,31 @@ file:
   # File max size - MB
   maxSize: 100
 
+# 参数配置
+config:
+  # 输出文字最大长度
+  maxLength: 128
 
 # Verify image transformation result
 image:
   debug: true
 
 model:
+  # 设备类型 cpu gpu
+  device: cpu
+  # 如果是 CPU 推理，最高设置为 CPU 核心数 (Core Number)
+  poolSize: 2
   # 控制模型加载方式
   # eager - 启动时候加载模型
   # lazy - 首次调用的时候加载模型
   loadMode: lazy
+
+  # whisper 语音识别
+  asr:
+    # 模型三个 tiny 231M, base 397M, small 1.13G
+    type: base
+  seg:
+    # 遮罩层
+    mask: false
+  sd:
+    autoClose: false

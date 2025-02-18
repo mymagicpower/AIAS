@@ -1,4 +1,4 @@
-package top.aias.ocr.utils.opencv;
+package top.aias.platform.utils;
 
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
@@ -14,7 +14,7 @@ import java.awt.image.DataBufferByte;
  * @mail 179209347@qq.com
  * @website www.aias.top
  */
-public class OpenCVUtils {
+public class OcrOpenCVUtils {
 
     /**
      * 透视变换

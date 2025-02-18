@@ -13,8 +13,8 @@ import ai.djl.repository.zoo.Criteria;
 import ai.djl.training.util.ProgressBar;
 import ai.djl.translate.TranslateException;
 import top.aias.ocr.utils.common.RotatedBox;
-import top.aias.ocr.utils.opencv.NDArrayUtils;
-import top.aias.ocr.utils.opencv.OpenCVUtils;
+import top.aias.ocr.utils.opencv.OcrNDArrayUtils;
+import top.aias.ocr.utils.opencv.OcrOpenCVUtils;
 import org.opencv.core.Mat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -101,10 +101,10 @@ public final class OcrV4Recognition {
             dstPoints.add(new Point(img_crop_width, img_crop_height));
             dstPoints.add(new Point(0, img_crop_height));
 
-            Mat srcPoint2f = NDArrayUtils.toMat(srcPoints);
-            Mat dstPoint2f = NDArrayUtils.toMat(dstPoints);
+            Mat srcPoint2f = OcrNDArrayUtils.toMat(srcPoints);
+            Mat dstPoint2f = OcrNDArrayUtils.toMat(dstPoints);
 
-            Mat cvMat = OpenCVUtils.perspectiveTransform(mat, srcPoint2f, dstPoint2f);
+            Mat cvMat = OcrOpenCVUtils.perspectiveTransform(mat, srcPoint2f, dstPoint2f);
 
             Image subImg = OpenCVImageFactory.getInstance().fromImage(cvMat);
 //            ImageUtils.saveImage(subImg, i + ".png", "build/output");

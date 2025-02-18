@@ -84,7 +84,7 @@
             <version>${djl.version}</version>
         </dependency>
 
-        <!-- Pytorch Windows CPU 配置 -->
+        <!-- Pytorch Windows Linux x86, Mac x86 CPU 配置 -->
         <dependency>
             <groupId>ai.djl.pytorch</groupId>
             <artifactId>pytorch-native-cpu</artifactId>

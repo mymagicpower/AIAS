@@ -51,7 +51,7 @@
               :on-success="handleSuccess"
               :before-upload="beforeUpload"
               ::limit="1"
-              :show-file-list="false"
+              :show-file-list="true"
               :auto-upload="false"
             >
               <el-button slot="trigger" size="small" type="primary">选取文件</el-button>

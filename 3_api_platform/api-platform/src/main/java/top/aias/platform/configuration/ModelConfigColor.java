@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import top.aias.platform.model.color.DdcolorModel;
 
+import java.io.File;
+
 /**
  * 模型配置
  *
@@ -27,14 +29,15 @@ public class ModelConfigColor {
     private int poolSize;
 
     // 黑白照片上色
-    @Value("${model.color.modelPath}")
-    private String colorModelPath;
-    @Value("${model.color.modelName}")
-    private String colorModelName;
+    @Value("${model.modelPath}")
+    private String modelPath;
 
     @Bean
     public DdcolorModel ddcolorModel() {
-        DdcolorModel ddcolorModel = new DdcolorModel(colorModelPath, colorModelName, poolSize, Device.cpu());
+        // 拼接路径
+        String fullModelPath = modelPath + "color" + File.separator;
+
+        DdcolorModel ddcolorModel = new DdcolorModel(fullModelPath, "traced_ddcolor_cpu.pt", poolSize, Device.cpu());
 
         if (loadMode.equalsIgnoreCase("eager")) {
             ddcolorModel.ensureInitialized();

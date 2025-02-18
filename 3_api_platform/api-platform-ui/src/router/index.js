@@ -48,9 +48,9 @@ export const constantRoutes = [
         meta: { title: 'Canny 边缘检测', icon: 'el-icon-full-screen' }
       },
       {
-        path: '/ocr',
+        path: '/mlsd',
         component: () => import('@/views/preprocess/mlsd'),
-        name: 'ocr',
+        name: 'mlsd',
         meta: { title: 'MLSD 线条检测', icon: 'el-icon-full-screen' }
       },
       {

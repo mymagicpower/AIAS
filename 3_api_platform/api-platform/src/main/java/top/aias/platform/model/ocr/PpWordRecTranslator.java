@@ -25,11 +25,11 @@ import java.util.Map;
  * @mail 179209347@qq.com
  * @website www.aias.top
  */
-public class PpWordRecognitionTranslator implements Translator<Image, String> {
+public class PpWordRecTranslator implements Translator<Image, String> {
     private List<String> table;
     private final boolean use_space_char;
 
-    public PpWordRecognitionTranslator(Map<String, ?> arguments) {
+    public PpWordRecTranslator(Map<String, ?> arguments) {
         use_space_char =
                 arguments.containsKey("use_space_char")
                         ? Boolean.parseBoolean(arguments.get("use_space_char").toString())

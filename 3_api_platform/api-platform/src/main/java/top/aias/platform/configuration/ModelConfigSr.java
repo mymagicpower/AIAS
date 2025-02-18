@@ -9,6 +9,10 @@ import top.aias.platform.model.gan.FaceGanModel;
 import top.aias.platform.model.seg.FaceSegModel;
 import top.aias.platform.model.sr.SrModel;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 /**
  * 模型配置
  *
@@ -30,21 +34,9 @@ public class ModelConfigSr {
     private int poolSize;
 
     // 图像高清
-    // 模型路径
-    @Value("${model.sr.modelPath}")
-    private String srModelPath;
-    // 人脸检测模型
-    @Value("${model.sr.faceModelName}")
-    private String faceModelName;
-    // 人像分割模型
-    @Value("${model.sr.faceSegModelName}")
-    private String faceSegModelName;
-    // 人脸修复模型
-    @Value("${model.sr.faceGanModelName}")
-    private String faceGanModelName;
-    // 图像超分模型
-    @Value("${model.sr.srModelName}")
-    private String srModelName;
+    // 模型根路径
+    @Value("${model.modelPath}")
+    private String modelPath;
 
     @Bean
     public FaceDetModel faceDetModel() {
@@ -55,7 +47,10 @@ public class ModelConfigSr {
             device = Device.gpu();
         }
 
-        FaceDetModel faceDetModel = new FaceDetModel(srModelPath, faceModelName, poolSize, device);
+        // 拼接路径
+        String fullModelPath = modelPath + "sr" + File.separator;
+
+        FaceDetModel faceDetModel = new FaceDetModel(fullModelPath, "retinaface_traced_model.pt", poolSize, device);
 
         if (loadMode.equalsIgnoreCase("eager")) {
             faceDetModel.ensureInitialized();
@@ -73,7 +68,10 @@ public class ModelConfigSr {
             device = Device.gpu();
         }
 
-        FaceSegModel faceSegModel = new FaceSegModel(srModelPath, faceSegModelName, poolSize, device);
+        // 拼接路径
+        String fullModelPath = modelPath + "sr" + File.separator;
+
+        FaceSegModel faceSegModel = new FaceSegModel(fullModelPath, "parsenet_traced_model.pt", poolSize, device);
 
         if (loadMode.equalsIgnoreCase("eager")) {
             faceSegModel.ensureInitialized();
@@ -84,14 +82,18 @@ public class ModelConfigSr {
 
     @Bean
     public FaceGanModel faceGanModel() {
-        Device device;
-        if (deviceType.equalsIgnoreCase("cpu")) {
-            device = Device.cpu();
-        } else {
-            device = Device.gpu();
-        }
+//        Device device;
+//        if (deviceType.equalsIgnoreCase("cpu")) {
+//            device = Device.cpu();
+//        } else {
+//            device = Device.gpu();
+//        }
 
-        FaceGanModel faceGanModel = new FaceGanModel(srModelPath, faceGanModelName, poolSize, device);
+        // 拼接路径
+        String fullModelPath = modelPath + "sr" + File.separator;
+
+        // 模型只支持CPU，需要 GPU 导出新模型
+        FaceGanModel faceGanModel = new FaceGanModel(fullModelPath, "gfpgan_traced_model.pt", poolSize, Device.cpu());
 
         if (loadMode.equalsIgnoreCase("eager")) {
             faceGanModel.ensureInitialized();
@@ -109,7 +111,10 @@ public class ModelConfigSr {
             device = Device.gpu();
         }
 
-        SrModel srModel = new SrModel(srModelPath, srModelName, poolSize, device);
+        // 拼接路径
+        String fullModelPath = modelPath + "sr" + File.separator;
+
+        SrModel srModel = new SrModel(fullModelPath, "realsr_traced_model.pt", poolSize, device);
 
         if (loadMode.equalsIgnoreCase("eager")) {
             srModel.ensureInitialized();

@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import top.aias.platform.model.seg.*;
 
+import java.io.File;
+
 /**
  * 图像分割 - 模型配置
  *
@@ -27,38 +29,19 @@ public class ModelConfigSeg {
     private int poolSize;
 
     // 模型路径
-    @Value("${model.seg.modelPath}")
-    private String segModelPath;
-    // 通用分割模型
-    @Value("${model.seg.bigModelName}")
-    private String bigModelName;
-    @Value("${model.seg.middleModelName}")
-    private String middleModelName;
-    @Value("${model.seg.smallModelName}")
-    private String smallModelName;
-    // 人体分割模型
-    @Value("${model.seg.humanModelName}")
-    private String humanModelName;
-    // 动漫分割模型
-    @Value("${model.seg.animeModelName}")
-    private String animeModelName;
-    // 衣服分割模型
-    @Value("${model.seg.clothModelName}")
-    private String clothModelName;
+    @Value("${model.modelPath}")
+    private String modelPath;
     @Value("${model.seg.mask}")
     private boolean mask;
 
 
     @Bean
     public BigUNetModel bigUNetModel() {
-        Device device;
-        if (deviceType.equalsIgnoreCase("cpu")) {
-            device = Device.cpu();
-        } else {
-            device = Device.gpu();
-        }
 
-        BigUNetModel bigUNetModel = new BigUNetModel(segModelPath, bigModelName, poolSize, mask, device);
+        // 拼接路径
+        String fullModelPath = modelPath + "seg" + File.separator;
+
+        BigUNetModel bigUNetModel = new BigUNetModel(fullModelPath, "u2net.onnx", poolSize, mask, Device.cpu());
 
         if (loadMode.equalsIgnoreCase("eager")) {
             bigUNetModel.ensureInitialized();
@@ -69,14 +52,11 @@ public class ModelConfigSeg {
 
     @Bean
     public MidUNetModel midUNetModel() {
-        Device device;
-        if (deviceType.equalsIgnoreCase("cpu")) {
-            device = Device.cpu();
-        } else {
-            device = Device.gpu();
-        }
 
-        MidUNetModel midUNetModel = new MidUNetModel(segModelPath, middleModelName, poolSize, mask, device);
+        // 拼接路径
+        String fullModelPath = modelPath + "seg" + File.separator;
+
+        MidUNetModel midUNetModel = new MidUNetModel(fullModelPath, "silueta.onnx", poolSize, mask, Device.cpu());
 
         if (loadMode.equalsIgnoreCase("eager")) {
             midUNetModel.ensureInitialized();
@@ -87,14 +67,10 @@ public class ModelConfigSeg {
 
     @Bean
     public SmallUNetModel smallUNetModel() {
-        Device device;
-        if (deviceType.equalsIgnoreCase("cpu")) {
-            device = Device.cpu();
-        } else {
-            device = Device.gpu();
-        }
+        // 拼接路径
+        String fullModelPath = modelPath + "seg" + File.separator;
 
-        SmallUNetModel smallUNetModel = new SmallUNetModel(segModelPath, smallModelName, poolSize, mask, device);
+        SmallUNetModel smallUNetModel = new SmallUNetModel(fullModelPath, "u2netp.onnx", poolSize, mask, Device.cpu());
 
         if (loadMode.equalsIgnoreCase("eager")) {
             smallUNetModel.ensureInitialized();
@@ -105,14 +81,11 @@ public class ModelConfigSeg {
 
     @Bean
     public UNetHumanSegModel uNetHumanSegModel() {
-        Device device;
-        if (deviceType.equalsIgnoreCase("cpu")) {
-            device = Device.cpu();
-        } else {
-            device = Device.gpu();
-        }
 
-        UNetHumanSegModel uNetHumanSegModel = new UNetHumanSegModel(segModelPath, humanModelName, poolSize, mask, device);
+        // 拼接路径
+        String fullModelPath = modelPath + "seg" + File.separator;
+
+        UNetHumanSegModel uNetHumanSegModel = new UNetHumanSegModel(fullModelPath, "human.onnx", poolSize, mask, Device.cpu());
 
         if (loadMode.equalsIgnoreCase("eager")) {
             uNetHumanSegModel.ensureInitialized();
@@ -123,14 +96,11 @@ public class ModelConfigSeg {
 
     @Bean
     public IsNetModel isNetModel() {
-        Device device;
-        if (deviceType.equalsIgnoreCase("cpu")) {
-            device = Device.cpu();
-        } else {
-            device = Device.gpu();
-        }
 
-        IsNetModel isNetModel = new IsNetModel(segModelPath, animeModelName, poolSize, mask, device);
+        // 拼接路径
+        String fullModelPath = modelPath + "seg" + File.separator;
+
+        IsNetModel isNetModel = new IsNetModel(fullModelPath, "anime.onnx", poolSize, mask, Device.cpu());
 
         if (loadMode.equalsIgnoreCase("eager")) {
             isNetModel.ensureInitialized();
@@ -141,15 +111,12 @@ public class ModelConfigSeg {
 
     @Bean
     public UNetClothSegModel uNetClothSegModel() {
-        Device device;
-        if (deviceType.equalsIgnoreCase("cpu")) {
-            device = Device.cpu();
-        } else {
-            device = Device.gpu();
-        }
+
+        // 拼接路径
+        String fullModelPath = modelPath + "seg" + File.separator;
 
         // clothCategory 4个值: 1,2,3,4  (1 上半身， 2 下半身, 3 连体衣, 4 所有）
-        UNetClothSegModel uNetClothSegModel = new UNetClothSegModel(segModelPath, clothModelName, 4, poolSize, device);
+        UNetClothSegModel uNetClothSegModel = new UNetClothSegModel(fullModelPath, "cloth.onnx", 4, poolSize, Device.cpu());
 
         if (loadMode.equalsIgnoreCase("eager")) {
             uNetClothSegModel.ensureInitialized();

@@ -51,9 +51,10 @@ public final class MlsdSquareModel implements AutoCloseable {
     private float thr_d = 0.1f;
     private int detect_resolution = 512;
 
-    public MlsdSquareModel(String modelPath, int poolSize) {
+    public MlsdSquareModel(String modelPath, int poolSize, Device device) {
         this.modelPath = modelPath;
         this.poolSize = poolSize;
+        this.device = device;
     }
 
     public synchronized void ensureInitialized() {
@@ -98,7 +99,7 @@ public final class MlsdSquareModel implements AutoCloseable {
                         .setTypes(Image.class, Image.class)
                         .optModelName("mlsd_traced_model")
                         .optModelPath(Paths.get(modelPath))
-                        .optDevice(Device.cpu())
+                        .optDevice(device)
 //                      .optDevice(Device.gpu())
                         .optTranslator(new FeatureTranslator())
                         .optProgress(new ProgressBar())

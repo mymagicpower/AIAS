@@ -7,7 +7,6 @@ import ai.djl.ndarray.NDManager;
 import ai.djl.ndarray.types.DataType;
 import ai.djl.ndarray.types.Shape;
 import ai.djl.translate.TranslateException;
-import ai.onnxruntime.OrtException;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -19,7 +18,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-public class SileroVadDetector implements AutoCloseable{
+public class SileroVadDetector implements AutoCloseable {
     private final SileroVadModel model;
     private final float threshold;
     private final float negThreshold;
@@ -48,18 +47,18 @@ public class SileroVadDetector implements AutoCloseable{
 
     /**
      * Constructor
-     * @param model silero-vad onnx model
-     * @param threshold threshold for speech start
-     * @param samplingRate audio sampling rate, only available for [8k, 16k]
-     * @param minSpeechDurationMs Minimum speech length in millis, any speech duration that smaller than this value would not be considered as speech
+     *
+     * @param model                    silero-vad onnx model
+     * @param threshold                threshold for speech start
+     * @param samplingRate             audio sampling rate, only available for [8k, 16k]
+     * @param minSpeechDurationMs      Minimum speech length in millis, any speech duration that smaller than this value would not be considered as speech
      * @param maxSpeechDurationSeconds Maximum speech length in millis, recommend to be set as Float.POSITIVE_INFINITY
-     * @param minSilenceDurationMs Minimum silence length in millis, any silence duration that smaller than this value would not be considered as silence
-     * @param speechPadMs Additional pad millis for speech start and end
-     * @throws OrtException
+     * @param minSilenceDurationMs     Minimum silence length in millis, any silence duration that smaller than this value would not be considered as silence
+     * @param speechPadMs              Additional pad millis for speech start and end
      */
     public SileroVadDetector(SileroVadModel model, float threshold, int samplingRate,
                              int minSpeechDurationMs, float maxSpeechDurationSeconds,
-                             int minSilenceDurationMs, int speechPadMs) throws OrtException {
+                             int minSilenceDurationMs, int speechPadMs) {
         if (samplingRate != SAMPLING_RATE_8K && samplingRate != SAMPLING_RATE_16K) {
             throw new IllegalArgumentException("Sampling rate not support, only available for [8000, 16000]");
         }
@@ -84,12 +83,13 @@ public class SileroVadDetector implements AutoCloseable{
 
     /**
      * Get speech segment list by given wav-format file
+     *
      * @param wavFile wav file
      * @return list of speech segment
      */
     public List<SileroSpeechSegment> getSpeechSegmentList(File wavFile) {
         reset();
-        try (AudioInputStream audioInputStream =  AudioSystem.getAudioInputStream(wavFile)){
+        try (AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(wavFile)) {
             List<Float> speechProbList = new ArrayList<>();
             this.audioLengthSamples = audioInputStream.available() / 2;
             byte[] data = new byte[this.windowSizeSample * 2];
@@ -106,12 +106,8 @@ public class SileroVadDetector implements AutoCloseable{
                 }
 
                 float speechProb = 0;
-                try {
-                    speechProb = this.call(new float[][]{audioData}, samplingRate)[0];
-                    speechProbList.add(speechProb);
-                } catch (OrtException e) {
-                    throw e;
-                }
+                speechProb = this.call(new float[][]{audioData}, samplingRate)[0];
+                speechProbList.add(speechProb);
             }
             return calculateProb(speechProbList);
         } catch (Exception e) {
@@ -128,12 +124,13 @@ public class SileroVadDetector implements AutoCloseable{
 
     /**
      * Get speech segment list by given wav-format file
+     *
      * @param url wav url
      * @return list of speech segment
      */
     public List<SileroSpeechSegment> getSpeechSegmentList(URL url) {
         reset();
-        try (AudioInputStream audioInputStream =  AudioSystem.getAudioInputStream(url)){
+        try (AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(url)) {
             List<Float> speechProbList = new ArrayList<>();
             this.audioLengthSamples = audioInputStream.available() / 2;
             byte[] data = new byte[this.windowSizeSample * 2];
@@ -150,12 +147,8 @@ public class SileroVadDetector implements AutoCloseable{
                 }
 
                 float speechProb = 0;
-                try {
-                    speechProb = this.call(new float[][]{audioData}, samplingRate)[0];
-                    speechProbList.add(speechProb);
-                } catch (OrtException e) {
-                    throw e;
-                }
+                speechProb = this.call(new float[][]{audioData}, samplingRate)[0];
+                speechProbList.add(speechProb);
             }
             return calculateProb(speechProbList);
         } catch (Exception e) {
@@ -165,12 +158,13 @@ public class SileroVadDetector implements AutoCloseable{
 
     /**
      * Get speech segment list by given wav-format file
+     *
      * @param inputStream wav file inputStream
      * @return list of speech segment
      */
     public List<SileroSpeechSegment> getSpeechSegmentList(InputStream inputStream) {
         reset();
-        try (AudioInputStream audioInputStream =  AudioSystem.getAudioInputStream(inputStream)){
+        try (AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(inputStream)) {
             List<Float> speechProbList = new ArrayList<>();
             this.audioLengthSamples = audioInputStream.available() / 2;
             byte[] data = new byte[this.windowSizeSample * 2];
@@ -187,12 +181,8 @@ public class SileroVadDetector implements AutoCloseable{
                 }
 
                 float speechProb = 0;
-                try {
-                    speechProb = this.call(new float[][]{audioData}, samplingRate)[0];
-                    speechProbList.add(speechProb);
-                } catch (OrtException e) {
-                    throw e;
-                }
+                speechProb = this.call(new float[][]{audioData}, samplingRate)[0];
+                speechProbList.add(speechProb);
             }
             return calculateProb(speechProbList);
         } catch (Exception e) {
@@ -202,6 +192,7 @@ public class SileroVadDetector implements AutoCloseable{
 
     /**
      * Calculate speech segement by probability
+     *
      * @param speechProbList speech probability list
      * @return list of speech segment
      */
@@ -233,13 +224,13 @@ public class SileroVadDetector implements AutoCloseable{
                     segment = new SileroSpeechSegment();
                     if (nextStart < prevEnd) {
                         triggered = false;
-                    }else {
+                    } else {
                         segment.setStartOffset(nextStart);
                     }
                     prevEnd = 0;
                     nextStart = 0;
                     tempEnd = 0;
-                }else {
+                } else {
                     segment.setEndOffset(windowSizeSample * i);
                     result.add(segment);
                     segment = new SileroSpeechSegment();
@@ -260,7 +251,7 @@ public class SileroVadDetector implements AutoCloseable{
                 }
                 if ((windowSizeSample * i) - tempEnd < minSilenceSamples) {
                     continue;
-                }else {
+                } else {
                     segment.setEndOffset(tempEnd);
                     if ((segment.getEndOffset() - segment.getStartOffset()) > minSpeechSamples) {
                         result.add(segment);
@@ -283,20 +274,20 @@ public class SileroVadDetector implements AutoCloseable{
         for (int i = 0; i < result.size(); i++) {
             SileroSpeechSegment item = result.get(i);
             if (i == 0) {
-                item.setStartOffset((int)(Math.max(0,item.getStartOffset() - speechPadSamples)));
+                item.setStartOffset((int) (Math.max(0, item.getStartOffset() - speechPadSamples)));
             }
             if (i != result.size() - 1) {
                 SileroSpeechSegment nextItem = result.get(i + 1);
                 Integer silenceDuration = nextItem.getStartOffset() - item.getEndOffset();
-                if(silenceDuration < 2 * speechPadSamples){
-                    item.setEndOffset(item.getEndOffset() + (silenceDuration / 2 ));
+                if (silenceDuration < 2 * speechPadSamples) {
+                    item.setEndOffset(item.getEndOffset() + (silenceDuration / 2));
                     nextItem.setStartOffset(Math.max(0, nextItem.getStartOffset() - (silenceDuration / 2)));
                 } else {
-                    item.setEndOffset((int)(Math.min(audioLengthSamples, item.getEndOffset() + speechPadSamples)));
-                    nextItem.setStartOffset((int)(Math.max(0,nextItem.getStartOffset() - speechPadSamples)));
+                    item.setEndOffset((int) (Math.min(audioLengthSamples, item.getEndOffset() + speechPadSamples)));
+                    nextItem.setStartOffset((int) (Math.max(0, nextItem.getStartOffset() - speechPadSamples)));
                 }
-            }else {
-                item.setEndOffset((int)(Math.min(audioLengthSamples, item.getEndOffset() + speechPadSamples)));
+            } else {
+                item.setEndOffset((int) (Math.min(audioLengthSamples, item.getEndOffset() + speechPadSamples)));
             }
         }
 
@@ -326,7 +317,7 @@ public class SileroVadDetector implements AutoCloseable{
             }
             result.add(new SileroSpeechSegment(left, right,
                     calculateSecondByOffset(left, samplingRate), calculateSecondByOffset(right, samplingRate)));
-        }else {
+        } else {
             result.add(new SileroSpeechSegment(left, right,
                     calculateSecondByOffset(left, samplingRate), calculateSecondByOffset(right, samplingRate)));
         }
@@ -344,9 +335,8 @@ public class SileroVadDetector implements AutoCloseable{
      * @param x
      * @param sr
      * @return
-     * @throws OrtException
      */
-    public float[] call(float[][] x, int sr) throws OrtException {
+    public float[] call(float[][] x, int sr) {
         ValidationResult result = validateInput(x, sr);
         x = result.x;
         sr = result.sr;
@@ -395,7 +385,7 @@ public class SileroVadDetector implements AutoCloseable{
             NDArray output = predictResult.get(0);
             float[] outputArr = output.toFloatArray();
 
-            stateArray  = predictResult.get(1);
+            stateArray = predictResult.get(1);
 
             context = getLastColumns(x, contextSize);
             lastSr = sr;
@@ -417,7 +407,7 @@ public class SileroVadDetector implements AutoCloseable{
         lastBatchSize = 0;
     }
 
-    public void close(){
+    public void close() {
         model.close();
         manager.close();
     }

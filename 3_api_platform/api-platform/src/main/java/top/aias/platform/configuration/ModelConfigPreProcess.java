@@ -1,6 +1,10 @@
 package top.aias.platform.configuration;
 
 import ai.djl.Device;
+import ai.djl.ModelException;
+import ai.djl.modality.cv.Image;
+import ai.djl.opencv.OpenCVImageFactory;
+import ai.djl.translate.TranslateException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -20,6 +24,11 @@ import top.aias.platform.model.preprocess.pose.FaceModel;
 import top.aias.platform.model.preprocess.pose.HandModel;
 import top.aias.platform.model.preprocess.pose.PoseModel;
 import top.aias.platform.model.preprocess.seg.SegUperNetModel;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * 模型配置
@@ -41,65 +50,13 @@ public class ModelConfigPreProcess {
     @Value("${model.poolSize}")
     private int poolSize;
 
-    // 深度估计 - dpt 模型
-    @Value("${model.preprocess.dptDepthModelPath}")
-    private String dptDepthModelPath;
-
-    // 深度估计 - midas 模型
-    @Value("${model.preprocess.midasDepthModelPath}")
-    private String midasDepthModelPath;
-
-    // 人体关键点
-    @Value("${model.preprocess.bodyModelPath}")
-    private String bodyModelPath;
-
-    // 人脸关键点
-    @Value("${model.preprocess.faceModelPath}")
-    private String faceModelPath;
-
-    // 手部关键点
-    @Value("${model.preprocess.handModelPath}")
-    private String handModelPath;
-
-    // 边缘检测 - hed 模型
-    @Value("${model.preprocess.hedModelPath}")
-    private String hedModelPath;
-
-    // 边缘检测 - pidiCpu 模型
-    @Value("${model.preprocess.pidiCpuModelPath}")
-    private String pidiCpuModelPath;
-
-    // 边缘检测 - pidiGpu 模型
-    @Value("${model.preprocess.pidiGpuModelPath}")
-    private String pidiGpuModelPath;
-
-    // 线条轮廓 - lineart 模型
-    @Value("${model.preprocess.lineartModelPath}")
-    private String lineartModelPath;
-
-    // 线条轮廓 - lineart 动漫模型
-    @Value("${model.preprocess.lineartAnimeModelPath}")
-    private String lineartAnimeModelPath;
-
-    // 线条轮廓 - lineart 粗糙线条模型
-    @Value("${model.preprocess.lineartCoarseModelPath}")
-    private String lineartCoarseModelPath;
-
-    // 线条轮廓 - 建筑线条
-    @Value("${model.preprocess.mlsdModelPath}")
-    private String mlsdModelPath;
-
-    // 线条轮廓 - 法向图
-    @Value("${model.preprocess.normalbaeModelPath}")
-    private String normalbaeModelPath;
-
-    // 线条轮廓 - 图像语义分割
-    @Value("${model.preprocess.upernetModelPath}")
-    private String upernetModelPath;
-
+    // 模型根路径
+    @Value("${model.modelPath}")
+    private String modelPath;
     private int detect_resolution = 512;
     private int image_resolution = 512;
 
+    // 深度估计 - dpt 模型
     @Bean
     public DptDepthModel dptDepthModel() {
         Device device;
@@ -109,7 +66,14 @@ public class ModelConfigPreProcess {
             device = Device.gpu();
         }
 
-        DptDepthModel model = new DptDepthModel(detect_resolution, image_resolution, dptDepthModelPath, poolSize, device);
+        // 使用 Paths.get() 获取 Path 对象
+        Path p1 = Paths.get(modelPath);
+        Path p2 = Paths.get("controlnet");
+        Path p3 = Paths.get("dpt_depth.pt");
+        // 拼接路径
+        Path fullPath = p1.resolve(p2).resolve(p3);
+
+        DptDepthModel model = new DptDepthModel(detect_resolution, image_resolution, fullPath.toString(), poolSize, device);
 
         if (loadMode.equalsIgnoreCase("eager")) {
             model.ensureInitialized();
@@ -118,6 +82,7 @@ public class ModelConfigPreProcess {
         return model;
     }
 
+    // 深度估计 - midas 模型
     @Bean
     public MidasDepthModel midasDepthModel() {
         Device device;
@@ -127,7 +92,14 @@ public class ModelConfigPreProcess {
             device = Device.gpu();
         }
 
-        MidasDepthModel model = new MidasDepthModel(detect_resolution, image_resolution, midasDepthModelPath, poolSize, device);
+        // 使用 Paths.get() 获取 Path 对象
+        Path p1 = Paths.get(modelPath);
+        Path p2 = Paths.get("controlnet");
+        Path p3 = Paths.get("midas_depth.pt");
+        // 拼接路径
+        Path fullPath = p1.resolve(p2).resolve(p3);
+
+        MidasDepthModel model = new MidasDepthModel(detect_resolution, image_resolution, fullPath.toString(), poolSize, device);
 
         if (loadMode.equalsIgnoreCase("eager")) {
             model.ensureInitialized();
@@ -136,6 +108,7 @@ public class ModelConfigPreProcess {
         return model;
     }
 
+    // 人体关键点
     @Bean
     public BodyModel bodyModel() {
         Device device;
@@ -145,7 +118,14 @@ public class ModelConfigPreProcess {
             device = Device.gpu();
         }
 
-        BodyModel model = new BodyModel(detect_resolution, image_resolution, bodyModelPath, poolSize, device);
+        // 使用 Paths.get() 获取 Path 对象
+        Path p1 = Paths.get(modelPath);
+        Path p2 = Paths.get("controlnet");
+        Path p3 = Paths.get("body.pt");
+        // 拼接路径
+        Path fullPath = p1.resolve(p2).resolve(p3);
+
+        BodyModel model = new BodyModel(detect_resolution, image_resolution, fullPath.toString(), poolSize, device);
 
         if (loadMode.equalsIgnoreCase("eager")) {
             model.ensureInitialized();
@@ -154,6 +134,7 @@ public class ModelConfigPreProcess {
         return model;
     }
 
+    // 人脸关键点
     @Bean
     public FaceModel faceModel() {
         Device device;
@@ -163,7 +144,14 @@ public class ModelConfigPreProcess {
             device = Device.gpu();
         }
 
-        FaceModel model = new FaceModel(faceModelPath, poolSize, device);
+        // 使用 Paths.get() 获取 Path 对象
+        Path p1 = Paths.get(modelPath);
+        Path p2 = Paths.get("controlnet");
+        Path p3 = Paths.get("face.pt");
+        // 拼接路径
+        Path fullPath = p1.resolve(p2).resolve(p3);
+
+        FaceModel model = new FaceModel(fullPath.toString(), poolSize, device);
 
         if (loadMode.equalsIgnoreCase("eager")) {
             model.ensureInitialized();
@@ -172,6 +160,7 @@ public class ModelConfigPreProcess {
         return model;
     }
 
+    // 手部关键点
     @Bean
     public HandModel handModel() {
         Device device;
@@ -181,7 +170,14 @@ public class ModelConfigPreProcess {
             device = Device.gpu();
         }
 
-        HandModel model = new HandModel(handModelPath, poolSize, device);
+        // 使用 Paths.get() 获取 Path 对象
+        Path p1 = Paths.get(modelPath);
+        Path p2 = Paths.get("controlnet");
+        Path p3 = Paths.get("hand.pt");
+        // 拼接路径
+        Path fullPath = p1.resolve(p2).resolve(p3);
+
+        HandModel model = new HandModel(fullPath.toString(), poolSize, device);
 
         if (loadMode.equalsIgnoreCase("eager")) {
             model.ensureInitialized();
@@ -199,7 +195,14 @@ public class ModelConfigPreProcess {
             device = Device.gpu();
         }
 
-        PoseModel model = new PoseModel(detect_resolution, image_resolution, bodyModelPath, poolSize, device);
+        // 使用 Paths.get() 获取 Path 对象
+        Path p1 = Paths.get(modelPath);
+        Path p2 = Paths.get("controlnet");
+        Path p3 = Paths.get("body.pt");
+        // 拼接路径
+        Path fullPath = p1.resolve(p2).resolve(p3);
+
+        PoseModel model = new PoseModel(detect_resolution, image_resolution, fullPath.toString(), poolSize, device);
 
         if (loadMode.equalsIgnoreCase("eager")) {
             model.ensureInitialized();
@@ -208,6 +211,7 @@ public class ModelConfigPreProcess {
         return model;
     }
 
+    // 线条轮廓 - lineart 模型
     @Bean
     public LineArtModel lineArtModel() {
         Device device;
@@ -217,7 +221,14 @@ public class ModelConfigPreProcess {
             device = Device.gpu();
         }
 
-        LineArtModel model = new LineArtModel(detect_resolution, image_resolution, lineartModelPath, poolSize, device);
+        // 使用 Paths.get() 获取 Path 对象
+        Path p1 = Paths.get(modelPath);
+        Path p2 = Paths.get("controlnet");
+        Path p3 = Paths.get("lineart.pt");
+        // 拼接路径
+        Path fullPath = p1.resolve(p2).resolve(p3);
+
+        LineArtModel model = new LineArtModel(detect_resolution, image_resolution, fullPath.toString(), poolSize, device);
 
         if (loadMode.equalsIgnoreCase("eager")) {
             model.ensureInitialized();
@@ -226,6 +237,7 @@ public class ModelConfigPreProcess {
         return model;
     }
 
+    // 线条轮廓 - lineart 动漫模型
     @Bean
     public LineArtAnimeModel lineArtAnimeModel() {
         Device device;
@@ -235,7 +247,14 @@ public class ModelConfigPreProcess {
             device = Device.gpu();
         }
 
-        LineArtAnimeModel model = new LineArtAnimeModel(detect_resolution, image_resolution, lineartAnimeModelPath, poolSize, device);
+        // 使用 Paths.get() 获取 Path 对象
+        Path p1 = Paths.get(modelPath);
+        Path p2 = Paths.get("controlnet");
+        Path p3 = Paths.get("lineart_anime.pt");
+        // 拼接路径
+        Path fullPath = p1.resolve(p2).resolve(p3);
+
+        LineArtAnimeModel model = new LineArtAnimeModel(detect_resolution, image_resolution, fullPath.toString(), poolSize, device);
 
         if (loadMode.equalsIgnoreCase("eager")) {
             model.ensureInitialized();
@@ -244,6 +263,7 @@ public class ModelConfigPreProcess {
         return model;
     }
 
+    // 线条轮廓 - lineart 粗糙线条模型
     @Bean
     public LineArtCoarseModel lineArtCoarseModel() {
         Device device;
@@ -253,7 +273,14 @@ public class ModelConfigPreProcess {
             device = Device.gpu();
         }
 
-        LineArtCoarseModel model = new LineArtCoarseModel(detect_resolution, image_resolution, lineartCoarseModelPath, poolSize, device);
+        // 使用 Paths.get() 获取 Path 对象
+        Path p1 = Paths.get(modelPath);
+        Path p2 = Paths.get("controlnet");
+        Path p3 = Paths.get("lineart_coarse.pt");
+        // 拼接路径
+        Path fullPath = p1.resolve(p2).resolve(p3);
+
+        LineArtCoarseModel model = new LineArtCoarseModel(detect_resolution, image_resolution, fullPath.toString(), poolSize, device);
 
         if (loadMode.equalsIgnoreCase("eager")) {
             model.ensureInitialized();
@@ -262,10 +289,7 @@ public class ModelConfigPreProcess {
         return model;
     }
 
-
-
-
-
+    // 线条轮廓 - 建筑线条
     @Bean
     public MlsdModel mlsdModel() {
         Device device;
@@ -275,7 +299,14 @@ public class ModelConfigPreProcess {
             device = Device.gpu();
         }
 
-        MlsdModel model = new MlsdModel(detect_resolution, image_resolution, mlsdModelPath, poolSize, device);
+        // 使用 Paths.get() 获取 Path 对象
+        Path p1 = Paths.get(modelPath);
+        Path p2 = Paths.get("controlnet");
+        Path p3 = Paths.get("mlsd.pt");
+        // 拼接路径
+        Path fullPath = p1.resolve(p2).resolve(p3);
+
+        MlsdModel model = new MlsdModel(detect_resolution, image_resolution, fullPath.toString(), poolSize, device);
 
         if (loadMode.equalsIgnoreCase("eager")) {
             model.ensureInitialized();
@@ -284,6 +315,7 @@ public class ModelConfigPreProcess {
         return model;
     }
 
+    // 线条轮廓 - 法向图
     @Bean
     public NormalBaeModel normalBaeModel() {
         Device device;
@@ -293,7 +325,14 @@ public class ModelConfigPreProcess {
             device = Device.gpu();
         }
 
-        NormalBaeModel model = new NormalBaeModel(detect_resolution, image_resolution, normalbaeModelPath, poolSize, device);
+        // 使用 Paths.get() 获取 Path 对象
+        Path p1 = Paths.get(modelPath);
+        Path p2 = Paths.get("controlnet");
+        Path p3 = Paths.get("normalbae.pt");
+        // 拼接路径
+        Path fullPath = p1.resolve(p2).resolve(p3);
+
+        NormalBaeModel model = new NormalBaeModel(detect_resolution, image_resolution, fullPath.toString(), poolSize, device);
 
         if (loadMode.equalsIgnoreCase("eager")) {
             model.ensureInitialized();
@@ -302,7 +341,7 @@ public class ModelConfigPreProcess {
         return model;
     }
 
-
+    // 线条轮廓 - 图像语义分割
     @Bean
     public SegUperNetModel segUperNetModel() {
         Device device;
@@ -312,7 +351,14 @@ public class ModelConfigPreProcess {
             device = Device.gpu();
         }
 
-        SegUperNetModel model = new SegUperNetModel(detect_resolution, image_resolution, upernetModelPath, false, poolSize, device);
+        // 使用 Paths.get() 获取 Path 对象
+        Path p1 = Paths.get(modelPath);
+        Path p2 = Paths.get("controlnet");
+        Path p3 = Paths.get("upernet.pt");
+        // 拼接路径
+        Path fullPath = p1.resolve(p2).resolve(p3);
+
+        SegUperNetModel model = new SegUperNetModel(detect_resolution, image_resolution, fullPath.toString(), false, poolSize, device);
 
         if (loadMode.equalsIgnoreCase("eager")) {
             model.ensureInitialized();
@@ -321,6 +367,7 @@ public class ModelConfigPreProcess {
         return model;
     }
 
+    // 边缘检测 - hed 模型
     @Bean
     public HedModel hedModel() {
         Device device;
@@ -330,7 +377,14 @@ public class ModelConfigPreProcess {
             device = Device.gpu();
         }
 
-        HedModel model = new HedModel(detect_resolution, image_resolution, hedModelPath, false, poolSize, device);
+        // 使用 Paths.get() 获取 Path 对象
+        Path p1 = Paths.get(modelPath);
+        Path p2 = Paths.get("controlnet");
+        Path p3 = Paths.get("hed.pt");
+        // 拼接路径
+        Path fullPath = p1.resolve(p2).resolve(p3);
+
+        HedModel model = new HedModel(detect_resolution, image_resolution, fullPath.toString(), false, poolSize, device);
 
         if (loadMode.equalsIgnoreCase("eager")) {
             model.ensureInitialized();
@@ -348,7 +402,14 @@ public class ModelConfigPreProcess {
             device = Device.gpu();
         }
 
-        HedScribbleModel model = new HedScribbleModel(detect_resolution, image_resolution, hedModelPath, false, poolSize, device);
+        // 使用 Paths.get() 获取 Path 对象
+        Path p1 = Paths.get(modelPath);
+        Path p2 = Paths.get("controlnet");
+        Path p3 = Paths.get("hed.pt");
+        // 拼接路径
+        Path fullPath = p1.resolve(p2).resolve(p3);
+
+        HedScribbleModel model = new HedScribbleModel(detect_resolution, image_resolution, fullPath.toString(), false, poolSize, device);
 
         if (loadMode.equalsIgnoreCase("eager")) {
             model.ensureInitialized();
@@ -357,19 +418,27 @@ public class ModelConfigPreProcess {
         return model;
     }
 
+    // 边缘检测 - pidi 模型
     @Bean
     public PidiNetModel pidiNetModel() {
         Device device;
-        String modelPath;
+        String modelName;
         if (deviceType.equalsIgnoreCase("cpu")) {
             device = Device.cpu();
-            modelPath = pidiCpuModelPath;
+            modelName = "pidi_cpu.pt";
         } else {
             device = Device.gpu();
-            modelPath = pidiGpuModelPath;
+            modelName = "pidi_gpu.pt";
         }
 
-        PidiNetModel model = new PidiNetModel(detect_resolution, image_resolution, modelPath, false, poolSize, device);
+        // 使用 Paths.get() 获取 Path 对象
+        Path p1 = Paths.get(modelPath);
+        Path p2 = Paths.get("controlnet");
+        Path p3 = Paths.get(modelName);
+        // 拼接路径
+        Path fullPath = p1.resolve(p2).resolve(p3);
+
+        PidiNetModel model = new PidiNetModel(detect_resolution, image_resolution, fullPath.toString(), false, poolSize, device);
 
         if (loadMode.equalsIgnoreCase("eager")) {
             model.ensureInitialized();
@@ -381,16 +450,23 @@ public class ModelConfigPreProcess {
     @Bean
     public PidiNetScribbleModel pidiNetScribbleModel() {
         Device device;
-        String modelPath;
+        String modelName;
         if (deviceType.equalsIgnoreCase("cpu")) {
             device = Device.cpu();
-            modelPath = pidiCpuModelPath;
+            modelName = "pidi_cpu.pt";
         } else {
             device = Device.gpu();
-            modelPath = pidiGpuModelPath;
+            modelName = "pidi_gpu.pt";
         }
 
-        PidiNetScribbleModel model = new PidiNetScribbleModel(detect_resolution, image_resolution, modelPath, false, poolSize, device);
+        // 使用 Paths.get() 获取 Path 对象
+        Path p1 = Paths.get(modelPath);
+        Path p2 = Paths.get("controlnet");
+        Path p3 = Paths.get(modelName);
+        // 拼接路径
+        Path fullPath = p1.resolve(p2).resolve(p3);
+
+        PidiNetScribbleModel model = new PidiNetScribbleModel(detect_resolution, image_resolution, fullPath.toString(), false, poolSize, device);
 
         if (loadMode.equalsIgnoreCase("eager")) {
             model.ensureInitialized();

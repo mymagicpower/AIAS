@@ -213,9 +213,9 @@ public class ImgSdServiceImpl implements top.aias.platform.service.ImgSdService 
         SdControlNetPipeline model = new SdControlNetPipeline(device, sdMlsdModel, uNetForControlModel, vaeDecoderModel, textEncoderModel);
         Image result = model.generateImage(image, prompt, negativePrompt,steps);
 
-        if (autoClose.equalsIgnoreCase("true")) {
-            sdMlsdModel.close();
-        }
+//        if (autoClose.equalsIgnoreCase("true")) {
+//            sdMlsdModel.close();
+//        }
 
         return result;
     }

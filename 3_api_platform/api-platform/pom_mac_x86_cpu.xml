@@ -103,12 +103,20 @@
             <artifactId>audio</artifactId>
             <version>${djl.version}</version>
         </dependency>
-        <!-- pytorch 引擎 -->
+
+        <!-- Pytorch Windows Linux x86, Mac x86 CPU 配置 -->
         <dependency>
             <groupId>ai.djl.pytorch</groupId>
-            <artifactId>pytorch-engine</artifactId>
-            <version>${djl.version}</version>
+            <artifactId>pytorch-native-cpu</artifactId>
+            <classifier>osx-x86_64</classifier>
+            <version>1.13.1</version>
         </dependency>
+        <dependency>
+            <groupId>ai.djl.pytorch</groupId>
+            <artifactId>pytorch-jni</artifactId>
+            <version>1.13.1-0.23.0</version>
+        </dependency>
+
         <!-- ONNX 引擎 -->
         <dependency>
             <groupId>ai.djl.onnxruntime</groupId>

@@ -103,18 +103,44 @@
             <artifactId>audio</artifactId>
             <version>${djl.version}</version>
         </dependency>
-        <!-- pytorch 引擎 -->
+
+        <!-- Pytorch Windows, Linux x86 GPU 配置 -->
         <dependency>
             <groupId>ai.djl.pytorch</groupId>
-            <artifactId>pytorch-engine</artifactId>
+            <artifactId>pytorch-model-zoo</artifactId>
             <version>${djl.version}</version>
         </dependency>
+        <dependency>
+            <groupId>ai.djl.pytorch</groupId>
+            <artifactId>pytorch-native-cu117</artifactId>
+            <classifier>win-x86_64</classifier>
+            <version>1.13.1</version>
+        </dependency>
+        <dependency>
+            <groupId>ai.djl.pytorch</groupId>
+            <artifactId>pytorch-jni</artifactId>
+            <version>1.13.1-0.23.0</version>
+        </dependency>
+
         <!-- ONNX 引擎 -->
         <dependency>
             <groupId>ai.djl.onnxruntime</groupId>
             <artifactId>onnxruntime-engine</artifactId>
             <version>${djl.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.microsoft.onnxruntime</groupId>
+                    <artifactId>onnxruntime</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
+        <dependency>
+            <groupId>com.microsoft.onnxruntime</groupId>
+            <artifactId>onnxruntime_gpu</artifactId>
+            <version>1.18.0</version>
+            <scope>runtime</scope>
+        </dependency>
+
         <dependency>
             <groupId>com.hankcs</groupId>
             <artifactId>hanlp</artifactId>

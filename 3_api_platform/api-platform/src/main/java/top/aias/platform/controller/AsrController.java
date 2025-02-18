@@ -4,7 +4,6 @@ import ai.djl.ModelException;
 import ai.djl.modality.audio.Audio;
 import ai.djl.modality.audio.AudioFactory;
 import ai.djl.translate.TranslateException;
-import ai.onnxruntime.OrtException;
 import com.hankcs.hanlp.HanLP;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -163,9 +162,6 @@ public class AsrController {
         } catch (TranslateException e) {
             logger.error(e.getMessage(), e);
             return ResultBean.failure().add("message", "语音识别失败: " + e.getMessage());
-        } catch (OrtException e) {
-            logger.error(e.getMessage(), e);
-            return ResultBean.failure().add("message", "语音识别失败: " + e.getMessage());
         } catch (ModelException e) {
             logger.error(e.getMessage(), e);
             e.printStackTrace();
@@ -213,9 +209,6 @@ public class AsrController {
             logger.error(e.getMessage(), e);
             return ResultBean.failure().add("message", "下载或处理音频文件时发生错误: " + e.getMessage());
         } catch (TranslateException e) {
-            logger.error(e.getMessage(), e);
-            return ResultBean.failure().add("message", "语音识别失败: " + e.getMessage());
-        } catch (OrtException e) {
             logger.error(e.getMessage(), e);
             return ResultBean.failure().add("message", "语音识别失败: " + e.getMessage());
         } catch (ModelException e) {
@@ -267,10 +260,6 @@ public class AsrController {
             logger.error(e.getMessage());
             e.printStackTrace();
             return ResultBean.failure().add("message", e.getMessage());
-        } catch (OrtException e) {
-            logger.error(e.getMessage(), e);
-            e.printStackTrace();
-            return ResultBean.failure().add("message", e.getMessage());
         } catch (ModelException e) {
             logger.error(e.getMessage(), e);
             e.printStackTrace();
@@ -318,10 +307,6 @@ public class AsrController {
             return ResultBean.failure().add("message", e.getMessage());
         } catch (TranslateException e) {
             logger.error(e.getMessage());
-            e.printStackTrace();
-            return ResultBean.failure().add("message", e.getMessage());
-        } catch (OrtException e) {
-            logger.error(e.getMessage(), e);
             e.printStackTrace();
             return ResultBean.failure().add("message", e.getMessage());
         } catch (ModelException e) {

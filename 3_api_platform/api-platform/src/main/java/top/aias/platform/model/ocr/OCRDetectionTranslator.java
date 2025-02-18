@@ -12,21 +12,21 @@ import ai.djl.ndarray.types.Shape;
 import ai.djl.translate.Batchifier;
 import ai.djl.translate.Translator;
 import ai.djl.translate.TranslatorContext;
-import top.aias.platform.utils.NDArrayUtils;
 import org.opencv.core.*;
 import org.opencv.imgproc.Imgproc;
+import top.aias.platform.utils.OcrNDArrayUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 /**
- * 文字识别前后处理（支持倾斜文本）
+ * 文字检测前后处理
  *
  * @author Calvin
  * @mail 179209347@qq.com
  * @website www.aias.top
  */
-public class OcrDetectionTranslator implements Translator<Image, NDList> {
+public class OCRDetectionTranslator implements Translator<Image, NDList> {
     // det_algorithm == "DB"
     private final float thresh = 0.3f;
     private final boolean use_dilation = false;
@@ -43,7 +43,7 @@ public class OcrDetectionTranslator implements Translator<Image, NDList> {
     private int img_height;
     private int img_width;
 
-    public OcrDetectionTranslator(Map<String, ?> arguments) {
+    public OCRDetectionTranslator(Map<String, ?> arguments) {
         limit_side_len =
                 arguments.containsKey("limit_side_len")
                         ? Integer.parseInt(arguments.get("limit_side_len").toString())
@@ -82,10 +82,10 @@ public class OcrDetectionTranslator implements Translator<Image, NDList> {
         if (this.use_dilation) {
             Mat mask = new Mat();
             //convert from NDArray to Mat
-            Mat srcMat = NDArrayUtils.uint8NDArrayToMat(segmentation);
+            Mat srcMat = OcrNDArrayUtils.uint8NDArrayToMat(segmentation);
             // size 越小，腐蚀的单位越小，图片越接近原图
             // Mat dilation_kernel = Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(2, 2));
-            Mat dilation_kernel = NDArrayUtils.uint8ArrayToMat(new byte[][]{{1, 1}, {1, 1}});
+            Mat dilation_kernel = OcrNDArrayUtils.uint8ArrayToMat(new byte[][]{{1, 1}, {1, 1}});
             /**
              * 膨胀说明： 图像的一部分区域与指定的核进行卷积， 求核的最`大`值并赋值给指定区域。 膨胀可以理解为图像中`高亮区域`的'领域扩大'。
              * 意思是高亮部分会侵蚀不是高亮的部分，使高亮部分越来越多。
@@ -99,7 +99,7 @@ public class OcrDetectionTranslator implements Translator<Image, NDList> {
             srcMat.release();
             dilation_kernel.release();
         } else {
-            Mat srcMat = NDArrayUtils.uint8NDArrayToMat(segmentation);
+            Mat srcMat = OcrNDArrayUtils.uint8NDArrayToMat(segmentation);
             //destination Matrix
             Scalar scalar = new Scalar(255);
             Core.multiply(srcMat, scalar, newMask);
@@ -446,20 +446,20 @@ public class OcrDetectionTranslator implements Translator<Image, NDList> {
         box.set(new NDIndex(":, 1"), box.get(":, 1").sub(ymin));
 
         //mask - convert from NDArray to Mat
-        Mat maskMat = NDArrayUtils.uint8NDArrayToMat(mask);
+        Mat maskMat = OcrNDArrayUtils.uint8NDArrayToMat(mask);
 
         //mask - convert from NDArray to Mat - 4 rows, 2 cols
-        Mat boxMat = NDArrayUtils.floatNDArrayToMat(box, CvType.CV_32S);
+        Mat boxMat = OcrNDArrayUtils.floatNDArrayToMat(box, CvType.CV_32S);
 
 //        boxMat.reshape(1, new int[]{1, 4, 2});
         List<MatOfPoint> pts = new ArrayList<>();
-        MatOfPoint matOfPoint = NDArrayUtils.matToMatOfPoint(boxMat); // new MatOfPoint(boxMat);
+        MatOfPoint matOfPoint = OcrNDArrayUtils.matToMatOfPoint(boxMat); // new MatOfPoint(boxMat);
         pts.add(matOfPoint);
         Imgproc.fillPoly(maskMat, pts, new Scalar(1));
 
 
         NDArray subBitMap = bitmap.get(ymin + ":" + (ymax + 1) + "," + xmin + ":" + (xmax + 1));
-        Mat bitMapMat = NDArrayUtils.floatNDArrayToMat(subBitMap);
+        Mat bitMapMat = OcrNDArrayUtils.floatNDArrayToMat(subBitMap);
 
         Scalar score = Core.mean(bitMapMat, maskMat);
         float scoreValue = (float) score.val[0];
