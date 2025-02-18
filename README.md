@@ -121,18 +121,14 @@
   6). 黑白照片上色
       ...
 ```
-#### 使用说明：
+#### 使用功能说明：
 - https://zhuanlan.zhihu.com/p/21873070647
 
-#### 非图像生成类模型下载【8.2G】：
-- 链接: https://pan.baidu.com/s/1Or8i1aOpsl8pZM66i2RNVQ?pwd=uh12
-
-#### 图像生成类模型下载【62G】：
-- 模型默认是延迟加载【首次调用的时候加载模型，也就是说，不下载模型，不影响其它功能使用】
-- -链接: https://pan.baidu.com/s/1Agt84-DdykIO25hkWzvwRg?pwd=9g5r
+#### 开发环境搭建：
+- https://zhuanlan.zhihu.com/p/24587444753
+- AIAS\3_api_platform\README.md
 
 <br/>
-
 
 <div align="center">
   <table>
