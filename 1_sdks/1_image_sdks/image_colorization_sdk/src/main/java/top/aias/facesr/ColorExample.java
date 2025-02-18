@@ -32,7 +32,7 @@ public final class ColorExample {
         Path imageFile = Paths.get("src/test/resources/audrey_hepburn.jpg");
         Image image = OpenCVImageFactory.getInstance().fromFile(imageFile);
 
-        try (DdcolorModel srModel = new DdcolorModel("models/", "traced_ddcolor_cpu.pt", 1, Device.cpu())) {
+        try (DdcolorModel srModel = new DdcolorModel("models/", "traced_ddcolor_cpu.pt", 1)) {
             Image img = srModel.predict(image);
             ImageUtils.saveImage(img, "ddcolor.png", "build/output");
         }

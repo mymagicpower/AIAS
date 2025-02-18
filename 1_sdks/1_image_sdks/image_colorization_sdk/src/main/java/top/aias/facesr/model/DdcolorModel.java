@@ -27,12 +27,12 @@ public final class DdcolorModel implements AutoCloseable {
     private ZooModel<Image, Image> model;
     private DdcolorPool srPool;
 
-    public DdcolorModel(String modelPath, String modelName, int poolSize, Device device) throws ModelException, IOException {
-        init(modelPath, modelName, poolSize, device);
+    public DdcolorModel(String modelPath, String modelName, int poolSize) throws ModelException, IOException {
+        init(modelPath, modelName, poolSize);
     }
 
-    public void init(String modelPath, String modelName, int poolSize, Device device) throws MalformedModelException, ModelNotFoundException, IOException {
-        this.model = ModelZoo.loadModel(criteria(modelPath, modelName, device));
+    public void init(String modelPath, String modelName, int poolSize) throws MalformedModelException, ModelNotFoundException, IOException {
+        this.model = ModelZoo.loadModel(criteria(modelPath, modelName));
         this.srPool = new DdcolorPool(model, poolSize);
     }
 
@@ -48,14 +48,14 @@ public final class DdcolorModel implements AutoCloseable {
         this.srPool.close();
     }
 
-    private Criteria<Image, Image> criteria(String modelPath, String modelName, Device device) {
+    private Criteria<Image, Image> criteria(String modelPath, String modelName) {
 
         Criteria<Image, Image> criteria =
                 Criteria.builder()
                         .optEngine("PyTorch")
                         .setTypes(Image.class, Image.class)
                         .optModelPath(Paths.get(modelPath + modelName))
-                        .optDevice(device)
+                        .optDevice(Device.cpu())
                         .optTranslator(new DdcolorTranslator())
                         .optProgress(new ProgressBar())
                         .build();
