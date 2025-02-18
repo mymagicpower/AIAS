@@ -53,6 +53,13 @@
 <hr>
 <br/>
 
+#### 支持的开发运行环境
+- CPU
+- Windows x64, Linux x64, macOS x64
+
+- GPU (CUDA)
+- Windows x64, Linux x64
+
 ### 1: 面向 Java 程序员的 AI 训练平台【模型定制】
 - 项目位置：AIAS/2_training_platform
 - 面向java程序员，满足图像识别分类定制化需求。
