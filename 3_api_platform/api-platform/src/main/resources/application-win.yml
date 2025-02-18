@@ -12,7 +12,7 @@ config:
 
 model:
   # 设备类型 cpu gpu
-  device: gpu
+  device: cpu
   # 如果是 CPU 推理，最高设置为 CPU 核心数 (Core Number)
   poolSize: 2
   # ocr 文字识别
