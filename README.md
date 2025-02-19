@@ -119,14 +119,19 @@
   4). 一键高清
   5). 一键抠图
   6). 黑白照片上色
+  7). 图像生成
       ...
 ```
-#### 使用功能说明：
+#### 2.1 功能说明：
 - https://zhuanlan.zhihu.com/p/21873070647
 
-#### 开发环境搭建：
+#### 2.2 开发环境搭建：
 - https://zhuanlan.zhihu.com/p/24587444753
 - AIAS\3_api_platform\README.md
+
+#### 2.3 如果有任何需求，请点击在线文档填写：
+- [在线需求建议文档](https://ycncebx6zwkh.feishu.cn/wiki/X1lMwa7waixcYTkZf6tcxo0Qnjm?from=from_copylink)
+
 
 <br/>
 
