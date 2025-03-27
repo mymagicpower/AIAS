@@ -107,6 +107,11 @@
         <!-- Pytorch Windows Linux x86, Mac x86 CPU 配置 -->
         <dependency>
             <groupId>ai.djl.pytorch</groupId>
+            <artifactId>pytorch-model-zoo</artifactId>
+            <version>${djl.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ai.djl.pytorch</groupId>
             <artifactId>pytorch-native-cpu</artifactId>
             <classifier>win-x86_64</classifier>
             <version>1.13.1</version>
