@@ -6,7 +6,7 @@
 能够自动生成1000种类别（支持imagenet数据集分类）的图片。
 
 ### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1alfNcxcTAU2XLeyHFogysg?pwd=3wbd
+- 链接: https://pan.baidu.com/s/1Dbm2prqUCRlVi6Gm8bQG7g?pwd=qv4t
 
 
 ### 支持分类如下：
