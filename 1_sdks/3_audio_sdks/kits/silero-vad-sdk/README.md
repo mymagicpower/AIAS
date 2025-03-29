@@ -1,6 +1,8 @@
 ### 官网：
 [官网链接](http://www.aias.top/)
 
+### 下载模型
+- 查看最新下载链接请查看 1_sdks/README.md
 
 #### 语音活动检测(Voice Activity Detection,VAD)
 语音活动检测(Voice Activity Detection,VAD)又称语音端点检测,语音边界检测。目的是从声音信号流里识别和消除长时间的静音期， 静音抑制可以节省宝贵的带宽资源，可以有利于减少用户感觉到的端到端的时延。

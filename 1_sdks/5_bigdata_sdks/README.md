@@ -1,3 +1,5 @@
+### 下载模型
+- 查看最新下载链接请查看 1_sdks/README.md
 
 #### 项目清单:
 - 5_bigdata_sdks - [大数据SDK]

@@ -1,8 +1,8 @@
 ### 官网：
 [官网链接](http://www.aias.top/)
 
-### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1E1UkCHbQX7hdc4ZOFqFTCg?pwd=gxey
+### 下载模型
+- 查看最新下载链接请查看 1_sdks/README.md
 
 ### 轻量句向量SDK【英文】
 句向量是指将语句映射至固定维度的实数向量。

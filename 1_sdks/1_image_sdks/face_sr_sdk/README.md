@@ -1,8 +1,8 @@
 ### 官网：
 [官网链接](https://www.aias.top/)
 
-### 下载模型，放置于models目录
-- 链接:  https://pan.baidu.com/s/1im0a2l1GFr3wPjfrMD_hpg?pwd=fehu 
+### 下载模型
+- 查看最新下载链接请查看 1_sdks/README.md
 
 ### 模型使用方法：
 - 1. 用模型的名字搜索代码，找到模型的加载位置

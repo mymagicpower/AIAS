@@ -1,8 +1,8 @@
 ### 官网：
 [官网链接](http://www.aias.top/)
 
-### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1KCS7dgQWXxWB2EWFZNV4LA?pwd=pkmv
+### 下载模型
+- 查看最新下载链接请查看 1_sdks/README.md
 
 ### 情感倾向分析SDK
 情感倾向分析（Sentiment Classification）

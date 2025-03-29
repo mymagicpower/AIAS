@@ -1,4 +1,6 @@
 
+### 下载模型
+- 查看最新下载链接请查看 1_sdks/README.md
 
 ### 人工智能 sdk
 - 1_image_sdks - [图像识别 SDK]

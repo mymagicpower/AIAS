@@ -1,12 +1,11 @@
 ### 官网：
 [官网链接](https://www.aias.top/)
 
+### 下载模型
+- 查看最新下载链接请查看 1_sdks/README.md
 
 ### BIGGAN 图像自动生成SDK
 能够自动生成1000种类别（支持imagenet数据集分类）的图片。
-
-### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1Dbm2prqUCRlVi6Gm8bQG7g?pwd=qv4t
 
 
 ### 支持分类如下：

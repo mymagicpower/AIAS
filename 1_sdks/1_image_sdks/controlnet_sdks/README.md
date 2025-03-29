@@ -1,8 +1,8 @@
 ### 官网：
 [官网链接](https://www.aias.top/)
 
-### 下载模型，放置于各自项目的models目录
-- 链接: https://pan.baidu.com/s/1zpdV78RS2JN4VxR4Ie2S8A?pwd=23jf
+### 下载模型
+- 查看最新下载链接请查看 1_sdks/README.md
 
 ### 图像生成预处理
 - 显卡CUDA：11.7版本

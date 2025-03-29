@@ -2,8 +2,8 @@
 	<a href="http://aias.top/">点击前往网站首页</a>
 </div>  
 
-### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1KRrr0zQE601fqHZhf4oG4Q?pwd=e4lq 
+### 下载模型
+- 查看最新下载链接请查看 1_sdks/README.md
 
 ### 模型使用方法：
 - 1. 用模型的名字搜索代码，找到模型的加载位置

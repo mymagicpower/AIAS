@@ -1,6 +1,6 @@
 
-### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1vduRynjwR69qCCAoIoXAwQ?pwd=t9j5
+### 下载模型
+- 查看最新下载链接请查看 1_sdks/README.md
 
 ### 模型使用方法：
 - 1. 用模型的名字搜索代码，找到模型的加载位置

@@ -1,8 +1,8 @@
 ### 官网：
 [官网链接](http://www.aias.top/)
 
-### 下载模型，放置于models目录
-- 链接: https://pan.baidu.com/s/1GdQ_4Xuh0hSP8I09pxdIeQ?pwd=2u13
+### 下载模型
+- 查看最新下载链接请查看 1_sdks/README.md
 
 ### 反光衣检测SDK
 实现施工区域或者危险区域人员穿戴检测.
