@@ -14,9 +14,9 @@ YOLO 是广受好评的YOLO （You Only Look Once）系列的最新进展，用�
 
 ### SDK功能：
 -  目标检测
-- ![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/two_dogs_in_snow.jpeg)
+- ![img](https://aias-home.oss-cn-beijing.aliyuncs.com/images/det_result.png)
 -  人体关键点
-- ![img](https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/nlp_sdks/two_dogs_in_snow.jpeg)
+- ![img](https://aias-home.oss-cn-beijing.aliyuncs.com/images/kp_result.png)
 -  图像分类
 
 
