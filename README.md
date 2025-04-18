@@ -624,6 +624,38 @@
   </table>
 </div>
 
+#### 3.2 人脸搜索：
+- 项目位置：AIAS/4_web_app/simple_face_search
+<div align="center">
+  <table>      
+    <tr>
+      <td>
+        <div align="left">
+          - 1. 图片上传 <br>
+          - 1). 点击上传按钮上传zip压缩包. <br>
+          - 2). 点击提取人脸特征按钮. <br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/7_engine_hub/face_search/data.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>      
+    <tr>
+      <td>
+        <div align="left">
+          <p>2. 人脸搜索</p>    
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/7_engine_hub/face_search/search.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>                                                                    
+  </table>
+</div>
 
 <br/>
 <hr>
