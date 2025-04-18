@@ -624,6 +624,7 @@
   </table>
 </div>
 
+<br/>
 #### 3.2 人脸搜索：
 - 项目位置：AIAS/4_web_app/simple_face_search
 <div align="center">
@@ -657,6 +658,45 @@
   </table>
 </div>
 
+<br/>
+
+#### 3.3 文本搜索：
+- 项目位置：AIAS/4_web_app/simple_text_search
+- 支持100万以内的数据量
+- 随时对数据进行插入、删除、搜索、更新等操作
+- 结合大模型实现RAG功能
+- 根据需要替换其它的特征提取模型：1_sdks\2_nlp_sdks\embedding
+
+<div align="center">
+  <table>      
+    <tr>
+      <td>
+        <div align="left">
+          - 1. 数据上传 <br>
+          - 1). 点击上传按钮上传CSV文件. <br>
+          - 2). 点击提取特征按钮. <br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/text_search/storage.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>      
+    <tr>
+      <td>
+        <div align="left">
+          <p>2. 文本搜索</p>    
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/text_search/search.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>                                                                    
+  </table>
+</div>
 <br/>
 <hr>
 <br/>
