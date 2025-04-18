@@ -442,10 +442,12 @@
   2). 人脸搜索
       ...
 ```
+
+
+<br/>
 #### 3.1 图像生成：
 - 项目位置：AIAS/4_web_app/aigc_image_gen
 
-<br/>
 
 <div align="center">
   <table>      
@@ -625,8 +627,10 @@
 </div>
 
 <br/>
+
 #### 3.2 人脸搜索：
 - 项目位置：AIAS/4_web_app/simple_face_search
+
 <div align="center">
   <table>      
     <tr>
