@@ -2,8 +2,3 @@
 model:
   # 模型路径
   modelPath: /home/models/
-
-  sd:
-    # 模型路径
-    cpuModelPath: /home/models/aigc/sd_cpu/
-    gpuModelPath: /home/models/aigc/sd_gpu/

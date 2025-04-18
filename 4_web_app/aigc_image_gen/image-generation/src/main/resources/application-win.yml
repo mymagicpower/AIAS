@@ -1,0 +1,9 @@
+
+model:
+  # 模型路径
+  modelPath: D:\\ai_projects\\AIAS\\3_api_platform\\api-platform\\models\\
+
+  sd:
+    # 模型路径
+    cpuModelPath: H:\\models\\aigc\\sd_cpu\\
+    gpuModelPath: H:\\models\\aigc\\sd_gpu\\

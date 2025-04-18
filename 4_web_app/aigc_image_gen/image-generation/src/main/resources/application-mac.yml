@@ -1,0 +1,9 @@
+
+model:
+  # 模型路径
+  modelPath: /Users/calvin/AIAS/3_api_platform/api-platform/models/
+
+  sd:
+    # 模型路径
+    cpuModelPath: /Users/calvin/AIAS/3_api_platform/api-platform/models/aigc/sd_cpu/
+    gpuModelPath: /Users/calvin/AIAS/3_api_platform/api-platform/models/aigc/sd_gpu/

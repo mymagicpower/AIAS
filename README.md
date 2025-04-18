@@ -424,7 +424,31 @@
         <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/9_aigc/images/shuffle.png" width = "400px"/>
         </div>
       </td>
-    </tr>          
+    </tr>                                                               
+  </table>
+</div>
+
+<br/>
+<hr>
+<br/>
+
+### 3: AI Web应用【开箱即用】
+- 项目位置：AIAS/4_web_app
+- Web应用，前端VUE，后端Springboot
+- 可以直接部署使用，使用UI或者调用API集成到现有的系统中。
+- 支持的能力清单：
+```text
+  1). 图像生成
+  2). 人脸搜索
+      ...
+```
+#### 3.1 图像生成：
+- 项目位置：AIAS/4_web_app/aigc_image_gen
+
+<br/>
+
+<div align="center">
+  <table>      
     <tr>
       <td>
         <div align="left">
@@ -599,11 +623,6 @@
     </tr>                                                        
   </table>
 </div>
-
-<br/>
-<hr>
-<br/>
-
 
 
 <br/>

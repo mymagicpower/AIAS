@@ -2,7 +2,6 @@ package top.aias.platform.controller;
 
 import ai.djl.modality.cv.Image;
 import ai.djl.opencv.OpenCVImageFactory;
-import ai.djl.translate.TranslateException;
 import com.google.api.client.util.Base64;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -13,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import top.aias.platform.bean.ResultBean;
-import top.aias.platform.service.ImgColorService;
 import top.aias.platform.service.ImgPreProcessService;
 import top.aias.platform.service.ImgSdService;
 import top.aias.platform.utils.ImageUtils;
