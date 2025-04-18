@@ -697,6 +697,45 @@
     </tr>                                                                    
   </table>
 </div>
+
+
+<br/>
+
+#### 3.4 框选一键抠图：
+- 项目位置：AIAS/4_web_app/image_seg_sam2
+- 一键抠图是一种图像处理技术，旨在自动将图像中的前景对象从背景中分离出来。
+- 它可以帮助用户快速、准确地实现抠图效果，无需手动绘制边界或进行复杂的图像编辑操作。
+
+<div align="center">
+  <table>      
+    <tr>
+      <td>
+        <div align="left">
+          - 1. 框选一键抠图例子1 <br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/image_seg_sam2/sam2_seg1.jpg" width = "400px"/>
+        </div>
+      </td>
+    </tr>      
+    <tr>
+      <td>
+        <div align="left">
+          - 2. 框选一键抠图例子2 <br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/image_seg_sam2/sam2_seg2.jpg" width = "400px"/>
+        </div>
+      </td>
+    </tr>                                                                    
+  </table>
+</div>
+
+
 <br/>
 <hr>
 <br/>
