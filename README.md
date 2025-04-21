@@ -157,6 +157,8 @@
 #### 2.3 如果有任何需求，请点击在线文档填写：
 - [在线需求建议文档](https://ycncebx6zwkh.feishu.cn/wiki/X1lMwa7waixcYTkZf6tcxo0Qnjm?from=from_copylink)
 
+#### 2.4 模型下载：
+- https://pan.baidu.com/s/1RIKaZJXMPbGXnB2sKtWsgQ?pwd=1uuf
 
 <br/>
 
@@ -470,7 +472,9 @@
 <br/>
 #### 3.1 图像生成：
 - 项目位置：AIAS/4_web_app/aigc_image_gen
-
+- 模型下载：
+- 图像生成模型链接: https://pan.baidu.com/s/1znJi092mth3z68Oq_j2lsA?pwd=dmra
+- 预处理模型链接: https://pan.baidu.com/s/1h75UaEqg_paias8Z1pEjOQ?pwd=yqek
 
 <div align="center">
   <table>      
