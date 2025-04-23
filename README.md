@@ -54,27 +54,6 @@
 
 <br/>
 
-#### 技术交流
-- 微信扫码入群
-
-<div align="center">
-  <table>
-    <tr>  
-      <td>
-        <div align="center">
-        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/images/wechat.jpg" width = "200px"/>
-        </div>
-      </td>
-      <td>
-        <div align="center">
-          <p>微信号：aiastop</p>   
-        </div>
-      </td>    
-    </tr>                                         
-  </table>
-</div>
-
-<br/>
 
 #### 支持的开发运行环境
 - CPU
