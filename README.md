@@ -62,6 +62,20 @@
 - GPU (CUDA)
 - Windows x64, Linux x64
 
+#### 培训课程基础入门（视频）
+- 视频培训合集地址：
+ https://space.bilibili.com/34811275/lists
+
+- 建议流量顺序：
+0_AI数学基础
+1_AI算法入门
+2_Java AI训练框架(DL4J)
+3_Java AI 训练平台
+4_Java AI 能力平台
+5_Java版NumPy(ND4J)
+6_ Java OpenCV
+7_Java 模型推理
+
 ### 1: 面向 Java 程序员的 AI 训练平台【模型定制】
 - 项目位置：AIAS/2_training_platform
 - 面向java程序员，满足图像识别分类定制化需求。
