@@ -774,7 +774,7 @@
 <img src="https://qubits.oss-cn-shanghai.aliyuncs.com/images/logo.png"  width = "150"  />
 </div>
 
-- 官网: http://www.qubits.top/
+- 培训教程: https://zhuanlan.zhihu.com/p/503483952
 - Gitee:  https://gitee.com/mymagicpower/qubits
 - GitHub: https://github.com/mymagicpower/qubits
 
@@ -783,7 +783,7 @@
 <img src="https://bio-computing.oss-cn-shanghai.aliyuncs.com/images/logo.png"  width = "200"  />
 </div>
 
-- 官网: http://www.biocomputing.top/
+- 培训教程: https://zhuanlan.zhihu.com/p/696026008
 - Gitee:  https://gitee.com/mymagicpower/bio-computing
 - GitHub: https://github.com/mymagicpower/bio-computing
 
