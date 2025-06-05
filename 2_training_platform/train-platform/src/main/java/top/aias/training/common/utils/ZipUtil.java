@@ -61,7 +61,12 @@ public class ZipUtil {
                 }
 
                 filename = filePath + File.separator + filename;
-                File file = new File(filename);
+                File file = new File(filePath, filename);
+                if (!file.toPath().normalize().startsWith(Paths.get(filePath).normalize())) {
+                  log.error("Zip entry attempts path traversal: {}", filename);
+                  throw new SecurityException("Zip entry attempts path traversal: " + filename);
+                }
+                
                 if (!file.exists()) {
                     if (ismkdir) {
                         new File(filename.substring(0, filename.lastIndexOf("/"))).mkdirs();
