@@ -1,0 +1,21 @@
+<config>
+    <input>
+        <jar in="../target/aiplatform-search-1.0.jar" out="../target/aias-aiplatform-search-1.0.jar"/>
+    </input>
+
+    <keep-names>
+        <class access="protected+">
+            <field access="protected+"/>
+            <method access="protected+"/>
+        </class>
+
+        <ignore-classes>
+            <class template="class *springframework*" />
+            <class template="class *persistence*"/>
+            <class template="class *domain*"/>
+            <class template="class *bean*"/>
+        </ignore-classes>
+    </keep-names>
+
+    <property name="log-file" value="log.xml"/>
+</config>

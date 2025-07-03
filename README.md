@@ -122,8 +122,8 @@
 - [12_ResNet50-图像1:1比对](https://zhuanlan.zhihu.com/p/21979539629)
 - [13_yolo-目标检测](https://zhuanlan.zhihu.com/p/21981802325)
 
-#### 1.3 sdk 模型下载：
-- https://pan.baidu.com/s/103fn9sm7ZAsnRTxW_iiQAA?pwd=vc58
+#### 1.3 模型下载：
+- 链接:https://pan.baidu.com/s/16933J3dX16xnjbYaay-4og?pwd=cwxk
 
 <br/>
 <hr>

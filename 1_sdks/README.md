@@ -1,6 +1,6 @@
 
 ### 下载模型
-- 链接: https://pan.baidu.com/s/16ubqEPtQAcgIWeQY2qpBUw?pwd=fba9
+- 链接:https://pan.baidu.com/s/16933J3dX16xnjbYaay-4og?pwd=cwxk
 
 ### 人工智能 sdk
 - 1_image_sdks - [图像识别 SDK]

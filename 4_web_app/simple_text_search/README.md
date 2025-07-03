@@ -1,9 +1,6 @@
 ## 目录：
 http://aias.top/
 
-### 下载模型，更新 text-search 的yaml配置文件
-- 链接: https://pan.baidu.com/s/13V3c6j74-30t4x3MBpq_fw?pwd=3pny
-
 ```bash
 # Model URI
 model:
