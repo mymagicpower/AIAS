@@ -55,6 +55,9 @@
 
 <br/>
 
+#### 模型下载：
+- 链接:https://pan.baidu.com/s/16933J3dX16xnjbYaay-4og?pwd=cwxk
+
 
 #### 支持的开发运行环境
 - CPU
@@ -62,6 +65,7 @@
 
 - GPU (CUDA)
 - Windows x64, Linux x64
+
 
 #### 培训课程基础入门（视频）
 - 视频地址：
@@ -122,8 +126,6 @@
 - [12_ResNet50-图像1:1比对](https://zhuanlan.zhihu.com/p/21979539629)
 - [13_yolo-目标检测](https://zhuanlan.zhihu.com/p/21981802325)
 
-#### 1.3 模型下载：
-- 链接:https://pan.baidu.com/s/16933J3dX16xnjbYaay-4og?pwd=cwxk
 
 <br/>
 <hr>
@@ -462,6 +464,7 @@
 ```text
   1). 图像生成
   2). 人脸搜索
+  3). 以图搜图
       ...
 ```
 
@@ -653,7 +656,7 @@
 <br/>
 
 #### 3.2 人脸搜索：
-- 项目位置：AIAS/4_web_app/simple_face_search
+- 项目位置：AIAS/4_web_app/face_search
 
 <div align="center">
   <table>      
@@ -686,7 +689,6 @@
   </table>
 </div>
 
-<br/>
 
 #### 3.3 文本搜索：
 - 项目位置：AIAS/4_web_app/simple_text_search
@@ -762,6 +764,47 @@
     </tr>                                                                    
   </table>
 </div>
+
+#### 3.5 以图搜图：
+- 项目位置：AIAS/4_web_app/image_search
+- 一共提供了三个不同的版本
+- 无向量引擎的版本，适合100万图片以下：mini_image_search
+- 向量引擎的版本，无管理系统的精简版：simple_image_search
+- 向量引擎的版本，完整的产品级应用：image_search
+<div align="center">
+  <table>      
+    <tr>
+      <td>
+        <div align="left">
+          - 1. 图片上传 <br>
+          - 1). 支持服务器端文件夹上传 <br>
+          ，大量图片使用，如千万张图片入库。 <br>
+          - 2). 点击提取人脸特征按钮. <br>
+          - 3). 支持客户端文件夹上传.  
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/image_search/images/storage.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>      
+    <tr>
+      <td>
+        <div align="left">
+          <p>2. 图像搜索</p>    
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/image_search/images/search.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>                                                                    
+  </table>
+</div>
+
+<br/>
 
 
 <br/>
