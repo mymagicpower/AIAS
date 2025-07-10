@@ -691,12 +691,13 @@
 
 
 #### 3.3 文本搜索：
-- 项目位置：AIAS/4_web_app/simple_text_search
-- 支持100万以内的数据量
+- 项目位置：AIAS/4_web_app/text_search
 - 随时对数据进行插入、删除、搜索、更新等操作
 - 结合大模型实现RAG功能
 - 根据需要替换其它的特征提取模型：1_sdks\2_nlp_sdks\embedding
-
+- 一共提供了2个不同的版本
+- 无向量引擎的版本，适合100万条数据以下：simple_text_search
+- 向量引擎的版本，适合100万条数据以上：text_search
 <div align="center">
   <table>      
     <tr>
@@ -731,11 +732,13 @@
 
 <br/>
 
-#### 3.4 框选一键抠图：
-- 项目位置：AIAS/4_web_app/image_seg_sam2
+#### 3.4 一键抠图：
+- 项目位置：AIAS/4_web_app/image_seg
 - 一键抠图是一种图像处理技术，旨在自动将图像中的前景对象从背景中分离出来。
 - 它可以帮助用户快速、准确地实现抠图效果，无需手动绘制边界或进行复杂的图像编辑操作。
-
+- 一共提供了2个不同的版本
+- 一键抠图完整版，包含：框选一键抠图，通用一键抠图，人体一键抠图，动漫一键抠图：image_seg
+- 框选一键抠图：image_seg_sam2
 <div align="center">
   <table>      
     <tr>
@@ -798,6 +801,86 @@
       <td>
         <div align="center">
         <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/products/image_search/images/search.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>                                                                    
+  </table>
+</div>
+
+#### 3.5 跨模态：以文搜图，以图搜图：
+- 项目位置：AIAS/4_web_app/image_text_search
+- 一共提供了2个不同的版本
+- 无向量引擎的版本，适合100万图片以下：mini_image_text_search
+- 向量引擎的版本，适合100万图片以上：image_text_search
+<div align="center">
+  <table>      
+    <tr>
+      <td>
+        <div align="left">
+          - 1. 图片上传 <br>
+          - 2. 点击提取特征按钮. <br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/7_engine_hub/image_text_search/storage.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>      
+    <tr>
+      <td>
+        <div align="left">
+          - 1. 以文搜图 <br>
+          - 输入文本：雪地上两只狗. <br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/7_engine_hub/image_text_search/search2.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>      
+    <tr>
+      <td>
+        <div align="left">
+          <p>2. 以图搜图</p>    
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/7_engine_hub/image_text_search/search3.png" width = "400px"/>
+        </div>
+      </td>
+    </tr>                                                                     
+  </table>
+</div>
+
+#### 3.6 IOCR - 自定义模版识别：
+- 项目位置：AIAS/4_web_app/iocr
+
+<div align="center">
+  <table>      
+    <tr>
+      <td>
+        <div align="left">
+          - 1. 参照锚点设置 <br>
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/ocr_anchor.jpeg" width = "400px"/>
+        </div>
+      </td>
+    </tr>      
+    <tr>
+      <td>
+        <div align="left">
+          <p>2. 内容识别区设置</p>    
+        </div>
+      </td>     
+      <td>
+        <div align="center">
+        <img src="https://aias-home.oss-cn-beijing.aliyuncs.com/AIAS/OCR/images/ocr_content.jpeg" width = "400px"/>
         </div>
       </td>
     </tr>                                                                    
