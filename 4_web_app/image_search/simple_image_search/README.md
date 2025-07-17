@@ -1,6 +1,9 @@
 ### 目录：
 http://aias.top/
 
+#### 模型下载：
+- 链接:https://pan.baidu.com/s/16933J3dX16xnjbYaay-4og?pwd=cwxk
+
 ### 以图搜图【向量引擎精简版】
 #### 主要特性
 - 底层使用特征向量相似度搜索

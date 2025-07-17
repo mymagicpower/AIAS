@@ -2,6 +2,9 @@
 https://www.aias.top/
 
 
+#### 模型下载：
+- 链接:https://pan.baidu.com/s/16933J3dX16xnjbYaay-4og?pwd=cwxk
+
 
 ```bash
 model:

@@ -1,6 +1,8 @@
 ## 目录：
 http://aias.top/
 
+#### 模型下载：
+- 链接:https://pan.baidu.com/s/16933J3dX16xnjbYaay-4og?pwd=cwxk
 
 ### 代码语义搜索
 - 包含两个项目，满足不同场景的需要

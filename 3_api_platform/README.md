@@ -1,8 +1,10 @@
 ### 目录：
 https://www.aias.top/
 
+#### 模型下载：
+- 链接:https://pan.baidu.com/s/16933J3dX16xnjbYaay-4og?pwd=cwxk
+
 ### 1. 非图像生成类模型下载【8.2G】：
-- 链接: https://pan.baidu.com/s/1Or8i1aOpsl8pZM66i2RNVQ?pwd=uh12
 ```bash
 # 假设系统为 windows , 假设下载后的路径如下：
 D:\ai_projects\AIAS\3_api_platform\api-platform\models>:

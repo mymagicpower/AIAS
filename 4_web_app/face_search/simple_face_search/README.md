@@ -2,6 +2,8 @@
 https://aias.top/
 
 
+#### 模型下载：
+- 链接:https://pan.baidu.com/s/16933J3dX16xnjbYaay-4og?pwd=cwxk
 
 ### 下载模型，更新 face_vector_search 的yaml配置文件
 

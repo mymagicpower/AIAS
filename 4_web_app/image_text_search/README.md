@@ -1,6 +1,8 @@
 ## 目录：
 http://aias.top/
 
+#### 模型下载：
+- 链接:https://pan.baidu.com/s/16933J3dX16xnjbYaay-4og?pwd=cwxk
 
 ### 图像&文本的跨模态相似性比对检索【支持40种语言】
 - 包含两个项目，满足不同场景的需要

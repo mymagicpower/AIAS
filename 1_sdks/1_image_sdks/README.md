@@ -1,4 +1,6 @@
 
+#### 模型下载：
+- 链接:https://pan.baidu.com/s/16933J3dX16xnjbYaay-4og?pwd=cwxk
 
 
 #### 项目清单:

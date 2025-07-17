@@ -1,6 +1,9 @@
 ### 目录：
 http://aias.top/
 
+#### 模型下载：
+- 链接:https://pan.baidu.com/s/16933J3dX16xnjbYaay-4og?pwd=cwxk
+
 ### 模型位置
 - mini_image_search/models/CLIP-ViT-B-32-IMAGE.pt
 

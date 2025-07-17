@@ -2,6 +2,8 @@
   <a href="http://aias.top/">点击返回网站首页</a>
 </div>  
 
+#### 模型下载：
+- 链接:https://pan.baidu.com/s/16933J3dX16xnjbYaay-4og?pwd=cwxk
 
 ### 人像搜索
 <div align="center">
